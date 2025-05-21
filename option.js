@@ -12,7 +12,7 @@ document.getElementById('startBtn').addEventListener('click', function() {
                 if (platform === 'app') {
                     proceedLink.href = "Phone.html";
                 } else {
-                    proceedLink.href = "PC.html"; 
+                    proceedLink.href = "Computer.html"; 
                 }
                 
                 document.getElementById('proceedBtn').style.display = 'block';
