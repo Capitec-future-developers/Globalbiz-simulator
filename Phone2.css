@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
+/* Base Styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* iPhone Frame */
+.iphone {
+    position: relative;
+    width: 300px;
+    height: 600px;
+    background-color: #111;
+    border-radius: 40px;
+    padding: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Screen Elements */
+.screen {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 35px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background-color: #111;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 14;
+}
+
+.home-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+/* Physical Buttons */
+.volume-buttons {
+    position: absolute;
+    left: -10px;
+    top: 100px;
+    width: 5px;
+    height: 80px;
+}
+
+.volume-up, .volume-down {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.volume-down {
+    top: 40px;
+}
+
+.power-button {
+    position: absolute;
+    right: -10px;
+    top: 160px;
+    width: 5px;
+    height: 80px;
+    background-color: #333;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+/* Header Styles */
+.head {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #074358;
+    color: white;
+    width: calc(100% + 40px);
+    height: 40px;
+    top: 0;
+    left: -20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 5;
+    margin-top: 25px;
+}
+
+.header {
+    position: relative;
+    font-size: 1.5rem;
+    color: white;
+    top: -30px;
+    right: -90px;
+}
+
+.arrow {
+    position: relative;
+    top: -3px;
+    left: 1px;
+    width: 30px;
+    height: 30px;
+    background-color: #0096c7;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow .material-icons-sharp {
+    color: white;
+    font-size: 24px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 150px;
+    background-color: #074358;
+    position: absolute;
+    color: white;
+    height: calc(600px - 65px);
+    top: 65px;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 10;
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+}
+
+.sidebar.collapsed {
+    transform: translateX(-150px);
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 0.7rem;
+    background-color: #074358;
+}
+
+.sidebar a.active, 
+.sidebar a:hover:not(.active) {
+    background-color: #0096c7;
+}
+
+.signout {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100px;
+}
+
+.side {
+    color: #ccc;
+    font-size: 0.7rem;
+    padding: 15px 15px 5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Main Content Structure */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 10px;
+}
+
+/* Content Area */
+.content {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+/* Account Section */
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.account-header h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.View {
+    color: #0096c7;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+/* Account Box */
+.box1 {
+    width: 100%;
+    height: 60px;
+    border: 2px solid #cccccca8;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.box1 .material-icons-sharp {
+    font-size: 1.5rem;
+    color: #074358;
+    margin-right: 15px;
+}
+
+.separator {
+    height: 40px;
+    width: 1px;
+    background-color: #cccccc;
+    margin: 0 15px;
+}
+
+.account-details {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-name {
+    font-size: 0.9rem;
+}
+
+.account-balance {
+    color: #0096c7;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Favorites Section */
+.favorites {
+    background: white;
+    padding: 15px 20px;
+    margin-top: 10px;
+}
+
+.favorites-header {
+    margin-bottom: 15px;
+}
+
+.favorites-header h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.favorite-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+}
+
+.favorite-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.favorite-box .material-icons-sharp {
+    font-size: 28px;
+    color: #074358;
+    margin-bottom: 8px;
+}
+
+.favorite-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Responsive Adjustments */
+@media (max-height: 600px) {
+    .favorite-box {
+        height: 80px;
+        padding: 10px;
+    }
+    .favorite-box .material-icons-sharp {
+        font-size: 24px;
+    }
+}
