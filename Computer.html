@@ -11,30 +11,23 @@
 <body>
 
 <div class="header">
-  <a href="#default" class="logo"><img src="logo.png" alt="logo"></a>
+  <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
   <div class="header-right">
-     <a  href="#home">
-                        <span class="material-icons-sharp">contact_support</span>
-                        banker
-                    </a>
-   </a>
-    <a href="#contact">
-        <span class="material-icons-sharp">account_circle</span>
-    </a>
-    <a href="#about">Sign Out</a>
-  </div>
+  <a href="#home">
+    <span class="material-icons-sharp">contact_support</span>
+    banker
+  </a>
+  <a href="#contact">
+    <span class="material-icons-sharp">account_circle</span>
+    Omphile Mohlala
+  </a>
+  <a href="home page.html" class="sign">Sign Out</a>
 </div>
-
-<div style="padding-left:20px">
-  <h1>Responsive Header</h1>
-  <p>Resize the browser window to see the effect.</p>
-  <p>Some content..</p>
 </div>
-
-</body>
-</html>
-
-    <!--Sidebar navigation
+   <!--Sidebar navigation-->
     <div class="side bar">
   <div class="sidebar" id="sidebar">
            
@@ -42,33 +35,120 @@
                         <span class="material-icons-sharp">home</span>
                         Home
                     </a>
-                    <p class="side">MANAGEMENT</p>
+                    <p class="side">BANKING</p>
                     <a href="authorisations.html">
+                        <span class="material-icons-sharp">storage</span>
+                        Accounts
+                    </a>
+                      <a href="products.html">
+                        <span class="material-icons-sharp">swap_horiz</span>
+                        Transact
+                    </a>
+                    
+                    <a href="efiling.html">
+                        <span class="material-icons-sharp">dynamic_feed</span>
+                        Cards
+                    </a>
+                    <p class="side">MANAGEMENT</p>
+                    <a href="documents.html">
                         <span class="material-icons-sharp">check_box</span>
                         Authorisations
+                    </a>    
+                    
+                    <a href="settings.html">
+                        <span class="material-icons-sharp">groups</span>
+                        User management
                     </a>
                     <p class="side">SERVICES</p>
-                    <a href="products.html">
-                        <span class="material-icons-sharp">shopping_cart</span>
-                        Products & Services
-                    </a>
-                    <a href="efiling.html">
+                    <a href="settings.html">
                         <span class="material-icons-sharp">radio_button_unchecked</span>
+                        products & Services
+                    </a>
+                    <a href="settings.html">
+                        <span class="material-icons-sharp">settings</span>
                         SARS eFILLING
                     </a>
-                    <a href="documents.html">
+                    <a href="settings.html">
+                        <span class="material-icons-sharp">chat</span>
+                        Secure Messages
+                    </a>
+                    <a href="settings.html">
                         <span class="material-icons-sharp">description</span>
                         Documents
-                    </a>    
+                    </a>
                     <a href="settings.html">
                         <span class="material-icons-sharp">settings</span>
                         Settings
                     </a>
                     <a href="Phone.html" class="signout">
                         <span class="material-icons-sharp">lock</span>
-                        Sign Out
+                        We secure your data in line with our Privacy Notice and Terms & Conditions
                     </a>
                 </div>
-        </div>-->
+        </div>
+        <div style="padding-left:280px">
+        <div  class="notice" style="padding-left:280px">
+  <h4>Hello</h4>
+  <br>
+  <p>Your last Sign-in was on 13:15, wednesday 21/5/2025.</p>
+  <p>Some content..</p>
+</div>
+<br>
+  <!-- Main Content Area -->
+             <div class="content" id="mainContent">
+    <div class="account">
+        <div class="account-header">
+            <h4>Accounts</h4>
+            <a href="all_accounts.html" class="View">
+                View All <span class="material-icons-sharp">chevron_right</span>
+            </a>
+        </div>
+        <div class="box">
+            <div class="box1">
+                <span class="material-icons-sharp">account_balance</span>
+                <span class="separator"></span>
+                <div class="account-details">
+                    <span class="account-name">1 Account Current</span>
+                    <span class="account-balance">R1000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Favorites Section - Placed outside content div -->
+<div class="favorites-container">
+    <div class="favorites">
+        <div class="favorites-header">
+            <h4>Favourites</h4>
+            <h4 class="edit">Edit</h4>
+        </div>
+        <div class="favorites-grid">
+            <!-- Pay Saved Beneficiary -->
+            <div class="favorite-box">
+                <span class="material-icons-sharp">person</span>
+                <span class="favorite-title">Pay Saved</span>
+            </div>
+            
+            <!-- Pay Once Off Beneficiary -->
+            <div class="favorite-box">
+                <span class="material-icons-sharp">person_add</span>
+                <span class="favorite-title">Pay Once Off</span>
+            </div>
+            
+            <!-- Group/Multiple Payments -->
+            <div class="favorite-box">
+                <span class="material-icons-sharp">groups</span>
+                <span class="favorite-title">Multiple</span>
+            </div>
+            
+            <!-- Transfer Money -->
+            <div class="favorite-box">
+                <span class="material-icons-sharp">sync_alt</span>
+                <span class="favorite-title">Transfer</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
     </body>
 </html>
