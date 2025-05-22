@@ -386,6 +386,27 @@ body {
  
 }
 
-.notice{
-  
+
+.notice {
+  padding: 40px;
+  margin-bottom: 20px;
+  left: -250px;
+  width: 100%;
+  position: relative;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.notice h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.notice p {
+  color: #7f8c8d;
+}
+
+/* Modify the content section positioning */
+.content {
+  margin-top: 0;
+  width: 100%;
 }
