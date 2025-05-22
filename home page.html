@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="profile.jpg">
     <title>Globalbiz</title>
 </head>
 <body>
     <h1>Globalbiz simulator</h1>
-    <p>We are going to create a app simulator for our agents to use when assisting clients</p>
-    <div class="button">
-        <button><a href="Phone.html">Get started</a></button>
+    <p>We are going to create an app simulator for our agents to use when assisting clients</p>
+    
+    <div class="select">Select an option</div>
+    
+    <div class="button-group">
+        <button id="startBtn" class="button">Get started</button>
+        
+        <div id="platformOptions" class="platform-options">
+            <p>Please select your platform:</p>
+            <button class="platform-btn" data-platform="app">Mobile App</button>
+            <button class="platform-btn" data-platform="pc">PC Version</button>
+        </div>
+        
+        <div id="proceedBtn" class="get-started-btn">
+            <button class="button">
+                <a href="#" id="proceedLink">Proceed to Simulator</a>
+            </button>
+        </div>
     </div>
-</body>
+    <script src="option.js"></script>
+   </body>
 </html>
