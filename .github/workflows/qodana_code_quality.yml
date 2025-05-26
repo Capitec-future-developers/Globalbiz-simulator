@@ -1,28 +1,44 @@
-name: Qodana
+name: Qodana Code Analysis
 on:
-  workflow_dispatch:
-  pull_request:
+  workflow_dispatch:  # Manual trigger option
+  pull_request:       # Run on PR creation/update
   push:
-    branches: # Specify your branches here
-      - main # The 'main' branch
-      - 'releases/*' # The release branches
+    branches:         # Automatic triggers for:
+      - main          # Main production branch
+      - 'releases/*'  # All release branches
 
 jobs:
-  qodana:
+  code-quality-analysis:
+    name: Qodana Scan
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
-      checks: write
+      contents: write     # Required for PR comments
+      pull-requests: write # Required for PR decoration
+      checks: write        # Required for status checks
+      security-events: write # Recommended for security findings
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
-      - name: 'Qodana Scan'
+          ref: ${{ github.event.pull_request.head.sha }}  # Checkout PR HEAD commit
+          fetch-depth: 0  # Full history for accurate analysis
+
+      - name: Run Qodana Analysis
         uses: JetBrains/qodana-action@v2025.1
         with:
-          pr-mode: false
+          pr-mode: false   # Set to true if using Qodana Cloud PR decoration
+          args: --save-report  # Optional: Save report artifact
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_161823655 }}
           QODANA_ENDPOINT: 'https://qodana.cloud'
+          # Optional: QODANA_PROJECT: 'your-project-id'
+
+      # Optional: Upload report as artifact
+      - name: Upload Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: qodana-report
+          path: ${{ runner.temp }}/qodana/results
+          
