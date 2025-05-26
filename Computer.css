@@ -198,27 +198,72 @@ body {
   font-size: 14px;
 }
 
+/* Account Section - Updated Box Layout */
 .box {
-  display: flex;
-  gap: 20px;
+  display: inline-flex;
+  row-gap: 10px;
+  gap: 30px; /* Reduced from 35px to 10px */
+  flex-wrap: wrap;
+  width: 100%;
+  overflow: hidden;
 }
 
-.box1 {
-  flex: 0 0 300px; /* Changed from flex: 1 to set fixed width */
+/* Box1 specific styles */
+.box1  {
+  position: relative;
+  flex: 0 0 250px; /* Fixed width of 250px, won't grow or shrink */
   display: flex;
   align-items: center;
   padding: 15px;
+  gap: 35px;
   background: #f9f9f9;
   border-radius: 6px;
   border-left: 4px solid #3498db;
-  width: 300px; /* Explicit width setting */
-  max-width: 100%; /* Ensures it doesn't overflow on small screens */
+  transition: transform 0.3s ease;
+  height: 80px;
+}
+
+.box1:hover {
+  transform: translateY(-3px);
 }
 
 .box1 .material-icons-sharp {
   font-size: 30px;
   color: #3498db;
   margin-right: 15px;
+}
+
+/* Box2 specific styles */
+.box2 {
+  position: relative;
+  flex: 0 0 250px; /* Fixed width of 250px, won't grow or shrink */
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  gap: 30px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border-left: 4px solid #3498db;
+  transition: transform 0.3s ease;
+  height: 80px;
+}
+
+.box2:hover {
+  transform: translateY(-3px);
+}
+
+.box2 .material-icons-sharp {
+  font-size: 30px;
+  color: #3498db;
+  margin-right: 15px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 800px) {
+  .box1, .box2 {
+    flex: 1 1 100%; /* Full width on mobile */
+    min-width: 100px; /* Allow boxes to shrink below 250px on mobile */
+  }
 }
 
 .account-details {
@@ -235,7 +280,6 @@ body {
   font-size: 18px;
   font-weight: 700;
 }
-
 /* Favorites Section */
 .favorites-container {
   background: white;
@@ -307,11 +351,11 @@ body {
   .sidebar {
     transform: translateX(-100%);
   }
-  
+
   .sidebar.active {
     transform: translateX(0);
   }
-  
+
   .main-content {
     margin-left: 0;
   }
@@ -321,23 +365,23 @@ body {
   .header {
     padding: 10px 15px;
   }
-  
+
   .business {
     display: none;
   }
-  
+
   .separator {
     display: none;
   }
-  
+
   .header-right a span:not(.material-icons-sharp) {
     display: none;
   }
-  
+
   .box {
     flex-direction: column;
   }
-  
+
   .favorites-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -347,18 +391,18 @@ body {
   .header {
     height: 60px;
   }
-  
+
   .sidebar {
     top: 60px;
     height: calc(100vh - 60px);
     width: 80%;
   }
-  
+
   .main-content {
     margin-top: 60px;
     padding: 15px;
   }
-  
+
   .favorites-grid {
     grid-template-columns: 1fr;
   }
@@ -399,7 +443,7 @@ body {
   font-size: 14px;
   right: 10px;
   position: absolute;
- 
+
 }
 
 
@@ -468,12 +512,12 @@ body {
   font-size: 30px;
   color: #3498db;
   margin-bottom: 10px;
-} 
+}
 
 .pending-title {
   font-size: 14px;
   text-align: center;
-} 
+}
 
 @media screen and (max-width: 768px) {
   .pending-box {
@@ -482,7 +526,7 @@ body {
   .pending-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
 }
 
 .pending-grid {
@@ -565,9 +609,10 @@ body {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .account-select,
   .period-selector select {
     width: 100%; /* Full width on mobile */
   }
 }
+
