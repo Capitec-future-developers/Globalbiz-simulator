@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Header Styles */
+.header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header a.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header a.logo img {
+    height: 40px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+}
+
+.business {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.separator {
+    height: 30px;
+    width: 1px;
+    background-color: #e0e0e0;
+    margin: 0 15px;
+}
+
+/* Header Right Section */
+.header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-right a {
+    color: #2c3e50;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.header-right a:hover {
+    background-color: #f0f2f5;
+}
+
+.header-right .material-icons-sharp {
+    margin-right: 8px;
+    font-size: 22px;
+}
+
+.header-right a.sign {
+    color: #1e88e5;
+    font-weight: 500;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background: #2c3e50;
+    color: white;
+    position: fixed;
+    height: calc(100vh - 70px);
+    top: 70px;
+    left: 0;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.sidebar a {
+    color: #ecf0f1;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 10px
+}
+
+.sidebar a:hover {
+    background: #34495e;
+}
+
+
+.sidebar .material-icons-sharp {
+    margin-right: 12px;
+    font-size: 20px;
+}
+
+.side {
+    color: #bdc3c7;
+    padding: 15px 20px 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.sidebar a.signout {
+    margin-top: 20px;
+    border-top: 1px solid #34495e;
+    padding-top: 20px;
+    color: #bdc3c7;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.sidebar a.signout:hover {
+    background: transparent;
+    color: white;
+}
