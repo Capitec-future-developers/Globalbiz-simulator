@@ -493,6 +493,8 @@ body {
 .content {
   margin-top: 0;
   width: 100%;
+  text-decoration: none;
+
 }
 
 .pending {
@@ -501,25 +503,36 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   width: 400px;
-  text-decoration: none;
-  margin-left: 290px; /* These two lines will push it to the right */
-  margin-right: auto; /* Right spacing */
+  margin-left: 290px;
+  margin-right: auto;
   position: relative;
-  text-decoration: none;
   margin-bottom: 40px;
   top: 15px;
 }
 
 .pending-header {
   margin-bottom: 20px;
-  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.pending-header h4 a{
+.pending-header h4 {
   color: #2c3e50;
-  text-decoration: none;
+  margin: 0; /* Remove default margin */
 }
-.pending-box{
+
+.pending-header a {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.pending-header a:hover {
+  text-decoration: underline;
+}
+
+.pending-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -528,6 +541,8 @@ body {
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit; /* This ensures text color is inherited, not blue for links */
 }
 
 .pending-box:hover {
@@ -544,16 +559,22 @@ body {
 .pending-title {
   font-size: 14px;
   text-align: center;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 768px) {
+  .pending {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
   .pending-box {
     flex-direction: column;
   }
   .pending-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 .pending-grid {
@@ -561,7 +582,6 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
 }
-
 /* Cash Flow Section */
 .cash-flow {
   background: white;
