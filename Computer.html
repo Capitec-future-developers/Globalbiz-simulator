@@ -11,91 +11,110 @@
 <body>
 
 <div class="header">
-  <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+    <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
-  <div class="header-right">
-  <a href="#home">
-    <span class="material-icons-sharp">contact_support</span>
-    banker
-  </a>
-  <a href="#contact">
-    <span class="material-icons-sharp">account_circle</span>
-    Omphile Mohlala
-  </a>
-  <a href="home page.html" class="sign">Sign Out</a>
-</div>
-</div>
-   <!--Sidebar navigation-->
-    <div class="side bar">
-  <div class="sidebar" id="sidebar">
-           
-                    <a href="Computer.html" class="active">
-                        <span class="material-icons-sharp">home</span>
-                        Home
-                    </a>
-                    <p class="side">BANKING</p>
-                    <a href="Accounts.html">
-                        <span class="material-icons-sharp">storage</span>
-                        Accounts
-                    </a>
-                      <a href="products.html">
-                        <span class="material-icons-sharp">swap_horiz</span>
-                        Transact
-                    </a>
-                    
-                    <a href="efiling.html">
-                        <span class="material-icons-sharp">dynamic_feed</span>
-                        Cards
-                    </a>
-                    <p class="side">MANAGEMENT</p>
-                    <a href="documents.html">
-                        <span class="material-icons-sharp">check_box</span>
-                        Authorisations
-                    </a>    
-                    
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">groups</span>
-                        User management
-                    </a>
-                    <p class="side">SERVICES</p>
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">radio_button_unchecked</span>
-                        products & Services
-                    </a>
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">settings</span>
-                        SARS eFILLING
-                    </a>
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">chat</span>
-                        Secure Messages
-                    </a>
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">description</span>
-                        Documents
-                    </a>
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">settings</span>
-                        Settings
-                    </a>
-                    <a href="Phone.html" class="signout">
-                        <span class="material-icons-sharp">lock</span>
-                        We secure your data in line with our Privacy Notice and Terms & Conditions
-                    </a>
+    <div class="header-right">
+        <a href="#home">
+            <span class="material-icons-sharp">contact_support</span>
+            banker
+        </a>
+        <div class="profile-container">
+            <a href="#contact" id="profile-link">
+                <span class="material-icons-sharp">account_circle</span>
+                Omphile Mohlala
+            </a>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <div class="popup-header">Profile</div>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-name">Omphile Mohlala</div>
+                        <div class="profile-email">omphilestudent@gmail.com</div>
+                    </div>
                 </div>
+                <a href="#" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
         </div>
-        <div style="padding-left:290px">
+        <a href="home page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+
+<!--Sidebar navigation-->
+<div class="side bar">
+    <div class="sidebar" id="sidebar">
+        <a href="Computer.html" class="active">
+            <span class="material-icons-sharp">home</span>
+            Home
+        </a>
+        <p class="side">BANKING</p>
+        <a href="Accounts.html">
+            <span class="material-icons-sharp">storage</span>
+            Accounts
+        </a>
+        <a href="products.html">
+            <span class="material-icons-sharp">swap_horiz</span>
+            Transact
+        </a>
+
+        <a href="efiling.html">
+            <span class="material-icons-sharp">dynamic_feed</span>
+            Cards
+        </a>
+        <p class="side">MANAGEMENT</p>
+        <a href="documents.html">
+            <span class="material-icons-sharp">check_box</span>
+            Authorisations
+        </a>
+
+        <a href="settings.html">
+            <span class="material-icons-sharp">groups</span>
+            User management
+        </a>
+        <p class="side">SERVICES</p>
+        <a href="settings.html">
+            <span class="material-icons-sharp">radio_button_unchecked</span>
+            products & Services
+        </a>
+        <a href="settings.html">
+            <span class="material-icons-sharp">settings</span>
+            SARS eFILLING
+        </a>
+        <a href="settings.html">
+            <span class="material-icons-sharp">chat</span>
+            Secure Messages
+        </a>
+        <a href="settings.html">
+            <span class="material-icons-sharp">description</span>
+            Documents
+        </a>
+        <a href="settings.html">
+            <span class="material-icons-sharp">settings</span>
+            Settings
+        </a>
+        <a href="Phone.html" class="signout">
+            <span class="material-icons-sharp">lock</span>
+            We secure your data in line with our Privacy Notice and Terms & Conditions
+        </a>
+    </div>
+</div>
+
+<div style="padding-left:290px">
     <div class="notice">
         <h4>Hello</h4>
         <p>Your last Sign-in was on 13:15, wednesday 21/5/2025.</p>
     </div>
 </div>
 
-
-  <!-- Main Content Area -->
-             <div class="content" id="mainContent">
+<!-- Main Content Area -->
+<div class="content" id="mainContent">
     <div class="account">
         <div class="account-header">
             <h4>Accounts</h4>
@@ -108,19 +127,19 @@
                 <span class="material-icons-sharp">account_balance</span>
                 <span class="separator"></span>
                 <div class="account-details">
-                    <span class="account-name">1 Account Current</span>
+                    <span class="account-name" href="Accounts.html">1 Account Current</span>
                     <span class="account-balance">R1000</span>
                 </div>
                 <div class="box2">
-                <span class="material-icons-sharp">storage</span>
-                <span class="separator"></span>
-                 <span class="account-name">No other account(s)</span>
-                    
+                    <span class="material-icons-sharp">storage</span>
+                    <span class="separator"></span>
+                    <span class="account-name">No other account(s)</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Favorites Section - Placed outside content div -->
 <div class="favorites-container">
     <div class="favorites">
@@ -134,19 +153,19 @@
                 <span class="material-icons-sharp">person</span>
                 <span class="favorite-title">Pay Saved</span>
             </div>
-            
+
             <!-- Pay Once Off Beneficiary -->
             <div class="favorite-box">
                 <span class="material-icons-sharp">person_add</span>
                 <span class="favorite-title">Pay Once Off</span>
             </div>
-            
+
             <!-- Group/Multiple Payments -->
             <div class="favorite-box">
                 <span class="material-icons-sharp">groups</span>
                 <span class="favorite-title">Multiple</span>
             </div>
-            
+
             <!-- Transfer Money -->
             <div class="favorite-box">
                 <span class="material-icons-sharp">sync_alt</span>
@@ -155,6 +174,7 @@
         </div>
     </div>
 </div>
+
 <!--Pending Authorasations-->
 <div class="pending">
     <div class="pending-header">
@@ -166,35 +186,34 @@
     <div class="pending-box">
         <span class="material-icons-sharp">check_circle</span>
         <span class="pending-title">Authorise</span>
-    </div>  
-    
-</div>
-<div class="cash-flow">
-  <div class="cash-flow-header">
-    <h4>Cash Flow</h4>
-  </div>
-  <div class="cash-flow-box">
-    <span class="material-icons-sharp">account_balance_wallet</span>
-    <span class="cash-flow-title">1 Transactional Account</span>
-    <div class="select-row">
-      <select class="account-select">
-        <option value="account1"> </option>
-        <option value="account1">Account 1</option>
-        <option value="account2">Account 2</option>
-        <option value="account3">Account 3</option>
-      </select>
-      <div class="period-selector">
-        <select class="account-select">
-          <option value="account1"> </option>
-          <option value="account1">1 Month</option>
-          <option value="account2">3 Months</option>
-          <option value="account3">6 Months</option>
-        </select>
-      </div>
     </div>
-  </div>
 </div>
+
+<div class="cash-flow">
+    <div class="cash-flow-header">
+        <h4>Cash Flow</h4>
+    </div>
+    <div class="cash-flow-box">
+        <span class="material-icons-sharp">account_balance_wallet</span>
+        <span class="cash-flow-title">1 Transactional Account</span>
+        <div class="select-row">
+            <select class="account-select">
+                <option value="account1"> </option>
+                <option value="account1">Account 1</option>
+                <option value="account2">Account 2</option>
+                <option value="account3">Account 3</option>
+            </select>
+            <div class="period-selector">
+                <select class="account-select">
+                    <option value="account1"> </option>
+                    <option value="account1">1 Month</option>
+                    <option value="account2">3 Months</option>
+                    <option value="account3">6 Months</option>
+                </select>
+            </div>
         </div>
-    </body>
-    <script src="options.js"></script>
-</html>
+    </div>
+</div>
+
+<script src="options.js"></script>
+<script src="pop%20up.js"></script>
