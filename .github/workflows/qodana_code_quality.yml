@@ -41,4 +41,3 @@ jobs:
         with:
           name: qodana-report
           path: ${{ runner.temp }}/qodana/results
-          

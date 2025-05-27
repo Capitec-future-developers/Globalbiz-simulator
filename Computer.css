@@ -152,12 +152,12 @@ body {
   min-height: calc(100vh - 70px);
 }
 
-/* Welcome Message */
+/* Welcome Message*/
 .welcome-message {
   background: white;
   padding: 20px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
