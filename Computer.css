@@ -673,9 +673,8 @@ body {
 .profile-popup {
   display: none;
   position: fixed;
-  top: 200px;
-  left: 1500px;
-  transform: translate(-50%, -50%);
+  top: 80px;
+  right: 20px;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -755,3 +754,18 @@ body {
   display: block;
 }
 
+@media screen and (max-width: 768px) {
+  .profile-popup {
+    top: 70px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    width: calc(100% - 20px);
+    max-width: 300px;
+  }
+
+  .overlay.active {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
