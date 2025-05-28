@@ -45,7 +45,10 @@
                     Switch to Kodi PTY LTD
                 </a>
 
-                <a href="#" class="manage-business">Manage business profile</a>
+                <a href="#" class="manage-business">
+                    Manage business profile
+                </a>
+
             </div></div>
         <a href="home page.html" class="sign">Sign Out</a>
     </div>
@@ -61,10 +64,18 @@
         <span class="material-icons-sharp">storage</span>
         Accounts
     </a>
-    <a href="products.html">
-        <span class="material-icons-sharp">swap_horiz</span>
-        Transact
-    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">swap_horiz</span>
+            Transact
+            <span class="dropdown-arrow">▸</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="#">Payment</a>
+            <a href="#">Transfer</a>
+            <a href="#">Beneficiary</a>
+        </div>
+    </div>
     <a href="efiling.html">
         <span class="material-icons-sharp">dynamic_feed</span>
         Cards
@@ -136,7 +147,23 @@
                 <span class="info-value">Open</span>
             </div>
         </div>
-        <button class="manage-btn">Manage Account</button>
+        <div class="manage-btn-container" style="position: relative;">
+            <button class="manage-btn">
+                Manage Account
+                <select>
+                    <option>Manage Account</option>
+                    <option>Set account Authorization</option>
+                    <option>Edit account nickname</option>
+                </select>
+            </button>
+
+            <div class="details-hover">
+                <h4>Account Management Options</h4>
+                <p><strong>Set account Authorization:</strong> Configure who can access and transact on this account.</p>
+                <p><strong>Edit account nickname:</strong> Change how this account appears in your banking view.</p>
+            </div>
+        </div>
+
     </div>
 
     <div class="tabs">
@@ -194,7 +221,6 @@
             </tbody>
         </table></div>
 </div>
-<script src="pop%20up.js"></script>
-<script src="slide.js"></script>
+<script src="Combined.js"></script>
 </body>
 </html>
