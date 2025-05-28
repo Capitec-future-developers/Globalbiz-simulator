@@ -513,3 +513,23 @@ body {
 .overlay.active {
     display: block;
 }
+
+button {
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+button.active {
+    /* Style for active button (if needed) */
+    background-color: #007bff;
+    color: white;
+}
+
+button:active {
+    transform: translateY(2px);
+}
+
+/* Optional: Add a subtle shadow effect when not pressed */
+button:not(:active) {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

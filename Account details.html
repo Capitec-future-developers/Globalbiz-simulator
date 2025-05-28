@@ -23,7 +23,7 @@
         <div class="profile">
 
 
-        </a><a href="#contact" id="profile-link">
+            </a><a href="#contact" id="profile-link">
             <span class="material-icons-sharp">account_circle</span>
             Omphile Mohlala
         </a>
@@ -140,10 +140,10 @@
     </div>
 
     <div class="tabs">
-        <div class="tab active">Transactions</div>
-        <div class="tab">Payment history</div>
-        <div class="tab">Stamped statements</div>
-        <div class="tab">Account information</div>
+        <button id="btn-transactions"><div class="tab active">Transactions</div></button>
+        <button id="btn-payment-history"> <div class="tab">Payment history</div></button>
+        <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
+        <button id="btn-account-information"><div class="tab">Account information</div></button>
     </div>
 
     <div class="controls">
@@ -162,38 +162,39 @@
         <span class="material-icons-sharp">info</span>
         Choose a date range of up to 6 months before you download
     </div>
-
-    <table class="transaction-table">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Transaction Type</th>
-            <th>Reference</th>
-            <th>Amount</th>
-            <th>Fees</th>
-            <th>Balance</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>30 April 2025</td>
-            <td>Debit</td>
-            <td>Month S/Fee</td>
-            <td class="positive">R0.00</td>
-            <td class="negative">- R50.00</td>
-            <td class="negative">- R154.21</td>
-        </tr>
-        <tr>
-            <td>30 April 2025</td>
-            <td>Debit</td>
-            <td>Debit Interest - System Generated</td>
-            <td class="negative">- R1.86</td>
-            <td>R0.00</td>
-            <td class="negative">- R104.21</td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="tab-content">
+        <table class="transaction-table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Transaction Type</th>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Fees</th>
+                <th>Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>30 April 2025</td>
+                <td>Debit</td>
+                <td>Month S/Fee</td>
+                <td class="positive">R0.00</td>
+                <td class="negative">- R50.00</td>
+                <td class="negative">- R154.21</td>
+            </tr>
+            <tr>
+                <td>30 April 2025</td>
+                <td>Debit</td>
+                <td>Debit Interest - System Generated</td>
+                <td class="negative">- R1.86</td>
+                <td>R0.00</td>
+                <td class="negative">- R104.21</td>
+            </tr>
+            </tbody>
+        </table></div>
 </div>
 <script src="pop%20up.js"></script>
+<script src="slide.js"></script>
 </body>
 </html>
