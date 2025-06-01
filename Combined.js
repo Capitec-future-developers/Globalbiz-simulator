@@ -95,7 +95,228 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Tab content data
+    // Payment functionality
+    const paymentButton = document.getElementById('payment');
+    if (paymentButton) {
+        paymentButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPaymentSection();
+        });
+    }
+
+    function showPaymentSection() {
+        // Hide existing content
+        const mainContent = document.querySelector('.main-content');
+        if (mainContent) {
+            mainContent.innerHTML = `
+                <div class="back-nav">
+                    <a href="#" id="back-to-accounts">
+                        <span class="material-icons-sharp">arrow_back</span>
+                        Back to Accounts
+                    </a>
+                </div>
+                <div class="payment-section">
+                    <div class="payment-header">
+                        <h2>Make a Payment</h2>
+                        <p>Transfer money to another account or pay a bill</p>
+                    </div>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <div class="payment-icon">
+                                <span class="material-icons-sharp">account_balance</span>
+                            </div>
+                            <h3>Transfer to Account</h3>
+                            <p>Send money to another bank account</p>
+                            <button class="payment-select-btn" data-type="transfer">Select</button>
+                        </div>
+                        
+                        <div class="payment-option">
+                            <div class="payment-icon">
+                                <span class="material-icons-sharp">receipt</span>
+                            </div>
+                            <h3>Pay a Bill</h3>
+                            <p>Pay utilities, loans, or other bills</p>
+                            <button class="payment-select-btn" data-type="bill">Select</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Add back button functionality
+            const backButton = document.getElementById('back-to-accounts');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    location.reload(); // Reload the page to show original content
+                });
+            }
+
+            // Add payment option selection functionality
+            const paymentButtons = document.querySelectorAll('.payment-select-btn');
+            paymentButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const paymentType = this.getAttribute('data-type');
+                    showPaymentForm(paymentType);
+                });
+            });
+        }
+    }
+
+    function showPaymentForm(paymentType) {
+        const paymentSection = document.querySelector('.payment-section');
+        if (paymentSection) {
+            if (paymentType === 'transfer') {
+                paymentSection.innerHTML = `
+                    <div class="back-nav">
+                        <a href="#" id="back-to-payment-options">
+                            <span class="material-icons-sharp">arrow_back</span>
+                            Back to Payment Options
+                        </a>
+                    </div>
+                    <div class="payment-form">
+                        <h2>Transfer to Account</h2>
+                        
+                        <div class="form-group">
+                            <label for="from-account">From Account</label>
+                            <select id="from-account">
+                                <option value="123456789">Main Account (123456789)</option>
+                                <option value="987654321">Savings Account (987654321)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="to-account">To Account Number</label>
+                            <input type="text" id="to-account" placeholder="Enter account number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bank">Bank</label>
+                            <select id="bank">
+                                <option value="">Select Bank</option>
+                                <option value="absa">ABSA</option>
+                                <option value="fnb">First National Bank</option>
+                                <option value="standard">Standard Bank</option>
+                                <option value="nedbank">Nedbank</option>
+                                <option value="capitec">Capitec</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="amount">Amount (ZAR)</label>
+                            <input type="number" id="amount" placeholder="0.00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reference">Reference</label>
+                            <input type="text" id="reference" placeholder="Payment reference">
+                        </div>
+                        
+                        <button class="submit-payment">Continue</button>
+                    </div>
+                `;
+            } else {
+                paymentSection.innerHTML = `
+                    <div class="back-nav">
+                        <a href="#" id="back-to-payment-options">
+                            <span class="material-icons-sharp">arrow_back</span>
+                            Back to Payment Options
+                        </a>
+                    </div>
+                    <div class="payment-form">
+                        <h2>Pay a Bill</h2>
+                        
+                        <div class="form-group">
+                            <label for="bill-from-account">From Account</label>
+                            <select id="bill-from-account">
+                                <option value="123456789">Main Account (123456789)</option>
+                                <option value="987654321">Savings Account (987654321)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bill-type">Bill Type</label>
+                            <select id="bill-type">
+                                <option value="">Select Bill Type</option>
+                                <option value="electricity">Electricity</option>
+                                <option value="water">Water</option>
+                                <option value="phone">Phone</option>
+                                <option value="loan">Loan Payment</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bill-account">Account Number</label>
+                            <input type="text" id="bill-account" placeholder="Enter account number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bill-amount">Amount (ZAR)</label>
+                            <input type="number" id="bill-amount" placeholder="0.00">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bill-reference">Reference</label>
+                            <input type="text" id="bill-reference" placeholder="Payment reference">
+                        </div>
+                        
+                        <button class="submit-payment">Continue</button>
+                    </div>
+                `;
+            }
+
+            // Add back button functionality
+            const backButton = document.getElementById('back-to-payment-options');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showPaymentSection();
+                });
+            }
+
+            // Add form submission functionality
+            const submitButtons = document.querySelectorAll('.submit-payment');
+            submitButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Here you would normally validate and submit the form
+                    alert('Payment submitted successfully!');
+                    // For demo purposes, we'll just show a success message
+                    showPaymentConfirmation(paymentType);
+                });
+            });
+        }
+    }
+
+    function showPaymentConfirmation(paymentType) {
+        const paymentSection = document.querySelector('.payment-section');
+        if (paymentSection) {
+            paymentSection.innerHTML = `
+                <div class="payment-confirmation">
+                    <div class="confirmation-icon">
+                        <span class="material-icons-sharp">check_circle</span>
+                    </div>
+                    <h2>Payment Successful!</h2>
+                    <p>Your ${paymentType === 'transfer' ? 'transfer' : 'bill payment'} has been processed successfully.</p>
+                    <div class="confirmation-details">
+                        <p><strong>Reference:</strong> TXN${Math.floor(Math.random() * 1000000)}</p>
+                        <p><strong>Amount:</strong> R${(Math.random() * 1000).toFixed(2)}</p>
+                        <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+                    </div>
+                    <button id="new-payment">Make Another Payment</button>
+                    <button id="back-to-accounts">Back to Accounts</button>
+                </div>
+            `;
+
+            // Add button functionality
+            document.getElementById('new-payment').addEventListener('click', showPaymentSection);
+            document.getElementById('back-to-accounts').addEventListener('click', function() {
+                location.reload();
+            });
+        }
+    }
+
+    // Tab content data (remaining unchanged)
     const content = [
         // Transactions tab
         [
@@ -151,14 +372,13 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     ];
 
-    // Tab functionality
+    // Tab functionality (remaining unchanged)
     const btnTransactions = document.getElementById("btn-transactions");
     const btnPaymentHistory = document.getElementById("btn-payment-history");
     const btnStampedStatements = document.getElementById("btn-stamped-statements");
     const btnAccountInformation = document.getElementById("btn-account-information");
     const tabContent = document.getElementById("tab-content");
 
-    // Function to display content in the tab
     function displayContent(items) {
         if (!tabContent) return;
 
@@ -180,7 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to highlight the active button
     function highlightButton(btn) {
         const allButtons = document.querySelectorAll('.tabs button');
         allButtons.forEach(button => {
@@ -196,12 +415,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to handle button clicks
     function handleClick(event) {
         const button = event.target.closest('button');
         if (!button) return;
 
-        // Add click animation
         button.style.transform = 'translateY(2px)';
         setTimeout(() => {
             button.style.transform = '';
@@ -209,7 +426,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         highlightButton(button);
 
-        // Load appropriate content
         switch(button.id) {
             case "btn-transactions":
                 displayContent(content[0]);
@@ -228,7 +444,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add event listeners to all tab buttons
     [btnTransactions, btnPaymentHistory, btnStampedStatements, btnAccountInformation].forEach(btn => {
         if (btn) {
             btn.addEventListener('click', handleClick);
@@ -237,11 +452,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Load initial content (Transactions tab)
     if (btnTransactions && tabContent) {
         btnTransactions.classList.add('active');
         const tab = btnTransactions.querySelector('.tab');
         if (tab) tab.classList.add('active');
         displayContent(content[0]);
     }
+
 });
