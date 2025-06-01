@@ -230,6 +230,13 @@ body {
   transition: all 0.3s ease;
   height: 90px;
   min-width: 280px; /* Ensure minimum width */
+  text-decoration: none;
+
+}
+
+a{
+  text-decoration: none;
+  color: #1e88e5;
 }
 
 /* Visual separator between icon and content */
@@ -250,12 +257,14 @@ body {
 
 /* Icon styles */
 .box1 .material-icons-sharp,
-.box2 .material-icons-sharp {
+.box2 .material-icons-sharp a{
   font-size: 30px;
   color: #3498db;
   margin-right: 15px;
   width: 30px; /* Fixed icon width */
   flex-shrink: 0;
+  text-decoration: none;
+
 }
 
 /* Maintain your specific positioning */

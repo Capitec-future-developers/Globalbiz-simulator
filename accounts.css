@@ -197,93 +197,138 @@ body {
     background-color: #0d5bba;
 }
 
-/* Account Section Styles */
-.account {
-    background-color: white;
+/* Account Section Styles - Fixed View Icon Position */
+.account-box {
+    background: #ffffff;
+    color: black;
+    padding: 25px;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.account-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    position: relative; /* Added for absolute positioning context */
 }
 
-.account-header h4 {
-    font-size: 18px;
-    color: #2c3e50;
-}
-
-.account-header  {
-    color: #1a73e8;
-    text-decoration: none;
+.account-info-row {
     display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-.account-header  {
-    font-size: 18px;
-}
-
-.box {
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    gap: 30px;
+    color: #111111; /* Fixed capitalization from Color to color */
+    margin-bottom: 30px;
 }
 
-.box .material-icons-sharp {
-    font-size: 40px;
-    color: #1a73e8;
+.View {
+    position: absolute; /* Changed from relative to absolute */
+    right: 25px; /* Position from the right edge of account-box */
+    top: 25px; /* Position from the top edge of account-box */
 }
 
-.account-details {
-    flex: 1;
-    display: table-row;
-    grid-template-columns: max-content auto;
-    gap: 10px 20px;
-    align-items: center;
-    over-flow: hidden;
+.View .material-icons-sharp {
+    position: static; /* Changed from absolute to static */
+    right: auto; /* Reset right positioning */
+    top: auto; /* Reset top positioning */
 }
 
-.account-name {
+/* The rest of your existing account section styles remain unchanged */
+.info-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    color: #171515;
+}
+
+.info-label {
     font-size: 14px;
-    color: #666;
+    color: #171515;
+    margin-bottom: 5px;
 }
 
-.account-balance, .available-balance {
+.info-value {
     font-size: 16px;
+    font-weight: 500;
+    color: #171515;
+}
+
+.info-value.negative {
+    color: #e74c3c;
+}
+
+.account-box h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.account-box p {
+    margin-bottom: 8px;
+    color: rgb(23, 21, 21);
+}
+
+.account-box strong {
+    color: #171515;
     font-weight: 600;
-    color: #2c3e50;
 }
 
-.available-balance {
-    color: #4CAF50;
+.account-box .negative {
+    color: #df0808;
 }
 
-.view{
-    right: -10px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .account-info-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-item {
+        min-width: 100%;
+    }
+
+    .View {
+        position: static; /* Stack the view icon on mobile */
+        margin-top: 15px;
+        text-align: right;
+    }
+}
+.account-box h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.account-box p {
+    margin-bottom: 8px;
+    color: rgb(23, 21, 21);
+}
+
+.account-box strong {
+    color: #171515;
+    font-weight: 600;
+}
+
+.account-box .negative {
+    color: #df0808;
+}
+
+.View {
     position: relative;
     font-size: 14px;
 }
 
-.view .material-icons-sharp{
-    left: 0;
-    right: -15px;
-
+.View .material-icons-sharp {
+    position: absolute;
+    right: -1500px;
+    top: -100px;
+    font-size: 24px;
 }
 /* Popup styling */
 .profile-popup {
     display: none;
     position: fixed;
-    top: 80px;
-    right: 20px;
+    top: 200px;
+    right: -100px;
+    transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -348,6 +393,32 @@ body {
     border-top: 1px solid #eee;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-popup {
+        top: 70px;
+        right: 10px;
+        left: auto;
+        transform: none;
+        width: calc(100% - 20px);
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-popup {
+        padding: 15px;
+        width: calc(100% - 30px);
+    }
+
+    .popup-header {
+        font-size: 16px;
+    }
+
+    .profile-name {
+        font-size: 14px;
+    }
+}
 .overlay {
     display: none;
     position: fixed;

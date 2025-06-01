@@ -433,7 +433,7 @@ body {
     display: none;
     position: fixed;
     top: 200px;
-    left: 1600px;
+    right: -100px;
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 20px;
@@ -497,6 +497,33 @@ body {
     text-align: center;
     padding: 8px 0;
     border-top: 1px solid #eee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-popup {
+        top: 70px;
+        right: 10px;
+        left: auto;
+        transform: none;
+        width: calc(100% - 20px);
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-popup {
+        padding: 15px;
+        width: calc(100% - 30px);
+    }
+
+    .popup-header {
+        font-size: 16px;
+    }
+
+    .profile-name {
+        font-size: 14px;
+    }
 }
 
 .overlay {

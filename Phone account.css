@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 /* ============ BASE STYLES ============ */
- body {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 100vh;
-     background-color: #f0f0f0;
-     margin: 0;
-     font-family: Arial, sans-serif;
- }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
 /* ============ IPHONE FRAME ============ */
 .iphone {
     position: relative;
     width: 300px;
-    height: 650px;
+    height: 600px;
     background-color: #111;
     border-radius: 44px;
     padding: 15px;
@@ -49,12 +49,12 @@
 
 .home-indicator {
     position: absolute;
-    bottom: 13px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     width: 100px;
     height: 5px;
-    background-color: #cccccc;
+    background-color: #ccc;
     border-radius: 3px;
 }
 
@@ -171,7 +171,7 @@
 
 .signout {
     position: absolute;
-    top: 430px;
+    top: 400px;
     left: 0;
     width: 100px;
 }
@@ -222,7 +222,6 @@
     color: #0096c7;
     text-decoration: none;
     font-size: 0.8rem;
-
 }
 
 /* ============ ACCOUNT BOX ============ */
@@ -366,62 +365,4 @@
     .favorite-box .material-icons-sharp {
         font-size: 24px;
     }
-}
-.transact-box {
-    width: 100%;
-    margin: 20px 0;
-}
-
-.account-info-coloumn {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 250px;
-}
-
-.account-info-coloumn .info-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 16px 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border: 1px solid #e0e0e0;
-    transition: all 0.2s ease;
-}
-
-.account-info-coloumn .info-item:hover {
-    background-color: #f8fafc;
-    border-color: #d0d7de;
-    transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-
-.account-info-coloumn .material-icons-sharp {
-    font-size: 22px;
-}
-
-.account-info-coloumn .material-icons-sharp:first-child {
-    color: #1a73e8;
-    margin-right: 15px;
-}
-
-.account-info-coloumn .info-label {
-    flex-grow: 1;
-    font-size: 15px;
-    font-weight: 500;
-    color: #2d3748;
-}
-
-.account-info-coloumn .material-icons-sharp.right {
-    color: #718096;
-    margin-left: auto; /* Pushes chevron to far right */
-    padding-left: 15px; /* Ensures space between label and chevron */
-
-}
-
-.right .material-icons-sharp{
-    cursor: pointer;
-    color: #1e88e5;
 }

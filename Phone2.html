@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,118 +9,140 @@
     <title>iPhone with White LCD</title>
 </head>
 <body>
-    <div class="iphone">
-        <div class="volume-buttons">
-            <div class="volume-up"></div>
-            <div class="volume-down"></div>
-        </div>
-        <div class="power-button"></div>
-        <div class="screen">
-            <div class="notch"></div>
-            <div class="screen-content">
-                <div class="head">
-                    <div class="arrow" id="sidebarToggle">
-                        <span class="material-icons-sharp">menu</span>
-                    </div>
-                    <div class="header">Globalbiz</div>
-                    
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="head">
+                <div class="arrow" id="sidebarToggle">
+                    <span class="material-icons-sharp">menu</span>
                 </div>
-                
-                
-                <!-- Sidebar Navigation -->
-                <div class="sidebar" id="sidebar">
-           
-                    <a href="home_page.html" class="active">
-                        <span class="material-icons-sharp">home</span>
-                        Home
-                    </a>
-                    <p class="side">MANAGEMENT</p>
-                    <a href="authorisations.html">
-                        <span class="material-icons-sharp">check_box</span>
-                        Authorisations
-                    </a>
-                    <p class="side">SERVICES</p>
-                    <a href="products.html">
-                        <span class="material-icons-sharp">shopping_cart</span>
-                        Products & Services
-                    </a>
-                    <a href="efiling.html">
-                        <span class="material-icons-sharp">radio_button_unchecked</span>
-                        SARS eFILLING
-                    </a>
-                    <a href="documents.html">
-                        <span class="material-icons-sharp">description</span>
-                        Documents
-                    </a>    
-                    <a href="settings.html">
-                        <span class="material-icons-sharp">settings</span>
-                        Settings
-                    </a>
-                    <a href="Phone.html" class="signout">
-                        <span class="material-icons-sharp">lock</span>
-                        Sign Out
-                    </a>
-                </div>
+                <div class="header">Globalbiz</div>
+            </div>
 
-                <!-- Main Content Area -->
-             <div class="content" id="mainContent">
-    <div class="account">
-        <div class="account-header">
-            <h4>Accounts</h4>
-            <a href="all_accounts.html" class="View">
-                View All <span class="material-icons-sharp">chevron_right</span>
+            <!-- Sidebar Navigation -->
+            <div class="sidebar" id="sidebar">
+                <a href="home_page.html" class="active">
+                    <span class="material-icons-sharp">home</span>
+                    Home
+                </a>
+                <p class="side">MANAGEMENT</p>
+                <a href="authorisations.html">
+                    <span class="material-icons-sharp">check_box</span>
+                    Authorisations
+                </a>
+                <p class="side">SERVICES</p>
+                <a href="products.html">
+                    <span class="material-icons-sharp">shopping_cart</span>
+                    Products & Services
+                </a>
+                <a href="efiling.html">
+                    <span class="material-icons-sharp">radio_button_unchecked</span>
+                    SARS eFILLING
+                </a>
+                <a href="documents.html">
+                    <span class="material-icons-sharp">description</span>
+                    Documents
+                </a>
+                <a href="settings.html">
+                    <span class="material-icons-sharp">settings</span>
+                    Settings
+                </a>
+                <a href="Phone.html" class="signout">
+                    <span class="material-icons-sharp">lock</span>
+                    Sign Out
+                </a>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="content" id="mainContent">
+                <div class="account">
+                    <div class="account-header">
+                        <h4>Accounts</h4>
+                        <a href="Phone accounts.html" class="View">
+                            View All <span class="material-icons-sharp" class="View">chevron_right</span>
+                        </a>
+                    </div>
+                    <div class="box">
+                        <div class="box1">
+                            <span class="material-icons-sharp">account_balance</span>
+                            <span class="separator"></span>
+                            <div class="account-details">
+                                <span class="account-name">1 Account Current</span>
+                                <span class="account-balance">R1000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites Section -->
+            <div class="favorites-container">
+                <div class="favorites">
+                    <div class="favorites-header">
+                        <h4>Favourites</h4>
+                    </div>
+                    <div class="favorites-grid">
+                        <!-- Pay Saved Beneficiary -->
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">person</span>
+                            <span class="favorite-title">Pay Saved</span>
+                        </div>
+
+                        <!-- Pay Once Off Beneficiary -->
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">person_add</span>
+                            <span class="favorite-title">Pay Once Off</span>
+                        </div>
+
+                        <!-- Group/Multiple Payments -->
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">groups</span>
+                            <span class="favorite-title">Multiple</span>
+                        </div>
+
+                        <!-- Transfer Money -->
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">sync_alt</span>
+                            <span class="favorite-title">Transfer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+            <a href="Phone2.html" class="nav-item active">
+                <span class="nav-icon material-icons-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon material-icons-outlined">storage</span>
+                <span>Accounts</span>
+            </a>
+                <a href="Phone%20Transact.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">sync_alt</span>
+                    <span>transact</span>
+                </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon material-icons-outlined">credit_card</span>
+                <span>Cards</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
             </a>
         </div>
-        <div class="box">
-            <div class="box1">
-                <span class="material-icons-sharp">account_balance</span>
-                <span class="separator"></span>
-                <div class="account-details">
-                    <span class="account-name">1 Account Current</span>
-                    <span class="account-balance">R1000</span>
-                </div>
-            </div>
-        </div>
     </div>
+    </div>
+    <div class="home-indicator"></div>
 </div>
 
-<!-- Favorites Section - Placed outside content div -->
-<div class="favorites-container">
-    <div class="favorites">
-        <div class="favorites-header">
-            <h4>Favourites</h4>
-        </div>
-        <div class="favorites-grid">
-            <!-- Pay Saved Beneficiary -->
-            <div class="favorite-box">
-                <span class="material-icons-sharp">person</span>
-                <span class="favorite-title">Pay Saved</span>
-            </div>
-            
-            <!-- Pay Once Off Beneficiary -->
-            <div class="favorite-box">
-                <span class="material-icons-sharp">person_add</span>
-                <span class="favorite-title">Pay Once Off</span>
-            </div>
-            
-            <!-- Group/Multiple Payments -->
-            <div class="favorite-box">
-                <span class="material-icons-sharp">groups</span>
-                <span class="favorite-title">Multiple</span>
-            </div>
-            
-            <!-- Transfer Money -->
-            <div class="favorite-box">
-                <span class="material-icons-sharp">sync_alt</span>
-                <span class="favorite-title">Transfer</span>
-            </div>
-        </div>
-    </div>
-</div>
-                <div class="home-indicator"></div>
-            </div>
-        </div>
-    </div>
-    <script src="Combined.js"></script>
+<script src="Combined.js"></script>
 </body>
 </html>
