@@ -254,13 +254,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // =============================================
-    // PAYMENT AND CREATE FUNCTIONALITY
+    // PAYMENT AND CREATE FUNCTIONALITY (COMBINED VERSION)
     // =============================================
 
     // DOM Elements
     const paymentButton = document.getElementById('payment');
     const mainContentArea = document.getElementById('main-content-area');
+    const defaultContent = document.getElementById('default-content');
+    const contentWrapper = document.querySelector('.content-wrapper');
     const createButton = document.getElementById('create');
+
+    // Quick action buttons
+    const savedPaymentBtn = document.getElementById('saved-payment-btn');
+    const onceoffPaymentBtn = document.getElementById('onceoff-payment-btn');
+    const groupPaymentBtn = document.getElementById('group-payment-btn');
+    const createBeneficiaryBtn = document.getElementById('create-beneficiary-btn');
 
     // Event Listeners
     if (paymentButton) {
@@ -277,113 +285,138 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    if (savedPaymentBtn) {
+        savedPaymentBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showBeneficiarySelection();
+        });
+    }
+
+    if (onceoffPaymentBtn) {
+        onceoffPaymentBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPaymentForm('onceoff');
+        });
+    }
+
+    if (groupPaymentBtn) {
+        groupPaymentBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPaymentForm('group');
+        });
+    }
+
+    if (createBeneficiaryBtn) {
+        createBeneficiaryBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showAddBeneficiaryForm();
+        });
+    }
+
     // Main Functions
     function showPaymentSection() {
+        toggleContentVisibility();
+
         mainContentArea.innerHTML = `
-        <div class="payment-section">
-            <div class="payment-header">
-                <h2>Make a Payment</h2>
-                <p>Choose your payment method</p>
-            </div>
-
-            <div class="payment-options-grid">
-                <div class="payment-option-row">
-                    <div class="payment-option">
-                        <div class="payment-icon">
-                            <span class="material-icons-sharp">bookmark</span>
-                        </div>
-                        <div class="payment-details">
-                            <h3>Saved Beneficiary</h3>
-                            <p>Pay to a saved recipient</p>
-                        </div>
-                        <button class="payment-action-btn" data-type="saved">
-                            Pay <span class="material-icons-sharp">arrow_forward</span>
-                        </button>
-                    </div>
+            <div class="payment-section">
+                <div class="payment-header">
+                    <button class="back-button" id="back-to-transact">
+                        <span class="material-icons-sharp">arrow_back</span> Back
+                    </button>
+                    <h2>Make a Payment</h2>
+                    <p>Choose your payment method</p>
                 </div>
 
-                <div class="payment-option-row">
-                    <div class="payment-option">
-                        <div class="payment-icon">
-                            <span class="material-icons-sharp">person_add</span>
-                        </div>
-                        <div class="payment-details">
-                            <h3>Once-off Beneficiary</h3>
-                            <p>Pay to a new recipient</p>
-                        </div>
-                        <button class="payment-action-btn" data-type="onceoff">
-                            Pay <span class="material-icons-sharp">arrow_forward</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="payment-option-row">
-                    <div class="payment-option">
-                        <div class="payment-icon">
-                            <span class="material-icons-sharp">groups</span>
-                        </div>
-                        <div class="payment-details">
-                            <h3>Group Payment</h3>
-                            <p>Pay multiple beneficiaries</p>
-                        </div>
-                        <button class="payment-action-btn" data-type="group">
-                            Pay <span class="material-icons-sharp">arrow_forward</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="payment-option-row">
-                    <div class="payment-option clickable-option" data-type="all-payments">
-                        <div class="payment-icon">
-                            <span class="material-icons-sharp">list_alt</span>
-                        </div>
-                        <div class="payment-details">
-                            <h3>All Payments</h3>
-                            <p>View all payment history</p>
-                        </div>
-                        <span class="material-icons-sharp chevron-right">chevron_right</span>
-                    </div>
-                </div>
-
-                <div class="payment-option-row">
-                    <div class="payment-option clickable-option" data-type="recurring">
-                        <div class="payment-icon">
-                            <span class="material-icons-sharp">autorenew</span>
-                        </div>
-                        <div class="payment-details">
-                            <h3>Recurring Payments</h3>
-                            <p>Manage scheduled payments</p>
-                        </div>
-                        <span class="material-icons-sharp chevron-right">chevron_right</span>
-                        </div>
-                    </div>
-
+                <div class="payment-options-grid">
                     <div class="payment-option-row">
-                        <div class="payment-option clickable-option" data-type="future">
+                        <div class="payment-option" id="saved-beneficiary-option">
                             <div class="payment-icon">
-                                <span class="material-icons-sharp">event</span>
+                                <span class="material-icons-sharp">bookmark</span>
                             </div>
                             <div class="payment-details">
-                                <h3>Future Dated Payments</h3>
-                                <p>Schedule future payments</p>
+                                <h3>Saved Beneficiary</h3>
+                                <p>Pay to a saved recipient</p>
                             </div>
                             <span class="material-icons-sharp chevron-right">chevron_right</span>
                         </div>
                     </div>
+
+                    <div class="payment-option-row">
+                        <div class="payment-option" id="onceoff-beneficiary-option">
+                            <div class="payment-icon">
+                                <span class="material-icons-sharp">person_add</span>
+                            </div>
+                            <div class="payment-details">
+                                <h3>Once-off Beneficiary</h3>
+                                <p>Pay to a new recipient</p>
+                            </div>
+                            <span class="material-icons-sharp chevron-right">chevron_right</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-option-row">
+                        <div class="payment-option" id="group-payment-option">
+                            <div class="payment-icon">
+                                <span class="material-icons-sharp">groups</span>
+                            </div>
+                            <div class="payment-details">
+                                <h3>Group Payment</h3>
+                                <p>Pay multiple beneficiaries</p>
+                            </div>
+                            <span class="material-icons-sharp chevron-right">chevron_right</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-option-row">
+                        <div class="payment-option clickable-option" data-type="all-payments">
+                            <div class="payment-icon">
+                                <span class="material-icons-sharp">list_alt</span>
+                            </div>
+                            <div class="payment-details">
+                                <h3>All Payments</h3>
+                                <p>View all payment history</p>
+                            </div>
+                            <span class="material-icons-sharp chevron-right">chevron_right</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-option-row">
+                        <div class="payment-option clickable-option" data-type="recurring">
+                            <div class="payment-icon">
+                                <span class="material-icons-sharp">autorenew</span>
+                            </div>
+                            <div class="payment-details">
+                                <h3>Recurring Payments</h3>
+                                <p>Manage scheduled payments</p>
+                            </div>
+                            <span class="material-icons-sharp chevron-right">chevron_right</span>
+                            </div>
+                        </div>
+
+                        <div class="payment-option-row">
+                            <div class="payment-option clickable-option" data-type="future">
+                                <div class="payment-icon">
+                                    <span class="material-icons-sharp">event</span>
+                                </div>
+                                <div class="payment-details">
+                                    <h3>Future Dated Payments</h3>
+                                    <p>Schedule future payments</p>
+                                </div>
+                                <span class="material-icons-sharp chevron-right">chevron_right</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
 
         // Add event listeners
-        document.querySelectorAll('.payment-action-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const paymentType = this.getAttribute('data-type');
-                if (paymentType === 'saved') {
-                    showBeneficiarySelection();
-                } else {
-                    showPaymentForm(paymentType);
-                }
-            });
+        document.getElementById('back-to-transact').addEventListener('click', returnToTransact);
+        document.getElementById('saved-beneficiary-option').addEventListener('click', showBeneficiarySelection);
+        document.getElementById('onceoff-beneficiary-option').addEventListener('click', function() {
+            showPaymentForm('onceoff');
+        });
+        document.getElementById('group-payment-option').addEventListener('click', function() {
+            showPaymentForm('group');
         });
 
         document.querySelectorAll('.clickable-option').forEach(option => {
@@ -395,6 +428,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showCreateOptions() {
+        toggleContentVisibility();
+
         mainContentArea.innerHTML = `
             <div class="create-section">
                 <div class="create-header">
@@ -455,10 +490,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showBeneficiarySelection() {
+        toggleContentVisibility();
+
         mainContentArea.innerHTML = `
             <div class="beneficiary-selection">
                 <div class="payment-header">
-                    <button class="back-button" id="back-to-payment-options">
+                    <button class="back-button" id="back-to-transact">
                         <span class="material-icons-sharp">arrow_back</span> Back
                     </button>
                     <h2>Select Beneficiary</h2>
@@ -500,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Back button
-        document.getElementById('back-to-payment-options').addEventListener('click', showPaymentSection);
+        document.getElementById('back-to-transact').addEventListener('click', returnToTransact);
 
         // Beneficiary selection
         document.querySelectorAll('.beneficiary-card').forEach(card => {
@@ -517,6 +554,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showPaymentForm(paymentType, beneficiaryName = '') {
+        toggleContentVisibility();
+
         let title = 'Make Payment';
         if (paymentType === 'saved') {
             title = `Pay ${beneficiaryName}`;
@@ -529,7 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContentArea.innerHTML = `
             <div class="payment-form-section">
                 <div class="payment-header">
-                    <button class="back-button" id="back-to-previous">
+                    <button class="back-button" id="back-to-transact">
                         <span class="material-icons-sharp">arrow_back</span> Back
                     </button>
                     <h2>${title}</h2>
@@ -598,13 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Back button
-        document.getElementById('back-to-previous').addEventListener('click', function() {
-            if (paymentType === 'saved') {
-                showBeneficiarySelection();
-            } else {
-                showPaymentSection();
-            }
-        });
+        document.getElementById('back-to-transact').addEventListener('click', returnToTransact);
 
         // Form submission
         document.getElementById('payment-form').addEventListener('submit', function(e) {
@@ -614,10 +647,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showAddBeneficiaryForm() {
+        toggleContentVisibility();
+
         mainContentArea.innerHTML = `
             <div class="add-beneficiary-form">
                 <div class="payment-header">
-                    <button class="back-button" id="back-to-beneficiary-list">
+                    <button class="back-button" id="back-to-transact">
                         <span class="material-icons-sharp">arrow_back</span> Back
                     </button>
                     <h2>Add New Beneficiary</h2>
@@ -662,7 +697,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Back button
-        document.getElementById('back-to-beneficiary-list').addEventListener('click', showBeneficiarySelection);
+        document.getElementById('back-to-transact').addEventListener('click', returnToTransact);
 
         // Form submission
         document.getElementById('beneficiary-form').addEventListener('submit', function(e) {
@@ -756,7 +791,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Button handlers
-        document.getElementById('done-button').addEventListener('click', showPaymentSection);
+        document.getElementById('done-button').addEventListener('click', returnToTransact);
         document.getElementById('receipt-button').addEventListener('click', function() {
             alert('Receipt downloaded successfully!');
         });
@@ -783,7 +818,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Button handlers
-        document.getElementById('done-button').addEventListener('click', showBeneficiarySelection);
+        document.getElementById('done-button').addEventListener('click', returnToTransact);
         document.getElementById('pay-now-button').addEventListener('click', function() {
             showPaymentForm('saved', name);
         });
@@ -808,5 +843,17 @@ document.addEventListener('DOMContentLoaded', function() {
             default:
                 showCreateOptions();
         }
+    }
+
+    function toggleContentVisibility() {
+        if (defaultContent && mainContentArea) {
+            defaultContent.style.display = 'none';
+            mainContentArea.style.display = 'block';
+        }
+    }
+
+    function returnToTransact() {
+        // This will redirect back to transact.html
+        window.location.href = 'transact.html';
     }
 });
