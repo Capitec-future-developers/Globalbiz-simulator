@@ -21,28 +21,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sidebar toggle functionality
+    // Sidebar toggle functionality - FIXED VERSION
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
 
     if (sidebar && mainContent && toggleButton) {
         const menuIcon = '<span class="material-icons-sharp">menu</span>';
+        const closeIcon = '<span class="material-icons-sharp">close</span>';
         const chevronIcon = '<span class="material-icons-sharp">chevron_right</span>';
 
-        toggleButton.addEventListener('click', function() {
+        // Function to toggle sidebar
+        function toggleSidebar() {
             const isCollapsed = sidebar.classList.toggle('collapsed');
             mainContent.classList.toggle('expanded', isCollapsed);
-            toggleButton.innerHTML = isCollapsed ? chevronIcon : menuIcon;
-            localStorage.setItem('sidebarCollapsed', isCollapsed);
-        });
 
-        const savedState = localStorage.getItem('sidebarCollapsed');
-        if (savedState === 'true') {
-            sidebar.classList.add('collapsed');
-            mainContent.classList.add('expanded');
-            toggleButton.innerHTML = chevronIcon;
+            // Change icon based on state
+            if (isCollapsed) {
+                toggleButton.innerHTML = chevronIcon;
+            } else {
+                toggleButton.innerHTML = menuIcon;
+            }
+
+            // Save state to localStorage
+            localStorage.setItem('sidebarCollapsed', isCollapsed);
         }
+
+        // Initialize sidebar state
+        function initSidebar() {
+            const savedState = localStorage.getItem('sidebarCollapsed');
+            if (savedState === 'true') {
+                sidebar.classList.add('collapsed');
+                mainContent.classList.add('expanded');
+                toggleButton.innerHTML = chevronIcon;
+            } else {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                toggleButton.innerHTML = menuIcon;
+            }
+        }
+
+        // Set up event listener
+        toggleButton.addEventListener('click', toggleSidebar);
+
+        // Initialize on load
+        initSidebar();
     }
 
     // Platform selection functionality
@@ -62,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (platform === 'app') {
                     proceedLink.href = "Phone.html";
                 } else {
-                    proceedLink.href = "Computer.html";
+                    proceedLink.href = "transact.html";
                 }
 
                 document.getElementById('proceedBtn').style.display = 'block';
@@ -420,9 +443,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (backButton) {
             backButton.addEventListener('click', function() {
                 if (isAppContext) {
-                    window.location.href = 'Phone.html';
+                    window.location.href = 'Phone transact.html';
                 } else {
-                    window.location.href = 'Computer.html';
+                    window.location.href = 'Phone Transact.html';
                 }
             });
         }
@@ -442,8 +465,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-
 
     function showCreateOptions() {
         toggleContentVisibility();
