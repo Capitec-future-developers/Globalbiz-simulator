@@ -4,8 +4,8 @@
 
 // Configuration
 const automationConfig = {
-    stepDelay: 10000, // 10 seconds between steps
-    highlightDuration: 2000, // 2 seconds highlight duration
+    stepDelay: 5000, // Changed from 10000 to 5000 (5 seconds between steps)
+    highlightDuration: 4000, // 4 seconds highlight duration
     highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)' // Gold glow effect
 };
 
@@ -14,9 +14,9 @@ const automationCommands = {
     'pay saved beneficiary': {
         steps: [
             { action: 'click', selector: '#payment' },
-            { action: 'wait', duration: 250 }, // Short pause for UI to update
+            { action: 'wait', duration: 50 }, // Short pause for UI to update
             { action: 'click', selector: '#saved-beneficiary-option' },
-            { action: 'wait', duration: 250 },
+            { action: 'wait', duration: 50 },
             { action: 'click', selector: '.beneficiary-card:first-child' }
         ],
         description: 'Initiate payment to a saved beneficiary',
@@ -25,7 +25,7 @@ const automationCommands = {
     'add new beneficiary': {
         steps: [
             { action: 'click', selector: '#create' },
-            { action: 'wait', duration: 500 },
+            { action: 'wait', duration: 50 },
             { action: 'click', selector: '[data-type="beneficiary"]' }
         ],
         description: 'Add a new beneficiary',
@@ -41,7 +41,7 @@ const automationCommands = {
     'make once off payment': {
         steps: [
             { action: 'click', selector: '#payment' },
-            { action: 'wait', duration: 500 },
+            { action: 'wait', duration: 50 },
             { action: 'click', selector: '#onceoff-beneficiary-option' }
         ],
         description: 'Make a once-off payment',
