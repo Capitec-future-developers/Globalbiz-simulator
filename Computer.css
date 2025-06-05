@@ -930,3 +930,57 @@ a{
   display: inline-block;
   vertical-align: middle;
 }
+
+/*search bar*/
+.search-container {
+  position: fixed; /* or 'absolute' if you prefer */
+  bottom: 750px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  z-index: 1000; /* Ensures it stays above other content */
+  display: flex;
+  align-items: center;
+  background: white; /* Optional: add background if needed */
+  padding: 8px; /* Optional: for better spacing */
+  border-radius: 4px; /* Optional: for rounded corners */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+}
+
+#automation-search {
+  width: 250px; /* Adjust width as needed */
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-button {
+  padding: 8px 12px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-button:hover {
+  background: #3367d6;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: none;
+}
+
+/* If you want the search to stay fixed while scrolling */
+body {
+  padding-top: 60px; /* Adjust based on your search bar height */
+}
