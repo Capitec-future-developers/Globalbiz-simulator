@@ -443,6 +443,24 @@ body {
     width: 300px;
 }
 
+.profile-popup a:hover {
+    text-decoration: none;
+    color:black;
+    background-color: lightblue;
+    padding-bottom: -16px;
+}
+
+.profile-popup h3 {
+    text-align: left;
+    font-size: small;
+    font-style: italic;
+    padding: 5px;
+}
+
+.profile-name {
+    background-color: lightblue;
+}
+
 .profile-popup.active {
     display: block;
 }
