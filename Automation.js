@@ -1,11 +1,9 @@
-
 // AUTOMATION SYSTEM
-
 
 // Configuration
 const automationConfig = {
-    stepDelay: 5000, // Changed from 10000 to 5000 (5 seconds between steps)
-    highlightDuration: 4000, // 4 seconds highlight duration
+    stepDelay: 500, // 500ms between steps
+    highlightDuration: 400, // 400ms highlight duration
     highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)' // Gold glow effect
 };
 
@@ -13,10 +11,12 @@ const automationConfig = {
 const automationCommands = {
     'pay saved beneficiary': {
         steps: [
+            { action: 'click', selector: '#transact'},
+            { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#payment' },
-            { action: 'wait', duration: 50 }, // Short pause for UI to update
+            { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#saved-beneficiary-option' },
-            { action: 'wait', duration: 50 },
+            { action: 'wait', duration: 1000 },
             { action: 'click', selector: '.beneficiary-card:first-child' }
         ],
         description: 'Initiate payment to a saved beneficiary',
@@ -25,7 +25,7 @@ const automationCommands = {
     'add new beneficiary': {
         steps: [
             { action: 'click', selector: '#create' },
-            { action: 'wait', duration: 50 },
+            { action: 'wait', duration: 1000 },
             { action: 'click', selector: '[data-type="beneficiary"]' }
         ],
         description: 'Add a new beneficiary',
@@ -40,8 +40,9 @@ const automationCommands = {
     },
     'make once off payment': {
         steps: [
+            {action: 'click', selector: '#transact'},
             { action: 'click', selector: '#payment' },
-            { action: 'wait', duration: 50 },
+            { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#onceoff-beneficiary-option' }
         ],
         description: 'Make a once-off payment',
@@ -49,7 +50,8 @@ const automationCommands = {
     },
     'go to dashboard': {
         steps: [
-            { action: 'navigate', url: 'Phone.html' }
+            {action: 'click', selector: '#Home' },
+            { action: 'navigate', url: 'Phone2.html' }
         ],
         description: 'Return to dashboard',
         category: 'navigation'
@@ -86,6 +88,29 @@ function initAutomationSystem() {
                 if (dropdown) dropdown.style.display = 'none';
             }
         });
+    }
+
+    // Check for pending automation on page load
+    checkForPendingAutomation();
+}
+
+// Check if there's a pending automation to continue
+function checkForPendingAutomation() {
+    const pendingAutomation = sessionStorage.getItem('pendingAutomation');
+    if (pendingAutomation) {
+        try {
+            const { command, stepIndex } = JSON.parse(pendingAutomation);
+            const commandObj = automationCommands[command];
+            if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
+                // Continue from the next step
+                setTimeout(() => {
+                    runAutomationSteps(commandObj.steps.slice(stepIndex), command);
+                }, 1000); // Give the page time to load
+            }
+        } catch (e) {
+            console.error('Error parsing pending automation:', e);
+            sessionStorage.removeItem('pendingAutomation');
+        }
     }
 }
 
@@ -176,7 +201,7 @@ function executeCommand(commandText) {
     if (bestMatch) {
         const command = automationCommands[bestMatch];
         console.log(`Executing command: ${bestMatch}`);
-        runAutomationSteps(command.steps);
+        runAutomationSteps(command.steps, bestMatch);
     } else {
         showFeedbackMessage("Command not recognized. Try 'pay saved beneficiary', 'add new beneficiary', etc.", 'error');
     }
@@ -204,7 +229,7 @@ function calculateMatchScore(input, command) {
 }
 
 // Run the automation steps
-function runAutomationSteps(steps) {
+function runAutomationSteps(steps, commandName) {
     if (!steps || steps.length === 0) return;
 
     // Disable search during automation
@@ -239,6 +264,7 @@ function runAutomationSteps(steps) {
         if (stepIndex >= steps.length) {
             // Automation complete
             showFeedbackMessage("Automation completed successfully!", 'success');
+            sessionStorage.removeItem('pendingAutomation');
 
             // Re-enable search
             if (searchInput && executeBtn) {
@@ -256,6 +282,13 @@ function runAutomationSteps(steps) {
 
         const step = steps[stepIndex];
         updateTranscript(`Executing step ${stepIndex + 1}: ${getStepDescription(step)}`);
+
+        // Save the current state before executing the step
+        sessionStorage.setItem('pendingAutomation', JSON.stringify({
+            command: commandName,
+            stepIndex: stepIndex
+        }));
+
         executeStep(step, () => {
             stepIndex++;
             setTimeout(executeNextStep, automationConfig.stepDelay);
