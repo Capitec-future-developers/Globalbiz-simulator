@@ -17,8 +17,17 @@ const automationCommands = {
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#saved-payment-btn' },
             { action: 'wait', duration: 1000 },
-            { action: 'click', selector: '.beneficiary-card:first-child' }
-            { action: }
+            { action: 'click', selector: '#saved-beneficiary' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '.beneficiary-card:first-child' },
+            { action: 'wait', duration: 1000 },
+            { action: 'setValue', selector: '#amount', value: '100' },
+            { action: 'wait', duration: 1000 },
+            { action: 'setValue', selector: '#reference', value: 'Automated payment' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '.submit-payment-btn' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#done-button' }
         ],
         description: 'Initiate payment to a saved beneficiary',
         category: 'payments'
@@ -49,15 +58,20 @@ const automationCommands = {
         description: 'Make a once-off payment',
         category: 'payments'
     },
-    'go to dashboard': {
+    'go to account': {
         steps: [
-            {action: 'click', selector: '#Home' },
-            { action: 'navigate', url: 'Phone2.html' }
+            {action: 'click', selector: '#accounts' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', url: '#view' }
         ],
-        description: 'Return to dashboard',
-        category: 'navigation'
+        description: 'View Accounts',
+        category: 'Accounts',
+        preventReloop: true // Add this flag to prevent re-execution
     }
 };
+
+// Track currently executing command
+let currentCommand = null;
 
 // Initialize automation system
 function initAutomationSystem() {
@@ -100,8 +114,15 @@ function checkForPendingAutomation() {
     const pendingAutomation = sessionStorage.getItem('pendingAutomation');
     if (pendingAutomation) {
         try {
-            const { command, stepIndex } = JSON.parse(pendingAutomation);
+            const { command, stepIndex, isReload } = JSON.parse(pendingAutomation);
             const commandObj = automationCommands[command];
+
+            // Skip if this is a reload and the command prevents reloop
+            if (isReload && commandObj.preventReloop) {
+                sessionStorage.removeItem('pendingAutomation');
+                return;
+            }
+
             if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
                 // Continue from the next step
                 setTimeout(() => {
@@ -202,6 +223,7 @@ function executeCommand(commandText) {
     if (bestMatch) {
         const command = automationCommands[bestMatch];
         console.log(`Executing command: ${bestMatch}`);
+        currentCommand = bestMatch;
         runAutomationSteps(command.steps, bestMatch);
     } else {
         showFeedbackMessage("Command not recognized. Try 'pay saved beneficiary', 'add new beneficiary', etc.", 'error');
@@ -266,6 +288,7 @@ function runAutomationSteps(steps, commandName) {
             // Automation complete
             showFeedbackMessage("Automation completed successfully!", 'success');
             sessionStorage.removeItem('pendingAutomation');
+            currentCommand = null;
 
             // Re-enable search
             if (searchInput && executeBtn) {
@@ -287,7 +310,8 @@ function runAutomationSteps(steps, commandName) {
         // Save the current state before executing the step
         sessionStorage.setItem('pendingAutomation', JSON.stringify({
             command: commandName,
-            stepIndex: stepIndex
+            stepIndex: stepIndex,
+            isReload: false
         }));
 
         executeStep(step, () => {
@@ -405,6 +429,14 @@ function executeStep(step, callback) {
             updateTranscript(`Navigating to: ${step.url}`);
             // Highlight the whole viewport before navigating
             highlightElement(document.documentElement, 'warning');
+
+            // Mark this as a reload in session storage
+            sessionStorage.setItem('pendingAutomation', JSON.stringify({
+                command: currentCommand,
+                stepIndex: steps.findIndex(s => s === step) + 1,
+                isReload: true
+            }));
+
             setTimeout(() => {
                 window.location.href = step.url;
             }, 1000);
