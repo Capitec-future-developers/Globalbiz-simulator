@@ -34,7 +34,10 @@ const automationCommands = {
     },
     'add new beneficiary': {
         steps: [
-            { action: 'click', selector: '#create' },
+            {action: 'click', selector: '#transacts'},
+            { action: 'wait', duration: 1000 },
+            {action: 'click', selector: '#payments'},
+                        { action: 'click', selector: '#create-beneficiary-btn' },
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '[data-type="beneficiary"]' }
         ],
