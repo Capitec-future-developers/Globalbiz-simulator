@@ -59,15 +59,15 @@
     Accounts
   </a>
   <div class="dropdown">
-    <a href="#" class="dropdown-toggle">
+    <a href="#" class="dropdown-toggle" id="transacts">
       <span class="material-icons-sharp">swap_horiz</span>
       Transact
-      <span class="dropdown-arrow">▸</span>
+      <span class="dropdown-arrow">▶</span>
     </a>
     <div class="dropdown-menu">
-      <a href="#" id="payment">Payment</a>
+      <a href="transact.html" id="payment">Payment</a>
       <a href="#">Transfer</a>
-      <a href="#">Beneficiary</a>
+      <a href="#" id="beneficiary">Beneficiary</a>
     </div>
   </div>
   <a href="efiling.html">
@@ -75,10 +75,23 @@
     Cards
   </a>
   <p class="side">MANAGEMENT</p>
-  <a href="documents.html">
-    <span class="material-icons-sharp">check_box</span>
-    Authorisations
-  </a>
+
+  <div class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <span class="material-icons-sharp">check_box</span>
+      Authorisations
+      <span class="dropdown-arrow">▶</span>
+    </a>
+    <div class="dropdown-menu">
+      <a href="#">Transactions</a>
+      <a href="#">Beneficiaries</a>
+      <a href="#">User Management</a>
+      <a href="#">Account & Limits</a>
+      <a href="#">Authorisation Levels</a>
+      <a href="#">Notification Setup</a>
+      <a href="#">Messages</a>
+    </div>
+  </div>
   <a href="settings.html">
     <span class="material-icons-sharp">groups</span>
     User management
@@ -110,6 +123,14 @@
   </a>
 </div>
 
+<div class="search-container">
+  <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+  <button id="execute-automation" class="search-button">
+    <span class="material-icons-sharp">search</span> Go
+  </button>
+  <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
 <!-- Main Content Area -->
 <div class="content-wrapper content-active">
   <!-- Default Content (shown initially) -->
@@ -123,7 +144,7 @@
         <p>Pay</p>
       </div>
 
-      <div class="action-card" id="onceoff-payment-btn">
+      <div class="action-card" id="onceoff payment btn">
         <h3>Once-off beneficiary</h3>
         <p>Pay</p>
       </div>
@@ -205,5 +226,7 @@
 </div>
 
 <script src="Combined.js"></script>
+<script src="Computer%20Automation.js"></script>
+<script src="Transfer.js"></script>
 </body>
 </html>
