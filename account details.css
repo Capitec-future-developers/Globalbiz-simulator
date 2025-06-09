@@ -436,7 +436,7 @@ body {
     right: -100px;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
+    padding: 0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
@@ -458,7 +458,7 @@ body {
 }
 
 .profile-name {
-    background-color: lightblue;
+    background-color: deepskyblue;
 }
 
 .profile-popup.active {
@@ -470,7 +470,7 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    width: 0;
 }
 
 .profile-item {
@@ -541,6 +541,7 @@ body {
 
     .profile-name {
         font-size: 14px;
+        background-color: deepskyblue;
     }
 }
 

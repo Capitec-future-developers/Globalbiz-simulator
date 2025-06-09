@@ -40,7 +40,7 @@ h1 {
     max-width: 300px;
 }
 
-.button, 
+.button,
 .platform-btn {
     background-color: #0096c7;
     border: none;
@@ -55,7 +55,7 @@ h1 {
     width: 100%;
 }
 
-.button:hover, 
+.button:hover,
 .platform-btn:hover {
     background-color: #0077b6;
 }
