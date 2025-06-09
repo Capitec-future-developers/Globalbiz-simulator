@@ -436,29 +436,11 @@ body {
     right: -100px;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 0;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     width: 300px;
-}
-
-.profile-popup a:hover {
-    text-decoration: none;
-    color:black;
-    background-color: lightblue;
-    padding-bottom: -16px;
-}
-
-.profile-popup h3 {
-    text-align: left;
-    font-size: small;
-    font-style: italic;
-    padding: 5px;
-}
-
-.profile-name {
-    background-color: deepskyblue;
 }
 
 .profile-popup.active {
@@ -470,7 +452,7 @@ body {
     font-weight: bold;
     margin-bottom: 15px;
     border-bottom: 1px solid #eee;
-    width: 0;
+    padding-bottom: 10px;
 }
 
 .profile-item {
@@ -541,7 +523,6 @@ body {
 
     .profile-name {
         font-size: 14px;
-        background-color: deepskyblue;
     }
 }
 
