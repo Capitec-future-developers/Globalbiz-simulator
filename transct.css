@@ -633,18 +633,19 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Profile popup styles */
+/* Popup styling */
 .profile-popup {
     display: none;
     position: fixed;
-    top: 80px;
-    right: 30px; /* Increased margin */
+    top: 70px;
+    right: 20px;
     background-color: white;
-    padding: 25px; /* Increased padding */
+    padding: 0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    width: 350px; /* Increased width */
+    width: 280px;
+    border: 1px solid #e0e0e0;
 }
 
 .profile-popup.active {
@@ -652,57 +653,79 @@ body {
 }
 
 .popup-header {
-    font-size: 20px; /* Larger font */
-    font-weight: bold;
-    margin-bottom: 20px; /* Increased margin */
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px; /* Increased padding */
+    font-size: 14px;
+    font-weight: 500;
+    padding: 16px;
+    color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #022130;
 }
 
 .profile-item {
     display: flex;
     align-items: center;
-    padding: 12px 0; /* Increased padding */
+    padding: 16px;
     border-bottom: 1px solid #f5f5f5;
 }
 
 .profile-icon {
-    margin-right: 12px; /* Increased margin */
+    margin-right: 12px;
     color: #5f6368;
-    font-size: 24px; /* Larger icon */
+    font-size: 24px;
 }
 
 .profile-info {
     flex-grow: 1;
 }
 
-.profile-name {
+.profile-active {
     font-weight: 500;
-    font-size: 16px; /* Larger font */
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
 }
 
-.profile-email {
-    font-size: 13px; /* Slightly larger */
+
+
+.profile-name .a{
+    font-size: 18px;
     color: #5f6368;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .switch-profile {
-    color: #1a73e8;
+    color: #333;
     text-decoration: none;
-    font-size: 15px; /* Larger font */
-    margin-top: 8px; /* Increased margin */
-    display: inline-block;
+    font-size: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.switch-profile:hover {
+    background-color: #f8f9fa;
+}
+
+.switch-profile .material-icons-sharp {
+    margin-right: 12px;
+    color: #5f6368;
+    font-size: 20px;
 }
 
 .manage-business {
     display: block;
-    margin-top: 20px; /* Increased margin */
-    color: #1a73e8;
+    color: #333;
     text-decoration: none;
-    font-size: 15px; /* Larger font */
-    text-align: center;
-    padding: 12px 0; /* Increased padding */
-    border-top: 1px solid #eee;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-top: none;
+    text-align: left;
+}
+
+.manage-business:hover {
+    background-color: #f8f9fa;
 }
 
 .overlay {
@@ -719,6 +742,7 @@ body {
 .overlay.active {
     display: block;
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 1600px) {
