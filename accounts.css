@@ -10,6 +10,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f7fa;
     color: #333;
+    padding-top: 140px; /* Added to account for both header and fixed search bar */
 }
 
 /* Header Styles */
@@ -150,14 +151,7 @@ body {
     padding: 30px;
 }
 
-/* Search Section Styles */
-.search-section {
-    padding: 20px;
-    background-color: #f5f5f5;
-    margin-bottom: 30px;
-    border-radius: 8px;
-}
-
+/* Unified Search Bar Styles */
 .search-container {
     display: flex;
     align-items: center;
@@ -165,13 +159,25 @@ body {
     border-radius: 24px;
     padding: 8px 16px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    max-width: 800px;
+    width: 100%;
+    max-width: 500px;
     margin: 0 auto;
+    position: relative;
+}
+
+.search-container.fixed {
+    position: fixed;
+    top: 80px; /* Below the header */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
 }
 
 .search-container .material-icons-sharp {
     color: #666;
     margin-right: 10px;
+    font-size: 20px;
 }
 
 .search-input {
@@ -180,6 +186,7 @@ body {
     outline: none;
     font-size: 16px;
     padding: 8px 0;
+    background: transparent;
 }
 
 .search-button {
@@ -191,13 +198,64 @@ body {
     cursor: pointer;
     font-weight: 500;
     margin-left: 10px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-button:hover {
     background-color: #0d5bba;
 }
 
-/* Account Section Styles - Fixed View Icon Position */
+/* Search Section Styles */
+.search-section {
+    padding: 20px;
+    background-color: #f5f5f5;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1001;
+    margin-top: 5px;
+}
+
+.suggestion-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+.suggestion-title {
+    font-weight: bold;
+}
+
+.suggestion-description {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.feedback-success { color: green; }
+.feedback-error { color: red; }
+.feedback-info { color: blue; }
+
+/* Account Section Styles */
 .account-box {
     background: #ffffff;
     color: black;
@@ -207,7 +265,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 30px;
-    position: relative; /* Added for absolute positioning context */
+    position: relative;
 }
 
 .account-info-row {
@@ -216,23 +274,22 @@ body {
     gap: 20px;
     padding: 20px;
     border-radius: 8px;
-    color: #111111; /* Fixed capitalization from Color to color */
+    color: #111111;
     margin-bottom: 30px;
 }
 
 .View {
-    position: absolute; /* Changed from relative to absolute */
-    right: 25px; /* Position from the right edge of account-box */
-    top: 25px; /* Position from the top edge of account-box */
+    position: absolute;
+    right: 25px;
+    top: 25px;
 }
 
 .View .material-icons-sharp {
-    position: static; /* Changed from absolute to static */
-    right: auto; /* Reset right positioning */
-    top: auto; /* Reset top positioning */
+    position: static;
+    right: auto;
+    top: auto;
 }
 
-/* The rest of your existing account section styles remain unchanged */
 .info-item {
     display: flex;
     flex-direction: column;
@@ -275,53 +332,6 @@ body {
     color: #df0808;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .account-info-row {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .info-item {
-        min-width: 100%;
-    }
-
-    .View {
-        position: static; /* Stack the view icon on mobile */
-        margin-top: 15px;
-        text-align: right;
-    }
-}
-.account-box h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-.account-box p {
-    margin-bottom: 8px;
-    color: rgb(23, 21, 21);
-}
-
-.account-box strong {
-    color: #171515;
-    font-weight: 600;
-}
-
-.account-box .negative {
-    color: #df0808;
-}
-
-.View {
-    position: relative;
-    font-size: 14px;
-}
-
-.View .material-icons-sharp {
-    position: absolute;
-    right: -1500px;
-    top: -100px;
-    font-size: 24px;
-}
 /* Popup styling */
 .profile-popup {
     display: none;
@@ -393,32 +403,6 @@ body {
     border-top: 1px solid #eee;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .profile-popup {
-        top: 70px;
-        right: 10px;
-        left: auto;
-        transform: none;
-        width: calc(100% - 20px);
-        max-width: 300px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-popup {
-        padding: 15px;
-        width: calc(100% - 30px);
-    }
-
-    .popup-header {
-        font-size: 16px;
-    }
-
-    .profile-name {
-        font-size: 14px;
-    }
-}
 .overlay {
     display: none;
     position: fixed;
@@ -434,22 +418,7 @@ body {
     display: block;
 }
 
-@media screen and (max-width: 768px) {
-    .profile-popup {
-        top: 70px;
-        right: 10px;
-        left: auto;
-        transform: none;
-        width: calc(100% - 20px);
-        max-width: 300px;
-    }
-
-    .overlay.active {
-        display: block;
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-}
-
+/* Dropdown styles */
 .dropdown {
     position: relative;
 }
@@ -466,29 +435,32 @@ body {
 .dropdown-arrow {
     transition: transform 0.3s ease;
     margin-left: 8px;
+    font-size: 12px;
 }
 
 .dropdown-menu {
     display: none;
     padding-left: 40px;
-    background-color: rgba(0,0,0,0.02);
+    background-color: rgba(0,0,0,0.05);
+    animation: fadeIn 0.3s ease;
 }
 
 .dropdown-menu a {
     display: block;
-    padding: 8px 0;
-    color: inherit;
+    padding: 10px 0;
+    color: #bdc3c7;
     text-decoration: none;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
+    font-size: 13px;
 }
 
 .dropdown-menu a:hover {
-    background-color: rgba(0,0,0,0.05);
+    color: white;
+    background-color: rgba(0,0,0,0.1);
 }
 
 .dropdown.active .dropdown-menu {
     display: block;
-    animation: fadeIn 0.3s ease;
 }
 
 .dropdown.active .dropdown-arrow {
@@ -567,7 +539,6 @@ body {
     background: #0060cc;
 }
 
-/* Hide the default select arrow */
 .manage-btn select {
     appearance: none;
     -webkit-appearance: none;
@@ -583,21 +554,211 @@ body {
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0; /* Make the select invisible but clickable */
+    opacity: 0;
 }
 
-/* Style for the dropdown options */
 .manage-btn select option {
     color: #333;
     background: white;
     padding: 8px 16px;
 }
 
-/* Custom dropdown indicator */
 .manage-btn::after {
     content: "▼";
     font-size: 10px;
     margin-left: 8px;
     display: inline-block;
     vertical-align: middle;
+}
+
+.search-container {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    width: 90%;
+    max-width: 500px;
+}
+
+#automation-search {
+    width: calc(100% - 50px);
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border: none;
+    background: #007AFF;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.suggestions-dropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 10001;
+}
+
+.suggestion-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+.suggestion-title {
+    font-weight: bold;
+}
+
+.suggestion-description {
+    font-size: 0.8em;
+    color: #666;
+}
+
+.feedback-success { color: green; }
+.feedback-error { color: red; }
+.feedback-info { color: blue; }}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+.dropdown-menu {
+    display: none;
+    padding-left: 40px;
+    background-color: rgba(0,0,0,0.05);
+    animation: fadeIn 0.3s ease;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 0;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 13px;
+}
+
+.dropdown-menu a:hover {
+    color: white;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.dropdown.active .dropdown-menu {
+    display: block;
+}
+
+.dropdown.active .dropdown-arrow {
+    transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 120px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .sidebar {
+        width: 0;
+        overflow: hidden;
+    }
+
+    .sidebar.active {
+        width: 250px;
+    }
+
+    .account-info-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-item {
+        min-width: 100%;
+    }
+
+    .View {
+        position: static;
+        margin-top: 15px;
+        text-align: right;
+    }
+
+    .search-container.fixed {
+        top: 70px;
+        width: calc(100% - 40px);
+    }
+
+    .profile-popup {
+        top: 70px;
+        right: 10px;
+        left: auto;
+        transform: none;
+        width: calc(100% - 20px);
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-popup {
+        padding: 15px;
+        width: calc(100% - 30px);
+    }
+
+    .popup-header {
+        font-size: 16px;
+    }
+
+    .profile-name {
+        font-size: 14px;
+    }
 }
