@@ -103,7 +103,7 @@
                         if (platform === 'app') {
                             proceedLink.href = "Phone.html";
                         } else {
-                            proceedLink.href = "Computer.html";
+                            proceedLink.href = "Login.html";
                         }
 
                         proceedBtn.style.display = 'block';
