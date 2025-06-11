@@ -10,7 +10,10 @@
 
 </head>
 <body>
-
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
 <div class="header">
     <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
     <span class="separator"></span>
@@ -51,6 +54,10 @@
 </div>
 
 <!--Sidebar navigation-->
+<nav class="sidebar">
+    <!-- sidebar content -->
+</nav>
+
 <div class="sidebar">
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp">home</span>
@@ -128,7 +135,7 @@
 
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
         <span class="material-icons-sharp">search</span> Go
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
@@ -228,11 +235,11 @@
         <span class="material-icons-sharp">account_balance_wallet</span>
         <span class="cash-flow-title">1 Transactional Account</span>
         <div class="select-row">
-            <select class="account-select">
-                <option value="account1"> </option>
+            <label for="account-select">Select Account</label>
+            <select id="account-select" class="account-select">
+                <option value="">Please select an account</option>
                 <option value="account1">Account 1</option>
-                <option value="account2">Account 2</option>
-                <option value="account3">Account 3</option>
+                <!-- other options -->
             </select>
             <div class="period-selector">
                 <select class="account-select">
@@ -244,10 +251,24 @@
             </div>
         </div>
     </div>
-</div>
-<script src="Transfer.js"></script>
-<script src="Apps.js"></script>
-<script src="Combined.js"></script>
-<script src="Computer%20Automation.js"></script>
+</div><!--
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    // Display the logged-in user
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (currentUser) {
+        document.getElementById('display-username').textContent = currentUser.name;
+        document.querySelectorAll('.profile-Name').forEach(el => el.textContent = currentUser.name);
+        document.querySelector('.popup-header').textContent = currentUser.email;
+    } else {
+        // If no user is logged in, redirect back to login
+        window.location.href = "Login.html";
+    }
+
+    // Rest of your initialization code...
+});</script>-->
+<script src="Transfer.js" defer></script>
+<script src="Combined.js" defer></script>
+<script src="computer-automation.js" defer></script>
 </body>
 </html>
