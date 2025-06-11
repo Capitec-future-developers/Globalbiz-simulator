@@ -77,7 +77,7 @@
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
             <a href="#" id="transfer">Transfer</a>
-            <a href="#" id="beneficiary">Beneficiary</a>
+            <a href="#" id="create-beneficiary-btn">Beneficiary</a>
         </div>
     </div>
     <a href="efiling.html">
@@ -251,24 +251,9 @@
             </div>
         </div>
     </div>
-</div><!--
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-    // Display the logged-in user
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    if (currentUser) {
-        document.getElementById('display-username').textContent = currentUser.name;
-        document.querySelectorAll('.profile-Name').forEach(el => el.textContent = currentUser.name);
-        document.querySelector('.popup-header').textContent = currentUser.email;
-    } else {
-        // If no user is logged in, redirect back to login
-        window.location.href = "Login.html";
-    }
-
-    // Rest of your initialization code...
-});</script>-->
-<script src="Transfer.js" defer></script>
-<script src="Combined.js" defer></script>
-<script src="computer-automation.js" defer></script>
+</div>
+<script src="Transfer.js"></script>
+<script src="Combined.js"></script>
+<script src="computer automation.js"></script>
 </body>
 </html>
