@@ -103,7 +103,7 @@
                         if (platform === 'app') {
                             proceedLink.href = "Phone.html";
                         } else {
-                            proceedLink.href = "Login.html";
+                            proceedLink.href = "Computer.html";
                         }
 
                         proceedBtn.style.display = 'block';
@@ -580,9 +580,14 @@
         });
 
         // Add new beneficiary
-        document.getElementById('add-new-beneficiary').addEventListener('click', function() {
-            showAddBeneficiaryForm();
+        document.addEventListener('DOMContentLoaded', function() {
+            const beneficiaryBtn = document.getElementById('create-beneficiary-btn');
+            beneficiaryBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showAddBeneficiaryForm(); // assuming this function is defined in your JS
+            });
         });
+
     }
 
     function showPaymentForm(paymentType, beneficiaryName = '') {

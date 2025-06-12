@@ -28,27 +28,26 @@
 
         <div class="logreg-box">
             <div class="form-box">
-                <form id="loginForm">
+                <!-- In Login.html, update the form element -->
+                <form id="loginForm" onsubmit="return handleLogin()">
                     <h2>Sign In to online banking</h2>
                     <div class="input-box">
                         <span class="icon"><i class='bx bx-user'></i></span>
-                        <input type="text" id="Username" required>
-                        <label>Username</label>
+                        <input type="email" id="login-email" required> <!-- Changed to type="email" -->
+                        <label for="login-email">Username</label> <!-- Added for attribute -->
                     </div>
 
                     <div class="input-box">
                         <span class="icon"><i class='bx bx-lock'></i></span>
-                        <input type="password" id="password" required>
-                        <label>Password</label>
+                        <input type="password" id="login-password" required>
+                        <label for="login-password">Password</label> <!-- Added for attribute -->
                     </div>
 
                     <div class="forgot-password">
                         <a href="#">Forgot password?</a>
                     </div>
 
-                    <button type="submit" id="loginButton">
-                      <a class="btn" href="Computer.html" >SIGN IN</a>
-                    </button>
+                    <button type="submit" id="login-button">SIGN IN</button>
                 </form>
             </div>
         </div>
@@ -59,7 +58,11 @@
     (Environment - Production)<br>
     © 2025 Tata Consultancy Services Limited. All Rights Reserved Powered by TCS BaNCS
 </footer>
+<!-- At the bottom of Login.html, before </body> -->
 
-<script src="Apps.js"></script>
+<script>
+    // Initialize form handler
+    document.getElementById('loginForm')?.addEventListener('submit', handleLogin);
+</script>
 </body>
 </html>
