@@ -9,6 +9,13 @@
     <title>iPhone with White LCD</title>
 </head>
 <body>
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
 <div class="iphone">
     <div class="volume-buttons">
         <div class="volume-up"></div>
@@ -54,7 +61,7 @@
 
             <!-- Bottom Navigation -->
             <div class="bottom-nav">
-                <a href="Phone2.html" class="nav-item">
+                <a href="Phone2.html" class="nav-item" id="Home">
                     <span class="nav-icon material-icons-outlined">home</span>
                     <span>Home</span>
                 </a>
@@ -81,6 +88,7 @@
 </div>
 
 <script src="App.js"></script>
+<script src="Automation.js"></script>
 
 </body>
 </html>

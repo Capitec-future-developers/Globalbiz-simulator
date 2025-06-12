@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (backButton) {
             backButton.addEventListener('click', function() {
                 if (isAppContext) {
-                    window.location.href = 'Phone transact.html';
+                    window.location.href = 'Phone2.html';
                 } else {
                     window.location.href = 'Phone Transact.html';
                 }
@@ -947,4 +947,5 @@ document.addEventListener('DOMContentLoaded', function() {
             navigationStack = [];
         }
     }
+
 });

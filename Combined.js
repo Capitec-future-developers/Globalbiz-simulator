@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+; document.addEventListener('DOMContentLoaded', function() {
     // =============================================
     // PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
     // =============================================
@@ -7,6 +7,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
+
+    // Enhanced Dropdown functionality for all dropdowns
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+    if (dropdownToggles.length > 0) {
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent event from bubbling up
+
+                const dropdown = this.closest('.dropdown');
+                if (dropdown) {
+                    // Close all other dropdowns first
+                    document.querySelectorAll('.dropdown').forEach(item => {
+                        if (item !== dropdown) {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+    }
 
     if (profileLink && profilePopup && overlay) {
         profileLink.addEventListener('click', function(e) {
@@ -22,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Sidebar toggle functionality
-    const sidebar = document.getElementById('sidebar');
+    const sidebar = document.querySelector('.sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
 
@@ -49,54 +83,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const startBtn = document.getElementById('startBtn');
     if (startBtn) {
         startBtn.addEventListener('click', function() {
-            document.getElementById('platformOptions').style.display = 'block';
-            this.style.display = 'none';
+            const platformOptions = document.getElementById('platformOptions');
+            if (platformOptions) {
+                platformOptions.style.display = 'block';
+                this.style.display = 'none';
+            }
         });
 
         const platformButtons = document.querySelectorAll('[data-platform]');
-        platformButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const platform = this.getAttribute('data-platform');
-                const proceedLink = document.getElementById('proceedLink');
+        if (platformButtons.length > 0) {
+            platformButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const platform = this.getAttribute('data-platform');
+                    const proceedLink = document.getElementById('proceedLink');
+                    const proceedBtn = document.getElementById('proceedBtn');
+                    const platformOptions = document.getElementById('platformOptions');
 
-                if (platform === 'app') {
-                    proceedLink.href = "Phone.html";
-                } else {
-                    proceedLink.href = "Computer.html";
-                }
+                    if (proceedLink && proceedBtn && platformOptions) {
+                        if (platform === 'app') {
+                            proceedLink.href = "Phone.html";
+                        } else {
+                            proceedLink.href = "Computer.html";
+                        }
 
-                document.getElementById('proceedBtn').style.display = 'block';
-                document.getElementById('platformOptions').style.display = 'none';
-            });
-        });
-    }
-
-    // Enhanced Dropdown toggle functionality for Transact
-    const dropdownToggle = document.querySelector('.dropdown-toggle');
-    const dropdownMenu = document.querySelector('.dropdown-menu');
-
-    if (dropdownToggle && dropdownMenu) {
-        dropdownToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const dropdown = this.parentElement;
-            dropdown.classList.toggle('active');
-
-            // Close other open dropdowns if any
-            document.querySelectorAll('.dropdown').forEach(item => {
-                if (item !== dropdown && item.classList.contains('active')) {
-                    item.classList.remove('active');
-                }
-            });
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown').forEach(item => {
-                    item.classList.remove('active');
+                        proceedBtn.style.display = 'block';
+                        platformOptions.style.display = 'none';
+                    }
                 });
-            }
-        });
+            });
+        }
     }
 
     // =============================================
@@ -104,9 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // =============================================
 
     // Tab content data
-    const content = [
-        // Transactions tab
-        [
+    const tabContentData = {
+        transactions: [
             `<table class="transaction-table">
                 <thead>
                 <tr>
@@ -138,38 +152,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 </tbody>
             </table>`
         ],
-        // Payment history tab
-        [
+        paymentHistory: [
             "Payment 1: R500.00 to John Doe",
             "Payment 2: R1,200.00 to ABC Suppliers",
             "Payment 3: R350.00 to Utility Company"
         ],
-        // Stamped statements tab
-        [
+        stampedStatements: [
             "Statement for April 2025",
             "Statement for March 2025",
             "Statement for February 2025"
         ],
-        // Account information tab
-        [
+        accountInformation: [
             "Account opened: 15 January 2023",
             "Account status: Active",
             "Overdraft limit: R10,000.00",
             "Linked accounts: Savings (1052 2626 44)"
         ]
-    ];
+    };
 
     // Tab functionality
-    const btnTransactions = document.getElementById("btn-transactions");
-    const btnPaymentHistory = document.getElementById("btn-payment-history");
-    const btnStampedStatements = document.getElementById("btn-stamped-statements");
-    const btnAccountInformation = document.getElementById("btn-account-information");
+    const tabButtons = {
+        transactions: document.getElementById("btn-transactions"),
+        paymentHistory: document.getElementById("btn-payment-history"),
+        stampedStatements: document.getElementById("btn-stamped-statements"),
+        accountInformation: document.getElementById("btn-account-information")
+    };
     const tabContent = document.getElementById("tab-content");
 
     // Function to display content in the tab
-    function displayContent(items) {
-        if (!tabContent) return;
+    function displayContent(contentKey) {
+        if (!tabContent || !tabContentData[contentKey]) return;
 
+        const items = tabContentData[contentKey];
         tabContent.innerHTML = "";
 
         if (items.length === 1 && items[0].startsWith('<table')) {
@@ -189,23 +203,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to highlight the active button
-    function highlightButton(btn) {
-        const allButtons = document.querySelectorAll('.tabs button');
-        allButtons.forEach(button => {
-            button.classList.remove('active');
-            const tab = button.querySelector('.tab');
-            if (tab) tab.classList.remove('active');
+    function highlightButton(buttonId) {
+        Object.keys(tabButtons).forEach(key => {
+            const button = tabButtons[key];
+            if (button) {
+                button.classList.remove('active');
+                const tab = button.querySelector('.tab');
+                if (tab) tab.classList.remove('active');
+            }
         });
 
-        if (btn) {
-            btn.classList.add('active');
-            const tab = btn.querySelector('.tab');
+        const activeButton = tabButtons[buttonId];
+        if (activeButton) {
+            activeButton.classList.add('active');
+            const tab = activeButton.querySelector('.tab');
             if (tab) tab.classList.add('active');
         }
     }
 
     // Function to handle button clicks
-    function handleClick(event) {
+    function handleTabClick(event) {
         const button = event.target.closest('button');
         if (!button) return;
 
@@ -215,42 +232,27 @@ document.addEventListener('DOMContentLoaded', function() {
             button.style.transform = '';
         }, 100);
 
-        highlightButton(button);
+        // Find which button was clicked
+        const buttonId = Object.keys(tabButtons).find(key => tabButtons[key] === button);
+        if (!buttonId) return;
 
-        // Load appropriate content
-        switch(button.id) {
-            case "btn-transactions":
-                displayContent(content[0]);
-                break;
-            case "btn-payment-history":
-                displayContent(content[1]);
-                break;
-            case "btn-stamped-statements":
-                displayContent(content[2]);
-                break;
-            case "btn-account-information":
-                displayContent(content[3]);
-                break;
-            default:
-                console.warn("Unknown button clicked:", button.id);
-        }
+        highlightButton(buttonId);
+        displayContent(buttonId);
     }
 
     // Add event listeners to all tab buttons
-    [btnTransactions, btnPaymentHistory, btnStampedStatements, btnAccountInformation].forEach(btn => {
+    Object.values(tabButtons).forEach(btn => {
         if (btn) {
-            btn.addEventListener('click', handleClick);
-        } else {
-            console.error("Button not found:", btn && btn.id);
+            btn.addEventListener('click', handleTabClick);
         }
     });
 
     // Load initial content (Transactions tab)
-    if (btnTransactions && tabContent) {
-        btnTransactions.classList.add('active');
-        const tab = btnTransactions.querySelector('.tab');
+    if (tabButtons.transactions && tabContent) {
+        tabButtons.transactions.classList.add('active');
+        const tab = tabButtons.transactions.querySelector('.tab');
         if (tab) tab.classList.add('active');
-        displayContent(content[0]);
+        displayContent('transactions');
     }
 
     // =============================================
@@ -335,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="payment-options-grid">
                 <div class="payment-option-row">
-                    <div class="payment-option" id="saved-beneficiary-option">
+                    <div class="payment-option" id="saved-beneficiary">
                         <div class="payment-icon">
                             <span class="material-icons-sharp">bookmark</span>
                         </div>
@@ -348,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div class="payment-option-row">
-                    <div class="payment-option" id="onceoff-beneficiary-option">
+                    <div class="payment-option" id="onceoff-beneficiary">
                         <div class="payment-icon">
                             <span class="material-icons-sharp">person_add</span>
                         </div>
