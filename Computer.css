@@ -177,15 +177,14 @@ body {
 .account {
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  width:1600px;
+   margin-bottom: 40px;
+  width:1500px;
   max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
   margin-left: 290px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
   text-decoration: none;
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .account-header {
@@ -211,43 +210,59 @@ body {
 .box {
   display: flex;
   gap: 35px;
-  flex-wrap: nowrap; /* Prevent wrapping to new line */
+  flex-wrap: nowrap; /* Prevent wrapping */
   width: 100%;
   overflow-x: auto; /* Allows horizontal scrolling if needed */
-  height: 100%;
   padding-bottom: 10px; /* Space for scrollbar if appears */
+
 }
 
 /* Unified box styles */
 .box1, .box2 {
   position: relative;
-  flex: 0 0 280px; /* Fixed width, won't grow or shrink */
+  flex: 0 0 280px; /* Fixed width */
   display: flex;
   align-items: center;
   padding: 15px;
-  background: #f9f9f9;
-  border-radius: 6px;
-  border-left: 4px solid #3498db;
+  border-radius: 1px;
   transition: all 0.3s ease;
   height: 90px;
-  min-width: 280px; /* Ensure minimum width */
+  min-width: 280px;
   text-decoration: none;
 
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
-a{
+a {
   text-decoration: none;
   color: #1e88e5;
 }
 
-/* Visual separator between icon and content */
+/* Box specific styles */
+.box1 {
+  background: #f9f9f9;
+  border-left: 4px solid #3498db; /* Light blue border */
+  width: 1200px; /* Increased width */
+  position: relative; /* Required for ::after pseudo-element */
+}
+
+.box2 {
+  background: #ffffff; /* Darker blue */
+  border-left: 4px solid #00264d; /* Even darker blue border */
+  color: #00264d;
+  width: 1200px; /* Increased width */
+  position: relative; /* Required for ::after pseudo-element */
+}
+
+/* Separator inside each box */
 .box1::after, .box2::after {
   content: "";
   position: absolute;
   left: 60px;
-  top: 20px;
-  bottom: 15px;
-  width: 1px;
+  top: 5px;
+  bottom: 8px;
+  width: 2px;
+  height: 80px;
   background-color: #e0e0e0;
 }
 
@@ -256,65 +271,78 @@ a{
   background: #f0f2f5;
 }
 
+.box2:hover {
+  background: #ffffff; /* Slightly lighter on hover for box2 */
+}
+
 /* Icon styles */
 .box1 .material-icons-sharp,
-.box2 .material-icons-sharp a{
+.box2 .material-icons-sharp {
   font-size: 30px;
-  color: #3498db;
   margin-right: 15px;
-  width: 30px; /* Fixed icon width */
+  width: 30px;
   flex-shrink: 0;
-  text-decoration: none;
-
 }
 
-/* Maintain your specific positioning */
-.box2 {
-  margin-left: 250px; /* Maintains your requested spacing */
+.box2 .material-icons-sharp {
+  color: #00264d;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 800px) {
-  .box {
-    gap: 20px;
-    justify-content: space-between;
-  }
-
-  .box1, .box2 {
-    flex: 0 0 calc(50% - 20px); /* Two columns on tablet */
-    margin-left: 0 !important; /* Reset positioning on mobile */
-  }
+.box1 .material-icons-sharp {
+  color: #3498db;
 }
 
-@media screen and (max-width: 600px) {
-  .box1, .box2 {
-    flex: 0 0 100%; /* Full width on mobile */
-  }
-}
-
+/* Account details */
 .account-details {
   display: flex;
   flex-direction: column;
-  margin-left: 15px; /* Space after separator */
+  margin-left: 15px;
 }
 
 .account-name {
   font-weight: 600;
-  margin-bottom: 5px;
   font-size: 14px;
-  width: 100px;
+  margin-bottom: 5px;
 }
 
 .account-balance {
   font-size: 18px;
   font-weight: 700;
 }
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .box1, .box2 {
+    width: 100%; /* Make boxes flexible on medium screens */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .box1, .box2 {
+    flex: 0 0 calc(50% - 10px);
+    width: calc(50% - 10px); /* Ensure proper width in flex context */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .box1, .box2 {
+    flex: 0 0 100%;
+    width: 100%; /* Full width on small screens */
+  }
+}
+
 /* Favorites Section */
 .favorites-container {
   background: white;
   padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 2px solid rgba(83, 79, 79, 0.31);
   margin-bottom: 30px;
   width: 100%;
   max-width: 600px;
@@ -357,9 +385,10 @@ a{
   align-items: center;
   padding: 20px;
   background: #f9f9f9;
-  border-radius: 6px;
+
   cursor: pointer;
   transition: all 0.3s ease;
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .favorite-box:hover {
@@ -513,8 +542,7 @@ a{
 .pending {
   background: white;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 2px solid rgba(83, 79, 79, 0.31);
   width: 400px;
   margin-left: 290px;
   margin-right: auto;
@@ -551,11 +579,12 @@ a{
   align-items: center;
   padding: 20px;
   background: #f9f9f9;
-  border-radius: 6px;
+
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   color: inherit; /* This ensures text color is inherited, not blue for links */
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .pending-box:hover {
@@ -599,9 +628,9 @@ a{
 .cash-flow {
   background: white;
   padding: 20px;
-  border-radius: 8px;
+
   margin-bottom: 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 2px solid rgba(83, 79, 79, 0.31);
   margin-left: 290px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
