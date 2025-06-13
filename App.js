@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+
+
     // =============================================
     // PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
     // =============================================
@@ -25,11 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
+    const menuIcon = toggleButton.querySelector('.material-icons-sharp');
 
-    if (sidebar && mainContent && toggleButton) {
-        const menuIcon = '<span class="material-icons-sharp">menu</span>';
-        const closeIcon = '<span class="material-icons-sharp">close</span>';
+    if (sidebar && mainContent && toggleButton && menuIcon) {
         const chevronIcon = '<span class="material-icons-sharp">chevron_right</span>';
+        const closeIcon = '<span class="material-icons-sharp">close</span>';
+        const menuIcon = '<span class="material-icons-sharp">menu</span>';
 
         // Function to toggle sidebar
         function toggleSidebar() {
@@ -38,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Change icon based on state
             if (isCollapsed) {
-                toggleButton.innerHTML = chevronIcon;
-            } else {
                 toggleButton.innerHTML = menuIcon;
+            } else {
+                toggleButton.innerHTML = chevronIcon;
             }
-
+            menuIcon.textContent = isCollapsed ? 'chevron_right' : 'menu';
             // Save state to localStorage
             localStorage.setItem('sidebarCollapsed', isCollapsed);
         }
@@ -51,9 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
         function initSidebar() {
             const savedState = localStorage.getItem('sidebarCollapsed');
             if (savedState === 'true') {
-                sidebar.classList.add('collapsed');
-                mainContent.classList.add('expanded');
-                toggleButton.innerHTML = chevronIcon;
+                sidebar.classList.toggle('collapsed', isCollapsed);
+                mainContent.classList.toggle('expanded', isCollapsed);
+                menuIcon.textContent = isCollapsed ? 'chevron_right' : 'menu';
+
             } else {
                 sidebar.classList.remove('collapsed');
                 mainContent.classList.remove('expanded');
@@ -948,4 +953,61 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+});
+// ======= Profile popup functionality =======
+const profileLink = document.getElementById('profile-link');
+const profilePopup = document.getElementById('profilePopup');
+const overlay = document.getElementById('overlay');
+
+if (profileLink && profilePopup && overlay) {
+    profileLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent immediate close due to outside click
+        profilePopup.classList.add('active');
+        overlay.classList.add('active');
+    });
+
+    overlay.addEventListener('click', function() {
+        profilePopup.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    // Prevent popup from closing when clicked inside
+    profilePopup.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// ======= Enhanced Dropdown functionality =======
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+if (dropdownToggles.length > 0) {
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent event bubbling
+
+            const dropdown = this.closest('.dropdown');
+            if (dropdown) {
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown').forEach(item => {
+                    if (item !== dropdown) {
+                        item.classList.remove('active');
+                    }
+                });
+
+                // Toggle clicked dropdown
+                dropdown.classList.toggle('active');
+            }
+        });
+    });
+}
+
+// Close all dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
 });

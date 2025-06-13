@@ -422,7 +422,7 @@
         if (backButton) {
             backButton.addEventListener('click', function() {
                 if (isAppContext) {
-                    window.location.href = 'Phone.html';
+                    window.location.href = 'transact.html';
                 } else {
                     window.location.href = 'Computer.html';
                 }
