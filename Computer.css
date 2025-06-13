@@ -648,7 +648,6 @@ a {
 .cash-flow {
   background: white;
   padding: 20px;
-
   margin-bottom: 40px;
   border: 2px solid rgba(83, 79, 79, 0.31);
   margin-left: 290px; /* These two lines will push it to the right */
