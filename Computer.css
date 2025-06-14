@@ -648,7 +648,6 @@ a {
 .cash-flow {
   background: white;
   padding: 20px;
-
   margin-bottom: 40px;
   border: 2px solid rgba(83, 79, 79, 0.31);
   margin-left: 290px; /* These two lines will push it to the right */
@@ -1289,4 +1288,51 @@ popup-header {
 #page-transition.show {
   opacity: 1;
   pointer-events: all;
+}
+
+/* Popup style 2 */
+.popup {
+  display: none; /* hidden by default */
+  position: fixed;
+  top: 650px;
+  right: -60px;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  width: 250px;
+  text-align: center;
+}
+
+/* Close button (X) */
+.close-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Popup buttons */
+.popup-btn {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-btn:hover {
+  background-color: #0056b3;
+}
+
+.right{
+  color: #1e88e5;
 }

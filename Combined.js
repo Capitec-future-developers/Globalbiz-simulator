@@ -934,3 +934,56 @@
         }
     }
 });
+
+// Banker popup functionality
+const bankerLink = document.getElementById('banker-link');
+const bankerPopup = document.getElementById('banker-popup');
+const closePopup = document.getElementById('close-popup');
+
+bankerLink.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent jump to #home
+    bankerPopup.style.display = 'block';
+});
+
+closePopup.addEventListener('click', function() {
+    bankerPopup.style.display = 'none';
+});
+
+// Page transition animation on profile switch
+const switchLink = document.querySelector('.switch-profile');
+
+if (switchLink) { // Safety check in case element is missing
+    switchLink.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default navigation
+
+        const transition = document.getElementById('page-transition');
+        if (transition) { // Another safety check
+            transition.classList.add('show');
+
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 500); // CSS transition time
+        } else {
+            // fallback if no transition element exists
+            window.location.href = this.href;
+        }
+    });
+}
+
+// Sign-in date display
+const dateElement = document.getElementById("signin-date");
+
+if (dateElement) { // Check element exists before updating
+    const now = new Date();
+    const options = {
+        weekday: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+    };
+
+    dateElement.textContent = `Your last Sign-in was on ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${now.toLocaleDateString([], options)}.`;
+}
+
