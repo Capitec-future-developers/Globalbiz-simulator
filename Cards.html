@@ -159,7 +159,7 @@
 </div>
 
 <!-- Sidebar / Left Button Section -->
-<div class="right-bottom">
+<div class="right-bottom" id="Cards-Content">
   <button class="btn">Add New Card</button>
 </div>
 
@@ -204,14 +204,106 @@
   </div>
   <!-- Dropdown Content for Virtual -->
   <div class="dropdown-content" id="virtual-dropdown">
-    <img src="virtual-card-image.jpg" alt="Virtual Card" class="card-img">
-    <a href="view card details.html" class="view-details-btn">View Card Details</a>
+    <img src="virtuale.png" alt="Virtual Card" class="card-img" style="height: 100px; width: 100px; gap: 10px;">
+    <div class="card-info" style="display: flex; flex-direction: column; right: 10px; ">
+    <p>Kodi Banks</p>
+    <p style="align-items: flex-end">4016**** ****3734</p>
+  </div>
+  <div class="separator"></div>
+  <div class="card-info">
+    <p>Card expiry date</p>
+    <p>12/28</p>
+  </div>
+  <div class="status">Active</div>
+  <div class="separator"></div>
+    <a href="#" class="view-details-btn" id="viewcarddetails">View Card Details</a>
+
   </div>
 </div>
+</div>
+
+  <script>
+    const navigationStack = [];
+    const cardDetails = document.getElementById('Cards-Content');
+
+    function navigateBack() {
+    if (navigationStack.length > 1) {
+    navigationStack.pop(); // Remove current view
+    const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous view
+
+    if (previousView === 'cards') {
+    resetToMainView();
+  } else if (previousView === 'Cards-section') {
+    showCardsSection();
+  }
+  } else {
+    resetToMainView(); // If stack is empty or only one, go home
+  }
+  }
+
+    function resetToMainView() {
+    // Redirect to real Cards.html page
+    window.location.href = 'Cards.html';
+  }
+
+    function showCardsSection() {
+    navigationStack.push('Cards-section');
+    cardDetails.innerHTML = `
+      <div class="card-details" style="margin-top: 100px;">
+        <div class="header-card">
+          <a href="#" onclick="navigateBack()" class="back" style="margin-left: -10px; color: #1e88e5;">
+            <span class="material-icons-sharp">arrow_back</span>
+          </a>
+          <h2 style="margin-left: 40px;">Virtual Card Details</h2>
+        </div>
+        <div class="divider"></div>
+        <div class="container">
+          <div class="card-section">
+            <img src="virtuale.png" alt="Debit Card" class="card-img" style="height: 250px; width: 150px;">
+          </div>
+          <div class="details-section">
+            <div class="info"><strong>Company name:</strong> Kodi Banks</div>
+            <div class="info"><span class="status">Active</span></div>
+            <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3734</div>
+            <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
+            <div class="info"><strong>Card expiry date:</strong> 12/28</div>
+          </div>
+          <div class="actions">
+            <a href="#" class="action-btn"><span class="material-icons-sharp">no_sim</span>Pause or Stop Card</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp">remove_red_eye</span>Update Card Limits</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp">credit_card</span>View Card Details</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    navigationStack.push('cards'); // Set the initial view in the stack
+
+    const viewCards = document.getElementById('view-cards');
+    if (viewCards) {
+    viewCards.addEventListener('click', function(e) {
+    e.preventDefault();
+    showCardsSection();
+  });
+  }
+
+    const viewCardDetails = document.getElementById('viewcarddetails');
+    if (viewCardDetails) {
+    viewCardDetails.addEventListener('click', function(e) {
+    e.preventDefault();
+    showCardsSection();
+  });
+  }
+  });
+</script>
+
 <script>
   function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+
   }
 </script>
 

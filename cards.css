@@ -1214,7 +1214,7 @@ body {
 }
 
 .dropdown-content {
-    display: flex;
+    display: none;
     background: white;
     border: 1px solid #ccc;
     padding: 20px;
@@ -1222,6 +1222,17 @@ body {
     align-items: center;
     gap: 155px;
 
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+}
+
+.dropdown-content.show {
+    max-height: 500px; /* or any appropriate value */
+}
+
+.dropdown.active .dropdown-content {
+    display: flex; /* or block depending on layout */
 }
 
 .card-img {
@@ -1265,7 +1276,7 @@ body {
     font-family: sans-serif;
     background: #ffffff;
     padding: 100px;
-    width: 1550px;            /* reasonable width */
+    width: 1610px;            /* reasonable width */
     position: relative;
     margin-left: 350px;
     border: 1px solid #ddd;/* move fully to the left (default) */
