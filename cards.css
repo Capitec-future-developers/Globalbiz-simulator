@@ -8,7 +8,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f7fa;
+    background-color: #ffffff;
     color: #333;
 }
 
@@ -1159,10 +1159,24 @@ body {
 /* Floating Button Bottom Right */
 .right-bottom {
     position: absolute;
-    bottom: 550px;
+    top: 90px; /* default for large screens */
     right: 20px;
-    z-index: 999; /* stays on top */
+    z-index: 999;
 }
+
+@media screen and (max-height: 800px) {
+    .right-bottom {
+        bottom: 100px; /* adjust for smaller height screens */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .right-bottom {
+        bottom: 50px; /* adjust for mobile view */
+        right: 10px;
+    }
+}
+
 
 .btn {
     text-decoration: none;
@@ -1199,54 +1213,73 @@ body {
     }
 }
 
-/* Dropdown Content */
 .dropdown-content {
-    display: none;
+    display: flex;
     background: white;
     border: 1px solid #ccc;
     padding: 20px;
     margin: 10px 0;
-    display: flex;
     align-items: center;
-    gap: 20px;
-    border-radius: 8px;
+    gap: 155px;
+
 }
 
-/* Card Image */
 .card-img {
-    width: 150px;
-    height: 90px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+   width: 10px;
+   height: 100px;
+
+
 }
+
+@media screen and (max-width: 1000px) {
+    .card-img {
+        width: 10px;
+        height: 100px;
+    }
+}
+
 
 /* View Details Button */
 .view-details-btn {
     text-decoration: none;
-    background-color: #1e88e5;
-    color: white;
+    background-color: #fffff;
+    right: 10px;
+    color: #1e88e5;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s;
 }
 
+@media screen and (max-width: 1000px) {
+    .view-details-btn {
+        width: 10px;
+        height: 100px;
+    }
+}
+
 .view-details-btn:hover {
-    background-color: #1976d2;
+    background-color: #f0f0f0;
 }
-body {
+.card-details {
     font-family: sans-serif;
-    background: #f9f9f9;
-    padding: 20px;
+    background: #ffffff;
+    padding: 100px;
+    width: 1550px;            /* reasonable width */
+    position: relative;
+    margin-left: 350px;
+    border: 1px solid #ddd;/* move fully to the left (default) */
 }
+
 .container {
+    position: relative;
     background: #fff;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     display: flex;
     gap: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+
 }
 .card-section {
     width: 250px;
@@ -1298,4 +1331,18 @@ body {
     font-size: 36px;
     display: block;
     margin-bottom: 5px;
+}
+
+.divider{
+    border-bottom: 1px solid #ddd;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.header-card{
+    gap: 10px;
+    display: inline;
+    align-items: inherit;
+    justify-content: space-between;
+    text-decoration: none;
 }
