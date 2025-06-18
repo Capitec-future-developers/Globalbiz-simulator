@@ -1,3 +1,4 @@
+
 // Navigation stack for back functionality
 const navigationStack = [];
 const mainContentArea = document.getElementById('mainContent');
