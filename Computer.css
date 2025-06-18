@@ -650,9 +650,10 @@ a {
   padding: 20px;
   margin-bottom: 40px;
   border: 2px solid rgba(83, 79, 79, 0.31);
-  margin-left: 290px; /* These two lines will push it to the right */
+  margin-left: 270px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
+  width: 1620px;
   text-decoration: none;
 }
 
