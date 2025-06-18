@@ -1176,3 +1176,63 @@ button:not(:active) {
     font-size: 16px;
     cursor: pointer;
 }
+.transfer-details-box {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.transfer-details-box h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.transfer-type-options {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+/* Group From & To Account side by side */
+.account-selection {
+    display: flex;
+    gap: 10px;
+}
+
+.account-selection .form-group {
+    flex: 1;
+}
+
+/* Group Amount & Reference side by side */
+.amount-reference {
+    display: flex;
+    gap: 10px;
+}
+
+.amount-reference .form-group {
+    flex: 1;
+}
+
+/* Transfer Type Box remains full width */
+.transfer-type-options {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.transfer-type-box {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.transfer-type-box:hover {
+    background-color: #e9e9e9;
+}

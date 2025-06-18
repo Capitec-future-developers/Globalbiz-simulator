@@ -101,59 +101,84 @@ function showTransferSection() {
     ];
 
     mainContentArea.innerHTML = `
-            <div class="transfer-section">
-                <div class="payment-header">
-                    <button class="back-button" id="back-button">
-                        <span class="material-icons-sharp">arrow_back</span> Back
-                    </button>
-                    <h2>Inter-Account Transfer</h2>
-                    <p>Move money between your accounts</p>
+    <div class="transfer-section">
+        <div class="payment-header">
+            <button class="back-button" id="back-button">
+                <span class="material-icons-sharp">arrow_back</span> Back
+            </button>
+            <h2 class="transferheader">Transfer</h2>
+            <p>Move money between your accounts</p>
+        </div>
+
+        <div class="transfer-details-box">
+            <h3>Transfer Details</h3>
+            <form id="transfer-form">
+                <div class="form-group">
+                    <label for="from-account">From Account</label>
+                    <select id="from-account" name="from-account" required>
+                        <option value="">From account</option>
+                        ${userAccounts.map(account => `
+                            <option value="${account.id}" data-balance="${account.balance}">
+                                ${account.name} (${account.number}) - ${account.balance}
+                            </option>
+                        `).join('')}
+                    </select>
                 </div>
 
-                <form id="transfer-form">
-                    <div class="form-group">
-                        <label for="from-account">From Account</label>
-                        <select id="from-account" name="from-account" required>
-                            <option value="">Select source account</option>
-                            ${userAccounts.map(account => `
-                                <option value="${account.id}" data-balance="${account.balance}">
-                                    ${account.name} (${account.number}) - ${account.balance}
-                                </option>
-                            `).join('')}
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="to-account">To Account</label>
+                    <select id="to-account" name="to-account" required>
+                        <option value="">To account</option>
+                        ${userAccounts.map(account => `
+                            <option value="${account.id}">
+                                ${account.name} (${account.number})
+                            </option>
+                        `).join('')}
+                    </select>
+                </div>
 
-                    <div class="form-group">
-                        <label for="to-account">To Account</label>
-                        <select id="to-account" name="to-account" required>
-                            <option value="">Select destination account</option>
-                            ${userAccounts.map(account => `
-                                <option value="${account.id}">
-                                    ${account.name} (${account.number})
-                                </option>
-                            `).join('')}
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="transfer-amount">Amount (ZAR)</label>
+                    <input type="number" id="transfer-amount" name="transfer-amount" placeholder="0.00" min="1" required>
+                    <div id="balance-info" class="balance-info"></div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="transfer-amount">Amount (ZAR)</label>
-                        <input type="number" id="transfer-amount" name="transfer-amount" placeholder="0.00" min="1" required>
-                        <div id="balance-info" class="balance-info"></div>
-                    </div>
+                <div class="form-group">
+                    <label for="transfer-reference">Reference</label>
+                    <input type="text" id="transfer-reference" name="transfer-reference" placeholder="Enter reference" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="transfer-reference">Reference</label>
-                        <input type="text" id="transfer-reference" name="transfer-reference" placeholder="Enter reference" required>
+                <h4>Transfer Type</h4>
+                <div class="transfer-type-options">
+                    <div class="transfer-type-box">
+                        <input type="radio" id="once-off" name="transfer-type" value="once-off" required>
+                        <label for="once-off">Once-Off</label>
                     </div>
+                    <div class="transfer-type-box">
+                        <input type="radio" id="recurring" name="transfer-type" value="recurring">
+                        <label for="recurring">Recurring</label>
+                    </div>
+                    <div class="transfer-type-box">
+                        <input type="radio" id="future-dated" name="transfer-type" value="future-dated">
+                        <label for="future-dated">Future-Dated</label>
+                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="submit-payment-btn">
-                            Transfer Funds
-                        </button>
-                    </div>
-                </form>
-            </div>
-        `;
+                <div class="form-group">
+                    <label for="transfer-date">Transfer Date</label>
+                    <input type="date" id="transfer-date" name="transfer-date" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="submit-payment-btn">
+                        Transfer Funds
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+`;
+
 
     // Back button
     document.getElementById('back-button').addEventListener('click', function() {
@@ -259,3 +284,5 @@ function showTransferConfirmation(fromAccount, toAccount, amount, reference) {
         alert('Transfer receipt downloaded successfully!');
     });
 }
+
+

@@ -653,7 +653,7 @@ a {
   margin-left: 270px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
-  width: 1620px;
+  width: 1630px;
   text-decoration: none;
 }
 
@@ -753,9 +753,9 @@ a {
   font-weight: 500;
   padding: 16px;
   color: #ffffff;
-
   background-color: #022130;
 }
+
 popup-header {
   background-color: #022130;
 }
@@ -1272,23 +1272,71 @@ popup-header {
   font-size: 16px;
   cursor: pointer;
 }
-
-#page-transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000; /* or any color you want */
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
+.transfer-details-box {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
 }
 
-#page-transition.show {
-  opacity: 1;
-  pointer-events: all;
+.transfer-details-box h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.transfer-type-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+/* Group From & To Account side by side */
+.account-selection {
+  display: flex;
+  gap: 10px;
+}
+
+.account-selection .form-group {
+  flex: 1;
+}
+
+/* Group Amount & Reference side by side */
+.amount-reference {
+  display: flex;
+  gap: 10px;
+}
+
+.amount-reference .form-group {
+  flex: 1;
+}
+
+/* Transfer Type Box remains full width */
+.transfer-type-options {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.transfer-type-box {
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.transfer-type-box:hover {
+  background-color: #e9e9e9;
+}
+}
+
+.transferheader {
+  left: 10px;
 }
 
 /* Popup style 2 */
