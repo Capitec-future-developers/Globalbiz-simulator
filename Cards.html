@@ -162,6 +162,51 @@
 <div class="right-bottom" id="Cards-Content">
   <button class="btn">Add New Card</button>
 </div>
+<!-- Popup Overlay (already exists in your project) -->
+<div class="popupoverlay" id="addCardPopup" style="display: none;">
+  <div class="add-card-popup">
+
+    <!-- Popup Header -->
+    <div class="header">Add New Card</div>
+
+    <!-- Sub Header with Icon and blue separator -->
+    <div class="sub-header">
+      <span class="material-icons-sharp profile-icon">account_circle</span>
+      Choose Card Type
+    </div>
+    <div class="blue-separator"></div>
+
+    <!-- Card Options side by side -->
+    <div class="card-options">
+      <!-- Physical Card box -->
+      <div class="card-box">
+        <img src="card.png" alt="Physical Card" class="card-image">
+        <div class="separator-box"></div>
+        <label class="radio-label">
+          <input type="radio" name="cardType" value="physical">
+          New Physical Card
+        </label>
+      </div>
+
+      <!-- Virtual Card box -->
+      <div class="card-box">
+        <img src="virtuale.png" alt="Virtual Card" class="card-image">
+        <div class="separator-box"></div>
+        <label class="radio-label">
+          <input type="radio" name="cardType" value="virtual">
+          New Virtual Card
+        </label>
+      </div>
+    </div>
+
+    <!-- Action Buttons aligned bottom left -->
+    <div class="popup-buttons">
+      <button id="cancelAddCard" class="btn-cancel">Cancel</button>
+      <button id="continueAddCard" class="btn-continue">Continue</button>
+    </div>
+
+  </div>
+</div>
 
 <!-- Main Content Section -->
 <div class="main-content">
@@ -179,13 +224,13 @@
   <div class="dropdown-content" id="debit-dropdown">
     <img src="card.png" alt="Debit Card" class="card-img" style="height: 100px; width: 100px; gap: 10px;">
     <div class="card-info" style="display: flex; flex-direction: column; right: 10px; ">
-    <p>Kodi Banks</p>
-    <p style="align-items: flex-end">4016**** ****3734</p>
+      <p>Kodi Banks</p>
+      <p style="align-items: flex-end">4016**** ****3734</p>
     </div>
     <div class="separator"></div>
     <div class="card-info">
-    <p>Card expiry date</p>
-    <p>12/28</p>
+      <p>Card expiry date</p>
+      <p>12/28</p>
     </div>
     <div class="status">Active</div>
     <div class="separator"></div>
@@ -206,47 +251,47 @@
   <div class="dropdown-content" id="virtual-dropdown">
     <img src="virtuale.png" alt="Virtual Card" class="card-img" style="height: 100px; width: 100px; gap: 10px;">
     <div class="card-info" style="display: flex; flex-direction: column; right: 10px; ">
-    <p>Kodi Banks</p>
-    <p style="align-items: flex-end">4016**** ****3734</p>
-  </div>
-  <div class="separator"></div>
-  <div class="card-info">
-    <p>Card expiry date</p>
-    <p>12/28</p>
-  </div>
-  <div class="status">Active</div>
-  <div class="separator"></div>
+      <p>Kodi Banks</p>
+      <p style="align-items: flex-end">4016**** ****3734</p>
+    </div>
+    <div class="separator"></div>
+    <div class="card-info">
+      <p>Card expiry date</p>
+      <p>12/28</p>
+    </div>
+    <div class="status">Active</div>
+    <div class="separator"></div>
     <a href="#" class="view-details-btn" id="viewcarddetails">View Card Details</a>
 
   </div>
 </div>
 </div>
 
-  <script>
-    const navigationStack = [];
-    const cardDetails = document.getElementById('Cards-Content');
+<script>
+  const navigationStack = [];
+  const cardDetails = document.getElementById('Cards-Content');
 
-    function navigateBack() {
+  function navigateBack() {
     if (navigationStack.length > 1) {
-    navigationStack.pop(); // Remove current view
-    const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous view
+      navigationStack.pop(); // Remove current view
+      const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous view
 
-    if (previousView === 'cards') {
-    resetToMainView();
-  } else if (previousView === 'Cards-section') {
-    showCardsSection();
-  }
-  } else {
-    resetToMainView(); // If stack is empty or only one, go home
-  }
+      if (previousView === 'cards') {
+        resetToMainView();
+      } else if (previousView === 'Cards-section') {
+        showCardsSection();
+      }
+    } else {
+      resetToMainView(); // If stack is empty or only one, go home
+    }
   }
 
-    function resetToMainView() {
+  function resetToMainView() {
     // Redirect to real Cards.html page
     window.location.href = 'Cards.html';
   }
 
-    function showCardsSection() {
+  function showCardsSection() {
     navigationStack.push('Cards-section');
     cardDetails.innerHTML = `
       <div class="card-details" style="margin-top: 100px;">
@@ -278,24 +323,24 @@
     `;
   }
 
-    document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     navigationStack.push('cards'); // Set the initial view in the stack
 
     const viewCards = document.getElementById('view-cards');
     if (viewCards) {
-    viewCards.addEventListener('click', function(e) {
-    e.preventDefault();
-    showCardsSection();
-  });
-  }
+      viewCards.addEventListener('click', function(e) {
+        e.preventDefault();
+        showCardsSection();
+      });
+    }
 
     const viewCardDetails = document.getElementById('viewcarddetails');
     if (viewCardDetails) {
-    viewCardDetails.addEventListener('click', function(e) {
-    e.preventDefault();
-    showCardsSection();
-  });
-  }
+      viewCardDetails.addEventListener('click', function(e) {
+        e.preventDefault();
+        showCardsSection();
+      });
+    }
   });
 </script>
 
@@ -306,7 +351,33 @@
 
   }
 </script>
+<script>// Get elements
+const addCardBtn = document.querySelector('#Cards-Content .btn');
+const addCardPopup = document.getElementById('addCardPopup');
+const cancelBtn = document.getElementById('cancelAddCard');
+const continueBtn = document.getElementById('continueAddCard');
 
+// Show popup when "Add New Card" button is clicked
+addCardBtn.addEventListener('click', () => {
+  addCardPopup.style.display = 'flex';
+});
+
+// Hide popup when "Cancel" button is clicked
+cancelBtn.addEventListener('click', () => {
+  addCardPopup.style.display = 'none';
+});
+
+// Continue button (you can later add logic to handle selection)
+continueBtn.addEventListener('click', () => {
+  const selectedCard = document.querySelector('input[name="cardType"]:checked');
+  if (selectedCard) {
+    alert('Selected Card Type: ' + selectedCard.value);
+    addCardPopup.style.display = 'none'; // close after selection
+  } else {
+    alert('Please select a card type.');
+  }
+});
+</script>
 <script src="Transfer.js"></script>
 <script src="Combined.js"></script>
 <script src="computer automation.js"></script>
