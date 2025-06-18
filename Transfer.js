@@ -1,3 +1,4 @@
+
 // Navigation stack for back functionality
 const navigationStack = [];
 const mainContentArea = document.getElementById('mainContent');
@@ -283,4 +284,5 @@ function showTransferConfirmation(fromAccount, toAccount, amount, reference) {
         alert('Transfer receipt downloaded successfully!');
     });
 }
+
 

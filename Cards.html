@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="cards.css">
   <link rel="icon" type="image/x-icon" href="profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <title>Computer</title>
+
 
 </head>
 <body>
@@ -64,10 +66,12 @@
     </div>
     <a href="home page.html" class="sign">Sign Out</a>
   </div>
+
 </div>
 </div>
 <!--Sidebar navigation-->
 <nav class="sidebar">
+
   <div class="menu-toggle" id="sidebarToggle">
     <span class="material-icons-sharp">menu</span>
   </div>
@@ -151,15 +155,18 @@
     <span class="material-icons-sharp">search</span> Go
   </button>
   <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+
 </div>
 
 <!-- Notice Section -->
 <div class="notice">
   <h1>Cardss</h1>
+
 </div>
 
 <!-- Sidebar / Left Button Section -->
 <div class="right-bottom" id="Cards-Content">
+
   <button class="btn">Add New Card</button>
 </div>
 <!-- Popup Overlay (already exists in your project) -->
@@ -206,6 +213,7 @@
     </div>
 
   </div>
+
 </div>
 
 <!-- Main Content Section -->
@@ -264,10 +272,12 @@
     <a href="#" class="view-details-btn" id="viewcarddetails">View Card Details</a>
 
   </div>
+
 </div>
 </div>
 
 <script>
+
   const navigationStack = [];
   const cardDetails = document.getElementById('Cards-Content');
 
@@ -294,6 +304,7 @@
   function showCardsSection() {
     navigationStack.push('Cards-section');
     cardDetails.innerHTML = `
+
       <div class="card-details" style="margin-top: 100px;">
         <div class="header-card">
           <a href="#" onclick="navigateBack()" class="back" style="margin-left: -10px; color: #1e88e5;">
@@ -350,6 +361,7 @@
     dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
 
   }
+
 </script>
 <script>// Get elements
 const addCardBtn = document.querySelector('#Cards-Content .btn');
@@ -359,16 +371,21 @@ const continueBtn = document.getElementById('continueAddCard');
 
 // Show popup when "Add New Card" button is clicked
 addCardBtn.addEventListener('click', () => {
+
   addCardPopup.style.display = 'flex';
+
 });
 
 // Hide popup when "Cancel" button is clicked
 cancelBtn.addEventListener('click', () => {
+
   addCardPopup.style.display = 'none';
+
 });
 
 // Continue button (you can later add logic to handle selection)
 continueBtn.addEventListener('click', () => {
+
   const selectedCard = document.querySelector('input[name="cardType"]:checked');
   if (selectedCard) {
     alert('Selected Card Type: ' + selectedCard.value);
@@ -376,6 +393,7 @@ continueBtn.addEventListener('click', () => {
   } else {
     alert('Please select a card type.');
   }
+
 });
 </script>
 <script src="Transfer.js"></script>
