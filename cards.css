@@ -1253,7 +1253,7 @@ body {
 /* View Details Button */
 .view-details-btn {
     text-decoration: none;
-    background-color: #fffff;
+    background-color: #ffffff;
     right: 10px;
     color: #1e88e5;
     padding: 10px 20px;
@@ -1356,4 +1356,143 @@ body {
     align-items: inherit;
     justify-content: space-between;
     text-decoration: none;
+}
+
+/*addnewcard*/
+.popupoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.add-card-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 1500px;
+    height: 700px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sub-header {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.sub-header .profile-icon {
+    margin-right: 8px;
+    font-size: 20px;
+    color: #000;
+}
+
+/* Blue separator below choose card type */
+.blue-separator {
+    height: 3px;
+    background-color: #0052cc; /* blue color */
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.card-options {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.card-box {
+    border: 1px solid #ccc; /* grey border */
+    border-radius: 8px;
+    padding: 10px;
+    width: 48%; /* roughly half minus gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-image {
+    max-width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+}
+
+.separator-box {
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    margin-bottom: 10px;
+}
+
+.radio-label {
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* Buttons container aligned bottom left */
+.popup-buttons {
+    margin-top: 60px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* Cancel button: blue text, white bg, border */
+.btn-cancel {
+    background: #fff;
+    color: #0052cc;
+    border: 2px solid #0052cc;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.btn-cancel:hover {
+    background: #e6f0ff;
+}
+
+/* Continue button: white text, blue bg */
+.btn-continue {
+    background: #0052cc;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.btn-continue:hover {
+    background: #003d99;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .card-box {
+        width: 100%; /* stack cards vertically */
+    }
+
+    .popup-buttons {
+        justify-content: center; /* center buttons on small */
+    }
 }
