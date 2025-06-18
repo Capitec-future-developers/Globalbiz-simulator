@@ -8,9 +8,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <title>Computer</title>
 </head>
-
-<body>
 <div>
+
   <div class="header">
     <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
     <span class="separator"></span>
@@ -29,16 +28,16 @@
         <!-- Popup HTML -->
         <div class="overlay" id="overlay"></div>
         <div class="profile-popup" id="profilePopup">
-          <a  href="Profile-info.html" class="profile-name"><div class="popup-header">omphilestudent@gmail.com</div></a>
-
-          <h3>Active Profile</h3>
+          <div class="popup-header">omphilestudent@gmail.com</div>
           <div class="profile-item">
             <span class="material-icons-sharp profile-icon">account_circle</span>
             <div class="profile-info">
-              <div class="profile-item">Omphile Mohlala</div>
+              <div class="profile-active">ACTIVE PROFILE</div>
+              <a href="Profile-info.html">
+                <div class="profile-Name">Omphile Mohlala</div>
+              </a>
             </div>
           </div>
-
           <a href="#" class="switch-profile">
             <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
             Switch to Kodi PTY LTD
@@ -49,33 +48,14 @@
       <a href="home page.html" class="sign">Sign Out</a>
     </div>
   </div>
-<<<<<<< HEAD
-<!--Sidebar navigation-->
-<div class="sidebar">
-  <a href="Computer.html" class="active">
-    <span class="material-icons-sharp">home</span>
-    Home
-  </a>
-  <p class="side">BANKING</p>
-  <a href="Account%20details.html">
-    <span class="material-icons-sharp">storage</span>
-    Accounts
-  </a>
-  <div class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <span class="material-icons-sharp">swap_horiz</span>
-      Transact
-      <span class="dropdown-arrow">▸</span>
-=======
   <!--Sidebar navigation-->
   <div class="sidebar">
-    <a href="Computer.html" class="active">
+    <a href="Computer.html" class="active" id="home">
       <span class="material-icons-sharp">home</span>
       Home
->>>>>>> e26ddd5448926bff454c7a48b968ee7865db86b3
     </a>
     <p class="side">BANKING</p>
-    <a href="Accounts.html">
+    <a href="Accounts.html" id="accounts">
       <span class="material-icons-sharp">storage</span>
       Accounts
     </a>
@@ -104,7 +84,7 @@
         <span class="dropdown-arrow">▶</span>
       </a>
       <div class="dropdown-menu">
-        <a href="transact.html">Transactions</a>
+        <a href="#">Transactions</a>
         <a href="#">Beneficiaries</a>
         <a href="#">User Management</a>
         <a href="#">Account & Limits</a>
@@ -119,11 +99,11 @@
     </a>
     <p class="side">SERVICES</p>
     <a href="settings.html">
-      <span class="material-icons-sharp">radio_button_unchecked</span>
-      products & Services
+      <span class="material-icons-sharp">shopping_cart</span>
+      Products & Services
     </a>
     <a href="settings.html">
-      <span class="material-icons-sharp">settings</span>
+      <span class="material-icons-sharp">radio_button_unchecked</span>
       SARS eFILLING
     </a>
     <a href="settings.html">
@@ -144,18 +124,18 @@
     </a>
   </div>
 
-<!-- Main Content Area -->
-<div class="content" id="mainContent">
-  <!-- Search Bar Section -->
-  <div class="search-container">
-    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button">
-      <span class="material-icons-sharp">search</span> Go
-    </button>
-    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
-  </div>
+  <!-- Main Content Area -->
+  <div class="content" id="mainContent">
+    <!-- Search Bar Section -->
+    <div class="search-container">
+      <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+      <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+      </button>
+      <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+    </div>
 
-  <!-- Account Information Section -->
+    <!-- Account Information Section -->
 
     <div class="account-box">
       <div class="account">
@@ -163,28 +143,28 @@
           <h4>Accounts</h4>
 
         </div>
-      <div class="account-info-row">
-        <div class="info-item">
-          <span class="info-label">Account Name:</span>
-          <span class="info-value">Kodi Codes</span>
+        <div class="account-info-row">
+          <div class="info-item">
+            <span class="info-label">Account Name:</span>
+            <span class="info-value">Kodi Codes</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Account number:</span>
+            <span class="info-value">1052 2626 43</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Current balance:</span>
+            <span class="info-value negative">- R154.21</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Available balance:</span>
+            <span class="info-value">R0.00</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Status:</span>
+            <span class="info-value">Open</span>
+          </div>
         </div>
-        <div class="info-item">
-          <span class="info-label">Account number:</span>
-          <span class="info-value">1052 2626 43</span>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Current balance:</span>
-          <span class="info-value negative">- R154.21</span>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Available balance:</span>
-          <span class="info-value">R0.00</span>
-        </div>
-        <div class="info-item">
-          <span class="info-label">Status:</span>
-          <span class="info-value">Open</span>
-        </div>
-      </div>
 
         <a href="Account%20details.html" class="View" id="view">
           <span class="material-icons-sharp">chevron_right</span>
@@ -195,8 +175,9 @@
 </div>
 
 </body>
+<script src="Transfer.js"></script>
+<script src="Apps.js"></script>
 <script src="Combined.js"></script>
 <script src="Computer%20Automation.js"></script>
-<script src="Transfer.js"></script>
 
 </html>

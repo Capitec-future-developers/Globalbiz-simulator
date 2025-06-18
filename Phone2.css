@@ -1,18 +1,19 @@
+
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 /* ============ BASE STYLES ============ */
- body {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     height: 100vh;
-     background-color: #f0f0f0;
-     margin: 0;
-     font-family: Arial, sans-serif;
-     overflow-y: hidden; /* Hide vertical scrollbar */
-     overflow-x: hidden; /* Hide horizontal scrollbar */
-     scrollbar-width: none;
-     -ms-overflow-style: none;
- }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
 
 /* ============ IPHONE FRAME ============ */
 .iphone {
@@ -120,14 +121,16 @@
     box-sizing: border-box;
     z-index: 5;
     margin-top: 25px;
+    display: flex; /* Added flex to arrange items horizontally */
+    align-items: center;
+    justify-content: space-between; /* Push items to edges */
 }
 
 .header {
     position: relative;
     font-size: 1.5rem;
     color: white;
-    top: -30px;
-    right: -90px;
+
 }
 
 .arrow {
@@ -136,7 +139,7 @@
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #0096c7;
+    background-color: #074358;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -147,6 +150,23 @@
 .arrow .material-icons-sharp {
     color: white;
     font-size: 24px;
+}
+
+/* New OM Circle Styling */
+.om-circle {
+    width: 35px;
+    height: 35px;
+    background-color: #0096c7; /* Blue circle */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    right: 10px; /* Adjust positioning */
+    top: -3px;   /* Align vertically with arrow */
 }
 
 /* ============ SIDEBAR STYLES ============ */
@@ -243,7 +263,7 @@
     width: 100%;
     height: 60px;
     border: 2px solid #cccccca8;
-    border-radius: 8px;
+
     padding: 10px 15px;
     margin: 10px 0;
     display: flex;
@@ -402,6 +422,7 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     border: 1px solid #e0e0e0;
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .account-info-coloumn .info-item:hover {
@@ -1166,4 +1187,113 @@
     position: relative;
     display: flex;
     margin: 10px;
+}
+
+/* Popup styling */
+.profile-popup {
+    display: none;
+    position: fixed;
+    top: 425px;
+    right: 645px;
+    background-color: white;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    width: 300px;
+    border: 1px solid #e0e0e0;
+}
+
+.profile-popup.active {
+    display: block;
+}
+
+.popup-header {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 16px;
+    color: #171515;
+    background-color: #ffffff;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.profile-icon {
+    margin-right: 12px;
+    color: #5f6368;
+    font-size: 24px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-active {
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+
+
+.profile-name .a{
+    font-size: 18px;
+    color: #5f6368;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.switch-profile {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.switch-profile:hover {
+    background-color: #f8f9fa;
+}
+
+.switch-profile .material-icons-sharp {
+    margin-right: 12px;
+    color: #5f6368;
+    font-size: 20px;
+}
+
+.manage-business {
+    display: block;
+    color: #0070a0;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-top: none;
+    text-align: left;
+}
+
+.manage-business:hover {
+    background-color: #f8f9fa;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
 }

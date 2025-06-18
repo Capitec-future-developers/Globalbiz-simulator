@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="icon" type="image/x-icon" href="profile.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <title>Computer</title>
+
+</head>
+<body>
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
+<div class="header">
+    <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
+    <div class="header-right">
+        <a href="#home" id="banker-link">
+            <span class="material-icons-sharp">contact_support</span>
+            banker
+        </a>
+
+
+        <!-- Popup -->
+        <div id="banker-popup" class="popup">
+            <span class="close-btn" id="close-popup">&times;</span>
+            <h5>By engaging, you consent to sharing information with a Capitec Business representative, including screen sharing for technical support and understanding that the session may be monitore or recorded for quality  assurance. To decline, Click "X" at the bottom right. </h5>
+            <button class="popup-btn">Audio</button>
+            <button class="popup-btn">Phone</button>
+            <button class="popup-btn">Chat</button>
+        </div>
+
+
+        <div class="profile-container">
+            <a href="#contact" id="profile-link">
+                <span class="material-icons-sharp">account_circle</span>
+                Omphile Mohlala
+            </a>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                </a>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">Omphile Mohlala</div>
+                    </div>
+                </div>
+                <div id="page-transition"></div>
+                <a href="KodiCode.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+        </div>
+        <a href="home page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+</div>
+<!--Sidebar navigation-->
+<nav class="sidebar">
+    <div class="menu-toggle" id="sidebarToggle">
+        <span class="material-icons-sharp">menu</span>
+    </div>
+    <a href="Computer.html" class="active" id="home">
+        <span class="material-icons-sharp">home</span>
+        Home
+    </a>
+    <p class="side">BANKING</p>
+    <a href="Accounts.html" id="accounts">
+        <span class="material-icons-sharp">storage</span>
+        Accounts
+    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="transacts">
+            <span class="material-icons-sharp">swap_horiz</span>
+            Transact
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="transact.html" id="payments">Payment</a>
+            <a href="#" id="transfer">Transfer</a>
+            <a href="#" id="create-beneficiary-btn">Beneficiary</a>
+        </div>
+    </div>
+    <a href="Cards.html">
+        <span class="material-icons-sharp">dynamic_feed</span>
+        Cards
+    </a>
+    <p class="side">MANAGEMENT</p>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">check_box</span>
+            Authorisations
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="#">Transactions</a>
+            <a href="#">Beneficiaries</a>
+            <a href="#">User Management</a>
+            <a href="#">Account & Limits</a>
+            <a href="#">Authorisation Levels</a>
+            <a href="#">Notification Setup</a>
+            <a href="#">Messages</a>
+        </div>
+    </div>
+    <a href="settings.html">
+        <span class="material-icons-sharp">groups</span>
+        User management
+    </a>
+    <p class="side">SERVICES</p>
+    <a href="settings.html">
+        <span class="material-icons-sharp">shopping_cart</span>
+        Products & Services
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">radio_button_unchecked</span>
+        SARS eFILLING
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">chat</span>
+        Secure Messages
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">description</span>
+        Documents
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">settings</span>
+        Settings
+    </a>
+    <a href="Phone.html" class="signout">
+        <span class="material-icons-sharp">lock</span>
+        We secure your data in line with our Privacy Notice and Terms & Conditions
+    </a>
+    </div>
+</nav>
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+</head>
+<body>
+<div class="card-details" style="margin-top: 100px;">
+    <div class="header-card">
+        <a href="Cards.html" class="back" style="margin-left: -10px; color: #1e88e5; bottom: 20px;">
+            <span class="material-icons-sharp">arrow_back</span>
+        </a>
+        <h2 style="margin-left: 40px;">Card Details</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="container">
+        <!-- Card Image Section -->
+        <div class="card-section">
+            <img src="card.png" alt="Debit Card" class="card-img" style="height: 250px; width: 150px; gap: 10px;">
+        </div>
+
+        <!-- Card Info Section -->
+        <div class="details-section">
+            <div class="info"><strong>Company name:</strong> Kodi Banks</div>
+            <div class="info"><span class="status">Active</span></div>
+            <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3734</div>
+            <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
+            <div class="info"><strong>Card expiry date:</strong> 12/28</div>
+        </div>
+
+        <!-- Action Buttons Section -->
+        <div class="actions">
+            <a href="#" class="action-btn">
+                <span class="material-icons-sharp">no_sim</span>
+                Pause or Stop Card
+            </a>
+            <a href="#" class="action-btn">
+                <span class="material-icons-sharp">remove_red_eye</span>
+                Update Card Limits
+            </a>
+            <a href="#" class="action-btn">
+                <span class="material-icons-sharp">pin</span>
+                Change Card PIN
+            </a>
+            <a href="#" class="action-btn">
+                <span class="material-icons-sharp">nfc</span>
+                Tap to Pay
+            </a>
+            <a href="#" class="action-btn">
+                <span class="material-icons-sharp">credit_card</span>
+                View Card Details
+            </a>
+            <a href="#" class="action-btn">
+                <span class="material-icons-sharp">contactless</span>
+                International Travel
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

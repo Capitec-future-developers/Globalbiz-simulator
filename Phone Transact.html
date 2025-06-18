@@ -9,6 +9,7 @@
     <title>iPhone with White LCD</title>
 </head>
 <body>
+
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
     <button id="execute-automation" class="search-button">
@@ -29,22 +30,45 @@
                 <div class="arrow" id="sidebarToggle">
                     <a href="Phone2.html">
                         <span class="material-icons-sharp">arrow_back</span>
-                    </a>
-                </div>
+                    </a>                </div>
                 <div class="header">Transact</div>
+                <a href="#contact" id="profile-link">
+                    <div class="om-circle">OM</div> <!-- Added OM circle here -->
+                </a>
             </div>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">kodi@codes.com</div>
+                </a>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">KODI CODES PTY LTD</div>
+                    </div>
+                </div>
+                <div id="page-transition"></div>
+                <a href="Computer.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Omphile Mohlala
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+
 
             <!-- Main Content Area -->
             <div class="content-container">
                 <div id="main-content-area">
                     <div class="transact-box">
                         <div class="account-info-coloumn">
-                            <div class="info-item">
+                            <div class="info-item" id="payment">
                                 <span class="material-icons-sharp">exit_to_app</span>
                                 <span class="info-label" id="payment">Payment</span>
                                 <span class="material-icons-sharp right">chevron_right</span>
                             </div>
-                            <div class="info-item">
+                            <div class="info-item" id="transfer">
                                 <span class="material-icons-sharp">sync_alt</span>
                                 <span class="info-label">Transfer</span>
                                 <span class="material-icons-sharp right">chevron_right</span>
@@ -89,6 +113,6 @@
 
 <script src="App.js"></script>
 <script src="Automation.js"></script>
-
+<script src="Transfer.js"></script>
 </body>
 </html>

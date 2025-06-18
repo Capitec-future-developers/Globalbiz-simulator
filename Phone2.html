@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <title>iPhone with White LCD</title>
 </head>
 <body>
-<body>
+
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
     <button id="execute-automation" class="search-button">
@@ -28,9 +29,32 @@
         <div class="screen-content">
             <div class="head">
                 <div class="arrow" id="sidebarToggle">
-                    <span class="material-icons-sharp">menu</span>
+                    <span class="material-icons-sharp" id="menuIcon">menu</span>
                 </div>
                 <div class="header">Globalbiz</div>
+                <a href="#contact" id="profile-link">
+                    <div class="om-circle">OM</div> <!-- Added OM circle here -->
+                </a>
+            </div>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">kodi@codes.com</div>
+                </a>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">KODI CODES PTY LTD</div>
+                    </div>
+                </div>
+                <div id="page-transition"></div>
+                <a href="Computer.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Omphile Mohlala
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
             </div>
 
             <!-- Sidebar Navigation -->
@@ -73,7 +97,7 @@
                     <div class="account-header">
                         <h4>Accounts</h4>
                         <a href="Phone accounts.html" class="View">
-                            View All <span class="material-icons-sharp" class="View">chevron_right</span>
+                            View All <span class="material-icons-sharp" >chevron_right</span>
                         </a>
                     </div>
                     <div class="box">
@@ -125,30 +149,33 @@
 
             <!-- Bottom Navigation -->
             <div class="bottom-nav">
-            <a href="Phone2.html" class="nav-item active">
-                <span class="nav-icon material-icons-outlined">home</span>
-                <span>Home</span>
-            </a>
-            <a href="Phone%20accounts.html" class="nav-item">
-                <span class="nav-icon material-icons-outlined">storage</span>
-                <span>Accounts</span>
-            </a>
+                <a href="Phone2.html" class="nav-item active">
+                    <span class="nav-icon material-icons-outlined">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">storage</span>
+                    <span>Accounts</span>
+                </a>
                 <a href="Phone%20Transact.html" class="nav-item" id="transact">
                     <span class="nav-icon material-icons-outlined">sync_alt</span>
                     <span>transact</span>
                 </a>
-            <a href="#" class="nav-item">
-                <span class="nav-icon material-icons-outlined">credit_card</span>
-                <span>Cards</span>
-            </a>
-            <a href="#" class="nav-item">
-                <span class="nav-icon material-icons-outlined">search</span>
-                <span>Explore</span>
-            </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">credit_card</span>
+                    <span>Cards</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">search</span>
+                    <span>Explore</span>
+                </a>
+            </div>
         </div>
     </div>
-    </div>
-    <div class="home-indicator"></div>
+</div>
+
+</div>
+<div class="home-indicator"></div>
 </div>
 <script src="Automation.js"></script>
 <script src="App.js"></script>

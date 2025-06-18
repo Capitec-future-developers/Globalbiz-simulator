@@ -113,7 +113,7 @@ body {
 }
 
 .sidebar a:hover {
-    background: #34495e;
+    background: #4dcefd;
 }
 
 .sidebar .material-icons-sharp {
@@ -151,85 +151,47 @@ body {
     padding: 30px;
 }
 
-/* Unified Search Bar Styles */
+/* Search Bar Styles */
 .search-container {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 24px;
-    padding: 8px 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.search-container.fixed {
     position: fixed;
-    top: 80px; /* Below the header */
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000;
+    z-index: 10000;
     width: 90%;
+    max-width: 500px;
 }
 
-.search-container .material-icons-sharp {
-    color: #666;
-    margin-right: 10px;
-    font-size: 20px;
-}
-
-.search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding: 8px 0;
-    background: transparent;
+#automation-search {
+    width: calc(100% - 50px);
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
 }
 
 .search-button {
-    background-color: #1a73e8;
-    color: white;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
     border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
+    background: #007AFF;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    padding: 0 15px;
     cursor: pointer;
-    font-weight: 500;
-    margin-left: 10px;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.search-button:hover {
-    background-color: #0d5bba;
-}
-
-/* Search Section Styles */
-.search-section {
-    padding: 20px;
-    background-color: #f5f5f5;
-    margin-bottom: 30px;
-    border-radius: 8px;
-}
-
-/* Suggestions Dropdown */
 .suggestions-dropdown {
     position: absolute;
-    top: 100%;
-    left: 0;
     width: 100%;
     max-height: 300px;
     overflow-y: auto;
     background: white;
-    border-radius: 0 0 10px 10px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: none;
-    z-index: 1001;
-    margin-top: 5px;
+    z-index: 10001;
 }
 
 .suggestion-item {
@@ -253,8 +215,12 @@ body {
 
 .feedback-success { color: green; }
 .feedback-error { color: red; }
-.feedback-info { color: blue; }
+.feedback-info { color: blue; }}
 
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+}
 /* Account Section Styles */
 .account-box {
     background: #ffffff;
@@ -281,13 +247,14 @@ body {
 .View {
     position: absolute;
     right: 25px;
-    top: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
 }
 
 .View .material-icons-sharp {
-    position: static;
-    right: auto;
-    top: auto;
+    margin-right: 5px;
 }
 
 .info-item {
@@ -336,33 +303,15 @@ body {
 .profile-popup {
     display: none;
     position: fixed;
-    top: 200px;
-    right: -100px;
-    transform: translate(-50%, -50%);
+    top: 70px;
+    right: 20px;
     background-color: white;
     padding: 0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    width: 300px;
-}
-
-.profile-popup a:hover {
-    text-decoration: whitesmoke;
-    color:black;
-    background-color: lightblue;
-    padding-bottom: -16px;
-}
-
-.profile-popup h3 {
-    text-align: left;
-    font-size: small;
-    font-style: italic;
-    padding: 5px;
-}
-
-.profile-name {
-    background-color: deepskyblue;
+    width: 280px;
+    border: 1px solid #e0e0e0;
 }
 
 .profile-popup.active {
@@ -370,55 +319,77 @@ body {
 }
 
 .popup-header {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #eee;
-    width: 0;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 16px;
+    color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #022130;
 }
 
 .profile-item {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 16px;
     border-bottom: 1px solid #f5f5f5;
 }
 
 .profile-icon {
-    margin-right: 10px;
+    margin-right: 12px;
     color: #5f6368;
+    font-size: 24px;
 }
 
 .profile-info {
     flex-grow: 1;
 }
 
-.profile-name {
+.profile-active {
     font-weight: 500;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
 }
 
-.profile-email {
-    font-size: 12px;
+.profile-name .a{
+    font-size: 18px;
     color: #5f6368;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .switch-profile {
-    color: #1a73e8;
+    color: #333;
     text-decoration: none;
     font-size: 14px;
-    margin-top: 5px;
-    display: inline-block;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.switch-profile:hover {
+    background-color: #f8f9fa;
+}
+
+.switch-profile .material-icons-sharp {
+    margin-right: 12px;
+    color: #5f6368;
+    font-size: 20px;
 }
 
 .manage-business {
     display: block;
-    margin-top: 15px;
-    color: #1a73e8;
+    color: #333;
     text-decoration: none;
     font-size: 14px;
-    text-align: center;
-    padding: 8px 0;
-    border-top: 1px solid #eee;
+    padding: 12px 16px;
+    border-top: none;
+    text-align: left;
+}
+
+.manage-business:hover {
+    background-color: #f8f9fa;
 }
 
 .overlay {
@@ -589,133 +560,6 @@ body {
     vertical-align: middle;
 }
 
-.search-container {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10000;
-    width: 90%;
-    max-width: 500px;
-}
-
-#automation-search {
-    width: calc(100% - 50px);
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-}
-
-.search-button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    border: none;
-    background: #007AFF;
-    color: white;
-    border-radius: 0 20px 20px 0;
-    padding: 0 15px;
-    cursor: pointer;
-}
-
-.suggestions-dropdown {
-    position: absolute;
-    width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: none;
-    z-index: 10001;
-}
-
-.suggestion-item {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-}
-
-.suggestion-item:hover {
-    background: #f5f5f5;
-}
-
-.suggestion-title {
-    font-weight: bold;
-}
-
-.suggestion-description {
-    font-size: 0.8em;
-    color: #666;
-}
-
-.feedback-success { color: green; }
-.feedback-error { color: red; }
-.feedback-info { color: blue; }}
-
-/* Dropdown styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-}
-
-.dropdown-arrow {
-    transition: transform 0.3s ease;
-    margin-left: 8px;
-    font-size: 12px;
-}
-
-.dropdown-menu {
-    display: none;
-    padding-left: 40px;
-    background-color: rgba(0,0,0,0.05);
-    animation: fadeIn 0.3s ease;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px 0;
-    color: #bdc3c7;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 13px;
-}
-
-.dropdown-menu a:hover {
-    color: white;
-    background-color: rgba(0,0,0,0.1);
-}
-
-.dropdown.active .dropdown-menu {
-    display: block;
-}
-
-.dropdown.active .dropdown-arrow {
-    transform: rotate(90deg);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     body {
@@ -749,11 +593,7 @@ body {
         position: static;
         margin-top: 15px;
         text-align: right;
-    }
-
-    .search-container.fixed {
-        top: 70px;
-        width: calc(100% - 40px);
+        transform: none;
     }
 
     .profile-popup {
@@ -779,4 +619,163 @@ body {
     .profile-name {
         font-size: 14px;
     }
+}
+
+/ /* Add these styles for the transfer section */
+.transfer-section {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.payment-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.payment-header h2 {
+    margin: 10px 0 5px;
+}
+
+.payment-header p {
+    color: #666;
+    margin: 0;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #0066cc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.submit-payment-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.balance-info {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.payment-processing {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    margin: 0 auto 20px;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #0066cc;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    animation-delay: -1.0s;
+}
+
+@keyframes sk-bounce {
+    0%, 100% { transform: scale(0.0) }
+    50% { transform: scale(1.0) }
+}
+
+.payment-confirmation {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.confirmation-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.confirmation-icon.success {
+    color: #4CAF50;
+}
+
+.confirmation-details {
+    text-align: left;
+    margin: 25px 0;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.done-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px;
+    flex: 1;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.secondary-btn {
+    background-color: white;
+    color: #0066cc;
+    border: 1px solid #0066cc;
+    padding: 12px;
+    flex: 1;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
 }

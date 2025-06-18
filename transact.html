@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,16 +29,16 @@
       <!-- Popup HTML -->
       <div class="overlay" id="overlay"></div>
       <div class="profile-popup" id="profilePopup">
-        <a  href="Profile-info.html" class="profile-name"><div class="popup-header">omphilestudent@gmail.com</div></a>
-
-        <h3>Active Profile</h3>
+        <div class="popup-header">omphilestudent@gmail.com</div>
         <div class="profile-item">
           <span class="material-icons-sharp profile-icon">account_circle</span>
           <div class="profile-info">
-            <div class="profile-item">Omphile Mohlala</div>
+            <div class="profile-active">ACTIVE PROFILE</div>
+            <a href="Profile-info.html">
+              <div class="profile-Name">Omphile Mohlala</div>
+            </a>
           </div>
         </div>
-
         <a href="#" class="switch-profile">
           <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
           Switch to Kodi PTY LTD
@@ -51,12 +52,12 @@
 
 <!--Sidebar navigation-->
 <div class="sidebar">
-  <a href="Computer.html" class="active">
+  <a href="Computer.html" class="active" id="home">
     <span class="material-icons-sharp">home</span>
     Home
   </a>
   <p class="side">BANKING</p>
-  <a href="Accounts.html">
+  <a href="Accounts.html" id="accounts">
     <span class="material-icons-sharp">storage</span>
     Accounts
   </a>
@@ -68,7 +69,7 @@
     </a>
     <div class="dropdown-menu">
       <a href="transact.html" id="payment">Payment</a>
-      <a href="#">Transfer</a>
+      <a href="#" id="transfer">Transfer</a>
       <a href="#" id="beneficiary">Beneficiary</a>
     </div>
   </div>
@@ -100,11 +101,11 @@
   </a>
   <p class="side">SERVICES</p>
   <a href="settings.html">
-    <span class="material-icons-sharp">radio_button_unchecked</span>
-    products & Services
+    <span class="material-icons-sharp">shopping_cart</span>
+    Products & Services
   </a>
   <a href="settings.html">
-    <span class="material-icons-sharp">settings</span>
+    <span class="material-icons-sharp">radio_button_unchecked</span>
     SARS eFILLING
   </a>
   <a href="settings.html">
@@ -227,8 +228,9 @@
   <div id="main-content-area" class="main-content"></div>
 </div>
 
+<script src="Transfer.js"></script>
+<script src="Apps.js"></script>
 <script src="Combined.js"></script>
 <script src="Computer%20Automation.js"></script>
-<script src="Transfer.js"></script>
 </body>
 </html>
