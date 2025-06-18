@@ -7,181 +7,35 @@
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <title>Computer</title>
-    <style>
-        /* Add these styles for the transfer section */
-        .transfer-section {
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
 
-        .payment-header {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .payment-header h2 {
-            margin: 10px 0 5px;
-        }
-
-        .payment-header p {
-            color: #666;
-            margin: 0;
-        }
-
-        .back-button {
-            background: none;
-            border: none;
-            color: #0066cc;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            padding: 5px 0;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .form-group select,
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .submit-payment-btn {
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .balance-info {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .payment-processing {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .spinner {
-            width: 70px;
-            height: 70px;
-            position: relative;
-            margin: 0 auto 20px;
-        }
-
-        .double-bounce1, .double-bounce2 {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: #0066cc;
-            opacity: 0.6;
-            position: absolute;
-            top: 0;
-            left: 0;
-            animation: sk-bounce 2.0s infinite ease-in-out;
-        }
-
-        .double-bounce2 {
-            animation-delay: -1.0s;
-        }
-
-        @keyframes sk-bounce {
-            0%, 100% { transform: scale(0.0) }
-            50% { transform: scale(1.0) }
-        }
-
-        .payment-confirmation {
-            text-align: center;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .confirmation-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .confirmation-icon.success {
-            color: #4CAF50;
-        }
-
-        .confirmation-details {
-            text-align: left;
-            margin: 25px 0;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .confirmation-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .done-btn {
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            padding: 12px;
-            flex: 1;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .secondary-btn {
-            background-color: white;
-            color: #0066cc;
-            border: 1px solid #0066cc;
-            padding: 12px;
-            flex: 1;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
 </head>
-
-
 <body>
-<div>
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
 <div class="header">
     <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
-        <a href="#home">
+        <a href="#home" id="banker-link">
             <span class="material-icons-sharp">contact_support</span>
             banker
         </a>
+
+
+        <!-- Popup -->
+        <div id="banker-popup" class="popup">
+            <span class="close-btn" id="close-popup">&times;</span>
+            <h5>By engaging, you consent to sharing information with a Capitec Business representative, including screen sharing for technical support and understanding that the session may be monitore or recorded for quality  assurance. To decline, Click "X" at the bottom right. </h5>
+            <button class="popup-btn">Audio</button>
+            <button class="popup-btn">Phone</button>
+            <button class="popup-btn">Chat</button>
+        </div>
+
+
         <div class="profile-container">
             <a href="#contact" id="profile-link">
                 <span class="material-icons-sharp">account_circle</span>
@@ -190,17 +44,18 @@
             <!-- Popup HTML -->
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
-                <a  href="Profile-info.html" class="profile-name"><div class="popup-header">omphilestudent@gmail.com</div></a>
-
-                <h3>Active Profile</h3>
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                </a>
                 <div class="profile-item">
                     <span class="material-icons-sharp profile-icon">account_circle</span>
                     <div class="profile-info">
-                        <div class="profile-item">Omphile Mohlala</div>
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">Omphile Mohlala</div>
                     </div>
                 </div>
-
-                <a href="#" class="switch-profile">
+                <div id="page-transition"></div>
+                <a href="KodiCode.html" class="switch-profile">
                     <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
                     Switch to Kodi PTY LTD
                 </a>
@@ -210,9 +65,12 @@
         <a href="home page.html" class="sign">Sign Out</a>
     </div>
 </div>
-
+</div>
 <!--Sidebar navigation-->
-<div class="sidebar">
+<nav class="sidebar">
+    <div class="menu-toggle" id="sidebarToggle">
+        <span class="material-icons-sharp">menu</span>
+    </div>
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp">home</span>
         Home
@@ -231,10 +89,10 @@
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
             <a href="#" id="transfer">Transfer</a>
-            <a href="#" id="beneficiary">Beneficiary</a>
+            <a href="#" id="create-beneficiary-btn">Beneficiary</a>
         </div>
     </div>
-    <a href="efiling.html">
+    <a href="Cards.html">
         <span class="material-icons-sharp">dynamic_feed</span>
         Cards
     </a>
@@ -262,11 +120,11 @@
     </a>
     <p class="side">SERVICES</p>
     <a href="settings.html">
-        <span class="material-icons-sharp">radio_button_unchecked</span>
-        products & Services
+        <span class="material-icons-sharp">shopping_cart</span>
+        Products & Services
     </a>
     <a href="settings.html">
-        <span class="material-icons-sharp">settings</span>
+        <span class="material-icons-sharp">radio_button_unchecked</span>
         SARS eFILLING
     </a>
     <a href="settings.html">
@@ -286,20 +144,20 @@
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
 </div>
-
+</nav>
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
         <span class="material-icons-sharp">search</span> Go
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
-<br>
+
 <br>
 <div style="padding-left:290px">
     <div class="notice">
         <h4>Hello</h4>
-        <p>Your last Sign-in was on 13:15, wednesday 21/5/2025.</p>
+        <p id="signin-date"></p>
     </div>
 </div>
 
@@ -317,21 +175,21 @@
             <div class="box1">
                 <span class="material-icons-sharp">account_balance</span>
                 <span class="separator"></span>
-                <a  href="Accounts.html">
+                <a href="Accounts.html">
                     <div class="account-details">
-                        <span class="account-name">1 Account Current</span>
+                        <span class="account-name">1 Current Account</span>
                         <span class="account-balance">R1000</span>
-                    </div></a>
-                <div class="box2">
-                    <span class="material-icons-sharp">storage</span>
-                    <span class="separator"></span>
-                    <span class="account-name">No other account(s)</span>
-                </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="box2">
+                <span class="material-icons-sharp">storage</span>
+                <span class="separator"></span>
+                <span class="account-name">No other account(s)</span>
             </div>
         </div>
     </div>
-</div>
-
 <!-- Favorites Section - Placed outside content div -->
 <div class="favorites-container">
     <div class="favorites">
@@ -389,11 +247,11 @@
         <span class="material-icons-sharp">account_balance_wallet</span>
         <span class="cash-flow-title">1 Transactional Account</span>
         <div class="select-row">
-            <select class="account-select">
-                <option value="account1"> </option>
+            <label for="account-select">Select Account</label>
+            <select id="account-select" class="account-select">
+                <option value="">Please select an account</option>
                 <option value="account1">Account 1</option>
-                <option value="account2">Account 2</option>
-                <option value="account3">Account 3</option>
+                <!-- other options -->
             </select>
             <div class="period-selector">
                 <select class="account-select">
@@ -406,9 +264,10 @@
         </div>
     </div>
 </div>
-<script src="Transfer.js"></script>
+</div>
 
+<script src="Transfer.js"></script>
 <script src="Combined.js"></script>
-<script src="Computer%20Automation.js"></script>
+<script src="computer automation.js"></script>
 </body>
 </html>
