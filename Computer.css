@@ -113,7 +113,7 @@ body {
 
 
 .sidebar a:hover {
-  background: #4dcefd;
+  background: rgba(55, 160, 198, 0.9);
 }
 
 .sidebar .material-icons-sharp {
@@ -359,6 +359,54 @@ a {
   text-decoration: none;
 }
 
+.ad {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  left: 1000px;
+  top:-350px;
+  padding: 20px;
+  border: 2px solid rgba(83, 79, 79, 0.31);
+  max-width: 500px;
+  max-height: 250px;
+  flex: 1;
+}
+p {
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.ad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:-50px;
+}
+.add-content {
+  flex: 1;
+  margin-right: 30px;
+  align-items: right;
+}
+
+.ad-image img {
+  max-width: 200px;
+  height: auto;
+  margin-left: 30px;
+  margin-top: -80px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-section {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .favorites-header {
   display: flex;
   justify-content: space-between;
@@ -563,12 +611,12 @@ a {
   background: white;
   padding: 30px;
   border: 2px solid rgba(83, 79, 79, 0.31);
-  width: 400px;
+  width: 600px;
   margin-left: 290px;
   margin-right: auto;
   position: relative;
-  margin-bottom: 40px;
-  top: 15px;
+  margin-bottom: 80px;
+  top: -270px;
 }
 
 .pending-header {
@@ -648,7 +696,8 @@ a {
 .cash-flow {
   background: white;
   padding: 20px;
-  margin-bottom: 40px;
+  height: 250px;
+  margin-top: -340px;
   border: 2px solid rgba(83, 79, 79, 0.31);
   margin-left: 270px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */

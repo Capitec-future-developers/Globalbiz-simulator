@@ -114,7 +114,7 @@ body {
 
 
 .sidebar a:hover {
-    background: #4dcefd;
+    background: rgba(55, 160, 198, 0.9);
 }
 
 .sidebar .material-icons-sharp {
