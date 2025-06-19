@@ -1,4 +1,6 @@
 ; document.addEventListener('DOMContentLoaded', function() {
+   
+
     // =============================================
     // PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
     // =============================================
