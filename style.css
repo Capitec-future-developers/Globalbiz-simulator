@@ -14,7 +14,9 @@ body {
 }
 
 h1 {
+
    position: relative;
+
     top: 200px;
 }
 
@@ -131,4 +133,6 @@ a {
     50% {
         transform: translateY(-10px);
     }
+
 }
+
