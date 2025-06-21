@@ -7,7 +7,232 @@
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <title>Computer</title>
+<style>
+   /*transfer style*/
+    .transfer-section {
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
+    .payment-header {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .payment-header h2 {
+        margin: 10px 0 5px;
+    }
+
+    .payment-header p {
+        color: #666;
+        margin: 0;
+    }
+
+    .back-button {
+        background: none;
+        border: none;
+        color: #0066cc;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 5px 0;
+        font-size: 14px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    .form-group select,
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .submit-payment-btn {
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        padding: 12px;
+        width: 100%;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .balance-info {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+
+    .payment-processing {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .spinner {
+        width: 70px;
+        height: 70px;
+        position: relative;
+        margin: 0 auto 20px;
+    }
+
+    .double-bounce1, .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #0066cc;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+        animation-delay: -1.0s;
+    }
+
+    @keyframes sk-bounce {
+        0%, 100% { transform: scale(0.0) }
+        50% { transform: scale(1.0) }
+    }
+
+    .payment-confirmation {
+        text-align: center;
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .confirmation-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+
+    .confirmation-icon.success {
+        color: #4CAF50;
+    }
+
+    .confirmation-details {
+        text-align: left;
+        margin: 25px 0;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .confirmation-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .done-btn {
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        padding: 12px;
+        flex: 1;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .secondary-btn {
+        background-color: white;
+        color: #0066cc;
+        border: 1px solid #0066cc;
+        padding: 12px;
+        flex: 1;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .transfer-details-box {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .transfer-details-box h3 {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .transfer-type-options {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+
+    /* Group From & To Account side by side */
+    .account-selection {
+        display: flex;
+        gap: 10px;
+    }
+
+    .account-selection .form-group {
+        flex: 1;
+    }
+
+    /* Group Amount & Reference side by side */
+    .amount-reference {
+        display: flex;
+        gap: 10px;
+    }
+
+    .amount-reference .form-group {
+        flex: 1;
+    }
+
+    /* Transfer Type Box remains full width */
+    .transfer-type-options {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+
+    .transfer-type-box {
+        flex: 1;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-align: center;
+        padding: 10px;
+        margin: 0 5px;
+        background-color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .transfer-type-box:hover {
+        background-color: #e9e9e9;
+    }
+    }
+
+    .transferheader {
+        left: 10px;
+    }
+</style>
 </head>
 <body>
 <div class="user-info">
@@ -65,7 +290,7 @@
         <a href="home page.html" class="sign">Sign Out</a>
     </div>
 </div>
-</div>
+
 <!--Sidebar navigation-->
 <nav class="sidebar">
     <div class="menu-toggle" id="sidebarToggle">
@@ -88,7 +313,7 @@
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
-            <a href="#" id="transfer">Transfer</a>
+            <a href="#" id="Transfer">Transfer</a>
             <a href="#" id="create-beneficiary-btn">Beneficiary</a>
         </div>
     </div>
@@ -119,7 +344,7 @@
         User management
     </a>
     <p class="side">SERVICES</p>
-    <a href="settings.html">
+    <a href="#">
         <span class="material-icons-sharp">shopping_cart</span>
         Products & Services
     </a>
@@ -143,8 +368,9 @@
         <span class="material-icons-sharp">lock</span>
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
-</div>
+
 </nav>
+
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
     <button id="execute-automation" class="search-button" aria-label="Execute search">
@@ -153,7 +379,7 @@
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
-<br>
+
 <div style="padding-left:290px">
     <div class="notice">
         <h4>Hello</h4>
@@ -223,6 +449,22 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="ad">
+    <div class="ad-header">
+        <h4>Bank on our app</h4>
+        <br>
+    </div>
+    <div class="add-content">
+        <p>Pay employees and suppliers, make immediate payments, manage cards and more - wherever you are.
+        <br>
+        Visit your app store to download the Capitec app.</p>
+    </div>
+        <div class="ad-image">
+            <img src="heromobile.png" alt="ad">
+        </div>
+
 </div>
 
 <!--Pending Authorasations-->
