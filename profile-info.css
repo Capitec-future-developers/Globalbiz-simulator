@@ -186,6 +186,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 30px;
+
 }
 .info-heading h3{
     background: white;
@@ -407,6 +408,7 @@ body {
 
         flex-direction: column;
         gap: 50px;
+        height: 100%;
     }
 
     .controls {
@@ -745,18 +747,20 @@ button:not(:active) {
 
 
 .edit-limit-btn {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #1e88e5;
-    right: -400px;
-    bottom: -10px;
+    right: 70px;
+
     border: none;
     background-color: #ffffff;
     padding: 8px 16px;
     cursor: pointer;
-
+    box-sizing: border-box;
 }
+
 
 .edit-limit-btn:hover
  {
@@ -765,48 +769,43 @@ button:not(:active) {
 }
 
 
+/* Parent container must be relative */
+.container {
+    position: relative;
+}
+
+/* Edit Button */
 .edit-btn {
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #1e88e5;
-    right: -1000px;
-    bottom: -10px;
-    border: none;
-    background-color: #ffffff;
-    padding: 8px 16px;
-    cursor: pointer;
-
-}
-
-button:hover
-{
-    background-color: rgba(228, 243, 246, 0.8);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Search & Select Section */
-.search-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.edit-btn {
+    right: 70px;
+    bottom: -5px;
     background-color: #1e88e5;
     color: #fff;
     padding: 8px 16px;
     border: none;
-    border-radius: 0; /* no border radius */
+    border-radius: 0; /* square corners */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .edit-btn:hover {
-    background-color: #1565c0; /* darker blue on hover */
+    background-color: #1565c0;
 }
 
+/* Search & Select Section */
+.search-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    left: 10px;
+}
+
+/* Search Bar */
 .search-bar {
     padding: 8px 16px;
     border: 1px solid #ccc;
@@ -814,40 +813,38 @@ button:hover
     flex: 1;
     min-width: 100px;
     max-width: 250px;
-    position: relative;
-    right: 150px;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
 .search-bar:focus {
-    border-color: #1e88e5; /* blue border on focus for clarity */
+    border-color: #1e88e5; /* blue border on focus */
 }
 
-
+/* Account Select Dropdown */
 .account-select {
     padding: 8px 16px;
     border: 1px solid #ccc;
     border-radius: 0;
-    background: url('data:image/svg+xml;utf8,<svg fill="%231e88e5" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
     background-size: 16px 16px;
-    appearance: none;
-    right: 80px;
-    position: relative;
-    max-width: 100px;
+    min-width: 50px;
+    width: 200px;
+    max-width: 500px;
 }
 
 /* Header Section */
 .account-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
     font-weight: bold;
     border-bottom: 1px solid #ccc;
     padding-bottom: 8px;
-    background-color: rgba(204, 204, 204, 0.68);
-    height: 30px;
-    border-bottom-color: #cccccc;
+    background-color: rgba(237, 237, 237, 0.68);
+    height: 35px;
+    border-bottom-color: 1px solid #171515;
+
 }
 
 .header-item {
@@ -868,6 +865,7 @@ button:hover
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    border-bottom: 5px solid #ccc;
 }
 
 .detail-item {
@@ -881,4 +879,17 @@ button:hover
 
 .detail-item.right {
     text-align: right;
+}
+
+.transaction-container{
+    background-color: #ffffff;
+    height: 500px;
+    width: 100%;
+}
+
+.tab-content {
+    display: none;
+}
+.tab-content-active {
+    display: block;
 }
