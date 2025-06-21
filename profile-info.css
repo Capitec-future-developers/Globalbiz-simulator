@@ -781,7 +781,7 @@ button:not(:active) {
     align-items: center;
     justify-content: center;
     right: 70px;
-    bottom: -5px;
+    bottom: 5px;
     background-color: #1e88e5;
     color: #fff;
     padding: 8px 16px;
@@ -882,6 +882,7 @@ button:not(:active) {
 }
 
 .transaction-container{
+    top: 100px;
     background-color: #ffffff;
     height: 500px;
     width: 100%;
@@ -892,4 +893,81 @@ button:not(:active) {
 }
 .tab-content-active {
     display: block;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 10px;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+    background-color: rgba(237, 237, 237, 0.68);
+    height: 35px;
+    gap: 20px;
+}
+.details-item,
+.currency,
+.credit-and-debit,
+.credit-item,
+.debit-item {
+    font-size: 10px;
+    flex: 1; /* Each will take equal space */
+    text-align: center; /* center the text horizontally */
+}
+
+.details-item{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40px;
+    font-size: 10px;
+}
+
+.currency{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 270px;
+    font-size: 10px;
+}
+
+.credit-and-debit{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 450px;
+    font-size: 10px;
+}
+
+.credit-item{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 650px;
+    font-size: 10px;
+}
+
+.debit-item{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 850px;
+    font-size: 10px;
+}
+
+.btn {
+    color: #1e88e5;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 6px;
+    border: 1px solid transparent;
+    background: none;
+    transition: color 0.3s ease;
+    margin-left: 910px;
+}
+
+.btn:hover{
+    Color: #1565c0;
 }
