@@ -971,3 +971,6 @@ button:not(:active) {
 .btn:hover{
     Color: #1565c0;
 }
+
+.tab-content {
+    display: block;
