@@ -184,7 +184,7 @@ body {
   margin-right: auto; /* Right spacing */
   position: relative;
   text-decoration: none;
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 2px solid #cccccc;;
 }
 
 .account-header {
@@ -229,8 +229,7 @@ body {
   height: 90px;
   min-width: 700px;
   text-decoration: none;
-
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 2px solid #cccccc;;
 }
 
 a {
@@ -372,7 +371,9 @@ a {
   max-width: 500px;
   max-height: 250px;
   flex: 1;
+  overflow: hidden;
 }
+
 p {
   color: #4a5568;
   font-size: 14px;
@@ -443,7 +444,7 @@ p {
 
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 2px solid #cccccc;
 }
 
 .favorite-box:hover {
@@ -610,7 +611,7 @@ p {
 .pending {
   background: white;
   padding: 30px;
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 2px solid #cccccc;
   width: 600px;
   margin-left: 290px;
   margin-right: auto;

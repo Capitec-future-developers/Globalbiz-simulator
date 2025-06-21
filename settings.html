@@ -125,84 +125,111 @@
 
   <!------------- TAB BUTTONS ---------------->
   <div class="tabs">
-    <button data-tab="Profile-details" onclick="openTab('Profile-details')">
-      <div class="tab active">Transaction limits</div>
-    </button>
     <button data-tab="Transaction-Limits" onclick="openTab('Transaction-Limits')">
-      <div class="tab">Transaction notifications</div>
+      <div class="tab active">Transaction Limits</div>
     </button>
-    <button>
-      <div class="tab">Profile notifications</div>
+    <button data-tab="Transaction-Notifications" onclick="openTab('Transaction-Notifications')">
+      <div class="tab">Transaction Notifications</div>
+    </button>
+    <button data-tab="Profile-Notifications" onclick="openTab('Profile-Notifications')">
+      <div class="tab">Profile Notifications</div>
     </button>
   </div>
 
-  <!-------------------- TAB CONTENT: transaction limits --------------------------->
-  <div id="Transaction-Limits" class="tab-content">
-  <span class="info-heading">
-    <h3>Transaction Limits</h3>
-  </span>
-    <div class="account-box">
-      <div class="account-info-row">
-        <div class="info-item">
-          <span class="info-value">R0.00</span>
-          <span class="info-label"><strong>Today's total spent</strong></span>
-        </div>
-        <div class="info-item">
-          <span class="info-value">R550</span>
-          <span class="info-label"><strong>Maximum daily transaction limit</strong></span>
-        </div>
-        <span class="edit-limit">
+  <!-------------------- TAB CONTENT: Transaction Limits --------------------------->
+  <div id="Transaction-Limits" class="tab-content tab-content-active">
+    <div class="transaction-container">
+    <span class="info-heading">
+      <h3>Transaction Limits</h3>
+    </span>
+      <div class="account-box">
+        <div class="account-info-row" style="border-left: 6px solid #3498db;">
+          <div class="info-item">
+            <span class="info-value">R0.00</span>
+            <span class="info-label"><strong>Today's total spent</strong></span>
+          </div>
+          <div class="info-item">
+            <span class="info-value">R550</span>
+            <span class="info-label"><strong>Maximum daily transaction limit</strong></span>
+          </div>
+          <span class="edit-limit">
           <button class="edit-limit-btn">Edit Maximum Limit</button>
         </span>
+        </div>
+      </div>
+
+      <!-- Search bar, Select box, Edit button -->
+      <div class="search-section">
+        <button class="edit-btn">Edit Account Limits</button>
+        <input type="text" placeholder="Search..." class="search-bar">
+        <select class="account-select">
+          <option value="">Account Type</option>
+          <option value="savings">Savings</option>
+          <option value="current">Current</option>
+        </select>
+      </div>
+
+      <!-- Header with 3 options -->
+      <div class="account-header">
+        <span class="header-item">Account</span>
+        <span class="header-item center">Limit Amount</span>
+        <span class="header-item right">Today's Total</span>
+      </div>
+
+      <!-- Account info row -->
+      <div class="account-details">
+        <span class="detail-item">Kodi codes 1052 2626 43</span>
+        <span class="detail-item center">R90 000</span>
+        <span class="detail-item right">R1000.00</span>
       </div>
     </div>
+  </div>
 
-    <!-- Search bar, Select box, Edit button -->
-    <div class="search-section">
-      <button class="edit-btn">Edit Account Limits</button>
-
-      <input type="text" placeholder="Search..." class="search-bar">
-
-      <select class="account-select">
-        <option value="">Account Type</option>
-        <option value="savings">Savings</option>
-        <option value="current">Current</option>
-      </select>
-    </div>
-
-    <!-- Header with 3 options -->
+  <!-------------------- TAB CONTENT: Transaction Notifications --------------------------->
+  <div id="Transaction-Notifications" class="tab-content">
     <div class="account-header">
-      <span class="header-item">Today's Total</span>
-      <span class="header-item center">Limit Amount</span>
-      <span class="header-item right">Account</span>
-    </div>
+      <span class="header-item">Account</span>
+      <span class="header-item center">Currency</span>
+      <span class="header-item right">transaction Alert Type</span>
+      <span class="header-item right">Credit Threshold Amount</span>
+      <span class="header-item right">Debit Threshold Amount</span>
+      <span class="action-items">Actions</span>
+       </div>
 
     <!-- Account info row -->
     <div class="account-details">
-      <span class="detail-item">R1000</span>
-      <span class="detail-item center">R90 000</span>
-      <span class="detail-item right">Kodi codes 1052 2626 43</span>
-    </div>
+      <span class="detail-item">Kodi codes 1052 2626 43</span>
+      <span class="currency">ZAR</span>
+      <span class="credit and debit">Credit and Debit</span>
+      <span class="credit-item">R1.00</span>
+      <span class="debit-item">R1.00</span>
+      <span class="btn">Edit</span>
+          </div>
   </div>
-    <!--- JAVASCRIPT TO SWITCH TABS --->
+
+  <!-------------------- TAB CONTENT: Profile Notifications --------------------------->
+  <div id="Profile-Notifications" class="tab-content">
+    <h3>Profile Notifications</h3>
+    <p>Content for Profile Notifications tab goes here.</p>
+  </div>
+
+  <!--- JAVASCRIPT TO SWITCH TABS --->
   <script>
     function openTab(tabId) {
       // Hide all tab contents
-      const contents = document.querySelectorAll('.tab-content, .tab-content-active');
+      const contents = document.querySelectorAll('.tab-content');
       contents.forEach(content => {
         content.classList.remove('tab-content-active');
-        content.classList.add('tab-content');
       });
 
-      // Show the selected tab content
+      // Show tab content
       const activeContent = document.getElementById(tabId);
       if (activeContent) {
-        activeContent.classList.remove('tab-content');
         activeContent.classList.add('tab-content-active');
       }
 
       // Deactivate all tab buttons
-      const buttons = document.querySelectorAll('.tabs button .tab');
+      const buttons = document.querySelectorAll('.tabs .tab');
       buttons.forEach(button => button.classList.remove('active'));
 
       // Activate the clicked button
