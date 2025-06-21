@@ -1300,3 +1300,298 @@ body {
 .overlay.active {
     display: block;
 }
+
+.setting-container {
+    position: absolute;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    max-width: 400px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    left: 12px;
+    top: 100px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+
+
+}
+
+/* Toggle Switch Style */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+/* When checked */
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.separator-bottom{
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#Transaction-Limits,
+#Transaction-Notifications,
+#Profile-Notifications{
+    background-color: #ffffff;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    align-items: end;
+}
+
+.yoh{
+    position: absolute;
+    color: #1e88e5;
+    right: 25px;
+    align-items: center;
+    margin-top: -19px;
+    cursor: pointer;
+}
+
+.tab-content {
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fff; /* White background */
+    border-radius: 15px;
+    color: #222;
+}
+
+/*transactionlimts*/
+.transaction-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.account-box {
+    position: absolute;
+    width: 280px;
+    height: 190px;
+    left: 10px;
+    border-left: 3px solid #1e88e5;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.account-info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /
+}
+
+/* Info heading (top-left) */
+.info-heading {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 14px;
+    font-weight: 600;
+
+}
+
+/* Edit button (top-right) */
+.edit-limit-btn {
+    position: absolute;
+    top: 27px;
+    right: 15px;
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: #0070a0;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    transition: color 0.2s ease;
+    font-weight: bold;
+}
+
+.edit-limit-btn:hover {
+    color: #005f8c;
+}
+
+/* Info Items row - under heading & button */
+.account-info-row {
+    position: absolute;
+    top: 40px; /* space under heading/buttons */
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0070a0;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.search-section{
+    position: absolute;
+    border-top: 1px solid #ccc;
+    bottom: 250px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 270px;
+    padding: 10px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+}
+
+.edit-btn{
+    border: none;
+    background: none;
+    color: #0070a0;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    transition: color 0.2s ease;
+    font-weight: bold;
+
+}
+
+.account-header{
+    position: absolute;
+    background-color: #f2f2f2;
+    bottom: 194px;
+    width: 275px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    left: 0;
+
+}
+
+.account-details {
+    position: absolute;
+    background-color: #fff; /* Correct hex for white */
+    bottom: 150px;
+    width: 275px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    left: 0;
+    gap: 20px;
+    border-radius: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.below {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.detail-item right{
+    right: -10;
+}
+
+.notification-header{
+    position: absolute;
+    background-color: #f2f2f2;
+    top: 0px;
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    left: 0;
+}
+
+.accounts-details {
+    position: absolute;
+    background-color: #fff; /* Correct hex for white */
+    top: 50px;
+    width: 275px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    left: 0;
+    gap: 20px;
+    border-radius: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.currency{
+    position: absolute;
+    right: 30px;
+}
