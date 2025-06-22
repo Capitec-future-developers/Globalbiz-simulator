@@ -111,7 +111,7 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #074358;
+    background-color: #2C3C4C;
     color: white;
     width: calc(100% + 40px);
     height: 40px;
@@ -175,7 +175,7 @@ body {
 .sidebar {
     transform: translateX(-150px);
     width: 150px;
-    background-color: #074358;
+    background-color: #2C3C4C;
     position: absolute;
     color: white;
     height: calc(100% - 65px);
@@ -197,12 +197,12 @@ body {
     padding: 15px;
     text-decoration: none;
     font-size: 0.7rem;
-    background-color: #074358;
+    background-color: #2C3C4C;
 }
 
 .sidebar a.active,
 .sidebar a:hover:not(.active) {
-    background-color: #0096c7;
+    background-color: #3c4f67;
 }
 
 .signout {
@@ -329,10 +329,9 @@ body {
 
 .favorite-box {
     background: #fff;
-    border-radius: 10px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 0.5px solid #ccc;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -349,7 +348,7 @@ body {
 
 .favorite-box .material-icons-sharp {
     font-size: 28px;
-    color: #074358;
+    color: #4da5fd;
     margin-bottom: 8px;
 }
 
@@ -385,7 +384,7 @@ body {
 }
 
 .nav-item.active {
-    color: #007aff;
+    color: #43c8fd;
 }
 
 .nav-icon {
@@ -1197,10 +1196,10 @@ body {
     display: none;
     position: fixed;
     top: 425px;
-    right: 645px;
+    right: 480px;
     background-color: white;
     padding: 0;
-    border-radius: 8px;
+    border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     width: 300px;

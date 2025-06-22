@@ -97,7 +97,7 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #074358;
+    background-color: #2C3C4C;
     color: white;
     width: calc(100% + 40px);
     height: 40px;
@@ -123,7 +123,7 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #0096c7;
+    background-color: #2C3C4C ;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -140,7 +140,7 @@ body {
 .sidebar {
     transform: translateX(-150px);
     width: 150px;
-    background-color: #074358;
+    background-color: #2C3C4C ;
     position: absolute;
     color: white;
     height: calc(100% - 65px);
