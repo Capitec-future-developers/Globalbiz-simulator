@@ -266,7 +266,7 @@ body {
     width: 100%;
     height: 60px;
     border: 2px solid #cccccca8;
-
+    border-left: 4px solid #0096c7;
     padding: 10px 15px;
     margin: 10px 0;
     display: flex;
