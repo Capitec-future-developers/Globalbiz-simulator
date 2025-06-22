@@ -45,21 +45,21 @@
       </div>
     `;
 
-        // Show all other sections
+
         document.querySelectorAll('.favorites-container, .pending, .cash-flow').forEach(el => {
             el.style.display = 'block';
         });
 
-        // Clear navigation stack and set to main
+
         navigationStack.length = 0;
         navigationStack.push('main');
     }
 
-    // Function to navigate back
+
     function navigateBack() {
         if (navigationStack.length > 0) {
-            navigationStack.pop(); // Remove current view
-            const previousView = navigationStack.pop(); // Get previous view
+            navigationStack.pop();
+            const previousView = navigationStack.pop();
 
             if (previousView === 'main') {
                 resetToMainView();
@@ -71,14 +71,14 @@
         }
     }
 
-    // Sample user accounts data
+
     const userAccounts = [
         { id: '1001', name: 'Cheque Account', number: '1052 2626 44', balance: 'R12,345.67' },
         { id: '1002', name: 'Savings Account', number: '1052 2626 45', balance: 'R45,678.90' },
         { id: '1003', name: 'Credit Card', number: '4512 **** **** 9012', balance: '-R5,432.10' }
     ];
 
-    // Show transfer section UI
+
     function showTransferSection() {
         toggleContentVisibility();
         navigationStack.push('transfer-section');
@@ -162,24 +162,24 @@
       </div>
     `;
 
-        // Back button handler
+
         document.getElementById('back-button').addEventListener('click', navigateBack);
 
-        // Show balance info when from-account changes
+
         document.getElementById('from-account').addEventListener('change', function() {
             const selectedOption = this.options[this.selectedIndex];
             const balance = selectedOption.getAttribute('data-balance');
             document.getElementById('balance-info').textContent = `Available: ${balance || ''}`;
         });
 
-        // Form submit handler
+
         document.getElementById('transfer-form').addEventListener('submit', function(e) {
             e.preventDefault();
             processTransfer();
         });
     }
 
-    // Process transfer and show loading UI
+
     function processTransfer() {
         const fromAccount = document.getElementById('from-account').value;
         const toAccount = document.getElementById('to-account').value;
@@ -257,12 +257,12 @@
         });
     }
 
-    // Initialization on DOM ready
+
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize navigation stack with main view
         navigationStack.push('main');
 
-        // Attach event listener to any #Transfer element(s)
+
         document.querySelectorAll('#Transfer').forEach(btn => {
             btn.addEventListener('click', e => {
                 e.preventDefault();
