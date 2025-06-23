@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | Capitec Bank</title>
+    <link rel="stylesheet" href="messages.css">
+    <link rel="icon" type="image/x-icon" href="profile.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
+    <div class="header-right">
+        <a href="#home">
+            <span class="material-icons-sharp">contact_support</span>
+            banker
+        </a>
+        <div class="profile">
+
+
+            </a><a href="#contact" id="profile-link">
+            <span class="material-icons-sharp">account_circle</span>
+            Omphile Mohlala
+        </a>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <div class="popup-header">omphilestudent@gmail.com</div>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <a href="Profile-info.html">
+                            <div class="profile-Name">Omphile Mohlala</div>
+                        </a>
+                    </div>
+                </div>
+                <a href="KodiCode.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+        </div>
+        <a href="home page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+
+<!--Sidebar navigation-->
+<div class="sidebar">
+    <a href="Computer.html" class="active" id="home">
+        <span class="material-icons-sharp">home</span>
+        Home
+    </a>
+    <p class="side">BANKING</p>
+    <a href="Accounts.html" id="accounts">
+        <span class="material-icons-sharp">storage</span>
+        Accounts
+    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="transacts">
+            <span class="material-icons-sharp">swap_horiz</span>
+            Transact
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="transact.html" id="payments">Payment</a>
+            <a href="#" id="transfer">Transfer</a>
+            <a href="#" id="beneficiary">Beneficiary</a>
+        </div>
+    </div>
+    <a href="efiling.html">
+        <span class="material-icons-sharp">dynamic_feed</span>
+        Cards
+    </a>
+    <p class="side">MANAGEMENT</p>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">check_box</span>
+            Authorisations
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="#">Transactions</a>
+            <a href="#">Beneficiaries</a>
+            <a href="#">User Management</a>
+            <a href="#">Account & Limits</a>
+            <a href="#">Authorisation Levels</a>
+            <a href="#">Notification Setup</a>
+            <a href="messages.html">Messages</a>
+        </div>
+    </div>
+    <a href="settings.html">
+        <span class="material-icons-sharp">groups</span>
+        User management
+    </a>
+    <p class="side">SERVICES</p>
+    <a href="settings.html">
+        <span class="material-icons-sharp">shopping_cart</span>
+        Products & Services
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">radio_button_unchecked</span>
+        SARS eFILLING
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">chat</span>
+        Secure Messages
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">description</span>
+        Documents
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp">settings</span>
+        Settings
+    </a>
+    <a href="Phone.html" class="signout">
+        <span class="material-icons-sharp">lock</span>
+        We secure your data in line with our Privacy Notice and Terms & Conditions.
+    </a>
+</div>
+
+<!------------ MAIN CONTENT ---------------->
+<div class="main-header">
+    <strong><h1>Messages</h1></strong>
+</div>
+<span class="subHeader">Authorization queue</span>
+
+<div class="mainContent"></div>
+    <div class="info-banner">
+        <span class="material-icons-sharp">info</span>
+        You must approve a message requested before it is sent to a relationship Banker
+</div>
+<div class="contentBody">
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <Strong><th>Date and time</th></Strong>
+                    <Strong><th>For Account</th></Strong>
+                    <Strong><th>Created By</th></Strong>
+                    <Strong><th>1st authorizer</th></Strong>
+                    <Strong><th>2nd authorizer</th></Strong>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+    <img class="messageIcon" src="messages.svg">
+    <h3>No outstanding authorisations<h4>
+    <p>You'll find the messages that need authorisation here</p>
+
+</body>
