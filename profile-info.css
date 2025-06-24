@@ -626,12 +626,19 @@ button:not(:active) {
 }
 
 /* Tab styles */
+.tabs {
+    display: flex;
+    cursor: pointer;
+}
 .tabs button {
     transition: transform 0.1s ease;
     border: none;
     background: none;
     cursor: pointer;
     padding: 0;
+}
+.tabs button:hover {
+    background-color: #1e88e5;
 }
 
 .tabs button.active .tab {
@@ -640,39 +647,21 @@ button:not(:active) {
     color: #0075ff;
 }
 
+/* Hide all tab content by default */
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* Show active tab */
+.tab-content-active {
+    display: block;
+}
+
 .content-list {
     list-style-type: none;
     padding: 0;
-}
-
-.content-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.transaction-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.transaction-table th, .transaction-table td {
-    padding: 12px 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.transaction-table th {
-    font-weight: 500;
-    color: #666;
-}
-
-.positive {
-    color: green;
-}
-
-.negative {
-    color: red;
 }
 
 /* Hide the default select arrow */
