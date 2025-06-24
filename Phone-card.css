@@ -5,7 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.62);
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -26,7 +26,7 @@ body {
 .screen {
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: #f0f0f0;
     border-radius: 35px;
     overflow: hidden;
     position: relative;
@@ -97,7 +97,7 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #2C3C4C;
+    background-color: #2C3C4C ;
     color: white;
     width: calc(100% + 40px);
     height: 40px;
@@ -123,7 +123,7 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #2C3C4C ;
+    background-color: #0096c7;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -136,56 +136,7 @@ body {
     font-size: 24px;
 }
 
-/* ============ SIDEBAR STYLES ============ */
-.sidebar {
-    transform: translateX(-150px);
-    width: 150px;
-    background-color: #2C3C4C ;
-    position: absolute;
-    color: white;
-    height: calc(100% - 65px);
-    top: 65px;
-    left: 0;
-    box-sizing: border-box;
-    z-index: 10;
-    transition: transform 0.3s ease-in-out;
-    overflow-y: auto;
-}
-
-.sidebar.collapsed {
-    transform: translateX(0);
-}
-
-.sidebar a {
-    display: block;
-    color: white;
-    padding: 15px;
-    text-decoration: none;
-    font-size: 0.7rem;
-    background-color: #074358;
-}
-
-.sidebar a.active,
-.sidebar a:hover:not(.active) {
-    background-color: #0096c7;
-}
-
-.signout {
-    position: absolute;
-    top: 400px;
-    left: 0;
-    width: 100px;
-}
-
-.side {
-    color: #ccc;
-    font-size: 0.7rem;
-    padding: 15px 15px 5px;
-    margin: 0;
-    text-transform: uppercase;
-}
-
-/* ============ MAIN CONTENT STRUCTURE ============ */
+/*=====MAIN CONTENT STRUCTURE ============ */
 .screen-content {
     flex: 1;
     display: flex;
@@ -207,12 +158,24 @@ body {
 
 /* ============ ACCOUNT SECTION ============ */
 .account-header {
+    position: absolute;
     display: flex;
+    background-color: white;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    height: 40px;
+    width: 295px;
+    left: 2px;
+    border-bottom: 1px solid #e5e5ea;
+    cursor: pointer;
 }
 
+.add-new {
+    cursor: pointer;
+    color: #0096c7;
+
+}
 .account-header h4 {
     margin: 0;
     color: #333;
@@ -227,20 +190,23 @@ body {
 
 /* ============ ACCOUNT BOX ============ */
 .box1 {
-    width: 100%;
+    position: absolute;
+    width: 280px;
     height: 60px;
-    border: 2px solid #cccccca8;
-    border-radius: 8px;
     padding: 10px 15px;
     margin: 10px 0;
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    border-radius: 1px;
+    top: 110px;
+    left: 10px;
+    background-color: white;
 }
 
 .box1 .material-icons-sharp {
     font-size: 1.5rem;
-    color: #074358;
+    color: #1e88e5;
     margin-right: 15px;
 }
 
@@ -268,60 +234,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ============ FAVORITES SECTION ============ */
-.favorites {
-    background: white;
-    padding: 15px 20px;
-    margin-top: 10px;
-}
 
-.favorites-header {
-    margin-bottom: 15px;
-}
-
-.favorites-header h4 {
-    margin: 0;
-    color: #333;
-    font-size: 1rem;
-}
-
-.favorites-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.favorite-box {
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90px;
-}
-
-.favorite-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.favorite-box .material-icons-sharp {
-    font-size: 28px;
-    color: #074358;
-    margin-bottom: 8px;
-}
-
-.favorite-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-}
 
 /* ============ BOTTOM NAVIGATION ============ */
 .bottom-nav {
@@ -579,4 +492,93 @@ body {
     display: flex;
     margin: 10px;
 
+}
+
+/*dropdown*/
+.dropdown-content {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    min-width: 260px;
+    z-index: 1000;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 8px;
+    font-weight: bold;
+}
+
+/* When 'show' class is added, make it visible */
+.dropdown-content.show {
+    display: flex;
+}
+
+/* Image and card info side by side */
+.dropdown-content .card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-content img.card-img {
+    width: 60px;
+    height: 100px;
+    border-radius: 6px;
+}
+
+/* Card info (name & number) */
+.dropdown-content .card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+    color: #333;
+    flex: 1;
+}
+
+/* Separator */
+.dropdown-content .separator {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0;
+}
+
+/* Status & icon row */
+.dropdown-content .status-row {
+    display: flex;
+    justify-content: flex-end; /* push to right */
+    align-items: center;
+    gap: 8px;
+}
+
+/* Status badge */
+.dropdown-content .status {
+    background-color: #e0f7fa;
+    color: #00796b;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icon on far right */
+.dropdown-content .status-row .material-icons-sharp {
+    color: #007bff;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.status-row{
+    position: absolute;
+    top: 50px;
+    right: 5px;
+}
+
+.box1.dropdown-open + .box1 {
+    margin-top: 100px; /* push Virtual card down when debit dropdown is open */
 }
