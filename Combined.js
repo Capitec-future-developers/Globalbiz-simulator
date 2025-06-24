@@ -1,4 +1,6 @@
 ; document.addEventListener('DOMContentLoaded', function() {
+
+
     // =============================================
     // PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
     // =============================================
@@ -986,4 +988,3 @@ if (dateElement) { // Check element exists before updating
 
     dateElement.textContent = `Your last Sign-in was on ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${now.toLocaleDateString([], options)}.`;
 }
-
