@@ -122,16 +122,18 @@
 <div class="main-content">
     <div class="back-nav">
         <a href="Accounts.html">
-            <h2>My Profile</h2>
+            <h3>My Profile</h3>
         </a>
     </div>
 
+    <!------------- TAB BUTTONS ---------------->
     <div class="tabs">
-        <button id="btn-profile-details"><div class="tab active">Profile details</div></button>
-        <button id="btn-transaction-limits"><div class="tab">Transaction limits</div></button>
+        <button onclick="openTab('Profile details')"><div class="tab active">Profile details</div></button>
+        <button onclick="openTab('Transaction limits')"><div class="tab">Transaction limits</div></button>
     </div>
 
-    <!-------------------- PROFILE INFO --------------------------->
+    <!-------------------- TAB CONTENT: PROFILE INFO --------------------------->
+    <div id="Profile details" class="tab-content-active">
     <span class="info-heading"><h3>Personal information</h3></span>
     <div class="account-box">
         <div class="account-info-row">
@@ -189,9 +191,48 @@
             </div>
         </div>
     </div>
-
-
 </div>
+</div>
+
+<!-------------- TAB CONTENT: TRANSACTION LIMITS -------------->
+<div id="Transaction Limits" class="tab-content">
+    <span class="info-heading"><h3>Transaction Limits</h3></span>
+    <div class="account-box">
+        <div class="account-info-row">
+            <div class="info-item">
+                <span class="info-value">R0.00</span>
+                <span class="info-label"><strong>Today's total spent</strong></span>
+            </div>
+            <div class="info-item">
+                <span class="info-value">R550</span>
+                <span class="info-label"><strong>Maximum daily transaction limit</strong></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--- JAVASCRIPT TO SWITCH TABS --->
+<script>
+    function openTab(tabId) {
+        // Hide all content
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        // Deactivate all buttons
+        const buttons = document.querySelectorAll('.tab');
+        buttons.forEach(button => button.classList.remove('active'));
+
+        // Show selected tab content
+        document.getElementById(tabId).classList.add('active');
+
+        // Activate selected button
+        const clickedButton = Array.from(buttons).find(button => button.textContent === tabId);
+        if (clickedButton) clickedButton.classList.add('active')
+    }
+</script>
+
 <script src="Combined.js"></script>
+<script src="Automation.js"></script>
 </body>
 </html>

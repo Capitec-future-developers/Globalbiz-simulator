@@ -186,7 +186,6 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 30px;
-
 }
 .info-heading h3{
     background: white;
@@ -199,9 +198,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    border: 1px solid #ccc;
-    width: 100%;
+
     padding: 20px;
+    border-radius: 8px;
     Color: black;
     margin-bottom: 30px;
 }
@@ -405,10 +404,8 @@ body {
     }
 
     .account-box {
-
         flex-direction: column;
-        gap: 50px;
-        height: 100%;
+        gap: 20px;
     }
 
     .controls {
@@ -629,12 +626,19 @@ button:not(:active) {
 }
 
 /* Tab styles */
+.tabs {
+    display: flex;
+    cursor: pointer;
+}
 .tabs button {
     transition: transform 0.1s ease;
     border: none;
     background: none;
     cursor: pointer;
     padding: 0;
+}
+.tabs button:hover {
+    background-color: #1e88e5;
 }
 
 .tabs button.active .tab {
@@ -643,39 +647,21 @@ button:not(:active) {
     color: #0075ff;
 }
 
+/* Hide all tab content by default */
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* Show active tab */
+.tab-content-active {
+    display: block;
+}
+
 .content-list {
     list-style-type: none;
     padding: 0;
-}
-
-.content-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.transaction-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.transaction-table th, .transaction-table td {
-    padding: 12px 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.transaction-table th {
-    font-weight: 500;
-    color: #666;
-}
-
-.positive {
-    color: green;
-}
-
-.negative {
-    color: red;
 }
 
 /* Hide the default select arrow */
@@ -743,283 +729,4 @@ button:not(:active) {
     margin: 0 0 12px 0;
     font-size: 13px;
     line-height: 1.4;
-}
-
-
-.edit-limit-btn {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1e88e5;
-    right: 70px;
-
-    border: none;
-    background-color: #ffffff;
-    padding: 8px 16px;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-
-.edit-limit-btn:hover
- {
-    background-color: rgba(228, 243, 246, 0.8);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-
-/* Parent container must be relative */
-.container {
-    position: relative;
-}
-
-/* Edit Button */
-.edit-btn {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 70px;
-    bottom: 5px;
-    background-color: #1e88e5;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 0; /* square corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.edit-btn:hover {
-    background-color: #1565c0;
-}
-
-/* Search & Select Section */
-.search-section {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    left: 10px;
-}
-
-/* Search Bar */
-.search-bar {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 0;
-    flex: 1;
-    min-width: 100px;
-    max-width: 250px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.search-bar:focus {
-    border-color: #1e88e5; /* blue border on focus */
-}
-
-/* Account Select Dropdown */
-.account-select {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 0;
-    background-size: 16px 16px;
-    min-width: 50px;
-    width: 200px;
-    max-width: 500px;
-}
-
-/* Header Section */
-.account-header {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    font-weight: bold;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
-    background-color: rgba(237, 237, 237, 0.68);
-    height: 35px;
-    border-bottom-color: 1px solid #171515;
-
-}
-
-.header-item {
-    flex: 1;
-    text-align: left;
-}
-
-.header-item.center {
-    text-align: center;
-}
-
-.header-item.right {
-    text-align: right;
-}
-
-/* Account Details Row */
-.account-details {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    border-bottom: 5px solid #ccc;
-}
-
-.detail-item {
-    flex: 1;
-    text-align: left;
-}
-
-.detail-item.center {
-    text-align: center;
-}
-
-.detail-item.right {
-    text-align: right;
-}
-
-.transaction-container{
-    top: 100px;
-    background-color: #ffffff;
-    height: 500px;
-    width: 100%;
-}
-
-.tab-content {
-    display: none;
-}
-.tab-content-active {
-    display: block;
-}
-
-.notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5px;
-    font-size: 10px;
-    border-bottom: 1px solid #ccc;
-    padding: 5px 10px;
-    background-color: rgba(237, 237, 237, 0.68);
-    height: 35px;
-    gap: 20px;
-}
-.details-item,
-.currency,
-.credit-and-debit,
-.credit-item,
-.debit-item {
-    font-size: 10px;
-    flex: 1; /* Each will take equal space */
-    text-align: center; /* center the text horizontally */
-}
-
-.details-item{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 40px;
-    font-size: 10px;
-}
-
-.currency{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 270px;
-    font-size: 10px;
-}
-
-.credit-and-debit{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 450px;
-    font-size: 10px;
-}
-
-.credit-item{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 650px;
-    font-size: 10px;
-}
-
-.debit-item{
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 850px;
-    font-size: 10px;
-}
-
-.btn {
-    color: #1e88e5;
-    cursor: pointer;
-    font-size: 12px;
-    padding: 2px 6px;
-    border: 1px solid transparent;
-    background: none;
-    transition: color 0.3s ease;
-    margin-left: 910px;
-}
-
-.btn:hover{
-    Color: #1565c0;
-}
-
-.tab-content {
-    display: block;
-}
-
-/* Toggle Switch Style */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 24px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* Slider (the switch itself) */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 24px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-}
-
-/* Checked state */
-input:checked + .slider {
-    background-color: #4CAF50;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
 }

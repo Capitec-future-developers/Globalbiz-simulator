@@ -113,7 +113,7 @@ body {
 
 
 .sidebar a:hover {
-  background: rgba(55, 160, 198, 0.9);
+  background: #4dcefd;
 }
 
 .sidebar .material-icons-sharp {
@@ -184,7 +184,7 @@ body {
   margin-right: auto; /* Right spacing */
   position: relative;
   text-decoration: none;
-  border: 2px solid #cccccc;;
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .account-header {
@@ -229,7 +229,8 @@ body {
   height: 90px;
   min-width: 700px;
   text-decoration: none;
-  border: 2px solid #cccccc;;
+
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 a {
@@ -358,56 +359,6 @@ a {
   text-decoration: none;
 }
 
-.ad {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  left: 1000px;
-  top:-350px;
-  padding: 20px;
-  border: 2px solid rgba(83, 79, 79, 0.31);
-  max-width: 500px;
-  max-height: 250px;
-  flex: 1;
-  overflow: hidden;
-}
-
-p {
-  color: #4a5568;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 1.25rem;
-  text-align: left;
-}
-
-.ad-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top:-50px;
-}
-.add-content {
-  flex: 1;
-  margin-right: 30px;
-  align-items: right;
-}
-
-.ad-image img {
-  max-width: 200px;
-  height: auto;
-  margin-left: 30px;
-  margin-top: -80px;
-}
-
-@media screen and (max-width: 768px) {
-  .main-section {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
 .favorites-header {
   display: flex;
   justify-content: space-between;
@@ -444,7 +395,7 @@ p {
 
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid #cccccc;
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .favorite-box:hover {
@@ -611,13 +562,13 @@ p {
 .pending {
   background: white;
   padding: 30px;
-  border: 2px solid #cccccc;
-  width: 600px;
+  border: 2px solid rgba(83, 79, 79, 0.31);
+  width: 400px;
   margin-left: 290px;
   margin-right: auto;
   position: relative;
-  margin-bottom: 80px;
-  top: -270px;
+  margin-bottom: 40px;
+  top: 15px;
 }
 
 .pending-header {
@@ -697,13 +648,12 @@ p {
 .cash-flow {
   background: white;
   padding: 20px;
-  height: 250px;
-  margin-top: -340px;
+  margin-bottom: 40px;
   border: 2px solid rgba(83, 79, 79, 0.31);
   margin-left: 270px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
-  width: 1630px;
+  width: 1620px;
   text-decoration: none;
 }
 
@@ -803,9 +753,9 @@ p {
   font-weight: 500;
   padding: 16px;
   color: #ffffff;
+
   background-color: #022130;
 }
-
 popup-header {
   background-color: #022130;
 }
@@ -1322,71 +1272,23 @@ popup-header {
   font-size: 16px;
   cursor: pointer;
 }
-.transfer-details-box {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  background-color: #f9f9f9;
+
+#page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000; /* or any color you want */
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
-.transfer-details-box h3 {
-  margin-top: 0;
-  text-align: center;
-}
-
-.transfer-type-options {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-/* Group From & To Account side by side */
-.account-selection {
-  display: flex;
-  gap: 10px;
-}
-
-.account-selection .form-group {
-  flex: 1;
-}
-
-/* Group Amount & Reference side by side */
-.amount-reference {
-  display: flex;
-  gap: 10px;
-}
-
-.amount-reference .form-group {
-  flex: 1;
-}
-
-/* Transfer Type Box remains full width */
-.transfer-type-options {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-.transfer-type-box {
-  flex: 1;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  text-align: center;
-  padding: 10px;
-  margin: 0 5px;
-  background-color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.transfer-type-box:hover {
-  background-color: #e9e9e9;
-}
-}
-
-.transferheader {
-  left: 10px;
+#page-transition.show {
+  opacity: 1;
+  pointer-events: all;
 }
 
 /* Popup style 2 */

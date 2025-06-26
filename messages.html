@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Details | Capitec Bank</title>
-    <link rel="stylesheet" href="account details.css">
+    <title>Messages | Capitec Bank</title>
+    <link rel="stylesheet" href="messages.css">
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
@@ -40,7 +40,7 @@
                         </a>
                     </div>
                 </div>
-                <a href="#" class="switch-profile">
+                <a href="KodiCode.html" class="switch-profile">
                     <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
                     Switch to Kodi PTY LTD
                 </a>
@@ -123,126 +123,38 @@
     </a>
     <a href="Phone.html" class="signout">
         <span class="material-icons-sharp">lock</span>
-        We secure your data in line with our Privacy Notice and Terms & Conditions
+        We secure your data in line with our Privacy Notice and Terms & Conditions.
     </a>
 </div>
 
-<div class="search-container">
-    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button">
-        <span class="material-icons-sharp">search</span> Go
-    </button>
-    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+<!------------ MAIN CONTENT ---------------->
+<div class="main-header">
+    <strong><h1>Messages</h1></strong>
 </div>
+<span class="subHeader">Authorisation queue</span>
 
-<div class="main-content">
-    <div class="back-nav">
-        <a href="Accounts.html">
-            <span class="material-icons-sharp">arrow_back</span>
-            Account details
-        </a>
-    </div>
-
-    <div class="account-box">
-        <div class="account-info-row">
-            <div class="info-item">
-                <span class="info-label">Account type:</span>
-                <span class="info-value">Transact</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Account number:</span>
-                <span class="info-value">1052 2626 43</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Current balance:</span>
-                <span class="info-value negative">- R154.21</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Available balance:</span>
-                <span class="info-value">R0.00</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">Status:</span>
-                <span class="info-value">Open</span>
-            </div>
-        </div>
-        <div class="manage-btn-container" style="position: relative;">
-            <button class="manage-btn">
-                Manage Account
-                <select>
-                    <option>Manage Account</option>
-                    <option>Set account Authorization</option>
-                    <option>Edit account nickname</option>
-                </select>
-            </button>
-
-            <div class="details-hover">
-                <h4>Account Management Options</h4>
-                <p><strong>Set account Authorization:</strong> Configure who can access and transact on this account.</p>
-                <p><strong>Edit account nickname:</strong> Change how this account appears in your banking view.</p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="tabs">
-        <button id="btn-transactions"><div class="tab active">Transactions</div></button>
-        <button id="btn-payment-history"> <div class="tab">Payment history</div></button>
-        <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
-        <button id="btn-account-information"><div class="tab">Account information</div></button>
-    </div>
-
-    <div class="controls">
-        <input type="text" placeholder="Search transactions">
-        <input type="date">
-        <select>
-            <option>Filter history by</option>
-        </select>
-        <select>
-            <option>Transaction type</option>
-        </select>
-        <button class="download-btn">Download</button>
-    </div>
-
+<div class="mainContent"></div>
     <div class="info-banner">
         <span class="material-icons-sharp">info</span>
-        Choose a date range of up to 6 months before you download
-    </div>
-    <div id="tab-content">
+        You must approve a message requested before it is sent to a relationship Banker
+</div>
+<div class="contentBody">
         <table class="transaction-table">
             <thead>
-            <tr>
-                <th>Date</th>
-                <th>Transaction Type</th>
-                <th>Reference</th>
-                <th>Amount</th>
-                <th>Fees</th>
-                <th>Balance</th>
-            </tr>
+                <tr>
+                    <Strong><th>Date and time</th></Strong>
+                    <Strong><th>For Account</th></Strong>
+                    <Strong><th>Created By</th></Strong>
+                    <Strong><th>1st authorizer</th></Strong>
+                    <Strong><th>2nd authorizer</th></Strong>
+                </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>30 April 2025</td>
-                <td>Debit</td>
-                <td>Month S/Fee</td>
-                <td class="positive">R0.00</td>
-                <td class="negative">- R50.00</td>
-                <td class="negative">- R154.21</td>
-            </tr>
-            <tr>
-                <td>30 April 2025</td>
-                <td>Debit</td>
-                <td>Debit Interest - System Generated</td>
-                <td class="negative">- R1.86</td>
-                <td>R0.00</td>
-                <td class="negative">- R104.21</td>
-            </tr>
-            </tbody>
-        </table></div>
+        </table>
+    </div>
 </div>
-<script src="Transfer.js"></script>
-<script src="Apps.js"></script>
-<script src="Combined.js"></script>
-<script src="Computer%20Automation.js"></script>
+
+    <img class="messageIcon" src="messages.svg">
+    <h3>No outstanding authorisations<h4>
+    <p>You'll find the messages that need authorisation here</p>
+
 </body>
-</html>
