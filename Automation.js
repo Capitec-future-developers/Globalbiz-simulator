@@ -58,30 +58,38 @@ const automationCommands = {
     }
 };
 
+// Automation state management
+let automationState = {
+    isPaused: false,
+    currentStepIndex: 0,
+    currentSteps: [],
+    currentCommand: ''
+};
+
 // Initialize automation system
 function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
 
     if (searchInput && executeBtn) {
-        // Show suggestions when typing
+// Show suggestions when typing
         searchInput.addEventListener('input', function() {
             showCommandSuggestions(this.value);
         });
 
-        // Execute command on button click
+// Execute command on button click
         executeBtn.addEventListener('click', function() {
             executeCommand(searchInput.value);
         });
 
-        // Also execute on Enter key
+// Also execute on Enter key
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 executeCommand(this.value);
             }
         });
 
-        // Hide suggestions when clicking outside
+// Hide suggestions when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.search-container')) {
                 const dropdown = document.getElementById('suggestions-dropdown');
@@ -90,8 +98,59 @@ function initAutomationSystem() {
         });
     }
 
-    // Check for pending automation on page load
+// Set up control buttons
+    const pauseBtn = document.getElementById('pause-btn');
+    const playBtn = document.getElementById('play-btn');
+    const rewindBtn = document.getElementById('rewind-btn');
+    const forwardBtn = document.getElementById('forward-btn');
+
+    if (pauseBtn) pauseBtn.addEventListener('click', pauseAutomation);
+    if (playBtn) playBtn.addEventListener('click', resumeAutomation);
+    if (rewindBtn) rewindBtn.addEventListener('click', rewindAutomation);
+    if (forwardBtn) forwardBtn.addEventListener('click', forwardAutomation);
+
+// Check for pending automation on page load
     checkForPendingAutomation();
+}
+
+function pauseAutomation() {
+    automationState.isPaused = true;
+    const pauseBtn = document.getElementById('pause-btn');
+    const playBtn = document.getElementById('play-btn');
+    if (pauseBtn) pauseBtn.style.display = 'none';
+    if (playBtn) playBtn.style.display = 'inline';
+    updateTranscript('Automation paused');
+}
+
+function resumeAutomation() {
+    if (!automationState.isPaused) return;
+    automationState.isPaused = false;
+    const pauseBtn = document.getElementById('pause-btn');
+    const playBtn = document.getElementById('play-btn');
+    if (pauseBtn) pauseBtn.style.display = 'inline';
+    if (playBtn) playBtn.style.display = 'none';
+    updateTranscript('Resuming automation...');
+    executeNextStep();
+}
+
+function rewindAutomation() {
+    if (automationState.currentStepIndex > 0) {
+        automationState.currentStepIndex--;
+        updateTranscript(`Rewinding to step ${automationState.currentStepIndex + 1}`);
+        if (!automationState.isPaused) {
+            runAutomationSteps(automationState.currentSteps.slice(automationState.currentStepIndex), automationState.currentCommand);
+        }
+    }
+}
+
+function forwardAutomation() {
+    if (automationState.currentStepIndex < automationState.currentSteps.length - 1) {
+        automationState.currentStepIndex++;
+        updateTranscript(`Fast forwarding to step ${automationState.currentStepIndex + 1}`);
+        if (!automationState.isPaused) {
+            runAutomationSteps(automationState.currentSteps.slice(automationState.currentStepIndex), automationState.currentCommand);
+        }
+    }
 }
 
 // Check if there's a pending automation to continue
@@ -102,10 +161,9 @@ function checkForPendingAutomation() {
             const { command, stepIndex } = JSON.parse(pendingAutomation);
             const commandObj = automationCommands[command];
             if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
-                // Continue from the next step
                 setTimeout(() => {
                     runAutomationSteps(commandObj.steps.slice(stepIndex), command);
-                }, 1000); // Give the page time to load
+                }, 1000);
             }
         } catch (e) {
             console.error('Error parsing pending automation:', e);
@@ -134,7 +192,6 @@ function showCommandSuggestions(input) {
             const item = document.createElement('div');
             item.className = 'suggestion-item';
 
-            // Highlight matching part of the text
             const matchIndex = match.toLowerCase().indexOf(input.toLowerCase());
             if (matchIndex >= 0) {
                 const before = match.substring(0, matchIndex);
@@ -142,22 +199,25 @@ function showCommandSuggestions(input) {
                 const after = match.substring(matchIndex + input.length);
 
                 item.innerHTML = `
-                    <div class="suggestion-title">
-                        ${before}<strong>${matched}</strong>${after}
-                    </div>
-                    <div class="suggestion-description">${command.description}</div>
-                `;
+<div class="suggestion-title">
+${before}<strong>${matched}</strong>${after}
+</div>
+<div class="suggestion-description">${command.description}</div>
+`;
             } else {
                 item.innerHTML = `
-                    <div class="suggestion-title">${match}</div>
-                    <div class="suggestion-description">${command.description}</div>
-                `;
+<div class="suggestion-title">${match}</div>
+<div class="suggestion-description">${command.description}</div>
+`;
             }
 
             item.addEventListener('click', () => {
-                document.getElementById('automation-search').value = match;
-                dropdown.style.display = 'none';
-                executeCommand(match);
+                const searchInput = document.getElementById('automation-search');
+                if (searchInput) {
+                    searchInput.value = match;
+                    dropdown.style.display = 'none';
+                    executeCommand(match);
+                }
             });
             dropdown.appendChild(item);
         });
@@ -171,7 +231,8 @@ function createSuggestionsDropdown() {
     const dropdown = document.createElement('div');
     dropdown.id = 'suggestions-dropdown';
     dropdown.className = 'suggestions-dropdown';
-    document.querySelector('.search-container').appendChild(dropdown);
+    const container = document.querySelector('.search-container');
+    if (container) container.appendChild(dropdown);
     return dropdown;
 }
 
@@ -179,18 +240,14 @@ function createSuggestionsDropdown() {
 function executeCommand(commandText) {
     if (!commandText) return;
 
-    // Clear any existing highlights
     clearHighlights();
 
-    // Find the best matching command
     const normalizedInput = commandText.toLowerCase().trim();
     let bestMatch = null;
     let bestScore = 0;
 
-    // Enhanced matching algorithm
     Object.keys(automationCommands).forEach(cmd => {
         const cmdLower = cmd.toLowerCase();
-        // Score based on how much of the command matches the input
         const score = calculateMatchScore(normalizedInput, cmdLower);
         if (score > bestScore) {
             bestMatch = cmd;
@@ -207,18 +264,11 @@ function executeCommand(commandText) {
     }
 }
 
-// Calculate match score between input and command
 function calculateMatchScore(input, command) {
-    // Exact match gets highest score
     if (input === command) return 100;
-
-    // Contains the full command
     if (input.includes(command)) return 90;
-
-    // Command contains the input
     if (command.includes(input)) return 80;
 
-    // Calculate percentage of matching words
     const inputWords = input.split(/\s+/);
     const commandWords = command.split(/\s+/);
     const matchingWords = inputWords.filter(word =>
@@ -232,7 +282,13 @@ function calculateMatchScore(input, command) {
 function runAutomationSteps(steps, commandName) {
     if (!steps || steps.length === 0) return;
 
-    // Disable search during automation
+    automationState = {
+        isPaused: false,
+        currentStepIndex: 0,
+        currentSteps: steps,
+        currentCommand: commandName
+    };
+
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
     if (searchInput && executeBtn) {
@@ -240,68 +296,53 @@ function runAutomationSteps(steps, commandName) {
         executeBtn.disabled = true;
     }
 
-    // Show feedback message
     showFeedbackMessage("Automation in progress...", 'info');
-
-    // Create transcript container
-    const transcriptContainer = document.createElement('div');
-    transcriptContainer.id = 'automation-transcript';
-    transcriptContainer.style.position = 'fixed';
-    transcriptContainer.style.bottom = '20px';
-    transcriptContainer.style.right = '20px';
-    transcriptContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
-    transcriptContainer.style.color = 'white';
-    transcriptContainer.style.padding = '10px';
-    transcriptContainer.style.borderRadius = '5px';
-    transcriptContainer.style.maxWidth = '300px';
-    transcriptContainer.style.zIndex = '10000';
-    document.body.appendChild(transcriptContainer);
-
-    // Execute steps with delay between them
-    let stepIndex = 0;
-
-    function executeNextStep() {
-        if (stepIndex >= steps.length) {
-            // Automation complete
-            showFeedbackMessage("Automation completed successfully!", 'success');
-            sessionStorage.removeItem('pendingAutomation');
-
-            // Re-enable search
-            if (searchInput && executeBtn) {
-                searchInput.disabled = false;
-                executeBtn.disabled = false;
-                searchInput.focus();
-            }
-
-            // Remove transcript after delay
-            setTimeout(() => {
-                if (transcriptContainer) transcriptContainer.remove();
-            }, 5000);
-            return;
-        }
-
-        const step = steps[stepIndex];
-        updateTranscript(`Executing step ${stepIndex + 1}: ${getStepDescription(step)}`);
-
-        // Save the current state before executing the step
-        sessionStorage.setItem('pendingAutomation', JSON.stringify({
-            command: commandName,
-            stepIndex: stepIndex
-        }));
-
-        executeStep(step, () => {
-            stepIndex++;
-            setTimeout(executeNextStep, automationConfig.stepDelay);
-        });
-    }
+    updateTranscript(`Starting automation: ${commandName}`);
 
     executeNextStep();
 }
 
-// Update the transcript
+function executeNextStep() {
+    const { currentStepIndex, currentSteps, currentCommand } = automationState;
+
+    if (currentStepIndex >= currentSteps.length) {
+        showFeedbackMessage("Automation completed successfully!", 'success');
+        sessionStorage.removeItem('pendingAutomation');
+
+        const searchInput = document.getElementById('automation-search');
+        const executeBtn = document.getElementById('execute-automation');
+        if (searchInput && executeBtn) {
+            searchInput.disabled = false;
+            executeBtn.disabled = false;
+            searchInput.focus();
+        }
+
+        const transcript = document.getElementById('automation-transcript');
+        if (transcript) {
+            setTimeout(() => transcript.remove(), 5000);
+        }
+        return;
+    }
+
+    if (automationState.isPaused) return;
+
+    const step = currentSteps[currentStepIndex];
+    updateTranscript(`Executing step ${currentStepIndex + 1}: ${getStepDescription(step)}`);
+    sessionStorage.setItem('pendingAutomation', JSON.stringify({
+        command: currentCommand,
+        stepIndex: currentStepIndex
+    }));
+
+    executeStep(step, () => {
+        automationState.currentStepIndex++;
+        setTimeout(executeNextStep, automationConfig.stepDelay);
+    });
+}
+
 function updateTranscript(message) {
-    const transcriptContainer = document.getElementById('automation-transcript') || document.createElement('div');
-    if (!transcriptContainer.id) {
+    let transcriptContainer = document.getElementById('automation-transcript');
+    if (!transcriptContainer) {
+        transcriptContainer = document.createElement('div');
         transcriptContainer.id = 'automation-transcript';
         transcriptContainer.style.position = 'fixed';
         transcriptContainer.style.bottom = '20px';
@@ -322,63 +363,42 @@ function updateTranscript(message) {
     entry.style.paddingBottom = '5px';
     transcriptContainer.insertBefore(entry, transcriptContainer.firstChild);
 
-    // Keep only the last 5 messages
     while (transcriptContainer.children.length > 5) {
         transcriptContainer.removeChild(transcriptContainer.lastChild);
     }
 }
 
-// Get a human-readable description of a step
 function getStepDescription(step) {
     switch(step.action) {
-        case 'click':
-            return `Clicking element: ${step.selector}`;
-        case 'wait':
-            return `Waiting for ${step.duration}ms`;
-        case 'navigate':
-            return `Navigating to: ${step.url}`;
-        default:
-            return `Performing action: ${step.action}`;
+        case 'click': return `Clicking element: ${step.selector}`;
+        case 'wait': return `Waiting for ${step.duration}ms`;
+        case 'navigate': return `Navigating to: ${step.url}`;
+        default: return `Performing action: ${step.action}`;
     }
 }
 
-// Clear all highlights
 function clearHighlights() {
     const highlighter = document.getElementById('automation-highlighter');
-    if (highlighter) {
-        highlighter.style.opacity = '0';
-    }
+    if (highlighter) highlighter.style.opacity = '0';
     document.querySelectorAll('.automation-target').forEach(el => {
         el.classList.remove('automation-target');
     });
 }
 
-// Execute a single automation step
 function executeStep(step, callback) {
     switch(step.action) {
         case 'click':
             const element = document.querySelector(step.selector);
             if (element) {
-                // Highlight the element
                 highlightElement(element, 'default');
-
-                // Add temporary class to element
                 element.classList.add('automation-target');
-
-                // Scroll element into view if needed
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                // Click after a brief pause to make highlight visible
                 setTimeout(() => {
-                    // Change to success color just before clicking
                     highlightElement(element, 'success');
-
-                    // Perform the click
                     element.click();
-                    console.log(`Clicked: ${step.selector}`);
                     updateTranscript(`Clicked: ${step.selector}`);
 
-                    // Remove highlight after duration
                     setTimeout(() => {
                         element.classList.remove('automation-target');
                         clearHighlights();
@@ -386,7 +406,6 @@ function executeStep(step, callback) {
                     }, automationConfig.highlightDuration);
                 }, 500);
             } else {
-                console.warn(`Element not found: ${step.selector}`);
                 updateTranscript(`Error: Element not found - ${step.selector}`);
                 showFeedbackMessage(`Element not found: ${step.selector}`, 'error');
                 if (callback) callback();
@@ -395,14 +414,11 @@ function executeStep(step, callback) {
 
         case 'wait':
             updateTranscript(`Waiting for ${step.duration}ms`);
-            setTimeout(() => {
-                if (callback) callback();
-            }, step.duration);
+            setTimeout(callback, step.duration);
             break;
 
         case 'navigate':
             updateTranscript(`Navigating to: ${step.url}`);
-            // Highlight the whole viewport before navigating
             highlightElement(document.documentElement, 'warning');
             setTimeout(() => {
                 window.location.href = step.url;
@@ -410,44 +426,39 @@ function executeStep(step, callback) {
             break;
 
         default:
-            console.warn(`Unknown action: ${step.action}`);
             updateTranscript(`Unknown action: ${step.action}`);
             if (callback) callback();
     }
 }
 
-// Position and show highlighter around an element
 function highlightElement(element, status = 'default') {
     if (!element || !element.getBoundingClientRect) return;
 
-    const highlighter = document.getElementById('automation-highlighter') || createHighlighter();
+    let highlighter = document.getElementById('automation-highlighter');
+    if (!highlighter) highlighter = createHighlighter();
+
     const rect = element.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    // Set highlighter position and size
     highlighter.style.width = `${rect.width}px`;
     highlighter.style.height = `${rect.height}px`;
     highlighter.style.top = `${rect.top + scrollTop}px`;
     highlighter.style.left = `${rect.left + scrollLeft}px`;
     highlighter.style.borderRadius = window.getComputedStyle(element).borderRadius;
 
-    // Set color based on status
     const colors = {
-        default: 'rgba(65, 131, 215, 0.7)',    // Blue
-        success: 'rgba(46, 204, 113, 0.7)',     // Green
-        warning: 'rgba(241, 196, 15, 0.7)',     // Yellow
-        error: 'rgba(231, 76, 60, 0.7)'         // Red
+        default: 'rgba(65, 131, 215, 0.7)',
+        success: 'rgba(46, 204, 113, 0.7)',
+        warning: 'rgba(241, 196, 15, 0.7)',
+        error: 'rgba(231, 76, 60, 0.7)'
     };
 
     highlighter.style.boxShadow = `0 0 0 4px ${colors[status] || colors.default}`;
     highlighter.style.opacity = '1';
     highlighter.style.transition = 'all 0.3s ease';
-
-    return highlighter;
 }
 
-// Create highlighter element
 function createHighlighter() {
     const highlighter = document.createElement('div');
     highlighter.id = 'automation-highlighter';
@@ -462,7 +473,6 @@ function createHighlighter() {
     return highlighter;
 }
 
-// Show feedback message
 function showFeedbackMessage(message, type) {
     let feedback = document.getElementById('automation-feedback');
     if (!feedback) {
@@ -474,18 +484,11 @@ function showFeedbackMessage(message, type) {
     feedback.textContent = message;
     feedback.className = `feedback-message feedback-${type}`;
 
-    // Auto-hide after 3 seconds
     setTimeout(() => {
         feedback.style.opacity = '0';
         setTimeout(() => feedback.remove(), 500);
     }, 3000);
 }
 
-// Initialize the automation system when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Create highlighter element on startup
-    createHighlighter();
-
-    // Initialize automation system
-    initAutomationSystem();
-});
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initAutomationSystem);

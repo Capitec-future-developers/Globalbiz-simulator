@@ -1,43 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Phone2.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="profile.jpg">
-    <title>iPhone with White LCD</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iPhone with Chatbot</title>
+    <link rel="stylesheet" href="Phone2.css" />
+    <link rel="stylesheet" href="chatbot.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="profile.jpg" />
 </head>
-<body>
+<body class="show-chatbot">
 
 <div class="search-container">
-    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
     <button id="execute-automation" class="search-button">
         <span class="material-icons-sharp">search</span> Go
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
+
 <div class="iphone">
     <div class="volume-buttons">
         <div class="volume-up"></div>
         <div class="volume-down"></div>
     </div>
     <div class="power-button"></div>
+
     <div class="screen">
         <div class="notch"></div>
         <div class="screen-content">
+
+            <!-- Header -->
             <div class="head">
                 <div class="arrow" id="sidebarToggle">
                     <span class="material-icons-sharp" id="menuIcon">menu</span>
                 </div>
                 <div class="header">GlobalBiz</div>
                 <a href="#contact" id="profile-link">
-
-                    <div class="om-circle">OM</div> <!-- Added OM circle here -->
-
+                    <div class="om-circle">OM</div>
                 </a>
             </div>
-            <!-- Popup HTML -->
+
+            <!-- Chatbot Toggle Button -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+
+            <!-- Chatbot Inside Phone -->
+            <div class="chatbot">
+                <header>
+                    <h2>Chatbot</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Hello, how can I assist you today?</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
+            <!-- Profile Popup -->
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a href="Profile-info.html">
@@ -58,47 +87,41 @@
                 <a href="#" class="manage-business">Manage business profile</a>
             </div>
 
-            <!-- Sidebar Navigation -->
+            <!-- Sidebar -->
+
             <div class="sidebar" id="sidebar">
                 <a href="home_page.html" class="active">
-                    <span class="material-icons-sharp">home</span>
-                    Home
+                    <span class="material-icons-sharp">home</span> Home
                 </a>
                 <p class="side">MANAGEMENT</p>
                 <a href="authorisations.html">
-                    <span class="material-icons-sharp">check_box</span>
-                    Authorisations
+                    <span class="material-icons-sharp">check_box</span> Authorisations
                 </a>
                 <p class="side">SERVICES</p>
                 <a href="products.html">
-                    <span class="material-icons-sharp">shopping_cart</span>
-                    Products & Services
+                    <span class="material-icons-sharp">shopping_cart</span> Products & Services
                 </a>
                 <a href="efiling.html">
-                    <span class="material-icons-sharp">radio_button_unchecked</span>
-                    SARS eFILLING
+                    <span class="material-icons-sharp">radio_button_unchecked</span> SARS eFILLIN
                 </a>
                 <a href="documents.html">
-                    <span class="material-icons-sharp">description</span>
-                    Documents
+                    <span class="material-icons-sharp">description</span> Documents
                 </a>
                 <a href="Phone-settings.html">
-                    <span class="material-icons-sharp">settings</span>
-                    Settings
+                    <span class="material-icons-sharp">settings</span> Settings
                 </a>
                 <a href="Phone.html" class="signout">
-                    <span class="material-icons-sharp">lock</span>
-                    Sign Out
+                    <span class="material-icons-sharp">lock</span> Sign Out
                 </a>
             </div>
 
-            <!-- Main Content Area -->
+            <!-- Main Content -->
             <div class="content" id="mainContent">
                 <div class="account">
                     <div class="account-header">
                         <h4>Accounts</h4>
                         <a href="Phone accounts.html" class="View">
-                            View All <span class="material-icons-sharp" >chevron_right</span>
+                            View All <span class="material-icons-sharp">chevron_right</span>
                         </a>
                     </div>
                     <div class="box">
@@ -121,34 +144,27 @@
                         <h4>Favourites</h4>
                     </div>
                     <div class="favorites-grid">
-                        <!-- Pay Saved Beneficiary -->
                         <div class="favorite-box">
                             <span class="material-icons-sharp">person</span>
                             <span class="favorite-title">Pay Saved</span>
                         </div>
-
-                        <!-- Pay Once Off Beneficiary -->
                         <div class="favorite-box">
                             <span class="material-icons-sharp">person_add</span>
                             <span class="favorite-title">Pay Once Off</span>
                         </div>
-
-                        <!-- Group/Multiple Payments -->
                         <div class="favorite-box">
                             <span class="material-icons-sharp">groups</span>
                             <span class="favorite-title">Multiple</span>
                         </div>
-
-                        <!-- Transfer Money -->
                         <div class="favorite-box">
-                            <span class="material-icons-sharp">sync_alt</span>
+                            <span class="material-icons-sharp">send</span>
                             <span class="favorite-title">Transfer</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Bottom Navigation -->
+            <!-- Bottom Nav -->
             <div class="bottom-nav">
                 <a href="Phone2.html" class="nav-item active">
                     <span class="nav-icon material-icons-outlined">home</span>
@@ -171,16 +187,24 @@
                     <span>Explore</span>
                 </a>
             </div>
-        </div>
-    </div>
 
 
+        </div> <!-- screen-content -->
+    </div> <!-- screen -->
+    <div class="home-indicator"></div>
+</div> <!-- iphone -->
+<div id="automation-controls" style="margin-top: 10px;">
+    <button id="pause-btn">⏸ Pause</button>
+    <button id="play-btn" style="display:none;">▶ Play</button>
+    <button id="rewind-btn">⏪ Rewind</button>
+    <button id="forward-btn">⏩ Forward</button>
+
 </div>
-<div class="home-indicator"></div>
-</div>
+<!-- Scripts -->
 <script src="Automation.js"></script>
 <script src="App.js"></script>
 <script src="setting.js"></script>
 <script src="phone-settings.js"></script>
+<script src="chatbot.js"></script> <!-- Chatbot script -->
 </body>
 </html>
