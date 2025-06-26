@@ -219,4 +219,10 @@ body:not(.show-chatbot) .chatbot {
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+}
+
+.chat-options li:hover {
+    background-color: #c0c7ff;
+    transition-delay: 0.1s;
 }
