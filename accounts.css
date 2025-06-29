@@ -232,6 +232,7 @@ body {
     align-items: flex-start;
     margin-bottom: 30px;
     position: relative;
+    border-left: 5px solid #0075ff;
 }
 
 .account-info-row {

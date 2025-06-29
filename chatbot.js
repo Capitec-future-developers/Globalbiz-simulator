@@ -6,7 +6,7 @@ const chatbotToggler = document.querySelector('.chatbot-toggler');
 const closeBtn = document.querySelector('.chatbot header span');
 
 let userMessage;
-const API_KEY = ""; // <-- Add your OpenAI API
+const API_KEY = ""; // <-- Add your OpenAI API key here
 
 // Create chat list item
 const createChatLi = (message, className) => {
@@ -19,21 +19,47 @@ const createChatLi = (message, className) => {
     return chatLi;
 };
 
-// Get response (modified to not use API)
+// Get OpenAI response
 const generateResponse = (incomingChatLi) => {
+    const API_URL = "https://api.openai.com/v1/chat/completions";
     const messageElement = incomingChatLi.querySelector("p");
-// Simple response without API call
-    messageElement.innerHTML = `
-    Hi! Let me know how I can help you:
-    <ul class="chat-options">
-        <li>✅ Assist with beneficiaries</li>
-        <li>💸 Make a payment</li>
-        <li>📄 Download statements</li>
-    </ul>
-`;
 
-// Scroll to bottom
-    chatbox.scrollTo(0, chatbox.scrollHeight);
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "user", content: userMessage }
+            ]
+        })
+    };
+
+    fetch(API_URL, requestOptions)
+        .then(res => {
+            if (res.status === 429) {
+                messageElement.textContent = "Too many requests - please slow down.";
+                throw new Error("Rate limit exceeded");
+            }
+            return res.json();
+        })
+        .then(data => {
+            if (data && data.choices && data.choices[0]) {
+                messageElement.textContent = data.choices[0].message.content;
+            } else {
+                messageElement.textContent = "No response from server.";
+            }
+        })
+        .catch((error) => {
+            if (error.message !== "Rate limit exceeded") {
+                messageElement.textContent = "Oops something went wrong!";
+            }
+            console.error(error);
+        })
+        .finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
 };
 
 // Send user message
@@ -65,6 +91,3 @@ chatbotToggler.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     body.classList.remove('show-chatbot');
 });
-
-// Remove the show-chatbot class from body initially
-body.classList.remove('show-chatbot');
