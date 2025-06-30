@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messages | Capitec Bank</title>
-    <link rel="stylesheet" href="messages.css">
+    <title>Beneficiaries | Capitec Bank</title>
+    <link rel="stylesheet" href="Beneficiaries.css">
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
@@ -127,36 +127,40 @@
     </a>
 </div>
 
-<!------------ MAIN CONTENT ---------------->
+<!------------ HEADER SECTION ---------------->
 <div class="main-header">
-    <strong><h1>Messages</h1></strong>
+    <strong><h1>Beneficiaries</h1></strong>
 </div>
-<span class="subHeader">Authorisation queue</span>
+    <p>Authorisation queue</p>
 
-<div class="mainContent"></div>
-    <div class="info-banner">
-        <span class="material-icons-sharp">info</span>
-        You must approve a message requested before it is sent to a relationship Banker
+<!--- BENEFICIARY SEARCH AND FILTER SECTION ------>
+<div class="searchInput">
+    <input type="text" placeholder="Search">
+
+        <select id="beneficiaryStatus">
+            <option>Beneficiary status</option>
+            <option>New</option>
+            <option>Updated</option>
+            <option>Deleted</option>
+        </select>
 </div>
-<div class="contentBody">
-        <table class="transaction-table">
-            <thead>
-                <tr>
-                    <Strong><th>Date and time</th></Strong>
-                    <Strong><th>For Account</th></Strong>
-                    <Strong><th>Created By</th></Strong>
-                    <Strong><th>1st authorizer</th></Strong>
-                    <Strong><th>2nd authorizer</th></Strong>
+
+        <div class="contentBody">
+            <table class="transaction-table">
+                <thead>
+                    <tr>
+                    <Strong><th>Beneficiary name</th></Strong>
+                    <Strong><th>Beneficiary reference</th></Strong>
+                    <Strong><th>Account number</th></Strong>
+                    <Strong><th>Beneficiary status</th></Strong>
+                    <Strong><th>Created date</th></Strong>
+                    <Strong><th>Created by</th></Strong>
+                    <Strong><th>Authorizations due</th></Strong>
+                    <Strong><th>Actions</th></Strong>
                 </tr>
             </thead>
         </table>
     </div>
-</div>
-
-    <img class="messageIcon" src="messages.svg">
-    <h3>No outstanding authorisations<h4>
-    <p>You'll find the messages that need authorisation here</p>
-
 </body>
 
 <script>
