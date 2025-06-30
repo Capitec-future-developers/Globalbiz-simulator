@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Computer.css">
+    <link rel="stylesheet" href="chatbot-computer.css">
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <title>Computer</title>
@@ -20,20 +21,31 @@
     <div class="business">Business</div>
 
     <div class="header-right">
-        <a href="#home" id="banker-link">
-            <span class="material-icons-sharp">contact_support</span>
+        <!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp">mode_comment</span>
+            <span class="material-icons-sharp">close</span>
+        </button>
             banker
-        </a>
 
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
 
-        <!-- Popup -->
-        <div id="banker-popup" class="popup">
-            <span class="close-btn" id="close-popup">&times;</span>
-            <h5>By engaging, you consent to sharing information with a Capitec Business representative, including screen sharing for technical support and understanding that the session may be monitore or recorded for quality  assurance. To decline, Click "X" at the bottom right. </h5>
-            <button class="popup-btn">Audio</button>
-            <button class="popup-btn">Phone</button>
-            <button class="popup-btn">Chat</button>
-        </div>
 
 
         <div class="profile-container">
@@ -114,28 +126,28 @@
             <a href="messages.html">Messages</a>
         </div>
     </div>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
         <span class="material-icons-sharp">groups</span>
         User management
     </a>
     <p class="side">SERVICES</p>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
         <span class="material-icons-sharp">shopping_cart</span>
         Products & Services
     </a>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
         <span class="material-icons-sharp">radio_button_unchecked</span>
         SARS eFILLING
     </a>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
         <span class="material-icons-sharp">chat</span>
         Secure Messages
     </a>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
         <span class="material-icons-sharp">description</span>
         Documents
     </a>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
         <span class="material-icons-sharp">settings</span>
         Settings
     </a>
@@ -266,7 +278,7 @@
 </div>
 </div>
 
-
+<script src="chatbot.js"></script>
 <script src="Transfer.js"></script>
 <script src="Combined.js"></script>
 <script src="computer automation.js"></script>
