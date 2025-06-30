@@ -1,86 +1,65 @@
-// card-navigation.js
-document.addEventListener('DOMContentLoaded', function () {
-    const navigationStack = [];
-    const cardDetails = document.getElementById('Cards-Content');
+// Navigation Stack and Card Details LogicAdd commentMore actions
+const navigationStack = [];
+const cardDetails = document.getElementById('Cards-Content');
 
-    // Initial view
-    navigationStack.push('cards');
+function navigateBack() {
+    if (navigationStack.length > 1) {
+        navigationStack.pop(); // Remove current view
+        const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous view
 
-    // Back navigation function
-    function navigateBack() {
-        if (navigationStack.length > 1) {
-            navigationStack.pop(); // Remove current view
-            const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous
-
-            if (previousView === 'cards') {
-                resetToMainView();
-            } else if (previousView === 'Cards-section') {
-                showCardsSection();
-            }
-        } else {
+        if (previousView === 'cards') {
             resetToMainView();
+        } else if (previousView === 'Cards-section') {
+            showCardsSection();
         }
+    } else {
+        resetToMainView(); // If stack is empty or only one, go home
     }
+}
 
-    // Return to main card list
-    function resetToMainView() {
-        window.location.href = 'Cards.html';
-    }
+function resetToMainView() {
+    // Redirect to real Cards.html page
+    window.location.href = 'Cards.html';
+}
 
-    // Show detailed virtual card section
-    function showCardsSection() {
-        navigationStack.push('Cards-section');
-        cardDetails.innerHTML = `
-     <div class="card-details" style="margin-top: 100px;">
-
-  <div class="header-card">
-  <a href="Cards.html" class="back" style="margin-left: -10px; color: #1e88e5; bottom: 20px;">
-  <span class="material-icons-sharp">arrow_back</span>
-  </a>
-<h2 style="margin-left: 40px;">Card Details</h2>
-  </div>
-  <div class="divider"></div>
-<div class="container">
-  <!-- Card Image Section -->
-  <div class="card-section">
-    <img src="virtuale.png" alt="Debit Card" class="card-img" style="height: 250px; width: 150px; gap: 10px;">
-  </div>
-
-  <!-- Card Info Section -->
-  <div class="details-section">
-    <div class="info"><strong>Company name:</strong> Kodi Banks</div>
-    <div class="info"><span class="status">Active</span></div>
-    <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3704</div>
-    <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
-    <div class="info"><strong>Card expiry date:</strong> 12/28</div>
-  </div>
-
-  <!-- Action Buttons Section -->
-  <div class="actions">
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">no_sim</span>
-      Pause or Stop Card
-    </a>
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">remove_red_eye</span>
-      Update Card Limits
-    </a>
-   
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">credit_card</span>
-      View Card Details
-    </a>
-  
-  </div>
-</div>
-</div>
+function showCardsSection() {
+    navigationStack.push('Cards-section');
+    cardDetails.innerHTML = `
+      <div class="card-details" style="margin-top: 100px;">
+        <div class="header-card">
+          <a href="#" onclick="navigateBack()" class="back" style="margin-left: -10px; color: #1e88e5;">
+            <span class="material-icons-sharp">arrow_back</span>
+          </a>
+          <h2 style="margin-left: 40px;">Virtual Card Details</h2>
+        </div>
+        <div class="divider"></div>
+        <div class="container">
+          <div class="card-section">
+            <img src="virtuale.png" alt="Debit Card" class="card-img" style="height: 250px; width: 150px;">
+          </div>
+          <div class="details-section">
+            <div class="info"><strong>Company name:</strong> Kodi Banks</div>
+            <div class="info"><span class="status">Active</span></div>
+            <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3734</div>
+            <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
+            <div class="info"><strong>Card expiry date:</strong> 12/28</div>
+          </div>
+          <div class="actions">
+            <a href="#" class="action-btn"><span class="material-icons-sharp">no_sim</span>Pause or Stop Card</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp">remove_red_eye</span>Update Card Limits</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp">credit_card</span>View Card Details</a>
+          </div>
+        </div>
+      </div>
     `;
-    }
+}
 
-    // Assign click event to view buttons
+document.addEventListener('DOMContentLoaded', function() {
+    navigationStack.push('cards'); // Set the initial view in the stack
+
     const viewCards = document.getElementById('view-cards');
     if (viewCards) {
-        viewCards.addEventListener('click', function (e) {
+        viewCards.addEventListener('click', function(e) {
             e.preventDefault();
             showCardsSection();
         });
@@ -88,15 +67,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const viewCardDetails = document.getElementById('viewcarddetails');
     if (viewCardDetails) {
-        viewCardDetails.addEventListener('click', function (e) {
+        viewCardDetails.addEventListener('click', function(e) {
             e.preventDefault();
             showCardsSection();
         });
     }
+});
 
-    // Dropdown toggle for Debit and Virtual Cards
-    window.toggleDropdown = function (id) {
-        const content = document.getElementById(id);
-        content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    };
+// Dropdown Toggle Logic
+function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Add Card Popup Logic
+const addCardBtn = document.querySelector('#Cards-Content .btn');
+const addCardPopup = document.getElementById('addCardPopup');
+const cancelBtn = document.getElementById('cancelAddCard');
+const continueBtn = document.getElementById('continueAddCard');
+
+// Show popup when "Add New Card" button is clicked
+addCardBtn.addEventListener('click', () => {
+    addCardPopup.style.display = 'flex';
+});
+
+// Hide popup when "Cancel" button is clicked
+cancelBtn.addEventListener('click', () => {
+    addCardPopup.style.display = 'none';
+});
+
+// Continue button (you can later add logic to handle selection)
+continueBtn.addEventListener('click', () => {
+    const selectedCard = document.querySelector('input[name="cardType"]:checked');
+    if (selectedCard) {
+        alert('Selected Card Type: ' + selectedCard.value);
+        addCardPopup.style.display = 'none'; // close after selection
+    } else {
+        alert('Please select a card type.');
+    }
 });
