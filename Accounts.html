@@ -4,23 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="accounts.css">
+  <link rel="stylesheet" href="chatbot-computer.css">
   <link rel="icon" type="image/x-icon" href="profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <title>Computer</title>
 </head>
-<div>
-
+<body>
   <div class="header">
     <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
-      <a href="#home">
-        <span class="material-icons-sharp">contact_support</span>
+      <div class="header-right">
+        <!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggler">
+          <span class="material-icons-sharp">mode_comment</span>
+          <span class="material-icons-sharp">close</span>
+        </button>
         banker
-      </a>
-      <div class="profile-container">
+
+        <div class="chatbot">
+          <header>
+            <h2>BIZCHAT</h2>
+            <span class="material-icons-sharp">close</span>
+          </header>
+          <ul class="chatbox">
+            <li class="chat incoming">
+              <span class="material-icons-sharp">account_circle</span>
+              <p>Welcome to Bizchat, how can I assist.</p>
+            </li>
+            <li class="chat outgoing"></li>
+          </ul>
+          <div class="chat-input">
+            <textarea placeholder="Type your message here..." required></textarea>
+            <span id="send-btn" class="material-icons-sharp">send</span>
+          </div>
+        </div>
+
+        <div class="profile-container">
         <a href="#contact" id="profile-link">
           <span class="material-icons-sharp">account_circle</span>
           Omphile Mohlala
@@ -176,9 +198,7 @@
 </div>
 
 </body>
-<script>
-
-</script>
+<script src="chatbot.js"></script>
 <script src="Transfer.js"></script>
 <script src="Apps.js"></script>
 <script src="Combined.js"></script>
