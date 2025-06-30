@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="details-section">
     <div class="info"><strong>Company name:</strong> Kodi Banks</div>
     <div class="info"><span class="status">Active</span></div>
-    <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3734</div>
+    <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3704</div>
     <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
     <div class="info"><strong>Card expiry date:</strong> 12/28</div>
   </div>
