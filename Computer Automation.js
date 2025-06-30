@@ -69,7 +69,7 @@ const automationCommands = {
         ],
         description: 'View Accounts',
         category: 'Accounts',
-        preventReloop: true // Add this flag to prevent re-execution
+        preventReloop: true
     }
 };
 
@@ -107,11 +107,34 @@ function initAutomationSystem() {
             }
         });
     }
+// control buttons
+    const pauseBtn = document.getElementById('pause-automation');
+    const playBtn = document.getElementById('play-automation');
+    const rewindBtn = document.getElementById('rewind-automation');
+    const forwardBtn = document.getElementById('forward-automation');
 
+    if (pauseBtn) pauseBtn.addEventListener('click', pauseAutomation);
+    if (playBtn) playBtn.addEventListener('click', resumeAutomation);
+    if (rewindBtn) rewindBtn.addEventListener('click', rewindAutomation);
     // Check for pending automation on page load
     checkForPendingAutomation();
 }
 
+function pauseAutomation(){
+    automationPaused = true;
+    const pausebtn = document.getElementById('pause-automation');
+    const playbtn = document.getElementById('play-automation');
+    if (pausebtn) pausebtn.style.display = 'none';
+    if (playbtn) playbtn.style.display = 'block';
+    updateTranscript("Automation paused");
+}
+
+function resumeAutomation(){
+    if(automationState.currentStepsIndex > 0){
+        automationState.currentStepIndex--;
+        updateTranscript
+    }
+}
 // Check if there's a pending automation to continue
 function checkForPendingAutomation() {
     const pendingAutomation = sessionStorage.getItem('pendingAutomation');

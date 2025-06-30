@@ -63,7 +63,8 @@ let automationState = {
     isPaused: false,
     currentStepIndex: 0,
     currentSteps: [],
-    currentCommand: ''
+    currentCommand: '',
+    currentTimeout: null
 };
 
 // Initialize automation system
@@ -114,6 +115,10 @@ function initAutomationSystem() {
 }
 
 function pauseAutomation() {
+    if (automationState.currentTimeout) {
+        clearTimeout(automationState.currentTimeout);
+        automationState.currentTimeout = null;
+    }
     automationState.isPaused = true;
     const pauseBtn = document.getElementById('pause-btn');
     const playBtn = document.getElementById('play-btn');
@@ -135,21 +140,55 @@ function resumeAutomation() {
 
 function rewindAutomation() {
     if (automationState.currentStepIndex > 0) {
-        automationState.currentStepIndex--;
-        updateTranscript(`Rewinding to step ${automationState.currentStepIndex + 1}`);
-        if (!automationState.isPaused) {
-            runAutomationSteps(automationState.currentSteps.slice(automationState.currentStepIndex), automationState.currentCommand);
+// Clear any pending timeouts
+        if (automationState.currentTimeout) {
+            clearTimeout(automationState.currentTimeout);
+            automationState.currentTimeout = null;
         }
+
+// Move back one step
+        automationState.currentStepIndex--;
+        updateTranscript(`Rewound to step ${automationState.currentStepIndex + 1}`);
+
+// Restart automation from the new position
+        restartAutomationFromCurrentStep();
+    } else {
+        updateTranscript('Already at the first step');
     }
 }
 
 function forwardAutomation() {
     if (automationState.currentStepIndex < automationState.currentSteps.length - 1) {
-        automationState.currentStepIndex++;
-        updateTranscript(`Fast forwarding to step ${automationState.currentStepIndex + 1}`);
-        if (!automationState.isPaused) {
-            runAutomationSteps(automationState.currentSteps.slice(automationState.currentStepIndex), automationState.currentCommand);
+// Clear any pending timeouts
+        if (automationState.currentTimeout) {
+            clearTimeout(automationState.currentTimeout);
+            automationState.currentTimeout = null;
         }
+
+// Move forward one step
+        automationState.currentStepIndex++;
+        updateTranscript(`Advanced to step ${automationState.currentStepIndex + 1}`);
+
+// Restart automation from the new position
+        restartAutomationFromCurrentStep();
+    } else {
+        updateTranscript('Already at the last step');
+    }
+}
+
+function restartAutomationFromCurrentStep() {
+// Clear any existing highlights
+    clearHighlights();
+
+// Update the pending automation state
+    sessionStorage.setItem('pendingAutomation', JSON.stringify({
+        command: automationState.currentCommand,
+        stepIndex: automationState.currentStepIndex
+    }));
+
+// If automation isn't paused, execute the current step
+    if (!automationState.isPaused) {
+        executeNextStep();
     }
 }
 
@@ -282,11 +321,18 @@ function calculateMatchScore(input, command) {
 function runAutomationSteps(steps, commandName) {
     if (!steps || steps.length === 0) return;
 
+// Clear any existing timeout
+    if (automationState.currentTimeout) {
+        clearTimeout(automationState.currentTimeout);
+        automationState.currentTimeout = null;
+    }
+
     automationState = {
         isPaused: false,
         currentStepIndex: 0,
         currentSteps: steps,
-        currentCommand: commandName
+        currentCommand: commandName,
+        currentTimeout: null
     };
 
     const searchInput = document.getElementById('automation-search');
@@ -335,7 +381,7 @@ function executeNextStep() {
 
     executeStep(step, () => {
         automationState.currentStepIndex++;
-        setTimeout(executeNextStep, automationConfig.stepDelay);
+        automationState.currentTimeout = setTimeout(executeNextStep, automationConfig.stepDelay);
     });
 }
 
@@ -414,7 +460,7 @@ function executeStep(step, callback) {
 
         case 'wait':
             updateTranscript(`Waiting for ${step.duration}ms`);
-            setTimeout(callback, step.duration);
+            automationState.currentTimeout = setTimeout(callback, step.duration);
             break;
 
         case 'navigate':
