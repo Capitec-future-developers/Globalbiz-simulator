@@ -50,11 +50,51 @@ const automationCommands = {
     },
     'go to dashboard': {
         steps: [
+            {action: 'click', selector: '#bottomNav'},
             {action: 'click', selector: '#Home' },
-            { action: 'navigate', url: 'Phone2.html' }
+            { action: 'wait', duration: 1000 },
         ],
         description: 'Return to dashboard',
-        category: 'navigation'
+        category: 'Home'
+    },
+    'go to transaction limit': {
+        steps: [
+            {action: 'click', selector: '#sidebarToggle'},
+            { action: 'wait', duration: 1000 },
+            {action: 'click', selector: '#settings'},
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#Transaction-Limits' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#editlimits' }
+        ],
+        description: 'Go to transaction limit',
+        category: 'transaction limits'
+    },
+    'Add new card': {
+        steps: [
+            {action: 'click', selector: '#bottomNav'},
+            { action: 'wait', duration: 1000 },
+            {action: 'click', selector: '#cards'},
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#Add-Card' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#new-card' }
+        ],
+        description: 'Add new card',
+        category: 'cards'
+    },
+    'Debit card': {
+        steps: [
+            {action: 'click', selector: '#bottomNav'},
+            { action: 'wait', duration: 1000 },
+            {action: 'click', selector: '#cards'},
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#debitToggle' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#debit-card' }
+        ],
+        description: 'Debit card',
+        category: 'cards'
     }
 };
 
