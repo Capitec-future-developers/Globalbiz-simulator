@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {Add commentMore actions
+document.addEventListener('DOMContentLoaded', function() {
 
     // Your tab content data (make sure this is included)
     const tabContentData = {
