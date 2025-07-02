@@ -5,14 +5,19 @@ window.addEventListener('DOMContentLoaded', () => {
     const style = document.createElement('style');
     style.textContent = `
     #document {
+      position: relative;
       width: 100%;
       padding: 30px;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       margin-top: 20px;
+      font-family: 'Segoe UI', sans-serif;
     }
-    h2 {
+    h2 { 
+      position: absolute;
+      top: -210px;
+      left: 10px;
       font-size: 24px;
       margin-bottom: 20px;
       color: #222;
@@ -26,24 +31,38 @@ window.addEventListener('DOMContentLoaded', () => {
       color: #006064;
     }
     .generate-container {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 20px;
+      position: absolute;
+      top: -210px;
+      left: 800px;
+      z-index: 1;
+    }
+    @media (max-width: 1100px) {
+      .generate-container {
+        left: 900px;
+      }
+    }
+    @media (max-width: 900px) {
+      .generate-container {
+        left: 700px;
+      }
     }
     .generate-container button {
       font-weight: bold;
       font-size: 14px;
+      padding: 10px 20px;
+      background: #0288d1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
     .dropdown {
       display: none;
-      position: absolute;
+      margin-top: 5px;
       background: white;
       border: 1px solid #ccc;
-      z-index: 10;
-      margin-top: 5px;
-      width: 260px;
       border-radius: 8px;
-      overflow: hidden;
+      width: 260px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .dropdown select {
@@ -51,6 +70,7 @@ window.addEventListener('DOMContentLoaded', () => {
       padding: 12px;
       border: none;
       font-size: 14px;
+      cursor: pointer;
     }
     .generate-container:hover .dropdown {
       display: block;
@@ -133,6 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
       border: 1px solid #e0e0e0;
       padding: 12px;
       font-size: 14px;
+      text-align: left;
     }
     .doc-table th {
       background: #f5f5f5;
@@ -148,14 +169,15 @@ window.addEventListener('DOMContentLoaded', () => {
       <strong>Note:</strong> Statement not available for accounts open less than 1 month. Visit <b>Accounts</b> and choose an account to see transaction history.
     </div>
     <div class="generate-container">
-      <button class="btn btn-primary">Generate Document</button>
+      <button id="generateBtnOpen" class="btn btn-primary">Generate Document</button>
       <div class="dropdown">
         <select id="docTypeSelect">
           <option value="" disabled selected>Choose document type</option>
           <option>Account Confirmation Letter</option>
-          <option>Settle Quote</option>
-          <option>Stamped Statements</option>
-          <option>IT3b Statements</option>
+          <option>Settlement quote</option>
+          <option>Stamped statements</option>
+          <option>IT3b statements</option>
+          <option>IT3s statements</option>
         </select>
       </div>
     </div>
@@ -163,10 +185,9 @@ window.addEventListener('DOMContentLoaded', () => {
     <div class="popup" id="popup">
       <h3 id="popupHeader"></h3>
       <p>Choose account:</p>
-      <select><option selected>1052 2626 43</option></select>
+      <select><option selected>Kodi Code 1052 2626 43</option></select>
       <p>Amount:</p>
       <input type="text" value="R1000.00" disabled />
-      <br>
       <button class="btn btn-primary" id="generateBtn">Generate</button>
       <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
     </div>
@@ -198,6 +219,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const docTableBody = document.getElementById('docTableBody');
 
     docTypeSelect.addEventListener('change', () => {
+        if (!docTypeSelect.value) return;
         popupHeader.textContent = docTypeSelect.value;
         overlay.style.display = 'block';
         popup.style.display = 'block';
@@ -216,18 +238,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             const now = new Date();
-            const dateStr = now.toLocaleDateString();
+            const dateStr = now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
             const docType = docTypeSelect.value;
 
-            const row = `<tr>
-        <td>${dateStr}</td>
-        <td>${docType}</td>
-        <td>1052 2626 43</td>
-        <td>
-          <button class="btn btn-primary">Download</button>
-          <button class="btn btn-secondary">Email</button>
-        </td>
-      </tr>`;
+            const row = `
+        <tr>
+          <td>${dateStr}</td>
+          <td>${docType}</td>
+          <td>Kodi Code 1052 2626 43</td>
+          <td>
+            <button class="btn btn-primary">Download</button>
+            <button class="btn btn-secondary">Email</button>
+          </td>
+        </tr>
+      `;
 
             docTableBody.innerHTML = row;
             docTable.style.display = 'table';
