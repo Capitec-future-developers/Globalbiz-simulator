@@ -34,10 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
   documentsPage.innerHTML = `
     <style>
       .generate-box {
+      position: absolute;
         padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        background: #f9f9f9;
+        top: 180px;
+        border: 0.5px solid #ccc;
+        background: #FAF9F6;
         margin-top: 20px;
         width: 220px;
       }
@@ -57,9 +58,13 @@ document.addEventListener('DOMContentLoaded', function () {
       .generate-box button:disabled {
         background-color: grey;
       }
+
       .doc-counter {
-        background-color: blue;
+       position: absolute;
+        background-color: #023781;
         color: white;
+        right: 30px;
+        top: 10px;
         border-radius: 50%;
         width: 30px;
         height: 30px;
@@ -67,12 +72,19 @@ document.addEventListener('DOMContentLoaded', function () {
         line-height: 30px;
         font-weight: bold;
       }
-      .document-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 20px;
-      }
+
+     .document-header {
+  position: absolute;
+  top: 65px; /* Adjusted from 40px if header height is ~60px */
+  display: flex;
+  align-items: flex-start; /* Top-aligned text and icon */
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  background: #fff; 
+  z-index: 1; /* Keeps it on top if needed */
+}
       #cancel-btn {
         background-color: white;
         color: blue;

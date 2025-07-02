@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 <!-- Bottom Navigation -->
             <div class="bottom-nav">
-                <a href="Phone2.html" class="nav-item active">
+                <a href="Phone2.html" class="nav-item active" id="Home">
                     <span class="nav-icon material-icons-outlined">home</span>
                     <span>Home</span>
                 </a>
