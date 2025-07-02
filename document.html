@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="phone-settings.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="profile.jpg" />
+  <title>iPhone with White LCD</title>
+</head>
+
+<body>
+  <!-- Search Container -->
+  <div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
+    <button id="execute-automation" class="search-button">
+      <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+  </div>
+
+  <!-- iPhone Wrapper -->
+  <div class="iphone">
+    <!-- Volume and Power Buttons -->
+    <div class="volume-buttons">
+      <div class="volume-up"></div>
+      <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+
+    <!-- Screen -->
+    <div class="screen">
+      <div class="notch"></div>
+      <div class="screen-content">
+        <!-- Header -->
+        <div class="head">
+          <div class="arrow" id="sidebarToggle">
+            <a href="Phone2.html">
+              <span class="material-icons-sharp">arrow_back</span>
+            </a>
+          </div>
+          <div class="header" style="font-size: 15px; right: 10px;">Documents</div>
+          <a href="#profile" id="profile-link"></a>
+        </div>
+
+        <!-- Main Settings Content -->
+        <!-- Main Content (initially hidden if you're only showing documents) -->
+<div class="content" id="mainContent" style="display: none;"></div>
+
+<!-- Documents Page (now shown on load) -->
+<div id="document" class="new-page-container" style="display: flex;"></div>
+
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+          <a href="Phone2.html" class="nav-item active">
+            <span class="nav-icon material-icons-outlined">home</span>
+            <span>Home</span>
+          </a>
+          <a href="Phone%20accounts.html" class="nav-item">
+            <span class="nav-icon material-icons-outlined">storage</span>
+            <span>Accounts</span>
+          </a>
+          <a href="Phone%20Transact.html" class="nav-item" id="transact">
+            <span class="nav-icon material-icons-outlined">sync_alt</span>
+            <span>Transact</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon material-icons-outlined">credit_card</span>
+            <span>Cards</span>
+          </a>
+          <a href="#" class="nav-item">
+            <span class="nav-icon material-icons-outlined">search</span>
+            <span>Explore</span>
+          </a>
+        </div>
+      </div> <!-- screen-content -->
+    </div> <!-- screen -->
+
+    <div class="home-indicator"></div>
+  </div> <!-- iphone -->
+
+  <!-- Scripts -->
+  <script src="Automation.js"></script>
+  <script src="App.js"></script>
+  <script src="phone-settings.js"></script>
+  <script src="chatbot.js"></script>
+  <script src="document.js"></script>
+</body>
+</html>
