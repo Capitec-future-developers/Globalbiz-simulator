@@ -111,8 +111,9 @@ body {
   font-size: 14px;
 }
 
+
 .sidebar a:hover {
-  background: #34495e;
+  background: #4dcefd;
 }
 
 .sidebar .material-icons-sharp {
@@ -176,15 +177,14 @@ body {
 .account {
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  width:1600px;
+   margin-bottom: 40px;
+  width:1500px;
   max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
   margin-left: 290px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
   text-decoration: none;
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .account-header {
@@ -210,36 +210,59 @@ body {
 .box {
   display: flex;
   gap: 35px;
-  flex-wrap: nowrap; /* Prevent wrapping to new line */
+  flex-wrap: nowrap; /* Prevent wrapping */
   width: 100%;
   overflow-x: auto; /* Allows horizontal scrolling if needed */
-  height: 100%;
   padding-bottom: 10px; /* Space for scrollbar if appears */
+
 }
 
 /* Unified box styles */
 .box1, .box2 {
   position: relative;
-  flex: 0 0 280px; /* Fixed width, won't grow or shrink */
+  flex: 0 0 280px; /* Fixed width */
   display: flex;
   align-items: center;
   padding: 15px;
-  background: #f9f9f9;
-  border-radius: 6px;
-  border-left: 4px solid #3498db;
+  border-radius: 1px;
   transition: all 0.3s ease;
   height: 90px;
-  min-width: 280px; /* Ensure minimum width */
+  min-width: 700px;
+  text-decoration: none;
+
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
-/* Visual separator between icon and content */
+a {
+  text-decoration: none;
+  color: #1e88e5;
+}
+
+/* Box specific styles */
+.box1 {
+  background: #f9f9f9;
+  border-left: 4px solid #3498db; /* Light blue border */
+  width: 1200px; /* Increased width */
+  position: relative; /* Required for ::after pseudo-element */
+}
+
+.box2 {
+  background: #ffffff; /* Darker blue */
+  border-left: 4px solid #00264d; /* Even darker blue border */
+  color: #00264d;
+  width: 1200px; /* Increased width */
+  position: relative; /* Required for ::after pseudo-element */
+}
+
+/* Separator inside each box */
 .box1::after, .box2::after {
   content: "";
   position: absolute;
   left: 60px;
-  top: 20px;
-  bottom: 15px;
-  width: 1px;
+  top: 5px;
+  bottom: 8px;
+  width: 2px;
+  height: 80px;
   background-color: #e0e0e0;
 }
 
@@ -248,49 +271,42 @@ body {
   background: #f0f2f5;
 }
 
+.box2:hover {
+  background: #ffffff; /* Slightly lighter on hover for box2 */
+}
+
 /* Icon styles */
 .box1 .material-icons-sharp,
 .box2 .material-icons-sharp {
   font-size: 30px;
-  color: #3498db;
   margin-right: 15px;
-  width: 30px; /* Fixed icon width */
+  width: 30px;
   flex-shrink: 0;
 }
 
-/* Maintain your specific positioning */
-.box2 {
-  margin-left: 250px; /* Maintains your requested spacing */
+.box2 .material-icons-sharp {
+  color: #00264d;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 800px) {
-  .box {
-    gap: 20px;
-    justify-content: space-between;
-  }
-
-  .box1, .box2 {
-    flex: 0 0 calc(50% - 20px); /* Two columns on tablet */
-    margin-left: 0 !important; /* Reset positioning on mobile */
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .box1, .box2 {
-    flex: 0 0 100%; /* Full width on mobile */
-  }
+.box1 .material-icons-sharp {
+  color: #3498db;
 }
 
 .account-details {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 40px;
+  width: 100%;
+}
+
+.account-details > div {
+  display: flex;
   flex-direction: column;
-  margin-left: 15px; /* Space after separator */
 }
 
 .account-name {
   font-weight: 600;
-  margin-bottom: 5px;
   font-size: 14px;
 }
 
@@ -298,12 +314,42 @@ body {
   font-size: 18px;
   font-weight: 700;
 }
+
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .box1, .box2 {
+    width: 100%; /* Make boxes flexible on medium screens */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .box1, .box2 {
+    flex: 0 0 calc(50% - 10px);
+    width: calc(50% - 10px); /* Ensure proper width in flex context */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .box1, .box2 {
+    flex: 0 0 100%;
+    width: 100%; /* Full width on small screens */
+  }
+}
+
 /* Favorites Section */
 .favorites-container {
   background: white;
   padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 2px solid rgba(83, 79, 79, 0.31);
   margin-bottom: 30px;
   width: 100%;
   max-width: 600px;
@@ -346,9 +392,10 @@ body {
   align-items: center;
   padding: 20px;
   background: #f9f9f9;
-  border-radius: 6px;
+
   cursor: pointer;
   transition: all 0.3s ease;
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .favorite-box:hover {
@@ -430,11 +477,19 @@ body {
   }
 }
 
-/* Menu Toggle Button */
 .menu-toggle {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: -30px; /* adjust based on sidebar width */
+  background: #2c3e50;
+  border-radius: 50%;
+  padding: 5px;
+  z-index: 9999;
+  padding-right: 1rem;
   display: none;
   cursor: pointer;
-  margin-right: 15px;
 }
 
 .menu-toggle .material-icons-sharp {
@@ -443,8 +498,13 @@ body {
 }
 
 @media screen and (max-width: 992px) {
-  .menu-toggle {
-    display: block;
+  .sidebar {
+    transform: translateX(-100%); /* Hide off-screen */
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0); /* Slide into view */
   }
 }
 
@@ -502,8 +562,7 @@ body {
 .pending {
   background: white;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border: 2px solid rgba(83, 79, 79, 0.31);
   width: 400px;
   margin-left: 290px;
   margin-right: auto;
@@ -540,11 +599,12 @@ body {
   align-items: center;
   padding: 20px;
   background: #f9f9f9;
-  border-radius: 6px;
+
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   color: inherit; /* This ensures text color is inherited, not blue for links */
+  border: 2px solid rgba(83, 79, 79, 0.31);
 }
 
 .pending-box:hover {
@@ -588,12 +648,12 @@ body {
 .cash-flow {
   background: white;
   padding: 20px;
-  border-radius: 8px;
   margin-bottom: 40px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  margin-left: 290px; /* These two lines will push it to the right */
+  border: 2px solid rgba(83, 79, 79, 0.31);
+  margin-left: 270px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
   position: relative;
+  width: 1620px;
   text-decoration: none;
 }
 
@@ -673,70 +733,97 @@ body {
 .profile-popup {
   display: none;
   position: fixed;
-  top: 80px;
+  top: 70px;
   right: 20px;
   background-color: white;
-  padding: 20px;
+  padding: 0;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
-  width: 300px;
+  width: 280px;
+  border: 1px solid #e0e0e0;
 }
 
 .profile-popup.active {
   display: block;
 }
 
-.popup-header {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}
+ .popup-header {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px;
+  color: #ffffff;
 
+  background-color: #022130;
+}
+popup-header {
+  background-color: #022130;
+}
 .profile-item {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 16px;
   border-bottom: 1px solid #f5f5f5;
 }
 
 .profile-icon {
-  margin-right: 10px;
+  margin-right: 12px;
   color: #5f6368;
+  font-size: 24px;
 }
 
 .profile-info {
   flex-grow: 1;
 }
 
-.profile-name {
+.profile-active {
   font-weight: 500;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
 }
 
-.profile-email {
-  font-size: 12px;
+
+
+.profile-name .a{
+  font-size: 18px;
   color: #5f6368;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .switch-profile {
-  color: #1a73e8;
+  color: #333;
   text-decoration: none;
   font-size: 14px;
-  margin-top: 5px;
-  display: inline-block;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.switch-profile:hover {
+  background-color: #f8f9fa;
+}
+
+.switch-profile .material-icons-sharp {
+  margin-right: 12px;
+  color: #5f6368;
+  font-size: 20px;
 }
 
 .manage-business {
   display: block;
-  margin-top: 15px;
-  color: #1a73e8;
+  color: #333;
   text-decoration: none;
   font-size: 14px;
-  text-align: center;
-  padding: 8px 0;
-  border-top: 1px solid #eee;
+  padding: 12px 16px;
+  border-top: none;
+  text-align: left;
+}
+
+.manage-business:hover {
+  background-color: #f8f9fa;
 }
 
 .overlay {
@@ -754,18 +841,501 @@ body {
   display: block;
 }
 
-@media screen and (max-width: 768px) {
-  .profile-popup {
-    top: 70px;
-    right: 10px;
-    left: auto;
-    transform: none;
-    width: calc(100% - 20px);
-    max-width: 300px;
-  }
 
-  .overlay.active {
-    display: block;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
+.dropdown {
+  position: relative;
 }
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+}
+
+.dropdown-menu {
+  display: none;
+  padding-left: 40px;
+  background-color: rgba(0,0,0,0.02);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 0;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.dropdown.active .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown.active .dropdown-arrow {
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tab styles */
+.tabs button {
+  transition: transform 0.1s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.tabs button.active .tab {
+  font-weight: bold;
+  border-bottom: 2px solid #0075ff;
+  color: #0075ff;
+}
+
+.content-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.content-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.transaction-table th, .transaction-table td {
+  padding: 12px 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.transaction-table th {
+  font-weight: 500;
+  color: #666;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.manage-btn {
+  position: relative;
+  display: inline-block;
+  background: #0075ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.manage-btn:hover {
+  background: #0060cc;
+}
+
+/* Hide the default select arrow */
+.manage-btn select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0; /* Make the select invisible but clickable */
+}
+
+/* Style for the dropdown options */
+.manage-btn select option {
+  color: #333;
+  background: white;
+  padding: 8px 16px;
+}
+
+/* Custom dropdown indicator */
+.manage-btn::after {
+  content: "▼";
+  font-size: 10px;
+  margin-left: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.search-container {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  width: 90%;
+  max-width: 500px;
+}
+
+#automation-search {
+  width: calc(100% - 50px);
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.search-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border: none;
+  background: #007AFF;
+  color: white;
+  border-radius: 0 20px 20px 0;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 10001;
+}
+
+.suggestion-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background: #f5f5f5;
+}
+
+.suggestion-title {
+  font-weight: bold;
+}
+
+.suggestion-description {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.feedback-success { color: green; }
+.feedback-error { color: red; }
+.feedback-info { color: blue; }
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  display: none;
+  padding-left: 40px;
+  background-color: rgba(0,0,0,0.05);
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 0;
+  color: #bdc3c7;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+
+.dropdown-menu a:hover {
+  color: white;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.dropdown.active .dropdown-menu {
+  display: block;
+}
+
+.dropdown.active .dropdown-arrow {
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/ /* Add these styles for the transfer section */
+.transfer-section {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.payment-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.payment-header h2 {
+  margin: 10px 0 5px;
+}
+
+.payment-header p {
+  color: #666;
+  margin: 0;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #0066cc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.submit-payment-btn {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.balance-info {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.payment-processing {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.spinner {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  margin: 0 auto 20px;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #0066cc;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  animation-delay: -1.0s;
+}
+
+@keyframes sk-bounce {
+  0%, 100% { transform: scale(0.0) }
+  50% { transform: scale(1.0) }
+}
+
+.payment-confirmation {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.confirmation-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.confirmation-icon.success {
+  color: #4CAF50;
+}
+
+.confirmation-details {
+  text-align: left;
+  margin: 25px 0;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.done-btn {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 12px;
+  flex: 1;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.secondary-btn {
+  background-color: white;
+  color: #0066cc;
+  border: 1px solid #0066cc;
+  padding: 12px;
+  flex: 1;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000; /* or any color you want */
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#page-transition.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Popup style 2 */
+.popup {
+  display: none; /* hidden by default */
+  position: fixed;
+  top: 650px;
+  right: -60px;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  width: 250px;
+  text-align: center;
+}
+
+/* Close button (X) */
+.close-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Popup buttons */
+.popup-btn {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-btn:hover {
+  background-color: #0056b3;
+}
+
+.right{
+  color: #1e88e5;
+}
+
+

@@ -1,0 +1,30 @@
+
+{
+  "name": "globalbiz-simulator",
+  "version": "1.0.0",
+  "description": "Business Banking Client Viewing Options:",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omphilestudent/Globalbiz-simulator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/omphilestudent/Globalbiz-simulator/issues"
+  },
+  "homepage": "https://github.com/omphilestudent/Globalbiz-simulator#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

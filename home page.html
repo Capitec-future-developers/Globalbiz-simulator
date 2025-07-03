@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,26 +9,79 @@
     <title>Globalbiz</title>
 </head>
 <body>
-    <h1>Globalbiz simulator</h1>
+
+    <img src="globalbiz.jpg" src="header" class="h1" style="width: 100%;">
+
     <p>We are going to create an app simulator for our agents to use when assisting clients</p>
-    
+
     <div class="select">Select an option</div>
-    
+
     <div class="button-group">
         <button id="startBtn" class="button">Get started</button>
-        
+
         <div id="platformOptions" class="platform-options">
             <p>Please select your platform:</p>
             <button class="platform-btn" data-platform="app">Mobile App</button>
             <button class="platform-btn" data-platform="pc">PC Version</button>
         </div>
-        
+
         <div id="proceedBtn" class="get-started-btn">
-            <button class="button">
-                <a href="#" id="proceedLink">Proceed to Simulator</a>
-            </button>
+            <button class="button" id="proceedLink">Proceed to Simulator</button>
+        </div>
+
+        <!-- Loading animation blocks -->
+        <div id="loading" class="loading-animation">
+            <div class="block blue"></div>
+            <div class="block lightblue"></div>
+            <div class="block red"></div>
         </div>
     </div>
-    <script src="option.js"></script>
-   </body>
+    <script>
+        const platformButtons = document.querySelectorAll('[data-platform]');
+        let targetPage = '#'; // this will store the correct page
+
+        if (platformButtons.length > 0) {
+            platformButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const platform = this.getAttribute('data-platform');
+                    const proceedBtn = document.getElementById('proceedBtn');
+                    const platformOptions = document.getElementById('platformOptions');
+
+                    if (proceedBtn && platformOptions) {
+                        if (platform === 'app') {
+                            targetPage = "Phone.html";
+                        } else {
+                            targetPage = "Computer.html";
+                        }
+
+                        proceedBtn.style.display = 'block';
+                        platformOptions.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Proceed button click: show loading then go to the correct page
+        document.getElementById('proceedLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent immediate navigation
+
+            // Show loading animation
+            document.getElementById('loading').style.display = 'flex';
+
+            // Hide the "Proceed to Simulator" button
+            document.getElementById('proceedBtn').style.display = 'none';
+
+            // Redirect after loading animation
+            setTimeout(function() {
+                window.location.href = targetPage; // Go to Phone.html or Computer.html
+            }, 2000);
+        });
+
+    </script>
+
+    <script src="Apps.js"></script>
+    <script src="Combined.js"></script>
+
+</body>
 </html>
+

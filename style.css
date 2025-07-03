@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     margin: 0;
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -14,16 +14,10 @@ body {
 }
 
 h1 {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 20px;
-    color: #333;
-    z-index: 10;
-    width: auto;
-    height: auto;
-    background: transparent;
+
+   position: relative;
+
+    top: 200px;
 }
 
 .select {
@@ -35,13 +29,14 @@ h1 {
 .button-group {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     width: 100%;
     max-width: 300px;
 }
 
-.button, 
+.button,
 .platform-btn {
+    display: block;
     background-color: #0096c7;
     border: none;
     border-radius: 4px;
@@ -53,9 +48,10 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
+    row-gap: 10px;
 }
 
-.button:hover, 
+.button:hover,
 .platform-btn:hover {
     background-color: #0077b6;
 }
@@ -77,6 +73,7 @@ a {
     max-width: 300px;
 }
 
+
 .get-started-btn {
     display: none;
     width: 100%;
@@ -87,6 +84,8 @@ a {
 /* Show elements when active */
 .platform-options.active {
     display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .get-started-btn.active {
@@ -96,3 +95,44 @@ a {
 #startBtn.hidden {
     display: none;
 }
+
+/* Loading Blocks Styling */
+.loading-animation {
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.block {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    animation: bounce 1s infinite ease-in-out;
+}
+
+.blue {
+    background-color: #022130;
+    animation-delay: 0s;
+}
+
+.lightblue {
+    background-color: #4dcefd;
+    animation-delay: 0.2s;
+}
+
+.red {
+    background-color: #a11c27;
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+
+}
+

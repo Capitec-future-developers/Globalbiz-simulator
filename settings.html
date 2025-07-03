@@ -1,0 +1,147 @@
+<!DOCTYPE html>Add commentMore actions
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="profile-info.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="profile.jpg">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+</head>
+
+<body>
+<div class="header">
+  <a href="home%20page.html" class="logo">
+    <img src="Logo.png" alt="logo">
+  </a>
+  <span class="separator"></span>
+  <div class="business">Business</div>
+  <div class="header-right">
+    <a href="#">
+      <span class="material-icons-sharp">contact_support</span>
+      banker
+    </a>
+    <div class="profile">
+      <a href="#" id="profile-link">
+        <span class="material-icons-sharp">account_circle</span>
+        Omphile Mohlala
+      </a>
+      <!-------------------- Popup HTML ------------------------->
+      <div class="overlay" id="overlay"></div>
+      <div class="profile-popup" id="profilePopup">
+        <a href="Profile-info.html" class="profile-name">
+          <div class="popup-header">omphilestudent@gmail.com</div>
+        </a>
+        <h2>Active Profile</h2>
+        <div class="profile-item">
+          <span class="material-icons-sharp profile-icon">account_circle</span>
+          <div class="profile-info">
+            <div class="profile-info">Omphile Mohlala</div>
+          </div>
+        </div>
+        <a href="#" class="switch-profile">
+          <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+          Switch to Kodi PTY LTD
+        </a>
+        <a href="#" class="manage-business">
+          Manage business profile
+        </a>
+      </div>
+    </div>
+    <a href="home page.html" class="sign">Sign Out</a>
+  </div>
+</div>
+
+<!-------------------- SIDEBAR NAVIGATION ------------------------->
+<div class="sidebar">
+  <a href="Computer.html" class="active">
+    <span class="material-icons-sharp">home</span>
+    Home
+  </a>
+  <p class="side">BANKING</p>
+  <a href="Accounts.html">
+    <span class="material-icons-sharp">storage</span>
+    Accounts
+  </a>
+  <div class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <span class="material-icons-sharp">swap_horiz</span>
+      Transact
+      <span class="dropdown-arrow">▸</span>
+    </a>
+    <div class="dropdown-menu">
+      <a href="transact.html">Payment</a>
+      <a href="#">Transfer</a>
+      <a href="#">Beneficiary</a>
+    </div>
+  </div>
+  <a href="efiling.html">
+    <span class="material-icons-sharp">dynamic_feed</span>
+    Cards
+  </a>
+  <p class="side">MANAGEMENT</p>
+  <a href="documents.html">
+    <span class="material-icons-sharp">check_box</span>
+    Authorisations
+  </a>
+  <a href="settings.html">
+    <span class="material-icons-sharp">groups</span>
+    User management
+  </a>
+  <p class="side">SERVICES</p>
+  <a href="settings.html">
+    <span class="material-icons-sharp">radio_button_unchecked</span>
+    products & Services
+  </a>
+  <a href="settings.html">
+    <span class="material-icons-sharp">settings</span>
+    SARS eFILLING
+  </a>
+  <a href="settings.html">
+    <span class="material-icons-sharp">chat</span>
+    Secure Messages
+  </a>
+  <a href="settings.html">
+    <span class="material-icons-sharp">description</span>
+    Documents
+  </a>
+  <a href="settings.html">
+    <span class="material-icons-sharp">settings</span>
+    Settings
+  </a>
+  <a href="Phone.html" class="signout">
+    <span class="material-icons-sharp">lock</span>
+    We secure your data in line with our Privacy Notice and Terms & Conditions
+  </a>
+</div>
+
+<div class="main-content">
+  <div class="back-nav">
+    <a href="Accounts.html">
+      <h2>Settings</h2>
+    </a>
+  </div>
+
+  <!------------- TAB BUTTONS ---------------->
+  <div class="tabs">
+    <button id="Transaction-Limits">
+      <div class="tab active">Transaction Limits</div>
+    </button>
+    <button id="Transaction-Notifications">
+      <div class="tab">Transaction Notifications</div>
+    </button>
+    <button id="Profile-Notifications">
+      <div class="tab">Profile Notifications</div>
+    </button>
+  </div>
+
+  <div id="tab-content"></div>
+
+
+  <script src="setting.js"></script>
+  <script src="Combined.js"></script>
+  <script src="Automation.js"></script>
+</div>
+</body>
+</html>

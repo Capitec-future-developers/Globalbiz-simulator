@@ -4,79 +4,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="accounts.css">
+  <link rel="stylesheet" href="chatbot-computer.css">
   <link rel="icon" type="image/x-icon" href="profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <title>Computer</title>
 </head>
 <body>
+  <div class="header">
+    <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
 
-<div class="header">
-  <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
-  <span class="separator"></span>
-  <div class="business">Business</div>
+    <div class="header-right">
+      <div class="header-right">
+        <!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggler">
+          <span class="material-icons-sharp">mode_comment</span>
+          <span class="material-icons-sharp">close</span>
+        </button>
+        banker
 
-  <div class="header-right">
-    <a href="#home">
-      <span class="material-icons-sharp">contact_support</span>
-      banker
-    </a>
-    <a href="#contact">
-      <span class="material-icons-sharp">account_circle</span>
-      Omphile Mohlala
-    </a>
-    <a href="home page.html" class="sign">Sign Out</a>
+        <div class="chatbot">
+          <header>
+            <h2>BIZCHAT</h2>
+            <span class="material-icons-sharp">close</span>
+          </header>
+          <ul class="chatbox">
+            <li class="chat incoming">
+              <span class="material-icons-sharp">account_circle</span>
+              <p>Welcome to Bizchat, how can I assist.</p>
+            </li>
+            <li class="chat outgoing"></li>
+          </ul>
+          <div class="chat-input">
+            <textarea placeholder="Type your message here..." required></textarea>
+            <span id="send-btn" class="material-icons-sharp">send</span>
+          </div>
+        </div>
+
+        <div class="profile-container">
+        <a href="#contact" id="profile-link">
+          <span class="material-icons-sharp">account_circle</span>
+          Omphile Mohlala
+        </a>
+        <!-- Popup HTML -->
+        <div class="overlay" id="overlay"></div>
+        <div class="profile-popup" id="profilePopup">
+          <div class="popup-header">omphilestudent@gmail.com</div>
+          <div class="profile-item">
+            <span class="material-icons-sharp profile-icon">account_circle</span>
+            <div class="profile-info">
+              <div class="profile-active">ACTIVE PROFILE</div>
+              <a href="Profile-info.html">
+                <div class="profile-Name">Omphile Mohlala</div>
+              </a>
+            </div>
+          </div>
+          <a href="#" class="switch-profile">
+            <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+            Switch to Kodi PTY LTD
+          </a>
+          <a href="#" class="manage-business">Manage business profile</a>
+        </div>
+      </div>
+      <a href="home page.html" class="sign">Sign Out</a>
+    </div>
   </div>
-</div>
-<!--Sidebar navigation-->
-<div class="side bar">
-  <div class="sidebar" id="sidebar">
-
-    <a href="Computer.html" class="active">
+  <!--Sidebar navigation-->
+  <div class="sidebar">
+    <a href="Computer.html" class="active" id="home">
       <span class="material-icons-sharp">home</span>
       Home
     </a>
     <p class="side">BANKING</p>
-    <a href="Accounts.html">
+    <a href="Accounts.html" id="accounts">
       <span class="material-icons-sharp">storage</span>
       Accounts
     </a>
-    <a href="products.html">
-      <span class="material-icons-sharp">swap_horiz</span>
-      Transact
-    </a>
-
-    <a href="efiling.html">
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle" id="transacts">
+        <span class="material-icons-sharp">swap_horiz</span>
+        Transact
+        <span class="dropdown-arrow">▶</span>
+      </a>
+      <div class="dropdown-menu">
+        <a href="transact.html" id="payments">Payment</a>
+        <a href="#" id="Transfer">Transfer</a>
+        <a href="#" id="beneficiary">Beneficiary</a>
+      </div>
+    </div>
+    <a href="Cards.html">
       <span class="material-icons-sharp">dynamic_feed</span>
       Cards
     </a>
     <p class="side">MANAGEMENT</p>
-    <a href="documents.html">
-      <span class="material-icons-sharp">check_box</span>
-      Authorisations
-    </a>
 
-    <a href="settings.html">
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        <span class="material-icons-sharp">check_box</span>
+        Authorisations
+        <span class="dropdown-arrow">▶</span>
+      </a>
+      <div class="dropdown-menu">
+        <a href="#">Transactions</a>
+        <a href="Beneficiaries.html">Beneficiaries</a>
+        <a href="#">User Management</a>
+        <a href="#">Account & Limits</a>
+        <a href="#">Authorisation Levels</a>
+        <a href="#">Notification Setup</a>
+        <a href="messages.html">Messages</a>
+      </div>
+    </div>
+    <a href="Phone-settings.html">
       <span class="material-icons-sharp">groups</span>
       User management
     </a>
     <p class="side">SERVICES</p>
-    <a href="settings.html">
-      <span class="material-icons-sharp">radio_button_unchecked</span>
-      products & Services
+    <a href="Phone-settings.html">
+      <span class="material-icons-sharp">shopping_cart</span>
+      Products & Services
     </a>
-    <a href="settings.html">
-      <span class="material-icons-sharp">settings</span>
+    <a href="Phone-settings.html">
+      <span class="material-icons-sharp">radio_button_unchecked</span>
       SARS eFILLING
     </a>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
       <span class="material-icons-sharp">chat</span>
       Secure Messages
     </a>
-    <a href="settings.html">
+    <a href="Computer-Document.html">
       <span class="material-icons-sharp">description</span>
       Documents
     </a>
-    <a href="settings.html">
+    <a href="Phone-settings.html">
       <span class="material-icons-sharp">settings</span>
       Settings
     </a>
@@ -85,42 +145,52 @@
       We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
   </div>
-</div>
-<!-- Main Content Area -->
-<div class="content" id="mainContent">
-  <!-- Search Bar Section -->
-  <div class="search-section">
+
+  <!-- Main Content Area -->
+  <div class="content" id="mainContent">
+    <!-- Search Bar Section -->
     <div class="search-container">
-      <span class="material-icons-sharp">search</span>
-      <input type="text" placeholder="Search accounts" class="search-input">
-      <button class="search-button">Search</button>
+      <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+      <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+      </button>
+      <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
     </div>
-  </div>
 
-  <!-- Account Information Section -->
-  <div class="account">
-    <div class="account-header">
-      <h4>Accounts</h4>
+    <!-- Account Information Section -->
 
-    </div>
-    <div class="box">
+    <div class="account-box">
+      <div class="account">
+        <div class="account-header">
+          <h4>Accounts</h4>
 
-      <span class="material-icons-sharp">account_balance</span>
-      <div class="account-details">
-        <span class="account-name">Account Name:</span>
-        <span class="account-balance">Kodi Codes</span>
+        </div>
+        <div class="account-info-row">
+          <div class="info-item">
+            <span class="info-label">Account Name:</span>
+            <span class="info-value">Kodi Codes</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Account number:</span>
+            <span class="info-value">1052 2626 43</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Current balance:</span>
+            <span class="info-value negative">- R154.21</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Available balance:</span>
+            <span class="info-value">R0.00</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Status:</span>
+            <span class="info-value">Open</span>
+          </div>
+        </div>
 
-        <span class="account-name">Account Number:</span>
-        <span class="account-balance">1052 2626 43</span>
-
-        <span class="account-name">Current Balance:</span>
-        <span class="account-balance">R1000</span>
-
-        <span class="account-name">Available Balance:</span>
-        <span class="available-balance">R1000</span>
-
-        <a href="Account%20details.html" class="View">
+        <a href="Account%20details.html" class="View" id="view">
           <span class="material-icons-sharp">chevron_right</span>
+        </a>
         </a>
       </div>
     </div>
@@ -128,6 +198,10 @@
 </div>
 
 </body>
-<script src="options.js"></script>
+<script src="chatbot.js"></script>
+<script src="Transfer.js"></script>
+<script src="Apps.js"></script>
+<script src="Combined.js"></script>
+<script src="Computer%20Automation.js"></script>
 
 </html>
