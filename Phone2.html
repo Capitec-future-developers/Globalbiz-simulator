@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="chatbot.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="profile.jpg" />
-
 </head>
-<body>
 
+<body>
+<!-- Search Bar -->
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
     <button id="execute-automation" class="search-button">
@@ -20,6 +20,7 @@
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
+<!-- iPhone Frame -->
 <div class="iphone">
     <div class="volume-buttons">
         <div class="volume-up"></div>
@@ -42,13 +43,13 @@
                 </a>
             </div>
 
-            <!-- Chatbot Toggle Button -->
+            <!-- Chatbot Toggler -->
             <button class="chatbot-toggler">
                 <span class="material-icons-sharp">mode_comment</span>
                 <span class="material-icons-sharp">close</span>
             </button>
 
-            <!-- Chatbot Inside Phone -->
+            <!-- Chatbot Container -->
             <div class="chatbot">
                 <header>
                     <h2>BIZCHAT</h2>
@@ -88,7 +89,7 @@
                 <a href="#" class="manage-business">Manage business profile</a>
             </div>
 
-            <!-- Sidebar -->
+            <!-- Sidebar Navigation -->
             <div class="sidebar" id="sidebar">
                 <a href="home_page.html" class="active">
                     <span class="material-icons-sharp">home</span> Home
@@ -104,10 +105,11 @@
                 <a href="efiling.html">
                     <span class="material-icons-sharp">radio_button_unchecked</span> SARS eFILLIN
                 </a>
-                <a href="documents.html">
-                    <span class="material-icons-sharp">description</span> Documents
+                <a href="document.html">
+                    <span class="material-icons-sharp">description</span>
+                    Documents
                 </a>
-                <a href="Phone-settings.html">
+                <a href="Phone-settings.html" id="settings">
                     <span class="material-icons-sharp">settings</span> Settings
                 </a>
                 <a href="Phone.html" class="signout">
@@ -137,7 +139,7 @@
                 </div>
             </div>
 
-            <!-- Favorites Section -->
+            <!-- Favorites -->
             <div class="favorites-container">
                 <div class="favorites">
                     <div class="favorites-header">
@@ -164,9 +166,9 @@
                 </div>
             </div>
 
-            <!-- Bottom Nav -->
-            <div class="bottom-nav">
-                <a href="Phone2.html" class="nav-item active">
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav" id="bottomNav">
+                <a href="Phone2.html" class="nav-item active" id="Homee">
                     <span class="nav-icon material-icons-outlined">home</span>
                     <span>Home</span>
                 </a>
@@ -176,9 +178,9 @@
                 </a>
                 <a href="Phone%20Transact.html" class="nav-item" id="transact">
                     <span class="nav-icon material-icons-outlined">sync_alt</span>
-                    <span>transact</span>
+                    <span>Transact</span>
                 </a>
-                <a href="Phone-cards.html" class="nav-item">
+                <a href="Phone-cards.html" class="nav-item" id="cards">
                     <span class="nav-icon material-icons-outlined">credit_card</span>
                     <span>Cards</span>
                 </a>
@@ -192,18 +194,13 @@
     </div> <!-- screen -->
     <div class="home-indicator"></div>
 </div> <!-- iphone -->
-<div id="automation-controls" style="margin-top: 10px;">
-    <button id="pause-btn">⏸ Pause</button>
-    <button id="play-btn" style="display:none;">▶ Play</button>
-    <button id="rewind-btn">⏪ Rewind</button>
-    <button id="forward-btn">⏩ Forward</button>
-</div>
+
+
 
 <!-- Scripts -->
 <script src="Automation.js"></script>
 <script src="App.js"></script>
-<script src="setting.js"></script>
 <script src="phone-settings.js"></script>
-<script src="chatbot.js"></script> <!-- Chatbot script -->
+<script src="chatbot.js"></script>
 </body>
 </html>

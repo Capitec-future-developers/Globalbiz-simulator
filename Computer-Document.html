@@ -10,39 +10,39 @@
   <title>Computer</title>
 </head>
 <body>
-  <div class="header">
-    <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
-    <span class="separator"></span>
-    <div class="business">Business</div>
+<div class="header">
+  <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+  <span class="separator"></span>
+  <div class="business">Business</div>
 
+  <div class="header-right">
     <div class="header-right">
-      <div class="header-right">
-        <!-- Chatbot Toggle Button -->
-        <button class="chatbot-toggler">
-          <span class="material-icons-sharp">mode_comment</span>
+      <!-- Chatbot Toggle Button -->
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
+      banker
+
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
           <span class="material-icons-sharp">close</span>
-        </button>
-        banker
-
-        <div class="chatbot">
-          <header>
-            <h2>BIZCHAT</h2>
-            <span class="material-icons-sharp">close</span>
-          </header>
-          <ul class="chatbox">
-            <li class="chat incoming">
-              <span class="material-icons-sharp">account_circle</span>
-              <p>Welcome to Bizchat, how can I assist.</p>
-            </li>
-            <li class="chat outgoing"></li>
-          </ul>
-          <div class="chat-input">
-            <textarea placeholder="Type your message here..." required></textarea>
-            <span id="send-btn" class="material-icons-sharp">send</span>
-          </div>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
         </div>
+      </div>
 
-        <div class="profile-container">
+      <div class="profile-container">
         <a href="#contact" id="profile-link">
           <span class="material-icons-sharp">account_circle</span>
           Omphile Mohlala
@@ -132,7 +132,7 @@
       <span class="material-icons-sharp">chat</span>
       Secure Messages
     </a>
-    <a href="Computer-Document.html">
+    <a href="Phone-settings.html">
       <span class="material-icons-sharp">description</span>
       Documents
     </a>
@@ -157,51 +157,19 @@
       <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
     </div>
 
-    <!-- Account Information Section -->
+    <!-- Document section -->
 
-    <div class="account-box">
-      <div class="account">
-        <div class="account-header">
-          <h4>Accounts</h4>
+    <div class="content" id="mainContents" style="display: none;"></div>
 
-        </div>
-        <div class="account-info-row">
-          <div class="info-item">
-            <span class="info-label">Account Name:</span>
-            <span class="info-value">Kodi Codes</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Account number:</span>
-            <span class="info-value">1052 2626 43</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Current balance:</span>
-            <span class="info-value negative">- R154.21</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Available balance:</span>
-            <span class="info-value">R0.00</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Status:</span>
-            <span class="info-value">Open</span>
-          </div>
-        </div>
-
-        <a href="Account%20details.html" class="View" id="view">
-          <span class="material-icons-sharp">chevron_right</span>
-        </a>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+    <!-- Documents Page (now shown on load) -->
+    <div id="document" class="new-page-container" style="display: flex;"></div>
 
 </body>
 <script src="chatbot.js"></script>
 <script src="Transfer.js"></script>
 <script src="Apps.js"></script>
-<script src="Combined.js"></script>
+<script src="Combined.js" deffer/>
 <script src="Computer%20Automation.js"></script>
+<script src="documentGenerator.js"></script>
 
 </html>
