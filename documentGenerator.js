@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
  #document {
  position: relative;
- width: 1000px;
+ width: 90%;
  padding: 30px;
  background: #fff;
  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
  top: -130px;
  font-size: 14px;
  color: #006064;
- width: 1000px;
+ width: 100%;
  left: 10px;
  height: 40px;
  }
@@ -182,7 +182,7 @@ window.addEventListener('DOMContentLoaded', () => {
  }
 
  .doc-table {
- width: 1000px;
+ width: 100%;
  border-collapse: collapse;
  margin-top: -90px;
  }
