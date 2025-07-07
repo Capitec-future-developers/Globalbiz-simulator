@@ -107,10 +107,87 @@ let automationState = {
     currentTimeout: null
 };
 
+// Create control buttons container
+function createControlButtons() {
+    const controlsContainer = document.createElement('div');
+    controlsContainer.id = 'automation-controls';
+    controlsContainer.style.position = 'fixed';
+    controlsContainer.style.top = '10px';
+    controlsContainer.style.right = '10px';
+    controlsContainer.style.zIndex = '10000';
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.gap = '5px';
+    controlsContainer.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+    controlsContainer.style.padding = '5px';
+    controlsContainer.style.borderRadius = '5px';
+    controlsContainer.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+
+// Create buttons
+    const rewindBtn = document.createElement('button');
+    rewindBtn.id = 'rewind-btn';
+    rewindBtn.innerHTML = '⏪';
+    rewindBtn.title = 'Rewind';
+    rewindBtn.style.padding = '5px 10px';
+    rewindBtn.style.border = 'none';
+    rewindBtn.style.borderRadius = '3px';
+    rewindBtn.style.cursor = 'pointer';
+    rewindBtn.style.backgroundColor = '#f0f0f0';
+
+    const pauseBtn = document.createElement('button');
+    pauseBtn.id = 'pause-btn';
+    pauseBtn.innerHTML = '⏸';
+    pauseBtn.title = 'Pause';
+    pauseBtn.style.padding = '5px 10px';
+    pauseBtn.style.border = 'none';
+    pauseBtn.style.borderRadius = '3px';
+    pauseBtn.style.cursor = 'pointer';
+    pauseBtn.style.backgroundColor = '#f0f0f0';
+
+    const playBtn = document.createElement('button');
+    playBtn.id = 'play-btn';
+    playBtn.innerHTML = '▶';
+    playBtn.title = 'Play';
+    playBtn.style.padding = '5px 10px';
+    playBtn.style.border = 'none';
+    playBtn.style.borderRadius = '3px';
+    playBtn.style.cursor = 'pointer';
+    playBtn.style.backgroundColor = '#f0f0f0';
+
+    const forwardBtn = document.createElement('button');
+    forwardBtn.id = 'forward-btn';
+    forwardBtn.innerHTML = '⏩';
+    forwardBtn.title = 'Fast Forward';
+    forwardBtn.style.padding = '5px 10px';
+    forwardBtn.style.border = 'none';
+    forwardBtn.style.borderRadius = '3px';
+    forwardBtn.style.cursor = 'pointer';
+    forwardBtn.style.backgroundColor = '#f0f0f0';
+
+// Add buttons to container
+    controlsContainer.appendChild(rewindBtn);
+    controlsContainer.appendChild(pauseBtn);
+    controlsContainer.appendChild(playBtn);
+    controlsContainer.appendChild(forwardBtn);
+
+// Add container to body
+    document.body.appendChild(controlsContainer);
+
+// Return button references
+    return {
+        pauseBtn,
+        playBtn,
+        rewindBtn,
+        forwardBtn
+    };
+}
+
 // Initialize automation system
 function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
+
+// Create and get control buttons
+    const { pauseBtn, playBtn, rewindBtn, forwardBtn } = createControlButtons();
 
     if (searchInput && executeBtn) {
 // Show suggestions when typing
@@ -139,16 +216,14 @@ function initAutomationSystem() {
         });
     }
 
-// Set up control buttons
-    const pauseBtn = document.getElementById('pause-btn');
-    const playBtn = document.getElementById('play-btn');
-    const rewindBtn = document.getElementById('rewind-btn');
-    const forwardBtn = document.getElementById('forward-btn');
+// Set up control buttons event listeners
+    pauseBtn.addEventListener('click', pauseAutomation);
+    playBtn.addEventListener('click', resumeAutomation);
+    rewindBtn.addEventListener('click', rewindAutomation);
+    forwardBtn.addEventListener('click', forwardAutomation);
 
-    if (pauseBtn) pauseBtn.addEventListener('click', pauseAutomation);
-    if (playBtn) playBtn.addEventListener('click', resumeAutomation);
-    if (rewindBtn) rewindBtn.addEventListener('click', rewindAutomation);
-    if (forwardBtn) forwardBtn.addEventListener('click', forwardAutomation);
+// Initialize button visibility
+    updateControlButtons();
 
 // Check for pending automation on page load
     checkForPendingAutomation();
@@ -160,22 +235,32 @@ function pauseAutomation() {
         automationState.currentTimeout = null;
     }
     automationState.isPaused = true;
-    const pauseBtn = document.getElementById('pause-btn');
-    const playBtn = document.getElementById('play-btn');
-    if (pauseBtn) pauseBtn.style.display = 'none';
-    if (playBtn) playBtn.style.display = 'inline';
+    updateControlButtons();
     updateTranscript('Automation paused');
 }
 
 function resumeAutomation() {
-    if (!automationState.isPaused) return;
+    if (!automationState.isPaused || automationState.currentSteps.length === 0) return;
+
     automationState.isPaused = false;
-    const pauseBtn = document.getElementById('pause-btn');
-    const playBtn = document.getElementById('play-btn');
-    if (pauseBtn) pauseBtn.style.display = 'inline';
-    if (playBtn) playBtn.style.display = 'none';
+    updateControlButtons();
     updateTranscript('Resuming automation...');
     executeNextStep();
+}
+
+function updateControlButtons() {
+    const pauseBtn = document.getElementById('pause-btn');
+    const playBtn = document.getElementById('play-btn');
+
+    if (pauseBtn && playBtn) {
+        if (automationState.isPaused || automationState.currentSteps.length === 0) {
+            pauseBtn.style.display = 'none';
+            playBtn.style.display = 'inline';
+        } else {
+            pauseBtn.style.display = 'inline';
+            playBtn.style.display = 'none';
+        }
+    }
 }
 
 function rewindAutomation() {
@@ -384,6 +469,7 @@ function runAutomationSteps(steps, commandName) {
 
     showFeedbackMessage("Automation in progress...", 'info');
     updateTranscript(`Starting automation: ${commandName}`);
+    updateControlButtons();
 
     executeNextStep();
 }
@@ -407,6 +493,17 @@ function executeNextStep() {
         if (transcript) {
             setTimeout(() => transcript.remove(), 5000);
         }
+
+// Reset automation state
+        automationState = {
+            isPaused: false,
+            currentStepIndex: 0,
+            currentSteps: [],
+            currentCommand: '',
+            currentTimeout: null
+        };
+
+        updateControlButtons();
         return;
     }
 
@@ -564,11 +661,32 @@ function showFeedbackMessage(message, type) {
     if (!feedback) {
         feedback = document.createElement('div');
         feedback.id = 'automation-feedback';
+        feedback.style.position = 'fixed';
+        feedback.style.bottom = '20px';
+        feedback.style.left = '50%';
+        feedback.style.height = '10px';
+        feedback.style.transform = 'translateX(-50%)';
+        feedback.style.padding = '8px 16px';
+        feedback.style.borderRadius = '4px';
+        feedback.style.color = 'white';
+        feedback.style.zIndex = '10000';
+        feedback.style.transition = 'all 0.3s ease';
         document.body.appendChild(feedback);
     }
 
     feedback.textContent = message;
     feedback.className = `feedback-message feedback-${type}`;
+    feedback.style.opacity = '1';
+
+// Set colors based on type
+    const colors = {
+        info: 'rgba(52, 152, 219, 0.9)',
+        success: 'rgba(46, 204, 113, 0.9)',
+        warning: 'rgba(241, 196, 15, 0.9)',
+        error: 'rgba(231, 76, 60, 0.9)'
+    };
+
+    feedback.style.backgroundColor = colors[type] || colors.info;
 
     setTimeout(() => {
         feedback.style.opacity = '0';
