@@ -66,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
  cursor: pointer;
  }
 
- .dropdown {
+ .dropdowns {
  display: none;
  margin-top: 5px;
  background: white;
@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
  }
 
- .dropdown select {
+ .dropdowns select {
  width: 100%;
  padding: 12px;
  border: none;
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', () => {
  cursor: pointer;
  }
 
- .generate-container:hover .dropdown {
+ .generate-container:hover .dropdowns {
  display: block;
  }
 
@@ -213,7 +213,7 @@ window.addEventListener('DOMContentLoaded', () => {
  </div>
  <div class="generate-container">
  <button id="generateBtnOpen" class="btn btn-primary">Generate Document</button>
- <div class="dropdown">
+ <div class="dropdowns">
  <select id="docTypeSelect">
  <option value="" disabled selected>Choose document type</option>
  <option>Account Confirmation Letter</option>
