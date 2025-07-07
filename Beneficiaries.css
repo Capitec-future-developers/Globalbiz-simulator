@@ -128,7 +128,7 @@
 /* Sidebar Styles */
 .sidebar {
     width: 240px;
-    background: #2c3e50;
+    background: #16232f;
     color: white;
     position: fixed;
     height: calc(100vh - 70px);
@@ -154,7 +154,7 @@
 
 
 .sidebar a:hover {
-    background: #4dcefd;
+    background: #007FFF;
 }
 
 .sidebar .material-icons-sharp {
