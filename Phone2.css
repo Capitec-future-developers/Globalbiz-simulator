@@ -380,8 +380,8 @@ body {
     align-items: center;
     color: #8e8e93;
     text-decoration: none;
-    font-size: 12px;
-    padding: 5px 10px;
+    font-size: 10px;
+    padding: 4px 10px;
 }
 
 .nav-item.active {
@@ -389,7 +389,7 @@ body {
 }
 
 .nav-icon {
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 4px;
 }
 
@@ -1510,9 +1510,10 @@ body {
 
 .signout {
     position: absolute;
-    top: 430px;
+    top: 410px;
     left: 0;
-    width: 100px;
+    width: 150px;
+    font-size: 10px;
 }
 
 .side {
@@ -2498,14 +2499,14 @@ body {
 .profile-popup {
     display: none;
     position: fixed;
-    top: 425px;
-    right: 480px;
+    top: 500px;
+    right: 660px;
     background-color: white;
     padding: 0;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    width: 300px;
+    width: 270px;
     border: 1px solid #e0e0e0;
 }
 
@@ -2603,20 +2604,3 @@ body {
     display: block;
 }
 
-#automation-controls {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    display: flex;
-    gap: 5px;
-    z-index: 9999;
-}
-
-#automation-controls button {
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}

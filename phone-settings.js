@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {Add commentMore actions
+document.addEventListener('DOMContentLoaded', function () {
     const tabContentData = {
         transactionLimit: [`
       <div class="tab-content">
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {Add commentMore actio
             <div class="transaction-container">
               <span class="info-heading"><h3>Transaction Limits</h3></span>
               <span class="edit-limit">
-                    <button class="edit-limit-btn">Edit Limit</button>
+                    <button class="edit-limit-btn" id="editlimits">Edit Limit</button>
                   </span>
               <div class="account-box">
                 <div class="account-info-row" >
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {Add commentMore actio
             </div>
 <!-- Bottom Navigation -->
             <div class="bottom-nav">
-                <a href="Phone2.html" class="nav-item active">
+                <a href="Phone2.html" class="nav-item active" id="Home">
                     <span class="nav-icon material-icons-outlined">home</span>
                     <span>Home</span>
                 </a>
