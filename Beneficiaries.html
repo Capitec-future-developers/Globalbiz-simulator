@@ -5,39 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beneficiaries | Capitec Bank</title>
     <link rel="stylesheet" href="Beneficiaries.css">
+    <link rel="stylesheet" href="Chatbotcomputer.css">
+
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-
 <div class="header">
     <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
-        <a href="#home">
-            <span class="material-icons-sharp">contact_support</span>
+        <div class="header-right">
+            <!-- Chatbot Toggle Button -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
             banker
-        </a>
-        <div class="profile">
 
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
 
-            </a><a href="#contact" id="profile-link">
-            <span class="material-icons-sharp">account_circle</span>
-            Omphile Mohlala
-        </a>
-            <!-- Popup HTML -->
-            <div class="overlay" id="overlay"></div>
-            <div class="profile-popup" id="profilePopup">
-                <div class="popup-header">omphilestudent@gmail.com</div>
-                <div class="profile-item">
-                    <span class="material-icons-sharp profile-icon">account_circle</span>
-                    <div class="profile-info">
-                        <div class="profile-active">ACTIVE PROFILE</div>
-                        <a href="Profile-info.html">
-                            <div class="profile-Name">Omphile Mohlala</div>
-                        </a>
+            <div class="profile-container">
+                <a href="#contact" id="profile-link">
+                    <span class="material-icons-sharp">account_circle</span>
+                    Omphile Mohlala
+                </a>
                     </div>
                 </div>
                 <a href="KodiCode.html" class="switch-profile">
@@ -169,5 +179,6 @@
 <script src="Transfer.js"></script>
 <script src="Apps.js"></script>
 <script src="Combined.js"></script>
-<script src="Computer%20Automation.js"></script>
+<script src="Computer-Automation.js"></script>
+<script src="chatbot.js"></script>
 </html>
