@@ -14,6 +14,7 @@ body {
     overflow-x: hidden; /* Hide horizontal scrollbar */
     scrollbar-width: none;
     -ms-overflow-style: none;
+    text-decoration: none;
 }
 
 /* ============ IPHONE FRAME ============ */
@@ -198,12 +199,12 @@ body {
     padding: 15px;
     text-decoration: none;
     font-size: 0.7rem;
-    background-color: #2C3C4C;
+    background: #16232f;
 }
 
 .sidebar a.active,
 .sidebar a:hover:not(.active) {
-    background-color: #3c4f67;
+    background-color: #007FFF;
 }
 
 .signout {
@@ -279,6 +280,7 @@ body {
     font-size: 1.5rem;
     color: #074358;
     margin-right: 15px;
+    text-decoration: none;
 }
 
 .separator {

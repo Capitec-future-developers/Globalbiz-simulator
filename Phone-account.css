@@ -162,12 +162,13 @@ body {
     padding: 15px;
     text-decoration: none;
     font-size: 0.7rem;
-    background-color: #074358;
+    background: #16232f;
 }
 
 .sidebar a.active,
 .sidebar a:hover:not(.active) {
-    background-color: #0096c7;
+    background: #007FFF;
+
 }
 
 .signout {
