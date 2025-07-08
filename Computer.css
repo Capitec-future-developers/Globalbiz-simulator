@@ -184,7 +184,7 @@ body {
   margin-right: auto; /* Right spacing */
   position: relative;
   text-decoration: none;
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 1px solid #cccccc;
 }
 
 .account-header {
@@ -210,10 +210,10 @@ body {
 .box {
   display: flex;
   gap: 35px;
-  flex-wrap: nowrap; /* Prevent wrapping */
+  flex-wrap: nowrap;
   width: 100%;
-  overflow-x: auto; /* Allows horizontal scrolling if needed */
-  padding-bottom: 10px; /* Space for scrollbar if appears */
+  overflow-x: auto;
+  padding-bottom: 10px;
 
 }
 
@@ -229,8 +229,7 @@ body {
   height: 90px;
   min-width: 700px;
   text-decoration: none;
-
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 1px solid #cccccc;
 }
 
 a {
@@ -349,9 +348,10 @@ a {
 .favorites-container {
   background: white;
   padding: 25px;
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 1px solid #cccccc;
   margin-bottom: 30px;
   width: 100%;
+  height: 400px;
   max-width: 600px;
   margin-left: 290px; /* These two lines will push it to the right */
   margin-right: auto; /* Right spacing */
@@ -391,11 +391,11 @@ a {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: #f9f9f9;
-
+  background: #ffffff;
+width: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 2px solid rgba(83, 79, 79, 0.31);
+  border: 1px solid #cccccc;
 }
 
 .favorite-box:hover {
@@ -562,8 +562,8 @@ a {
 .pending {
   background: white;
   padding: 30px;
-  border: 2px solid rgba(83, 79, 79, 0.31);
-  width: 400px;
+  border: 1.5px solid #cccccc);
+  width: 600px;
   margin-left: 290px;
   margin-right: auto;
   position: relative;
@@ -580,7 +580,7 @@ a {
 
 .pending-header h4 {
   color: #2c3e50;
-  margin: 0; /* Remove default margin */
+  margin: 0;
 }
 
 .pending-header a {
@@ -598,17 +598,16 @@ a {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: #f9f9f9;
-
+  background: #ffffff;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   color: inherit; /* This ensures text color is inherited, not blue for links */
-  border: 2px solid rgba(83, 79, 79, 0.31);
+
 }
 
 .pending-box:hover {
-  background: #f0f2f5;
+  background: #ffffff;
   transform: translateY(-3px);
 }
 
