@@ -14,6 +14,7 @@ body {
     overflow-x: hidden; /* Hide horizontal scrollbar */
     scrollbar-width: none;
     -ms-overflow-style: none;
+    text-decoration: none;
 }
 
 /* ============ IPHONE FRAME ============ */
@@ -279,6 +280,7 @@ body {
     font-size: 1.5rem;
     color: #074358;
     margin-right: 15px;
+    text-decoration: none;
 }
 
 .separator {
