@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <title>Profile</title>
   <link rel="stylesheet" href="profile-info.css">
+  <link rel="stylesheet" href="Chatbotcomputer.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
-
 <body>
 <div class="header">
   <a href="home%20page.html" class="logo">
@@ -18,10 +18,32 @@
   <span class="separator"></span>
   <div class="business">Business</div>
   <div class="header-right">
-    <a href="#">
-      <span class="material-icons-sharp">contact_support</span>
+    <div class="header-right">
+      <!-- Chatbot Toggle Button -->
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
       banker
-    </a>
+
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
+    </div>
     <div class="profile">
       <a href="#" id="profile-link">
         <span class="material-icons-sharp">account_circle</span>
@@ -141,8 +163,9 @@
 
   <script src="setting.js"></script>
   <script src="Combined.js"></script>
-  <script src="Automation.js"></script>
+  <script src="setting.js"></script>
   <script src="Computer-Automation.js"></script>
+  <script src="chatbot.js"></script>
 </div>
 </body>
 </html>
