@@ -4,73 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="cards.css">
+  <link rel="stylesheet" href="Chatbotcomputer.css">
   <link rel="icon" type="image/x-icon" href="profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <title>Computer</title>
 
 </head>
 <body>
-<div class="user-info">
-  <span id="display-username"></span>
-  <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
-</div>
 <div class="header">
-  <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+  <a href="home%20page.html" class="logo">
+    <img src="Logo.png" alt="logo">
+  </a>
   <span class="separator"></span>
   <div class="business">Business</div>
-
   <div class="header-right">
-    <a href="#home" id="banker-link">
-      <span class="material-icons-sharp">contact_support</span>
+    <div class="header-right">
+      <!-- Chatbot Toggle Button -->
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
       banker
-    </a>
 
-
-    <!-- Popup -->
-    <div id="banker-popup" class="popup">
-      <span class="close-btn" id="close-popup">&times;</span>
-      <h5>By engaging, you consent to sharing information with a Capitec Business representative, including screen sharing for technical support and understanding that the session may be monitore or recorded for quality  assurance. To decline, Click "X" at the bottom right. </h5>
-      <button class="popup-btn">Audio</button>
-      <button class="popup-btn">Phone</button>
-      <button class="popup-btn">Chat</button>
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
     </div>
-
-
-    <div class="profile-container">
-      <a href="#contact" id="profile-link">
+    <div class="profile">
+      <a href="#" id="profile-link">
         <span class="material-icons-sharp">account_circle</span>
         Omphile Mohlala
       </a>
-      <!-- Popup HTML -->
+      <!-------------------- Popup HTML ------------------------->
       <div class="overlay" id="overlay"></div>
       <div class="profile-popup" id="profilePopup">
-        <a class="popup-header" href="Profile-info.html">
+        <a href="Profile-info.html" class="profile-name">
           <div class="popup-header">omphilestudent@gmail.com</div>
         </a>
+        <h2>Active Profile</h2>
         <div class="profile-item">
           <span class="material-icons-sharp profile-icon">account_circle</span>
           <div class="profile-info">
-            <div class="profile-active">ACTIVE PROFILE</div>
-            <div class="profile-Name">Omphile Mohlala</div>
+            <div class="profile-info">Omphile Mohlala</div>
           </div>
         </div>
-        <div id="page-transition"></div>
-        <a href="KodiCode.html" class="switch-profile">
+        <a href="#" class="switch-profile">
           <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
           Switch to Kodi PTY LTD
         </a>
-        <a href="#" class="manage-business">Manage business profile</a>
+        <a href="#" class="manage-business">
+          Manage business profile
+        </a>
       </div>
     </div>
     <a href="home page.html" class="sign">Sign Out</a>
   </div>
 </div>
-</div>
-<!--Sidebar navigation-->
-<nav class="sidebar">
-  <div class="menu-toggle" id="sidebarToggle">
-    <span class="material-icons-sharp">menu</span>
-  </div>
+
+<!-------------------- SIDEBAR NAVIGATION ------------------------->
+<div class="sidebar">
   <a href="Computer.html" class="active" id="home">
     <span class="material-icons-sharp">home</span>
     Home
@@ -88,11 +94,11 @@
     </a>
     <div class="dropdown-menu">
       <a href="transact.html" id="payments">Payment</a>
-      <a href="#" id="Transfer">Transfer</a>
-      <a href="#" id="create-beneficiary-btn">Beneficiary</a>
+      <a href="inprogress.html" id="Transfer">Transfer</a>
+      <a href="inprogress.html" id="beneficiary">Beneficiary</a>
     </div>
   </div>
-  <a href="efiling.html">
+  <a href="Cards.html">
     <span class="material-icons-sharp">dynamic_feed</span>
     Cards
   </a>
@@ -105,33 +111,33 @@
       <span class="dropdown-arrow">▶</span>
     </a>
     <div class="dropdown-menu">
-      <a href="#">Transactions</a>
+      <a href="inprogress.html">Transactions</a>
       <a href="Beneficiaries.html">Beneficiaries</a>
-      <a href="#">User Management</a>
-      <a href="#">Account & Limits</a>
-      <a href="#">Authorisation Levels</a>
-      <a href="#">Notification Setup</a>
+      <a href="inprogress.html">User Management</a>
+      <a href="inprogress.html">Account & Limits</a>
+      <a href="inprogress.html">Authorisation Levels</a>
+      <a href="inprogress.html">Notification Setup</a>
       <a href="messages.html">Messages</a>
     </div>
   </div>
-  <a href="Phone-settings.html">
+  <a href="inprogress.html">
     <span class="material-icons-sharp">groups</span>
     User management
   </a>
   <p class="side">SERVICES</p>
-  <a href="Phone-settings.html">
+  <a href="inprogress.html">
     <span class="material-icons-sharp">shopping_cart</span>
     Products & Services
   </a>
-  <a href="Phone-settings.html">
+  <a href="inprogress.html">
     <span class="material-icons-sharp">radio_button_unchecked</span>
     SARS eFILLING
   </a>
-  <a href="Phone-settings.html">
+  <a href="inprogress.html">
     <span class="material-icons-sharp">chat</span>
     Secure Messages
   </a>
-  <a href="Phone-settings.html">
+  <a href="inprogress.html">
     <span class="material-icons-sharp">description</span>
     Documents
   </a>
@@ -143,14 +149,6 @@
     <span class="material-icons-sharp">lock</span>
     We secure your data in line with our Privacy Notice and Terms & Conditions
   </a>
-  </div>
-</nav>
-<div class="search-container">
-  <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-  <button id="execute-automation" class="search-button" aria-label="Execute search">
-    <span class="material-icons-sharp">search</span> Go
-  </button>
-  <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
 <!-- Notice Section -->
@@ -269,6 +267,7 @@
 <script src="card.js"></script>
 <script src="Transfer.js"></script>
 <script src="Combined.js"></script>
-<script src="computer automation.js"></script>
+<script src="Computer-Automation.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>

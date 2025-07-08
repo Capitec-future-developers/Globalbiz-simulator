@@ -1,10 +1,22 @@
 // AUTOMATION SYSTEM
 
+
 // Configuration
 const automationConfig = {
     stepDelay: 500, // 500ms between steps
     highlightDuration: 400, // 400ms highlight duration
     highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)' // Gold glow effect
+};
+
+// Track automation state
+const automationState = {
+    currentCommand: null,
+    currentSteps: [],
+    currentStepIndex: 0,
+    isPaused: false,
+    timeoutId: null,
+    navigationHistory: [],
+    navigationIndex: -1
 };
 
 // Enhanced command mapping with additional metadata
@@ -73,33 +85,33 @@ const automationCommands = {
     }
 };
 
-// Track currently executing command
-let currentCommand = null;
-
 // Initialize automation system
 function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
 
+// Create control buttons if they don't exist
+    createControlButtons();
+
     if (searchInput && executeBtn) {
-        // Show suggestions when typing
+// Show suggestions when typing
         searchInput.addEventListener('input', function() {
             showCommandSuggestions(this.value);
         });
 
-        // Execute command on button click
+// Execute command on button click
         executeBtn.addEventListener('click', function() {
             executeCommand(searchInput.value);
         });
 
-        // Also execute on Enter key
+// Also execute on Enter key
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 executeCommand(this.value);
             }
         });
 
-        // Hide suggestions when clicking outside
+// Hide suggestions when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.search-container')) {
                 const dropdown = document.getElementById('suggestions-dropdown');
@@ -107,34 +119,196 @@ function initAutomationSystem() {
             }
         });
     }
-// control buttons
-    const pauseBtn = document.getElementById('pause-automation');
-    const playBtn = document.getElementById('play-automation');
-    const rewindBtn = document.getElementById('rewind-automation');
-    const forwardBtn = document.getElementById('forward-automation');
 
-    if (pauseBtn) pauseBtn.addEventListener('click', pauseAutomation);
-    if (playBtn) playBtn.addEventListener('click', resumeAutomation);
-    if (rewindBtn) rewindBtn.addEventListener('click', rewindAutomation);
-    // Check for pending automation on page load
+// Check for pending automation on page load
     checkForPendingAutomation();
+
+// Track navigation history
+    trackNavigationHistory();
 }
 
-function pauseAutomation(){
-    automationPaused = true;
-    const pausebtn = document.getElementById('pause-automation');
-    const playbtn = document.getElementById('play-automation');
-    if (pausebtn) pausebtn.style.display = 'none';
-    if (playbtn) playbtn.style.display = 'block';
-    updateTranscript("Automation paused");
+// Create control buttons
+function createControlButtons() {
+    const controlsContainer = document.createElement('div');
+    controlsContainer.id = 'automation-controls';
+    controlsContainer.style.position = 'fixed';
+    controlsContainer.style.bottom = '20px';
+    controlsContainer.style.right = '20px';
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.gap = '10px';
+    controlsContainer.style.zIndex = '10000';
+    controlsContainer.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    controlsContainer.style.padding = '10px';
+    controlsContainer.style.borderRadius = '5px';
+    controlsContainer.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+
+// Rewind button
+    const rewindBtn = document.createElement('button');
+    rewindBtn.id = 'rewind-automation';
+    rewindBtn.innerHTML = '⏪';
+    rewindBtn.title = 'Rewind';
+    rewindBtn.style.background = 'none';
+    rewindBtn.style.border = 'none';
+    rewindBtn.style.color = 'white';
+    rewindBtn.style.fontSize = '20px';
+    rewindBtn.style.cursor = 'pointer';
+    rewindBtn.addEventListener('click', rewindAutomation);
+    controlsContainer.appendChild(rewindBtn);
+
+// Pause/Play button
+    const pausePlayBtn = document.createElement('button');
+    pausePlayBtn.id = 'pause-play-automation';
+    pausePlayBtn.innerHTML = '⏸';
+    pausePlayBtn.title = 'Pause';
+    pausePlayBtn.style.background = 'none';
+    pausePlayBtn.style.border = 'none';
+    pausePlayBtn.style.color = 'white';
+    pausePlayBtn.style.fontSize = '20px';
+    pausePlayBtn.style.cursor = 'pointer';
+    pausePlayBtn.addEventListener('click', togglePauseAutomation);
+    controlsContainer.appendChild(pausePlayBtn);
+
+// Fast forward button
+    const fastForwardBtn = document.createElement('button');
+    fastForwardBtn.id = 'fast-forward-automation';
+    fastForwardBtn.innerHTML = '⏩';
+    fastForwardBtn.title = 'Fast Forward';
+    fastForwardBtn.style.background = 'none';
+    fastForwardBtn.style.border = 'none';
+    fastForwardBtn.style.color = 'white';
+    fastForwardBtn.style.fontSize = '20px';
+    fastForwardBtn.style.cursor = 'pointer';
+    fastForwardBtn.addEventListener('click', fastForwardAutomation);
+    controlsContainer.appendChild(fastForwardBtn);
+
+// Add to document
+    document.body.appendChild(controlsContainer);
 }
 
-function resumeAutomation(){
-    if(automationState.currentStepsIndex > 0){
-        automationState.currentStepIndex--;
-        updateTranscript
+// Track navigation history
+function trackNavigationHistory() {
+// Store current URL when script loads
+    if (automationState.navigationHistory.length === 0) {
+        automationState.navigationHistory.push(window.location.href);
+        automationState.navigationIndex = 0;
+    }
+
+// Override pushState and replaceState to track URL changes
+    const originalPushState = history.pushState;
+    const originalReplaceState = history.replaceState;
+
+    history.pushState = function() {
+        originalPushState.apply(this, arguments);
+        handleNavigationChange();
+    };
+
+    history.replaceState = function() {
+        originalReplaceState.apply(this, arguments);
+        handleNavigationChange();
+    };
+
+// Track popstate events (back/forward navigation)
+    window.addEventListener('popstate', function() {
+        handleNavigationChange();
+    });
+
+// Track link clicks
+    document.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' && e.target.href) {
+            setTimeout(() => {
+                handleNavigationChange();
+            }, 1000); // Wait for page to potentially load
+        }
+    }, true);
+}
+
+function handleNavigationChange() {
+    const currentUrl = window.location.href;
+    const lastUrl = automationState.navigationHistory[automationState.navigationHistory.length - 1];
+
+    if (currentUrl !== lastUrl) {
+// If we're not at the end of history, truncate the future history
+        if (automationState.navigationIndex < automationState.navigationHistory.length - 1) {
+            automationState.navigationHistory = automationState.navigationHistory.slice(0, automationState.navigationIndex + 1);
+        }
+
+        automationState.navigationHistory.push(currentUrl);
+        automationState.navigationIndex++;
     }
 }
+
+// Toggle pause/play
+function togglePauseAutomation() {
+    const pausePlayBtn = document.getElementById('pause-play-automation');
+
+    if (automationState.isPaused) {
+// Resume automation
+        automationState.isPaused = false;
+        pausePlayBtn.innerHTML = '⏸';
+        pausePlayBtn.title = 'Pause';
+        updateTranscript("Automation resumed");
+
+// Continue with next step
+        if (automationState.currentCommand) {
+            runAutomationSteps(
+                automationState.currentSteps.slice(automationState.currentStepIndex),
+                automationState.currentCommand
+            );
+        }
+    } else {
+// Pause automation
+        automationState.isPaused = true;
+        pausePlayBtn.innerHTML = '▶';
+        pausePlayBtn.title = 'Play';
+        clearTimeout(automationState.timeoutId);
+        updateTranscript("Automation paused");
+    }
+}
+
+// Rewind automation
+function rewindAutomation() {
+    if (automationState.navigationIndex > 0) {
+        automationState.navigationIndex--;
+        const targetUrl = automationState.navigationHistory[automationState.navigationIndex];
+
+// Save current automation state if running
+        if (automationState.currentCommand) {
+            sessionStorage.setItem('pendingAutomation', JSON.stringify({
+                command: automationState.currentCommand,
+                stepIndex: automationState.currentStepIndex,
+                isReload: true
+            }));
+        }
+
+        window.location.href = targetUrl;
+        updateTranscript("Rewinding to previous page");
+    } else {
+        updateTranscript("Already at the beginning of navigation history");
+    }
+}
+
+// Fast forward automation
+function fastForwardAutomation() {
+    if (automationState.navigationIndex < automationState.navigationHistory.length - 1) {
+        automationState.navigationIndex++;
+        const targetUrl = automationState.navigationHistory[automationState.navigationIndex];
+
+// Save current automation state if running
+        if (automationState.currentCommand) {
+            sessionStorage.setItem('pendingAutomation', JSON.stringify({
+                command: automationState.currentCommand,
+                stepIndex: automationState.currentStepIndex,
+                isReload: true
+            }));
+        }
+
+        window.location.href = targetUrl;
+        updateTranscript("Fast forwarding to next page");
+    } else {
+        updateTranscript("Already at the end of navigation history");
+    }
+}
+
 // Check if there's a pending automation to continue
 function checkForPendingAutomation() {
     const pendingAutomation = sessionStorage.getItem('pendingAutomation');
@@ -143,14 +317,14 @@ function checkForPendingAutomation() {
             const { command, stepIndex, isReload } = JSON.parse(pendingAutomation);
             const commandObj = automationCommands[command];
 
-            // Skip if this is a reload and the command prevents reloop
+// Skip if this is a reload and the command prevents reloop
             if (isReload && commandObj.preventReloop) {
                 sessionStorage.removeItem('pendingAutomation');
                 return;
             }
 
             if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
-                // Continue from the next step
+// Continue from the next step
                 setTimeout(() => {
                     runAutomationSteps(commandObj.steps.slice(stepIndex), command);
                 }, 1000); // Give the page time to load
@@ -182,7 +356,7 @@ function showCommandSuggestions(input) {
             const item = document.createElement('div');
             item.className = 'suggestion-item';
 
-            // Highlight matching part of the text
+// Highlight matching part of the text
             const matchIndex = match.toLowerCase().indexOf(input.toLowerCase());
             if (matchIndex >= 0) {
                 const before = match.substring(0, matchIndex);
@@ -190,16 +364,16 @@ function showCommandSuggestions(input) {
                 const after = match.substring(matchIndex + input.length);
 
                 item.innerHTML = `
-                    <div class="suggestion-title">
-                        ${before}<strong>${matched}</strong>${after}
-                    </div>
-                    <div class="suggestion-description">${command.description}</div>
-                `;
+<div class="suggestion-title">
+${before}<strong>${matched}</strong>${after}
+</div>
+<div class="suggestion-description">${command.description}</div>
+`;
             } else {
                 item.innerHTML = `
-                    <div class="suggestion-title">${match}</div>
-                    <div class="suggestion-description">${command.description}</div>
-                `;
+<div class="suggestion-title">${match}</div>
+<div class="suggestion-description">${command.description}</div>
+`;
             }
 
             item.addEventListener('click', () => {
@@ -227,18 +401,18 @@ function createSuggestionsDropdown() {
 function executeCommand(commandText) {
     if (!commandText) return;
 
-    // Clear any existing highlights
+// Clear any existing highlights
     clearHighlights();
 
-    // Find the best matching command
+// Find the best matching command
     const normalizedInput = commandText.toLowerCase().trim();
     let bestMatch = null;
     let bestScore = 0;
 
-    // Enhanced matching algorithm
+// Enhanced matching algorithm
     Object.keys(automationCommands).forEach(cmd => {
         const cmdLower = cmd.toLowerCase();
-        // Score based on how much of the command matches the input
+// Score based on how much of the command matches the input
         const score = calculateMatchScore(normalizedInput, cmdLower);
         if (score > bestScore) {
             bestMatch = cmd;
@@ -249,7 +423,7 @@ function executeCommand(commandText) {
     if (bestMatch) {
         const command = automationCommands[bestMatch];
         console.log(`Executing command: ${bestMatch}`);
-        currentCommand = bestMatch;
+        automationState.currentCommand = bestMatch;
         runAutomationSteps(command.steps, bestMatch);
     } else {
         showFeedbackMessage("Command not recognized. Try 'pay saved beneficiary', 'add new beneficiary', etc.", 'error');
@@ -258,16 +432,16 @@ function executeCommand(commandText) {
 
 // Calculate match score between input and command
 function calculateMatchScore(input, command) {
-    // Exact match gets highest score
+// Exact match gets highest score
     if (input === command) return 100;
 
-    // Contains the full command
+// Contains the full command
     if (input.includes(command)) return 90;
 
-    // Command contains the input
+// Command contains the input
     if (command.includes(input)) return 80;
 
-    // Calculate percentage of matching words
+// Calculate percentage of matching words
     const inputWords = input.split(/\s+/);
     const commandWords = command.split(/\s+/);
     const matchingWords = inputWords.filter(word =>
@@ -281,7 +455,12 @@ function calculateMatchScore(input, command) {
 function runAutomationSteps(steps, commandName) {
     if (!steps || steps.length === 0) return;
 
-    // Disable search during automation
+// Update automation state
+    automationState.currentSteps = steps;
+    automationState.currentStepIndex = 0;
+    automationState.isPaused = false;
+
+// Disable search during automation
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
     if (searchInput && executeBtn) {
@@ -289,14 +468,81 @@ function runAutomationSteps(steps, commandName) {
         executeBtn.disabled = true;
     }
 
-    // Show feedback message
+// Update pause/play button
+    const pausePlayBtn = document.getElementById('pause-play-automation');
+    if (pausePlayBtn) {
+        pausePlayBtn.innerHTML = '⏸';
+        pausePlayBtn.title = 'Pause';
+    }
+
+// Show feedback message
     showFeedbackMessage("Automation in progress...", 'info');
 
-    // Create transcript container
+// Create transcript container if not exists
+    const transcriptContainer = document.getElementById('automation-transcript') || createTranscriptContainer();
+
+// Execute steps with delay between them
+    executeNextStep();
+
+    function executeNextStep() {
+        if (automationState.isPaused) return;
+
+        if (automationState.currentStepIndex >= steps.length) {
+// Automation complete
+            completeAutomation();
+            return;
+        }
+
+        const step = steps[automationState.currentStepIndex];
+        updateTranscript(`Executing step ${automationState.currentStepIndex + 1}: ${getStepDescription(step)}`);
+
+// Save the current state before executing the step
+        sessionStorage.setItem('pendingAutomation', JSON.stringify({
+            command: commandName,
+            stepIndex: automationState.currentStepIndex,
+            isReload: false
+        }));
+
+        executeStep(step, () => {
+            automationState.currentStepIndex++;
+            if (!automationState.isPaused) {
+                automationState.timeoutId = setTimeout(executeNextStep, automationConfig.stepDelay);
+            }
+        });
+    }
+}
+
+function completeAutomation() {
+    showFeedbackMessage("Automation completed successfully!", 'success');
+    sessionStorage.removeItem('pendingAutomation');
+
+// Reset automation state
+    automationState.currentCommand = null;
+    automationState.currentSteps = [];
+    automationState.currentStepIndex = 0;
+    automationState.isPaused = false;
+
+// Re-enable search
+    const searchInput = document.getElementById('automation-search');
+    const executeBtn = document.getElementById('execute-automation');
+    if (searchInput && executeBtn) {
+        searchInput.disabled = false;
+        executeBtn.disabled = false;
+        searchInput.focus();
+    }
+
+// Remove transcript after delay
+    setTimeout(() => {
+        const transcriptContainer = document.getElementById('automation-transcript');
+        if (transcriptContainer) transcriptContainer.remove();
+    }, 5000);
+}
+
+function createTranscriptContainer() {
     const transcriptContainer = document.createElement('div');
     transcriptContainer.id = 'automation-transcript';
     transcriptContainer.style.position = 'fixed';
-    transcriptContainer.style.bottom = '20px';
+    transcriptContainer.style.bottom = '80px'; // Above controls
     transcriptContainer.style.right = '20px';
     transcriptContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
     transcriptContainer.style.color = 'white';
@@ -305,66 +551,12 @@ function runAutomationSteps(steps, commandName) {
     transcriptContainer.style.maxWidth = '300px';
     transcriptContainer.style.zIndex = '10000';
     document.body.appendChild(transcriptContainer);
-
-    // Execute steps with delay between them
-    let stepIndex = 0;
-
-    function executeNextStep() {
-        if (stepIndex >= steps.length) {
-            // Automation complete
-            showFeedbackMessage("Automation completed successfully!", 'success');
-            sessionStorage.removeItem('pendingAutomation');
-            currentCommand = null;
-
-            // Re-enable search
-            if (searchInput && executeBtn) {
-                searchInput.disabled = false;
-                executeBtn.disabled = false;
-                searchInput.focus();
-            }
-
-            // Remove transcript after delay
-            setTimeout(() => {
-                if (transcriptContainer) transcriptContainer.remove();
-            }, 5000);
-            return;
-        }
-
-        const step = steps[stepIndex];
-        updateTranscript(`Executing step ${stepIndex + 1}: ${getStepDescription(step)}`);
-
-        // Save the current state before executing the step
-        sessionStorage.setItem('pendingAutomation', JSON.stringify({
-            command: commandName,
-            stepIndex: stepIndex,
-            isReload: false
-        }));
-
-        executeStep(step, () => {
-            stepIndex++;
-            setTimeout(executeNextStep, automationConfig.stepDelay);
-        });
-    }
-
-    executeNextStep();
+    return transcriptContainer;
 }
 
 // Update the transcript
 function updateTranscript(message) {
-    const transcriptContainer = document.getElementById('automation-transcript') || document.createElement('div');
-    if (!transcriptContainer.id) {
-        transcriptContainer.id = 'automation-transcript';
-        transcriptContainer.style.position = 'fixed';
-        transcriptContainer.style.bottom = '20px';
-        transcriptContainer.style.right = '20px';
-        transcriptContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
-        transcriptContainer.style.color = 'white';
-        transcriptContainer.style.padding = '10px';
-        transcriptContainer.style.borderRadius = '5px';
-        transcriptContainer.style.maxWidth = '300px';
-        transcriptContainer.style.zIndex = '10000';
-        document.body.appendChild(transcriptContainer);
-    }
+    const transcriptContainer = document.getElementById('automation-transcript') || createTranscriptContainer();
 
     const entry = document.createElement('div');
     entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
@@ -373,7 +565,7 @@ function updateTranscript(message) {
     entry.style.paddingBottom = '5px';
     transcriptContainer.insertBefore(entry, transcriptContainer.firstChild);
 
-    // Keep only the last 5 messages
+// Keep only the last 5 messages
     while (transcriptContainer.children.length > 5) {
         transcriptContainer.removeChild(transcriptContainer.lastChild);
     }
@@ -406,30 +598,32 @@ function clearHighlights() {
 
 // Execute a single automation step
 function executeStep(step, callback) {
+    if (automationState.isPaused) return;
+
     switch(step.action) {
         case 'click':
             const element = document.querySelector(step.selector);
             if (element) {
-                // Highlight the element
+// Highlight the element
                 highlightElement(element, 'default');
 
-                // Add temporary class to element
+// Add temporary class to element
                 element.classList.add('automation-target');
 
-                // Scroll element into view if needed
+// Scroll element into view if needed
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                // Click after a brief pause to make highlight visible
+// Click after a brief pause to make highlight visible
                 setTimeout(() => {
-                    // Change to success color just before clicking
+// Change to success color just before clicking
                     highlightElement(element, 'success');
 
-                    // Perform the click
+// Perform the click
                     element.click();
                     console.log(`Clicked: ${step.selector}`);
                     updateTranscript(`Clicked: ${step.selector}`);
 
-                    // Remove highlight after duration
+// Remove highlight after duration
                     setTimeout(() => {
                         element.classList.remove('automation-target');
                         clearHighlights();
@@ -446,24 +640,24 @@ function executeStep(step, callback) {
 
         case 'wait':
             updateTranscript(`Waiting for ${step.duration}ms`);
-            setTimeout(() => {
+            automationState.timeoutId = setTimeout(() => {
                 if (callback) callback();
             }, step.duration);
             break;
 
         case 'navigate':
             updateTranscript(`Navigating to: ${step.url}`);
-            // Highlight the whole viewport before navigating
+// Highlight the whole viewport before navigating
             highlightElement(document.documentElement, 'warning');
 
-            // Mark this as a reload in session storage
+// Mark this as a reload in session storage
             sessionStorage.setItem('pendingAutomation', JSON.stringify({
-                command: currentCommand,
-                stepIndex: steps.findIndex(s => s === step) + 1,
+                command: automationState.currentCommand,
+                stepIndex: automationState.currentSteps.findIndex(s => s === step) + 1,
                 isReload: true
             }));
 
-            setTimeout(() => {
+            automationState.timeoutId = setTimeout(() => {
                 window.location.href = step.url;
             }, 1000);
             break;
@@ -484,19 +678,19 @@ function highlightElement(element, status = 'default') {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    // Set highlighter position and size
+// Set highlighter position and size
     highlighter.style.width = `${rect.width}px`;
     highlighter.style.height = `${rect.height}px`;
     highlighter.style.top = `${rect.top + scrollTop}px`;
     highlighter.style.left = `${rect.left + scrollLeft}px`;
     highlighter.style.borderRadius = window.getComputedStyle(element).borderRadius;
 
-    // Set color based on status
+// Set color based on status
     const colors = {
-        default: 'rgba(65, 131, 215, 0.7)',    // Blue
-        success: 'rgba(46, 204, 113, 0.7)',     // Green
-        warning: 'rgba(241, 196, 15, 0.7)',     // Yellow
-        error: 'rgba(231, 76, 60, 0.7)'         // Red
+        default: 'rgba(65, 131, 215, 0.7)', // Blue
+        success: 'rgba(46, 204, 113, 0.7)', // Green
+        warning: 'rgba(241, 196, 15, 0.7)', // Yellow
+        error: 'rgba(231, 76, 60, 0.7)' // Red
     };
 
     highlighter.style.boxShadow = `0 0 0 4px ${colors[status] || colors.default}`;
@@ -533,7 +727,7 @@ function showFeedbackMessage(message, type) {
     feedback.textContent = message;
     feedback.className = `feedback-message feedback-${type}`;
 
-    // Auto-hide after 3 seconds
+// Auto-hide after 3 seconds
     setTimeout(() => {
         feedback.style.opacity = '0';
         setTimeout(() => feedback.remove(), 500);
@@ -542,9 +736,9 @@ function showFeedbackMessage(message, type) {
 
 // Initialize the automation system when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Create highlighter element on startup
+// Create highlighter element on startup
     createHighlighter();
 
-    // Initialize automation system
+// Initialize automation system
     initAutomationSystem();
 });
