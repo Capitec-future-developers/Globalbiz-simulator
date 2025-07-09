@@ -133,7 +133,7 @@ function initAutomationSystem() {
     loadAutoPilotState();
 }
 
-// Create control buttons - UPDATED TO LEFT SIDE
+//Control buttons
 function createControlButtons() {
     const controlsContainer = document.createElement('div');
     controlsContainer.id = 'automation-controls';
@@ -148,7 +148,7 @@ function createControlButtons() {
     controlsContainer.style.borderRadius = '5px';
     controlsContainer.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
     controlsContainer.style.transition = 'opacity 0.3s ease';
-    controlsContainer.style.opacity = '1'; // Make sure it's always visible
+    controlsContainer.style.opacity = '1';
 
     // Auto-pilot toggle button
     const autoPilotToggle = document.createElement('button');
@@ -663,8 +663,8 @@ function createTranscriptContainer() {
     const transcriptContainer = document.createElement('div');
     transcriptContainer.id = 'automation-transcript';
     transcriptContainer.style.position = 'fixed';
-    transcriptContainer.style.bottom = '80px'; // Above controls
-    transcriptContainer.style.left = '20px'; // Changed to left to match controls
+    transcriptContainer.style.bottom = '80px';
+    transcriptContainer.style.right = '20px';
     transcriptContainer.style.backgroundColor = 'rgba(0,0,0,0.8)';
     transcriptContainer.style.color = 'white';
     transcriptContainer.style.padding = '10px';
