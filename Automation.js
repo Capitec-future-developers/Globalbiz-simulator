@@ -4,7 +4,8 @@
 const automationConfig = {
     stepDelay: 500, // 500ms between steps
     highlightDuration: 400, // 400ms highlight duration
-    highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)' // Gold glow effect
+    highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)', // Gold glow effect
+    autopilot: true // Default to autopilot mode
 };
 
 // Enhanced command mapping with additional metadata
@@ -104,10 +105,24 @@ let automationState = {
     currentStepIndex: 0,
     currentSteps: [],
     currentCommand: '',
-    currentTimeout: null
+    currentTimeout: null,
+    isAutopilot: getStoredAutopilotState(),
+    waitingForUserClick: false,
+    manualNavigation: false
 };
 
-// Create control buttons container
+// Get autopilot state from sessionStorage or use default
+function getStoredAutopilotState() {
+    const storedState = sessionStorage.getItem('automationAutopilot');
+    return storedState !== null ? JSON.parse(storedState) : automationConfig.autopilot;
+}
+
+// Store autopilot state in sessionStorage
+function storeAutopilotState(state) {
+    sessionStorage.setItem('automationAutopilot', JSON.stringify(state));
+}
+
+// Create control buttons container with autopilot toggle
 function createControlButtons() {
     const controlsContainer = document.createElement('div');
     controlsContainer.id = 'automation-controls';
@@ -122,7 +137,7 @@ function createControlButtons() {
     controlsContainer.style.borderRadius = '5px';
     controlsContainer.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
 
-// Create buttons
+    // Create buttons
     const rewindBtn = document.createElement('button');
     rewindBtn.id = 'rewind-btn';
     rewindBtn.innerHTML = '⏪';
@@ -163,21 +178,34 @@ function createControlButtons() {
     forwardBtn.style.cursor = 'pointer';
     forwardBtn.style.backgroundColor = '#f0f0f0';
 
-// Add buttons to container
+    // Autopilot toggle button
+    const autopilotBtn = document.createElement('button');
+    autopilotBtn.id = 'autopilot-btn';
+    autopilotBtn.innerHTML = '🧑‍✈️';
+    autopilotBtn.title = 'Toggle Autopilot';
+    autopilotBtn.style.padding = '5px 10px';
+    autopilotBtn.style.border = 'none';
+    autopilotBtn.style.borderRadius = '3px';
+    autopilotBtn.style.cursor = 'pointer';
+    autopilotBtn.style.backgroundColor = automationState.isAutopilot ? '#007FFF' : '#f0f0f0';
+
+    // Add buttons to container
     controlsContainer.appendChild(rewindBtn);
     controlsContainer.appendChild(pauseBtn);
     controlsContainer.appendChild(playBtn);
     controlsContainer.appendChild(forwardBtn);
+    controlsContainer.appendChild(autopilotBtn);
 
-// Add container to body
+    // Add container to body
     document.body.appendChild(controlsContainer);
 
-// Return button references
+    // Return button references
     return {
         pauseBtn,
         playBtn,
         rewindBtn,
-        forwardBtn
+        forwardBtn,
+        autopilotBtn
     };
 }
 
@@ -186,28 +214,28 @@ function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
 
-// Create and get control buttons
-    const { pauseBtn, playBtn, rewindBtn, forwardBtn } = createControlButtons();
+    // Create and get control buttons
+    const { pauseBtn, playBtn, rewindBtn, forwardBtn, autopilotBtn } = createControlButtons();
 
     if (searchInput && executeBtn) {
-// Show suggestions when typing
+        // Show suggestions when typing
         searchInput.addEventListener('input', function() {
             showCommandSuggestions(this.value);
         });
 
-// Execute command on button click
+        // Execute command on button click
         executeBtn.addEventListener('click', function() {
             executeCommand(searchInput.value);
         });
 
-// Also execute on Enter key
+        // Also execute on Enter key
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 executeCommand(this.value);
             }
         });
 
-// Hide suggestions when clicking outside
+        // Hide suggestions when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.search-container')) {
                 const dropdown = document.getElementById('suggestions-dropdown');
@@ -216,17 +244,41 @@ function initAutomationSystem() {
         });
     }
 
-// Set up control buttons event listeners
+    // Set up control buttons event listeners
     pauseBtn.addEventListener('click', pauseAutomation);
     playBtn.addEventListener('click', resumeAutomation);
     rewindBtn.addEventListener('click', rewindAutomation);
     forwardBtn.addEventListener('click', forwardAutomation);
+    autopilotBtn.addEventListener('click', toggleAutopilot);
 
-// Initialize button visibility
+    // Initialize button visibility
     updateControlButtons();
 
-// Check for pending automation on page load
+    // Check for pending automation on page load
     checkForPendingAutomation();
+}
+
+function toggleAutopilot() {
+    automationState.isAutopilot = !automationState.isAutopilot;
+    storeAutopilotState(automationState.isAutopilot);
+
+    const autopilotBtn = document.getElementById('autopilot-btn');
+    if (autopilotBtn) {
+        autopilotBtn.style.backgroundColor = automationState.isAutopilot ? '#007fff' : '#f0f0f0';
+        autopilotBtn.title = automationState.isAutopilot ? 'Autopilot: ON' : 'Autopilot: OFF';
+    }
+
+    updateTranscript(`Autopilot ${automationState.isAutopilot ? 'enabled' : 'disabled'}`);
+
+    // If we're in manual mode and waiting for user click, highlight the current step
+    if (!automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
+        highlightCurrentStep();
+    }
+
+    // If we're switching to autopilot and automation is in progress, continue automatically
+    if (automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
+        executeNextStep();
+    }
 }
 
 function pauseAutomation() {
@@ -245,7 +297,12 @@ function resumeAutomation() {
     automationState.isPaused = false;
     updateControlButtons();
     updateTranscript('Resuming automation...');
-    executeNextStep();
+
+    if (automationState.isAutopilot) {
+        executeNextStep();
+    } else {
+        highlightCurrentStep();
+    }
 }
 
 function updateControlButtons() {
@@ -265,17 +322,17 @@ function updateControlButtons() {
 
 function rewindAutomation() {
     if (automationState.currentStepIndex > 0) {
-// Clear any pending timeouts
+        // Clear any pending timeouts
         if (automationState.currentTimeout) {
             clearTimeout(automationState.currentTimeout);
             automationState.currentTimeout = null;
         }
 
-// Move back one step
+        // Move back one step
         automationState.currentStepIndex--;
         updateTranscript(`Rewound to step ${automationState.currentStepIndex + 1}`);
 
-// Restart automation from the new position
+        // Restart automation from the new position
         restartAutomationFromCurrentStep();
     } else {
         updateTranscript('Already at the first step');
@@ -284,17 +341,17 @@ function rewindAutomation() {
 
 function forwardAutomation() {
     if (automationState.currentStepIndex < automationState.currentSteps.length - 1) {
-// Clear any pending timeouts
+        // Clear any pending timeouts
         if (automationState.currentTimeout) {
             clearTimeout(automationState.currentTimeout);
             automationState.currentTimeout = null;
         }
 
-// Move forward one step
+        // Move forward one step
         automationState.currentStepIndex++;
         updateTranscript(`Advanced to step ${automationState.currentStepIndex + 1}`);
 
-// Restart automation from the new position
+        // Restart automation from the new position
         restartAutomationFromCurrentStep();
     } else {
         updateTranscript('Already at the last step');
@@ -302,18 +359,100 @@ function forwardAutomation() {
 }
 
 function restartAutomationFromCurrentStep() {
-// Clear any existing highlights
+    // Clear any existing highlights
     clearHighlights();
 
-// Update the pending automation state
+    // Update the pending automation state
     sessionStorage.setItem('pendingAutomation', JSON.stringify({
         command: automationState.currentCommand,
-        stepIndex: automationState.currentStepIndex
+        stepIndex: automationState.currentStepIndex,
+        isAutopilot: automationState.isAutopilot,
+        manualNavigation: !automationState.isAutopilot
     }));
 
-// If automation isn't paused, execute the current step
+    // If automation isn't paused, execute the current step
     if (!automationState.isPaused) {
-        executeNextStep();
+        if (automationState.isAutopilot) {
+            executeNextStep();
+        } else {
+            highlightCurrentStep();
+        }
+    }
+}
+
+// Highlight the current step for manual execution
+function highlightCurrentStep() {
+    if (automationState.currentStepIndex >= automationState.currentSteps.length) return;
+
+    const step = automationState.currentSteps[automationState.currentStepIndex];
+
+    if (step.action === 'click') {
+        const element = document.querySelector(step.selector);
+        if (element) {
+            // Highlight the element
+            highlightElement(element, 'default');
+            element.classList.add('automation-target');
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Set up click handler for manual mode
+            const clickHandler = (e) => {
+                if (automationState.waitingForUserClick) return;
+
+                automationState.waitingForUserClick = true;
+                e.stopPropagation();
+                e.preventDefault();
+
+                updateTranscript(`User clicked: ${step.selector}`);
+                element.removeEventListener('click', clickHandler);
+
+                // Execute the click action
+                element.click();
+
+                // Move to next step after a brief delay
+                setTimeout(() => {
+                    automationState.currentStepIndex++;
+                    automationState.waitingForUserClick = false;
+
+                    if (automationState.currentStepIndex < automationState.currentSteps.length) {
+                        if (automationState.isAutopilot) {
+                            executeNextStep();
+                        } else {
+                            highlightCurrentStep();
+                        }
+                    } else {
+                        finishAutomation();
+                    }
+                }, 300);
+            };
+
+            element.addEventListener('click', clickHandler);
+        } else {
+            updateTranscript(`Error: Element not found - ${step.selector}`);
+            showFeedbackMessage(`Element not found: ${step.selector}`, 'error');
+            automationState.currentStepIndex++;
+            executeNextStep();
+        }
+    } else if (step.action === 'wait') {
+        // For wait steps, we'll proceed automatically even in manual mode
+        updateTranscript(`Waiting for ${step.duration}ms`);
+        automationState.currentTimeout = setTimeout(() => {
+            automationState.currentStepIndex++;
+            if (automationState.isAutopilot) {
+                executeNextStep();
+            } else {
+                highlightCurrentStep();
+            }
+        }, step.duration);
+    } else {
+        // For other actions, proceed automatically
+        executeStep(step, () => {
+            automationState.currentStepIndex++;
+            if (automationState.isAutopilot) {
+                executeNextStep();
+            } else {
+                highlightCurrentStep();
+            }
+        });
     }
 }
 
@@ -322,11 +461,19 @@ function checkForPendingAutomation() {
     const pendingAutomation = sessionStorage.getItem('pendingAutomation');
     if (pendingAutomation) {
         try {
-            const { command, stepIndex } = JSON.parse(pendingAutomation);
+            const { command, stepIndex, isAutopilot, manualNavigation } = JSON.parse(pendingAutomation);
             const commandObj = automationCommands[command];
             if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
+                automationState.isAutopilot = isAutopilot !== undefined ? isAutopilot : automationConfig.autopilot;
+                automationState.manualNavigation = manualNavigation || false;
+
                 setTimeout(() => {
                     runAutomationSteps(commandObj.steps.slice(stepIndex), command);
+
+                    // If we were in manual mode during navigation, highlight the next step
+                    if (automationState.manualNavigation && !automationState.isAutopilot) {
+                        highlightCurrentStep();
+                    }
                 }, 1000);
             }
         } catch (e) {
@@ -446,7 +593,7 @@ function calculateMatchScore(input, command) {
 function runAutomationSteps(steps, commandName) {
     if (!steps || steps.length === 0) return;
 
-// Clear any existing timeout
+    // Clear any existing timeout
     if (automationState.currentTimeout) {
         clearTimeout(automationState.currentTimeout);
         automationState.currentTimeout = null;
@@ -457,7 +604,10 @@ function runAutomationSteps(steps, commandName) {
         currentStepIndex: 0,
         currentSteps: steps,
         currentCommand: commandName,
-        currentTimeout: null
+        currentTimeout: null,
+        isAutopilot: automationState.isAutopilot,
+        waitingForUserClick: false,
+        manualNavigation: false
     };
 
     const searchInput = document.getElementById('automation-search');
@@ -471,39 +621,25 @@ function runAutomationSteps(steps, commandName) {
     updateTranscript(`Starting automation: ${commandName}`);
     updateControlButtons();
 
-    executeNextStep();
+    // Update autopilot button to reflect current state
+    const autopilotBtn = document.getElementById('autopilot-btn');
+    if (autopilotBtn) {
+        autopilotBtn.style.backgroundColor = automationState.isAutopilot ? '#007fff' : '#f0f0f0';
+        autopilotBtn.title = automationState.isAutopilot ? 'Autopilot: ON' : 'Autopilot: OFF';
+    }
+
+    if (automationState.isAutopilot) {
+        executeNextStep();
+    } else {
+        highlightCurrentStep();
+    }
 }
 
 function executeNextStep() {
     const { currentStepIndex, currentSteps, currentCommand } = automationState;
 
     if (currentStepIndex >= currentSteps.length) {
-        showFeedbackMessage("Automation completed successfully!", 'success');
-        sessionStorage.removeItem('pendingAutomation');
-
-        const searchInput = document.getElementById('automation-search');
-        const executeBtn = document.getElementById('execute-automation');
-        if (searchInput && executeBtn) {
-            searchInput.disabled = false;
-            executeBtn.disabled = false;
-            searchInput.focus();
-        }
-
-        const transcript = document.getElementById('automation-transcript');
-        if (transcript) {
-            setTimeout(() => transcript.remove(), 5000);
-        }
-
-// Reset automation state
-        automationState = {
-            isPaused: false,
-            currentStepIndex: 0,
-            currentSteps: [],
-            currentCommand: '',
-            currentTimeout: null
-        };
-
-        updateControlButtons();
+        finishAutomation();
         return;
     }
 
@@ -513,13 +649,51 @@ function executeNextStep() {
     updateTranscript(`Executing step ${currentStepIndex + 1}: ${getStepDescription(step)}`);
     sessionStorage.setItem('pendingAutomation', JSON.stringify({
         command: currentCommand,
-        stepIndex: currentStepIndex
+        stepIndex: currentStepIndex,
+        isAutopilot: automationState.isAutopilot,
+        manualNavigation: !automationState.isAutopilot && step.action === 'navigate'
     }));
 
-    executeStep(step, () => {
-        automationState.currentStepIndex++;
-        automationState.currentTimeout = setTimeout(executeNextStep, automationConfig.stepDelay);
-    });
+    if (automationState.isAutopilot) {
+        executeStep(step, () => {
+            automationState.currentStepIndex++;
+            automationState.currentTimeout = setTimeout(executeNextStep, automationConfig.stepDelay);
+        });
+    } else {
+        highlightCurrentStep();
+    }
+}
+
+function finishAutomation() {
+    showFeedbackMessage("Automation completed successfully!", 'success');
+    sessionStorage.removeItem('pendingAutomation');
+
+    const searchInput = document.getElementById('automation-search');
+    const executeBtn = document.getElementById('execute-automation');
+    if (searchInput && executeBtn) {
+        searchInput.disabled = false;
+        executeBtn.disabled = false;
+        searchInput.focus();
+    }
+
+    const transcript = document.getElementById('automation-transcript');
+    if (transcript) {
+        setTimeout(() => transcript.remove(), 5000);
+    }
+
+    // Reset automation state
+    automationState = {
+        isPaused: false,
+        currentStepIndex: 0,
+        currentSteps: [],
+        currentCommand: '',
+        currentTimeout: null,
+        isAutopilot: automationState.isAutopilot,
+        waitingForUserClick: false,
+        manualNavigation: false
+    };
+
+    updateControlButtons();
 }
 
 function updateTranscript(message) {
@@ -603,6 +777,16 @@ function executeStep(step, callback) {
         case 'navigate':
             updateTranscript(`Navigating to: ${step.url}`);
             highlightElement(document.documentElement, 'warning');
+
+            // Store the automation state before navigating
+            const nextStepIndex = automationState.currentStepIndex + 1;
+            sessionStorage.setItem('pendingAutomation', JSON.stringify({
+                command: automationState.currentCommand,
+                stepIndex: nextStepIndex,
+                isAutopilot: automationState.isAutopilot,
+                manualNavigation: !automationState.isAutopilot
+            }));
+
             setTimeout(() => {
                 window.location.href = step.url;
             }, 1000);
@@ -678,7 +862,7 @@ function showFeedbackMessage(message, type) {
     feedback.className = `feedback-message feedback-${type}`;
     feedback.style.opacity = '1';
 
-// Set colors based on type
+    // Set colors based on type
     const colors = {
         info: 'rgba(52, 152, 219, 0.9)',
         success: 'rgba(46, 204, 113, 0.9)',
