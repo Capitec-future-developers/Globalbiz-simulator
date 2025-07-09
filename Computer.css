@@ -249,7 +249,7 @@ a {
   background: #ffffff; /* Darker blue */
   border-left: 4px solid #00264d; /* Even darker blue border */
   color: #00264d;
-  width: 1200px; /* Increased width */
+  width: 1000px; /* Increased width */
   position: relative; /* Required for ::after pseudo-element */
 }
 
@@ -309,9 +309,21 @@ a {
   font-size: 14px;
 }
 
+.account-name1 {
+  font-weight: 600;
+  font-size: 14px;
+  color: #00264d;
+}
+
 .account-balance {
   font-size: 18px;
   font-weight: 700;
+}
+
+.account-balance1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #00264d;
 }
 
 

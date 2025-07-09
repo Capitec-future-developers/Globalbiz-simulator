@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details | Capitec Bank</title>
+    <link rel="stylesheet" href="account details.css">
+    <link rel="icon" type="image/x-icon" href="profile.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <a href="#default" class="logo"><img src="Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
+    <div class="header-right">
+        <a href="#home">
+            <span class="material-icons-sharp">contact_support</span>
+            banker
+        </a>
+        <div class="profile">
+
+
+            </a><a href="#contact" id="profile-link">
+            <span class="material-icons-sharp">account_circle</span>
+            Kodi PTY LTD
+        </a>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <div class="popup-header">omphilestudent@gmail.com</div>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <a href="Profile-info.html">
+                            <div class="profile-Name">Kodi PTY LTD</div>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+        </div>
+        <a href="home page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+
+<!--Sidebar navigation-->
+<div class="sidebar">
+    <a href="Computer.html" class="active" id="home">
+        <span class="material-icons-sharp">home</span>
+        Home
+    </a>
+    <p class="side">BANKING</p>
+    <a href="Accounts.html" id="accounts">
+        <span class="material-icons-sharp">storage</span>
+        Accounts
+    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="transacts">
+            <span class="material-icons-sharp">swap_horiz</span>
+            Transact
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="transact.html" id="payments">Payment</a>
+            <a href="#" id="transfer">Transfer</a>
+            <a href="#" id="beneficiary">Beneficiary</a>
+        </div>
+    </div>
+    <a href="efiling.html">
+        <span class="material-icons-sharp">dynamic_feed</span>
+        Cards
+    </a>
+    <p class="side">MANAGEMENT</p>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">check_box</span>
+            Authorisations
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="#">Transactions</a>
+            <a href="Beneficiaries.html">Beneficiaries</a>
+            <a href="#">User Management</a>
+            <a href="#">Account & Limits</a>
+            <a href="#">Authorisation Levels</a>
+            <a href="#">Notification Setup</a>
+            <a href="messages.html">Messages</a>
+        </div>
+    </div>
+    <a href="Phone-settings.html">
+        <span class="material-icons-sharp">groups</span>
+        User management
+    </a>
+    <p class="side">SERVICES</p>
+    <a href="Phone-settings.html">
+        <span class="material-icons-sharp">shopping_cart</span>
+        Products & Services
+    </a>
+    <a href="Phone-settings.html">
+        <span class="material-icons-sharp">radio_button_unchecked</span>
+        SARS eFILLING
+    </a>
+    <a href="Phone-settings.html">
+        <span class="material-icons-sharp">chat</span>
+        Secure Messages
+    </a>
+    <a href="Phone-settings.html">
+        <span class="material-icons-sharp">description</span>
+        Documents
+    </a>
+    <a href="Phone-settings.html">
+        <span class="material-icons-sharp">settings</span>
+        Settings
+    </a>
+    <a href="Phone.html" class="signout">
+        <span class="material-icons-sharp">lock</span>
+        We secure your data in line with our Privacy Notice and Terms & Conditions
+    </a>
+</div>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<div class="main-content">
+    <div class="back-nav">
+        <a href="Accounts.html">
+            <span class="material-icons-sharp">arrow_back</span>
+            Account details
+        </a>
+    </div>
+
+    <div class="account-box">
+        <div style="color: #030034" class="account-info-row">
+            <div class="info-item">
+                <span class="info-label">Account type:</span>
+                <span class="info-value">Flexible Savings</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Account number:</span>
+                <span class="info-value">4001 4357 54</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Current balance:</span>
+                <span style="color: whitesmoke" class="info-value positive">R2 260.00</span>
+            </div>
+            <div style="align-content: space-evenly" class="info-item">
+                <span class="info-label">Available balance:</span>
+                <span class="info-value">R2 260.00</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Status:</span>
+                <span class="info-value">Open</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tabs">
+        <button id="btn-transactions"><div class="tab active">Transactions</div></button>
+        <button id="btn-payment-history"> <div class="tab">Payment history</div></button>
+        <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
+        <button id="btn-account-information"><div class="tab">Account information</div></button>
+    </div>
+
+    <div class="controls">
+        <input type="text" placeholder="Search transactions">
+        <input type="date">
+        <select>
+            <option>Filter history by</option>
+        </select>
+        <select>
+            <option>Transaction type</option>
+        </select>
+        <button class="download-btn">Download</button>
+    </div>
+
+    <div class="info-banner">
+        <span class="material-icons-sharp">info</span>
+        Choose a date range of up to 6 months before you download
+    </div>
+    <div  id="tab-content">
+        <table class="transaction-table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Transaction Type</th>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Fees</th>
+                <th>Balance</th>
+            </tr>
+            </thead>
+            <thead>
+            <tr>
+                <th colspan="100">July 2025</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2 July 2025</td>
+                <td>Credit</td>
+                <td>Sanity from 1553248753</td>
+                <td class="positive">R2 000.00</td>
+                <td>R0.00</td>
+                <td class="positive">R2 000.00</td>
+            </tr>
+            <tr>
+                <td>5 July 2025</td>
+                <td>Credit</td>
+                <td>Retail Cr Rainy days</td>
+                <td class="positive">R260.00</td>
+                <td>R0.00</td>
+                <td class="positive">R2 260.00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="Apps.js"></script>
+<script src="savingsAccount.js"></script>
+<script src="Computer%20Automation.js"></script>
+</body>
+</html>

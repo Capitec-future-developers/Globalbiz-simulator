@@ -372,6 +372,10 @@ body {
     color: #444;
 }
 
+.accountBox {
+    color: #00264d;
+}
+
 .transaction-table tr:hover {
     background-color: #f9f9f9;
 }
