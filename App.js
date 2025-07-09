@@ -6,36 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
 
-// Enhanced Dropdown functionality for all dropdowns
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    if (dropdownToggles.length > 0) {
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent event from bubbling up
-                const dropdown = this.closest('.dropdown');
-                if (dropdown) {
-// Close all other dropdowns first
-                    document.querySelectorAll('.dropdown').forEach(item => {
-                        if (item !== dropdown) {
-                            item.classList.remove('active');
-                        }
-                    });
-// Toggle current dropdown
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-
-// Close dropdowns when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-        });
-    }
 
     if (profileLink && profilePopup && overlay) {
         profileLink.addEventListener('click', function(e) {
