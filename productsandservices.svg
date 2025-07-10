@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>productsandservices</title>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3" transform="translate(1.000000, 3.000000)">
+            <polyline id="Path-3-Copy" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="8.80278936e-13 8.67635928e-16 3.19910705 8.67635928e-16 7.37559518 14.6163587 18.8157733 14.6163587"></polyline>
+            <polyline id="Path-4-Copy" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" points="6.22898264 11.5428646 19.3584435 11.5428646 22 3.02944204 4.09957535 3.02944204"></polyline>
+            <ellipse id="Oval-Copy-4" fill="#FFFFFF" cx="17.1491593" cy="17.5346932" rx="1.45181539" ry="1.46530682"></ellipse>
+            <ellipse id="Oval-Copy-5" fill="#FFFFFF" cx="9.40614385" cy="17.5346932" rx="1.45181539" ry="1.46530682"></ellipse>
+            <line x1="10.2267352" y1="6.12137868" x2="10.2267352" y2="9.05199231" id="Path-6-Copy" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            <line x1="15.2134054" y1="6.12137868" x2="15.2134054" y2="9.05199231" id="Path-6-Copy-3" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+        </g>
+    </g>
+</svg>
