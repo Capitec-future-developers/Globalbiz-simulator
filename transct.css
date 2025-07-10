@@ -1087,7 +1087,7 @@ body {
 
 .feedback-success { color: green; }
 .feedback-error { color: red; }
-.feedback-info { color: blue; }}
+.feedback-info { color: blue; }
 
 /* Dropdown styles */
 .dropdown {
@@ -1150,7 +1150,7 @@ body {
 
 }
 
-/ /* Add these styles for the transfer section */
+ /* Add these styles for the transfer section */
 .transfer-section {
     padding: 20px;
     max-width: 600px;
