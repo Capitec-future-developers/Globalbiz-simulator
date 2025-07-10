@@ -2,14 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    // =============================================
-    // PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
-    // =============================================
-
-    // Profile popup functionality
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
+
 
     if (profileLink && profilePopup && overlay) {
         profileLink.addEventListener('click', function(e) {

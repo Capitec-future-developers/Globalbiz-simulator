@@ -10,7 +10,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f7fa;
     color: #333;
-    padding-top: 140px;
+    padding-top: 140px; /* Added to account for both header and fixed search bar */
 }
 
 /* Header Styles */
@@ -150,38 +150,26 @@ body {
     margin-left: 250px;
     margin-top: 600px;
     padding: 30px;
+    width: 1850px;
     display: flex;
+    gap: 100px;
 }
-
-
 
 /* Search Bar Styles */
-
-.searchContent{
-    position: relative;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    width: 82%;
-    height: 150%;
-    top: 100px;
-    left: 300px;
-    max-width: 82%;
-}
-
-
 .search-container {
     position: fixed;
-    top: 150px;
-    right: -710px;
+    top: 10px;
+    left: 50%;
     transform: translateX(-50%);
     z-index: 10000;
-    width: 80%;
-    max-width: 100%;
-    }
+    width: 90%;
+    max-width: 500px;
+}
 
 #automation-search {
     width: calc(100% - 50px);
     padding: 10px;
+    border-radius: 20px;
     border: 1px solid #ccc;
 }
 
@@ -193,6 +181,7 @@ body {
     border: none;
     background: #007AFF;
     color: white;
+    border-radius: 0 20px 20px 0;
     padding: 0 15px;
     cursor: pointer;
 }
@@ -230,7 +219,7 @@ body {
 
 .feedback-success { color: green; }
 .feedback-error { color: red; }
-.feedback-info { color: blue; }
+.feedback-info { color: blue; }}
 
 /* Dropdown styles */
 .dropdown {
@@ -238,7 +227,6 @@ body {
 }
 /* Account Section Styles */
 .account-box {
-    position: absolute;
     background: #ffffff;
     color: black;
     padding: 25px;
@@ -246,26 +234,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: -30px;
-    border-left: 4px solid #007FFF;
-    width: 1550px;
-    height: 70px;
-    top: 230px;
-    left: 300px;
+    margin-bottom: 30px;
+    position: relative;
+    border-left: 5px solid #0075ff;
 }
 
 .account-info-row {
-    position: absolute;
     display: flex;
     flex-wrap: wrap;
-    gap: 250px;
+    gap: 20px;
     padding: 20px;
     border-radius: 8px;
     color: #111111;
-    margin-bottom: 80px;
-    align-content: center;
-    left: 30px;
-    top: -5px;
+    margin-bottom: 30px;
 }
 
 .View {
@@ -275,7 +256,6 @@ body {
     transform: translateY(-50%);
     display: flex;
     align-items: center;
-    text-decoration: none;
 }
 
 .View .material-icons-sharp {
@@ -644,7 +624,7 @@ body {
     .profile-name {
         font-size: 14px;
     }
-
+}
 
 / /* Add these styles for the transfer section */
 .transfer-section {
@@ -803,4 +783,3 @@ body {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-}

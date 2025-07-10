@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="Chatbotcomputer.css">
     <link rel="icon" type="image/x-icon" href="profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <title>Computer</title>
+    <title>Online banking</title>
 
 </head>
 <body>
@@ -23,7 +23,7 @@
     <div class="header-right">
         <!-- Chatbot Toggle Button -->
         <button class="chatbot-toggler">
-            <span class="material-icons-sharp">mode_comment</span>
+            <span class="material-icons-sharp"><img src="chat.svg" alt="transact" style="color: #cccccc;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -84,17 +84,19 @@
         <span class="material-icons-sharp">menu</span>
     </div>
     <a href="Computer.html" class="active" id="home">
-        <span class="material-icons-sharp">home</span>
+        <span class="material-icons-sharp"><img src="home.svg" alt="transact" style="color: #cccccc;"></span>
         Home
     </a>
     <p class="side">BANKING</p>
     <a href="Accounts.html" id="accounts">
-        <span class="material-icons-sharp">storage</span>
+        <span class="material-icons-sharp">
+            <img src="accounts.svg" alt="transact" style="color: #cccccc;">
+        </span>
         Accounts
     </a>
     <div class="dropdown">
         <a href="#" class="dropdown-toggle" id="transacts">
-            <span class="material-icons-sharp">swap_horiz</span>
+            <span class="material-icons-sharp"><img src="transact-white.svg" alt="transact" style="color: #cccccc;"></span>
             Transact
             <span class="dropdown-arrow">▶</span>
         </a>
@@ -106,14 +108,14 @@
         </div>
     </div>
     <a href="Cards.html">
-        <span class="material-icons-sharp">dynamic_feed</span>
+        <span class="material-icons-sharp"><img src="cards_icon.svg" alt="transact" style="color: #cccccc;"></span>
         Cards
     </a>
     <p class="side">MANAGEMENT</p>
 
     <div class="dropdown">
         <a href="#" class="dropdown-toggle">
-            <span class="material-icons-sharp">check_box</span>
+            <span class="material-icons-sharp"><img src="authorisations.svg" alt="transact" style="color: #cccccc;"></span>
             Authorisations
             <span class="dropdown-arrow">▶</span>
         </a>
@@ -133,23 +135,23 @@
     </a>
     <p class="side">SERVICES</p>
     <a href="inprogress.html">
-        <span class="material-icons-sharp">shopping_cart</span>
+        <span class="material-icons-sharp"><img src="productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
         Products & Services
     </a>
     <a href="inprogress.html">
-        <span class="material-icons-sharp">radio_button_unchecked</span>
+        <span class="material-icons-sharp"><img src="efiling.svg" alt="transact" style="color: #cccccc;"></span>
         SARS eFILLING
     </a>
     <a href="inprogress.html">
-        <span class="material-icons-sharp">chat</span>
+        <span class="material-icons-sharp"><img src="messages%20(1).svg" alt="transact" style="color: #cccccc;"></span>
         Secure Messages
     </a>
     <a href="Computer-Document.html">
-        <span class="material-icons-sharp">description</span>
+        <span class="material-icons-sharp"><img src="document.svg" alt="transact" style="color: #cccccc;"></span>
         Documents
     </a>
     <a href="settings.html">
-        <span class="material-icons-sharp">settings</span>
+        <span class="material-icons-sharp"><img src="settings.svg" alt="transact" style="color: #cccccc;"></span>
         Settings
     </a>
     <a href="#" class="signout">
@@ -186,7 +188,7 @@
         </div>
         <div class="box">
             <div class="box1">
-                <span class="material-icons-sharp">account_balance</span>
+                <img src="transact.svg" alt="transact">
                 <span class="separator"></span>
                 <a href="Accounts.html">
                     <div class="account-details">
@@ -216,27 +218,27 @@
             <h4>Favourites</h4>
             <h4 class="edit">Edit</h4>
         </div>
-        <div class="favorites-grid">
+        <div class="favorites-grid" style="display: flex; flex-wrap: wrap; justify-content: space-evenly; position: relative;">
             <!-- Pay Saved Beneficiary -->
-            <div class="favorite-box">
+            <div class="favorite-box" style="position: relative; top: 10px; right: 140px;">
                 <span class="material-icons-sharp">person</span>
-                <span class="favorite-title">Pay Saved</span>
+                <span class="favorite-title">Pay Saved beneficary</span>
             </div>
 
             <!-- Pay Once Off Beneficiary -->
-            <div class="favorite-box">
+            <div class="favorite-box" style="position: relative; bottom: 105px; left: 140px;">
                 <span class="material-icons-sharp">person_add</span>
                 <span class="favorite-title">Pay Once Off</span>
             </div>
 
             <!-- Group/Multiple Payments -->
-            <div class="favorite-box">
+            <div class="favorite-box" style="position: relative; top: -80px; right: 140px;" >
                 <span class="material-icons-sharp">groups</span>
                 <span class="favorite-title">Multiple</span>
             </div>
 
             <!-- Transfer Money -->
-            <div class="favorite-box" id="transfer-favorite">
+            <div class="favorite-box" id="transfer" style="position: relative; bottom: 195px; left: 140px;">
                 <span class="material-icons-sharp">sync_alt</span>
                 <span class="favorite-title">Transfer</span>
             </div>
@@ -244,8 +246,10 @@
     </div>
 </div>
 
+
 <!--Pending Authorisations-->
 <div class="pending">
+
     <div class="pending-header">
         <h4>Pending Authorisations</h4>
         <a href="all_authorisations.html" class="View">
@@ -253,8 +257,9 @@
         </a>
     </div>
     <div class="pending-box">
-        <span class="material-icons-sharp">check_circle</span>
-        <span class="pending-title">Authorise</span>
+        <img src="history.svg" alt="history" style="width: 150px; height: 150px; background-color: #ffffff;">
+        <span style="font-weight: bold;">You'er up to date</span><br>
+        <span>All pending authorasation will show here.</span>
     </div>
 </div>
 
@@ -263,18 +268,16 @@
         <h4>Cash Flow</h4>
     </div>
     <div class="cash-flow-box">
-        <span class="material-icons-sharp">account_balance_wallet</span>
-        <span class="cash-flow-title">1 Transactional Account</span>
+        <span class="cash-flow-title"></span>
         <div class="select-row">
-            <label for="account-select">Select Account</label>
+            <label for="account-select">1 Transactional Account</label>
             <select id="account-select" class="account-select">
-                <option value="">Please select an account</option>
-                <option value="account1">Account 1</option>
+                <option value="account1">Account </option>
                 <!-- other options -->
             </select>
             <div class="period-selector">
                 <select class="account-select">
-                    <option value="account1"> </option>
+                    <option value="account1">Period</option>
                     <option value="account1">1 Month</option>
                     <option value="account2">3 Months</option>
                     <option value="account3">6 Months</option>
@@ -286,7 +289,6 @@
 </div>
 
 <script src="chatbot.js"></script>
-<script src="Transfer.js"></script>
 <script src="Combined.js"></script>
 <script src="Computer-Automation.js"></script>
 </body>
