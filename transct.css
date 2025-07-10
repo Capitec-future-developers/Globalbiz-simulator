@@ -451,23 +451,29 @@ body {
 /* Main Content Styles */
 .main-content {
     width: 100%;
-    max-width: 1400px; /* Increased from 1200px */
-    padding: 40px; /* Increased padding */
+    max-width: 1400px;
+    padding: 40px;
 }
 
 .page-title {
     color: #007ba0;
-    margin-bottom: 35px; /* Increased margin */
-    font-size: 28px; /* Larger font */
+    margin-bottom: 35px;
+    font-size: 28px;
 }
 
 /* Quick actions section */
+.the-box {
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    height: 30%;
+    width: 100%;
+}
 .quick-actions {
     display: flex;
-    gap: 25px; /* Increased gap */
-    margin-bottom: 35px; /* Increased margin */
+    gap: 25px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
-}
+    }
 
 .action-card {
     background-color: white;
