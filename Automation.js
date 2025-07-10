@@ -4,7 +4,8 @@
 const automationConfig = {
     stepDelay: 500, // 500ms between steps
     highlightDuration: 400, // 400ms highlight duration
-    highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)' // Gold glow effect
+    highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)', // Gold glow effect
+    autopilot: true // Default to autopilot mode
 };
 
 // Enhanced command mapping with additional metadata
@@ -104,16 +105,31 @@ let automationState = {
     currentStepIndex: 0,
     currentSteps: [],
     currentCommand: '',
-    currentTimeout: null
+    currentTimeout: null,
+    isAutopilot: getStoredAutopilotState(),
+    waitingForUserClick: false,
+    manualNavigation: false,
+    clickHandlers: [] // Track click handlers for cleanup
 };
 
-// Create control buttons container
+// Get autopilot state from sessionStorage or use default
+function getStoredAutopilotState() {
+    const storedState = sessionStorage.getItem('automationAutopilot');
+    return storedState !== null ? JSON.parse(storedState) : automationConfig.autopilot;
+}
+
+// Store autopilot state in sessionStorage
+function storeAutopilotState(state) {
+    sessionStorage.setItem('automationAutopilot', JSON.stringify(state));
+}
+
+// Create control buttons container with autopilot toggle
 function createControlButtons() {
     const controlsContainer = document.createElement('div');
     controlsContainer.id = 'automation-controls';
     controlsContainer.style.position = 'fixed';
     controlsContainer.style.top = '10px';
-    controlsContainer.style.right = '10px';
+    controlsContainer.style.right = '15px';
     controlsContainer.style.zIndex = '10000';
     controlsContainer.style.display = 'flex';
     controlsContainer.style.gap = '5px';
@@ -125,7 +141,7 @@ function createControlButtons() {
 // Create buttons
     const rewindBtn = document.createElement('button');
     rewindBtn.id = 'rewind-btn';
-    rewindBtn.innerHTML = '⏪';
+    rewindBtn.innerHTML = '⏮';
     rewindBtn.title = 'Rewind';
     rewindBtn.style.padding = '5px 10px';
     rewindBtn.style.border = 'none';
@@ -145,7 +161,7 @@ function createControlButtons() {
 
     const playBtn = document.createElement('button');
     playBtn.id = 'play-btn';
-    playBtn.innerHTML = '▶';
+    playBtn.innerHTML = '▶️';
     playBtn.title = 'Play';
     playBtn.style.padding = '5px 10px';
     playBtn.style.border = 'none';
@@ -155,7 +171,7 @@ function createControlButtons() {
 
     const forwardBtn = document.createElement('button');
     forwardBtn.id = 'forward-btn';
-    forwardBtn.innerHTML = '⏩';
+    forwardBtn.innerHTML = '⏭';
     forwardBtn.title = 'Fast Forward';
     forwardBtn.style.padding = '5px 10px';
     forwardBtn.style.border = 'none';
@@ -163,11 +179,37 @@ function createControlButtons() {
     forwardBtn.style.cursor = 'pointer';
     forwardBtn.style.backgroundColor = '#f0f0f0';
 
+// Autopilot toggle button
+    const autopilotBtn = document.createElement('button');
+    autopilotBtn.id = 'autopilot-btn';
+    autopilotBtn.innerHTML = '🛬';
+    autopilotBtn.title = 'Toggle Autopilot';
+    autopilotBtn.style.padding = '5px 10px';
+    autopilotBtn.style.border = 'none';
+    autopilotBtn.style.borderRadius = '3px';
+    autopilotBtn.style.cursor = 'pointer';
+    autopilotBtn.style.backgroundColor = automationState.isAutopilot ? '#007FFF' : '#f0f0f0';
+
+// Terminate button
+    const terminateBtn = document.createElement('button');
+    terminateBtn.id = 'terminate-btn';
+    terminateBtn.innerHTML = '🛑';
+    terminateBtn.title = 'Terminate Automation';
+    terminateBtn.style.padding = '5px 10px';
+    terminateBtn.style.border = 'none';
+    terminateBtn.style.borderRadius = '3px';
+    terminateBtn.style.cursor = 'pointer';
+    terminateBtn.style.backgroundColor = '#f0f0f0';
+    terminateBtn.style.color = '#e74c3c';
+    terminateBtn.style.display = 'none'; // Initially hidden
+
 // Add buttons to container
     controlsContainer.appendChild(rewindBtn);
     controlsContainer.appendChild(pauseBtn);
     controlsContainer.appendChild(playBtn);
     controlsContainer.appendChild(forwardBtn);
+    controlsContainer.appendChild(autopilotBtn);
+    controlsContainer.appendChild(terminateBtn);
 
 // Add container to body
     document.body.appendChild(controlsContainer);
@@ -177,7 +219,9 @@ function createControlButtons() {
         pauseBtn,
         playBtn,
         rewindBtn,
-        forwardBtn
+        forwardBtn,
+        autopilotBtn,
+        terminateBtn
     };
 }
 
@@ -187,7 +231,7 @@ function initAutomationSystem() {
     const executeBtn = document.getElementById('execute-automation');
 
 // Create and get control buttons
-    const { pauseBtn, playBtn, rewindBtn, forwardBtn } = createControlButtons();
+    const { pauseBtn, playBtn, rewindBtn, forwardBtn, autopilotBtn, terminateBtn } = createControlButtons();
 
     if (searchInput && executeBtn) {
 // Show suggestions when typing
@@ -221,12 +265,95 @@ function initAutomationSystem() {
     playBtn.addEventListener('click', resumeAutomation);
     rewindBtn.addEventListener('click', rewindAutomation);
     forwardBtn.addEventListener('click', forwardAutomation);
+    autopilotBtn.addEventListener('click', toggleAutopilot);
+    terminateBtn.addEventListener('click', terminateAutomation);
 
 // Initialize button visibility
     updateControlButtons();
 
 // Check for pending automation on page load
     checkForPendingAutomation();
+}
+
+// Terminate current automation
+function terminateAutomation() {
+// Clear any pending timeouts
+    if (automationState.currentTimeout) {
+        clearTimeout(automationState.currentTimeout);
+        automationState.currentTimeout = null;
+    }
+
+// Clear all click handlers
+    automationState.clickHandlers.forEach(handler => {
+        if (handler.element && handler.callback) {
+            handler.element.removeEventListener('click', handler.callback);
+        }
+    });
+    automationState.clickHandlers = [];
+
+// Clear highlights
+    clearHighlights();
+
+// Remove pending automation state
+    sessionStorage.removeItem('pendingAutomation');
+
+// Reset automation state
+    automationState = {
+        isPaused: false,
+        currentStepIndex: 0,
+        currentSteps: [],
+        currentCommand: '',
+        currentTimeout: null,
+        isAutopilot: automationState.isAutopilot,
+        waitingForUserClick: false,
+        manualNavigation: false,
+        clickHandlers: []
+    };
+
+// Re-enable search input
+    const searchInput = document.getElementById('automation-search');
+    const executeBtn = document.getElementById('execute-automation');
+    if (searchInput && executeBtn) {
+        searchInput.disabled = false;
+        executeBtn.disabled = false;
+        searchInput.focus();
+    }
+
+// Update control buttons
+    updateControlButtons();
+
+// Show feedback
+    showFeedbackMessage("Automation terminated", 'warning');
+    updateTranscript("Automation was terminated by user");
+
+// Remove transcript after delay
+    setTimeout(() => {
+        const transcript = document.getElementById('automation-transcript');
+        if (transcript) transcript.remove();
+    }, 5000);
+}
+
+function toggleAutopilot() {
+    automationState.isAutopilot = !automationState.isAutopilot;
+    storeAutopilotState(automationState.isAutopilot);
+
+    const autopilotBtn = document.getElementById('autopilot-btn');
+    if (autopilotBtn) {
+        autopilotBtn.style.backgroundColor = automationState.isAutopilot ? '#007fff' : '#f0f0f0';
+        autopilotBtn.title = automationState.isAutopilot ? 'Autopilot: ON' : 'Autopilot: OFF';
+    }
+
+    updateTranscript(`Autopilot ${automationState.isAutopilot ? 'enabled' : 'disabled'}`);
+
+// If we're in manual mode and waiting for user click, highlight the current step
+    if (!automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
+        highlightCurrentStep();
+    }
+
+// If we're switching to autopilot and automation is in progress, continue automatically
+    if (automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
+        executeNextStep();
+    }
 }
 
 function pauseAutomation() {
@@ -245,20 +372,28 @@ function resumeAutomation() {
     automationState.isPaused = false;
     updateControlButtons();
     updateTranscript('Resuming automation...');
-    executeNextStep();
+
+    if (automationState.isAutopilot) {
+        executeNextStep();
+    } else {
+        highlightCurrentStep();
+    }
 }
 
 function updateControlButtons() {
     const pauseBtn = document.getElementById('pause-btn');
     const playBtn = document.getElementById('play-btn');
+    const terminateBtn = document.getElementById('terminate-btn');
 
-    if (pauseBtn && playBtn) {
+    if (pauseBtn && playBtn && terminateBtn) {
         if (automationState.isPaused || automationState.currentSteps.length === 0) {
             pauseBtn.style.display = 'none';
             playBtn.style.display = 'inline';
+            terminateBtn.style.display = 'none';
         } else {
             pauseBtn.style.display = 'inline';
             playBtn.style.display = 'none';
+            terminateBtn.style.display = 'inline';
         }
     }
 }
@@ -302,18 +437,122 @@ function forwardAutomation() {
 }
 
 function restartAutomationFromCurrentStep() {
-// Clear any existing highlights
+// Clear any existing highlights and handlers
     clearHighlights();
+    clearClickHandlers();
 
 // Update the pending automation state
     sessionStorage.setItem('pendingAutomation', JSON.stringify({
         command: automationState.currentCommand,
-        stepIndex: automationState.currentStepIndex
+        stepIndex: automationState.currentStepIndex,
+        isAutopilot: automationState.isAutopilot,
+        manualNavigation: !automationState.isAutopilot
     }));
 
 // If automation isn't paused, execute the current step
     if (!automationState.isPaused) {
-        executeNextStep();
+        if (automationState.isAutopilot) {
+            executeNextStep();
+        } else {
+            highlightCurrentStep();
+        }
+    }
+}
+
+// Clear all click handlers
+function clearClickHandlers() {
+    automationState.clickHandlers.forEach(handler => {
+        if (handler.element && handler.callback) {
+            handler.element.removeEventListener('click', handler.callback);
+        }
+    });
+    automationState.clickHandlers = [];
+}
+
+// Highlight the current step for manual execution
+function highlightCurrentStep() {
+    if (automationState.currentStepIndex >= automationState.currentSteps.length) return;
+
+    const step = automationState.currentSteps[automationState.currentStepIndex];
+
+    if (step.action === 'click') {
+        const element = document.querySelector(step.selector);
+        if (element) {
+// Highlight the element
+            highlightElement(element, 'default');
+            element.classList.add('automation-target');
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+// Set up click handler for manual mode
+            const clickHandler = (e) => {
+                if (automationState.waitingForUserClick) return;
+
+                automationState.waitingForUserClick = true;
+                e.stopPropagation();
+                e.preventDefault();
+
+                updateTranscript(`User clicked: ${step.selector}`);
+
+// Remove this click handler
+                element.removeEventListener('click', clickHandler);
+                automationState.clickHandlers = automationState.clickHandlers.filter(
+                    h => h.callback !== clickHandler
+                );
+
+// Execute the click action
+                element.click();
+
+// Move to next step after a brief delay
+                setTimeout(() => {
+                    automationState.currentStepIndex++;
+                    automationState.waitingForUserClick = false;
+
+                    if (automationState.currentStepIndex < automationState.currentSteps.length) {
+                        if (automationState.isAutopilot) {
+                            executeNextStep();
+                        } else {
+                            highlightCurrentStep();
+                        }
+                    } else {
+                        finishAutomation();
+                    }
+                }, 300);
+            };
+
+            element.addEventListener('click', clickHandler);
+
+// Store the handler for cleanup
+            automationState.clickHandlers.push({
+                element: element,
+                callback: clickHandler
+            });
+        } else {
+            updateTranscript(`Error: Element not found - ${step.selector}`);
+            showFeedbackMessage(`Element not found: ${step.selector}`, 'error');
+            automationState.currentStepIndex++;
+            executeNextStep();
+        }
+    } else if (step.action === 'wait') {
+// For wait steps, we'll proceed automatically even in manual mode
+        updateTranscript(`Waiting for ${step.duration}ms`);
+        automationState.currentTimeout = setTimeout(() => {
+            automationState.currentStepIndex++;
+            if (automationState.isAutopilot) {
+                executeNextStep();
+            } else {
+                highlightCurrentStep();
+            }
+        }, step.duration);
+    } else {
+// For other actions, proceed automatically
+        executeStep(step, () => {
+            automationState.currentStepIndex++;
+            if (automationState.isAutopilot) {
+                executeNextStep();
+            } else {
+                highlightCurrentStep();
+            }
+        });
     }
 }
 
@@ -322,11 +561,19 @@ function checkForPendingAutomation() {
     const pendingAutomation = sessionStorage.getItem('pendingAutomation');
     if (pendingAutomation) {
         try {
-            const { command, stepIndex } = JSON.parse(pendingAutomation);
+            const { command, stepIndex, isAutopilot, manualNavigation } = JSON.parse(pendingAutomation);
             const commandObj = automationCommands[command];
             if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
+                automationState.isAutopilot = isAutopilot !== undefined ? isAutopilot : automationConfig.autopilot;
+                automationState.manualNavigation = manualNavigation || false;
+
                 setTimeout(() => {
                     runAutomationSteps(commandObj.steps.slice(stepIndex), command);
+
+// If we were in manual mode during navigation, highlight the next step
+                    if (automationState.manualNavigation && !automationState.isAutopilot) {
+                        highlightCurrentStep();
+                    }
                 }, 1000);
             }
         } catch (e) {
@@ -405,6 +652,7 @@ function executeCommand(commandText) {
     if (!commandText) return;
 
     clearHighlights();
+    clearClickHandlers();
 
     const normalizedInput = commandText.toLowerCase().trim();
     let bestMatch = null;
@@ -457,7 +705,11 @@ function runAutomationSteps(steps, commandName) {
         currentStepIndex: 0,
         currentSteps: steps,
         currentCommand: commandName,
-        currentTimeout: null
+        currentTimeout: null,
+        isAutopilot: automationState.isAutopilot,
+        waitingForUserClick: false,
+        manualNavigation: false,
+        clickHandlers: []
     };
 
     const searchInput = document.getElementById('automation-search');
@@ -471,39 +723,25 @@ function runAutomationSteps(steps, commandName) {
     updateTranscript(`Starting automation: ${commandName}`);
     updateControlButtons();
 
-    executeNextStep();
+// Update autopilot button to reflect current state
+    const autopilotBtn = document.getElementById('autopilot-btn');
+    if (autopilotBtn) {
+        autopilotBtn.style.backgroundColor = automationState.isAutopilot ? '#007fff' : '#f0f0f0';
+        autopilotBtn.title = automationState.isAutopilot ? 'Autopilot: ON' : 'Autopilot: OFF';
+    }
+
+    if (automationState.isAutopilot) {
+        executeNextStep();
+    } else {
+        highlightCurrentStep();
+    }
 }
 
 function executeNextStep() {
     const { currentStepIndex, currentSteps, currentCommand } = automationState;
 
     if (currentStepIndex >= currentSteps.length) {
-        showFeedbackMessage("Automation completed successfully!", 'success');
-        sessionStorage.removeItem('pendingAutomation');
-
-        const searchInput = document.getElementById('automation-search');
-        const executeBtn = document.getElementById('execute-automation');
-        if (searchInput && executeBtn) {
-            searchInput.disabled = false;
-            executeBtn.disabled = false;
-            searchInput.focus();
-        }
-
-        const transcript = document.getElementById('automation-transcript');
-        if (transcript) {
-            setTimeout(() => transcript.remove(), 5000);
-        }
-
-// Reset automation state
-        automationState = {
-            isPaused: false,
-            currentStepIndex: 0,
-            currentSteps: [],
-            currentCommand: '',
-            currentTimeout: null
-        };
-
-        updateControlButtons();
+        finishAutomation();
         return;
     }
 
@@ -513,13 +751,52 @@ function executeNextStep() {
     updateTranscript(`Executing step ${currentStepIndex + 1}: ${getStepDescription(step)}`);
     sessionStorage.setItem('pendingAutomation', JSON.stringify({
         command: currentCommand,
-        stepIndex: currentStepIndex
+        stepIndex: currentStepIndex,
+        isAutopilot: automationState.isAutopilot,
+        manualNavigation: !automationState.isAutopilot && step.action === 'navigate'
     }));
 
-    executeStep(step, () => {
-        automationState.currentStepIndex++;
-        automationState.currentTimeout = setTimeout(executeNextStep, automationConfig.stepDelay);
-    });
+    if (automationState.isAutopilot) {
+        executeStep(step, () => {
+            automationState.currentStepIndex++;
+            automationState.currentTimeout = setTimeout(executeNextStep, automationConfig.stepDelay);
+        });
+    } else {
+        highlightCurrentStep();
+    }
+}
+
+function finishAutomation() {
+    showFeedbackMessage("Automation completed successfully!", 'success');
+    sessionStorage.removeItem('pendingAutomation');
+
+    const searchInput = document.getElementById('automation-search');
+    const executeBtn = document.getElementById('execute-automation');
+    if (searchInput && executeBtn) {
+        searchInput.disabled = false;
+        executeBtn.disabled = false;
+        searchInput.focus();
+    }
+
+    const transcript = document.getElementById('automation-transcript');
+    if (transcript) {
+        setTimeout(() => transcript.remove(), 5000);
+    }
+
+// Reset automation state
+    automationState = {
+        isPaused: false,
+        currentStepIndex: 0,
+        currentSteps: [],
+        currentCommand: '',
+        currentTimeout: null,
+        isAutopilot: automationState.isAutopilot,
+        waitingForUserClick: false,
+        manualNavigation: false,
+        clickHandlers: []
+    };
+
+    updateControlButtons();
 }
 
 function updateTranscript(message) {
@@ -603,6 +880,16 @@ function executeStep(step, callback) {
         case 'navigate':
             updateTranscript(`Navigating to: ${step.url}`);
             highlightElement(document.documentElement, 'warning');
+
+// Store the automation state before navigating
+            const nextStepIndex = automationState.currentStepIndex + 1;
+            sessionStorage.setItem('pendingAutomation', JSON.stringify({
+                command: automationState.currentCommand,
+                stepIndex: nextStepIndex,
+                isAutopilot: automationState.isAutopilot,
+                manualNavigation: !automationState.isAutopilot
+            }));
+
             setTimeout(() => {
                 window.location.href = step.url;
             }, 1000);

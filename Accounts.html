@@ -146,32 +146,47 @@
     </a>
   </div>
 
-  <!-- Main Content Area -->
-  <div class="content" id="mainContent">
+
+
     <!-- Search Bar Section -->
-    <div class="search-container">
-      <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-      <button id="execute-automation" class="search-button">
-        <span class="material-icons-sharp">search</span> Go
-      </button>
-      <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+    <div class="searchContent" style="background-color: #ffffff; border: 1px solid #cccccc;">
+      <div class="searchHead" style="border-bottom: 1px solid #cccccc; width: 100%;">
+      <a href="computer.html">
+      <span class="material-icons-sharp" style="color: #007FFF; font-size: 2rem; left: -10px;">arrow_back</span>
+      </a>
+      <div style="position: absolute; top: 10px; left: 60px; font-size: 1.2rem; font-weight: bold; ">
+      Current Account
     </div>
+        </div>
+      <br>
+      <!-- Search Bar Nested Inside searchContent -->
+      <div class="search-container">
+        <input
+                type="text"
+                id="automation-search"
+                placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')"
+        >
+        <button id="execute-automation" class="search-button">
+          <span class="material-icons-sharp">search</span> Go
+        </button>
+
+        <!-- Suggestions Dropdown -->
+        <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+      </div>
+    </div>
+
 
     <!-- Account Information Section -->
 
     <div class="account-box">
       <div class="account">
         <div class="account-header">
-          <h4>Accounts</h4>
+         <img src="transact.svg" alt="transact" style="position: absolute; top: 30px; left: 10px;" >
 
         </div>
         <div class="account-info-row">
           <div class="info-item">
             <span class="info-label">Account Name:</span>
-            <span class="info-value">Kodi Codes</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Account number:</span>
             <span class="info-value">1052 2626 43</span>
           </div>
           <div class="info-item">
@@ -182,11 +197,7 @@
             <span class="info-label">Available balance:</span>
             <span class="info-value">R0.00</span>
           </div>
-          <div class="info-item">
-            <span class="info-label">Status:</span>
-            <span class="info-value">Open</span>
-          </div>
-        </div>
+         </div>
 
         <a href="Account%20details.html" class="View" id="view">
           <span class="material-icons-sharp">chevron_right</span>
