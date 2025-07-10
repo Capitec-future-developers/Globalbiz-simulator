@@ -158,13 +158,14 @@ body {
 /* Search Bar Styles */
 
 .searchContent{
-    position: absolute;
+    position: relative;
     border: 1px solid #ccc;
     background-color: #ffffff;
     width: 82%;
     height: 150%;
     top: 100px;
     left: 300px;
+    max-width: 82%;
 }
 
 
