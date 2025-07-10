@@ -153,7 +153,7 @@ function createControlButtons() {
     // Auto-pilot toggle button
     const autoPilotToggle = document.createElement('button');
     autoPilotToggle.id = 'auto-pilot-toggle';
-    autoPilotToggle.innerHTML = automationConfig.autoPilot ? '🧑‍✈️' : '🧑‍✈️';
+    autoPilotToggle.innerHTML = automationConfig.autoPilot ? '👩🏻‍🚀' : '🛬';
     autoPilotToggle.title = automationConfig.autoPilot ? 'Auto-pilot ON (click to turn OFF)' : 'Auto-pilot OFF (click to turn ON)';
     autoPilotToggle.style.background = 'none';
     autoPilotToggle.style.border = 'none';
@@ -166,7 +166,7 @@ function createControlButtons() {
     // Rewind button
     const rewindBtn = document.createElement('button');
     rewindBtn.id = 'rewind-automation';
-    rewindBtn.innerHTML = '⏪';
+    rewindBtn.innerHTML = '⏮';
     rewindBtn.title = 'Rewind';
     rewindBtn.style.background = 'none';
     rewindBtn.style.border = 'none';
@@ -179,7 +179,7 @@ function createControlButtons() {
     // Pause/Play button
     const pausePlayBtn = document.createElement('button');
     pausePlayBtn.id = 'pause-play-automation';
-    pausePlayBtn.innerHTML = '▶';
+    pausePlayBtn.innerHTML = '⏸';
     pausePlayBtn.title = 'Pause';
     pausePlayBtn.style.background = 'none';
     pausePlayBtn.style.border = 'none';
@@ -192,7 +192,7 @@ function createControlButtons() {
     // Fast forward button
     const fastForwardBtn = document.createElement('button');
     fastForwardBtn.id = 'fast-forward-automation';
-    fastForwardBtn.innerHTML = '⏪';
+    fastForwardBtn.innerHTML = '⏭';
     fastForwardBtn.title = 'Fast Forward';
     fastForwardBtn.style.background = 'none';
     fastForwardBtn.style.border = 'none';
@@ -201,6 +201,19 @@ function createControlButtons() {
     fastForwardBtn.style.cursor = 'pointer';
     fastForwardBtn.addEventListener('click', fastForwardAutomation);
     controlsContainer.appendChild(fastForwardBtn);
+
+    // Terminate button
+    const terminateBtn = document.createElement('button');
+    terminateBtn.id = 'terminate-automation';
+    terminateBtn.innerHTML = '🛑';
+    terminateBtn.title = 'Terminate Automation';
+    terminateBtn.style.background = 'none';
+    terminateBtn.style.border = 'none';
+    terminateBtn.style.color = 'white';
+    terminateBtn.style.fontSize = '20px';
+    terminateBtn.style.cursor = 'pointer';
+    terminateBtn.addEventListener('click', terminateAutomation);
+    controlsContainer.appendChild(terminateBtn);
 
     // Add to document
     document.body.appendChild(controlsContainer);
@@ -220,13 +233,57 @@ function createControlButtons() {
     document.head.appendChild(style);
 }
 
+// Terminate current automation
+function terminateAutomation() {
+    if (automationState.currentCommand) {
+        // Clear all timeouts and intervals
+        clearTimeout(automationState.timeoutId);
+
+        // Clear highlights and click handlers
+        clearHighlights();
+        clearUserClickHandler();
+
+        // Remove pending automation from storage
+        sessionStorage.removeItem('pendingAutomation');
+
+        // Reset automation state
+        automationState.currentCommand = null;
+        automationState.currentSteps = [];
+        automationState.currentStepIndex = 0;
+        automationState.isPaused = false;
+        automationState.waitingForUserClick = false;
+        automationState.currentHighlightedElement = null;
+
+        // Re-enable search
+        const searchInput = document.getElementById('automation-search');
+        const executeBtn = document.getElementById('execute-automation');
+        if (searchInput && executeBtn) {
+            searchInput.disabled = false;
+            executeBtn.disabled = false;
+            searchInput.focus();
+        }
+
+        // Update transcript
+        updateTranscript("Automation terminated by user");
+        showFeedbackMessage("Automation terminated", 'warning');
+
+        // Remove transcript after delay
+        setTimeout(() => {
+            const transcriptContainer = document.getElementById('automation-transcript');
+            if (transcriptContainer) transcriptContainer.remove();
+        }, 3000);
+    } else {
+        showFeedbackMessage("No automation to terminate", 'info');
+    }
+}
+
 // Toggle auto-pilot mode
 function toggleAutoPilot() {
     automationConfig.autoPilot = !automationConfig.autoPilot;
     const autoPilotToggle = document.getElementById('auto-pilot-toggle');
 
     if (automationConfig.autoPilot) {
-        autoPilotToggle.innerHTML = '🧑‍✈️';
+        autoPilotToggle.innerHTML = '👩🏻‍🚀';
         autoPilotToggle.title = 'Auto-pilot ON (click to turn OFF)';
         updateTranscript("Auto-pilot mode activated");
 
@@ -248,7 +305,7 @@ function toggleAutoPilot() {
             }
         }
     } else {
-        autoPilotToggle.innerHTML = '🧑‍✈️';
+        autoPilotToggle.innerHTML = '🛬';
         autoPilotToggle.title = 'Auto-pilot OFF (click to turn ON)';
         updateTranscript("Manual mode activated - click highlighted elements to proceed");
     }
@@ -275,7 +332,7 @@ function loadAutoPilotState() {
         // Update toggle button if it exists
         const autoPilotToggle = document.getElementById('auto-pilot-toggle');
         if (autoPilotToggle) {
-            autoPilotToggle.innerHTML = automationConfig.autoPilot ? '🧑‍✈️' : '🧑‍✈️';
+            autoPilotToggle.innerHTML = automationConfig.autoPilot ? '👩🏻‍🚀' : '🛬';
             autoPilotToggle.title = automationConfig.autoPilot ?
                 'Auto-pilot ON (click to turn OFF)' : 'Auto-pilot OFF (click to turn ON)';
         }
@@ -355,7 +412,7 @@ function togglePauseAutomation() {
     } else {
         // Pause automation
         automationState.isPaused = true;
-        pausePlayBtn.innerHTML = '▶ ';
+        pausePlayBtn.innerHTML = '▶️';
         pausePlayBtn.title = 'Play';
         clearTimeout(automationState.timeoutId);
         updateTranscript("Automation paused");
@@ -421,7 +478,7 @@ function checkForPendingAutomation() {
                 automationConfig.autoPilot = autoPilot;
                 const autoPilotToggle = document.getElementById('auto-pilot-toggle');
                 if (autoPilotToggle) {
-                    autoPilotToggle.innerHTML = automationConfig.autoPilot ? ' ' : ' ';
+                    autoPilotToggle.innerHTML = automationConfig.autoPilot ? '👩🏻‍🚀' : '🛬';
                     autoPilotToggle.title = automationConfig.autoPilot ?
                         'Auto-pilot ON (click to turn OFF)' : 'Auto-pilot OFF (click to turn ON)';
                 }
