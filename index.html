@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles/style.css">
-  <link rel="icon" type="image/x-icon" href="images/profile.jpg">
-  <title>Globalbizz</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+  <title>Globalbiz</title>
 </head>
 <body>
 
-<img src="images/globalbiz.jpg" src="header" class="h1" style="width: 100%;">
+<img src="../images/globalbiz.jpg" src="header" class="h1" style="width: 100%;">
 
 <p>We are going to create an app simulator for our agents to use when assisting clients</p>
 
@@ -50,7 +51,7 @@
           if (platform === 'app') {
             targetPage = "../App/Phone.html";
           } else {
-            targetPage = "../Computer/Computer.html";
+            targetPage = "./Computer.html";
           }
 
           proceedBtn.style.display = 'block';
@@ -78,8 +79,8 @@
 
 </script>
 
-<script src="scripts/Apps.js"></script>
-<script src="scripts/Combined.js"></script>
+<script src="../scripts/Apps.js"></script>
+<script src="../scripts/Combined.js"></script>
 
 </body>
 </html>
