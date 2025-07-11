@@ -221,7 +221,7 @@ function createControlButtons() {
     autopilotBtn.style.fontSize = '20px';
     autopilotBtn.style.cursor = 'pointer';
 
-// Terminate button
+// Terminate button - always visible when automation is running
     const terminateBtn = document.createElement('button');
     terminateBtn.id = 'terminate-btn';
     terminateBtn.innerHTML = '❌';
@@ -262,6 +262,9 @@ visibility: visible !important;
 #automation-controls button:hover {
 transform: scale(1.1);
 transition: transform 0.2s ease;
+}
+#terminate-btn:hover {
+color: #ff4444 !important;
 }
 `;
     document.head.appendChild(style);
@@ -441,14 +444,18 @@ function updateControlButtons() {
     const terminateBtn = document.getElementById('terminate-btn');
 
     if (pauseBtn && playBtn && terminateBtn) {
+        if (automationState.currentSteps.length > 0) {
+            terminateBtn.style.display = 'inline';
+        } else {
+            terminateBtn.style.display = 'none';
+        }
+
         if (automationState.isPaused || automationState.currentSteps.length === 0) {
             pauseBtn.style.display = 'none';
             playBtn.style.display = 'inline';
-            terminateBtn.style.display = 'none';
         } else {
             pauseBtn.style.display = 'inline';
             playBtn.style.display = 'none';
-            terminateBtn.style.display = 'inline';
         }
     }
 }
@@ -547,6 +554,10 @@ function checkForPendingAutomation() {
                     automationState.currentCommand = command;
                     automationState.currentSteps = commandObj.steps;
                     automationState.currentStepIndex = stepIndex;
+
+// Show terminate button
+                    const terminateBtn = document.getElementById('terminate-btn');
+                    if (terminateBtn) terminateBtn.style.display = 'inline';
 
                     if (automationState.isAutopilot) {
                         executeNextStep();
@@ -652,6 +663,10 @@ function executeCommand(commandText) {
         automationState.currentCommand = bestMatch;
         automationState.currentSteps = command.steps;
         automationState.currentStepIndex = 0;
+
+// Show terminate button
+        const terminateBtn = document.getElementById('terminate-btn');
+        if (terminateBtn) terminateBtn.style.display = 'inline';
 
         if (automationState.isAutopilot) {
             executeNextStep();
@@ -844,6 +859,10 @@ function completeAutomation() {
     automationState.currentCommand = null;
     automationState.currentSteps = [];
     automationState.currentStepIndex = 0;
+
+// Hide terminate button
+    const terminateBtn = document.getElementById('terminate-btn');
+    if (terminateBtn) terminateBtn.style.display = 'none';
 
 // Re-enable search
     const searchInput = document.getElementById('automation-search');
