@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details | Capitec Bank</title>
+    <link rel="stylesheet" href="../styles/account%20details.css">
+    <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+</head>
+<body>
+
+<div class="header">
+    <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
+    <div class="header-right">
+        <div class="header-right">
+            <!-- Chatbot Toggle Button -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat"></span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+            banker
+
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
+            <div class="profile-container">
+                <a href="#contact" id="profile-link">
+                    <span class="material-icons-sharp">account_circle</span>
+                    Omphile Mohlala
+                </a>
+                <!-- Popup HTML -->
+                <div class="overlay" id="overlay"></div>
+                <div class="profile-popup" id="profilePopup">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                    <div class="profile-item">
+                        <span class="material-icons-sharp profile-icon">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-active">ACTIVE PROFILE</div>
+                            <a href="Profile-info.html">
+                                <div class="profile-Name">Omphile Mohlala</div>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#" class="switch-profile">
+                        <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                        Switch to Kodi PTY LTD
+                    </a>
+                    <a href="#" class="manage-business">Manage business profile</a>
+                </div>
+            </div>
+            <a href="home%20page.htmlml" class="sign">Sign Out</a>
+        </div>
+    </div>
+</div>
+
+    <!--Sidebar navigation-->
+<div class="sidebar">
+    <a href="Computer.html" class="active" id="home">
+        <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
+        Home
+    </a>
+    <p class="side">BANKING</p>
+    <a href="Accounts.html" id="accounts">
+        <span class="material-icons-sharp">
+            <img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
+        </span>
+        Accounts
+    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="transacts">
+            <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
+            Transact
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="transact.html" id="payments">Payment</a>
+            <a href="#" id="t
+            Transfer">Transfer</a>
+            <a href="#" id="beneficiary-btn">Beneficiary</a>
+        </div>
+    </div>
+    <a href="Cards.html">
+        <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="transact" style="color: #cccccc;"></span>
+        Cards
+    </a>
+    <p class="side">MANAGEMENT</p>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="transact" style="color: #cccccc;"></span>
+            Authorisations
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="#">Transactions</a>
+            <a href="Beneficiaries.html">Beneficiaries</a>
+            <a href="inprogress.html">User Management</a>
+            <a href="inprogress.html">Account & Limits</a>
+            <a href="inprogress.html">Authorisation Levels</a>
+            <a href="inprogress.html">Notification Setup</a>
+            <a href="messages.html">Messages</a>
+        </div>
+    </div>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp">groups</span>
+        User management
+    </a>
+    <p class="side">SERVICES</p>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
+        Products & Services
+    </a>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="transact" style="color: #cccccc;"></span>
+        SARS eFILLING
+    </a>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp"><img src="messages%20(1).svg" alt="transact" style="color: #cccccc;"></span>
+        Secure Messages
+    </a>
+    <a href="Computer-Document.html">
+        <span class="material-icons-sharp"><img src="../images/document.svg" alt="transact" style="color: #cccccc;"></span>
+        Documents
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp"><img src="../images/settings.svg" alt="transact" style="color: #cccccc;"></span>
+        Settings
+    </a>
+    <a href="#" class="signout">
+        <span class="material-icons-sharp">lock</span>
+        We secure your data in line with our Privacy Notice and Terms & Conditions
+    </a>
+</div>
+
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<div class="main-content">
+    <div class="back-nav">
+        <a href="Accounts.html">
+            <span class="material-icons-sharp">arrow_back</span>
+            Account details
+        </a>
+    </div>
+
+    <div class="account-box">
+        <div class="account-info-row">
+            <div class="info-item">
+                <span class="info-label">Account type:</span>
+                <span class="info-value">Transact</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Account number:</span>
+                <span class="info-value">1052 2626 43</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Current balance:</span>
+                <span class="info-value negative">- R154.21</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Available balance:</span>
+                <span class="info-value">R0.00</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Status:</span>
+                <span class="info-value">Open</span>
+            </div>
+        </div>
+        <div class="manage-btn-container" style="position: relative;" list="account-options">
+            <button class="manage-btn">
+                <option>Manage Account</option>
+
+            </button>
+
+            <div class="details-hover">
+                <select>
+                    <datalist id="account-options">
+
+                        <option>Set account Authorization</option>
+                        <option>Edit account nickname</option>
+                    </datalist>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tabs">
+        <button id="btn-transactions"><div class="tab active">Transactions</div></button>
+        <button id="btn-payment-history"> <div class="tab">Payment history</div></button>
+        <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
+        <button id="btn-account-information"><div class="tab">Account information</div></button>
+    </div>
+
+    <div class="controls">
+        <input type="text" placeholder="Search transactions">
+        <input type="date">
+        <select>
+            <option>Filter history by</option>
+        </select>
+        <select>
+            <option>Transaction type</option>
+        </select>
+        <button class="download-btn">Download</button>
+    </div>
+
+    <div class="info-banner">
+        <span class="material-icons-sharp">info</span>
+        Choose a date range of up to 6 months before you download
+    </div>
+    <div id="tab-content">
+        <table class="transaction-table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Transaction Type</th>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Fees</th>
+                <th>Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>30 April 2025</td>
+                <td>Debit</td>
+                <td>Month S/Fee</td>
+                <td class="positive">R0.00</td>
+                <td class="negative">- R50.00</td>
+                <td class="negative">- R154.21</td>
+            </tr>
+            <tr>
+                <td>30 April 2025</td>
+                <td>Debit</td>
+                <td>Debit Interest - System Generated</td>
+                <td class="negative">- R1.86</td>
+                <td>R0.00</td>
+                <td class="negative">- R104.21</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="../scripts/Apps.js"></script>
+<script src="../scripts/Combined.js"></script>
+<script src="../scripts/Computer-Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+</body>
+</html>

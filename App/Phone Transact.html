@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone2.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>iPhone with White LCD</title>
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="head" style="height: 50px;">
+                <div class="arrow" id="sidebarToggle" style="background-color: #2c3e50">
+                    <a href="Phone2.html">
+                        <span class="material-icons-sharp" style="background-color: #2c3e50">arrow_back</span>
+                    </a>
+                </div>
+                <div class="header" style="left: -100px;">Transact</div>
+
+            </div>
+
+
+            <!-- Main Content Area -->
+            <div class="content-container">
+                <div id="main-content-area">
+                    <div class="transact-box">
+                        <div class="account-info-coloumn">
+                            <div class="info-item" id="payment">
+                                <span class="material-icons-sharp">exit_to_app</span>
+                                <span class="info-label" id="payment">Payment</span>
+                                <span class="material-icons-sharp right">chevron_right</span>
+                            </div>
+                            <div class="info-item" id="transfer">
+                                <span class="material-icons-sharp">sync_alt</span>
+                                <span class="info-label">Transfer</span>
+                                <span class="material-icons-sharp right">chevron_right</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="material-icons-sharp">group</span>
+                                <span class="info-label">Beneficiaries</span>
+                                <span class="material-icons-sharp right">chevron_right</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <a href="Phone2.html" class="nav-item" id="Home">
+                    <span class="nav-icon material-icons-outlined">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">storage</span>
+                    <span>Accounts</span>
+                </a>
+                <a href="Phone Transact.html" class="nav-item active">
+                    <img src="../images/transact.svg" alt="transact" style="color: #cccccc;">
+                    <span>transact</span>
+                </a>
+                <a href="Phone-cards.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">credit_card</span>
+                    <span>Cards</span>
+                </a>
+
+                <a href="../Computer/inprogress.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">search</span>
+                    <span>Explore</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="home-indicator"></div>
+</div>
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/Transfer.js"></script>
+</body>
+</html>
