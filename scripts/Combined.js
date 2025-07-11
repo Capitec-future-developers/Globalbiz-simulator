@@ -147,9 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </table>`
         ],
         paymentHistory: [
-            "Payment 1: R500.00 to John Doe",
-            "Payment 2: R1,200.00 to ABC Suppliers",
-            "Payment 3: R350.00 to Utility Company"
+            `<img src="../images/beneficiaryList.svg" alt="beneficiary" class="img" style="width: 2000px; left: 260px;">`
         ],
         stampedStatements: [
             "Statement for April 2025",
@@ -164,37 +162,43 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
-// Tab functionality
     const tabButtons = {
         transactions: document.getElementById("btn-transactions"),
         paymentHistory: document.getElementById("btn-payment-history"),
         stampedStatements: document.getElementById("btn-stamped-statements"),
         accountInformation: document.getElementById("btn-account-information")
     };
+
     const tabContent = document.getElementById("tab-content");
 
-// Function to display content in the tab
+// ✅ Updated function to render HTML correctly
     function displayContent(contentKey) {
         if (!tabContent || !tabContentData[contentKey]) return;
 
         const items = tabContentData[contentKey];
         tabContent.innerHTML = "";
 
-        if (items.length === 1 && items[0].startsWith('<table')) {
+        // If it's a single HTML block like a table or image
+        if (items.length === 1 && items[0].startsWith('<')) {
             tabContent.innerHTML = items[0];
         } else {
             const list = document.createElement("ul");
             list.className = "content-list";
             items.forEach(item => {
                 const listItem = document.createElement("li");
-                listItem.textContent = item;
+                // Detect if it's HTML (image or other)
+                if (item.startsWith('<')) {
+                    listItem.innerHTML = item;
+                } else {
+                    listItem.textContent = item;
+                }
                 list.appendChild(listItem);
             });
             tabContent.appendChild(list);
         }
     }
 
-// Function to highlight the active button
+// Highlight selected tab button
     function highlightButton(buttonId) {
         Object.keys(tabButtons).forEach(key => {
             const button = tabButtons[key];
@@ -212,6 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (tab) tab.classList.add('active');
         }
     }
+
 
 // Function to handle button clicks
     function handleTabClick(event) {
