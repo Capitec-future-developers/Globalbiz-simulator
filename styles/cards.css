@@ -13,6 +13,30 @@ body {
     color: #333;
 }
 
+.om-circle {
+    width: 35px;
+    height: 35px;
+    background-color: #0096c7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    right: 10px;
+    top: -9px;
+    text-decoration: none;
+}
+
+.name{
+    position: relative;
+    right: -5px;
+    top: -8px;
+    text-decoration: none;
+}
+
 /* Header Styles */
 .header {
     background-color: #ffffff;
@@ -818,7 +842,7 @@ popup-header {
 .feedback-success { color: green; }
 .feedback-error { color: red; }
 .feedback-info { color: blue; }
-}
+
 
 /* Dropdown styles */
 .dropdown {
@@ -874,7 +898,7 @@ popup-header {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/ /* Add these styles for the transfer section */
+/* Add these styles for the transfer section */
 .transfer-section {
     padding: 20px;
     max-width: 600px;
