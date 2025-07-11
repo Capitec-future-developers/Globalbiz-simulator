@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Slice</title>
+    <defs>
+        <filter color-interpolation-filters="auto" id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <rect id="Rectangle-Copy-15" x="0" y="0" width="24" height="24"></rect>
+            <g filter="url(#filter-1)" id="Group-32-Copy">
+                <g transform="translate(2.000000, 4.000000)">
+                    <line x1="14.475406" y1="7.928624" x2="17.7188873" y2="7.928624" id="stroke-copy-10" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(16.097147, 7.928624) rotate(-45.000000) translate(-16.097147, -7.928624) "></line>
+                    <rect id="Rectangle-Copy-16" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" transform="translate(12.071443, 8.150702) rotate(-45.000000) translate(-12.071443, -8.150702) " x="5.08548373" y="3.60982828" width="13.9719192" height="9.08174748"></rect>
+                    <line x1="15.3576812" y1="6.70051058" x2="5.26333973" y2="6.69225415" id="Path-4-Copy-3" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" transform="translate(10.310510, 6.696382) rotate(-45.000000) translate(-10.310510, -6.696382) "></line>
+                    <polyline id="Path-7-Copy-2" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" points="9.84571662 1.8189894e-12 0 9.70486655 6.39566264 16.301404"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
