@@ -168,13 +168,18 @@
 <div class="main-content">
     <div class="back-nav">
         <a href="Accounts.html">
-            <span class="material-icons-sharp">arrow_back</span>
-            Account details
+            <span class="material-icons-sharp" style="font-size: 30px; color: #007FFF;">arrow_back</span>
+            Account Details
         </a>
     </div>
 
     <div class="account-box">
         <div class="account-info-row">
+            <div class="info-item">
+                <span class="info-label"><img src="../images/transact-white.svg"></span>
+                <span class="info-value" style="position: relative; left: 50px; top: -25px; font-weight: bold; font-size: 20px;">Omphile</span>
+            </div>
+            <div class="yohyoh">
             <div class="info-item">
                 <span class="info-label">Account type:</span>
                 <span class="info-value">Transact</span>
@@ -195,25 +200,22 @@
                 <span class="info-label">Status:</span>
                 <span class="info-value">Open</span>
             </div>
-        </div>
-        <div class="manage-btn-container" style="position: relative;" list="account-options">
-            <button class="manage-btn">
-                <option>Manage Account</option>
-
-            </button>
-
-            <div class="details-hover">
-                <select>
-                    <datalist id="account-options">
-
-                        <option>Set account Authorization</option>
-                        <option>Edit account nickname</option>
-                    </datalist>
-                </select>
             </div>
         </div>
 
-    </div>
+       <div class="manage-btn-container" style=" background-color: #0078d7; position: absolute; border: 1px solid #ffffff; right: 50px;" list="account-options">
+                <button class="manage-btn">Manage Account</button>
+
+                <div class="details-hover">
+                    <ul>
+                        <li><a href="#">Set account authorization</a></li>
+                        <li><a href="#">Edit account nickname</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
 
     <div class="tabs">
         <button id="btn-transactions"><div class="tab active">Transactions</div></button>

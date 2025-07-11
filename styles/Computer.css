@@ -281,8 +281,7 @@ a {
     width: 800px;
     top: 55px;
     right: 10px;
-  font-weight: none;
-  text-align: center;
+   text-align: center;
 }
 
 .box1::after, .box2::after {
@@ -454,7 +453,7 @@ width: 50%;
   transform: translateY(-3px);
 }
 
-.favorite-box .material-icons-sharp {
+.favorite-box .material-icons-sharp, img{
   font-size: 30px;
   color: #3498db;
   margin-bottom: 10px;

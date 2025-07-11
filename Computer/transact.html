@@ -14,18 +14,19 @@
   <span id="display-username"></span>
   <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
 </div>
-<div class="header">
+
+<header class="header">
   <a href="#" class="logo"><img src="../images/Logo.png" alt="logo"></a>
   <span class="separator"></span>
   <div class="business">Business</div>
 
   <div class="header-right">
-    <!-- Chatbot Toggle Button -->
     <button class="chatbot-toggler">
-      <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+      <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat" ></span>
       <span class="material-icons-sharp">close</span>
     </button>
-    banker
+
+    <div class="banker">banker</div>
 
     <div class="chatbot">
       <header>
@@ -45,19 +46,12 @@
       </div>
     </div>
 
-
-    <!-- Profile -->
-
     <div class="profile-container">
       <a href="#contact" id="profile-link">
-        <a href="#contact" id="profile-link" style="text-decoration: none;">
-          <div class="om-circle" style="text-decoration: none;">OM</div>
-          <div class="name">
-            Omphile Mohlala
-          </div>
-        </a>
+        <div class="om-circle">OM</div>
+        <div class="name">Omphile Mohlala</div>
+      </a>
 
-      <!-- Popup -->
       <div class="overlay" id="overlay"></div>
       <div class="profile-popup" id="profilePopup">
         <a href="Profile-info.html" class="profile-name">
@@ -76,28 +70,24 @@
       </div>
     </div>
 
-    <a href="home%20page.htmlml" class="sign">Sign Out</a>
+    <a href="home%20page.html" class="sign">Sign Out</a>
   </div>
-</div>
+</header>
 
-<!-- Sidebar -->
-<div class="sidebar">
+<aside class="sidebar">
   <a href="Computer.html" class="active" id="home">
     <span class="material-icons-sharp"><img src="../images/home.svg" alt="home" /></span>
     Home
   </a>
-
   <p class="side">BANKING</p>
   <a href="Accounts.html" id="accounts">
     <span class="material-icons-sharp"><img src="../images/accounts.svg" alt="accounts" /></span>
     Accounts
   </a>
-
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" id="transacts">
       <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" /></span>
-      Transact
-      <span class="dropdown-arrow">▶</span>
+      Transact <span class="dropdown-arrow">▶</span>
     </a>
     <div class="dropdown-menu">
       <a href="transact.html" id="paymentss">Payment</a>
@@ -105,18 +95,15 @@
       <a href="#" id="beneficiary-btn">Beneficiary</a>
     </div>
   </div>
-
   <a href="Cards.html">
     <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="cards" /></span>
     Cards
   </a>
-
   <p class="side">MANAGEMENT</p>
   <div class="dropdown">
     <a href="#" class="dropdown-toggle">
       <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="auth" /></span>
-      Authorisations
-      <span class="dropdown-arrow">▶</span>
+      Authorisations <span class="dropdown-arrow">▶</span>
     </a>
     <div class="dropdown-menu">
       <a href="#">Transactions</a>
@@ -128,12 +115,10 @@
       <a href="messages.html">Messages</a>
     </div>
   </div>
-
   <a href="inprogress.html">
     <span class="material-icons-sharp">groups</span>
     User management
   </a>
-
   <p class="side">SERVICES</p>
   <a href="inprogress.html">
     <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="products" /></span>
@@ -159,9 +144,8 @@
     <span class="material-icons-sharp">lock</span>
     We secure your data in line with our Privacy Notice and Terms & Conditions
   </a>
-</div>
+</aside>
 
-<!-- Search -->
 <div class="search-container">
   <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
   <button id="execute-automation" class="search-button">
@@ -170,12 +154,10 @@
   <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
-<!-- Main Content -->
-<div class="content-wrapper content-active">
-  <div id="default-content" class="main-content">
+<main class="content-wrapper content-active">
+  <section id="default-content" class="main-content">
     <h1 class="page-title" style="color: black;">Payments</h1>
 
-    <!-- Quick Action Cards -->
     <div class="the-box">
       <div class="quick-actions">
         <div class="action-card" id="saved-payment-btn">
@@ -199,9 +181,8 @@
 
     <div class="divider"></div>
 
-    <!-- Payment History -->
-    <div class="payment-history">
-      <div class="history-header">
+    <section class="payment-history">
+      <header class="history-header">
         <h2 class="history-title">All payments</h2>
         <div class="history-filters">
           <div class="filter-item">
@@ -210,15 +191,11 @@
           </div>
           <div class="filter-item">
             <label>From account</label>
-            <select>
-              <option>All accounts</option>
-            </select>
+            <select><option>All accounts</option></select>
           </div>
           <div class="filter-item">
             <label>Date range</label>
-            <select>
-              <option>Last 30 days</option>
-            </select>
+            <select><option>Last 30 days</option></select>
           </div>
           <div class="filter-item">
             <label>Filter history by</label>
@@ -231,12 +208,10 @@
           </div>
           <div class="filter-item">
             <label>Payment type</label>
-            <select>
-              <option>All types</option>
-            </select>
+            <select><option>All types</option></select>
           </div>
         </div>
-      </div>
+      </header>
 
       <table class="payment-table">
         <thead>
@@ -254,19 +229,16 @@
         </tr>
         </tbody>
       </table>
-    </div>
-  </div>
+    </section>
+  </section>
 
-  <!-- Dynamic Content -->
-  <div id="main-content-area" class="main-content"></div>
-</div>
+  <section id="main-content-area" class="main-content"></section>
+</main>
 
-<!-- Scripts -->
 <script src="../scripts/Transfer.js"></script>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Apps.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
-
 </body>
 </html>
