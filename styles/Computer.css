@@ -260,23 +260,22 @@ a {
   color: #1e88e5;
 }
 
-/* Box specific styles */
+
 .box1 {
   background: #f9f9f9;
-  border-left: 4px solid #3498db;
+
   width: 1200px;
   position: relative;
 }
 
 .box2 {
   background: #ffffff;
-  border-left: 4px solid #00264d;
   color: #00264d;
   width: 1100px;
   position: relative;
 }
 
-/* Separator inside each box */
+
 .box1::after, .box2::after {
   content: "";
   position: absolute;
@@ -289,12 +288,15 @@ a {
 }
 
 .box1:hover, .box2:hover {
-  box-shadow: #007FFF;
+  box-shadow: 0 0 5px 1px #007FFF;
+  border: 1px solid #007FFF;
 }
 
 .box2:hover {
-  background: #ffffff;
+  box-shadow: 0 0 5px 1px #00264d;
+  border: 1px solid #00264d;
 }
+
 
 /* Icon styles */
 .box1 .material-icons-sharp,
