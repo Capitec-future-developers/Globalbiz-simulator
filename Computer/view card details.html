@@ -1,219 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/cards.css">
+  <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+
   <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <title>Computer</title>
-
-
 </head>
 <body>
-<div class="user-info">
-
-  <span id="display-username"></span>
-  <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
-</div>
+<!-- Header -->
 <div class="header">
   <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
   <span class="separator"></span>
   <div class="business">Business</div>
 
   <div class="header-right">
-    <a href="#home" id="banker-link">
-      <span class="material-icons-sharp">contact_support</span>
-      banker
-    </a>
+    <!-- Chatbot Toggle Button -->
+    <button class="chatbot-toggler">
+      <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat" style="color: #cccccc;"></span>
+      <span class="material-icons-sharp">close</span>
+    </button>
+    banker
 
-
-    <!-- Popup -->
-    <div id="banker-popup" class="popup">
-      <span class="close-btn" id="close-popup">&times;</span>
-      <h5>By engaging, you consent to sharing information with a Capitec Business representative, including screen sharing for technical support and understanding that the session may be monitore or recorded for quality  assurance. To decline, Click "X" at the bottom right. </h5>
-      <button class="popup-btn">Audio</button>
-      <button class="popup-btn">Phone</button>
-      <button class="popup-btn">Chat</button>
+    <!-- Chatbot -->
+    <div class="chatbot">
+      <header>
+        <h2>BIZCHAT</h2>
+        <span class="material-icons-sharp">close</span>
+      </header>
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class="material-icons-sharp">account_circle</span>
+          <p>Welcome to Bizchat, how can I assist.</p>
+        </li>
+        <li class="chat outgoing"></li>
+      </ul>
+      <div class="chat-input">
+        <textarea placeholder="Type your message here..." required></textarea>
+        <span id="send-btn" class="material-icons-sharp">send</span>
+      </div>
     </div>
 
-
+    <!-- Profile Section -->
     <div class="profile-container">
-      <a href="#contact" id="profile-link">
-        <span class="material-icons-sharp">account_circle</span>
-        Omphile Mohlala
+      <a href="#contact" id="profile-link" style="text-decoration: none;">
+        <div class="om-circle">OM</div>
+        <div class="name">Omphile Mohlala</div>
       </a>
-      <!-- Popup HTML -->
+
+      <!-- Profile Popup -->
       <div class="overlay" id="overlay"></div>
       <div class="profile-popup" id="profilePopup">
-        <a class="popup-header" href="Profile-info.html">
-          <div class="popup-header">omphilestudent@gmail.com</div>
-        </a>
+        <div class="popup-header">omphilestudent@gmail.com</div>
         <div class="profile-item">
           <span class="material-icons-sharp profile-icon">account_circle</span>
           <div class="profile-info">
             <div class="profile-active">ACTIVE PROFILE</div>
-            <div class="profile-Name">Omphile Mohlala</div>
+            <a href="Profile-info.html">
+              <div class="profile-Name">Omphile Mohlala</div>
+            </a>
           </div>
         </div>
-        <div id="page-transition"></div>
-        <a href="KodiCode.html" class="switch-profile">
+        <a href="#" class="switch-profile">
           <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
           Switch to Kodi PTY LTD
         </a>
         <a href="#" class="manage-business">Manage business profile</a>
       </div>
     </div>
+
     <a href="home%20page.htmlml" class="sign">Sign Out</a>
   </div>
-
 </div>
-</div>
-<!--Sidebar navigation-->
-<nav class="sidebar">
 
+<!-- Sidebar -->
+<div class="sidebar">
   <div class="menu-toggle" id="sidebarToggle">
     <span class="material-icons-sharp">menu</span>
   </div>
   <a href="Computer.html" class="active" id="home">
-    <span class="material-icons-sharp">home</span>
+    <span class="material-icons-sharp"><img src="../images/home.svg" alt="home" style="color: #cccccc;"></span>
     Home
   </a>
   <p class="side">BANKING</p>
   <a href="Accounts.html" id="accounts">
-    <span class="material-icons-sharp">storage</span>
+    <span class="material-icons-sharp"><img src="../images/accounts.svg" alt="accounts" style="color: #cccccc;"></span>
     Accounts
   </a>
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" id="transacts">
-      <span class="material-icons-sharp">swap_horiz</span>
-      Transact
-      <span class="dropdown-arrow">▶</span>
+      <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
+      Transact <span class="dropdown-arrow">▶</span>
     </a>
     <div class="dropdown-menu">
       <a href="transact.html" id="payments">Payment</a>
-      <a href="#" id="transfer">Transfer</a>
-      <a href="#" id="create-beneficiary-btn">Beneficiary</a>
+      <a href="#" id="Transfer">Transfer</a>
+      <a href="#" id="beneficiary-btn">Beneficiary</a>
     </div>
   </div>
   <a href="Cards.html">
-    <span class="material-icons-sharp">dynamic_feed</span>
+    <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="cards" style="color: #cccccc;"></span>
     Cards
   </a>
   <p class="side">MANAGEMENT</p>
-
   <div class="dropdown">
     <a href="#" class="dropdown-toggle">
-      <span class="material-icons-sharp">check_box</span>
-      Authorisations
-      <span class="dropdown-arrow">▶</span>
+      <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="authorisations" style="color: #cccccc;"></span>
+      Authorisations <span class="dropdown-arrow">▶</span>
     </a>
     <div class="dropdown-menu">
       <a href="#">Transactions</a>
       <a href="Beneficiaries.html">Beneficiaries</a>
-      <a href="#">User Management</a>
-      <a href="#">Account & Limits</a>
-      <a href="#">Authorisation Levels</a>
-      <a href="#">Notification Setup</a>
+      <a href="inprogress.html">User Management</a>
+      <a href="inprogress.html">Account & Limits</a>
+      <a href="inprogress.html">Authorisation Levels</a>
+      <a href="inprogress.html">Notification Setup</a>
       <a href="messages.html">Messages</a>
     </div>
   </div>
-  <a href="../App/Phone-settings.html">
+  <a href="inprogress.html">
     <span class="material-icons-sharp">groups</span>
     User management
   </a>
   <p class="side">SERVICES</p>
-  <a href="../App/Phone-settings.html">
-    <span class="material-icons-sharp">shopping_cart</span>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="products" style="color: #cccccc;"></span>
     Products & Services
   </a>
-  <a href="../App/Phone-settings.html">
-    <span class="material-icons-sharp">radio_button_unchecked</span>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="efiling" style="color: #cccccc;"></span>
     SARS eFILLING
   </a>
-  <a href="../App/Phone-settings.html">
-    <span class="material-icons-sharp">chat</span>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp"><img src="../images/messages%20(1).svg" alt="messages" style="color: #cccccc;"></span>
     Secure Messages
   </a>
-  <a href="../App/Phone-settings.html">
-    <span class="material-icons-sharp">description</span>
+  <a href="Computer-Document.html">
+    <span class="material-icons-sharp"><img src="../images/document.svg" alt="document" style="color: #cccccc;"></span>
     Documents
   </a>
-  <a href="../App/Phone-settings.html">
-    <span class="material-icons-sharp">settings</span>
+  <a href="settings.html">
+    <span class="material-icons-sharp"><img src="../images/settings.svg" alt="settings" style="color: #cccccc;"></span>
     Settings
   </a>
-  <a href="../App/Phone.html" class="signout">
+  <a href="#" class="signout">
     <span class="material-icons-sharp">lock</span>
     We secure your data in line with our Privacy Notice and Terms & Conditions
   </a>
-  </div>
-</nav>
+</div>
+
+<!-- Search -->
 <div class="search-container">
   <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
   <button id="execute-automation" class="search-button" aria-label="Execute search">
     <span class="material-icons-sharp">search</span> Go
   </button>
   <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
-
 </div>
 
-</head>
-<body>
+<!-- Card Details -->
 <div class="card-details" style="margin-top: 100px;">
-
   <div class="header-card">
-  <a href="Cards.html" class="back" style="margin-left: -10px; color: #1e88e5; bottom: 20px;">
-  <span class="material-icons-sharp">arrow_back</span>
-  </a>
-<h2 style="margin-left: 40px;">Card Details</h2>
+    <a href="Cards.html" class="back" style="margin-left: -10px; color: #1e88e5;">
+      <span class="material-icons-sharp">arrow_back</span>
+    </a>
+    <h2 style="margin-left: 40px;">Card Details</h2>
   </div>
   <div class="divider"></div>
-<div class="container">
-  <!-- Card Image Section -->
-  <div class="card-section">
-    <img src="../images/card.png" alt="Debit Card" class="card-img" style="height: 250px; width: 150px; gap: 10px;">
+  <div class="container">
+    <!-- Card Image -->
+    <div class="card-section">
+      <img src="../images/card.png" alt="Debit Card" class="card-img" style="height: 250px; width: 150px; gap: 10px;">
+    </div>
+    <!-- Card Info -->
+    <div class="details-section">
+      <div class="info"><strong>Company name:</strong> Kodi Banks</div>
+      <div class="info"><span class="status">Active</span></div>
+      <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3734</div>
+      <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
+      <div class="info"><strong>Card expiry date:</strong> 12/28</div>
+    </div>
+    <!-- Action Buttons -->
+    <div class="actions">
+      <a href="#" class="action-btn"><span class="material-icons-sharp">no_sim</span> Pause or Stop Card</a>
+      <a href="#" class="action-btn"><span class="material-icons-sharp">remove_red_eye</span> Update Card Limits</a>
+      <a href="#" class="action-btn"><span class="material-icons-sharp">pin</span> Change Card PIN</a>
+      <a href="#" class="action-btn"><span class="material-icons-sharp">nfc</span> Tap to Pay</a>
+      <a href="#" class="action-btn"><span class="material-icons-sharp">credit_card</span> View Card Details</a>
+      <a href="#" class="action-btn"><span class="material-icons-sharp">contactless</span> International Travel</a>
+    </div>
   </div>
-
-  <!-- Card Info Section -->
-  <div class="details-section">
-    <div class="info"><strong>Company name:</strong> Kodi Banks</div>
-    <div class="info"><span class="status">Active</span></div>
-    <div class="info"><strong>Debit Card:</strong> 4016 **** **** 3734</div>
-    <div class="info"><strong>Account number:</strong> 1052 2626 43</div>
-    <div class="info"><strong>Card expiry date:</strong> 12/28</div>
-  </div>
-
-  <!-- Action Buttons Section -->
-  <div class="actions">
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">no_sim</span>
-      Pause or Stop Card
-    </a>
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">remove_red_eye</span>
-      Update Card Limits
-    </a>
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">pin</span>
-      Change Card PIN
-    </a>
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">nfc</span>
-      Tap to Pay
-    </a>
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">credit_card</span>
-      View Card Details
-    </a>
-    <a href="#" class="action-btn">
-      <span class="material-icons-sharp">contactless</span>
-      International Travel
-    </a>
-  </div>
-</div>
 </div>
 </body>
 </html>
-
