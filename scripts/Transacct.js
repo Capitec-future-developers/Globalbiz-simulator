@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // =============================================
-    // USER CONTEXT MANAGEMENT SYSTEM (LocalStorage)
-    // =============================================
 
-    // Initialize user database in localStorage if not exists
+// Initialize user database in localStorage if not exists
     function initializeUserDatabase() {
         if (!localStorage.getItem('userDatabase')) {
             const userDatabase = {
-                // User with just a transactional account
+// User with just a transactional account
                 'user1@example.com': {
                     id: 'usr_001',
                     name: 'Omphile Mohlala',
@@ -100,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-                // User with multiple accounts
+// User with multiple accounts
                 'user2@example.com': {
                     id: 'usr_002',
                     name: 'John Doe',
@@ -215,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-                // Business user with different account types
+// Business user with different account types
                 'business@example.com': {
                     id: 'usr_003',
                     name: 'ABC Enterprises',
@@ -318,29 +315,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize the database
+// Initialize the database
     initializeUserDatabase();
 
-    // Get user database from localStorage
+// Get user database from localStorage
     function getUserDatabase() {
         return JSON.parse(localStorage.getItem('userDatabase'));
     }
 
-    // Update user in database
+// Update user in database
     function updateUserInDatabase(user) {
         const userDatabase = getUserDatabase();
         userDatabase[user.email] = user;
         localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
     }
 
-    // Current user context
+// Current user context
     let currentUserContext = null;
 
-    // =============================================
-    // AUTHENTICATION SYSTEM (LocalStorage)
-    // =============================================
+// =============================================
+// AUTHENTICATION SYSTEM (LocalStorage)
+// =============================================
 
-    // Simulate login function
+// Simulate login function
     function simulateLogin(email) {
         const userDatabase = getUserDatabase();
         const user = userDatabase[email];
@@ -349,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentUserContext = JSON.parse(JSON.stringify(user)); // Deep copy
             console.log('User logged in:', currentUserContext.name);
 
-            // Update last login time
+// Update last login time
             currentUserContext.security.lastLogin = new Date().toISOString();
             updateUserInDatabase(currentUserContext);
 
@@ -359,26 +356,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     }
 
-    // Check if we have a simulated login in URL params
+// Check if we have a simulated login in URL params
     const urlParams = new URLSearchParams(window.location.search);
     const simulatedUser = urlParams.get('user');
 
     if (simulatedUser && getUserDatabase()[simulatedUser]) {
         simulateLogin(simulatedUser);
     } else {
-        // Default to first user for demo purposes
+// Default to first user for demo purposes
         simulateLogin('user1@example.com');
     }
 
-    // =============================================
-    // CONTEXT-AWARE UI RENDERING
-    // =============================================
+// =============================================
+// CONTEXT-AWARE UI RENDERING
+// =============================================
 
-    // Update UI based on user context
+// Update UI based on user context
     function updateUserContextUI() {
         if (!currentUserContext) return;
 
-        // Update profile information
+// Update profile information
         const profileNameElements = document.querySelectorAll('.profile-name, #profile-name');
         const profileEmailElements = document.querySelectorAll('.profile-email, #profile-email');
         const profileImageElements = document.querySelectorAll('.profile-image, #profile-image');
@@ -396,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.src = `images/${currentUserContext.profileImage}`;
                 el.style.display = 'block';
             } else {
-                // Use initials as fallback
+// Use initials as fallback
                 const initials = currentUserContext.name.split(' ').map(n => n[0]).join('');
                 el.src = '';
                 el.textContent = initials;
@@ -404,37 +401,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update account selector
+// Update account selector
         updateAccountSelector();
 
-        // Update account overview
+// Update account overview
         updateAccountOverview();
 
-        // Update quick actions based on account features
+// Update quick actions based on account features
         updateQuickActions();
 
-        // Update transaction history
+// Update transaction history
         updateTransactionHistory();
 
-        // Update profile popup content
+// Update profile popup content
         updateProfilePopup();
     }
 
-    // Update account selector dropdown
+// Update account selector dropdown
     function updateAccountSelector() {
         const accountSelector = document.getElementById('account-selector');
         if (!accountSelector || !currentUserContext) return;
 
-        // Clear existing options
+// Clear existing options
         accountSelector.innerHTML = '';
 
-        // Add each account as an option
+// Add each account as an option
         currentUserContext.accounts.forEach(account => {
             const option = document.createElement('option');
             option.value = account.id;
             option.textContent = `${account.name} (••••${account.number.slice(-4)})`;
 
-            // Select default account
+// Select default account
             if (account.id === currentUserContext.preferences.defaultAccount) {
                 option.selected = true;
             }
@@ -442,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
             accountSelector.appendChild(option);
         });
 
-        // Add event listener for account changes
+// Add event listener for account changes
         accountSelector.addEventListener('change', function() {
             const selectedAccountId = this.value;
             currentUserContext.preferences.defaultAccount = selectedAccountId;
@@ -453,7 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Update account overview section
+// Update account overview section
     function updateAccountOverview() {
         const accountOverview = document.getElementById('account-overview');
         const accountBalance = document.getElementById('account-balance');
@@ -464,14 +461,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!accountOverview || !currentUserContext) return;
 
-        // Get selected/default account
+// Get selected/default account
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-        // Update account details
+// Update account details
         if (accountBalance) {
             accountBalance.textContent = formatCurrency(account.balance);
             accountBalance.className = account.balance >= 0 ? 'positive' : 'negative';
@@ -495,22 +492,22 @@ document.addEventListener('DOMContentLoaded', function() {
             accountStatus.className = account.status === 'active' ? 'active' : 'inactive';
         }
 
-        // Update account features (like overdraft, interest rate, etc.)
+// Update account features (like overdraft, interest rate, etc.)
         updateAccountFeatures(account);
     }
 
-    // Update account-specific features display
+// Update account-specific features display
     function updateAccountFeatures(account) {
         const featuresContainer = document.getElementById('account-features');
         if (!featuresContainer) return;
 
         featuresContainer.innerHTML = '';
 
-        // Add features based on account type
+// Add features based on account type
         const featuresList = document.createElement('ul');
         featuresList.className = 'account-features-list';
 
-        // Common features
+// Common features
         if (account.overdraft) {
             const li = document.createElement('li');
             li.innerHTML = `<span class="material-icons-sharp">credit_card</span> Overdraft: ${formatCurrency(account.overdraft)}`;
@@ -532,131 +529,127 @@ document.addEventListener('DOMContentLoaded', function() {
         featuresContainer.appendChild(featuresList);
     }
 
-    // Update quick action buttons based on account features
+// Update quick action buttons based on account features
     function updateQuickActions() {
         const paymentButton = document.getElementById('payment');
         const createButton = document.getElementById('create');
 
         if (!currentUserContext) return;
 
-        // Get selected/default account
+// Get selected/default account
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-        // Enable/disable actions based on account features
+// Enable/disable actions based on account features
         if (paymentButton) {
             paymentButton.disabled = !account.features.includes('payments');
         }
     }
 
-    // Update transaction history based on selected account
+// Update transaction history based on selected account
     function updateTransactionHistory() {
         const tabContent = document.getElementById('tab-content');
         if (!tabContent || !currentUserContext) return;
 
-        // Get selected/default account
+// Get selected/default account
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-        // Display transactions if we're on the transactions tab
+// Display transactions if we're on the transactions tab
         const activeTab = document.querySelector('.tabs button.active');
         if (activeTab && activeTab.id === 'btn-transactions') {
             displayContent([generateTransactionTable(account.transactions || [])]);
         }
     }
 
-    // Generate HTML table for transactions
+// Generate HTML table for transactions
     function generateTransactionTable(transactions) {
         let html = `
- <table class="transaction-table">
- <thead>
- <tr>
- <th>Date</th>
- <th>Transaction Type</th>
- <th>Reference</th>
- <th>Amount</th>
- <th>Fees</th>
- <th>Balance</th>
- </tr>
- </thead>
- <tbody>
- `;
+<table class="transaction-table">
+<thead>
+<tr>
+<th>Date</th>
+<th>Transaction Type</th>
+<th>Reference</th>
+<th>Amount</th>
+<th>Fees</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody>`;
 
         transactions.forEach(txn => {
             html += `
- <tr>
- <td>${txn.date}</td>
- <td>${txn.type}</td>
- <td>${txn.reference}</td>
- <td class="${txn.amount >= 0 ? 'positive' : 'negative'}">${txn.amount >= 0 ? '+' : ''}${formatCurrency(txn.amount)}</td>
- <td class="${txn.fees >= 0 ? 'positive' : 'negative'}">${txn.fees >= 0 ? '+' : ''}${formatCurrency(txn.fees)}</td>
- <td class="${txn.balance >= 0 ? 'positive' : 'negative'}">${formatCurrency(txn.balance)}</td>
- </tr>
- `;
+<tr>
+<td>${txn.date}</td>
+<td>${txn.type}</td>
+<td>${txn.reference}</td>
+<td class="${txn.amount >= 0 ? 'positive' : 'negative'}">${txn.amount >= 0 ? '+' : ''}${formatCurrency(txn.amount)}</td>
+<td class="${txn.fees >= 0 ? 'positive' : 'negative'}">${txn.fees >= 0 ? '+' : ''}${formatCurrency(txn.fees)}</td>
+<td class="${txn.balance >= 0 ? 'positive' : 'negative'}">${formatCurrency(txn.balance)}</td>
+</tr>`;
         });
 
         html += `
- </tbody>
- </table>
- `;
+</tbody>
+</table>`;
 
         return html;
     }
 
-    // Update profile popup content
+// Update profile popup content
     function updateProfilePopup() {
         const profilePopup = document.getElementById('profile-popup-content');
         if (!profilePopup || !currentUserContext) return;
 
         profilePopup.innerHTML = `
- <div class="profile-header">
- <div class="profile-image-large">
- ${currentUserContext.profileImage ?
+<div class="profile-header">
+<div class="profile-image-large">
+${currentUserContext.profileImage ?
             `<img src="images/${currentUserContext.profileImage}" alt="${currentUserContext.name}">` :
             `<div class="profile-initials" style="background-color: ${getRandomColor()}">${currentUserContext.name.split(' ').map(n => n[0]).join('')}</div>`
         }
- </div>
- <h3>${currentUserContext.name}</h3>
- <p>${currentUserContext.email}</p>
- </div>
- 
- <div class="profile-details">
- <div class="detail-item">
- <span class="material-icons-sharp">phone</span>
- <span>${currentUserContext.phone || 'Not provided'}</span>
- </div>
- 
- <div class="detail-item">
- <span class="material-icons-sharp">account_balance</span>
- <span>${currentUserContext.accounts.length} linked account${currentUserContext.accounts.length !== 1 ? 's' : ''}</span>
- </div>
- 
- <div class="detail-item">
- <span class="material-icons-sharp">security</span>
- <span>Last login: ${formatDateTime(currentUserContext.security.lastLogin)}</span>
- </div>
- </div>
- 
- <div class="profile-actions">
- <button class="profile-action-btn" id="edit-profile-btn">
- <span class="material-icons-sharp">edit</span> Edit Profile
- </button>
- <button class="profile-action-btn" id="security-settings-btn">
- <span class="material-icons-sharp">lock</span> Security Settings
- </button>
- <button class="profile-action-btn" id="logout-btn">
- <span class="material-icons-sharp">logout</span> Log Out
- </button>
- </div>
- `;
+</div>
+<h3>${currentUserContext.name}</h3>
+<p>${currentUserContext.email}</p>
+</div>
 
-        // Add event listeners for profile actions
+<div class="profile-details">
+<div class="detail-item">
+<span class="material-icons-sharp">phone</span>
+<span>${currentUserContext.phone || 'Not provided'}</span>
+</div>
+
+<div class="detail-item">
+<span class="material-icons-sharp">account_balance</span>
+<span>${currentUserContext.accounts.length} linked account${currentUserContext.accounts.length !== 1 ? 's' : ''}</span>
+</div>
+
+<div class="detail-item">
+<span class="material-icons-sharp">security</span>
+<span>Last login: ${formatDateTime(currentUserContext.security.lastLogin)}</span>
+</div>
+</div>
+
+<div class="profile-actions">
+<button class="profile-action-btn" id="edit-profile-btn">
+<span class="material-icons-sharp">edit</span> Edit Profile
+</button>
+<button class="profile-action-btn" id="security-settings-btn">
+<span class="material-icons-sharp">lock</span> Security Settings
+</button>
+<button class="profile-action-btn" id="logout-btn">
+<span class="material-icons-sharp">logout</span> Log Out
+</button>
+</div>`;
+
+// Add event listeners for profile actions
         document.getElementById('edit-profile-btn')?.addEventListener('click', () => {
             alert('Edit profile functionality would open here');
         });
@@ -667,13 +660,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('logout-btn')?.addEventListener('click', () => {
             alert('User would be logged out here');
-            // In a real app: window.location.href = '/logout';
+// In a real app: window.location.href = '/logout';
         });
     }
 
-    // =============================================
-    // HELPER FUNCTIONS
-    // =============================================
+// =============================================
+// HELPER FUNCTIONS
+// =============================================
 
     function formatCurrency(amount) {
         return 'R ' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -704,17 +697,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'txn_' + Math.random().toString(36).substr(2, 9);
     }
 
-    // =============================================
-    // INITIALIZE UI WITH USER CONTEXT
-    // =============================================
+// =============================================
+// INITIALIZE UI WITH USER CONTEXT
+// =============================================
 
     updateUserContextUI();
 
-    // =============================================
-    // UI COMPONENT FUNCTIONALITY
-    // =============================================
+// =============================================
+// UI COMPONENT FUNCTIONALITY
+// =============================================
 
-    // Profile popup functionality
+// Profile popup functionality
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
@@ -737,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sidebar toggle functionality
+// Sidebar toggle functionality
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
@@ -778,7 +771,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initSidebar();
     }
 
-    // Tab functionality
+// Tab functionality
     const btnTransactions = document.getElementById("btn-transactions");
     const btnPaymentHistory = document.getElementById("btn-payment-history");
     const btnStampedStatements = document.getElementById("btn-stamped-statements");
@@ -834,7 +827,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!currentUserContext) return;
 
-        // Get selected/default account
+// Get selected/default account
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
@@ -896,267 +889,244 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+});
 
-    // Payment and create functionality
-    const paymentButton = document.getElementById('payment');
-    const mainContentArea = document.getElementById('main-content-area');
-    const defaultContent = document.getElementById('default-content');
-    const contentWrapper = document.querySelector('.content-wrapper');
-    const createButton = document.getElementById('create');
+// Payment and Beneficiary Management Script
+document.addEventListener('DOMContentLoaded', function() {
+// Initialize user database
+    function initializeUserDatabase() {
+        if (!localStorage.getItem('userDatabase')) {
+            const userDatabase = {
+                'user1@example.com': {
+                    id: 'usr_001',
+                    name: 'Omphile Mohlala',
+                    email: 'user1@example.com',
+                    beneficiaries: [
+                        {
+                            id: 'ben_001',
+                            name: 'Omphile Mohlala',
+                            accountNumber: '1052265678',
+                            bank: 'Standard Bank',
+                            nickname: 'My Savings'
+                        }
+                    ]
+                },
+                'user2@example.com': {
+                    id: 'usr_002',
+                    name: 'John Doe',
+                    email: 'user2@example.com',
+                    beneficiaries: [
+                        {
+                            id: 'ben_002',
+                            name: 'Sarah Smith',
+                            accountNumber: '1052269876',
+                            bank: 'First National Bank',
+                            nickname: 'Rent Payment'
+                        }
+                    ]
+                }
+            };
+            localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
+        }
+    }
 
-    // Navigation state management
+    initializeUserDatabase();
+
+    function getUserDatabase() {
+        return JSON.parse(localStorage.getItem('userDatabase'));
+    }
+
+    function updateUserInDatabase(user) {
+        const userDatabase = getUserDatabase();
+        userDatabase[user.email] = user;
+        localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
+    }
+
+// Current user context
+    let currentUserContext = null;
     let navigationStack = [];
 
-    if (paymentButton) {
-        paymentButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            showPaymentSection();
-        });
+// Simulate login
+    function simulateLogin(email) {
+        const userDatabase = getUserDatabase();
+        const user = userDatabase[email];
+
+        if (user) {
+            currentUserContext = JSON.parse(JSON.stringify(user));
+            return true;
+        }
+        return false;
     }
 
-    if (createButton) {
-        createButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            showCreateOptions();
-        });
-    }
+// Default login for demo
+    simulateLogin('user1@example.com');
 
+// UI Elements
+    const defaultContent = document.getElementById('default-content');
+    const mainContentArea = document.getElementById('main-content-area');
+    const paymentButton = document.getElementById('payment');
+    const transferButton = document.getElementById('transfer');
+    const beneficiariesButton = document.getElementById('beneficiaries');
+
+// Event Listeners
+    paymentButton?.addEventListener('click', showPaymentSection);
+    transferButton?.addEventListener('click', () => alert('Transfer functionality coming soon!'));
+    beneficiariesButton?.addEventListener('click', showBeneficiariesSection);
+
+// Show payment section
     function showPaymentSection() {
         toggleContentVisibility();
         navigationStack.push('payment-section');
 
         mainContentArea.innerHTML = `
- <div class="payment-section">
- <div class="payment-header">
- <button class="back-button" id="back-to-transacts">
- <span class="material-icons-sharp">arrow_back</span> Back
- </button>
- <h2>Make a Payment</h2>
- <p>Choose your payment method</p>
- </div>
+<div class="payment-section">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>Make a Payment</h2>
+</div>
+<div class="payment-options-grid">
+<div class="payment-option-row">
+<div class="payment-option" id="saved-beneficiary-option">
+<div class="payment-icon">
+<span class="material-icons-sharp">bookmark</span>
+</div>
+<div class="payment-details">
+<h3>Saved Beneficiary</h3>
+<p>Pay to a saved recipient</p>
+</div>
+<span class="material-icons-sharp chevron-right">chevron_right</span>
+</div>
+</div>
+<div class="payment-option-row">
+<div class="payment-option" id="onceoff-beneficiary-option">
+<div class="payment-icon">
+<span class="material-icons-sharp">person_add</span>
+</div>
+<div class="payment-details">
+<h3>Once-off Beneficiary</h3>
+<p>Pay to a new recipient</p>
+</div>
+<span class="material-icons-sharp chevron-right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>`;
 
- <div class="payment-options-grid">
- <div class="payment-option-row">
- <div class="payment-option" id="saved-beneficiary-option">
- <div class="payment-icon">
- <span class="material-icons-sharp">bookmark</span>
- </div>
- <div class="payment-details">
- <h3>Saved Beneficiary</h3>
- <p>Pay to a saved recipient</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
-
- <div class="payment-option-row">
- <div class="payment-option" id="onceoff-beneficiary-option">
- <div class="payment-icon">
- <span class="material-icons-sharp">person_add</span>
- </div>
- <div class="payment-details">
- <h3>Once-off Beneficiary</h3>
- <p>Pay to a new recipient</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
-
- <div class="payment-option-row">
- <div class="payment-option" id="group-payment-option">
- <div class="payment-icon">
- <span class="material-icons-sharp">groups</span>
- </div>
- <div class="payment-details">
- <h3>Group Payment</h3>
- <p>Pay multiple beneficiaries</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
-
- <div class="payment-option-row">
- <div class="payment-option clickable-option" data-type="all-payments">
- <div class="payment-icon">
- <span class="material-icons-sharp">list_alt</span>
- </div>
- <div class="payment-details">
- <h3>All Payments</h3>
- <p>View all payment history</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
-
- <div class="payment-option-row">
- <div class="payment-option clickable-option" data-type="recurring">
- <div class="payment-icon">
- <span class="material-icons-sharp">autorenew</span>
- </div>
- <div class="payment-details">
- <h3>Recurring Payments</h3>
- <p>Manage scheduled payments</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
-
- <div class="payment-option-row">
- <div class="payment-option clickable-option" data-type="future">
- <div class="payment-icon">
- <span class="material-icons-sharp">event</span>
- </div>
- <div class="payment-details">
- <h3>Future Dated Payments</h3>
- <p>Schedule future payments</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
- </div>
- </div>
- `;
-
-        // Add event listeners
-        const backButton = document.getElementById('back-to-transacts');
-        if (backButton) {
-            backButton.addEventListener('click', function() {
-                resetToMainView();
-            });
-        }
-
-        document.getElementById('saved-beneficiary-option')?.addEventListener('click', showBeneficiarySelection);
-        document.getElementById('onceoff-beneficiary-option')?.addEventListener('click', function() {
-            showPaymentForm('onceoff');
-        });
-        document.getElementById('group-payment-option')?.addEventListener('click', function() {
-            showPaymentForm('group');
-        });
-
-        document.querySelectorAll('.clickable-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const optionType = this.getAttribute('data-type');
-                handleOptionClick(optionType);
-            });
-        });
+        document.getElementById('back-button').addEventListener('click', resetToMainView);
+        document.getElementById('saved-beneficiary-option').addEventListener('click', showBeneficiarySelection);
+        document.getElementById('onceoff-beneficiary-option').addEventListener('click', () => showPaymentForm('onceoff'));
     }
 
-    function showCreateOptions() {
+// Show beneficiaries section
+    function showBeneficiariesSection() {
         toggleContentVisibility();
-        navigationStack.push('create-options');
+        navigationStack.push('beneficiaries-section');
+
+        const beneficiaries = currentUserContext?.beneficiaries || [];
 
         mainContentArea.innerHTML = `
- <div class="create-section">
- <div class="create-header">
- <button class="back-button" id="back-button">
- <span class="material-icons-sharp">arrow_back</span> Back
- </button>
- <h2>Create New</h2>
- <p>Choose what you want to create</p>
- </div>
+<div class="beneficiaries-section">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>My Beneficiaries</h2>
+</div>
+<div class="beneficiary-list">
+${beneficiaries.length > 0 ?
+            beneficiaries.map(ben => `
+<div class="beneficiary-card" data-beneficiary-id="${ben.id}">
+<div class="beneficiary-avatar">
+<span class="material-icons-sharp">person</span>
+</div>
+<div class="beneficiary-details">
+<h3>${ben.nickname || ben.name}</h3>
+<p>Account: ****${ben.accountNumber.slice(-4)}</p>
+<p>Bank: ${ben.bank}</p>
+</div>
+<button class="delete-beneficiary-btn" data-beneficiary-id="${ben.id}" aria-label="Delete beneficiary">
+<span class="material-icons-sharp">delete</span>
+</button>
+</div>
+`).join('') :
+            '<p class="no-beneficiaries">No saved beneficiaries found</p>'
+        }
+</div>
+<div class="add-beneficiary-footer">
+<button id="add-new-beneficiary" class="add-beneficiary-btn">
+<span class="material-icons-sharp">add</span> Add New Beneficiary
+</button>
+</div>
+</div>`;
 
- <div class="create-options-grid">
- <div class="create-option-row">
- <div class="create-option" data-type="beneficiary">
- <div class="create-icon">
- <span class="material-icons-sharp">person_add</span>
- </div>
- <div class="create-details">
- <h3>New Beneficiary</h3>
- <p>Add someone to pay regularly</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
+        document.getElementById('back-button').addEventListener('click', resetToMainView);
+        document.getElementById('add-new-beneficiary').addEventListener('click', showAddBeneficiaryForm);
 
- <div class="create-option-row">
- <div class="create-option" data-type="payment-request">
- <div class="create-icon">
- <span class="material-icons-sharp">request_quote</span>
- </div>
- <div class="create-details">
- <h3>Payment Request</h3>
- <p>Request money from someone</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
-
- <div class="create-option-row">
- <div class="create-option" data-type="recurring-payment">
- <div class="create-icon">
- <span class="material-icons-sharp">autorenew</span>
- </div>
- <div class="create-details">
- <h3>Recurring Payment</h3>
- <p>Set up regular payments</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- </div>
- </div>
- </div>
- `;
-
-        document.getElementById('back-button')?.addEventListener('click', function() {
-            navigateBack();
+// Add delete event listeners
+        document.querySelectorAll('.delete-beneficiary-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const beneficiaryId = this.getAttribute('data-beneficiary-id');
+                deleteBeneficiary(beneficiaryId);
+            });
         });
 
-        document.querySelectorAll('.create-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const createType = this.getAttribute('data-type');
-                handleCreateOption(createType);
+// Add click event for beneficiary cards
+        document.querySelectorAll('.beneficiary-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const beneficiaryId = this.getAttribute('data-beneficiary-id');
+                const beneficiary = currentUserContext.beneficiaries.find(b => b.id === beneficiaryId);
+                if (beneficiary) {
+                    showPaymentForm('saved', beneficiary.name);
+                }
             });
         });
     }
 
+// Show beneficiary selection for payments
     function showBeneficiarySelection() {
         toggleContentVisibility();
         navigationStack.push('beneficiary-selection');
 
-        // Get current user's beneficiaries
         const beneficiaries = currentUserContext?.beneficiaries || [];
 
         mainContentArea.innerHTML = `
- <div class="beneficiary-selection">
- <div class="payment-header">
- <button class="back-button" id="back-button">
- <span class="material-icons-sharp">arrow_back</span> Back
- </button>
- <h2>Select Beneficiary</h2>
- <p>Choose from your saved beneficiaries</p>
- </div>
-
- <div class="beneficiary-list">
- ${beneficiaries.length > 0 ?
+<div class="beneficiary-selection">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>Select Beneficiary</h2>
+</div>
+<div class="beneficiary-list">
+${beneficiaries.length > 0 ?
             beneficiaries.map(ben => `
- <div class="beneficiary-card" data-beneficiary-id="${ben.id}">
- <div class="beneficiary-avatar">
- <span class="material-icons-sharp">person</span>
- </div>
- <div class="beneficiary-details">
- <h3>${ben.nickname || ben.name}</h3>
- <p>Account: ****${ben.accountNumber.slice(-4)}</p>
- <p>Bank: ${ben.bank}</p>
- </div>
- <span class="material-icons-sharp chevron-right">chevron_right</span>
- </div>
- `).join('') :
+<div class="beneficiary-card" data-beneficiary-id="${ben.id}">
+<div class="beneficiary-avatar">
+<span class="material-icons-sharp">person</span>
+</div>
+<div class="beneficiary-details">
+<h3>${ben.nickname || ben.name}</h3>
+<p>Account: ****${ben.accountNumber.slice(-4)}</p>
+<p>Bank: ${ben.bank}</p>
+</div>
+<span class="material-icons-sharp chevron-right">chevron_right</span>
+</div>
+`).join('') :
             '<p class="no-beneficiaries">No saved beneficiaries found</p>'
         }
- </div>
+</div>
+<div class="add-beneficiary-footer">
+<button id="add-new-beneficiary" class="add-beneficiary-btn">
+<span class="material-icons-sharp">add</span> Add New Beneficiary
+</button>
+</div>
+</div>`;
 
- <div class="add-beneficiary-footer">
- <button id="add-new-beneficiary" class="add-beneficiary-btn">
- <span class="material-icons-sharp">add</span> Add New Beneficiary
- </button>
- </div>
- </div>
- `;
-
-        document.getElementById('back-button')?.addEventListener('click', function() {
-            navigateBack();
-        });
+        document.getElementById('back-button').addEventListener('click', navigateBack);
+        document.getElementById('add-new-beneficiary').addEventListener('click', showAddBeneficiaryForm);
 
         document.querySelectorAll('.beneficiary-card').forEach(card => {
             card.addEventListener('click', function() {
@@ -1167,388 +1137,207 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
-        document.getElementById('add-new-beneficiary')?.addEventListener('click', function() {
-            showAddBeneficiaryForm();
-        });
     }
 
-    function showPaymentForm(paymentType, beneficiaryName = '') {
-        toggleContentVisibility();
-        navigationStack.push('payment-form');
-
-        let title = 'Make Payment';
-        if (paymentType === 'saved') {
-            title = `Pay ${beneficiaryName}`;
-        } else if (paymentType === 'onceoff') {
-            title = 'Pay New Beneficiary';
-        } else if (paymentType === 'group') {
-            title = 'Group Payment';
-        }
-
-        mainContentArea.innerHTML = `
- <div class="payment-form-section">
- <div class="payment-header">
- <button class="back-button" id="back-button">
- <span class="material-icons-sharp">arrow_back</span> Back
- </button>
- <h2>${title}</h2>
- <p>Enter payment details</p>
- </div>
-
- <form id="payment-form">
- ${paymentType === 'saved' ? `
- <div class="form-group">
- <label>Beneficiary</label>
- <div class="read-only-field">${beneficiaryName}</div>
- </div>
- ` : ''}
-
- <div class="form-group">
- <label for="amount">Amount (ZAR)</label>
- <input type="number" id="amount" name="amount" placeholder="0.00" min="1" required>
- </div>
-
- <div class="form-group">
- <label for="reference">Payment Reference</label>
- <input type="text" id="reference" name="reference" placeholder="Enter reference" required>
- </div>
-
- ${paymentType === 'onceoff' ? `
- <div class="form-group">
- <label for="account-number">Account Number</label>
- <input type="text" id="account-number" name="account-number" placeholder="Enter account number" required>
- </div>
-
- <div class="form-group">
- <label for="bank">Bank</label>
- <select id="bank" name="bank" required>
- <option value="">Select bank</option>
- <option value="Standard Bank">Standard Bank</option>
- <option value="First National Bank">First National Bank</option>
- <option value="ABSA">ABSA</option>
- <option value="Nedbank">Nedbank</option>
- <option value="Capitec">Capitec</option>
- </select>
- </div>
-
- <div class="form-group">
- <label for="beneficiary-name">Beneficiary Name</label>
- <input type="text" id="beneficiary-name" name="beneficiary-name" placeholder="Enter beneficiary name" required>
- </div>
- ` : ''}
-
- ${paymentType === 'group' ? `
- <div class="form-group">
- <label>Group Payment</label>
- <div class="info-message">
- <span class="material-icons-sharp">info</span>
- <p>Please visit the full website to access group payment functionality</p>
- </div>
- </div>
- ` : ''}
-
- <div class="form-group">
- <button type="submit" class="submit-payment-btn">
- ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
- </button>
- </div>
- </form>
- </div>
- `;
-
-        document.getElementById('back-button')?.addEventListener('click', function() {
-            navigateBack();
-        });
-
-        document.getElementById('payment-form')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-            processPayment(paymentType, beneficiaryName);
-        });
-    }
-
+// Show add beneficiary form
     function showAddBeneficiaryForm() {
         toggleContentVisibility();
         navigationStack.push('add-beneficiary-form');
 
         mainContentArea.innerHTML = `
- <div class="add-beneficiary-form">
- <div class="payment-header">
- <button class="back-button" id="back-button">
- <span class="material-icons-sharp">arrow_back</span> Back
- </button>
- <h2>Add New Beneficiary</h2>
- <p>Enter beneficiary details</p>
- </div>
+<div class="add-beneficiary-form">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>Add New Beneficiary</h2>
+</div>
+<form id="beneficiary-form">
+<div class="form-group">
+<label for="beneficiary-name">Full Name</label>
+<input type="text" id="beneficiary-name" name="beneficiary-name" required>
+</div>
+<div class="form-group">
+<label for="account-number">Account Number</label>
+<input type="text" id="account-number" name="account-number" required>
+</div>
+<div class="form-group">
+<label for="bank">Bank</label>
+<select id="bank" name="bank" required>
+<option value="">Select bank</option>
+<option value="Standard Bank">Standard Bank</option>
+<option value="First National Bank">First National Bank</option>
+<option value="ABSA">ABSA</option>
+<option value="Nedbank">Nedbank</option>
+<option value="Capitec">Capitec</option>
+</select>
+</div>
+<div class="form-group">
+<label for="nickname">Nickname (Optional)</label>
+<input type="text" id="nickname" name="nickname">
+</div>
+<div class="form-group">
+<button type="submit" class="submit-btn">Save Beneficiary</button>
+</div>
+</form>
+</div>`;
 
- <form id="beneficiary-form">
- <div class="form-group">
- <label for="beneficiary-name">Full Name</label>
- <input type="text" id="beneficiary-name" name="beneficiary-name" placeholder="Enter full name" required>
- </div>
+        document.getElementById('back-button').addEventListener('click', navigateBack);
+        document.getElementById('beneficiary-form').addEventListener('submit', saveBeneficiary);
+    }
 
- <div class="form-group">
- <label for="account-number">Account Number</label>
- <input type="text" id="account-number" name="account-number" placeholder="Enter account number" required>
- </div>
+// Show payment form
+    function showPaymentForm(paymentType, beneficiaryName = '') {
+        toggleContentVisibility();
+        navigationStack.push('payment-form');
 
- <div class="form-group">
- <label for="bank">Bank</label>
- <select id="bank" name="bank" required>
- <option value="">Select bank</option>
- <option value="Standard Bank">Standard Bank</option>
- <option value="First National Bank">First National Bank</option>
- <option value="ABSA">ABSA</option>
- <option value="Nedbank">Nedbank</option>
- <option value="Capitec">Capitec</option>
- </select>
- </div>
+        let title = 'Make Payment';
+        if (paymentType === 'saved') title = `Pay ${beneficiaryName}`;
+        else if (paymentType === 'onceoff') title = 'Pay New Beneficiary';
 
- <div class="form-group">
- <label for="nickname">Nickname (Optional)</label>
- <input type="text" id="nickname" name="nickname" placeholder="e.g. Mom's Account">
- </div>
+        mainContentArea.innerHTML = `
+<div class="payment-form-section">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>${title}</h2>
+</div>
+<form id="payment-form">
+${paymentType === 'saved' ? `
+<div class="form-group">
+<label>Beneficiary</label>
+<div class="read-only-field">${beneficiaryName}</div>
+</div>
+` : ''}
+<div class="form-group">
+<label for="amount">Amount (ZAR)</label>
+<input type="number" id="amount" name="amount" required>
+</div>
+<div class="form-group">
+<label for="reference">Payment Reference</label>
+<input type="text" id="reference" name="reference" required>
+</div>
+${paymentType === 'onceoff' ? `
+<div class="form-group">
+<label for="account-number">Account Number</label>
+<input type="text" id="account-number" name="account-number" required>
+</div>
+<div class="form-group">
+<label for="bank">Bank</label>
+<select id="bank" name="bank" required>
+<option value="">Select bank</option>
+<option value="Standard Bank">Standard Bank</option>
+<option value="First National Bank">First National Bank</option>
+<option value="ABSA">ABSA</option>
+<option value="Nedbank">Nedbank</option>
+<option value="Capitec">Capitec</option>
+</select>
+</div>
+<div class="form-group">
+<label for="beneficiary-name">Beneficiary Name</label>
+<input type="text" id="beneficiary-name" name="beneficiary-name" required>
+</div>
+` : ''}
+<div class="form-group">
+<button type="submit" class="submit-payment-btn">
+${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
+</button>
+</div>
+</form>
+</div>`;
 
- <div class="form-group">
- <button type="submit" class="submit-btn">
- Save Beneficiary
- </button>
- </div>
- </form>
- </div>
- `;
-
-        document.getElementById('back-button')?.addEventListener('click', function() {
-            navigateBack();
-        });
-
-        document.getElementById('beneficiary-form')?.addEventListener('submit', function(e) {
+        document.getElementById('back-button').addEventListener('click', navigateBack);
+        document.getElementById('payment-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            saveBeneficiary();
+            processPayment(paymentType, beneficiaryName);
         });
     }
 
-    function processPayment(paymentType, beneficiaryName) {
-        const amount = parseFloat(document.getElementById('amount')?.value);
-        const reference = document.getElementById('reference')?.value;
-
-        // Get the current account
-        const account = currentUserContext.accounts.find(
-            acc => acc.id === currentUserContext.preferences.defaultAccount
-        );
-
-        if (!account) {
-            alert('No account selected');
-            return;
-        }
-
-        // Validate sufficient funds
-        if (account.balance - amount < (account.overdraft ? -account.overdraft : 0)) {
-            alert('Insufficient funds for this payment');
-            return;
-        }
-
-        mainContentArea.innerHTML = `
- <div class="payment-processing">
- <div class="spinner">
- <div class="double-bounce1"></div>
- <div class="double-bounce2"></div>
- </div>
- <h2>Processing Payment...</h2>
- <p>Please wait while we process your payment</p>
- </div>
- `;
-
-        // Simulate processing delay
-        setTimeout(() => {
-            // Update account balance
-            account.balance -= amount;
-            account.lastUpdated = new Date().toISOString();
-
-            // Create transaction record
-            const newTransaction = {
-                id: generateTransactionId(),
-                date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
-                type: 'Debit',
-                reference: reference || `Payment to ${beneficiaryName || 'New Beneficiary'}`,
-                amount: -amount,
-                fees: 0.00,
-                balance: account.balance
-            };
-
-            if (!account.transactions) {
-                account.transactions = [];
-            }
-            account.transactions.unshift(newTransaction);
-
-            // If this was a once-off payment and user chose to save beneficiary
-            if (paymentType === 'onceoff' && document.getElementById('beneficiary-name')?.value) {
-                const beneficiaryName = document.getElementById('beneficiary-name').value;
-                const accountNumber = document.getElementById('account-number').value;
-                const bank = document.getElementById('bank').value;
-
-                // Add new beneficiary
-                const newBeneficiary = {
-                    id: 'ben_' + Math.random().toString(36).substr(2, 9),
-                    name: beneficiaryName,
-                    accountNumber: accountNumber,
-                    bank: bank,
-                    nickname: ''
-                };
-
-                if (!currentUserContext.beneficiaries) {
-                    currentUserContext.beneficiaries = [];
-                }
-                currentUserContext.beneficiaries.push(newBeneficiary);
-            }
-
-            // Update user in database
+// Delete beneficiary
+    function deleteBeneficiary(beneficiaryId) {
+        if (confirm('Are you sure you want to delete this beneficiary?')) {
+            currentUserContext.beneficiaries = currentUserContext.beneficiaries.filter(
+                b => b.id !== beneficiaryId
+            );
             updateUserInDatabase(currentUserContext);
+            showBeneficiariesSection();
+        }
+    }
 
-            // Show confirmation
-            showPaymentConfirmation(paymentType, beneficiaryName, amount, reference);
+// Save beneficiary
+    function saveBeneficiary(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('beneficiary-name').value;
+        const accountNumber = document.getElementById('account-number').value;
+        const bank = document.getElementById('bank').value;
+        const nickname = document.getElementById('nickname').value;
+
+        const newBeneficiary = {
+            id: 'ben_' + Math.random().toString(36).substr(2, 9),
+            name: name,
+            accountNumber: accountNumber,
+            bank: bank,
+            nickname: nickname || ''
+        };
+
+        if (!currentUserContext.beneficiaries) {
+            currentUserContext.beneficiaries = [];
+        }
+        currentUserContext.beneficiaries.push(newBeneficiary);
+        updateUserInDatabase(currentUserContext);
+
+// Show confirmation and return to appropriate view
+        if (navigationStack.includes('beneficiary-selection')) {
+            showBeneficiarySelection();
+        } else {
+            showBeneficiariesSection();
+        }
+    }
+
+// Process payment
+    function processPayment(paymentType, beneficiaryName) {
+        const amount = parseFloat(document.getElementById('amount').value);
+        const reference = document.getElementById('reference').value;
+
+// Show processing animation
+        mainContentArea.innerHTML = `
+<div class="payment-processing">
+<div class="spinner">
+<div class="double-bounce1"></div>
+<div class="double-bounce2"></div>
+</div>
+<h2>Processing Payment...</h2>
+</div>`;
+
+// Simulate processing
+        setTimeout(() => {
+// Show confirmation
+            mainContentArea.innerHTML = `
+<div class="payment-confirmation">
+<div class="confirmation-icon success">
+<span class="material-icons-sharp">check_circle</span>
+</div>
+<h2>Payment Successful!</h2>
+<div class="confirmation-details">
+<div class="detail-row">
+<span>Recipient:</span>
+<span>${beneficiaryName || 'New Beneficiary'}</span>
+</div>
+<div class="detail-row">
+<span>Amount:</span>
+<span>R ${amount.toFixed(2)}</span>
+</div>
+</div>
+<button id="done-button" class="done-btn">Done</button>
+</div>`;
+
+            document.getElementById('done-button').addEventListener('click', resetToMainView);
         }, 2000);
     }
 
-    function saveBeneficiary() {
-        const name = document.getElementById('beneficiary-name')?.value;
-        const accountNumber = document.getElementById('account-number')?.value;
-        const bank = document.getElementById('bank')?.value;
-        const nickname = document.getElementById('nickname')?.value;
-
-        mainContentArea.innerHTML = `
- <div class="payment-processing">
- <div class="spinner">
- <div class="double-bounce1"></div>
- <div class="double-bounce2"></div>
- </div>
- <h2>Saving Beneficiary...</h2>
- <p>Please wait while we save your beneficiary</p>
- </div>
- `;
-
-        setTimeout(() => {
-            // Add new beneficiary
-            const newBeneficiary = {
-                id: 'ben_' + Math.random().toString(36).substr(2, 9),
-                name: name,
-                accountNumber: accountNumber,
-                bank: bank,
-                nickname: nickname || ''
-            };
-
-            if (!currentUserContext.beneficiaries) {
-                currentUserContext.beneficiaries = [];
-            }
-            currentUserContext.beneficiaries.push(newBeneficiary);
-
-            // Update user in database
-            updateUserInDatabase(currentUserContext);
-
-            showBeneficiaryConfirmation(name);
-        }, 1500);
-    }
-
-    function showPaymentConfirmation(paymentType, beneficiaryName, amount, reference) {
-        mainContentArea.innerHTML = `
- <div class="payment-confirmation">
- <div class="confirmation-icon success">
- <span class="material-icons-sharp">check_circle</span>
- </div>
- <h2>Payment Successful!</h2>
- <p>Your payment has been processed successfully</p>
-
- <div class="confirmation-details">
- <div class="detail-row">
- <span>Recipient:</span>
- <span>${beneficiaryName || 'New Beneficiary'}</span>
- </div>
- <div class="detail-row">
- <span>Amount:</span>
- <span>R ${amount.toFixed(2)}</span>
- </div>
- <div class="detail-row">
- <span>Reference:</span>
- <span>${reference}</span>
- </div>
- <div class="detail-row">
- <span>Date:</span>
- <span>${new Date().toLocaleString()}</span>
- </div>
- </div>
-
- <div class="confirmation-actions">
- <button id="done-button" class="done-btn">
- Done
- </button>
- <button id="receipt-button" class="secondary-btn">
- Download Receipt
- </button>
- </div>
- </div>
- `;
-
-        document.getElementById('done-button')?.addEventListener('click', function() {
-            resetToMainView();
-            // Refresh account overview to show new balance
-            updateAccountOverview();
-            updateTransactionHistory();
-        });
-
-        document.getElementById('receipt-button')?.addEventListener('click', function() {
-            alert('Receipt downloaded successfully!');
-        });
-    }
-
-    function showBeneficiaryConfirmation(name) {
-        mainContentArea.innerHTML = `
- <div class="payment-confirmation">
- <div class="confirmation-icon success">
- <span class="material-icons-sharp">check_circle</span>
- </div>
- <h2>Beneficiary Saved!</h2>
- <p>${name} has been added to your beneficiaries</p>
-
- <div class="confirmation-actions">
- <button id="done-button" class="done-btn">
- Done
- </button>
- <button id="pay-now-button" class="primary-btn">
- Pay Now
- </button>
- </div>
- </div>
- `;
-
-        document.getElementById('done-button')?.addEventListener('click', function() {
-            resetToMainView();
-        });
-
-        document.getElementById('pay-now-button')?.addEventListener('click', function() {
-            showPaymentForm('saved', name);
-        });
-    }
-
-    function handleOptionClick(optionType) {
-        alert(`Showing ${optionType.replace('-', ' ')}`);
-    }
-
-    function handleCreateOption(createType) {
-        switch(createType) {
-            case 'beneficiary':
-                showAddBeneficiaryForm();
-                break;
-            case 'payment-request':
-                alert('Payment request functionality coming soon!');
-                break;
-            case 'recurring-payment':
-                alert('Recurring payment functionality coming soon!');
-                break;
-            default:
-                showCreateOptions();
-        }
-    }
-
+// Navigation functions
     function toggleContentVisibility() {
         if (defaultContent && mainContentArea) {
             defaultContent.style.display = 'none';
@@ -1558,18 +1347,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function navigateBack() {
         if (navigationStack.length > 0) {
-            navigationStack.pop();
-            const previousView = navigationStack.pop();
+            const previousView = navigationStack[navigationStack.length - 2];
 
             switch(previousView) {
                 case 'payment-section':
                     showPaymentSection();
                     break;
+                case 'beneficiaries-section':
+                    showBeneficiariesSection();
+                    break;
                 case 'beneficiary-selection':
                     showBeneficiarySelection();
-                    break;
-                case 'create-options':
-                    showCreateOptions();
                     break;
                 default:
                     resetToMainView();
@@ -1586,5 +1374,10 @@ document.addEventListener('DOMContentLoaded', function() {
             mainContentArea.innerHTML = '';
             navigationStack = [];
         }
+    }
+
+// Helper function for currency formatting
+    function formatCurrency(amount) {
+        return 'R ' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
 });
