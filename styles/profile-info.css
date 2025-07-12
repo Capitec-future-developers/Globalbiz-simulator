@@ -854,7 +854,7 @@ button:not(:active) {
 }
 
 .header-item {
-    flex: 1;
+    flex: 5;
     text-align: left;
 }
 
@@ -884,6 +884,11 @@ button:not(:active) {
 
 .detail-item.right {
     text-align: right;
+}
+
+.action-items, .btn{
+    position: relative;
+    right: -10px;
 }
 
 .transaction-container {
@@ -1036,4 +1041,44 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.notification-header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+}
+
+.account-details {
+    background-color: #fff;
+}
+
+.header-item,
+.details-item,
+.currency,
+.credit-and-debit,
+.credit-item,
+.debit-item {
+    flex: 1;
+}
+
+.btn {
+    padding: 6px 12px;
+    background-color: white;
+    color: #007FFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn:hover {
+    background-color: #005fcc;
 }

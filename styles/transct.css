@@ -27,15 +27,15 @@ body {
     font-weight: bold;
     font-size: 14px;
     position: relative;
-    right: 10px;
-    top: -9px;
+    right: 5px;
+    top: 0px;
     text-decoration: none;
 }
 
 .name{
     position: relative;
     right: -5px;
-    top: -8px;
+    top: 0px;
     text-decoration: none;
 }
 /* Header Styles */
@@ -74,10 +74,11 @@ body {
 }
 
 .separator {
+    border-right: 1px solid #cccccc;
     height: 30px;
     width: 1px;
     background-color: #e0e0e0;
-    margin: 0 20px; /* Increased margin */
+    margin: 0 20px;
 }
 
 /* Header Right Section */
@@ -104,8 +105,8 @@ body {
 }
 
 .header-right .material-icons-sharp {
-    margin-right: 10px; /* Increased margin */
-    font-size: 24px; /* Larger icon */
+    margin-right: 35px;
+    font-size: 24px;
 }
 
 .header-right a.sign {
