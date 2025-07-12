@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
 </head>
-
 <body>
 <!-- Search Bar -->
 <div class="search-container">
@@ -39,7 +38,7 @@
                 </div>
                 <div class="header">GlobalBiz</div>
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
-                    <div class="om-circle" style="text-decoration: none;">OM</div>
+                    <div class="om-circle" id="profile-initials" style="text-decoration: none;">OM</div>
                 </a>
             </div>
 
@@ -69,47 +68,54 @@
             </div>
 
             <!-- Profile Popup -->
-
             <div class="overlay" id="overlay"></div>
 
             <div class="profile-popup" id="profilePopup">
-                <a href="../Computer/Profile-info.html" style="text-decoration: none;">
-                    <div class="popup-header">Profile</div>
-                </a>
+                <div class="popup-header">Profile</div>
+                <div class="bottom-seperator"></div>
 
-                <div class="bottom-seperator" style="border-bottom: 1px solid #cccccc;"></div>
-
-                <div class="profile-item">
+                <div class="current-profile">
+                    <span class="material-icons-sharp">account_circle</span>
                     <div class="profile-info">
-            <span class="material-icons-sharp profile-icon" style="position: absolute; top: 60px;">
-                account_circle
-            </span>
-                        <div class="profile-active" style="position: absolute; top: 60px; right: 20px;">
-                            omphilestudent@gmail.com
+                        <div class="profile-name" id="current-profile-name">Omphile Mohlala</div>
+                        <div class="profile-email" id="current-profile-email">omphilestudent@gmail.com</div>
+                    </div>
+                </div>
+
+                <div class="bottom-seperator"></div>
+
+                <div class="profile-switcher">
+                    <h4>Switch Profile</h4>
+                    <div class="profile-option" data-user="omphilestudent@mail.com">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">Omphile Mohlala</div>
+                            <div class="profile-email">omphilesudent@gmail.com</div>
                         </div>
-
-                        <div class="bottom-seperator" style="border-bottom: 1px solid #cccccc; width: 250px; margin-top: 40px;"></div>
-
-                        <div class="switch">
-                            <a href="../Computer/Computer.html" class="switch-profile">
-                                Switch to Omphile Mohlala
-                            </a>
-                            <span class="material-icons-sharp profile-icon" style="position: absolute; top: 140px;">
-                account_circle
-            </span>
-                            <div class="profile-Name" style="position: absolute; right: 30px;">KODI CODES PTY LTD</div>
+                    </div>
+                    <div class="profile-option" data-user="Kodi@codes.com">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">Kodi Codes PTY LTD</div>
+                            <div class="profile-email">Kodi@codes.com</div>
+                        </div>
+                    </div>
+                    <div class="profile-option" data-user="business@example.com">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">ABC Enterprises</div>
+                            <div class="profile-email">business@example.com</div>
                         </div>
                     </div>
                 </div>
 
-                <div id="page-transition"></div>
+                <div class="bottom-seperator"></div>
 
                 <a href="#" class="manage-business">Manage business profile</a>
             </div>
 
-
             <!-- Sidebar Navigation -->
-            <div class="sidebar" id="sidebar" >
+            <div class="sidebar" id="sidebar">
                 <a href="Phone2.html" class="active">
                     <span class="material-icons-sharp"><img src="../images/home.svg"> </span> Home
                 </a>
@@ -159,16 +165,17 @@
                         </a>
                     </div>
                     <a href="./Phone%20accounts.html" style="cursor: pointer; text-decoration: none;" >
-                    <div class="box" style="text-decoration: none;">
-                        <div class="box1" style="cursor: pointer;">
-                            <img src="../images/transact.svg" alt="transact">
-                            <span class="separator"></span>
-                            <div class="account-details">
-                                <span class="account-name">1 Account Current</span>
-                                <span class="account-balance">R1000</span>
+                        <div class="box" style="text-decoration: none;">
+                            <div class="box1" style="cursor: pointer;">
+                                <img src="../images/transact.svg" alt="transact">
+                                <span class="separator"></span>
+                                <div class="account-details">
+                                    <span class="account-name" id="account-name">1 Account Current</span>
+                                    <span class="account-balance" id="account-balance">R1000</span>
+                                </div>
                             </div>
                         </div>
-                    </div></a>
+                    </a>
                 </div>
             </div>
 
@@ -228,24 +235,9 @@
     <div class="home-indicator"></div>
 </div> <!-- iphone -->
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            toggle.addEventListener('click', () => {
-                dropdown.classList.toggle('open');
-            });
-        });
-    });
-</script>
-
-
 <!-- Scripts -->
-<script src="../scripts/Automation.js"></script>
 <script src="../scripts/App.js"></script>
-<script src="../scripts/phone-settings.js"></script>
+<script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
 </body>
 </html>
