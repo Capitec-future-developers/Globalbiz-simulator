@@ -14,16 +14,16 @@ body {
 /* Chatbot Toggle Button */
 .chatbot-toggler {
     position: fixed;
-    right: 360px;
+    right: 375px;
     top: 10px;
     height: 50px;
     width: 50px;
-    color: #0070a0;
-    background-color:  #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    background-color:  #ffffff;
+    color: #fff;
     border: none;
     outline: none;
     cursor: pointer;

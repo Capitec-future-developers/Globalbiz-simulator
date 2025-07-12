@@ -1,11 +1,19 @@
 // AUTOMATION SYSTEM
 
-// Configuration
+// Configuration with default values
 const automationConfig = {
-    stepDelay: 500, // 500ms between steps
-    highlightDuration: 400, // 400ms highlight duration
-    highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)', // Gold glow effect
-    autopilot: true // Default to autopilot mode
+    stepDelay: 500,
+    highlightDuration: 400,
+    highlightColor: '0 0 0 4px rgba(255, 215, 0, 0.7)',
+    autopilot: true,
+    speechEnabled: false,
+    controlsPosition: 'right',
+    highlightColors: {
+        default: 'rgba(65, 131, 215, 0.7)',
+        success: 'rgba(46, 204, 113, 0.7)',
+        warning: 'rgba(241, 196, 15, 0.7)',
+        error: 'rgba(231, 76, 60, 0.7)'
+    }
 };
 
 // Enhanced command mapping with additional metadata
@@ -106,30 +114,288 @@ let automationState = {
     currentSteps: [],
     currentCommand: '',
     currentTimeout: null,
-    isAutopilot: getStoredAutopilotState(),
+    isAutopilot: getStoredSetting('autopilot', automationConfig.autopilot),
     waitingForUserClick: false,
     manualNavigation: false,
-    clickHandlers: [] // Track click handlers for cleanup
+    clickHandlers: [], // Track click handlers for cleanup
+    speechEnabled: getStoredSetting('speechEnabled', automationConfig.speechEnabled),
+    stepDelay: getStoredSetting('stepDelay', automationConfig.stepDelay),
+    controlsPosition: getStoredSetting('controlsPosition', automationConfig.controlsPosition),
+    highlightColors: getStoredSetting('highlightColors', automationConfig.highlightColors)
 };
 
-// Get autopilot state from sessionStorage or use default
-function getStoredAutopilotState() {
-    const storedState = sessionStorage.getItem('automationAutopilot');
-    return storedState !== null ? JSON.parse(storedState) : automationConfig.autopilot;
+// Get stored setting from localStorage or use default
+function getStoredSetting(key, defaultValue) {
+    try {
+        const storedValue = localStorage.getItem(`automation_${key}`);
+        if (storedValue !== null) {
+            return key === 'highlightColors' ? JSON.parse(storedValue) : JSON.parse(storedValue);
+        }
+    } catch (e) {
+        console.error('Error parsing stored setting:', e);
+    }
+    return defaultValue;
 }
 
-// Store autopilot state in sessionStorage
-function storeAutopilotState(state) {
-    sessionStorage.setItem('automationAutopilot', JSON.stringify(state));
+// Store setting in localStorage
+function storeSetting(key, value) {
+    localStorage.setItem(`automation_${key}`, JSON.stringify(value));
+}
+
+// Create settings button
+function createSettingsButton() {
+    const settingsBtn = document.createElement('button');
+    settingsBtn.id = 'automation-settings-btn';
+    settingsBtn.innerHTML = '⚙️';
+    settingsBtn.title = 'Automation Settings';
+    settingsBtn.style.position = 'fixed';
+    settingsBtn.style.top = '10px';
+    settingsBtn.style.left = '15px';
+    settingsBtn.style.zIndex = '10000';
+    settingsBtn.style.padding = '5px 10px';
+    settingsBtn.style.border = 'none';
+    settingsBtn.style.borderRadius = '3px';
+    settingsBtn.style.cursor = 'pointer';
+    settingsBtn.style.backgroundColor = '#f0f0f0';
+    settingsBtn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+
+    settingsBtn.addEventListener('click', toggleSettingsPanel);
+
+    document.body.appendChild(settingsBtn);
+    return settingsBtn;
+}
+
+// Create settings panel
+function createSettingsPanel() {
+    const panel = document.createElement('div');
+    panel.id = 'automation-settings-panel';
+    panel.style.position = 'fixed';
+    panel.style.top = '50px';
+    panel.style.left = '20px';
+    panel.style.zIndex = '10000';
+    panel.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+    panel.style.padding = '15px';
+    panel.style.borderRadius = '5px';
+    panel.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    panel.style.width = '300px';
+    panel.style.display = 'none';
+
+// Speed control
+    panel.innerHTML += `
+<div class="setting-group">
+<h3 style="margin-top: 0;">Automation Speed</h3>
+<div style="display: flex; align-items: center; gap: 10px;">
+<input type="range" id="automation-speed" min="100" max="2000" step="100" value="${automationState.stepDelay}">
+<span id="speed-value">${automationState.stepDelay}ms</span>
+</div>
+</div>
+`;
+
+// Controls position
+    panel.innerHTML += `
+<div class="setting-group" style="margin-top: 15px;">
+<h3>Controls Position</h3>
+<select id="controls-position">
+<option value="left" ${automationState.controlsPosition === 'left' ? 'selected' : ''}>Left</option>
+<option value="right" ${automationState.controlsPosition === 'right' ? 'selected' : ''}>Right</option>
+</select>
+</div>
+`;
+
+// Highlight colors
+    panel.innerHTML += `
+<div class="setting-group" style="margin-top: 15px;">
+<h3>Highlight Colors</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<div>
+<label>Default</label>
+<input type="color" id="highlight-default" value="${hexToRgb(automationState.highlightColors.default)}">
+</div>
+<div>
+<label>Success</label>
+<input type="color" id="highlight-success" value="${hexToRgb(automationState.highlightColors.success)}">
+</div>
+<div>
+<label>Warning</label>
+<input type="color" id="highlight-warning" value="${hexToRgb(automationState.highlightColors.warning)}">
+</div>
+<div>
+<label>Error</label>
+<input type="color" id="highlight-error" value="${hexToRgb(automationState.highlightColors.error)}">
+</div>
+</div>
+</div>
+`;
+
+// Speech toggle
+    panel.innerHTML += `
+<div class="setting-group" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
+<div>
+<h3 style="margin: 0;">Read Aloud</h3>
+<p style="margin: 5px 0 0; font-size: 12px; color: #666;">Read automation steps aloud</p>
+</div>
+<label class="switch">
+<input type="checkbox" id="speech-toggle" ${automationState.speechEnabled ? 'checked' : ''}>
+<span class="slider round"></span>
+</label>
+</div>
+`;
+
+// Save button
+    panel.innerHTML += `
+<button id="save-settings" style="margin-top: 20px; padding: 8px 15px; background-color: #007fff; color: white; border: none; border-radius: 3px; cursor: pointer; width: 100%;">Save Settings</button>
+`;
+
+// Add some basic styling
+    panel.innerHTML += `
+<style>
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+transition: .4s;
+}
+input:checked + .slider {
+background-color: #007fff;
+}
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+.slider.round {
+border-radius: 34px;
+}
+.slider.round:before {
+border-radius: 50%;
+}
+#automation-speed {
+width: 100%;
+}
+#controls-position {
+padding: 5px;
+width: 100%;
+}
+</style>
+`;
+
+    document.body.appendChild(panel);
+
+// Add event listeners
+    document.getElementById('automation-speed').addEventListener('input', function() {
+        document.getElementById('speed-value').textContent = `${this.value}ms`;
+    });
+
+    document.getElementById('save-settings').addEventListener('click', saveSettings);
+
+    return panel;
+}
+
+// Convert rgba string to hex for color input
+function hexToRgb(rgba) {
+    const parts = rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+    if (!parts) return '#000000';
+
+    const r = parseInt(parts[1]).toString(16).padStart(2, '0');
+    const g = parseInt(parts[2]).toString(16).padStart(2, '0');
+    const b = parseInt(parts[3]).toString(16).padStart(2, '0');
+
+    return `#${r}${g}${b}`;
+}
+
+// Convert hex to rgba string
+function hexToRgba(hex, alpha = 0.7) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// Toggle settings panel visibility
+function toggleSettingsPanel() {
+    const panel = document.getElementById('automation-settings-panel');
+    if (panel) {
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+// Save settings
+function saveSettings() {
+// Get values from form
+    const speed = parseInt(document.getElementById('automation-speed').value);
+    const position = document.getElementById('controls-position').value;
+    const speechEnabled = document.getElementById('speech-toggle').checked;
+
+// Get highlight colors
+    const highlightColors = {
+        default: hexToRgba(document.getElementById('highlight-default').value),
+        success: hexToRgba(document.getElementById('highlight-success').value),
+        warning: hexToRgba(document.getElementById('highlight-warning').value),
+        error: hexToRgba(document.getElementById('highlight-error').value)
+    };
+
+// Update state
+    automationState.stepDelay = speed;
+    automationState.controlsPosition = position;
+    automationState.speechEnabled = speechEnabled;
+    automationState.highlightColors = highlightColors;
+
+// Store settings
+    storeSetting('stepDelay', speed);
+    storeSetting('controlsPosition', position);
+    storeSetting('speechEnabled', speechEnabled);
+    storeSetting('highlightColors', highlightColors);
+
+// Update controls position
+    updateControlsPosition();
+
+// Close panel
+    toggleSettingsPanel();
+
+// Show feedback
+    showFeedbackMessage("Settings saved successfully!", 'success');
+}
+
+// Update controls position based on settings
+function updateControlsPosition() {
+    const controls = document.getElementById('automation-controls');
+    if (controls) {
+        controls.style.right = automationState.controlsPosition === 'right' ? '15px' : 'auto';
+        controls.style.left = automationState.controlsPosition === 'left' ? '15px' : 'auto';
+    }
 }
 
 // Create control buttons container with autopilot toggle
 function createControlButtons() {
     const controlsContainer = document.createElement('div');
     controlsContainer.id = 'automation-controls';
-    controlsContainer.style.position = 'fixed';
-    controlsContainer.style.top = '10px';
+    controlsContainer.style.position = 'absolute';
     controlsContainer.style.right = '15px';
+    controlsContainer.style.top = '10px';
     controlsContainer.style.zIndex = '10000';
     controlsContainer.style.display = 'flex';
     controlsContainer.style.gap = '5px';
@@ -137,6 +403,9 @@ function createControlButtons() {
     controlsContainer.style.padding = '5px';
     controlsContainer.style.borderRadius = '5px';
     controlsContainer.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+
+// Set initial position based on settings
+    updateControlsPosition();
 
 // Create buttons
     const rewindBtn = document.createElement('button');
@@ -230,6 +499,10 @@ function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
 
+// Create settings button and panel
+    createSettingsButton();
+    createSettingsPanel();
+
 // Create and get control buttons
     const { pauseBtn, playBtn, rewindBtn, forwardBtn, autopilotBtn, terminateBtn } = createControlButtons();
 
@@ -275,6 +548,18 @@ function initAutomationSystem() {
     checkForPendingAutomation();
 }
 
+// Text-to-speech function
+function speak(text) {
+    if (!automationState.speechEnabled || !window.speechSynthesis) return;
+
+// Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9; // Slightly slower than normal
+    window.speechSynthesis.speak(utterance);
+}
+
 // Terminate current automation
 function terminateAutomation() {
 // Clear any pending timeouts
@@ -299,12 +584,12 @@ function terminateAutomation() {
 
 // Reset automation state
     automationState = {
+        ...automationState,
         isPaused: false,
         currentStepIndex: 0,
         currentSteps: [],
         currentCommand: '',
         currentTimeout: null,
-        isAutopilot: automationState.isAutopilot,
         waitingForUserClick: false,
         manualNavigation: false,
         clickHandlers: []
@@ -325,6 +610,7 @@ function terminateAutomation() {
 // Show feedback
     showFeedbackMessage("Automation terminated", 'warning');
     updateTranscript("Automation was terminated by user");
+    speak("Automation terminated");
 
 // Remove transcript after delay
     setTimeout(() => {
@@ -335,7 +621,7 @@ function terminateAutomation() {
 
 function toggleAutopilot() {
     automationState.isAutopilot = !automationState.isAutopilot;
-    storeAutopilotState(automationState.isAutopilot);
+    storeSetting('autopilot', automationState.isAutopilot);
 
     const autopilotBtn = document.getElementById('autopilot-btn');
     if (autopilotBtn) {
@@ -344,6 +630,7 @@ function toggleAutopilot() {
     }
 
     updateTranscript(`Autopilot ${automationState.isAutopilot ? 'enabled' : 'disabled'}`);
+    speak(`Autopilot ${automationState.isAutopilot ? 'enabled' : 'disabled'}`);
 
 // If we're in manual mode and waiting for user click, highlight the current step
     if (!automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
@@ -364,6 +651,7 @@ function pauseAutomation() {
     automationState.isPaused = true;
     updateControlButtons();
     updateTranscript('Automation paused');
+    speak('Automation paused');
 }
 
 function resumeAutomation() {
@@ -372,6 +660,7 @@ function resumeAutomation() {
     automationState.isPaused = false;
     updateControlButtons();
     updateTranscript('Resuming automation...');
+    speak('Resuming automation');
 
     if (automationState.isAutopilot) {
         executeNextStep();
@@ -409,11 +698,13 @@ function rewindAutomation() {
 // Move back one step
         automationState.currentStepIndex--;
         updateTranscript(`Rewound to step ${automationState.currentStepIndex + 1}`);
+        speak(`Rewound to step ${automationState.currentStepIndex + 1}`);
 
 // Restart automation from the new position
         restartAutomationFromCurrentStep();
     } else {
         updateTranscript('Already at the first step');
+        speak('Already at the first step');
     }
 }
 
@@ -428,11 +719,13 @@ function forwardAutomation() {
 // Move forward one step
         automationState.currentStepIndex++;
         updateTranscript(`Advanced to step ${automationState.currentStepIndex + 1}`);
+        speak(`Advanced to step ${automationState.currentStepIndex + 1}`);
 
 // Restart automation from the new position
         restartAutomationFromCurrentStep();
     } else {
         updateTranscript('Already at the last step');
+        speak('Already at the last step');
     }
 }
 
@@ -474,6 +767,10 @@ function highlightCurrentStep() {
     if (automationState.currentStepIndex >= automationState.currentSteps.length) return;
 
     const step = automationState.currentSteps[automationState.currentStepIndex];
+    const stepDescription = getStepDescription(step);
+
+    updateTranscript(stepDescription);
+    speak(stepDescription);
 
     if (step.action === 'click') {
         const element = document.querySelector(step.selector);
@@ -492,6 +789,7 @@ function highlightCurrentStep() {
                 e.preventDefault();
 
                 updateTranscript(`User clicked: ${step.selector}`);
+                speak(`Clicked ${step.selector.replace(/[#.]/g, ' ').trim()}`);
 
 // Remove this click handler
                 element.removeEventListener('click', clickHandler);
@@ -528,6 +826,7 @@ function highlightCurrentStep() {
             });
         } else {
             updateTranscript(`Error: Element not found - ${step.selector}`);
+            speak(`Error: Element not found`);
             showFeedbackMessage(`Element not found: ${step.selector}`, 'error');
             automationState.currentStepIndex++;
             executeNextStep();
@@ -535,6 +834,7 @@ function highlightCurrentStep() {
     } else if (step.action === 'wait') {
 // For wait steps, we'll proceed automatically even in manual mode
         updateTranscript(`Waiting for ${step.duration}ms`);
+        speak(`Waiting for ${Math.round(step.duration / 1000)} seconds`);
         automationState.currentTimeout = setTimeout(() => {
             automationState.currentStepIndex++;
             if (automationState.isAutopilot) {
@@ -673,6 +973,7 @@ function executeCommand(commandText) {
         runAutomationSteps(command.steps, bestMatch);
     } else {
         showFeedbackMessage("Command not recognized. Try 'pay saved beneficiary', 'add new beneficiary', etc.", 'error');
+        speak("Command not recognized");
     }
 }
 
@@ -701,12 +1002,12 @@ function runAutomationSteps(steps, commandName) {
     }
 
     automationState = {
+        ...automationState,
         isPaused: false,
         currentStepIndex: 0,
         currentSteps: steps,
         currentCommand: commandName,
         currentTimeout: null,
-        isAutopilot: automationState.isAutopilot,
         waitingForUserClick: false,
         manualNavigation: false,
         clickHandlers: []
@@ -721,6 +1022,7 @@ function runAutomationSteps(steps, commandName) {
 
     showFeedbackMessage("Automation in progress...", 'info');
     updateTranscript(`Starting automation: ${commandName}`);
+    speak(`Starting automation: ${commandName}`);
     updateControlButtons();
 
 // Update autopilot button to reflect current state
@@ -749,6 +1051,7 @@ function executeNextStep() {
 
     const step = currentSteps[currentStepIndex];
     updateTranscript(`Executing step ${currentStepIndex + 1}: ${getStepDescription(step)}`);
+    speak(`Step ${currentStepIndex + 1}: ${getStepDescription(step)}`);
     sessionStorage.setItem('pendingAutomation', JSON.stringify({
         command: currentCommand,
         stepIndex: currentStepIndex,
@@ -759,7 +1062,7 @@ function executeNextStep() {
     if (automationState.isAutopilot) {
         executeStep(step, () => {
             automationState.currentStepIndex++;
-            automationState.currentTimeout = setTimeout(executeNextStep, automationConfig.stepDelay);
+            automationState.currentTimeout = setTimeout(executeNextStep, automationState.stepDelay);
         });
     } else {
         highlightCurrentStep();
@@ -768,6 +1071,7 @@ function executeNextStep() {
 
 function finishAutomation() {
     showFeedbackMessage("Automation completed successfully!", 'success');
+    speak("Automation completed successfully");
     sessionStorage.removeItem('pendingAutomation');
 
     const searchInput = document.getElementById('automation-search');
@@ -785,12 +1089,12 @@ function finishAutomation() {
 
 // Reset automation state
     automationState = {
+        ...automationState,
         isPaused: false,
         currentStepIndex: 0,
         currentSteps: [],
         currentCommand: '',
         currentTimeout: null,
-        isAutopilot: automationState.isAutopilot,
         waitingForUserClick: false,
         manualNavigation: false,
         clickHandlers: []
@@ -830,10 +1134,14 @@ function updateTranscript(message) {
 
 function getStepDescription(step) {
     switch(step.action) {
-        case 'click': return `Clicking element: ${step.selector}`;
-        case 'wait': return `Waiting for ${step.duration}ms`;
-        case 'navigate': return `Navigating to: ${step.url}`;
-        default: return `Performing action: ${step.action}`;
+        case 'click':
+            return `Clicking ${step.selector.replace(/[#.]/g, ' ').trim()}`;
+        case 'wait':
+            return `Waiting for ${Math.round(step.duration / 1000)} seconds`;
+        case 'navigate':
+            return `Navigating to ${step.url}`;
+        default:
+            return `Performing ${step.action}`;
     }
 }
 
@@ -858,6 +1166,7 @@ function executeStep(step, callback) {
                     highlightElement(element, 'success');
                     element.click();
                     updateTranscript(`Clicked: ${step.selector}`);
+                    speak(`Clicked ${step.selector.replace(/[#.]/g, ' ').trim()}`);
 
                     setTimeout(() => {
                         element.classList.remove('automation-target');
@@ -867,6 +1176,7 @@ function executeStep(step, callback) {
                 }, 500);
             } else {
                 updateTranscript(`Error: Element not found - ${step.selector}`);
+                speak(`Error: Element not found`);
                 showFeedbackMessage(`Element not found: ${step.selector}`, 'error');
                 if (callback) callback();
             }
@@ -874,11 +1184,13 @@ function executeStep(step, callback) {
 
         case 'wait':
             updateTranscript(`Waiting for ${step.duration}ms`);
+            speak(`Waiting for ${Math.round(step.duration / 1000)} seconds`);
             automationState.currentTimeout = setTimeout(callback, step.duration);
             break;
 
         case 'navigate':
             updateTranscript(`Navigating to: ${step.url}`);
+            speak(`Navigating to ${step.url}`);
             highlightElement(document.documentElement, 'warning');
 
 // Store the automation state before navigating
@@ -897,6 +1209,7 @@ function executeStep(step, callback) {
 
         default:
             updateTranscript(`Unknown action: ${step.action}`);
+            speak(`Unknown action`);
             if (callback) callback();
     }
 }
@@ -917,14 +1230,7 @@ function highlightElement(element, status = 'default') {
     highlighter.style.left = `${rect.left + scrollLeft}px`;
     highlighter.style.borderRadius = window.getComputedStyle(element).borderRadius;
 
-    const colors = {
-        default: 'rgba(65, 131, 215, 0.7)',
-        success: 'rgba(46, 204, 113, 0.7)',
-        warning: 'rgba(241, 196, 15, 0.7)',
-        error: 'rgba(231, 76, 60, 0.7)'
-    };
-
-    highlighter.style.boxShadow = `0 0 0 4px ${colors[status] || colors.default}`;
+    highlighter.style.boxShadow = `0 0 0 4px ${automationState.highlightColors[status] || automationState.highlightColors.default}`;
     highlighter.style.opacity = '1';
     highlighter.style.transition = 'all 0.3s ease';
 }
@@ -936,7 +1242,7 @@ function createHighlighter() {
     highlighter.style.pointerEvents = 'none';
     highlighter.style.transition = 'all 0.3s ease';
     highlighter.style.zIndex = '9999';
-    highlighter.style.boxShadow = '0 0 0 4px rgba(65, 131, 215, 0.7)';
+    highlighter.style.boxShadow = `0 0 0 4px ${automationState.highlightColors.default}`;
     highlighter.style.borderRadius = '4px';
     highlighter.style.opacity = '0';
     document.body.appendChild(highlighter);

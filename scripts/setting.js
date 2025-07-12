@@ -45,28 +45,28 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
 
         transactionNotification: [`
-          <div class="tab-content">
-            <div class="transaction-container">
-              <div class="notification-header">
-                <span class="header-item">Account</span>
-                <span class="header-item center">Currency</span>
-                <span class="header-item right">Transaction Alert Type</span>
-                <span class="header-item right">Credit Threshold Amount</span>
-                <span class="header-item right">Debit Threshold Amount</span>
-                <span class="action-items">Actions</span>
-              </div>
-              <div class="account-details">
-                <span class="details-item">Kodi codes 1052 2626 43</span>
-                <span class="currency">ZAR</span>
-                <span class="credit-and-debit">Credit and Debit</span>
-                <span class="credit-item">R1.00</span>
-                <span class="debit-item">R1.00</span>
-                <span class="btn">Edit</span>
-              </div>
-            </div>
-          </div>`
-        ],
-
+  <div class="tab-content">
+    <div class="transaction-container">
+      <div class="notification-header flex-row">
+        <span class="header-item">Account</span>
+        <span class="header-item center">Currency</span>
+        <span class="header-item">Transaction Alert Type</span>
+        <span class="header-item">Credit Threshold</span>
+        <span class="header-item">Debit Threshold</span>
+        <span class="header-item">Actions</span>
+      </div>
+      <div class="account-details flex-row">
+        <span class="details-item">Kodi codes 1052 2626 43</span>
+        <span class="currency">ZAR</span>
+        <span class="credit-and-debit">Credit and Debit</span>
+        <span class="credit-item">R1.00</span>
+        <span class="debit-item">R1.00</span>
+        <button class="btn">Edit</button>
+      </div>
+    </div>
+  </div>
+`]
+,
         profileNotification: [`
           <div class="tab-content">
             <h3>Profile Notifications</h3>
