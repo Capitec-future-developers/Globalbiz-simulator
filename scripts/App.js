@@ -1,4 +1,107 @@
+// userContext.js
 document.addEventListener('DOMContentLoaded', function() {
+    // User Database with all the functionality from your original script
+    const userDatabase = {
+        'omphilestudent@gmail.com.com': {
+            name: 'Omphile Mohlala',
+            email: 'omphilestudent@gmail.com.com',
+            initials: 'OM',
+            accountName: '1 Account Current',
+            accountBalance: 'R1000',
+            color: '#0096c7'
+        },
+        'Kodi@codes.com': {
+            name: 'Kodi Codes PTY LTD',
+            email: 'Kodi@codes.com',
+            initials: 'KC',
+            accountName: '2 Accounts',
+            accountBalance: 'R5000',
+            color: '#0096c7'
+        },
+        'business@example.com': {
+            name: 'ABC Enterprises',
+            email: 'business@example.com',
+            initials: 'AE',
+            accountName: 'Business Account',
+            accountBalance: 'R25000',
+            color: '#0096c7'
+        }
+    };
+
+    // Current User
+    let currentUser = null;
+
+    // Initialize the page with a default user
+    function initUser() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const userEmail = urlParams.get('user') || 'omphilestudent@gmail.com';
+
+        if (userDatabase[userEmail]) {
+            currentUser = userDatabase[userEmail];
+            updateUI();
+        }
+    }
+
+    // Update UI with current user data
+    function updateUI() {
+        document.getElementById('current-profile-name').textContent = currentUser.name;
+        document.getElementById('current-profile-email').textContent = currentUser.email;
+        document.getElementById('profile-initials').textContent = currentUser.initials;
+        document.getElementById('profile-initials').style.backgroundColor = currentUser.color;
+        document.getElementById('account-name').textContent = currentUser.accountName;
+        document.getElementById('account-balance').textContent = currentUser.accountBalance;
+    }
+
+    // Profile Popup Toggle
+    document.getElementById('profile-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('profilePopup').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+    });
+
+    document.getElementById('overlay').addEventListener('click', function() {
+        document.getElementById('profilePopup').classList.remove('active');
+        this.classList.remove('active');
+    });
+
+    // Profile Switching
+    document.querySelectorAll('.profile-option').forEach(option => {
+        option.addEventListener('click', function() {
+            const userEmail = this.getAttribute('data-user');
+            if (userDatabase[userEmail]) {
+                // Update URL without reloading
+                const newUrl = window.location.pathname + '?user=' + encodeURIComponent(userEmail);
+                window.history.pushState({}, '', newUrl);
+
+                // Switch user
+                currentUser = userDatabase[userEmail];
+                updateUI();
+
+                // Close popup
+                document.getElementById('profilePopup').classList.remove('active');
+                document.getElementById('overlay').classList.remove('active');
+            }
+        });
+    });
+
+    // Sidebar Dropdown
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        toggle.addEventListener('click', () => {
+            dropdown.classList.toggle('open');
+        });
+    });
+
+    // Initialize user
+    initUser();
+
+    // Handle back/forward navigation
+    window.addEventListener('popstate', function() {
+        initUser();
+    });
+
     // =============================================
     // USER CONTEXT MANAGEMENT SYSTEM (LocalStorage)
     // =============================================
@@ -8,10 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!localStorage.getItem('userDatabase')) {
             const userDatabase = {
                 // User with just a transactional account
-                'user1@example.com': {
+                'omphilestudent@gmail.com': {
                     id: 'usr_001',
                     name: 'Omphile Mohlala',
-                    email: 'user1@example.com',
+                    email: 'omphilestudent@gmail.com',
                     phone: '+27821234567',
                     profileImage: 'profile1.jpg',
                     accounts: [
@@ -101,10 +204,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
 
                 // User with multiple accounts
-                'user2@example.com': {
+                'Kodi@codes.com': {
                     id: 'usr_002',
-                    name: 'John Doe',
-                    email: 'user2@example.com',
+                    name: 'Kodi Codes PTY LTD',
+                    email: 'Kodi@codes.com',
                     phone: '+27827654321',
                     profileImage: 'profile2.jpg',
                     accounts: [
@@ -367,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
         simulateLogin(simulatedUser);
     } else {
         // Default to first user for demo purposes
-        simulateLogin('user1@example.com');
+        simulateLogin('omphilestudent@gmail.com');
     }
 
     // =============================================
@@ -928,7 +1031,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContentArea.innerHTML = `
  <div class="payment-section">
  <div class="payment-header">
- <button class="back-button" id="back-to-transacts">
+ <button class="back-button" id="back-to-transact">
  <span class="material-icons-sharp">arrow_back</span> Back
  </button>
  <h2>Make a Payment</h2>
@@ -1018,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', function() {
  `;
 
         // Add event listeners
-        const backButton = document.getElementById('back-to-transacts');
+        const backButton = document.getElementById('back-to-transact');
         if (backButton) {
             backButton.addEventListener('click', function() {
                 resetToMainView();
@@ -1588,3 +1691,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
