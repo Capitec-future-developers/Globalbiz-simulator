@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+// =============================================
+// USER CONTEXT MANAGEMENT SYSTEM (LocalStorage)
+// =============================================
 
 // Initialize user database in localStorage if not exists
     function initializeUserDatabase() {
@@ -93,6 +96,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             accountNumber: '1052265678',
                             bank: 'Standard Bank',
                             nickname: 'My Savings'
+                        },
+                        {
+                            id: 'ben_002',
+                            name: 'Electricity Company',
+                            accountNumber: '876543210',
+                            bank: 'ABSA',
+                            nickname: 'Electricity Bill'
                         }
                     ]
                 },
@@ -203,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     beneficiaries: [
                         {
-                            id: 'ben_002',
+                            id: 'ben_003',
                             name: 'Sarah Smith',
                             accountNumber: '1052269876',
                             bank: 'First National Bank',
@@ -332,6 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Current user context
     let currentUserContext = null;
+    let navigationStack = [];
 
 // =============================================
 // AUTHENTICATION SYSTEM (LocalStorage)
@@ -532,7 +543,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // Update quick action buttons based on account features
     function updateQuickActions() {
         const paymentButton = document.getElementById('payment');
-        const createButton = document.getElementById('create');
+        const transferButton = document.getElementById('transfer');
+        const beneficiariesButton = document.getElementById('beneficiaries');
 
         if (!currentUserContext) return;
 
@@ -546,6 +558,12 @@ document.addEventListener('DOMContentLoaded', function() {
 // Enable/disable actions based on account features
         if (paymentButton) {
             paymentButton.disabled = !account.features.includes('payments');
+        }
+        if (transferButton) {
+            transferButton.disabled = !account.features.includes('payments');
+        }
+        if (beneficiariesButton) {
+            beneficiariesButton.disabled = !account.features.includes('payments');
         }
     }
 
@@ -665,301 +683,8 @@ ${currentUserContext.profileImage ?
     }
 
 // =============================================
-// HELPER FUNCTIONS
+// PAYMENT AND BENEFICIARY MANAGEMENT
 // =============================================
-
-    function formatCurrency(amount) {
-        return 'R ' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-    }
-
-    function formatDate(dateString) {
-        const options = { year: 'numeric', month: 'short', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString(undefined, options);
-    }
-
-    function formatDateTime(dateTimeString) {
-        const options = {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        };
-        return new Date(dateTimeString).toLocaleDateString(undefined, options);
-    }
-
-    function getRandomColor() {
-        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    function generateTransactionId() {
-        return 'txn_' + Math.random().toString(36).substr(2, 9);
-    }
-
-// =============================================
-// INITIALIZE UI WITH USER CONTEXT
-// =============================================
-
-    updateUserContextUI();
-
-// =============================================
-// UI COMPONENT FUNCTIONALITY
-// =============================================
-
-// Profile popup functionality
-    const profileLink = document.getElementById('profile-link');
-    const profilePopup = document.getElementById('profilePopup');
-    const overlay = document.getElementById('overlay');
-
-    if (profileLink && profilePopup && overlay) {
-        profileLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            profilePopup.classList.add('active');
-            overlay.classList.add('active');
-        });
-
-        overlay.addEventListener('click', function() {
-            profilePopup.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-
-        profilePopup.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
-
-// Sidebar toggle functionality
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
-    const toggleButton = document.getElementById('sidebarToggle');
-    const menuIcon = toggleButton?.querySelector('.material-icons-sharp');
-
-    if (sidebar && mainContent && toggleButton && menuIcon) {
-        const chevronIcon = '<span class="material-icons-sharp">chevron_right</span>';
-        const closeIcon = '<span class="material-icons-sharp">close</span>';
-        const menuIconHtml = '<span class="material-icons-sharp">menu</span>';
-
-        function toggleSidebar() {
-            const isCollapsed = sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded', isCollapsed);
-
-            if (isCollapsed) {
-                toggleButton.innerHTML = menuIconHtml;
-            } else {
-                toggleButton.innerHTML = chevronIcon;
-            }
-
-            localStorage.setItem('sidebarCollapsed', isCollapsed);
-        }
-
-        function initSidebar() {
-            const savedState = localStorage.getItem('sidebarCollapsed');
-            if (savedState === 'true') {
-                sidebar.classList.add('collapsed');
-                mainContent.classList.add('expanded');
-                toggleButton.innerHTML = menuIconHtml;
-            } else {
-                sidebar.classList.remove('collapsed');
-                mainContent.classList.remove('expanded');
-                toggleButton.innerHTML = chevronIcon;
-            }
-        }
-
-        toggleButton.addEventListener('click', toggleSidebar);
-        initSidebar();
-    }
-
-// Tab functionality
-    const btnTransactions = document.getElementById("btn-transactions");
-    const btnPaymentHistory = document.getElementById("btn-payment-history");
-    const btnStampedStatements = document.getElementById("btn-stamped-statements");
-    const btnAccountInformation = document.getElementById("btn-account-information");
-    const tabContent = document.getElementById("tab-content");
-
-    function displayContent(items) {
-        if (!tabContent) return;
-
-        tabContent.innerHTML = "";
-
-        if (items.length === 1 && items[0].startsWith('<table')) {
-            tabContent.innerHTML = items[0];
-        } else {
-            const list = document.createElement("ul");
-            list.className = "content-list";
-
-            items.forEach(item => {
-                const listItem = document.createElement("li");
-                listItem.textContent = item;
-                list.appendChild(listItem);
-            });
-
-            tabContent.appendChild(list);
-        }
-    }
-
-    function highlightButton(btn) {
-        const allButtons = document.querySelectorAll('.tabs button');
-        allButtons.forEach(button => {
-            button.classList.remove('active');
-            const tab = button.querySelector('.tab');
-            if (tab) tab.classList.remove('active');
-        });
-
-        if (btn) {
-            btn.classList.add('active');
-            const tab = btn.querySelector('.tab');
-            if (tab) tab.classList.add('active');
-        }
-    }
-
-    function handleClick(event) {
-        const button = event.target.closest('button');
-        if (!button) return;
-
-        button.style.transform = 'translateY(2px)';
-        setTimeout(() => {
-            button.style.transform = '';
-        }, 100);
-
-        highlightButton(button);
-
-        if (!currentUserContext) return;
-
-// Get selected/default account
-        const account = currentUserContext.accounts.find(
-            acc => acc.id === currentUserContext.preferences.defaultAccount
-        );
-
-        if (!account) return;
-
-        switch(button.id) {
-            case "btn-transactions":
-                displayContent([generateTransactionTable(account.transactions || [])]);
-                break;
-            case "btn-payment-history":
-                displayContent([
-                    "Payment 1: R500.00 to John Doe",
-                    "Payment 2: R1,200.00 to ABC Suppliers",
-                    "Payment 3: R350.00 to Utility Company"
-                ]);
-                break;
-            case "btn-stamped-statements":
-                displayContent([
-                    `Statement for ${new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}`,
-                    `Statement for ${new Date(new Date().setMonth(new Date().getMonth() - 1)).toLocaleString('default', { month: 'long', year: 'numeric' })}`,
-                    `Statement for ${new Date(new Date().setMonth(new Date().getMonth() - 2)).toLocaleString('default', { month: 'long', year: 'numeric' })}`
-                ]);
-                break;
-            case "btn-account-information":
-                const accountInfo = [
-                    `Account opened: ${formatDate(account.lastUpdated)}`,
-                    `Account status: ${account.status.charAt(0).toUpperCase() + account.status.slice(1)}`,
-                    account.overdraft ? `Overdraft limit: ${formatCurrency(account.overdraft)}` : '',
-                    account.interestRate ? `Interest rate: ${account.interestRate}%` : '',
-                    `Account type: ${account.type.charAt(0).toUpperCase() + account.type.slice(1)}`
-                ].filter(item => item !== '');
-
-                displayContent(accountInfo);
-                break;
-            default:
-                console.warn("Unknown button clicked:", button.id);
-        }
-    }
-
-    [btnTransactions, btnPaymentHistory, btnStampedStatements, btnAccountInformation].forEach(btn => {
-        if (btn) {
-            btn.addEventListener('click', handleClick);
-        }
-    });
-
-    if (btnTransactions && tabContent) {
-        btnTransactions.classList.add('active');
-        const tab = btnTransactions.querySelector('.tab');
-        if (tab) tab.classList.add('active');
-
-        if (currentUserContext) {
-            const account = currentUserContext.accounts.find(
-                acc => acc.id === currentUserContext.preferences.defaultAccount
-            );
-
-            if (account) {
-                displayContent([generateTransactionTable(account.transactions || [])]);
-            }
-        }
-    }
-});
-
-// Payment and Beneficiary Management Script
-document.addEventListener('DOMContentLoaded', function() {
-// Initialize user database
-    function initializeUserDatabase() {
-        if (!localStorage.getItem('userDatabase')) {
-            const userDatabase = {
-                'user1@example.com': {
-                    id: 'usr_001',
-                    name: 'Omphile Mohlala',
-                    email: 'user1@example.com',
-                    beneficiaries: [
-                        {
-                            id: 'ben_001',
-                            name: 'Omphile Mohlala',
-                            accountNumber: '1052265678',
-                            bank: 'Standard Bank',
-                            nickname: 'My Savings'
-                        }
-                    ]
-                },
-                'user2@example.com': {
-                    id: 'usr_002',
-                    name: 'John Doe',
-                    email: 'user2@example.com',
-                    beneficiaries: [
-                        {
-                            id: 'ben_002',
-                            name: 'Sarah Smith',
-                            accountNumber: '1052269876',
-                            bank: 'First National Bank',
-                            nickname: 'Rent Payment'
-                        }
-                    ]
-                }
-            };
-            localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
-        }
-    }
-
-    initializeUserDatabase();
-
-    function getUserDatabase() {
-        return JSON.parse(localStorage.getItem('userDatabase'));
-    }
-
-    function updateUserInDatabase(user) {
-        const userDatabase = getUserDatabase();
-        userDatabase[user.email] = user;
-        localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
-    }
-
-// Current user context
-    let currentUserContext = null;
-    let navigationStack = [];
-
-// Simulate login
-    function simulateLogin(email) {
-        const userDatabase = getUserDatabase();
-        const user = userDatabase[email];
-
-        if (user) {
-            currentUserContext = JSON.parse(JSON.stringify(user));
-            return true;
-        }
-        return false;
-    }
-
-// Default login for demo
-    simulateLogin('user1@example.com');
 
 // UI Elements
     const defaultContent = document.getElementById('default-content');
@@ -973,7 +698,7 @@ document.addEventListener('DOMContentLoaded', function() {
     transferButton?.addEventListener('click', () => alert('Transfer functionality coming soon!'));
     beneficiariesButton?.addEventListener('click', showBeneficiariesSection);
 
-// Show payment section
+// Show payment section (updated to match the image layout)
     function showPaymentSection() {
         toggleContentVisibility();
         navigationStack.push('payment-section');
@@ -986,30 +711,44 @@ document.addEventListener('DOMContentLoaded', function() {
 </button>
 <h2>Make a Payment</h2>
 </div>
-<div class="payment-options-grid">
-<div class="payment-option-row">
+<div class="payment-options-container">
 <div class="payment-option" id="saved-beneficiary-option">
-<div class="payment-icon">
-<span class="material-icons-sharp">bookmark</span>
-</div>
-<div class="payment-details">
-<h3>Saved Beneficiary</h3>
+<div class="payment-option-content">
+<h3>Saved beneficiary</h3>
 <p>Pay to a saved recipient</p>
 </div>
-<span class="material-icons-sharp chevron-right">chevron_right</span>
+<button class="pay-button">Pay</button>
 </div>
-</div>
-<div class="payment-option-row">
+
 <div class="payment-option" id="onceoff-beneficiary-option">
-<div class="payment-icon">
-<span class="material-icons-sharp">person_add</span>
-</div>
-<div class="payment-details">
-<h3>Once-off Beneficiary</h3>
+<div class="payment-option-content">
+<h3>Once-off beneficiary</h3>
 <p>Pay to a new recipient</p>
 </div>
-<span class="material-icons-sharp chevron-right">chevron_right</span>
+<button class="pay-button">Pay</button>
 </div>
+
+<div class="payment-option" id="group-beneficiary-option">
+<div class="payment-option-content">
+<h3>Group or multiple beneficiaries</h3>
+<p>Pay to multiple recipients</p>
+</div>
+<button class="pay-button">Pay</button>
+</div>
+
+<div class="payment-links-container">
+<a href="#" class="payment-link" id="all-payments-link">
+<span>All payments</span>
+<span class="material-icons-sharp">chevron_right</span>
+</a>
+<a href="#" class="payment-link" id="recurring-payments-link">
+<span>Recurring payments</span>
+<span class="material-icons-sharp">chevron_right</span>
+</a>
+<a href="#" class="payment-link" id="future-payments-link">
+<span>Future-dated payments</span>
+<span class="material-icons-sharp">chevron_right</span>
+</a>
 </div>
 </div>
 </div>`;
@@ -1017,6 +756,21 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('back-button').addEventListener('click', resetToMainView);
         document.getElementById('saved-beneficiary-option').addEventListener('click', showBeneficiarySelection);
         document.getElementById('onceoff-beneficiary-option').addEventListener('click', () => showPaymentForm('onceoff'));
+        document.getElementById('group-beneficiary-option').addEventListener('click', () => showGroupPaymentForm());
+
+// Add event listeners for the links
+        document.getElementById('all-payments-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('All payments view would open here');
+        });
+        document.getElementById('recurring-payments-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Recurring payments view would open here');
+        });
+        document.getElementById('future-payments-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Future-dated payments view would open here');
+        });
     }
 
 // Show beneficiaries section
@@ -1186,6 +940,114 @@ ${beneficiaries.length > 0 ?
         document.getElementById('beneficiary-form').addEventListener('submit', saveBeneficiary);
     }
 
+// Show group payment form
+    function showGroupPaymentForm() {
+        toggleContentVisibility();
+        navigationStack.push('group-payment-form');
+
+        mainContentArea.innerHTML = `
+<div class="payment-form-section">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>Group Payment</h2>
+</div>
+<form id="group-payment-form">
+<div class="form-group">
+<label>Select Beneficiaries</label>
+<div class="beneficiary-selection-list">
+${currentUserContext.beneficiaries.map(ben => `
+<div class="beneficiary-checkbox-item">
+<input type="checkbox" id="ben-${ben.id}" name="beneficiaries" value="${ben.id}">
+<label for="ben-${ben.id}">
+<span class="beneficiary-name">${ben.nickname || ben.name}</span>
+<span class="beneficiary-details">${ben.bank} ••••${ben.accountNumber.slice(-4)}</span>
+</label>
+</div>
+`).join('')}
+</div>
+</div>
+
+<div class="form-group">
+<label for="group-reference">Payment Reference</label>
+<input type="text" id="group-reference" name="group-reference" required>
+</div>
+
+<div class="form-group">
+<button type="submit" class="submit-payment-btn">
+Continue to Amounts
+</button>
+</div>
+</form>
+</div>`;
+
+        document.getElementById('back-button').addEventListener('click', navigateBack);
+        document.getElementById('group-payment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const selectedBeneficiaries = Array.from(document.querySelectorAll('input[name="beneficiaries"]:checked'))
+                .map(el => el.value);
+
+            if (selectedBeneficiaries.length === 0) {
+                alert('Please select at least one beneficiary');
+                return;
+            }
+
+            showGroupPaymentAmounts(selectedBeneficiaries);
+        });
+    }
+
+// Show group payment amounts form
+    function showGroupPaymentAmounts(selectedBeneficiaryIds) {
+        toggleContentVisibility();
+        navigationStack.push('group-payment-amounts');
+
+        const reference = document.getElementById('group-reference').value;
+        const selectedBeneficiaries = currentUserContext.beneficiaries.filter(
+            ben => selectedBeneficiaryIds.includes(ben.id)
+        );
+
+        mainContentArea.innerHTML = `
+<div class="payment-form-section">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>Group Payment Amounts</h2>
+</div>
+<form id="group-payment-amounts-form">
+<div class="form-group">
+<label>Payment Reference</label>
+<div class="read-only-field">${reference}</div>
+</div>
+
+<div class="beneficiary-amounts-list">
+${selectedBeneficiaries.map(ben => `
+<div class="form-group beneficiary-amount-item">
+<label for="amount-${ben.id}">${ben.nickname || ben.name}</label>
+<div class="amount-input-container">
+<span class="currency-symbol">R</span>
+<input type="number" id="amount-${ben.id}" name="amount-${ben.id}" required>
+</div>
+</div>
+`).join('')}
+</div>
+
+<div class="form-group">
+<button type="submit" class="submit-payment-btn">
+Confirm Payment
+</button>
+</div>
+</form>
+</div>`;
+
+        document.getElementById('back-button').addEventListener('click', navigateBack);
+        document.getElementById('group-payment-amounts-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            processGroupPayment(selectedBeneficiaries, reference);
+        });
+    }
+
 // Show payment form
     function showPaymentForm(paymentType, beneficiaryName = '') {
         toggleContentVisibility();
@@ -1337,7 +1199,48 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }, 2000);
     }
 
-// Navigation functions
+// Process group payment
+    function processGroupPayment(beneficiaries, reference) {
+// Show processing animation
+        mainContentArea.innerHTML = `
+<div class="payment-processing">
+<div class="spinner">
+<div class="double-bounce1"></div>
+<div class="double-bounce2"></div>
+</div>
+<h2>Processing Group Payment...</h2>
+</div>`;
+
+// Simulate processing
+        setTimeout(() => {
+// Show confirmation
+            mainContentArea.innerHTML = `
+<div class="payment-confirmation">
+<div class="confirmation-icon success">
+<span class="material-icons-sharp">check_circle</span>
+</div>
+<h2>Group Payment Successful!</h2>
+<div class="confirmation-details">
+<div class="detail-row">
+<span>Number of recipients:</span>
+<span>${beneficiaries.length}</span>
+</div>
+<div class="detail-row">
+<span>Reference:</span>
+<span>${reference}</span>
+</div>
+</div>
+<button id="done-button" class="done-btn">Done</button>
+</div>`;
+
+            document.getElementById('done-button').addEventListener('click', resetToMainView);
+        }, 2000);
+    }
+
+// =============================================
+// NAVIGATION FUNCTIONS
+// =============================================
+
     function toggleContentVisibility() {
         if (defaultContent && mainContentArea) {
             defaultContent.style.display = 'none';
@@ -1376,8 +1279,615 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }
     }
 
-// Helper function for currency formatting
+// =============================================
+// HELPER FUNCTIONS
+// =============================================
+
     function formatCurrency(amount) {
         return 'R ' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
     }
+
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    function formatDateTime(dateTimeString) {
+        const options = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        return new Date(dateTimeString).toLocaleDateString(undefined, options);
+    }
+
+    function getRandomColor() {
+        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function generateTransactionId() {
+        return 'txn_' + Math.random().toString(36).substr(2, 9);
+    }
+
+// =============================================
+// TAB FUNCTIONALITY
+// =============================================
+
+    const btnTransactions = document.getElementById("btn-transactions");
+    const btnPaymentHistory = document.getElementById("btn-payment-history");
+    const btnStampedStatements = document.getElementById("btn-stamped-statements");
+    const btnAccountInformation = document.getElementById("btn-account-information");
+    const tabContent = document.getElementById("tab-content");
+
+    function displayContent(items) {
+        if (!tabContent) return;
+
+        tabContent.innerHTML = "";
+
+        if (items.length === 1 && items[0].startsWith('<table')) {
+            tabContent.innerHTML = items[0];
+        } else {
+            const list = document.createElement("ul");
+            list.className = "content-list";
+
+            items.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                list.appendChild(listItem);
+            });
+
+            tabContent.appendChild(list);
+        }
+    }
+
+    function highlightButton(btn) {
+        const allButtons = document.querySelectorAll('.tabs button');
+        allButtons.forEach(button => {
+            button.classList.remove('active');
+            const tab = button.querySelector('.tab');
+            if (tab) tab.classList.remove('active');
+        });
+
+        if (btn) {
+            btn.classList.add('active');
+            const tab = btn.querySelector('.tab');
+            if (tab) tab.classList.add('active');
+        }
+    }
+
+    function handleClick(event) {
+        const button = event.target.closest('button');
+        if (!button) return;
+
+        button.style.transform = 'translateY(2px)';
+        setTimeout(() => {
+            button.style.transform = '';
+        }, 100);
+
+        highlightButton(button);
+
+        if (!currentUserContext) return;
+
+// Get selected/default account
+        const account = currentUserContext.accounts.find(
+            acc => acc.id === currentUserContext.preferences.defaultAccount
+        );
+
+        if (!account) return;
+
+        switch(button.id) {
+            case "btn-transactions":
+                displayContent([generateTransactionTable(account.transactions || [])]);
+                break;
+            case "btn-payment-history":
+                displayContent([
+                    "Payment 1: R500.00 to John Doe",
+                    "Payment 2: R1,200.00 to ABC Suppliers",
+                    "Payment 3: R350.00 to Utility Company"
+                ]);
+                break;
+            case "btn-stamped-statements":
+                displayContent([
+                    `Statement for ${new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}`,
+                    `Statement for ${new Date(new Date().setMonth(new Date().getMonth() - 1)).toLocaleString('default', { month: 'long', year: 'numeric' })}`,
+                    `Statement for ${new Date(new Date().setMonth(new Date().getMonth() - 2)).toLocaleString('default', { month: 'long', year: 'numeric' })}`
+                ]);
+                break;
+            case "btn-account-information":
+                const accountInfo = [
+                    `Account opened: ${formatDate(account.lastUpdated)}`,
+                    `Account status: ${account.status.charAt(0).toUpperCase() + account.status.slice(1)}`,
+                    account.overdraft ? `Overdraft limit: ${formatCurrency(account.overdraft)}` : '',
+                    account.interestRate ? `Interest rate: ${account.interestRate}%` : '',
+                    `Account type: ${account.type.charAt(0).toUpperCase() + account.type.slice(1)}`
+                ].filter(item => item !== '');
+
+                displayContent(accountInfo);
+                break;
+            default:
+                console.warn("Unknown button clicked:", button.id);
+        }
+    }
+
+    [btnTransactions, btnPaymentHistory, btnStampedStatements, btnAccountInformation].forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', handleClick);
+        }
+    });
+
+    if (btnTransactions && tabContent) {
+        btnTransactions.classList.add('active');
+        const tab = btnTransactions.querySelector('.tab');
+        if (tab) tab.classList.add('active');
+
+        if (currentUserContext) {
+            const account = currentUserContext.accounts.find(
+                acc => acc.id === currentUserContext.preferences.defaultAccount
+            );
+
+            if (account) {
+                displayContent([generateTransactionTable(account.transactions || [])]);
+            }
+        }
+    }
+
+// =============================================
+// PROFILE POPUP FUNCTIONALITY
+// =============================================
+
+    const profileLink = document.getElementById('profile-link');
+    const profilePopup = document.getElementById('profilePopup');
+    const overlay = document.getElementById('overlay');
+
+    if (profileLink && profilePopup && overlay) {
+        profileLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            profilePopup.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        overlay.addEventListener('click', function() {
+            profilePopup.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        profilePopup.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+// =============================================
+// SIDEBAR TOGGLE FUNCTIONALITY
+// =============================================
+
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const toggleButton = document.getElementById('sidebarToggle');
+    const menuIcon = toggleButton?.querySelector('.material-icons-sharp');
+
+    if (sidebar && mainContent && toggleButton && menuIcon) {
+        const chevronIcon = '<span class="material-icons-sharp">chevron_right</span>';
+        const closeIcon = '<span class="material-icons-sharp">close</span>';
+        const menuIconHtml = '<span class="material-icons-sharp">menu</span>';
+
+        function toggleSidebar() {
+            const isCollapsed = sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded', isCollapsed);
+
+            if (isCollapsed) {
+                toggleButton.innerHTML = menuIconHtml;
+            } else {
+                toggleButton.innerHTML = chevronIcon;
+            }
+
+            localStorage.setItem('sidebarCollapsed', isCollapsed);
+        }
+
+        function initSidebar() {
+            const savedState = localStorage.getItem('sidebarCollapsed');
+            if (savedState === 'true') {
+                sidebar.classList.add('collapsed');
+                mainContent.classList.add('expanded');
+                toggleButton.innerHTML = menuIconHtml;
+            } else {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                toggleButton.innerHTML = chevronIcon;
+            }
+        }
+
+        toggleButton.addEventListener('click', toggleSidebar);
+        initSidebar();
+    }
+
+// =============================================
+// INITIALIZE UI WITH USER CONTEXT
+// =============================================
+
+    updateUserContextUI();
+
+// =============================================
+// CSS STYLES
+// =============================================
+
+    const style = document.createElement('style');
+    style.textContent = `
+.payment-section {
+padding: 20px;
+}
+
+.payment-header {
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.payment-header h2 {
+margin: 0;
+flex-grow: 1;
+text-align: center;
+}
+
+.back-button {
+background: none;
+border: none;
+display: flex;
+align-items: center;
+color: #0066cc;
+font-size: 16px;
+cursor: pointer;
+}
+
+.back-button .material-icons-sharp {
+margin-right: 5px;
+}
+
+.payment-options-container {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.payment-option {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px;
+border: 1px solid #e0e0e0;
+border-radius: 8px;
+background: white;
+cursor: pointer;
+}
+
+.payment-option:hover {
+background: #f5f5f5;
+}
+
+.payment-option-content h3 {
+margin: 0 0 5px 0;
+font-size: 16px;
+font-weight: 600;
+}
+
+.payment-option-content p {
+margin: 0;
+color: #666;
+font-size: 14px;
+}
+
+.pay-button {
+background: #0066cc;
+color: white;
+border: none;
+border-radius: 4px;
+padding: 8px 15px;
+cursor: pointer;
+}
+
+.payment-links-container {
+margin-top: 30px;
+border-top: 1px solid #e0e0e0;
+padding-top: 15px;
+}
+
+.payment-link {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px 0;
+text-decoration: none;
+color: #333;
+}
+
+.payment-link:hover {
+color: #0066cc;
+}
+
+.beneficiary-checkbox-item {
+display: flex;
+align-items: center;
+padding: 10px 0;
+border-bottom: 1px solid #eee;
+}
+
+.beneficiary-checkbox-item input {
+margin-right: 10px;
+}
+
+.beneficiary-checkbox-item label {
+display: flex;
+flex-direction: column;
+cursor: pointer;
+}
+
+.beneficiary-name {
+font-weight: 500;
+}
+
+.beneficiary-details {
+font-size: 12px;
+color: #666;
+}
+
+.amount-input-container {
+display: flex;
+align-items: center;
+}
+
+.currency-symbol {
+margin-right: 5px;
+font-weight: 500;
+}
+
+/* Additional styles for other components */
+.profile-popup {
+position: fixed;
+top: 0;
+right: -400px;
+width: 400px;
+height: 100%;
+background: white;
+box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+transition: right 0.3s ease;
+z-index: 1000;
+}
+
+.profile-popup.active {
+right: 0;
+}
+
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(0,0,0,0.5);
+z-index: 999;
+display: none;
+}
+
+.overlay.active {
+display: block;
+}
+
+.sidebar.collapsed {
+width: 60px;
+}
+
+.main-content.expanded {
+margin-left: 60px;
+}
+
+.transaction-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.transaction-table th, .transaction-table td {
+padding: 12px 15px;
+text-align: left;
+border-bottom: 1px solid #e0e0e0;
+}
+
+.transaction-table th {
+background-color: #f5f5f5;
+font-weight: 600;
+}
+
+.positive {
+color: #2e7d32;
+}
+
+.negative {
+color: #c62828;
+}
+
+.active {
+color: #2e7d32;
+}
+
+.inactive {
+color: #c62828;
+}
+
+.spinner {
+width: 40px;
+height: 40px;
+position: relative;
+margin: 20px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+width: 100%;
+height: 100%;
+border-radius: 50%;
+background-color: #0066cc;
+opacity: 0.6;
+position: absolute;
+top: 0;
+left: 0;
+animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+animation-delay: -1.0s;
+}
+
+@keyframes sk-bounce {
+0%, 100% {
+transform: scale(0.0);
+} 50% {
+transform: scale(1.0);
+}
+}
+
+.confirmation-icon {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 20px;
+}
+
+.confirmation-icon.success {
+background-color: #e8f5e9;
+color: #2e7d32;
+}
+
+.confirmation-icon.success .material-icons-sharp {
+font-size: 48px;
+}
+
+.confirmation-details {
+margin: 20px 0;
+}
+
+.detail-row {
+display: flex;
+justify-content: space-between;
+margin-bottom: 10px;
+}
+
+.done-btn {
+background: #0066cc;
+color: white;
+border: none;
+border-radius: 4px;
+padding: 12px 24px;
+font-size: 16px;
+cursor: pointer;
+width: 100%;
+margin-top: 20px;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-weight: 500;
+}
+
+.form-group input, .form-group select {
+width: 100%;
+padding: 10px;
+border: 1px solid #e0e0e0;
+border-radius: 4px;
+font-size: 16px;
+}
+
+.submit-btn, .submit-payment-btn {
+background: #0066cc;
+color: white;
+border: none;
+border-radius: 4px;
+padding: 12px 24px;
+font-size: 16px;
+cursor: pointer;
+width: 100%;
+}
+
+.read-only-field {
+padding: 10px;
+background: #f5f5f5;
+border-radius: 4px;
+border: 1px solid #e0e0e0;
+}
+
+.beneficiary-card {
+display: flex;
+align-items: center;
+padding: 15px;
+border-bottom: 1px solid #e0e0e0;
+cursor: pointer;
+}
+
+.beneficiary-avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: #e0e0e0;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 15px;
+color: #666;
+}
+
+.beneficiary-details {
+flex-grow: 1;
+}
+
+.beneficiary-details h3 {
+margin: 0 0 5px 0;
+font-size: 16px;
+}
+
+.beneficiary-details p {
+margin: 0;
+font-size: 14px;
+color: #666;
+}
+
+.delete-beneficiary-btn {
+background: none;
+border: none;
+color: #c62828;
+cursor: pointer;
+}
+
+.add-beneficiary-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+padding: 12px;
+background: #0066cc;
+color: white;
+border: none;
+border-radius: 4px;
+font-size: 16px;
+cursor: pointer;
+}
+
+.add-beneficiary-btn .material-icons-sharp {
+margin-right: 8px;
+}
+
+.no-beneficiaries {
+text-align: center;
+padding: 20px;
+color: #666;
+}
+`;
+    document.head.appendChild(style);
 });
