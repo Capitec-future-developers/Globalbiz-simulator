@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-// =============================================
-// USER CONTEXT MANAGEMENT SYSTEM (LocalStorage)
-// =============================================
 
-// Initialize user database in localStorage if not exists
     function initializeUserDatabase() {
         if (!localStorage.getItem('userDatabase')) {
             const userDatabase = {
-// User with just a transactional account
-                'user1@example.com': {
+                'omphilestudent@gmail.com': {
                     id: 'usr_001',
                     name: 'Omphile Mohlala',
                     email: 'user1@example.com',
@@ -107,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-// User with multiple accounts
+
                 'user2@example.com': {
                     id: 'usr_002',
                     name: 'John Doe',
