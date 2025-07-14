@@ -171,11 +171,11 @@ body {
     color: white;
 }
 
-/* Content Wrapper - Centers the main content */
+
 .content-wrapper {
-    margin-left: 280px; /* Matches sidebar width */
-    margin-top: 70px;
-    padding: 40px; /* Increased padding */
+    margin-left: 280px;
+    margin-top: 20px;
+    padding: 40px;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -184,7 +184,7 @@ body {
 /* Main Content Styles */
 .main-content {
     width: 100%;
-    max-width: 1400px;
+    max-width: 2800px;
     padding: 40px;
 }
 
@@ -208,17 +208,25 @@ body {
     margin-bottom: 35px;
     flex-wrap: wrap;
     }
-
+.right, p{
+font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #1e88e5;
+}
 .action-card {
+    display: flex;
     background-color: white;
-    border-radius: 8px;
-    padding: 25px; /* Increased padding */
-    width: calc(25% - 19px); /* Adjusted for larger gap */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    border-left: 5px solid #1e88e5;
+    padding: 25px;
+    width: calc(25% - 19px);
     cursor: pointer;
     transition: transform 0.2s;
-    border: 1px solid #e0e0e0;
-}
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+ }
 
 .action-card:hover {
     transform: translateY(-3px);
