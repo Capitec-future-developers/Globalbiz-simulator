@@ -104,6 +104,16 @@ const automationCommands = {
         ],
         description: 'Debit card',
         category: 'cards'
+    },
+    'Documents': {
+        steps: [
+            {action: 'click', selector: '#sideToggle'},
+            { action: 'wait', duration: 1000 },
+            {action: 'click', selector: '#documents'},
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#doc-type' }
+            { action: 'wait', }
+        ]
     }
 };
 
