@@ -265,7 +265,7 @@ body {
     background: #ffffff;
     color: black;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -274,6 +274,23 @@ body {
     width: 1550px;
     height: 70px;
     top: 230px;
+    left: 300px;
+}
+
+.account-box2 {
+    position: absolute;
+    background: #ffffff;
+    color: black;
+    padding: 25px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: -30px;
+    border-left: 4px solid #1e1e2f;
+    width: 1550px;
+    height: 70px;
+    top: 330px;
     left: 300px;
 }
 

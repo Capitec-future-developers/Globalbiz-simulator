@@ -55,38 +55,65 @@ window.addEventListener('DOMContentLoaded', () => {
  }
  }
 
- .generate-container button {
- font-weight: bold;
- font-size: 14px;
- padding: 10px 20px;
- background: #0288d1;
+ .manager-btn-container{
+position: absolute;
+right: 50px;
+top: 10px;
+height: 52px;
+background-color: #16232f;
+border: 1px solid #ffffff;
+}
+
+.manage-btn-container{
+ position: absolute;
+ right: 50px;
+ top: -200px;
+ height: 52px;
+ background-color: #0078d7;
+ border: 1px solid #ffffff;
+}
+
+.manage-btn {
+ background: none;
+ border: none;
  color: white;
- border: none;
- border-radius: 6px;
+ padding: 10px 15px;
  cursor: pointer;
- }
+ height: 50px;
+}
 
- .dropdowns {
+.details-hover {
  display: none;
- margin-top: 5px;
- background: white;
- border: 1px solid #ccc;
- border-radius: 8px;
- width: 260px;
- box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
- }
+ background-color: #ffffff;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ z-index: 10;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
 
- .dropdowns select {
- width: 100%;
- padding: 12px;
- border: none;
- font-size: 14px;
- cursor: pointer;
- }
+.details-hover ul {
+ list-style: none;
+ margin: 0;
+ padding: 10px 0;
+}
 
- .generate-container:hover .dropdowns {
+.details-hover li a {
  display: block;
- }
+ padding: 10px 20px;
+ text-decoration: none;
+ color: #333;
+}
+
+.details-hover li a:hover {
+ background-color: #f0f0f0;
+}
+
+/* Show dropdown on hover */
+.manage-btn-container:hover .details-hover {
+ display: block;
+}
+
 
  .popup {
  display: none;
@@ -211,19 +238,20 @@ window.addEventListener('DOMContentLoaded', () => {
  <strong>Note:</strong> Statement not available for accounts open less than 1 month.
  Visit <b>Accounts</b> and choose an account to see transaction history.
  </div>
- <div class="generate-container">
- <button id="generateBtnOpen" class="btn btn-primary">Generate Document</button>
- <div class="dropdowns">
- <select id="docTypeSelect">
- <option value="" disabled selected>Choose document type</option>
- <option>Account Confirmation Letter</option>
- <option>Settlement quote</option>
- <option>Stamped statements</option>
- <option>IT3b statements</option>
- <option>IT3s statements</option>
- </select>
+ <div class="manage-btn-container">
+ <button class="manage-btn">Generate Document</button>
+ <div class="details-hover">
+ <ul id="docTypeSelect">
+ <li><a href="#" data-doctype="Account Confirmation Letter">Account Confirmation Letter</a></li>
+ <li><a href="#" data-doctype="Settlement quote">Settlement quote</a></li>
+ <li><a href="#" data-doctype="Stamped statements">Stamped statements</a></li>
+ <li><a href="#" data-doctype="IT3b statements">IT3b statements</a></li>
+ <li><a href="#" data-doctype="IT3s statements">IT3s statements</a></li>
+ </ul>
  </div>
  </div>
+ </div>
+
  <div class="success-pop" id="successPop"><b>Success:</b> document will be ready below.</div>
  <div class="overlay" id="overlay"></div>
  <div class="popup" id="popup">
@@ -263,7 +291,7 @@ window.addEventListener('DOMContentLoaded', () => {
  `;
 
     // JS Logic with PDF generation
-    const docTypeSelect = document.getElementById('docTypeSelect');
+    const docTypeLinks = document.querySelectorAll('#docTypeSelect a');
     const popup = document.getElementById('popup');
     const overlay = document.getElementById('overlay');
     const popupHeader = document.getElementById('popupHeader');
@@ -274,11 +302,18 @@ window.addEventListener('DOMContentLoaded', () => {
     const docTable = document.getElementById('docTable');
     const docTableBody = document.getElementById('docTableBody');
 
-    docTypeSelect.addEventListener('change', () => {
-        if (!docTypeSelect.value) return;
-        popupHeader.textContent = docTypeSelect.value;
-        overlay.style.display = 'block';
-        popup.style.display = 'block';
+    // Store the selected doc type
+    let selectedDocType = '';
+
+    // Add click event to each document type link
+    docTypeLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            selectedDocType = link.getAttribute('data-doctype');
+            popupHeader.textContent = selectedDocType;
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+        });
     });
 
     cancelBtn.addEventListener('click', () => {
@@ -299,7 +334,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 month: 'short',
                 year: 'numeric'
             });
-            const docType = docTypeSelect.value;
 
             // Create PDF content
             const pdfContent = `
@@ -363,7 +397,7 @@ window.addEventListener('DOMContentLoaded', () => {
  <div>21 January 2025</div>
  </div>
  
- <div class="title">ACCOUNT CONFIRMATION LETTER</div>
+ <div class="title">${selectedDocType.toUpperCase()}</div>
  
  <div class="content">
  <p>We hereby confirm that Mr Omphile Mohlala has the following active account at Capitec Bank Limited.</p>
@@ -437,10 +471,10 @@ window.addEventListener('DOMContentLoaded', () => {
             const row = `
  <tr>
  <td>${dateStr}</td>
- <td>${docType}</td>
+ <td>${selectedDocType}</td>
  <td>Kodi Code 1052 2626 43</td>
  <td>
- <a href="${downloadUrl}" download="Account_Confirmation_Letter_${dateStr.replace(/\s+/g, '_')}.pdf" class="btn btn-primary">Download</a>
+ <a href="${downloadUrl}" download="${selectedDocType.replace(/\s+/g, '_')}_${dateStr.replace(/\s+/g, '_')}.pdf" class="btn btn-primary">Download</a>
  <button class="btn btn-secondary">Email</button>
  </td>
  </tr>

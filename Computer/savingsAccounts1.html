@@ -5,52 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Details | Capitec Bank</title>
     <link rel="stylesheet" href="../styles/account%20details.css">
+    <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-
 <div class="header">
     <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
-        <a href="#home">
-            <span class="material-icons-sharp">contact_support</span>
+        <div class="header-right">
+            <!-- Chatbot Toggle Button -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat"></span>
+                <span class="material-icons-sharp">close</span>
+            </button>
             banker
-        </a>
-        <div class="profile">
 
-
-            </a><a href="#contact" id="profile-link">
-            <span class="material-icons-sharp">account_circle</span>
-            Kodi PTY LTD
-        </a>
-            <!-- Popup HTML -->
-            <div class="overlay" id="overlay"></div>
-            <div class="profile-popup" id="profilePopup">
-                <div class="popup-header">omphilestudent@gmail.com</div>
-                <div class="profile-item">
-                    <span class="material-icons-sharp profile-icon">account_circle</span>
-                    <div class="profile-info">
-                        <div class="profile-active">ACTIVE PROFILE</div>
-                        <a href="Profile-info.html">
-                            <div class="profile-Name">Kodi Codes PTY LTD</div>
-                        </a>
-                    </div>
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
                 </div>
-                <a href="#" class="switch-profile">
-                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
-                    Switch to Omphile Mohlala
-                </a>
-                <a href="#" class="manage-business">Manage business profile</a>
             </div>
+
+
+            <div class="profile-container">
+                <a href="#contact" id="banker-popup">
+                    <a href="#contact" id="profile-link" style="text-decoration: none;">
+                        <div class="om-circle" style="text-decoration: none;">KC</div>
+                        <div class="name">
+                            Kodi Codes PTY LTD
+                        </div>
+                    </a>
+                    <!-- Popup HTML -->
+                    <div class="overlay" id="overlay"></div>
+                    <div class="profile-popup" id="profilePopup">
+                        <div class="popup-header">Kodi@Codes.com</div>
+                        <div class="profile-item">
+                            <span class="material-icons-sharp profile-icon">account_circle</span>
+                            <div class="profile-info">
+                                <div class="profile-active">ACTIVE PROFILE</div>
+                                <a href="Profile-info.html">
+                                    <div class="profile-Name">Kodi Codes PTY LTD</div>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="Computer.html" class="switch-profile">
+                            <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                            Switch to Omphile Mohlala
+                        </a>
+                        <a href="#" class="manage-business">Manage business profile</a>
+                    </div>
+            </div>
+            <a href="home%20page.htmlml" class="sign">Sign Out</a>
         </div>
-        <a href="home%20page.htmlml" class="sign">Sign Out</a>
     </div>
 </div>
-
 <!--Sidebar navigation-->
 <div class="sidebar">
         <a href="Computer.html" class="active" id="home">
@@ -142,7 +166,7 @@
 <!--Main content-->
 <div class="main-content">
     <div class="back-nav">
-        <a href="../Computer/KodiCode.html">
+        <a href="../Computer/Kodi-accounts.html">
             <span class="material-icons-sharp" style="font-size: 30px; color: #007FFF;">arrow_back</span> Account Details
         </a>
     </div>
@@ -237,6 +261,6 @@
 
 <script src="../scripts/Apps.js"></script>
 <script src="../scripts/savingsAccount1.js"></script>
-<script src="Computer%20Automation.js"></script>
+<script src="../scripts/Computer-Automation.js"></script>
 </body>
 </html>
