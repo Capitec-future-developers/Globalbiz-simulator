@@ -109,9 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// =============================================
-// TAB FUNCTIONALITY
-// =============================================
 // Tab content data
     const tabContentData = {
         transactions: [
@@ -171,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const tabContent = document.getElementById("tab-content");
 
-// ✅ Updated function to render HTML correctly
+
     function displayContent(contentKey) {
         if (!tabContent || !tabContentData[contentKey]) return;
 
@@ -892,22 +889,17 @@ Pay Now
         }
     }
 
-// =============================================
-// TRANSFER FUNCTIONALITY
-// =============================================
 // Navigation stack for back functionality
     const transferNavigationStack = [];
     const transferMainContentArea = document.getElementById('mainContent');
 
     if (transferMainContentArea) {
-// Function to toggle content visibility of other sections
         function toggleTransferContentVisibility() {
             document.querySelectorAll('.favorites-container, .pending, .cash-flow').forEach(el => {
                 el.style.display = el.style.display === 'none' ? 'block' : 'none';
             });
         }
 
-// Function to reset to main view
         function resetTransferToMainView() {
             transferMainContentArea.innerHTML = `
 <div class="account">
