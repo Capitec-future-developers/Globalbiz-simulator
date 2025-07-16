@@ -6,195 +6,204 @@
     <title>Beneficiaries | Capitec Bank</title>
     <link rel="stylesheet" href="../styles/Beneficiaries.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
-
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
 <div class="header">
     <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
-        <div class="header-right">
-            <!-- Chatbot Toggle Button -->
-            <button class="chatbot-toggler">
-                <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat"></span>
+        <!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+            <span class="material-icons-sharp">close</span>
+        </button>
+        banker
+
+        <div class="chatbot">
+            <header>
+                <h2>BIZCHAT</h2>
                 <span class="material-icons-sharp">close</span>
-            </button>
-            banker
-
-            <div class="chatbot">
-                <header>
-                    <h2>BIZCHAT</h2>
-                    <span class="material-icons-sharp">close</span>
-                </header>
-                <ul class="chatbox">
-                    <li class="chat incoming">
-                        <span class="material-icons-sharp">account_circle</span>
-                        <p>Welcome to Bizchat, how can I assist.</p>
-                    </li>
-                    <li class="chat outgoing"></li>
-                </ul>
-                <div class="chat-input">
-                    <textarea placeholder="Type your message here..." required></textarea>
-                    <span id="send-btn" class="material-icons-sharp">send</span>
-                </div>
+            </header>
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <p>Welcome to Bizchat, how can I assist.</p>
+                </li>
+                <li class="chat outgoing"></li>
+            </ul>
+            <div class="chat-input">
+                <textarea placeholder="Type your message here..." required></textarea>
+                <span id="send-btn" class="material-icons-sharp">send</span>
             </div>
-
-            <div class="profile-container">
-                <a href="#contact" id="#">
-                    <a href="#contact" id="profile-link" style="text-decoration: none;">
-                        <div class="om-circle" style="text-decoration: none;">OM</div>
-                        <div class="name">
-                            Omphile Mohlala
-                        </div>
-                    </a>
-                    <!-- Popup HTML -->
-                    <div class="overlay" id="overlay"></div>
-                    <div class="profile-popup" id="profilePopup">
-                        <div class="popup-header">omphilestudent@gmail.com</div>
-                        <div class="profile-item">
-                            <span class="material-icons-sharp profile-icon">account_circle</span>
-                            <div class="profile-info">
-                                <div class="profile-active">ACTIVE PROFILE</div>
-                                <a href="Profile-info.html">
-                                    <div class="profile-Name">Omphile Mohlala</div>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#" class="switch-profile">
-                            <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
-                            Switch to Kodi PTY LTD
-                        </a>
-                        <a href="#" class="manage-business">Manage business profile</a>
-                    </div>
-            </div>
-            <a href="home%20page.htmlml" class="sign">Sign Out</a>
         </div>
-    </div>
 
-    <!--Sidebar navigation-->
-    <div class="sidebar">
-        <a href="Computer.html" class="active" id="home">
-            <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
-            Home
-        </a>
-        <p class="side">BANKING</p>
-        <a href="Accounts.html" id="accounts">
+        <div class="profile-container">
+            <a href="#contact" id="banker-popup">
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+                    <div class="om-circle" style="text-decoration: none;">OM</div>
+                    <div class="name">
+                        Omphile Mohlala
+                    </div>
+                </a>
+
+            </a>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                </a>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">Omphile Mohlala</div>
+                    </div>
+                </div>
+                <div id="page-transition"></div>
+                <a href="KodiCode.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+        </div>
+        <a href="./home%20page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+
+<!--Sidebar navigation-->
+<div class="sidebar">
+    <a href="Computer.html" class="active" id="home">
+        <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
+        Home
+    </a>
+    <p class="side">BANKING</p>
+    <a href="Accounts.html" id="accounts">
         <span class="material-icons-sharp">
             <img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
         </span>
-            Accounts
+        Accounts
+    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="transacts">
+            <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
+            Transact
+            <span class="dropdown-arrow">▶</span>
         </a>
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" id="transacts">
-                <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
-                Transact
-                <span class="dropdown-arrow">▶</span>
-            </a>
-
-            <div class="dropdown-menu">
-                <a href="transact.html" id="payments">Payment</a>
-                <a href="#" id="t
+        <div class="dropdown-menu">
+            <a href="transact.html" id="payments">Payment</a>
+            <a href="#" id="t
             Transfer">Transfer</a>
-                <a href="#" id="beneficiary-btn">Beneficiary</a>
-            </div>
+            <a href="#" id="beneficiary-btn">Beneficiary</a>
         </div>
-        <a href="Cards.html">
-            <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="transact" style="color: #cccccc;"></span>
-            Cards
-        </a>
-        <p class="side">MANAGEMENT</p>
-
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle">
-                <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="transact" style="color: #cccccc;"></span>
-                Authorisations
-                <span class="dropdown-arrow">▶</span>
-            </a>
-            <div class="dropdown-menu">
-                <a href="#">Transactions</a>
-                <a href="Beneficiaries.html">Beneficiaries</a>
-                <a href="inprogress.html">User Management</a>
-                <a href="inprogress.html">Account & Limits</a>
-                <a href="inprogress.html">Authorisation Levels</a>
-                <a href="inprogress.html">Notification Setup</a>
-                <a href="messages.html">Messages</a>
-            </div>
-        </div>
-        <a href="inprogress.html">
-            <span class="material-icons-sharp">groups</span>
-            User management
-        </a>
-        <p class="side">SERVICES</p>
-        <a href="inprogress.html">
-            <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
-            Products & Services
-        </a>
-        <a href="inprogress.html">
-            <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="transact" style="color: #cccccc;"></span>
-            SARS eFILLING
-        </a>
-        <a href="inprogress.html">
-            <span class="material-icons-sharp"><img src="messages%20(1).svg" alt="transact" style="color: #cccccc;"></span>
-            Secure Messages
-        </a>
-        <a href="Computer-Document.html">
-            <span class="material-icons-sharp"><img src="../images/document.svg" alt="transact" style="color: #cccccc;"></span>
-            Documents
-        </a>
-        <a href="settings.html">
-            <span class="material-icons-sharp"><img src="../images/settings.svg" alt="transact" style="color: #cccccc;"></span>
-            Settings
-        </a>
-        <a href="#" class="signout">
-            <span class="material-icons-sharp">lock</span>
-            We secure your data in line with our Privacy Notice and Terms & Conditions
-        </a>
     </div>
+    <a href="Cards.html">
+        <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="transact" style="color: #cccccc;"></span>
+        Cards
+    </a>
+    <p class="side">MANAGEMENT</p>
+
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="transact" style="color: #cccccc;"></span>
+            Authorisations
+            <span class="dropdown-arrow">▶</span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="#">Transactions</a>
+            <a href="Beneficiaries.html">Beneficiaries</a>
+            <a href="inprogress.html">User Management</a>
+            <a href="inprogress.html">Account & Limits</a>
+            <a href="inprogress.html">Authorisation Levels</a>
+            <a href="inprogress.html">Notification Setup</a>
+            <a href="messages.html">Messages</a>
+        </div>
+    </div>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp">groups</span>
+        User management
+    </a>
+    <p class="side">SERVICES</p>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
+        Products & Services
+    </a>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="transact" style="color: #cccccc;"></span>
+        SARS eFILLING
+    </a>
+    <a href="inprogress.html">
+        <span class="material-icons-sharp"><img src="../images/messages%20(1).svg" alt="transact" style="color: #cccccc;"></span>
+        Secure Messages
+    </a>
+    <a href="Computer-Document.html">
+        <span class="material-icons-sharp"><img src="../images/document.svg" alt="transact" style="color: #cccccc;"></span>
+        Documents
+    </a>
+    <a href="settings.html">
+        <span class="material-icons-sharp"><img src="../images/settings.svg" alt="transact" style="color: #cccccc;"></span>
+        Settings
+    </a>
+    <a href="#" class="signout">
+        <span class="material-icons-sharp">lock</span>
+        We secure your data in line with our Privacy Notice and Terms & Conditions
+    </a>
+    </div>
+</div>
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
 <!--- HEADER SECTION --->
 <div class="main-header">
-    <h3 style="font-weight: bolder; padding-top: 15px">Beneficiaries</h3>
+    <h3>Beneficiaries</h3>
 </div>
-<p style="font-weight: normal; padding-bottom: 10px; padding-top: 10px">Authorisation queue</p>
+    <p style="padding-top: 10px; padding-bottom: 10px">Authorisation queue</p>
 
-<!--- BENEFICIARY SEARCH AND FILTER SECTION ------->
+<!--- BENEFICIARY SEARCH AND FILTER SECTION ------>
 <div class="searchInput">
     <input type="text" placeholder="Search">
 
-    <select id="beneficiaryStatus">
-        <option>Beneficiary status</option>
-        <option>New</option>
-        <option>Updated</option>
-        <option>Deleted</option>
-    </select>
+        <select id="beneficiaryStatus">
+            <option>Beneficiary status</option>
+            <option>New</option>
+            <option>Updated</option>
+            <option>Deleted</option>
+        </select>
 </div>
 
-<div class="contentBody">
-    <table class="transaction-table">
-        <thead>
-        <tr>
-            <th style="font-weight: normal">Beneficiary name</th>
-            <th style="font-weight: normal">Beneficiary reference</th>
-            <th style="font-weight: normal">Account number</th>
-            <th style="font-weight: normal">Beneficiary status</th>
-            <th style="font-weight: normal">Created date</th>
-            <th style="font-weight: normal">Created by</th>
-            <th style="font-weight: normal">Authorizations due</th>
-            <th style="font-weight: normal">Actions</th>
-        </tr>
-        </thead>
-    </table>
+        <div class="contentBody">
+            <table class="transaction-table">
+                <thead>
+                    <tr>
+                    <th style="font-weight: normal">Beneficiary name</th>
+                    <th style="font-weight: normal">Beneficiary reference</th>
+                    <th style="font-weight: normal">Account number</th>
+                    <th style="font-weight: normal">Beneficiary status</th>
+                    <th style="font-weight: normal">Created date</th>
+                    <th style="font-weight: normal">Created by</th>
+                    <th style="font-weight: normal">Authorizations due</th>
+                    <th style="font-weight: normal">Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
-
-<script src="../scripts/Transfer.js"></script>
-<script src="../scripts/Apps.js"></script>
+<script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
-<script src="../scripts/chatbot.js"></script>
 </body>
 </html>

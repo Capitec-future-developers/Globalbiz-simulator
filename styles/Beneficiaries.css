@@ -343,7 +343,7 @@ popup-header {
     color: black;
 }
 
-/*  Info Banner */
+/* Info Banner */
 .info-banner {
     background: #e0f7fa;
     padding: 15px 20px;
@@ -397,8 +397,8 @@ table {
 
 .searchInput {
     padding-left: 250px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     gap: 15px;
     background: white;
