@@ -110,7 +110,8 @@ body {
   top: -8px;
   text-decoration: none;
 }
-/* Sidebar Styles */
+
+
 .sidebar {
   width: 250px;
   background: #16232f;
@@ -168,9 +169,6 @@ body {
 }
 
 
-/* Header Styles */
-
-/* Main Content Area */
 .main-content {
   margin-left: 250px;
   margin-top: 70px;
@@ -178,7 +176,6 @@ body {
   min-height: calc(100vh - 70px);
 }
 
-/* Welcome Message*/
 .welcome-message {
   background: white;
   padding: 20px;
@@ -196,7 +193,6 @@ body {
   color: #7f8c8d;
 }
 
-/* Account Section */
 .account {
   background: white;
   padding: 20px;
