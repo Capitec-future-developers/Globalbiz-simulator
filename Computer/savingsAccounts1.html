@@ -190,12 +190,63 @@
             <button class="manage-btn" style="background-color: #16232f;" >Manage Account</button>
             <div class="details-hover">
                 <ul>
-                    <li><a href="#">Set account authorization</a></li>
+                    <li><a href="#" id="set-auth-level">Set account authorization</a></li>
                     <li><a href="#">Edit account nickname</a></li>
                 </ul>
             </div>
         </div>
+
+        <!-- Popup HTML -->
+        <div class="popup-overlay" id="authPopup">
+            <div class="auth-popup">
+                <div class="popup-header">Set Authorization Level</div>
+
+                <div class="form-page" id="formPage">
+                    <div class="form-group">
+                        <label for="createPayment">Who can create payment:<img src="../images/info-trans.svg"></label>
+                        <select id="createPayment">
+                            <option value="">Choose Approver</option>
+                            <option value="authoriser">Authoriser</option>
+                            <option value="capturer">Capturer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="approvePayment">Who must approve payment:<img src="../images/info-trans.svg"></label>
+                        <select id="approvePayment">
+                            <option value="">Choose</option>
+                            <option value="one">One person</option>
+                            <option value="two">Two people</option>
+                            <option value="none">No one</option>
+                        </select>
+                    </div>
+
+                    <div class="popup-footer">
+                        <button class="btn btn-cancel" id="cancelBtn">Cancel</button>
+                        <button class="btn btn-continue" id="continueBtn">Continue</button>
+                    </div>
+                </div>
+
+                <div class="confirmation-page" id="confirmationPage">
+                    <div class="confirmation-item">
+                        <div class="confirmation-label">Who can create payment? <img src="../images/info-trans.svg"></div>
+                        <div class="confirmation-value" id="confirmCreatePayment"></div>
+                    </div>
+
+                    <div class="confirmation-item">
+                        <div class="confirmation-label">Who must approve payment? <img src="../images/info-trans.svg"></div>
+                        <div class="confirmation-value" id="confirmApprovePayment"></div>
+                    </div>
+
+                    <div class="popup-footer">
+                        <button class="btn btn-cancel" id="backBtn">Back</button>
+                        <button class="btn btn-save" id="saveBtn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <div class="tabs">
         <button id="btn-transactions"><div class="tab active">Transactions</div></button>
@@ -258,9 +309,8 @@
         </table>
     </div>
 </div>
-
+<script src="../scripts/Combined.js"></script>
 <script src="../scripts/Apps.js"></script>
-<script src="../scripts/savingsAccount1.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
 </body>
 </html>
