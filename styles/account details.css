@@ -291,7 +291,15 @@ body {
     color: #ffcccc;
 }
 
-.manage-btn-container {
+.manager-btn-container{
+position: absolute;
+right: 50px;
+height: 52px;
+background-color: #16232f;
+border: 1px solid #ffffff;
+}
+
+.manage-btn-container{
     position: absolute;
     right: 50px;
     height: 52px;

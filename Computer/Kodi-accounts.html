@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../styles/Document.css">
+  <link rel="stylesheet" href="../styles/accounts.css">
   <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
   <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-  <title>Document</title>
+  <title>Computer</title>
 </head>
 <body>
 <div class="header">
@@ -19,7 +19,7 @@
     <div class="header-right">
       <!-- Chatbot Toggle Button -->
       <button class="chatbot-toggler">
-        <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+        <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat"></span>
         <span class="material-icons-sharp">close</span>
       </button>
       banker
@@ -44,32 +44,32 @@
 
 
       <div class="profile-container">
-        <a href="#contact" id="profile-link">
+        <a href="#contact" id="banker-popup">
           <a href="#contact" id="profile-link" style="text-decoration: none;">
-            <div class="om-circle" style="text-decoration: none;">OM</div>
+            <div class="om-circle" style="text-decoration: none;">KC</div>
             <div class="name">
-              Omphile Mohlala
+              Kodi Codes PTY LTD
             </div>
           </a>
-        <!-- Popup HTML -->
-        <div class="overlay" id="overlay"></div>
-        <div class="profile-popup" id="profilePopup">
-          <div class="popup-header">omphilestudent@gmail.com</div>
-          <div class="profile-item">
-            <span class="material-icons-sharp profile-icon">account_circle</span>
-            <div class="profile-info">
-              <div class="profile-active">ACTIVE PROFILE</div>
-              <a href="Profile-info.html">
-                <div class="profile-Name">Omphile Mohlala</div>
-              </a>
+          <!-- Popup HTML -->
+          <div class="overlay" id="overlay"></div>
+          <div class="profile-popup" id="profilePopup">
+            <div class="popup-header">Kodi@Codes.com</div>
+            <div class="profile-item">
+              <span class="material-icons-sharp profile-icon">account_circle</span>
+              <div class="profile-info">
+                <div class="profile-active">ACTIVE PROFILE</div>
+                <a href="Profile-info.html">
+                  <div class="profile-Name">Kodi Codes PTY LTD</div>
+                </a>
+              </div>
             </div>
+            <a href="Computer.html" class="switch-profile">
+              <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+              Switch to Omphile Mohlala
+            </a>
+            <a href="#" class="manage-business">Manage business profile</a>
           </div>
-          <a href="#" class="switch-profile">
-            <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
-            Switch to Kodi PTY LTD
-          </a>
-          <a href="#" class="manage-business">Manage business profile</a>
-        </div>
       </div>
       <a href="home%20page.htmlml" class="sign">Sign Out</a>
     </div>
@@ -77,13 +77,12 @@
 
   <!--Sidebar navigation-->
   <div class="sidebar">
-
-    <a href="Computer.html" class="active" id="home">
+    <a href="KodiCode.html" class="active" id="home">
       <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
       Home
     </a>
     <p class="side">BANKING</p>
-    <a href="Accounts.html" id="accounts">
+    <a href="Kodi-accounts.html" id="accounts">
         <span class="material-icons-sharp">
             <img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
         </span>
@@ -155,27 +154,99 @@
     </a>
   </div>
 
-  <!-- Main Content Area -->
-  <div class="content" id="mainContent">
-    <!-- Search Bar Section -->
+  <!-- Search Bar Section -->
+  <div class="searchContent" style="background-color: #ffffff; border: 1px solid #cccccc;">
+    <div class="searchHead" style="border-bottom: 1px solid #cccccc; width: 100%;">
+      <a href="KodiCode.html">
+        <span class="material-icons-sharp" style="color: #007FFF; font-size: 2rem; left: -10px;">arrow_back</span>
+      </a>
+      <div style="position: absolute; top: 10px; left: 60px; font-size: 1.2rem; font-weight: bold; ">
+        Current Account
+      </div>
+    </div>
+    <br>
+    <!-- Search Bar Nested Inside searchContent -->
     <div class="search-container">
-      <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+      <input
+              type="text"
+              id="automation-search"
+              placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')"
+      >
       <button id="execute-automation" class="search-button">
         <span class="material-icons-sharp">search</span> Go
       </button>
+
+      <!-- Suggestions Dropdown -->
       <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
     </div>
+  </div>
 
-    <!-- Document section -->
 
-    <div class="content" id="mainContents" style="display: none;"></div>
+  <!-- Account Information Section -->
 
-    <!-- Documents Page (now shown on load) -->
-    <div id="document" class="new-page-container" style="display: flex;"></div>
+  <div class="account-box">
+    <div class="account">
+      <div class="account-header">
+        <img src="../images/transact.svg" alt="transact" style="position: absolute; top: 30px; left: 10px;" >
 
+      </div>
+      <div class="account-info-row">
+        <div class="info-item">
+          <span class="info-label">Account Name:</span>
+          <span class="info-value">1052 2626 43</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Current balance:</span>
+          <span class="info-value negative">- R154.21</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Available balance:</span>
+          <span class="info-value">R0.00</span>
+        </div>
+      </div>
+
+      <a href="Account%20details.html" class="View" id="view">
+        <span class="material-icons-sharp">chevron_right</span>
+      </a>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="account-box2">
+    <div class="account">
+      <div class="account-header">
+        <img src="../images/save.svg" alt="transact" style="position: absolute; top: 30px; left: 10px;" >
+
+      </div>
+      <div class="account-info-row">
+        <div class="info-item">
+          <span class="info-label">Account Name:</span>
+          <span class="info-value">4001 2345 67</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Current balance:</span>
+          <span class="info-value">R10 800.00</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Available balance:</span>
+          <span class="info-value">R10 800.00</span>
+        </div>
+      </div>
+
+      <a href="savingsAccounts1.html" class="View" id="view">
+        <span class="material-icons-sharp">chevron_right</span>
+      </a>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
+</body>
 <script src="../scripts/chatbot.js"></script>
+<script src="../scripts/Apps.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
-<script src="../scripts/documentGenerator.js"></script>
-</body>
+
 </html>

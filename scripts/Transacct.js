@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-// =============================================
-// USER CONTEXT MANAGEMENT SYSTEM (LocalStorage)
-// =============================================
 
-// Initialize user database in localStorage if not exists
     function initializeUserDatabase() {
         if (!localStorage.getItem('userDatabase')) {
             const userDatabase = {
-// User with just a transactional account
-                'user1@example.com': {
+                'omphilestudent@gmail.com': {
                     id: 'usr_001',
                     name: 'Omphile Mohlala',
                     email: 'user1@example.com',
@@ -107,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-// User with multiple accounts
+
                 'user2@example.com': {
                     id: 'usr_002',
                     name: 'John Doe',
@@ -704,30 +699,35 @@ ${currentUserContext.profileImage ?
         navigationStack.push('payment-section');
 
         mainContentArea.innerHTML = `
-
-
+<div class="payment-section">
+<div class="payment-header">
+<button class="back-button" id="back-button">
+<span class="material-icons-sharp">arrow_back</span> Back
+</button>
+<h2>Make a Payment</h2>
+</div>
 <div class="payment-options-container">
 <div class="payment-option" id="saved-beneficiary-option">
 <div class="payment-option-content">
 <h3>Saved beneficiary</h3>
+<p>Pay to a saved recipient</p>
 </div>
-<div class="separator"></div>
 <button class="pay-button">Pay</button>
 </div>
 
 <div class="payment-option" id="onceoff-beneficiary-option">
 <div class="payment-option-content">
 <h3>Once-off beneficiary</h3>
+<p>Pay to a new recipient</p>
 </div>
-<div class="separator"></div>
 <button class="pay-button">Pay</button>
 </div>
 
 <div class="payment-option" id="group-beneficiary-option">
 <div class="payment-option-content">
 <h3>Group or multiple beneficiaries</h3>
+<p>Pay to multiple recipients</p>
 </div>
-<div class="separator"></div>
 <button class="pay-button">Pay</button>
 </div>
 
@@ -1548,18 +1548,14 @@ gap: 15px;
 }
 
 .payment-option {
-border-left: 1px solid #007FFF;
 display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 15px;
-left: 0;
-right: 10;
 border: 1px solid #e0e0e0;
 border-radius: 8px;
 background: white;
 cursor: pointer;
-width: 250px;
 }
 
 .payment-option:hover {
@@ -1579,8 +1575,8 @@ font-size: 14px;
 }
 
 .pay-button {
-background: none;
-color: #007FFF;
+background: #0066cc;
+color: white;
 border: none;
 border-radius: 4px;
 padding: 8px 15px;
