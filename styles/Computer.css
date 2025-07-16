@@ -271,13 +271,13 @@ a {
 }
 
 .box3{
-    position: absolute;
-    background: #ffffff;
-    color: #dddddd;
-    width: 800px;
-    top: 55px;
-    right: 10px;
-   text-align: center;
+  position: absolute;
+  background: #ffffff;
+  color: #dddddd;
+  width: 800px;
+  top: 55px;
+  right: 10px;
+  text-align: center;
 }
 
 .box1::after, .box2::after {
@@ -438,7 +438,7 @@ a {
   align-items: center;
   padding: 20px;
   background: #ffffff;
-width: 50%;
+  width: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid #cccccc;
@@ -792,7 +792,7 @@ width: 50%;
   display: block;
 }
 
- .popup-header {
+.popup-header {
   font-size: 14px;
   font-weight: 500;
   padding: 16px;
@@ -1373,6 +1373,7 @@ popup-header {
   border-radius: 5px;
   cursor: pointer;
 }
+
 
 .popup-btn:hover {
   background-color: #0056b3;

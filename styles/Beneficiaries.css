@@ -386,7 +386,7 @@ p{
 }
 
 h3{
-    padding-left: 650px;
+    padding-left: none;
     border-radius: 0 0 9px 9px;
 }
 
@@ -403,6 +403,8 @@ table {
 
 .searchInput {
     padding-left: 250px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     gap: 15px;
     background: white;
