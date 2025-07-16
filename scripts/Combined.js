@@ -1244,9 +1244,9 @@ Transfer Funds
             }
         } else if (field === 'approvePayment') {
             switch(value) {
+                case 'none': return 'No one';
                 case 'one': return 'One person';
                 case 'two': return 'Two people';
-                case 'none': return 'No one';
                 default: return '';
             }
         }
