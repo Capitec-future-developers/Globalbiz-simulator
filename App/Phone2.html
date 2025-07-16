@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone with Chatbot</title>
+    <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/chatbot.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+</head>
+<body>
+<!-- Search Bar -->
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<!-- iPhone Frame -->
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+
+            <!-- Header -->
+            <div class="head">
+                <div class="arrow" id="sidebarToggle">
+                    <span class="material-icons-sharp" id="menuIcon">menu</span>
+                </div>
+                <div class="header">GlobalBiz</div>
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+                    <div class="om-circle" id="profile-initials" style="text-decoration: none;">OM</div>
+                </a>
+            </div>
+
+            <!-- Chatbot Toggler -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+
+            <!-- Chatbot Container -->
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
+            <!-- Profile Popup -->
+            <div class="overlay" id="overlay"></div>
+
+            <div class="profile-popup" id="profilePopup">
+                <div class="popup-header">Profile</div>
+                <div class="bottom-seperator"></div>
+
+                <div class="current-profile">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-name" id="current-profile-name">Omphile Mohlala</div>
+                        <div class="profile-email" id="current-profile-email">omphilestudent@gmail.com</div>
+                    </div>
+                </div>
+
+                <div class="bottom-seperator"></div>
+
+                <div class="profile-switcher">
+                    <h4>Switch Profile</h4>
+                    <div class="profile-option" data-user="omphilestudent@mail.com">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">Omphile Mohlala</div>
+                            <div class="profile-email">omphilesudent@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="profile-option" data-user="Kodi@codes.com">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">Kodi Codes PTY LTD</div>
+                            <div class="profile-email">Kodi@codes.com</div>
+                        </div>
+                    </div>
+                    <div class="profile-option" data-user="business@example.com">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">ABC Enterprises</div>
+                            <div class="profile-email">business@example.com</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-seperator"></div>
+
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+
+            <!-- Sidebar Navigation -->
+            <div class="sidebar" id="sidebar">
+                <a href="Phone2.html" class="active">
+                    <span class="material-icons-sharp"><img src="../images/home.svg"> </span> Home
+                </a>
+                <p class="side">MANAGEMENT</p>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        <span class="material-icons-sharp"><img src="../images/authorisations.svg"> </span>
+                        Authorisations
+                        <span class="dropdown-arrow">▶</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="../Computer/inprogress.html">Transactions</a>
+                        <a href="../Computer/Beneficiaries.html">Beneficiaries</a>
+                        <a href="../Computer/inprogress.html">User Management</a>
+                        <a href="../Computer/inprogress.html">Account & Limits</a>
+                        <a href="../Computer/inprogress.html">Authorisation Levels</a>
+                        <a href="../Computer/inprogress.html">Notification Setup</a>
+                        <a href="../Computer/messages.html">Messages</a>
+                    </div>
+                </div>
+                <p class="side">SERVICES</p>
+                <a href="../Computer/inprogress.html">
+                    <span class="material-icons-sharp"><img src="../images/productsandservices.svg" ></span> Products & Services
+                </a>
+                <a href="../Computer/inprogress.html">
+                    <span class="material-icons-sharp"><img src="../images/efiling.svg"> </span> SARS eFILLING
+                </a>
+                <a href="../Computer/document.html">
+                    <span class="material-icons-sharp"><img src="../images/document.svg"> </span>
+                    Documents
+                </a>
+                <a href="Phone-settings.html" id="settings">
+                    <span class="material-icons-sharp"><img src="../images/settings.svg"> </span> Settings
+                </a>
+                <a href="Phone.html" >
+                    <span class="material-icons-sharp">lock</span> Sign Out
+                </a>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content" id="mainContent">
+                <div class="account">
+                    <div class="account-header">
+                        <h4>Accounts</h4>
+                        <a href="./Phone%20accounts.html" class="View">
+                            View All <span class="material-icons-sharp" style="top: 62px; position: absolute;">chevron_right</span>
+                        </a>
+                    </div>
+                    <a href="./Phone%20accounts.html" style="cursor: pointer; text-decoration: none;" >
+                        <div class="box" style="text-decoration: none;">
+                            <div class="box1" style="cursor: pointer;">
+                                <img src="../images/transact.svg" alt="transact">
+                                <span class="separator"></span>
+                                <div class="account-details">
+                                    <span class="account-name" id="account-name">1 Account Current</span>
+                                    <span class="account-balance" id="account-balance">R1000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Favorites -->
+            <div class="favorites-container">
+                <div class="favorites">
+                    <div class="favorites-header">
+                        <h4>Favourites</h4>
+                    </div>
+                    <div class="favorites-grid">
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">group</span>
+                            <span class="favorite-title">Pay Saved beneficiary</span>
+                        </div>
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">exit_to_app</span>
+                            <span class="favorite-title">Pay Once Off beneficiary</span>
+                        </div>
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">group</span>
+                            <span class="favorite-title">Group or Multiple payments</span>
+                        </div>
+                        <div class="favorite-box">
+                            <span class="material-icons-sharp">sync_alt</span>
+                            <span class="favorite-title">Transfer Money</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav" id="bottomNav">
+                <a href="Phone2.html" class="nav-item active" id="Homee">
+                    <span class="nav-icon material-icons-outlined">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">storage</span>
+                    <span>Accounts</span>
+                </a>
+                <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                    <img src="../images/transact.svg" alt="transact">
+                    <span>Transact</span>
+                </a>
+                <a href="Phone-cards.html" class="nav-item" id="cards">
+                    <span class="nav-icon material-icons-outlined">credit_card</span>
+                    <span>Cards</span>
+                </a>
+                <a href="../Computer/inprogress.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">search</span>
+                    <span>Explore</span>
+                </a>
+            </div>
+
+        </div> <!-- screen-content -->
+    </div> <!-- screen -->
+    <div class="home-indicator"></div>
+</div> <!-- iphone -->
+
+<!-- Scripts -->
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer</title>
+  <link rel="stylesheet" href="../styles/transct.css" />
+  <link rel="stylesheet" href="../styles/Chatbotcomputer.css" />
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+</head>
+<body>
+<div class="user-info">
+  <span id="display-username"></span>
+  <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
+
+<header class="header">
+  <a href="#" class="logo"><img src="../images/Logo.png" alt="logo"></a>
+  <span class="separator"></span>
+  <div class="business">Business</div>
+
+  <div class="header-right">
+    <button class="chatbot-toggler">
+      <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat" style="left: 15px;"></span>
+      <span class="material-icons-sharp">close</span>
+    </button>
+    <div class="banker" style="position: absolute; right: 325px; ">Banker</div>
+
+
+    <div class="chatbot">
+      <header>
+        <h2>BIZCHAT</h2>
+        <span class="material-icons-sharp">close</span>
+      </header>
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class="material-icons-sharp">account_circle</span>
+          <p>Welcome to Bizchat, how can I assist.</p>
+        </li>
+        <li class="chat outgoing"></li>
+      </ul>
+      <div class="chat-input">
+        <textarea placeholder="Type your message here..." required></textarea>
+        <span id="send-btn" class="material-icons-sharp">send</span>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <a href="#contact" id="profile-link">
+        <div class="om-circle">OM</div>
+        <div class="name">Omphile Mohlala</div>
+      </a>
+
+      <div class="overlay" id="overlay"></div>
+      <div class="profile-popup" id="profilePopup">
+        <a href="Profile-info.html" class="profile-name">
+          <div class="popup-header">omphilestudent@gmail.com</div>
+        </a>
+        <h2>Active Profile</h2>
+        <div class="profile-item">
+          <span class="material-icons-sharp profile-icon">account_circle</span>
+          <div class="profile-info">Omphile Mohlala</div>
+        </div>
+        <a href="#" class="switch-profile">
+          <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+          Switch to Kodi PTY LTD
+        </a>
+        <a href="#" class="manage-business">Manage business profile</a>
+      </div>
+    </div>
+
+    <a href="home%20page.html" class="sign">Sign Out</a>
+  </div>
+</header>
+
+<aside class="sidebar">
+  <a href="Computer.html" class="active" id="home">
+    <span class="material-icons-sharp"><img src="../images/home.svg" alt="home" /></span>
+    Home
+  </a>
+  <p class="side">BANKING</p>
+  <a href="Accounts.html" id="accounts">
+    <span class="material-icons-sharp"><img src="../images/accounts.svg" alt="accounts" /></span>
+    Accounts
+  </a>
+  <div class="dropdown">
+    <a href="#" class="dropdown-toggle" id="transacts">
+      <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" /></span>
+      Transact <span class="dropdown-arrow">▶</span>
+    </a>
+    <div class="dropdown-menu">
+      <a href="transact.html" id="paymentss">Payment</a>
+      <a href="#" id="transfer">Transfer</a>
+      <a href="#" id="beneficiary-btn">Beneficiary</a>
+    </div>
+  </div>
+  <a href="Cards.html">
+    <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="cards" /></span>
+    Cards
+  </a>
+  <p class="side">MANAGEMENT</p>
+  <div class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="auth" /></span>
+      Authorisations <span class="dropdown-arrow">▶</span>
+    </a>
+    <div class="dropdown-menu">
+      <a href="#">Transactions</a>
+      <a href="Beneficiaries.html">Beneficiaries</a>
+      <a href="inprogress.html">User Management</a>
+      <a href="inprogress.html">Account & Limits</a>
+      <a href="inprogress.html">Authorisation Levels</a>
+      <a href="inprogress.html">Notification Setup</a>
+      <a href="messages.html">Messages</a>
+    </div>
+  </div>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp">groups</span>
+    User management
+  </a>
+  <p class="side">SERVICES</p>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="products" /></span>
+    Products & Services
+  </a>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="efiling" /></span>
+    SARS eFILLING
+  </a>
+  <a href="inprogress.html">
+    <span class="material-icons-sharp"><img src="messages%20(1).svg" alt="messages" /></span>
+    Secure Messages
+  </a>
+  <a href="Computer-Document.html">
+    <span class="material-icons-sharp"><img src="../images/document.svg" alt="document" /></span>
+    Documents
+  </a>
+  <a href="settings.html">
+    <span class="material-icons-sharp"><img src="../images/settings.svg" alt="settings" /></span>
+    Settings
+  </a>
+  <a href="#" class="signout">
+    <span class="material-icons-sharp">lock</span>
+    We secure your data in line with our Privacy Notice and Terms & Conditions
+  </a>
+</aside>
+
+<div class="search-container">
+  <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
+  <button id="execute-automation" class="search-button">
+    <span class="material-icons-sharp">search</span> Go
+  </button>
+  <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<main class="content-wrapper content-active">
+  <section id="default-content" class="main-content">
+    <h1 class="page-title" style="color: black;">Payments</h1>
+
+    <div class="the-box">
+      <div class="quick-actions">
+        <div class="action-card" id="saved-payment-btn">
+          <h3>Saved beneficiary</h3>
+          <div class="separator"></div>
+          <p class="right">Pay</p>
+        </div>
+        <div class="action-card" id="onceoff-payment-btn">
+          <h3>Once-off beneficiary</h3>
+          <div class="separator"></div>
+          <p class="right">Pay</p>
+        </div>
+        <div class="action-card" id="group-payment-btn">
+          <h3>Group or multiple beneficiaries</h3>
+          <div class="separator"></div>
+          <p class="right">Pay</p>
+        </div>
+        <div class="action-card" id="create-beneficiary-btn">
+          <h3>Bulk beneficiaries</h3>
+          <div class="separator"></div>
+          <p class="right">Pay</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <section class="payment-history">
+      <header class="history-header">
+        <h2 class="history-title">All payments</h2>
+        <div class="history-filters">
+          <div class="filter-item">
+            <label>Search payments</label>
+            <input type="text" placeholder="Search..." />
+          </div>
+          <div class="filter-item">
+            <label>From account</label>
+            <select><option>All accounts</option></select>
+          </div>
+          <div class="filter-item">
+            <label>Date range</label>
+            <select><option>Last 30 days</option></select>
+          </div>
+          <div class="filter-item">
+            <label>Filter history by</label>
+            <select>
+              <option>All payments</option>
+              <option>Recurring payments</option>
+              <option>Future-dated payments</option>
+              <option>Bulk payments</option>
+            </select>
+          </div>
+          <div class="filter-item">
+            <label>Payment type</label>
+            <select><option>All types</option></select>
+          </div>
+        </div>
+      </header>
+
+      <table class="payment-table">
+        <thead>
+        <tr>
+          <th>Payment date</th>
+          <th>Payment type</th>
+          <th>From account</th>
+          <th>Beneficiary name</th>
+          <th>Their reference</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td colspan="5" class="no-payments">No payments match your search.</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <section id="main-content-area" class="main-content"></section>
+</main>
+
+<script src="../scripts/Transfer.js"></script>
+<script src="../scripts/chatbot.js"></script>
+<script src="../scripts/Apps.js"></script>
+<script src="../scripts/Combined.js"></script>
+<script src="../scripts/Computer-Automation.js"></script>
+</body>
+</html>
