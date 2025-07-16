@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // User Database with all the functionality from your original script
     const userDatabase = {
-        'omphilestudent@gmail.com.com': {
+        'omphilestudent@gmail.com': {
             name: 'Omphile Mohlala',
             email: 'omphilestudent@gmail.com.com',
             initials: 'OM',
