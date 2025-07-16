@@ -949,11 +949,11 @@ View All <span class="material-icons-sharp">chevron_right</span>
 
             transferMainContentArea.innerHTML = `
 <div class="transfer-section">
-<div class="payment-header">
+           <div class="payment-header">
 <button class="back-button" id="back-button">
-<span class="material-icons-sharp">arrow_back</span> Back
+                   <span class="material-icons-sharp">arrow_back</span> Back
 </button>
-<h2 class="transferheader">Transfer</h2>
+<h2 class="transferheader">  Transfer</h2>
 <p>Move money between your accounts</p>
 </div>
 <div class="transfer-details-box">
@@ -1165,7 +1165,9 @@ Transfer Funds
             month: 'numeric',
             year: 'numeric'
         };
-        dateElement.textContent = `Your last Sign-in was on ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${now.toLocaleDateString([], options)}.`;
+
+
+            dateElement.textContent = `Your last Sign-in was on ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${now.toLocaleDateString([], options)}.`;
     }
 });
 
