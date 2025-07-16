@@ -260,7 +260,7 @@ popup-header {
 }
 /* Sidebar Styles */
 .sidebar {
-    width: 240px;
+    width: 250px;
     background: #16232f;
     color: white;
     position: fixed;
@@ -270,9 +270,6 @@ popup-header {
     overflow-y: auto;
     transition: all 0.3s ease;
     z-index: 999;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
 }
 
 .sidebar a {
@@ -305,9 +302,9 @@ popup-header {
 }
 
 .sidebar a.signout {
-    margin-top: auto;
+    margin-top: 20px;
     border-top: 1px solid #34495e;
-    padding: 20px;
+    padding-top: 20px;
     color: #bdc3c7;
     font-size: 12px;
     line-height: 1.5;
@@ -317,6 +314,7 @@ popup-header {
     background: transparent;
     color: white;
 }
+
 
 /* Back Navigation */
 .back-nav {
@@ -362,13 +360,21 @@ popup-header {
 }
 
 /* Main Content */
+h3{
 
-p {
-    padding-left: 250px;
+
+}
+
+p{
+    display: flex;
+    position: absolute;
+    padding-left: 370px;
+    top: 170px;
 }
 
 .message-icon{
-    padding-left: 650px;
+    position: absolute;
+    padding-left: 500px;
 }
 
 .info-banner .material-icons-sharp{
