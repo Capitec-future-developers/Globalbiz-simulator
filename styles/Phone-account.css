@@ -138,7 +138,7 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #007FFF;
+    background-color: None;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -441,7 +441,22 @@ body {
     box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
 }
 
-
+.date-range{
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: table-column;
+    align-items: center;
+    gap: 10px;
+    width: 250px;
+    padding: 10px 15px;
+}
+input[type=date] {
+    position: absolute;
+    display: table-column;
+    left: 50%;
+}
 .separator-bottom {
     position: absolute;
     border-bottom: 0.5px solid #ffff;
