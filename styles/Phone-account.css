@@ -138,7 +138,6 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: None;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -684,7 +683,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: #dc3545;
 }
 
-//* Automation target element styling */
+/* Automation target element styling */
 .automation-target {
     position: relative;
     z-index: 10000;
