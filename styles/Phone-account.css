@@ -416,7 +416,7 @@ body {
 }
 
 .search span {
-    color: #cccccc;
+    color: rgba(127, 140, 141, 0.91);
     font-size: 20px;
 }
 
@@ -455,9 +455,9 @@ body {
 }
 
 input[type="date"] {
-    width: 100%;
+    width: 283px;
     border: 1px solid #cccccc;
-    height: 30px;
+    height: 40px;
     color: #7f8c8d;
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -490,6 +490,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 0.8rem;
     font-weight: 600;
     color: #333;
+}
+.date {
+    position: absolute;
+    top: 470px;
+    left: 160px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 90px;
+    background-color: #dddddd;
+    width: 110%;
+    height: 40px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+}
+
+.month-year {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.statement-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    gap: 8px;
+    color: #007FFF;
+
 }
 
 /* ============ BOTTOM NAVIGATION ============ */
