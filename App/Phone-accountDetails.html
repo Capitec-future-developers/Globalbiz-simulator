@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone-account.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>App Account details </title>
+</head>
+<body>
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="head2">
+                <a class="arrow" href="Phone2.html" style="text-decoration: none;">
+                    <span class="material-icons-sharp">arrow_back</span>
+                </a>
+                <div class="header" style="left: 90px; font-size: 1rem; bottom: 10px; ">Account Details</div>
+            </div>
+
+
+            <!-- Main Content Area -->
+            <div class="contents" id="mainContent">
+                <div class="account">
+                    <div class="account-header">
+                    </div>
+                    <div class="box">
+                        <div class="box4">
+                            <div class="account-details2">
+                                <span class="Available">Available</span>
+                                <span class="account-balance">R1000.00</span>
+                                <img src="../images/info-trans.svg" href="../Computer/inprogress.html" class="info" style=" filter: brightness(0) invert(1);">
+                            </div>
+                        </div>
+                                <div class="balance-details">
+                                    <span class="balance" style="position: absolute; color: #ffffff; top: 10px;">
+                                    Balance
+                                    </span>
+                                    <br>
+                                    <span class="amount" style="position: absolute; color: #ffffff; top: 30px;">
+                                        R161.06
+                                    </span>
+                                </div>
+                        <div class="separator-bottom"></div>
+
+                        <div class="tabs">
+                            <span id="btn-transactions"><div class="tab active">Transactions</div></span>
+                            <span id="btn-payment-history"><div class="tab">Payment history</div></span>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+
+            <div class="search">
+                <span class="material-icons-sharp">search</span>
+                <input type="text" placeholder="Search transactions">
+            </div>
+<div class="date-range">
+    <input type="date" id="date-range-start">
+    <input type="date" id="date-range-end">
+</div>
+            <div class="date">
+                <div class="month-year">
+                    <span>Jul</span>
+                    <span>2025</span>
+                </div>
+                <span class="statement-text">
+        Statement
+        <span class="material-icons-sharp">chevron_right</span>
+    </span>
+            </div>
+            <div class="bottom-nav">
+                <a href="Phone2.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">home</span>
+                    <span>Home</span>
+                </a>
+                <a href="Phone accounts.html" class="nav-item active">
+                    <span class="nav-icon material-icons-outlined">storage</span>
+                    <span>Accounts</span>
+                </a>
+                <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(85%) contrast(89%);">
+                    <span>transact</span>
+                </a>
+                <a href="Phone-cards.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">credit_card</span>
+                    <span>Cards</span>
+                </a>
+                <a href="../Computer/inprogress.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">search</span>
+                    <span>Explore</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="home-indicator"></div>
+</div>
+
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Automation.js"></script>
+</body>
+</html>

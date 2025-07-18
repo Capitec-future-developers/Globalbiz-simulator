@@ -10,19 +10,26 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
 <body>
-
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
 <div class="header">
-    <a href="home%20page.html" class="logo">
-        <img src="../images/Logo.png" alt="logo">
-    </a>
+    <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
-    <div class="header-right">
-        <div class="header-right">
-            <!-- Chatbot Toggle Button -->
-            <button class="chatbot-toggler">
-                <span class="material-icons-sharp">mode_comment</span>
 
+    <div class="header-right">
+        <!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+            <span class="material-icons-sharp">close</span>
+        </button>
+        banker
+
+        <div class="chatbot">
+            <header>
+                <h2>BIZCHAT</h2>
                 <span class="material-icons-sharp">close</span>
             </header>
             <ul class="chatbox">
@@ -201,5 +208,6 @@
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
+</body>
 </html>
 
