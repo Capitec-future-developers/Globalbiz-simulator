@@ -261,9 +261,10 @@ body {
     position: absolute;
     right: -100px;
     top: 10px;
-    color: #ffffff;
+    background-color: #ffffff;
     font-weight: bold;
     font-size: 0.9rem;
+    border-radius: 30px;
 }
 
 .box4 {
