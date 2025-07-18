@@ -108,6 +108,21 @@ body {
     z-index: 5;
     margin-top: 25px;
 }
+.head2 {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #1e1e2f;
+    color: white;
+    width: calc(100% + 40px);
+    height: 50px;
+    top: 0;
+    left: -20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 5;
+    margin-top: 25px;
+}
 
 .header {
     position: relative;
@@ -123,7 +138,7 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #007FFF;Fbox
+    background-color: #007FFF;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -200,7 +215,23 @@ body {
     overflow-y: auto;
     padding-bottom: 60px; /* Space for bottom nav */
 }
+.contents{
+    position: absolute;
+    background-color: #00aeff;
+    top: 60px;
+    width: 100%;
+    height: 220px;
 
+}
+
+.balance-details{
+    position: absolute;
+    color: #ffffff;
+    top: 100px;
+    align-content: center;
+    left: 120px;
+    font-weight: lighter;
+}
 .content {
     padding: 0 20px;
     margin-bottom: 20px;
@@ -225,6 +256,33 @@ body {
     text-decoration: none;
     font-size: 0.8rem;
 }
+
+.info{
+    position: absolute;
+    right: -100px;
+    top: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.box4 {
+    position: absolute;
+    width: 95%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 127, 255, 0.5);
+    left: 10px;
+    top: 15px;
+
+}
+
 
 /* ============ ACCOUNT BOX ============ */
 .box1 {
@@ -251,6 +309,16 @@ body {
     background-color: #cccccc;
     margin: 0 15px;
 }
+.account-details2 {
+    position: absolute;
+    display: table;
+    color: #ffffff;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    left: 110px;
+    top: 10px;
+}
 
 .account-details {
     display: flex;
@@ -263,10 +331,18 @@ body {
     font-size: 0.9rem;
 }
 
+.Available{
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
 .account-balance {
-    color: #0096c7;
+    position: absolute;
+    color: #ffffff;
     font-weight: bold;
     font-size: 0.9rem;
+    top: 30px;
+    right: -5px;
 }
 
 /* ============ FAVORITES SECTION ============ */
@@ -306,7 +382,74 @@ body {
     justify-content: center;
     height: 90px;
 }
+.tabs{
+    position: absolute;
+    display: flex;
+    top: 180px;
+    left: 38px;
+    flex-direction: row;
+    gap: 35px;
+    color: #ffffff;
+    cursor: pointer;
+}
 
+.tab.active {
+    border-bottom: 2px solid #ffffff;
+    font-weight: bold;
+
+}
+
+.search {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 250px;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #cccccc;
+    border-radius: 1px;
+    transition: 0.3s ease;
+}
+
+.search span {
+    color: #cccccc;
+    font-size: 20px;
+}
+
+.search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 0;
+}
+
+.search input::placeholder {
+    color: #ccc;
+}
+
+.search:focus-within {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #00bfff;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
+}
+
+
+.separator-bottom {
+    position: absolute;
+    border-bottom: 0.5px solid #ffff;
+    width: 90%;
+    top: 160px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
 .favorite-box:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
