@@ -261,7 +261,6 @@ body {
     position: absolute;
     right: -100px;
     top: 10px;
-    background-color: #ffffff;
     font-weight: bold;
     font-size: 0.9rem;
     border-radius: 30px;
@@ -441,22 +440,32 @@ body {
     box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
 }
 
-.date-range{
+.date-range {
     position: absolute;
     top: 350px;
     left: 50%;
     transform: translateX(-50%);
-    display: table-column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     width: 250px;
     padding: 10px 15px;
+
 }
-input[type=date] {
-    position: absolute;
-    display: table-column;
-    left: 50%;
+
+input[type="date"] {
+    width: 100%;
+    border: 1px solid #cccccc;
+    height: 30px;
+    color: #7f8c8d;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    font-size: 16px;
+    filter: invert(34%) sepia(90%) saturate(749%) hue-rotate(195deg) brightness(92%) contrast(88%);
+    cursor: pointer;
+}
+
 .separator-bottom {
     position: absolute;
     border-bottom: 0.5px solid #ffff;
