@@ -277,7 +277,7 @@ body {
     align-items: center;
     box-sizing: border-box;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 127, 255, 0.5);
+   background-color: #178be1;
     left: 10px;
     top: 15px;
 
