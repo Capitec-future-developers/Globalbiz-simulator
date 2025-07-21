@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
     <title>App Account details</title>
+
 </head>
 <body>
 
@@ -29,7 +30,7 @@
     <div class="screen">
         <div class="notch"></div>
         <div class="screen-content">
-            <!-- Overlays and Popups moved to top level inside .screen-content -->
+            <!-- Overlays and Popups -->
             <div id="overlay" class="overlay"></div>
             <div class="popup-accountdetails" id="popupAccountDetails">
                 <div class="popup-accountdetails-content">
@@ -52,15 +53,15 @@
                         <span>Why the difference?</span>
                     </div>
                     <div class="popup-info-details-options">
-            <span>
-              Your <b>Available Balance</b> is how much you may spend. The Balance could differ from the Available Balance because:
-              <br /><br />
-              • R150 is reserved in your account as this is the minimum account balance required to have a GlobalBiz account (Refer to our fees for further information).
-              <br />
-              • Your account might have transactions that are reserved on your card but have not yet cleared.
-              <br />
-              • In the case of a negative balance, you may have outstanding fees that must be settled before you can continue transacting.
-            </span>
+<span>
+Your <b>Available Balance</b> is how much you may spend. The Balance could differ from the Available Balance because:
+<br /><br />
+• R150 is reserved in your account as this is the minimum account balance required to have a GlobalBiz account (Refer to our fees for further information).
+<br />
+• Your account might have transactions that are reserved on your card but have not yet cleared.
+<br />
+• In the case of a negative balance, you may have outstanding fees that must be settled before you can continue transacting.
+</span>
                         <span class="popup-info-details-option close-btn" id="closePopupInfo"></span>
                     </div>
                 </div>
@@ -83,8 +84,6 @@
                     <span class="material-icons-sharp">more_vert</span>
                 </div>
             </div>
-
-
 
             <!-- Main Content -->
             <div class="contents" id="mainContents"></div>
@@ -123,6 +122,10 @@
 
             <div id="tab-content"></div>
             <div id="tab-contents"></div>
+
+            <!-- Auth Flow Screens -->
+            <div id="authFlowBackdrop" class="auth-flow-backdrop"></div>
+            <div id="authFlowScreen" class="auth-flow-screen"></div>
 
         </div>
 

@@ -1398,3 +1398,13 @@ body {
     margin-right: 15px;
     color: #555;
 }
+
+.pending-box{
+    position: absolute;
+    border: 1px solid #dddddd;
+    height: 100px;
+    width: 500px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    right: 50px;
+}

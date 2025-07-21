@@ -1073,3 +1073,196 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 0.9rem;
     color: #555;
 }
+
+/* ============ AUTHORIZATION STYLES ============ */
+.auth-flow-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    overflow-y: auto;
+    display: none;
+    border-radius: 35px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.auth-setup-flow-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px);
+    position: relative;
+}
+
+.auth-setup-flow-header {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #1e1e2f;
+    width: calc(100% + 40px);
+    height: 60px;
+    top: -20px;
+    left: -20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 5;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.auth-setup-flow-header h1 {
+    display: flex;
+    font-size: 1rem;
+    margin: 0;
+    color: white;
+}
+
+.js-auth-flow-back-btn {
+    margin-right: 15px;
+    cursor: pointer;
+    color: #007bff;
+    user-select: none;
+    font-size: 15px;
+}
+
+.auth-flow-step-indicator {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.auth-flow-edit-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.auth-flow-edit-section h2 {
+    font-size: 1.1rem;
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.auth-flow-permission-section {
+    margin-bottom: 25px;
+}
+
+.auth-flow-permission-section h3 {
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+    color: #333;
+}
+
+.auth-flow-select {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: white;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+    box-sizing: border-box;
+}
+
+.auth-flow-select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.auth-flow-action-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto; /* Push to bottom */
+    padding-bottom: 20px;
+}
+
+.auth-flow-primary-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.auth-flow-secondary-btn {
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.auth-flow-confirmation-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.auth-flow-confirmation-item {
+    margin-bottom: 20px;
+}
+
+.auth-flow-confirmation-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.auth-flow-confirmation-value {
+    padding: 12px 15px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.js-auth-flow-edit-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.separator-line {
+    height: 1px;
+    background-color: #eee;
+    margin: 20px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .auth-flow-screen {
+        padding: 15px;
+    }
+
+    .auth-setup-flow-header h1 {
+        font-size: 1.1rem;
+    }
+
+    .auth-flow-select {
+        padding: 10px 12px;
+    }
+}
