@@ -2,13 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/Phone-account.css" />
-    <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-            rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
     <title>App Account details</title>
 </head>
@@ -24,45 +20,6 @@
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
-
-
-<div id="overlay" class="overlay"></div>
-<div class="popup-accountdetails" id="popupAccountDetails">
-    <div class="popup-accountdetails-content">
-        <div class="popup-accountdetails-header">
-            <span>Account details</span>
-        </div>
-        <div class="accountdetails-options">
-            <span class="popup-accountdetails-option">Edit account nickname</span>
-            <span class="popup-accountdetails-option">Set account authorisations</span>
-            <span class="popup-accountdetails-option">View account details</span>
-            <span class="popup-accountdetails-option close-btn" id="closePopup">Close</span>
-        </div>
-    </div>
-</div>
-
-
-<div id="overlay-info" class="overlay-info"></div>
-<div class="popup-info-details" id="popupInfoDetails">
-    <div class="popup-info-details-content">
-        <div class="popup-info-details-header">
-            <span>Why the difference?</span>
-        </div>
-        <div class="popup-info-details-options">
-        <span>
-          Your Available Balance is how much you may spend. The Balance could differ from the Available Balance because:
-          <br /><br />
-          • R150 is reserved in your account as this is the minimum account balance required to have a GlobalBiz account (Refer to our fees for further information).
-          <br />
-          • Your account might have transactions that are reserved on your card but have not yet cleared.
-          <br />
-          • In the case of a negative balance, you may have outstanding fees that must be settled before you can continue transacting.
-        </span>
-            <span class="popup-info-details-option close-btn" id="closePopupInfo">Close</span>
-        </div>
-    </div>
-</div>
-
 <div class="iphone">
     <div class="volume-buttons">
         <div class="volume-up"></div>
@@ -72,6 +29,44 @@
     <div class="screen">
         <div class="notch"></div>
         <div class="screen-content">
+            <!-- Overlays and Popups moved to top level inside .screen-content -->
+            <div id="overlay" class="overlay"></div>
+            <div class="popup-accountdetails" id="popupAccountDetails">
+                <div class="popup-accountdetails-content">
+                    <div class="popup-accountdetails-header">
+                        <span>Account details</span>
+                    </div>
+                    <div class="accountdetails-options">
+                        <span class="popup-accountdetails-option">Edit account nickname</span>
+                        <span class="popup-accountdetails-option">Set account authorisations</span>
+                        <span class="popup-accountdetails-option">View account details</span>
+                        <span class="popup-accountdetails-option close-btn" id="closePopup"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="overlay-info" class="overlay-info"></div>
+            <div class="popup-info-details" id="popupInfoDetails">
+                <div class="popup-info-details-content">
+                    <div class="popup-info-details-header">
+                        <span>Why the difference?</span>
+                    </div>
+                    <div class="popup-info-details-options">
+            <span>
+              Your <b>Available Balance</b> is how much you may spend. The Balance could differ from the Available Balance because:
+              <br /><br />
+              • R150 is reserved in your account as this is the minimum account balance required to have a GlobalBiz account (Refer to our fees for further information).
+              <br />
+              • Your account might have transactions that are reserved on your card but have not yet cleared.
+              <br />
+              • In the case of a negative balance, you may have outstanding fees that must be settled before you can continue transacting.
+            </span>
+                        <span class="popup-info-details-option close-btn" id="closePopupInfo"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header -->
             <div class="head2">
                 <a class="arrow" href="Phone2.html" style="text-decoration: none;">
                     <span class="material-icons-sharp">arrow_back</span>
@@ -89,7 +84,10 @@
                 </div>
             </div>
 
-            <!-- Main Content Area -->
+
+
+            <!-- Main Content -->
+            <div class="contents" id="mainContents"></div>
             <div class="contents" id="mainContent">
                 <div class="account">
                     <div class="account-header"></div>
@@ -98,8 +96,6 @@
                             <div class="account-details2">
                                 <span class="Available">Available</span>
                                 <span class="account-balance">R1000.00</span>
-
-                                <!-- Trigger for Popup 2 -->
                                 <img
                                         src="../images/info-trans.svg"
                                         class="info"
@@ -111,25 +107,14 @@
                         </div>
 
                         <div class="balance-details">
-                <span
-                        class="balance"
-                        style="position: absolute; color: #ffffff; top: 10px;"
-                >Balance</span
-                >
-                            <br />
-                            <span
-                                    class="amount"
-                                    style="position: absolute; color: #ffffff; top: 30px;"
-                            >R161.06</span
-                            >
+                            <span class="balance" style="position: absolute; color: #ffffff; top: 10px;">Balance</span><br />
+                            <span class="amount" style="position: absolute; color: #ffffff; top: 30px;">R161.06</span>
                         </div>
 
                         <div class="separator-bottom"></div>
 
                         <div class="tabs">
-                <span id="btn-transactions"
-                ><div class="tab active">Transactions</div></span
-                >
+                            <span id="btn-transactions"><div class="tab active">Transactions</div></span>
                             <span id="btn-payment-history"><div class="tab">Payment history</div></span>
                         </div>
                     </div>
@@ -137,6 +122,8 @@
             </div>
 
             <div id="tab-content"></div>
+            <div id="tab-contents"></div>
+
         </div>
 
         <div class="bottom-nav">
@@ -149,11 +136,7 @@
                 <span>Accounts</span>
             </a>
             <a href="Phone%20Transact.html" class="nav-item" id="transact">
-                <img
-                        src="../images/transact.svg"
-                        alt="transact"
-                        style="filter: brightness(0) invert(85%) contrast(89%)"
-                />
+                <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(85%) contrast(89%)" />
                 <span>transact</span>
             </a>
             <a href="Phone-cards.html" class="nav-item">

@@ -1742,9 +1742,8 @@ const tabContentData = {
         <input type="date" id="date-range-start">
         <input type="date" id="date-range-end">
     </div>
-    <br>
+    
     <div class="top-border" style="border-top: 2px solid #cccccc;"></div>
-    <br>
     <div class="no-payments">
         <img src="../images/history.svg" alt="No Payments">
     </div>
@@ -1781,7 +1780,6 @@ Object.entries(tabButtons).forEach(([key, btn]) => {
 highlightButton('transactions');
 displayContent('transactions');
 
-
 const popupBtn = document.getElementById("popupBtn");
 const overlay = document.getElementById("overlay");
 const popupAccountDetails = document.getElementById("popupAccountDetails");
@@ -1804,7 +1802,7 @@ if (popupBtn && overlay && popupAccountDetails && closePopup) {
     });
 }
 
-
+/* ---------- Popup 2: Why the difference? ---------- */
 const overlayInfo = document.getElementById("overlay-info");
 const popupInfoDetails = document.getElementById("popupInfoDetails");
 const closePopupInfo = document.getElementById("closePopupInfo");
@@ -1826,3 +1824,328 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
         popupInfoDetails.classList.remove("active");
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait for Set Account Authorisations to be clicked
+    const setAuthOption = document.querySelector('.set-auth-option');
+    if (setAuthOption) {
+        setAuthOption.addEventListener('click', showStep1Screen);
+    }
+
+    function showStep1Screen() {
+        // Hide main content and show auth screen
+        document.getElementById('mainContents').style.display = 'none';
+        const tabContent = document.getElementById('tab-contents');
+        tabContent.style.display = 'block';
+        tabContent.innerHTML = '';
+
+        // Create Step 1 screen (as shown in IMG_2786.png)
+        tabContent.innerHTML = `
+ <div class="auth-container">
+ <div class="auth-header">
+ <h1>Set Account Authorisations</h1>
+ <div class="step-indicator">Step 1 of 2</div>
+ </div>
+
+ <div class="edit-section">
+ <h2>Edit</h2>
+ 
+ <div class="auth-section">
+ <h3>Who can create payments?</h3>
+ <div class="option-group">
+ <div class="option-button" data-value="choose-creators">
+ <div class="radio"></div>
+ <span>Choose creators</span>
+ </div>
+ <div class="option-button selected" data-value="authoriser">
+ <div class="radio"></div>
+ <span>Authoriser</span>
+ </div>
+ <div class="option-button" data-value="clear-creators">
+ <div class="radio"></div>
+ <span>Clear</span>
+ </div>
+ </div>
+ </div>
+
+ <div class="auth-section">
+ <h3>Who must approve payments?</h3>
+ <div class="option-group">
+ <div class="option-button" data-value="choose-approvers">
+ <div class="radio"></div>
+ <span>Choose approvers</span>
+ </div>
+ <div class="option-button selected" data-value="no-one">
+ <div class="radio"></div>
+ <span>No one</span>
+ </div>
+ <div class="option-button" data-value="clear-approvers">
+ <div class="radio"></div>
+ <span>Clear</span>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="action-buttons">
+ <button class="primary-button">Continue</button>
+ <button class="secondary-button">Back</button>
+ <button class="secondary-button">Cancel</button>
+ </div>
+ </div>
+ `;
+
+        // Set up option selection
+        setupOptionButtons();
+
+        // Button handlers
+        tabContent.querySelector('.primary-button').addEventListener('click', showConfirmationScreen);
+        tabContent.querySelectorAll('.secondary-button')[0].addEventListener('click', goBack);
+        tabContent.querySelectorAll('.secondary-button')[1].addEventListener('click', cancelAction);
+    }
+
+    function showConfirmationScreen() {
+        const tabContent = document.getElementById('tab-contents');
+        tabContent.innerHTML = '';
+
+        // Get selected values
+        const creatorValue = document.querySelector('.option-button.selected[data-value^="choose"], .option-button.selected[data-value^="authoriser"], .option-button.selected[data-value^="clear"]').dataset.value;
+        const approverValue = document.querySelector('.option-button.selected[data-value^="choose-"], .option-button.selected[data-value^="no-"], .option-button.selected[data-value^="clear-"]').dataset.value;
+
+        // Create confirmation screen (as shown in IMG_2785.png)
+        tabContent.innerHTML = `
+ <div class="auth-container">
+ <div class="auth-header">
+ <h1>Set Account Authorisations</h1>
+ </div>
+
+ <div class="confirmation-section">
+ <div class="confirmation-item">
+ <div class="confirmation-label">Who can create payments?</div>
+ <div class="confirmation-value">${formatDisplayValue(creatorValue)}</div>
+ <a href="#" class="edit-link">Edit</a>
+ </div>
+
+ <div class="confirmation-item">
+ <div class="confirmation-label">Who must approve payments?</div>
+ <div class="confirmation-value">${formatDisplayValue(approverValue)}</div>
+ <a href="#" class="edit-link">Edit</a>
+ </div>
+ </div>
+
+ <div class="action-buttons">
+ <button class="primary-button">Confirm</button>
+ <button class="secondary-button">Cancel</button>
+ </div>
+ </div>
+ `;
+
+        // Button handlers
+        tabContent.querySelector('.primary-button').addEventListener('click', confirmAction);
+        tabContent.querySelector('.secondary-button').addEventListener('click', cancelAction);
+        tabContent.querySelectorAll('.edit-link')[0].addEventListener('click', function(e) {
+            e.preventDefault();
+            showStep1Screen();
+        });
+        tabContent.querySelectorAll('.edit-link')[1].addEventListener('click', function(e) {
+            e.preventDefault();
+            showStep1Screen();
+        });
+    }
+
+    function setupOptionButtons() {
+        const optionButtons = document.querySelectorAll('.option-button');
+        optionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Get the group this button belongs to
+                const group = this.closest('.option-group');
+
+                // Remove selected class from all in group
+                group.querySelectorAll('.option-button').forEach(btn => {
+                    btn.classList.remove('selected');
+                });
+
+                // Add selected to clicked button
+                this.classList.add('selected');
+            });
+        });
+    }
+
+    function formatDisplayValue(value) {
+        const mappings = {
+            'choose-creators': 'Choose creators',
+            'authoriser': 'Authoriser',
+            'clear-creators': 'Clear',
+            'choose-approvers': 'Choose approvers',
+            'no-one': 'No one',
+            'clear-approvers': 'Clear'
+        };
+        return mappings[value] || value;
+    }
+
+    function goBack() {
+        // Implement back navigation if needed
+        alert('Back button clicked - implement your back navigation');
+    }
+
+    function cancelAction() {
+        // Return to main content
+        document.getElementById('tab-content').style.display = 'none';
+        document.getElementById('tab-content').innerHTML = '';
+        document.getElementById('mainContent').style.display = 'block';
+    }
+
+    function confirmAction() {
+        // Save changes and return to main content
+        alert('Account authorizations updated successfully!');
+        cancelAction();
+    }
+
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+ #tab-contents {
+ display: none;
+ padding: 20px;
+ background-color: #fff;
+ height: 100%;
+ }
+ 
+ .auth-container {
+ display: flex;
+ flex-direction: column;
+ height: 100%;
+ }
+ 
+ .auth-header {
+ margin-bottom: 20px;
+ }
+ 
+ .auth-header h1 {
+ font-size: 1.5rem;
+ margin: 0 0 5px 0;
+ color: #333;
+ }
+ 
+ .step-indicator {
+ font-size: 0.9rem;
+ color: #666;
+ font-weight: bold;
+ }
+ 
+ .edit-section {
+ flex-grow: 1;
+ }
+ 
+ .auth-section {
+ margin-bottom: 30px;
+ }
+ 
+ .auth-section h3 {
+ font-size: 1rem;
+ margin: 0 0 10px 0;
+ color: #333;
+ }
+ 
+ .option-group {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ }
+ 
+ .option-button {
+ display: flex;
+ align-items: center;
+ padding: 12px 15px;
+ border: 1px solid #ddd;
+ border-radius: 4px;
+ cursor: pointer;
+ }
+ 
+ .option-button.selected {
+ border-color: #007bff;
+ background-color: #f0f8ff;
+ }
+ 
+ .option-button .radio {
+ width: 18px;
+ height: 18px;
+ border: 2px solid #999;
+ border-radius: 50%;
+ margin-right: 10px;
+ position: relative;
+ }
+ 
+ .option-button.selected .radio {
+ border-color: #007bff;
+ background-color: #007bff;
+ }
+ 
+ .option-button.selected .radio::after {
+ content: '';
+ width: 8px;
+ height: 8px;
+ background: white;
+ border-radius: 50%;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ }
+ 
+ .action-buttons {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ margin-top: 20px;
+ }
+ 
+ .primary-button {
+ background-color: #007bff;
+ color: white;
+ border: none;
+ padding: 12px;
+ border-radius: 4px;
+ font-size: 1rem;
+ cursor: pointer;
+ }
+ 
+ .secondary-button {
+ background-color: white;
+ color: #007bff;
+ border: 1px solid #007bff;
+ padding: 12px;
+ border-radius: 4px;
+ font-size: 1rem;
+ cursor: pointer;
+ }
+ 
+ .confirmation-section {
+ flex-grow: 1;
+ }
+ 
+ .confirmation-item {
+ margin-bottom: 20px;
+ }
+ 
+ .confirmation-label {
+ font-weight: bold;
+ margin-bottom: 5px;
+ color: #333;
+ }
+ 
+ .confirmation-value {
+ padding: 12px 15px;
+ background-color: #f5f5f5;
+ border-radius: 4px;
+ margin-bottom: 5px;
+ }
+ 
+ .edit-link {
+ color: #007bff;
+ text-decoration: none;
+ font-size: 0.9rem;
+ }
+ `;
+    document.head.appendChild(style);
+});
