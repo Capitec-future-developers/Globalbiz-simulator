@@ -1692,6 +1692,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+const debitBtn = document.getElementById('debitToggle');
+const debitDropdown = document.getElementById('debit-dropdown');
+
+const virtualBtn = document.getElementById('virtualToggle');
+const virtualDropdown = document.getElementById('virtual-dropdown');
+
+debitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    debitDropdown.classList.toggle('show');
+    virtualDropdown.classList.remove('show');
+});
+
+virtualBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    virtualDropdown.classList.toggle('show');
+    debitDropdown.classList.remove('show');
+});
 
 const tabContentData = {
     transactions: [`
