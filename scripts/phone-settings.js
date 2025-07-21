@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span>Accounts</span>
                 </a>
                 <a href="../Phone%20Transact.html" class="nav-item" id="transact">
-                    <span class="nav-icon material-icons-outlined">sync_alt</span>
+                     <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>transact</span>
                 </a>
                 <a href="#" class="nav-item">
@@ -87,15 +87,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span class="nav-icon material-icons-outlined">home</span>
                     <span>Home</span>
                 </a>
-                <a href="../Phone%20accounts.html" class="nav-item">
+                <a href="../App/Phone%20accounts.html" class="nav-item">
                     <span class="nav-icon material-icons-outlined">storage</span>
                     <span>Accounts</span>
                 </a>
-                <a href="../Phone%20Transact.html" class="nav-item" id="transact">
-                    <span class="nav-icon material-icons-outlined">sync_alt</span>
+                <a href="../App/Phone%20Transact.html" class="nav-item" id="transact">
+                     <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>transact</span>
                 </a>
-                <a href="#" class="nav-item">
+                <a href="../App/Phone-cards.html" class="nav-item">
                     <span class="nav-icon material-icons-outlined">credit_card</span>
                     <span>Cards</span>
                 </a>
