@@ -320,14 +320,14 @@ font-weight: bold;
     padding: 18px 20px; /* Increased padding */
     border-bottom: 1px solid #eee;
     color: #333;
-    font-size: 15px; /* Larger font */
+    font-size: 15px;
 }
 
 .no-payments {
     text-align: center;
-    padding: 60px; /* Increased padding */
+    padding: 60px;
     color: #666;
-    font-size: 17px; /* Larger font */
+    font-size: 17px;
 }
 
 /* Dropdown styles */

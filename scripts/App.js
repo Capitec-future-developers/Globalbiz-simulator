@@ -1692,3 +1692,137 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+const tabContentData = {
+    transactions: [`
+        <div class="search">
+            <span class="material-icons-sharp">search</span>
+            <input type="text" placeholder="Search transactions">
+        </div>
+        <div class="date-range">
+            <input type="date" id="date-range-start">
+            <input type="date" id="date-range-end">
+        </div>
+        <div class="date">
+            <div class="month-year">
+                <span>Jul</span>
+                <span>2025</span>
+            </div>
+            <span class="statement-text">Statement <span class="material-icons-sharp">chevron_right</span></span>
+        </div>
+        <div class="statement-table">
+            <div class="table-row">
+                <div class="row-left">
+                    <div class="date-title">30 June 2025</div>
+                    <div class="description">SMS Notification Fee</div>
+                </div>
+                <div class="row-right">
+                    <div class="amount negative">- R0.35</div>
+                    <span class="material-icons-sharp">chevron_right</span>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="row-left">
+                    <div class="date-title">1 July 2025</div>
+                    <div class="description">Withdrawal</div>
+                </div>
+                <div class="row-right">
+                    <div class="amount positive">R400</div>
+                    <span class="material-icons-sharp">chevron_right</span>
+                </div>
+            </div>
+        </div>
+    `],
+    paymentHistory: [`
+    <div class="search">
+        <span class="material-icons-sharp">search</span>
+        <input type="text" placeholder="Search transactions">
+    </div>
+    <div class="date-range">
+        <input type="date" id="date-range-start">
+        <input type="date" id="date-range-end">
+    </div>
+    <br>
+    <div class="top-border" style="border-top: 2px solid #cccccc;"></div>
+    <br>
+    <div class="no-payments">
+        <img src="../images/history.svg" alt="No Payments">
+    </div>
+`]
+
+};
+
+const tabButtons = {
+    transactions: document.getElementById("btn-transactions"),
+    paymentHistory: document.getElementById("btn-payment-history")
+};
+
+const tabContent = document.getElementById("tab-content");
+
+function displayContent(key) {
+    const data = tabContentData[key];
+    tabContent.innerHTML = data ? data.join('') : '';
+}
+
+function highlightButton(activeKey) {
+    Object.entries(tabButtons).forEach(([key, btn]) => {
+        btn.querySelector('.tab').classList.toggle('active', key === activeKey);
+    });
+}
+
+Object.entries(tabButtons).forEach(([key, btn]) => {
+    btn.addEventListener('click', () => {
+        highlightButton(key);
+        displayContent(key);
+    });
+});
+
+// Initialize with transactions tab
+highlightButton('transactions');
+displayContent('transactions');
+
+
+const popupBtn = document.getElementById("popupBtn");
+const overlay = document.getElementById("overlay");
+const popupAccountDetails = document.getElementById("popupAccountDetails");
+const closePopup = document.getElementById("closePopup");
+
+if (popupBtn && overlay && popupAccountDetails && closePopup) {
+    popupBtn.addEventListener("click", () => {
+        overlay.classList.add("active");
+        popupAccountDetails.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+        overlay.classList.remove("active");
+        popupAccountDetails.classList.remove("active");
+    });
+
+    overlay.addEventListener("click", () => {
+        overlay.classList.remove("active");
+        popupAccountDetails.classList.remove("active");
+    });
+}
+
+
+const overlayInfo = document.getElementById("overlay-info");
+const popupInfoDetails = document.getElementById("popupInfoDetails");
+const closePopupInfo = document.getElementById("closePopupInfo");
+const infoTrigger = document.getElementById("info-trigger");
+
+if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
+    infoTrigger.addEventListener("click", () => {
+        overlayInfo.classList.add("active");
+        popupInfoDetails.classList.add("active");
+    });
+
+    closePopupInfo.addEventListener("click", () => {
+        overlayInfo.classList.remove("active");
+        popupInfoDetails.classList.remove("active");
+    });
+
+    overlayInfo.addEventListener("click", () => {
+        overlayInfo.classList.remove("active");
+        popupInfoDetails.classList.remove("active");
+    });
+}
