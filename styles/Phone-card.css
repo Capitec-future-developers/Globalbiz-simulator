@@ -8,6 +8,7 @@ body {
     background-color: rgba(240, 240, 240, 0.62);
     margin: 0;
     font-family: Arial, sans-serif;
+
 }
 
 /* ============ IPHONE FRAME ============ */
@@ -20,6 +21,7 @@ body {
     padding: 15px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+
 }
 
 /* ============ SCREEN ELEMENTS ============ */
@@ -32,6 +34,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .notch {
@@ -892,12 +895,51 @@ body {
     font-weight: 300;
 }
 
-.show{
+.show {
     position: absolute;
-    display: table-row;
     left: 85px;
     top: 355px;
     color: #00aeff;
     font-size: 14px;
+}
 
+.card-table {
+    position: absolute;
+    background-color: #ffffff;
+    bottom: 40px;
+    width: 250px;
+    height: 140px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    overflow-y: auto;
+
+}
+
+.card-table-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: -20px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    width: 115%;
+    left: -15px;
+}
+
+.card-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-table::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.card-table::-webkit-scrollbar-track {
+    background: transparent;
 }
