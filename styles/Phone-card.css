@@ -901,3 +901,11 @@ body {
     font-size: 14px;
 
 }
+
+.card-table{
+    position: relative;
+    background-color:  #ffffff;
+    bottom: -320px;
+    width: 130%;
+    left: -10px;
+}
