@@ -58,6 +58,7 @@
     width: 115%;
     left: -15px;
     cursor: pointer;
+    gap: 10px;
 }
 
 .card-table::-webkit-scrollbar {
