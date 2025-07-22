@@ -1753,12 +1753,12 @@ margin-top: 30px;
 <img src="../images/history.svg" alt="No Payments" style="
 width: 150px;
 height: 150px;
-margin-bottom: 20px;
+margin-bottom: -550px;
 ">
 <p style="
 color: #666;
 font-size: 16px;
-margin: 0;
+top: 500px;
 ">No payment history available</p>
 </div>
 `]

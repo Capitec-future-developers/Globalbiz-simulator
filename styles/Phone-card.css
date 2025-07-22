@@ -238,12 +238,12 @@ body {
 
 /* ============ BOTTOM NAVIGATION ============ */
 .bottom-nav {
+    position: absolute;
     display: flex;
     justify-content: space-around;
     background-color: white;
     border-top: 1px solid #e5e5ea;
     padding: 12px 0;
-    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
@@ -397,7 +397,7 @@ body {
     background-color: #dc3545;
 }
 
-//* Automation target element styling */
+/* Automation target element styling */
 .automation-target {
     position: relative;
     z-index: 10000;
@@ -426,7 +426,7 @@ body {
     opacity: 1;
 }
 
-/* Highlight styles for different elements */
+
 .automation-highlight-button {
     animation: button-pulse 1.5s infinite;
 }
@@ -457,7 +457,7 @@ body {
     100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
 }
 
-/* Suggestions dropdown */
+
 .suggestions-dropdown {
     position: absolute;
     background: white;
@@ -494,7 +494,7 @@ body {
 
 }
 
-/*dropdown*/
+
 .dropdown-content {
     position: absolute;
     top: 63px;
@@ -504,18 +504,18 @@ body {
     padding: 10px;
     min-width: 260px;
     z-index: 1000;
-    display: none; /* Hidden by default */
+    display: none;
     flex-direction: column;
     gap: 8px;
     font-weight: bold;
 }
 
-/* When 'show' class is added, make it visible */
+
 .dropdown-content.show {
     display: flex;
 }
 
-/* Image and card info side by side */
+
 .dropdown-content .card-top {
     display: flex;
     align-items: center;
@@ -528,7 +528,7 @@ body {
     border-radius: 6px;
 }
 
-/* Card info (name & number) */
+
 .dropdown-content .card-info {
     display: flex;
     flex-direction: column;
@@ -539,22 +539,22 @@ body {
     flex: 1;
 }
 
-/* Separator */
+
 .dropdown-content .separator {
     height: 1px;
     background-color: #eee;
     margin: 5px 0;
 }
 
-/* Status & icon row */
+
 .dropdown-content .status-row {
     display: flex;
-    justify-content: flex-end; /* push to right */
+    justify-content: flex-end;
     align-items: center;
     gap: 8px;
 }
 
-/* Status badge */
+
 .dropdown-content .status {
     background-color: #e0f7fa;
     color: #00796b;
@@ -566,7 +566,7 @@ body {
     justify-content: center;
 }
 
-/* Icon on far right */
+
 .dropdown-content .status-row .material-icons-sharp {
     color: #007bff;
     cursor: pointer;
@@ -580,5 +580,284 @@ body {
 }
 
 .box1.dropdown-open + .box1 {
-    margin-top: 100px; /* push Virtual card down when debit dropdown is open */
+    margin-top: 100px;
+}
+
+.popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    border-radius: 35px;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.popup-header {
+    position: fixed;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #2C3C4C;
+    color: white;
+    width: calc(100% + 40px);
+    height: 50px;
+    top: -10px;
+    left: -20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 5;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.popup-content {
+    background-color: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.popup-header {
+    padding: 16px 24px 8px;
+    text-align: center;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+
+.card-image-container {
+    text-align: center;
+    padding: 16px;
+}
+
+.card-image {
+    max-width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Type Selection */
+.card-type-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 24px;
+}
+
+.card-option-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+.card-option-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.card-option-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #0066ff;
+}
+
+
+#virtual-card-options {
+    padding: 0 24px;
+    margin-top: 16px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-dropdown {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: white;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Card Holder Options */
+.card-holder-option {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.card-holder-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.blue-radio {
+    width: 18px;
+    height: 18px;
+    accent-color: #0066ff;
+}
+
+/* Limits Page Styles */
+.limits-form {
+    padding: 0 24px;
+    margin-top: 16px;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.limit-input {
+    margin-bottom: 20px;
+}
+
+.limit-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.currency {
+    padding: 0 12px;
+    background-color: #f5f5f5;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.limit-value {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    font-size: 14px;
+}
+
+
+.popup-buttons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    bottom: 130px;
+    border-top: 1px solid #eee;
+    height: 8px;
+    right: -10px;
+    width: 90%;
+}
+
+
+.continue-btn {
+    flex: 1;
+    padding: 14px;
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 14px;
+    background-color: white;
+    color: #0066ff;
+    border: 1px solid #0066ff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    height: 890px;
+    max-height: 90vh;
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.popup-content::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollable-content {
+    overflow: hidden;
+    flex: 1;
+    padding: 0 20px;
+    margin: 10px 0;
+    flex-grow: 1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollable-content::-webkit-scrollbar {
+    display: none;
 }
