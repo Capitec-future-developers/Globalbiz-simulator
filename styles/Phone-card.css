@@ -903,9 +903,13 @@ body {
 }
 
 .card-table{
-    position: relative;
+    position: absolute;
     background-color:  #ffffff;
-    bottom: -320px;
-    width: 130%;
-    left: -10px;
+    bottom: 100px;
+    width: 530px;
+    left: 5px;
+    display: table-row;
+    flex-direction: column;
+    gap: 20px;
 }
+
