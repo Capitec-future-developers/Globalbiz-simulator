@@ -1,0 +1,76 @@
+
+.the-card{
+    position: absolute;
+    height: 200px;
+    width: 120px;
+    right: 50px;
+    top: 50px;
+}
+
+.statu{
+    position: absolute;
+    top: 320px;
+    right: 130px;
+    background-color: #3bf1da;
+    color: #111111;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+}
+
+.show {
+    position: absolute;
+    left: 85px;
+    top: 355px;
+    color: #00aeff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.card-table {
+    position: absolute;
+    background-color: #ffffff;
+    bottom: 40px;
+    width: 250px;
+    height: 140px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    overflow-y: auto;
+
+}
+
+.card-table-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: -20px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    width: 115%;
+    left: -15px;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.card-table::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-table::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.card-table::-webkit-scrollbar-track {
+    background: transparent;
+}
+
