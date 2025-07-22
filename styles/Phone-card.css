@@ -907,9 +907,11 @@ body {
     background-color:  #ffffff;
     bottom: 100px;
     width: 530px;
+    height: 150px;
     left: 5px;
     display: table-row;
     flex-direction: column;
     gap: 20px;
 }
+
 
