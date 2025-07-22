@@ -1,6 +1,3 @@
-// AUTOMATION SYSTEM
-
-// Configuration with default values
 const automationConfig = {
     stepDelay: 500,
     highlightDuration: 400,
@@ -16,11 +13,22 @@ const automationConfig = {
     }
 };
 
-// Enhanced command mapping with additional metadata
 const automationCommands = {
+    'Documents': {
+        steps: [
+            { action: 'click', selector: '#sidebarToggle' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#documents' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#doc-type' },
+            { action: 'wait', selector: '#doc-type' }
+        ],
+        description: 'Documents',
+        category: 'documents'
+    },
     'pay saved beneficiary': {
         steps: [
-            { action: 'click', selector: '#transact'},
+            { action: 'click', selector: '#transact' },
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#payment' },
             { action: 'wait', duration: 1000 },
@@ -49,7 +57,7 @@ const automationCommands = {
     },
     'make once off payment': {
         steps: [
-            {action: 'click', selector: '#transact'},
+            { action: 'click', selector: '#transact' },
             { action: 'click', selector: '#payment' },
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#onceoff-beneficiary-option' }
@@ -59,18 +67,18 @@ const automationCommands = {
     },
     'go to dashboard': {
         steps: [
-            {action: 'click', selector: '#bottomNav'},
-            {action: 'click', selector: '#Home' },
-            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#bottomNav' },
+            { action: 'click', selector: '#Home' },
+            { action: 'wait', duration: 1000 }
         ],
         description: 'Return to dashboard',
         category: 'Home'
     },
     'go to transaction limit': {
         steps: [
-            {action: 'click', selector: '#sidebarToggle'},
+            { action: 'click', selector: '#sidebarToggle' },
             { action: 'wait', duration: 1000 },
-            {action: 'click', selector: '#settings'},
+            { action: 'click', selector: '#settings' },
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#Transaction-Limits' },
             { action: 'wait', duration: 1000 },
@@ -81,22 +89,22 @@ const automationCommands = {
     },
     'Add new card': {
         steps: [
-            {action: 'click', selector: '#bottomNav'},
-            { action: 'wait', duration: 1000 },
-            {action: 'click', selector: '#cards'},
+            { action: 'click', selector: '#cards' },
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#Add-Card' },
             { action: 'wait', duration: 1000 },
-            { action: 'click', selector: '#new-card' }
+            { action: 'click', selector: '#debit-card-option' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#continue-btn' }
         ],
         description: 'Add new card',
         category: 'cards'
     },
     'Debit card': {
         steps: [
-            {action: 'click', selector: '#bottomNav'},
+            { action: 'click', selector: '#bottomNav' },
             { action: 'wait', duration: 1000 },
-            {action: 'click', selector: '#cards'},
+            { action: 'click', selector: '#cards' },
             { action: 'wait', duration: 1000 },
             { action: 'click', selector: '#debitToggle' },
             { action: 'wait', duration: 1000 },
@@ -104,20 +112,11 @@ const automationCommands = {
         ],
         description: 'Debit card',
         category: 'cards'
-    },
-    'Documents': {
-        steps: [
-            {action: 'click', selector: '#sideToggle'},
-            { action: 'wait', duration: 1000 },
-            {action: 'click', selector: '#documents'},
-            { action: 'wait', duration: 1000 },
-            { action: 'click', selector: '#doc-type' }
-            { action: 'wait', }
-        ]
     }
 };
 
-// Automation state management
+
+
 let automationState = {
     isPaused: false,
     currentStepIndex: 0,

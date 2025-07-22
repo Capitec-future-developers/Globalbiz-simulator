@@ -9,17 +9,21 @@
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
 </head>
-<body>
 
-<!-- Header -->
+<body>
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
 <div class="header">
     <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
+        <!-- Chatbot Toggle Button -->
         <button class="chatbot-toggler">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat"></span>
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -42,66 +46,80 @@
             </div>
         </div>
 
-        <div class="profile-container">
-            <a href="#contact" id="profile-link" style="text-decoration: none;">
-                <div class="om-circle">OM</div>
-                <div class="name">Omphile Mohlala</div>
-            </a>
 
+
+        <div class="profile-container">
+            <a href="#contact" id="banker-popup">
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+                    <div class="om-circle" style="text-decoration: none;">OM</div>
+                    <div class="name">
+                        Omphile Mohlala
+                    </div>
+                </a>
+
+            </a>
+            <!-- Popup HTML -->
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
-                <div class="popup-header">omphilestudent@gmail.com</div>
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                </a>
                 <div class="profile-item">
                     <span class="material-icons-sharp profile-icon">account_circle</span>
                     <div class="profile-info">
                         <div class="profile-active">ACTIVE PROFILE</div>
-                        <a href="Profile-info.html">
-                            <div class="profile-Name">Omphile Mohlala</div>
-                        </a>
+                        <div class="profile-Name">Omphile Mohlala</div>
                     </div>
                 </div>
-                <a href="#" class="switch-profile">
+                <div id="page-transition"></div>
+                <a href="KodiCode.html" class="switch-profile">
                     <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
                     Switch to Kodi PTY LTD
                 </a>
                 <a href="#" class="manage-business">Manage business profile</a>
             </div>
         </div>
-
-        <a href="home%20page.htmlml" class="sign">Sign Out</a>
+        <a href="./home%20page.html" class="sign">Sign Out</a>
     </div>
 </div>
-
-<!-- Sidebar -->
+</div>
+<!--Sidebar navigation-->
 <div class="sidebar">
+
     <a href="Computer.html" class="active" id="home">
-        <span class="material-icons-sharp"><img src="../images/home.svg" alt="home"></span> Home
+        <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
+        Home
     </a>
     <p class="side">BANKING</p>
     <a href="Accounts.html" id="accounts">
-        <span class="material-icons-sharp"><img src="../images/accounts.svg" alt="accounts"></span> Accounts
+        <span class="material-icons-sharp">
+            <img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
+        </span>
+        Accounts
     </a>
-
     <div class="dropdown">
         <a href="#" class="dropdown-toggle" id="transacts">
-            <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact"></span> Transact
+            <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
+            Transact
             <span class="dropdown-arrow">▶</span>
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
-            <a href="#" id="transfer">Transfer</a>
+            <a href="#" id="t
+            Transfer">Transfer</a>
             <a href="#" id="beneficiary-btn">Beneficiary</a>
         </div>
     </div>
-
     <a href="Cards.html">
-        <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="cards"></span> Cards
+        <span class="material-icons-sharp"><img src="../images/cards_icon.svg" alt="transact" style="color: #cccccc;"></span>
+        Cards
     </a>
-
     <p class="side">MANAGEMENT</p>
+
     <div class="dropdown">
         <a href="#" class="dropdown-toggle">
-            <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="authorisations"></span> Authorisations
+            <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="transact" style="color: #cccccc;"></span>
+            Authorisations
             <span class="dropdown-arrow">▶</span>
         </a>
         <div class="dropdown-menu">
@@ -114,30 +132,36 @@
             <a href="messages.html">Messages</a>
         </div>
     </div>
-
-    <a href="inprogress.html"><span class="material-icons-sharp">groups</span> User management</a>
-
+    <a href="inprogress.html">
+        <span class="material-icons-sharp">groups</span>
+        User management
+    </a>
     <p class="side">SERVICES</p>
     <a href="inprogress.html">
-        <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="products"></span> Products & Services
+        <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
+        Products & Services
     </a>
     <a href="inprogress.html">
-        <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="efiling"></span> SARS eFILLING
+        <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="transact" style="color: #cccccc;"></span>
+        SARS eFILLING
     </a>
     <a href="inprogress.html">
-        <span class="material-icons-sharp"><img src="../images/messages%20(1).svg" alt="messages"></span> Secure Messages
+        <span class="material-icons-sharp"><img src="../images/messages%20(1).svg" alt="transact" style="color: #cccccc;"></span>
+        Secure Messages
     </a>
     <a href="Computer-Document.html">
-        <span class="material-icons-sharp"><img src="../images/document.svg" alt="document"></span> Documents
+        <span class="material-icons-sharp"><img src="../images/document.svg" alt="transact" style="color: #cccccc;"></span>
+        Documents
     </a>
     <a href="settings.html">
-        <span class="material-icons-sharp"><img src="../images/settings.svg" alt="settings"></span> Settings
+        <span class="material-icons-sharp"><img src="../images/settings.svg" alt="transact" style="color: #cccccc;"></span>
+        Settings
     </a>
     <a href="#" class="signout">
         <span class="material-icons-sharp">lock</span>
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
-</div>
+    </div>
 
 <!-- Search -->
 <div class="search-container">
@@ -175,14 +199,64 @@
             <button class="manage-btn">Manage Account</button>
             <div class="details-hover">
                 <ul>
-                    <li><a href="#">Set account authorization</a></li>
+                    <li><a href="#" id="set-auth-level">Set account authorization</a></li>
                     <li><a href="#">Edit account nickname</a></li>
                 </ul>
             </div>
         </div>
+
+        <!-- Popup HTML -->
+        <div class="popup-overlay" id="authPopup">
+            <div class="auth-popup">
+                <div class="popup-header">Set Authorization Level</div>
+
+                <div class="form-page" id="formPage">
+                    <div class="form-group">
+                        <label for="createPayment">Who can create payment:<img src="../images/info-trans.svg"></label>
+                        <select id="createPayment">
+                            <option value="">Choose Approver</option>
+                            <option value="authoriser">Authoriser</option>
+                            <option value="capturer">Capturer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="approvePayment">Who must approve payment:<img src="../images/info-trans.svg"></label>
+                        <select id="approvePayment">
+                            <option value="">Choose</option>
+                            <option value="none">No one</option>
+                            <option value="one">One person</option>
+                            <option value="two">Two people</option>
+                        </select>
+                    </div>
+
+                    <div class="popup-footer">
+                        <button class="btn btn-cancel" id="cancelBtn">Cancel</button>
+                        <button class="btn btn-continue" id="continueBtn">Continue</button>
+                    </div>
+                </div>
+
+                <div class="confirmation-page" id="confirmationPage">
+                    <div class="confirmation-item">
+                        <div class="confirmation-label">Who can create payment? <img src="../images/info-trans.svg"></div>
+                        <div class="confirmation-value" id="confirmCreatePayment"></div>
+                    </div>
+
+                    <div class="confirmation-item">
+                        <div class="confirmation-label">Who must approve payment? <img src="../images/info-trans.svg"></div>
+                        <div class="confirmation-value" id="confirmApprovePayment"></div>
+                    </div>
+
+                    <div class="popup-footer">
+                        <button class="btn btn-cancel" id="backBtn">Back</button>
+                        <button class="btn btn-save" id="saveBtn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="tabs">
+        <div class="tabs">
         <button id="btn-transactions"><div class="tab active">Transactions</div></button>
         <button id="btn-payment-history"><div class="tab">Payment history</div></button>
         <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
@@ -235,8 +309,7 @@
         </table>
     </div>
 </div>
-
-<script src="../scripts/Apps.js"></script>
+  <script src="../scripts/Apps.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>

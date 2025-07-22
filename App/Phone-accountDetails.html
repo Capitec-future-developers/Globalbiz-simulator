@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/Phone-account.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
+    <title>App Account details</title>
+
+</head>
+<body>
+
+<div class="search-container">
+    <input
+            type="text"
+            id="automation-search"
+            placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <!-- Overlays and Popups -->
+            <div id="overlay" class="overlay"></div>
+            <div class="popup-accountdetails" id="popupAccountDetails">
+                <div class="popup-accountdetails-content">
+                    <div class="popup-accountdetails-header">
+                        <span>Account details</span>
+                    </div>
+                    <div class="accountdetails-options">
+                        <span class="popup-accountdetails-option">Edit account nickname</span>
+                        <span class="popup-accountdetails-option">Set account authorisations</span>
+                        <span class="popup-accountdetails-option"><a href="View-details.html" style="text-decoration: none;  color: #7f8c8d; ">View account details</a></span>
+                        <span class="popup-accountdetails-option close-btn" id="closePopup"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="overlay-info" class="overlay-info"></div>
+            <div class="popup-info-details" id="popupInfoDetails">
+                <div class="popup-info-details-content">
+                    <div class="popup-info-details-header">
+                        <span>Why the difference?</span>
+                    </div>
+                    <div class="popup-info-details-options">
+<span>
+Your <b>Available Balance</b> is how much you may spend. The Balance could differ from the Available Balance because:
+<br /><br />
+• R150 is reserved in your account as this is the minimum account balance required to have a GlobalBiz account (Refer to our fees for further information).
+<br />
+• Your account might have transactions that are reserved on your card but have not yet cleared.
+<br />
+• In the case of a negative balance, you may have outstanding fees that must be settled before you can continue transacting.
+</span>
+                        <span class="popup-info-details-option close-btn" id="closePopupInfo"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header -->
+            <div class="head2">
+                <a class="arrow" href="Phone2.html" style="text-decoration: none;">
+                    <span class="material-icons-sharp">arrow_back</span>
+                </a>
+                <div class="header" style="left: 90px; font-size: 1rem; bottom: 15px;">
+                    Account Details
+                </div>
+
+                <div
+                        class="three-dots"
+                        style="position: absolute; right: 20px; top: 10px; cursor: pointer;"
+                        id="popupBtn"
+                >
+                    <span class="material-icons-sharp">more_vert</span>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="contents" id="mainContents"></div>
+            <div class="contents" id="mainContent">
+                <div class="account">
+                    <div class="account-header"></div>
+                    <div class="box">
+                        <div class="box4">
+                            <div class="account-details2">
+                                <span class="Available">Available</span>
+                                <span class="account-balance">R1000.00</span>
+                                <img
+                                        src="../images/info-trans.svg"
+                                        class="info"
+                                        style="filter: brightness(0) invert(1); cursor: pointer;"
+                                        id="info-trigger"
+                                        alt="Info"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="balance-details">
+                            <span class="balance" style="position: absolute; color: #ffffff; top: 10px;">Balance</span><br />
+                            <span class="amount" style="position: absolute; color: #ffffff; top: 30px;">R161.06</span>
+                        </div>
+
+                        <div class="separator-bottom"></div>
+
+                        <div class="tabs">
+                            <span id="btn-transactions"><div class="tab active">Transactions</div></span>
+                            <span id="btn-payment-history"><div class="tab">Payment history</div></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-content"></div>
+            <div id="tab-contents"></div>
+
+            <!-- Auth Flow Screens -->
+            <div id="authFlowBackdrop" class="auth-flow-backdrop"></div>
+            <div id="authFlowScreen" class="auth-flow-screen"></div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <a href="Phone2.html" class="nav-item">
+                <span class="nav-icon material-icons-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a href="Phone accounts.html" class="nav-item active">
+                <span class="nav-icon material-icons-outlined">storage</span>
+                <span>Accounts</span>
+            </a>
+            <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(85%) contrast(89%)" />
+                <span>transact</span>
+            </a>
+            <a href="Phone-cards.html" class="nav-item">
+                <span class="nav-icon material-icons-outlined">credit_card</span>
+                <span>Cards</span>
+            </a>
+            <a href="../Computer/inprogress.html" class="nav-item">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
+            </a>
+        </div>
+    </div>
+    <div class="home-indicator"></div>
+</div>
+
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Automation.js"></script>
+</body>
+</html>

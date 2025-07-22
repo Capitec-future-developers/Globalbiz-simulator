@@ -1,13 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-// =============================================
-// PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
-// =============================================
-// Profile popup functionality
+
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
 
-// Enhanced Dropdown functionality for all dropdowns
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     if (dropdownToggles.length > 0) {
         dropdownToggles.forEach(toggle => {
@@ -16,19 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.stopPropagation(); // Prevent event from bubbling up
                 const dropdown = this.closest('.dropdown');
                 if (dropdown) {
-// Close all other dropdowns first
+
                     document.querySelectorAll('.dropdown').forEach(item => {
                         if (item !== dropdown) {
                             item.classList.remove('active');
                         }
                     });
-// Toggle current dropdown
+
                     dropdown.classList.toggle('active');
                 }
             });
         });
 
-// Close dropdowns when clicking outside
+
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
@@ -51,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-// Sidebar toggle functionality
+
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
@@ -75,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// Platform selection functionality
+
     const startBtn = document.getElementById('startBtn');
     if (startBtn) {
         startBtn.addEventListener('click', function() {
@@ -109,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// Tab content data
+
     const tabContentData = {
         transactions: [
             `<table class="transaction-table">
@@ -195,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// Highlight selected tab button
+
     function highlightButton(buttonId) {
         Object.keys(tabButtons).forEach(key => {
             const button = tabButtons[key];
@@ -215,18 +211,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-// Function to handle button clicks
+
     function handleTabClick(event) {
         const button = event.target.closest('button');
         if (!button) return;
 
-// Add click animation
         button.style.transform = 'translateY(2px)';
         setTimeout(() => {
             button.style.transform = '';
         }, 100);
 
-// Find which button was clicked
+
         const buttonId = Object.keys(tabButtons).find(key => tabButtons[key] === button);
         if (!buttonId) return;
 
@@ -234,14 +229,13 @@ document.addEventListener('DOMContentLoaded', function() {
         displayContent(buttonId);
     }
 
-// Add event listeners to all tab buttons
     Object.values(tabButtons).forEach(btn => {
         if (btn) {
             btn.addEventListener('click', handleTabClick);
         }
     });
 
-// Load initial content (Transactions tab)
+
     if (tabButtons.transactions && tabContent) {
         tabButtons.transactions.classList.add('active');
         const tab = tabButtons.transactions.querySelector('.tab');
@@ -249,29 +243,21 @@ document.addEventListener('DOMContentLoaded', function() {
         displayContent('transactions');
     }
 
-// =============================================
-// PAYMENT AND CREATE FUNCTIONALITY
-// =============================================
-// DOM Elements
     const paymentButton = document.getElementById('payment');
     const mainContentArea = document.getElementById('main-content-area');
     const defaultContent = document.getElementById('default-content');
     const contentWrapper = document.querySelector('.content-wrapper');
     const createButton = document.getElementById('create');
-
-// Quick action buttons
     const savedPaymentBtn = document.getElementById('saved-payment-btn');
     const onceoffPaymentBtn = document.getElementById('onceoff-payment-btn');
     const groupPaymentBtn = document.getElementById('group-payment-btn');
     const createBeneficiaryBtn = document.getElementById('create-beneficiary-btn');
-
-// Determine if we're in the app or online banking context
     const isAppContext = window.location.pathname.includes('Phone.html');
 
-// Navigation state management
+
     let navigationStack = [];
 
-// Event Listeners
+
     if (paymentButton) {
         paymentButton.addEventListener('click', function(e) {
             e.preventDefault();
@@ -314,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-// Main Functions
+
     function showPaymentSection() {
         toggleContentVisibility();
         mainContentArea.innerHTML = `
@@ -403,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 `;
 
-// Add event listeners
+
         const backButton = document.getElementById('back-to-transact');
         if (backButton) {
             backButton.addEventListener('click', function() {
@@ -484,12 +470,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 `;
 
-// Add event listeners for back button
+
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-// Add event listeners for create options
+
         document.querySelectorAll('.create-option').forEach(option => {
             option.addEventListener('click', function() {
                 const createType = this.getAttribute('data-type');
@@ -542,12 +528,12 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 `;
 
-// Back button
+
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-// Beneficiary selection
+
         document.querySelectorAll('.beneficiary-card').forEach(card => {
             card.addEventListener('click', function() {
                 const beneficiaryName = this.getAttribute('data-beneficiary');
@@ -555,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-// Add new beneficiary
+
         document.getElementById('add-new-beneficiary').addEventListener('click', function(e) {
             e.preventDefault();
             showAddBeneficiaryForm();
@@ -638,12 +624,12 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
 </div>
 `;
 
-// Back button
+
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-// Form submission
+
         document.getElementById('payment-form').addEventListener('submit', function(e) {
             e.preventDefault();
             processPayment(paymentType, beneficiaryName);
@@ -695,12 +681,11 @@ Save Beneficiary
 </div>
 `;
 
-// Back button
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-// Form submission
+
         document.getElementById('beneficiary-form').addEventListener('submit', function(e) {
             e.preventDefault();
             saveBeneficiary();
@@ -711,7 +696,7 @@ Save Beneficiary
         const amount = document.getElementById('amount').value;
         const reference = document.getElementById('reference').value;
 
-// Show processing
+
         mainContentArea.innerHTML = `
 <div class="payment-processing">
 <div class="spinner">
@@ -723,7 +708,7 @@ Save Beneficiary
 </div>
 `;
 
-// Simulate processing delay
+
         setTimeout(() => {
             showPaymentConfirmation(paymentType, beneficiaryName, amount, reference);
         }, 3000);
@@ -734,7 +719,7 @@ Save Beneficiary
         const accountNumber = document.getElementById('account-number').value;
         const bank = document.getElementById('bank').value;
 
-// Show processing
+
         mainContentArea.innerHTML = `
 <div class="payment-processing">
 <div class="spinner">
@@ -746,7 +731,7 @@ Save Beneficiary
 </div>
 `;
 
-// Simulate processing delay
+
         setTimeout(() => {
             showBeneficiaryConfirmation(name);
         }, 2000);
@@ -789,7 +774,7 @@ Download Receipt
 </div>
 `;
 
-// Button handlers
+
         document.getElementById('done-button').addEventListener('click', function() {
             resetToMainView();
         });
@@ -818,7 +803,7 @@ Pay Now
 </div>
 `;
 
-// Button handlers
+
         document.getElementById('done-button').addEventListener('click', function() {
             resetToMainView();
         });
@@ -829,7 +814,7 @@ Pay Now
     }
 
     function handleOptionClick(optionType) {
-// Placeholder for other option types
+
         alert(`Showing ${optionType.replace('-', ' ')}`);
     }
 
@@ -856,7 +841,7 @@ Pay Now
         }
     }
 
-// Navigation functions
+
     function navigateBack() {
         if (navigationStack.length > 0) {
             navigationStack.pop(); // Remove current view
@@ -889,7 +874,7 @@ Pay Now
         }
     }
 
-// Navigation stack for back functionality
+
     const transferNavigationStack = [];
     const transferMainContentArea = document.getElementById('mainContent');
 
@@ -964,11 +949,11 @@ View All <span class="material-icons-sharp">chevron_right</span>
 
             transferMainContentArea.innerHTML = `
 <div class="transfer-section">
-<div class="payment-header">
+           <div class="payment-header">
 <button class="back-button" id="back-button">
-<span class="material-icons-sharp">arrow_back</span> Back
+                   <span class="material-icons-sharp">arrow_back</span> Back
 </button>
-<h2 class="transferheader">Transfer</h2>
+<h2 class="transferheader">  Transfer</h2>
 <p>Move money between your accounts</p>
 </div>
 <div class="transfer-details-box">
@@ -1075,9 +1060,9 @@ Transfer Funds
             }, 2500);
         }
 
-// Show confirmation after transfer
+
         function showTransferConfirmation(fromAccount, toAccount, amount, reference) {
-// Get text from dropdown options
+
             const fromAccountText = document.getElementById('from-account').options[document.getElementById('from-account').selectedIndex].text;
             const toAccountText = document.getElementById('to-account').options[document.getElementById('to-account').selectedIndex].text;
 
@@ -1123,7 +1108,7 @@ Transfer Funds
             });
         }
 
-// Initialize navigation stack with main view
+
         transferNavigationStack.push('main');
 
         document.querySelectorAll('#Transfer').forEach(btn => {
@@ -1134,10 +1119,7 @@ Transfer Funds
         });
     }
 
-// =============================================
-// BANKER POPUP AND OTHER UI FUNCTIONALITY
-// =============================================
-// Banker popup functionality
+
     const bankerLink = document.getElementById('banker-link');
     const bankerPopup = document.getElementById('banker-popup');
     const closePopup = document.getElementById('close-popup');
@@ -1153,7 +1135,7 @@ Transfer Funds
         });
     }
 
-// Page transition animation on profile switch
+
     const switchLink = document.querySelector('.switch-profile');
     if (switchLink) { // Safety check in case element is missing
         switchLink.addEventListener('click', function(e) {
@@ -1165,13 +1147,13 @@ Transfer Funds
                     window.location.href = this.href;
                 }, 500); // CSS transition time
             } else {
-// fallback if no transition element exists
+
                 window.location.href = this.href;
             }
         });
     }
 
-// Sign-in date display
+
     const dateElement = document.getElementById("signin-date");
     if (dateElement) { // Check element exists before updating
         const now = new Date();
@@ -1183,6 +1165,96 @@ Transfer Funds
             month: 'numeric',
             year: 'numeric'
         };
-        dateElement.textContent = `Your last Sign-in was on ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${now.toLocaleDateString([], options)}.`;
+
+
+            dateElement.textContent = `Your last Sign-in was on ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${now.toLocaleDateString([], options)}.`;
     }
+});
+
+
+
+
+
+    const setAuthLevel = document.getElementById('set-auth-level');
+    const authPopup = document.getElementById('authPopup');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const continueBtn = document.getElementById('continueBtn');
+    const backBtn = document.getElementById('backBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const formPage = document.getElementById('formPage');
+    const confirmationPage = document.getElementById('confirmationPage');
+
+
+    setAuthLevel.addEventListener('click', function(e) {
+        e.preventDefault();
+        authPopup.style.display = 'flex';
+        formPage.style.display = 'block';
+        confirmationPage.style.display = 'none';
+
+
+        document.getElementById('createPayment').value = '';
+        document.getElementById('approvePayment').value = '';
+    });
+
+
+    cancelBtn.addEventListener('click', function() {
+        authPopup.style.display = 'none';
+    });
+
+
+    continueBtn.addEventListener('click', function() {
+        const createPayment = document.getElementById('createPayment').value;
+        const approvePayment = document.getElementById('approvePayment').value;
+
+        if (!createPayment || !approvePayment) {
+            alert('Please select options for both fields');
+            return;
+        }
+
+        document.getElementById('confirmCreatePayment').textContent =
+            getDisplayValue('createPayment', createPayment);
+        document.getElementById('confirmApprovePayment').textContent =
+            getDisplayValue('approvePayment', approvePayment);
+
+        formPage.style.display = 'none';
+        confirmationPage.style.display = 'block';
+    });
+
+
+    backBtn.addEventListener('click', function() {
+        formPage.style.display = 'block';
+        confirmationPage.style.display = 'none';
+    });
+
+
+    saveBtn.addEventListener('click', function() {
+
+        alert('Authorization settings saved successfully!');
+        authPopup.style.display = 'none';
+    });
+
+
+    function getDisplayValue(field, value) {
+        if (field === 'createPayment') {
+            switch(value) {
+                case 'approver': return 'Approver';
+                case 'authoriser': return 'Authoriser';
+                case 'capturer': return 'Capturer';
+                default: return '';
+            }
+        } else if (field === 'approvePayment') {
+            switch(value) {
+                case 'none': return 'No one';
+                case 'one': return 'One person';
+                case 'two': return 'Two people';
+                default: return '';
+            }
+        }
+        return '';
+    }
+
+    authPopup.addEventListener('click', function(e) {
+        if (e.target === authPopup) {
+            authPopup.style.display = 'none';
+        }
 });

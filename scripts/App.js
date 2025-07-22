@@ -1692,3 +1692,368 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+const tabContentData = {
+    transactions: [`
+<div class="search">
+<span class="material-icons-sharp">search</span>
+<input type="text" placeholder="Search transactions">
+</div>
+<div class="date-range">
+<input type="date" id="date-range-start">
+<input type="date" id="date-range-end">
+</div>
+<div class="date">
+<div class="month-year">
+<span>Jul</span>
+<span>2025</span>
+</div>
+<span class="statement-text">Statement <span class="material-icons-sharp">chevron_right</span></span>
+</div>
+<div class="statement-table">
+<div class="table-row">
+<div class="row-left">
+<div class="date-title">30 June 2025</div>
+<div class="description">SMS Notification Fee</div>
+</div>
+<div class="row-right">
+<div class="amount negative">- R0.35</div>
+<span class="material-icons-sharp">chevron_right</span>
+</div>
+</div>
+<div class="table-row">
+<div class="row-left">
+<div class="date-title">1 July 2025</div>
+<div class="description">Withdrawal</div>
+</div>
+<div class="row-right">
+<div class="amount positive">R400</div>
+<span class="material-icons-sharp">chevron_right</span>
+</div>
+</div>
+</div>
+`],
+    paymentHistory: [`
+<div class="search">
+<span class="material-icons-sharp">search</span>
+<input type="text" placeholder="Search payment history">
+</div>
+<div class="date-range">
+<input type="date" id="date-range-start">
+<input type="date" id="date-range-end">
+</div>
+
+<div class="no-payments-container" style="
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 300px;
+margin-top: 30px;
+">
+<img src="../images/history.svg" alt="No Payments" style="
+width: 150px;
+height: 150px;
+margin-bottom: -550px;
+">
+<p style="
+color: #666;
+font-size: 16px;
+top: 500px;
+">No payment history available</p>
+</div>
+`]
+};
+
+const tabButtons = {
+    transactions: document.getElementById("btn-transactions"),
+    paymentHistory: document.getElementById("btn-payment-history")
+};
+
+const tabContent = document.getElementById("tab-content");
+
+function displayContent(key) {
+    const data = tabContentData[key];
+    tabContent.innerHTML = data ? data.join('') : '';
+}
+
+function highlightButton(activeKey) {
+    Object.entries(tabButtons).forEach(([key, btn]) => {
+        btn.querySelector('.tab').classList.toggle('active', key === activeKey);
+    });
+}
+
+Object.entries(tabButtons).forEach(([key, btn]) => {
+    btn.addEventListener('click', () => {
+        highlightButton(key);
+        displayContent(key);
+    });
+});
+
+
+// Initialize with transactions tab
+highlightButton('transactions');
+displayContent('transactions');
+
+const popupBtn = document.getElementById("popupBtn");
+const overlay = document.getElementById("overlay");
+const popupAccountDetails = document.getElementById("popupAccountDetails");
+const closePopup = document.getElementById("closePopup");
+
+if (popupBtn && overlay && popupAccountDetails && closePopup) {
+    popupBtn.addEventListener("click", () => {
+        overlay.classList.add("active");
+        popupAccountDetails.classList.add("active");
+    });
+
+    closePopup.addEventListener("click", () => {
+        overlay.classList.remove("active");
+        popupAccountDetails.classList.remove("active");
+    });
+
+    overlay.addEventListener("click", () => {
+        overlay.classList.remove("active");
+        popupAccountDetails.classList.remove("active");
+    });
+}
+
+/* ---------- Popup 2: Why the difference? ---------- */
+const overlayInfo = document.getElementById("overlay-info");
+const popupInfoDetails = document.getElementById("popupInfoDetails");
+const closePopupInfo = document.getElementById("closePopupInfo");
+const infoTrigger = document.getElementById("info-trigger");
+
+if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
+    infoTrigger.addEventListener("click", () => {
+        overlayInfo.classList.add("active");
+        popupInfoDetails.classList.add("active");
+    });
+
+    closePopupInfo.addEventListener("click", () => {
+        overlayInfo.classList.remove("active");
+        popupInfoDetails.classList.remove("active");
+    });
+
+    overlayInfo.addEventListener("click", () => {
+        overlayInfo.classList.remove("active");
+        popupInfoDetails.classList.remove("active");
+    });
+}
+//set auth levels
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Wait for Set Account Authorisations to be clicked
+    const setAuthOption = document.querySelectorAll('.popup-accountdetails-option')[1];
+
+    setAuthOption.addEventListener('click', function() {
+    // Close the account details popup
+    document.getElementById('popupAccountDetails').classList.remove('active');
+    document.getElementById('overlay').classList.remove('active');
+
+    // Show the authorization screen
+    showAuthSetupStep1Screen();
+});
+
+    function showAuthSetupStep1Screen() {
+    const authFlowScreen = document.getElementById('authFlowScreen');
+    authFlowScreen.style.display = 'block';
+    document.getElementById('authFlowBackdrop').style.display = 'block';
+
+    authFlowScreen.innerHTML = `
+<div class="notch"></div>
+<div class="auth-setup-flow-container">
+
+ <div class="auth-setup-flow-header">
+ 
+ <h1>Set Account Authorisations</h1>
+ <div class="auth-flow-step-indicator">Step 1 of 2</div>
+ </div>
+
+ <div class="auth-flow-edit-section">
+ <h2>Edit</h2>
+
+ <div class="auth-flow-permission-section">
+ <h3>Who can create payments?</h3>
+ <select class="auth-flow-select" id="creator-select">
+ <option value="authoriser">Authoriser</option>
+ <option value="capturer">Capturer</option>
+ </select>
+ </div>
+
+ <div class="auth-flow-permission-section">
+ <h3>Who must approve payments?</h3>
+ <select class="auth-flow-select" id="approver-select">
+ <option value="no-one">No one</option>
+ <option value="one-person">One person</option>
+ <option value="two-people">Two people</option>
+ <option value="choose-approvers">Choose approvers</option>
+ </select>
+ </div>
+
+ <div id="approver-details-container" style="display: none;">
+ <!-- This will be populated dynamically based on selection -->
+ </div>
+ </div>
+
+ <div class="separator-line"></div>
+
+ <div class="auth-flow-action-btns">
+ <button class="js-auth-flow-continue-btn auth-flow-primary-btn">Continue</button>
+ <button class="js-auth-flow-cancel-btn auth-flow-secondary-btn">Cancel</button>
+ </div>
+</div>
+`;
+
+    // Add event listener for approver select change
+    const approverSelect = authFlowScreen.querySelector('#approver-select');
+    approverSelect.addEventListener('change', function() {
+    updateApproverDetails(this.value);
+});
+
+    // Initialize approver details
+    updateApproverDetails(approverSelect.value);
+
+    // Button handlers
+    authFlowScreen.querySelector('.js-auth-flow-continue-btn').addEventListener('click', showAuthFlowConfirmationScreen);
+    authFlowScreen.querySelector('.js-auth-flow-cancel-btn').addEventListener('click', cancelAuthFlowAction);
+    authFlowScreen.querySelector('.js-auth-flow-back-btn').addEventListener('click', function() {
+    // Go back to account details popup
+    document.getElementById('popupAccountDetails').classList.add('active');
+    document.getElementById('overlay').classList.add('active');
+    closeAuthFlowScreen();
+});
+
+    function updateApproverDetails(selectedValue) {
+    const container = authFlowScreen.querySelector('#approver-details-container');
+    container.innerHTML = '';
+    container.style.display = 'none';
+
+    if (selectedValue === 'one-person') {
+    container.style.display = 'block';
+    container.innerHTML = `
+ <div class="auth-flow-permission-section">
+ <h3>1st Approver</h3>
+ <select class="auth-flow-select" id="first-approver-select">
+ <option value="authoriser">Authoriser</option>
+ <option value="capturer">Capturer</option>
+ </select>
+ </div>
+ `;
+} else if (selectedValue === 'two-people') {
+    container.style.display = 'block';
+    container.innerHTML = `
+ <div class="auth-flow-permission-section">
+ <h3>1st Approver</h3>
+ <select class="auth-flow-select" id="first-approver-select">
+ <option value="authoriser">Authoriser</option>
+ <option value="capturer">Capturer</option>
+ </select>
+ </div>
+ <div class="auth-flow-permission-section">
+ <h3>2nd Approver</h3>
+ <select class="auth-flow-select" id="second-approver-select">
+ <option value="authoriser">Authoriser</option>
+ <option value="capturer">Capturer</option>
+ </select>
+ </div>
+ `;
+}
+}
+}
+
+    function showAuthFlowConfirmationScreen() {
+    const authFlowScreen = document.getElementById('authFlowScreen');
+
+    // Get selected values
+    const creatorValue = document.getElementById('creator-select').value;
+    const approverValue = document.getElementById('approver-select').value;
+
+    // Get approver details if needed
+    let approverDetails = '';
+    if (approverValue === 'one-person') {
+    const firstApprover = document.getElementById('first-approver-select').value;
+    approverDetails = ` (${formatApproverDisplayValue(firstApprover)})`;
+} else if (approverValue === 'two-people') {
+    const firstApprover = document.getElementById('first-approver-select').value;
+    const secondApprover = document.getElementById('second-approver-select').value;
+    approverDetails = ` (${formatApproverDisplayValue(firstApprover)} and ${formatApproverDisplayValue(secondApprover)})`;
+}
+
+    // Create confirmation screen
+    authFlowScreen.innerHTML = `
+<div class="notch"></div>
+<div class="auth-setup-flow-container">
+ <div class="auth-setup-flow-header">
+ <span class="material-icons-sharp js-auth-flow-back-btn">arrow_back</span>
+ <h1>Set Account Authorisations</h1>
+ </div>
+
+ <div class="auth-flow-confirmation-section">
+ <div class="auth-flow-confirmation-item">
+ <div class="auth-flow-confirmation-label">Who can create payments?</div>
+ <div class="auth-flow-confirmation-value">${formatAuthFlowDisplayValue(creatorValue)}</div>
+ <a href="#" class="js-auth-flow-edit-link">Edit</a>
+ </div>
+
+ <div class="auth-flow-confirmation-item">
+ <div class="auth-flow-confirmation-label">Who must approve payments?</div>
+ <div class="auth-flow-confirmation-value">${formatAuthFlowDisplayValue(approverValue)}${approverDetails}</div>
+ <a href="#" class="js-auth-flow-edit-link">Edit</a>
+ </div>
+ </div>
+
+ <div class="separator-line"></div>
+
+ <div class="auth-flow-action-btns">
+ <button class="js-auth-flow-confirm-btn auth-flow-primary-btn">Confirm</button>
+ <button class="js-auth-flow-cancel-btn auth-flow-secondary-btn">Cancel</button>
+ </div>
+</div>
+`;
+
+    // Button handlers
+    authFlowScreen.querySelector('.js-auth-flow-confirm-btn').addEventListener('click', confirmAuthFlowAction);
+    authFlowScreen.querySelector('.js-auth-flow-cancel-btn').addEventListener('click', cancelAuthFlowAction);
+    authFlowScreen.querySelectorAll('.js-auth-flow-edit-link')[0].addEventListener('click', function(e) {
+    e.preventDefault();
+    showAuthSetupStep1Screen();
+});
+    authFlowScreen.querySelectorAll('.js-auth-flow-edit-link')[1].addEventListener('click', function(e) {
+    e.preventDefault();
+    showAuthSetupStep1Screen();
+});
+    authFlowScreen.querySelector('.js-auth-flow-back-btn').addEventListener('click', showAuthSetupStep1Screen);
+}
+
+    function formatAuthFlowDisplayValue(value) {
+    const mappings = {
+    'authoriser': 'Authoriser',
+    'capturer': 'Capturer',
+    'choose-approvers': 'Choose approvers',
+    'no-one': 'No one',
+    'one-person': 'One person',
+    'two-people': 'Two people'
+};
+    return mappings[value] || value;
+}
+
+    function formatApproverDisplayValue(value) {
+    return value === 'authoriser' ? 'Authoriser' : 'Capturer';
+}
+
+    function cancelAuthFlowAction() {
+    closeAuthFlowScreen();
+}
+
+    function confirmAuthFlowAction() {
+    // Save changes and return to main content
+    alert('Account authorizations updated successfully!');
+    closeAuthFlowScreen();
+}
+
+    function closeAuthFlowScreen() {
+    document.getElementById('authFlowScreen').style.display = 'none';
+    document.getElementById('authFlowScreen').innerHTML = '';
+    document.getElementById('authFlowBackdrop').style.display = 'none';
+}
+});
