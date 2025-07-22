@@ -106,3 +106,4 @@ continueBtn.addEventListener('click', () => {
         alert('Please select a card type.');
     }
 });
+
