@@ -607,16 +607,16 @@ body {
 }
 
 .popup-header {
-    position: fixed;
+    position: absolute;
     font-size: 1.5rem;
     font-weight: bold;
     background-color: #2C3C4C;
     color: white;
     width: calc(100% + 40px);
     height: 50px;
-    top: -10px;
+    top: -5px;
     left: -20px;
-    padding: 10px 20px;
+    padding: 30px 20px;
     box-sizing: border-box;
     z-index: 5;
     margin-top: 25px;
@@ -632,22 +632,24 @@ body {
     border-radius: 16px;
     width: 90%;
     max-width: 400px;
-    position: relative;
+    position: absolute;
     max-height: 80vh;
     display: flex;
     flex-direction: column;
+    top: 330px;
+    overflow: scroll;
 }
 
 
 .popup-header {
-    padding: 16px 24px 8px;
+    padding: 30px 24px 8px;
     text-align: center;
 }
 
 .popup-header h2 {
     margin: 0;
     font-size: 20px;
-    color: #333;
+
 }
 
 
@@ -657,18 +659,20 @@ body {
 }
 
 .card-image {
+    position: relative;
     max-width: 200px;
     height: 300px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    top: 25px;
 }
 
-/* Card Type Selection */
+
 .card-type-container {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 0 24px;
+    padding: 10px 24px;
 }
 
 .card-option-box {
@@ -686,8 +690,8 @@ body {
 }
 
 .card-option-label input[type="radio"] {
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
     accent-color: #0066ff;
 }
 
@@ -729,7 +733,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Card Holder Options */
+
 .card-holder-option {
     border: 1px solid #ddd;
     border-radius: 8px;
