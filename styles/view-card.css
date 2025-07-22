@@ -28,6 +28,7 @@
     top: 355px;
     color: #00aeff;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .card-table {
@@ -56,6 +57,7 @@
     position: relative;
     width: 115%;
     left: -15px;
+    cursor: pointer;
 }
 
 .card-table::-webkit-scrollbar {
