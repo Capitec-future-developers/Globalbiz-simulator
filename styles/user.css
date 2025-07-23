@@ -368,9 +368,15 @@ input[type="checkbox"] {
     max-width: 500px;
 }
 
-.form-group {
+.form-row {
     display: flex;
-    flex-direction: column;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 200px;
 }
 
 .form-group label {
