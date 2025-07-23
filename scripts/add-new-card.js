@@ -193,7 +193,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
 </div>
 `;
 
-
+// Set Limits button
                 const setLimitsBtn = document.querySelector('.continue');
                 if (setLimitsBtn) {
                     setLimitsBtn.addEventListener('click', function() {
@@ -202,7 +202,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                     });
                 }
 
-
+// Cancel button
                 const cancelLimitsBtn = document.querySelector('.cancel');
                 if (cancelLimitsBtn) {
                     cancelLimitsBtn.addEventListener('click', function() {
