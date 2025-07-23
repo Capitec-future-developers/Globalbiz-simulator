@@ -25,12 +25,24 @@ document.addEventListener('DOMContentLoaded', function() {
  <h4>What would you like to do?</h4>
  </div>
  <div class="what-to-do-content">
- <div class="pause"><img src="../images/stop-card-action.svg">Pause card<input type="radio" name="cardAction" style="position: absolute; right: 30px; accent-color: #00aeff;"> </div>
- <div class="stop"><img src="../images/stop-card-action.svg">Stop card<input type="radio" name="cardAction" style="position: absolute; right: 30px; accent-color: #00aeff;"> </div>
+ <div class="pause" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 10px;">
+ <div style="display: flex; align-items: center;">
+ <img src="../images/stop-card-action.svg" style="margin-right: 10px;">
+ <span>Pause card</span>
+ </div>
+ <input type="radio" name="cardAction" style="accent-color: #00aeff;">
+ </div>
+ <div class="stop" style="display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+ <div style="display: flex; align-items: center;">
+ <img src="../images/stop-card-action.svg" style="margin-right: 10px;">
+ <span>Stop card</span>
+ </div>
+ <input type="radio" name="cardAction" style="accent-color: #00aeff;">
+ </div>
  </div>
  
  <!-- Pause Disclaimer section (initially hidden) -->
- <div id="pauseDisclaimer" style="display: none; background-color: #e6f4ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
+ <div id="pauseDisclaimer" style="display: none; background-color: #e6f4ff; padding: 15px; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
  <div style="display: flex; align-items: flex-start; gap: 10px;">
  <img src="../images/info-trans.svg" style="width: 20px; height: 20px;">
  <div>
@@ -44,52 +56,51 @@ document.addEventListener('DOMContentLoaded', function() {
  </div>
  </div>
  
-
- <div id="stopDisclaimer" style="display: none; background-color: #e6f4ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
+ 
+ <div id="stopDisclaimer" style="display: none; background-color: #e6f4ff; padding: 15px; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
  <div style="display: flex; align-items: flex-start; gap: 10px;">
  <img src="../images/info-trans.svg" style="width: 20px; height: 20px;">
  <div>
- <p style="margin: 0; font-weight: bold;">Stopping card:</p>
  <p style="margin: 5px 0 0 0;">
- Stopping your card will permanently disable it for all transactions.<br><br>
+ <b>Stopping your card:</b> You are about to permanently stop this card which will prevent it from being used completely including online purchases. You will have to replace this card after it it stopped <br><br>
  You will need to order a new card if you stop this one.<br><br>
- Any recurring transactions will need to be updated with your new card details.
+ <b>You can order a replacement card at a later time</b>
  </p>
  </div>
  </div>
+ </div>
  
- <!-- Reason for stopping card section -->
- <div id="stopReasonSection" style="margin-top: 15px;">
+
+ <div id="stopReasonSection" style="display: none; margin-top: 15px;">
  <h4 style="margin-bottom: 10px;">Reason for stopping card</h4>
  <div style="display: flex; flex-direction: column; gap: 10px;">
- <div style="display: flex; align-items: center;">
- <input type="radio" name="stopReason" id="lost" value="lost" style="margin-right: 10px;">
+ <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid #ccc; border-radius: 8px;">
  <label for="lost">Lost</label>
+ <input type="radio" name="stopReason" id="lost" value="lost" style="accent-color: #00aeff;">
  </div>
- <div style="display: flex; align-items: center;">
- <input type="radio" name="stopReason" id="stolen" value="stolen" style="margin-right: 10px;">
+ <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid #ccc; border-radius: 8px;">
  <label for="stolen">Stolen</label>
+ <input type="radio" name="stopReason" id="stolen" value="stolen" style="accent-color: #00aeff;">
  </div>
- <div style="display: flex; align-items: center;">
- <input type="radio" name="stopReason" id="damaged" value="damaged" style="margin-right: 10px;">
+ <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid #ccc; border-radius: 8px;">
  <label for="damaged">Damaged</label>
+ <input type="radio" name="stopReason" id="damaged" value="damaged" style="accent-color: #00aeff;">
  </div>
- <div style="display: flex; align-items: center;">
- <input type="radio" name="stopReason" id="fraud" value="fraud" style="margin-right: 10px;">
+ <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid #ccc; border-radius: 8px;">
  <label for="fraud">Suspected fraud</label>
- </div>
+ <input type="radio" name="stopReason" id="fraud" value="fraud" style="accent-color: #00aeff;">
  </div>
  </div>
  </div>
  </section>
 
  <div class="btn">
- <button class="continue">Continue</button>
- <button class="cancel">Cancel</button>
+ <button class="continue" style="padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: #00aeff; color: white; width: 100%; margin-bottom: 10px;">Continue</button>
+ <button class="cancel" style="padding: 12px; border: 1px solid #ccc; border-radius: 8px; background-color: white; color: #00aeff; width: 100%;">Cancel</button>
  </div>
  `;
 
-            // Update header
+
             const header = document.querySelector('.header');
             if (header) {
                 header.textContent = 'Pause or Stop Card';
@@ -98,27 +109,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 header.style.top = '-40px';
             }
 
-            // Add radio button change listeners
+
             const radioButtons = document.querySelectorAll('input[name="cardAction"]');
             radioButtons.forEach(radio => {
                 radio.addEventListener('change', function() {
                     const pauseDisclaimer = document.getElementById('pauseDisclaimer');
                     const stopDisclaimer = document.getElementById('stopDisclaimer');
+                    const stopReasonSection = document.getElementById('stopReasonSection');
 
                     if (this.parentElement.classList.contains('pause') && this.checked) {
                         pauseDisclaimer.style.display = 'block';
                         stopDisclaimer.style.display = 'none';
+                        stopReasonSection.style.display = 'none';
                     } else if (this.parentElement.classList.contains('stop') && this.checked) {
                         pauseDisclaimer.style.display = 'none';
                         stopDisclaimer.style.display = 'block';
+                        stopReasonSection.style.display = 'block';
                     } else {
                         pauseDisclaimer.style.display = 'none';
                         stopDisclaimer.style.display = 'none';
+                        stopReasonSection.style.display = 'none';
                     }
                 });
             });
 
-            // Cancel button
+
             const cancelButton = document.querySelector('.cancel');
             if (cancelButton) {
                 cancelButton.addEventListener('click', function() {
@@ -126,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
 
-            // Continue button
+
             const continueButton = document.querySelector('.continue');
             if (continueButton) {
                 continueButton.addEventListener('click', function() {
