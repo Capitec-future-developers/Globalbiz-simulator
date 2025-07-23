@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 
-<!-- Virtual Card Options (initially hidden) -->
+
 <div id="virtualCardOptions" style="display: none; margin-top: 20px;">
 <div style="margin-bottom: 15px;">
 <label style="display: block; margin-bottom: 5px; font-weight: 500;">Preferred name on card</label>
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 
-<!-- Debit Card Options (initially hidden) -->
+
 <div id="debitCardOptions" style="margin-top: 20px;">
 <div style="display: flex; align-items: center; padding: 15px; background-color: #e6f4ff; border-radius: 8px;">
 <img src="../images/info-trans.svg" style="width: 20px; margin-right: 10px;">
@@ -85,7 +85,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
 </div>
 `;
 
-// Update header
+
             const header = document.querySelector('.header');
             if (header) {
                 header.textContent = 'Add New Card';
@@ -94,7 +94,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                 header.style.top = '-40px';
             }
 
-// Add radio button change listeners for card type
+
             const cardTypeRadios = document.querySelectorAll('input[name="cardType"]');
             cardTypeRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
@@ -111,7 +111,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                 });
             });
 
-// Cancel button
+
             const cancelButton = document.querySelector('.cancel');
             if (cancelButton) {
                 cancelButton.addEventListener('click', function() {
@@ -119,14 +119,14 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                 });
             }
 
-// Continue button
+
             const continueButton = document.querySelector('.continue');
             if (continueButton) {
                 continueButton.addEventListener('click', function() {
                     const selectedCardType = document.querySelector('input[name="cardType"]:checked').value;
 
                     if (selectedCardType === 'virtual') {
-// Validate virtual card options
+
                         const nameInput = document.querySelector('#virtualCardOptions input[type="text"]');
                         const selectedHolder = document.querySelector('input[name="cardHolder"]:checked');
 
@@ -140,7 +140,6 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                             return;
                         }
 
-// Show limits page
                         showLimitsPage();
                     } else {
                         alert('Your new debit card will be processed and delivered to your registered address');
@@ -149,7 +148,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                 });
             }
 
-// Function to show limits page
+
             function showLimitsPage() {
                 mainContent.innerHTML = `
 <section class="heading">
@@ -194,7 +193,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
 </div>
 `;
 
-// Set Limits button
+
                 const setLimitsBtn = document.querySelector('.continue');
                 if (setLimitsBtn) {
                     setLimitsBtn.addEventListener('click', function() {
@@ -203,7 +202,7 @@ Your new debit card will be delivered to your registered address within 5-7 busi
                     });
                 }
 
-// Cancel button
+
                 const cancelLimitsBtn = document.querySelector('.cancel');
                 if (cancelLimitsBtn) {
                     cancelLimitsBtn.addEventListener('click', function() {
