@@ -37,7 +37,10 @@
     font-weight: bold;
     cursor: pointer;
     position: relative;
-    top: 10px; /* Will now apply */
+    top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -213,13 +216,14 @@ thead {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     padding: 12px;
     text-align: left;
+
 }
 
 th {
-    background-color: #f0f0f0;
+    background-color: #ffff;
     font-weight: bold;
     color: #333;
 }
