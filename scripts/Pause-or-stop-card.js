@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
  </div>
  </div>
  
- <!-- Stop Disclaimer section (initially hidden) -->
+
  <div id="stopDisclaimer" style="display: none; background-color: #e6f4ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
  <div style="display: flex; align-items: flex-start; gap: 10px;">
  <img src="../images/info-trans.svg" style="width: 20px; height: 20px;">
