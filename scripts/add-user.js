@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
 
                         <div class="form-group" id="identityInputWrapper" style="display: none;">
-                            <!-- ID Input will be inserted here dynamically -->
+                            
                         </div>
 
                         <!-- Communication Preference -->
@@ -90,6 +90,42 @@ document.addEventListener('DOMContentLoaded', function () {
                         inputWrapper.innerHTML = '';
                     }
                 });
+
+                const nextHandler = () => {
+                    disclaimerBox.innerHTML = `
+                           <div class="step-header">
+                            <div class="step" style="color: green;">1</div>
+                            <div class="step active" style="border-bottom: 3px solid blue;">2</div>
+                            <div class="step" style="color: grey;">3</div>
+                            <div class="step" style="color: grey;">4</div>
+                            <div class="step" style="color: grey;">5</div>
+                        </div>
+
+                        <h2>Select User Role</h2>
+                        <p>Please choose the role to assign to this user:</p>
+
+                        <form class="role-form">
+                            <div class="form-group">
+                                <label><input type="radio" name="role" value="admin"> Admin</label>
+                            </div>
+                            <div class="form-group">
+                                <label><input type="radio" name="role" value="manager"> Manager</label>
+                            </div>
+                            <div class="form-group">
+                                <label><input type="radio" name="role" value="viewer"> Viewer</label>
+                            </div>
+
+                            <br>
+                            <button type="button" class="btn-next">Next</button>
+                        </form>
+
+                    `;
+                };
+                setTimeout(() =>{
+                    const nextBtn = document.getElementById('nextBtn');
+                    if (nexrBtn) nextBtn.addEventListner('click', nextHandler);
+
+                }, 50);
             }
         });
     }
