@@ -196,3 +196,42 @@
     border: 1px solid #ccc;
     height: 40px;
 }
+
+table {
+    position: absolute;
+    top: 220px;
+    left: 300px;
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+thead {
+    background-color: #dddddd;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #333;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.statu {
+    background-color: #3bf1da;
+    color: #111;
+    padding: 4px 8px;
+    border-radius: 10px;
+    display: inline-block;
+}
