@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     const addUserBtn = document.getElementById('next');
-
     const disclaimerBox = document.querySelector('.disclaimer-box');
+
     if (!addUserBtn || !disclaimerBox) return;
 
-    // Step 1: User Details
-    const showStep1 = () => {
+    // STEP TRACKER
+    let currentStep = 1;
+
+    // Render Step 1 (User Details)
+    const renderStep1 = () => {
         disclaimerBox.innerHTML = `
             <div class="step-header">
                 <div class="step active" style="border-bottom: 3px solid blue;">1</div>
@@ -29,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <input type="text" placeholder="Enter last name">
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="form-group">
                         <label>Email</label>
@@ -40,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <input type="tel" placeholder="Enter phone number">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label>Choose Identity Type</label>
                     <select id="identityTypeSelect">
@@ -49,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         <option value="passport">Passport</option>
                     </select>
                 </div>
-
                 <div class="form-group" id="identityInputWrapper" style="display: none;"></div>
 
                 <h3>Preferred Method of Communication</h3>
@@ -57,33 +57,36 @@ document.addEventListener('DOMContentLoaded', function () {
                     <label><input type="checkbox"> Email</label>
                     <label><input type="checkbox"> SMS</label>
                 </div>
-            </form>
 
-            <div class="letsgo">
-                <button class="cancel">Cancel</button>
-                <button class="next" id="nextToStep2">Next</button>
-            </div>
+                <div class="letsgo">
+                    <button class="cancel">Cancel</button>
+                    <button type="button" class="next" id="next">Next</button>
+                </div>
+            </form>
         `;
 
         const identitySelect = document.getElementById('identityTypeSelect');
         const inputWrapper = document.getElementById('identityInputWrapper');
 
         identitySelect.addEventListener('change', function () {
+            const selected = this.value;
             inputWrapper.style.display = 'block';
-            inputWrapper.innerHTML = this.value === 'rsa'
-                ? `<label>RSA ID Number</label><input type="text" maxlength="13" placeholder="Enter 13-digit RSA ID">`
-                : this.value === 'passport'
-                    ? `<label>Passport Number</label><input type="text" placeholder="Enter passport number">`
-                    : (inputWrapper.style.display = 'none', inputWrapper.innerHTML = '');
+
+            if (selected === 'rsa') {
+                inputWrapper.innerHTML = `<label>RSA ID Number</label><input type="text" maxlength="13" placeholder="Enter 13-digit RSA ID">`;
+            } else if (selected === 'passport') {
+                inputWrapper.innerHTML = `<label>Passport Number</label><input type="text" placeholder="Enter passport number">`;
+            } else {
+                inputWrapper.style.display = 'none';
+                inputWrapper.innerHTML = '';
+            }
         });
 
-        setTimeout(() => {
-            document.getElementById('nextToStep2')?.addEventListener('click', showStep2);
-        }, 50);
+        document.getElementById('next').addEventListener('click', renderStep2);
     };
 
-    // Step 2: Select User Role
-    const showStep2 = () => {
+    // Step 2: Select Role
+    const renderStep2 = () => {
         disclaimerBox.innerHTML = `
             <div class="step-header">
                 <div class="step" style="color: green;">1</div>
@@ -97,30 +100,22 @@ document.addEventListener('DOMContentLoaded', function () {
             <p>Please choose the role to assign to this user:</p>
 
             <form class="role-form">
-                <div class="form-group">
-                    <label><input type="radio" name="role" value="authoriser"> Authoriser</label>
-                </div>
-                <div class="form-group">
-                    <label><input type="radio" name="role" value="capturer"> Capturer</label>
-                </div>
-                <div class="form-group">
-                    <label><input type="radio" name="role" value="viewer"> Viewer</label>
-                </div>
+                <div class="form-group"><label><input type="radio" name="role" value="authoriser"> Authoriser</label></div>
+                <div class="form-group"><label><input type="radio" name="role" value="capturer"> Capturer</label></div>
+                <div class="form-group"><label><input type="radio" name="role" value="viewer"> Viewer</label></div>
             </form>
 
             <div class="letsgo">
                 <button class="cancel">Cancel</button>
-                <button class="next" id="nextToStep3">Next</button>
+                <button type="button" class="next" id="next">Next</button>
             </div>
         `;
 
-        setTimeout(() => {
-            document.getElementById('nextToStep3')?.addEventListener('click', showStep3);
-        }, 50);
+        document.getElementById('nextBtn').addEventListener('click', renderStep3);
     };
 
     // Step 3: Account Access
-    const showStep3 = () => {
+    const renderStep3 = () => {
         disclaimerBox.innerHTML = `
             <div class="step-header">
                 <div class="step" style="color: green;">1</div>
@@ -133,25 +128,22 @@ document.addEventListener('DOMContentLoaded', function () {
             <h2>Accounts</h2>
             <p>The user will be able to perform day-to-day banking tasks on the accounts they have access to.</p>
 
-            <form class="account-form">
-                <div class="form-group">
-                    <label><input type="checkbox" name="account-access" value="admin"> Admin</label>
-                </div>
-                <div class="form-group">
-                    <label><input type="checkbox" name="account-access" value="manager"> Manager</label>
-                </div>
-                <div class="form-group">
-                    <label><input type="checkbox" name="account-access" value="viewer"> Viewer</label>
-                </div>
+            <form class="role-form">
+                <div class="form-group"><label><input type="checkbox"> Admin</label></div>
+                <div class="form-group"><label><input type="checkbox"> Manager</label></div>
+                <div class="form-group"><label><input type="checkbox"> Viewer</label></div>
             </form>
 
             <div class="letsgo">
                 <button class="cancel">Cancel</button>
-                <button class="next" id="nextToStep4">Next</button>
+                <button type="button" class="next" id="next">Next</button>
             </div>
         `;
+
+        // Bind next step here if needed
+        // document.getElementById('nextBtn').addEventListener('click', renderStep4);
     };
 
-    // Start at Step 1
-    addUserBtn.addEventListener('click', showStep1);
+    // Initialize Step 1
+    addUserBtn.addEventListener('click', renderStep1);
 });
