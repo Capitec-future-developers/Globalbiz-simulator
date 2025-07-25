@@ -5,11 +5,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #f0f2f2;
     margin: 0;
     font-family: Arial, sans-serif;
-    overflow-y: hidden; /* Hide vertical scrollbar */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: hidden;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -17,8 +17,8 @@ body {
 /* ============ IPHONE FRAME ============ */
 .iphone {
     position: relative;
-    width: 310px;
-    height: 660px;
+    width: 330px;
+    height: 700px;
     background-color: #111;
     border-radius: 44px;
     padding: 15px;
@@ -1403,8 +1403,7 @@ body {
     position: absolute;
     border: 1px solid #dddddd;
     height: 100px;
-    width: 500px;
+    width: 266px;
     background-color: #ffffff;
-    border-radius: 10px;
-    right: 50px;
+     right: 10px;
 }

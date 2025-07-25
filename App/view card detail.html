@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone-card.css">
+    <link rel="stylesheet" href="../styles/view-card.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>App</title>
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="head">
+                <a href="Phone-cards.html" class="arrow" id="sidebarToggle" >
+                    <span class="material-icons-sharp" >arrow_back</span>
+                </a>
+                <div class="header" style="right: -90px; font-size: 20px; top: -40px;">Card Details</div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="content" id="mainContent">
+
+                <div class="the-card">
+                    <img class="the-card" src="../images/card.png" alt="card">
+                </div>
+                <div class="statu">Active</div>
+                <div class="show">
+                <span class="material-icons-sharp" style="position: absolute; left: -28px; top: -2px;">visibility_off</span>
+                    Show card Details
+                </div>
+
+                <div class="card-table">
+                    <div class="card-table-options" data-action="pause-stop-card"><img src="../images/stop-card-action.svg">Pause or stop card <span class="material-icons-sharp yeh" style="color: #00aeff; left: 190px;  bottom: 100px;">chevron_right</span></div>
+                    <div class="card-table-options" data-action="Update-card-limits" style="border-top: 1px solid #dddddd;"><img src="../images/cards-action.svg">Update card limits<span class="material-icons-sharp yeh" style="color: #00aeff;">chevron_right</span></div>
+                    <div class="card-table-options" style="border-top: 1px solid #dddddd;"><img src="../images/icon_pin.svg">Change card Pin<span class="material-icons-sharp yeh" style="color: #00aeff;">chevron_right</span></div>
+                    <div class="card-table-options" style="border-top: 1px solid #dddddd;"><img src="../images/contactless-action.svg">Tap to pay<span class="material-icons-sharp yeh" style="color: #00aeff;">chevron_right</span></div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav" id="bottomNav">
+                <a href="Phone2.html" class="nav-item " id="Home">
+                    <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+                    <span>Home</span>
+                </a>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <span>Accounts</span>
+                </a>
+                <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <span>Transact</span>
+                </a>
+                <a href="Phone-cards.html" class="nav-item active" id="cards">
+                    <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"/>
+                    <span>Cards</span>
+                </a>
+                <a href="../Computer/inprogress.html" class="nav-item">
+                    <span class="nav-icon material-icons-outlined">search</span>
+                    <span>Explore</span>
+                </a>
+            </div>
+        </div>
+
+    <div class="home-indicator"></div>
+        <script src="../scripts/Pause-or-stop-card.js"></script>
+        <script src="../scripts/update card limits.js"></script>
+
+<script src="../scripts/App.js"></script>
+        <script src="../scripts/Automation.js"></script>
+    </div>
+</body>
+</html>
