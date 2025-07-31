@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles/phone-settings.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
+  <title>iPhone with White LCD</title>
+</head>
+
+<body>
+
+<!-- Search Container -->
+<div class="search-container">
+  <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
+  <button id="execute-automation" class="search-button">
+    <span class="material-icons-sharp">search</span> Go
+  </button>
+  <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<!-- iPhone Wrapper -->
+<div class="iphone">
+
+  <!-- Volume and Power Buttons -->
+  <div class="volume-buttons">
+    <div class="volume-up"></div>
+    <div class="volume-down"></div>
+  </div>
+  <div class="power-button"></div>
+
+  <!-- Screen -->
+  <div class="screen">
+    <div class="notch"></div>
+    <div class="screen-content">
+
+      <!-- Header -->
+      <div class="head">
+        <div class="arrow" id="sidebarToggle">
+          <a href="Phone2.html">
+            <span class="material-icons-sharp">arrow_back</span>
+          </a>
+        </div>
+        <div class="header" style="font-size: 15px; right: 110px;">Settings</div>
+
+      </div>
+
+      <!-- Main Settings Content -->
+      <div class="content" id="mainContent" style="background-color: #ccc">
+        <div class="setting-container">
+
+          <!-- Biometrics Toggle -->
+          <div class="setting-item">
+            <p>Allow fingerprints or FaceID to unlock</p>
+            <label class="switch">
+              <input type="checkbox" id="biometricsToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="separator-bottom"></div>
+
+          <!-- Balance Toggle -->
+          <div class="setting-item">
+            <p>Show or hide balance on the home screen</p>
+            <label class="switch">
+              <input type="checkbox" id="balanceToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="separator-bottom"></div>
+
+          <!-- Tabs -->
+          <div class="tabs">
+            <button id="Transaction-Limits">
+              <div class="tab active">Transaction Limits</div>
+            </button>
+            <div class="yoh">
+              <span class="material-icons-sharp">keyboard_arrow_right</span>
+            </div>
+            <div class="separator-bottom"></div>
+
+            <button id="Transaction-Notifications">
+              <div class="tab">Transaction Notifications</div>
+            </button>
+            <div class="yoh">
+              <span class="material-icons-sharp">keyboard_arrow_right</span>
+            </div>
+            <div class="separator-bottom"></div>
+
+            <button id="Profile-Notifications">
+              <div class="tab">Profile Notifications</div>
+            </button>
+            <div class="yoh">
+              <span class="material-icons-sharp">keyboard_arrow_right</span>
+            </div>
+            <div class="separator-bottom"></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Navigations -->
+      <div class="bottom-nav">
+        <a href="Phone2.html" class="nav-item active">
+          <span class="nav-icon material-icons-outlined">home</span>
+          <span>Home</span>
+        </a>
+        <a href="Phone%20accounts.html" class="nav-item">
+          <span class="nav-icon material-icons-outlined">storage</span>
+          <span>Accounts</span>
+        </a>
+        <a href="Phone%20Transact.html" class="nav-item" id="transact">
+          <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+          <span>Transact</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon material-icons-outlined">credit_card</span>
+          <span>Cards</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon material-icons-outlined">search</span>
+          <span>Explore</span>
+        </a>
+      </div>
+
+    </div> <!-- screen-content -->
+  </div> <!-- screen -->
+
+  <div class="home-indicator"></div>
+</div> <!-- iphone -->
+
+<!-- Scripts -->
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/App.js"></script>
+<script src="../scripts/phone-settings.js"></script>
+<script src="../scripts/chatbot.js"></script>
+</body>
+</html>

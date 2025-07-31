@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Globalbiz</title>
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="icon" type="image/x-icon" href="./images/profile.jpg" />
+</head>
+<body>
+
+<header>
+  <img src="./images/globalbiz.jpg" alt="Globalbiz Header" class="h1" style="width: 100%;" />
+</header>
+
+<main>
+  <p>We are going to create an app simulator for our agents to use when assisting clients.</p>
+
+  <div class="select">Select an option</div>
+
+  <div class="button-group">
+    <button id="startBtn" class="button">Get started</button>
+
+    <div id="platformOptions" class="platform-options">
+      <p>Please select your platform:</p>
+      <button class="platform-btn" data-platform="app">Mobile App</button>
+      <button class="platform-btn" data-platform="pc">PC Version</button>
+    </div>
+
+    <div id="proceedBtn" class="get-started-btn" style="display: none;">
+      <button class="button" id="proceedLink">Proceed to Simulator</button>
+    </div>
+
+    <div id="loading" class="loading-animation" style="display: none;">
+      <div class="block blue"></div>
+      <div class="block lightblue"></div>
+      <div class="block red"></div>
+    </div>
+  </div>
+</main>
+
+<script src="./scripts/platformSelector.js"></script>
+<script src="./scripts/Apps.js"></script>
+<script src="./scripts/Combined.js"></script>
+
+</body>
+</html>
