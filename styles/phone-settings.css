@@ -111,7 +111,7 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #074358;
+    background-color: #1e1e2f;
     color: white;
     width: calc(100% + 40px);
     height: 40px;
@@ -128,10 +128,9 @@ body {
 }
 
 .header {
-    position: relative;
-    font-size: 1.5rem;
-    color: white;
-
+    position: absolute;
+    font-size: 15px;
+    left: 135px;
 }
 
 .arrow {
@@ -140,7 +139,6 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #074358;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -1563,7 +1561,7 @@ input:checked + .slider:before {
 }
 
 .detail-item right{
-    right: -10;
+    right: -10px;
 }
 
 .notification-header{
