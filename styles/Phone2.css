@@ -17,7 +17,7 @@ body {
 /* ============ IPHONE FRAME ============ */
 .iphone {
     position: relative;
-    width: 310px;
+    width: 300px;
     height: 700px;
     background-color: #111;
     border-radius: 44px;

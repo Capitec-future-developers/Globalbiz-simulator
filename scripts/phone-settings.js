@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="tab-content">
          <div class="tab-content tab-content-active">
             <div class="transaction-container">
-              <span class="info-heading"><h3>Transaction Limits</h3></span>
+              <span class="info-heading" style="right: 10px;"><h3>Transaction Limits</h3></span>
               <span class="edit-limit">
                     <button class="edit-limit-btn" id="editlimits">Edit Limit</button>
                   </span>
@@ -76,34 +76,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
               <div class="accounts-details">
                <span class="details-item">Kodi codes <div class="below">1052 2626 43</div></span>
-                <span class="currency">ZAR</span>
+                <span class="currency" style="position: absolute; right: 40px;">ZAR</span>
 <span class="material-icons-sharp" class="yoh" style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>
                               </div>
             </div>
-          <!-- Bottom Navigation -->
-            <div class="bottom-nav">
-                <a href="../App/Phone2.html" class="nav-item active">
-                    <span class="nav-icon material-icons-outlined">home</span>
+         <!-- Bottom Navigation -->
+            <div class="bottom-nav" id="bottomNav">
+                <a href="Phone2.html" class="nav-item active" id="Homee">
+                    <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
                     <span>Home</span>
                 </a>
-                <a href="../App/Phone%20accounts.html" class="nav-item">
-                    <span class="nav-icon material-icons-outlined">storage</span>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>Accounts</span>
                 </a>
-                <a href="../App/Phone%20Transact.html" class="nav-item" id="transact">
-                     <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                    <span>transact</span>
+                <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <span>Transact</span>
                 </a>
-                <a href="../App/Phone-cards.html" class="nav-item">
-                    <span class="nav-icon material-icons-outlined">credit_card</span>
+                <a href="Phone-cards.html" class="nav-item" id="cards">
+                    <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>Cards</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon material-icons-outlined">search</span>
-                    <span>Explore</span>
-                </a>
-            </div>
+            <a href="../Computer/inprogress.html" class="nav-item">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
+            </a>
+        </div>
         </div>
     </div>
       </div>`],
@@ -124,14 +124,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const screenContent = document.querySelector('.screen-content');
     const settingContainer = document.querySelector('.setting-container');
     const headerTitle = document.querySelector('.header');
-    const headerBackArrow = document.querySelector('#sidebarToggle'); // the header back arrow link
+    const headerBackArrow = document.querySelector('#sidebarToggle');
 
-    // Create new "page" container
+
     const newPageContainer = document.createElement('div');
     newPageContainer.classList.add('new-page-container');
     newPageContainer.style.cssText = `
     position: absolute;
-    top: 60px; /* stay below the header and notch */
+    top: 60px; 
     left: 0; right: 0; bottom: 0;
     background: #fff;
     display: none;
@@ -147,27 +147,27 @@ document.addEventListener('DOMContentLoaded', function () {
     function showNewPage(contentKey, title) {
         if (!tabContentData[contentKey]) return;
 
-        settingContainer.style.display = 'none'; // Hide main settings
-        newPageContainer.style.display = 'flex'; // Show new page content
-        headerTitle.textContent = title; // Change header title
+        settingContainer.style.display = 'none';
+        newPageContainer.style.display = 'flex';
+        headerTitle.textContent = title;
 
-        newPageContainer.innerHTML = ''; // Clear previous content
+        newPageContainer.innerHTML = '';
 
         const contentWrapper = document.createElement('div');
         contentWrapper.innerHTML = tabContentData[contentKey][0];
         newPageContainer.appendChild(contentWrapper);
     }
 
-    // Back Arrow Click (Header) — Return to main settings
+
     headerBackArrow.addEventListener('click', function(event) {
-        // prevent the link from navigating (since we want JS to handle it)
+
         event.preventDefault();
-        newPageContainer.style.display = 'none'; // Hide the new page
-        settingContainer.style.display = 'block'; // Show settings again
-        headerTitle.textContent = 'Settings'; // Reset header title
+        newPageContainer.style.display = 'none';
+        settingContainer.style.display = 'block';
+        headerTitle.textContent = 'Settings';
     });
 
-    // Attach click events to each tab button
+
     Object.entries(tabButtons).forEach(([key, button]) => {
         if (!button) return;
         button.addEventListener('click', () => {
