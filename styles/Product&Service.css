@@ -96,3 +96,112 @@
 .read-more:hover{
     background-color: #e0f7fa;
 }
+
+.Savings-32{
+    position: absolute;
+    top: 65px;
+    left: 800px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #1e1e2f;
+    width: 45%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.btns{
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+}
+
+.read-mores{
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    color: #007FFF;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.Add-accounts{
+    position: absolute;
+    bottom: 20px;
+    left: 130px;
+    color: #FFFFFF;
+    background-color: #007FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add-accounts:hover{
+    background-color: #0066cc;
+}
+
+.read-mores:hover{
+    background-color: #e0f7fa;
+}
+
+.transact{
+    position: absolute;
+    top: 450px;
+    left: 16px;
+    width: 98%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 250px;
+}
+
+.transacts{
+    position: absolute;
+    top: 65px;
+    left: 30px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #00aeff;
+    width: 50%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.btn{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+}
+
+.read-more{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    color: #007FFF;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.Add-account{
+    position: absolute;
+    bottom: 20px;
+    left: 140px;
+    color: #FFFFFF;
+    background-color: #007FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add-account:hover{
+    background-color: #0066cc;
+}
+
+.read-more:hover{
+    background-color: #e0f7fa;
+}
