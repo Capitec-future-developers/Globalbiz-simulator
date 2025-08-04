@@ -1,0 +1,98 @@
+.container{
+     Position: absolute;
+    border: 2px solid #ddd;
+    width: 80%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    top: 190px;
+}
+
+.heading{
+    position: absolute;
+    top: 15px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.ye {
+    position: absolute;
+    top: 60px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.line {
+    position: relative;
+    top: 100px;
+    border-bottom: 3px solid #111111;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 3px;
+}
+
+.Product-container{
+    position: absolute;
+    top: 150px;
+    left: 16px;
+    width: 98%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 250px;
+}
+
+.Savings{
+    position: absolute;
+    top: 65px;
+    left: 30px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #1e1e2f;
+    width: 50%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.btn{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+}
+
+.read-more{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    color: #007FFF;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.Add-account{
+    position: absolute;
+    bottom: 20px;
+    left: 140px;
+    color: #FFFFFF;
+    background-color: #007FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add-account:hover{
+    background-color: #0066cc;
+}
+
+.read-more:hover{
+    background-color: #e0f7fa;
+}
