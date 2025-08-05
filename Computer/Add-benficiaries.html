@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/Computer.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="stylesheet" href="../styles/beneficary.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <title>Online banking</title>
@@ -50,10 +51,10 @@
 
         <div class="profile-container">
             <a href="#contact" id="banker-popup">
-            <a href="#contact" id="profile-link" style="text-decoration: none;">
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
                     <div class="om-circle" style="text-decoration: none;">OM</div>
                     <div class="name">
-                    Omphile Mohlala
+                        Omphile Mohlala
                     </div>
                 </a>
 
@@ -134,16 +135,16 @@
         </div>
     </div>
     <div class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <span class="material-icons-sharp">groups</span>
-        User management
-        <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
-    </a>
-    <div class="dropdown-menu">
-        <a href="user-management.html">User Details </a>
-        <a href="#">Activity History</a>
-    </div>
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">groups</span>
+            User management
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="user-management.html">User Details </a>
+            <a href="#">Activity History</a>
         </div>
+    </div>
     <p class="side">SERVICES</p>
     <a href="Product&Services.html">
         <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
@@ -169,7 +170,7 @@
         <span class="material-icons-sharp">lock</span>
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
-</div>
+    </div>
 </nav>
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
@@ -178,137 +179,29 @@
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
-
-
-<br>
-<div style="padding-left:290px">
-    <div class="notice">
-        <h4>Hello</h4>
-        <p id="signin-date"></p>
-    </div>
-</div>
-
-<!-- Main Content Area -->
-<div class="content" id="mainContent">
-    <!-- Default content will be loaded here -->
-    <div class="account">
-        <div class="account-header">
-            <h4>Accounts</h4>
-            <a href="inprogress.html" class="View">
-                View All
-            </a>
+<main class="main-content">
+    <div class="header-content">
+        <h1>Beneficiaries</h1>
+        <div class="those">
+        <div class="yoh auth">Authorisations</div>
+        <div class="yoh import">Import List</div>
+        <div class="yoh ben">Add Beneficary</div>
         </div>
-        <div class="box">
-            <div class="box1">
-                <img src="../images/transact.svg" alt="transact">
-                <span class="separator"></span>
-                <a href="Accounts.html">
-                    <div class="account-details">
-                        <span class="account-name">1 Current Account</span>
-                        <span class="account-balance" style="color: black; right: 50px; position: absolute;">R1000.00</span>
-                        <span class="material-icons-sharp"  style=" right: 10px; position: absolute;">chevron_right</span>
-                    </div>
-                </a>
-            </div>
-
-                <div class="box2">
-                    <img src="../images/save.svg" alt="transact">
-                    <span class="separator"></span>
-                        <a href="inprogress.html">
-                            <div class="account-details">
-                                <span class="account-name1">1 Savings account</span>
-                                <span class="account-balance1" style="color: black; right: 50px; position: absolute;">R2260.00</span>
-                                <span class="material-icons-sharp"  style=" right: 10px; position: absolute;">chevron_right</span>
-                            </div>
-                         </div>
-                        </a>
-                    </div>
-        <!-- Box 3 -->
-        <a href="#" class="box3" style="width: 300px;">
-            <img src="../images/accounts.svg" alt="transact" style="position: absolute; color: #cccccc;">
-            <div class="account-details">
-                <span class="account-name1" style="position: absolute; text-align: center; left: 150px; color: #cccccc;">No other account (s)</span>
-            </div>
-        </a>
     </div>
+    <div class="content-body">
+        <div class="fav">
+            <div class="fav-header">Favorites</div>
+            <div class="edit">Edit</div>
+            <div class="fav-boxes">
+                <div class="fav-box">
+                    <div class="Name">Helen Mohlala</div>
+                    <p>Last paid: 20 July 2025</p>
+                    <div class="pay">Pay</div>
                 </div>
-
-<!-- Favorites Section - Placed outside content div -->
-<div class="favorites-container">
-    <div class="favorites">
-        <div class="favorites-header">
-            <h4>Favourites</h4>
-            <h4 class="edit">Edit</h4>
-        </div>
-        <div class="favorites-grid" style="display: flex; flex-wrap: wrap; justify-content: space-evenly; position: relative;">
-            <!-- Pay Saved Beneficiary -->
-            <div class="favorite-box" style="position: relative; top: 10px; right: 140px;">
-                <span class="material-icons-sharp"><img src="../images/client-insights.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                <span class="favorite-title">Pay Saved beneficary</span>
-            </div>
-
-            <!-- Pay Once Off Beneficiary -->
-            <div class="favorite-box" style="position: relative; bottom: 105px; left: 140px;">
-                <span class="material-icons-sharp"><img src="../images/once-off-payment.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                <span class="favorite-title">Pay Once Off</span>
-            </div>
-
-            <!-- Group/Multiple Payments -->
-            <div class="favorite-box" style="position: relative; top: -80px; right: 140px;" >
-                <span class="material-icons-sharp"><img src="../images/client-insights.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                <span class="favorite-title">Multiple</span>
-            </div>
-
-            <!-- Transfer Money -->
-            <div class="favorite-box" id="transfer" style="position: relative; bottom: 195px; left: 140px;">
-                <span class="material-icons-sharp"><img src="../images/notes.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                <span class="favorite-title">Make bulk payment</span>
             </div>
         </div>
     </div>
-</div>
-
-
-<!--Pending Authorisations-->
-<div class="pending">
-
-    <div class="pending-header">
-        <h4>Pending Authorisations</h4>
-        <a href="all_authorisations.html" class="View">
-            View All <span class="material-icons-sharp">chevron_right</span>
-        </a>
-    </div>
-    <div class="pending-box">
-        <img src="../images/history.svg" alt="history" style="width: 150px; height: 150px; background-color: #ffffff;">
-        <span style="font-weight: bold;">You're up to date</span><br>
-        <span>All pending authorasation will show here.</span>
-    </div>
-</div>
-
-<div class="cash-flow">
-    <div class="cash-flow-header">
-        <h4>Cash Flow</h4>
-    </div>
-    <div class="cash-flow-box">
-        <span class="cash-flow-title"></span>
-        <div class="select-row">
-            <label for="account-select">1 Transactional Account</label>
-            <select id="account-select" class="account-select">
-                <option value="account1">Account </option>
-                <!-- other options -->
-            </select>
-            <div class="period-selector">
-                <select class="account-select">
-                    <option value="account1">Period</option>
-                    <option value="account1">1 Month</option>
-                    <option value="account2">3 Months</option>
-                    <option value="account3">6 Months</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
+</main>
 
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>

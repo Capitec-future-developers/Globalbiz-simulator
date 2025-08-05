@@ -1,0 +1,94 @@
+.header-content{
+    position: absolute;
+    display: flex;
+}
+
+.those{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 800px;
+    gap: 30px;
+    cursor: pointer;
+}
+
+.yoh{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    left: 800px;
+}
+
+.import, .auth{
+    color: #007FFF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ben{
+    background-color: #007FFF;
+    color: #FFF;
+    border: 1px solid #007FFF;
+    border-radius: 4px;
+    height: 50px;
+    padding: 0 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.auth:hover{
+    background-color: rgba(187, 219, 234, 0.8);
+    color: #1a73e8;
+}
+
+.import:hover{
+    background-color: rgba(187, 219, 234, 0.8);
+    color: #1a73e8;
+}
+
+.fav{
+    position: relative;
+    top: 100px;
+    border: 1px solid #ddd;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    height: 200px;
+    width: 1950px;
+}
+
+.fav-header{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111111;
+}
+
+.edit{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #1a73e8;
+    cursor: pointer;
+}
+
+.fav-box{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    border: 1px solid #ddd;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    height: 130px;
+    width: 250px;
+    border-left: 4px solid #1a73e8;
+}
