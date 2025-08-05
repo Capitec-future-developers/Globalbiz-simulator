@@ -45,6 +45,8 @@
             </div>
         </div>
 
+
+
         <div class="profile-container">
             <a href="#contact" id="banker-popup">
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
@@ -79,9 +81,12 @@
         <a href="./home%20page.html" class="sign">Sign Out</a>
     </div>
 </div>
-
+</div>
 <!--Sidebar navigation-->
-<div class="sidebar">
+<nav class="sidebar">
+    <div class="menu-toggle" id="sidebarToggle">
+        <span class="material-icons-sharp">menu</span>
+    </div>
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
         Home
@@ -97,7 +102,7 @@
         <a href="#" class="dropdown-toggle" id="transacts">
             <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
             Transact
-            <span class="dropdown-arrow">▶</span>
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
@@ -116,7 +121,7 @@
         <a href="#" class="dropdown-toggle">
             <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="transact" style="color: #cccccc;"></span>
             Authorisations
-            <span class="dropdown-arrow">▶</span>
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
         </a>
         <div class="dropdown-menu">
             <a href="#">Transactions</a>
@@ -128,10 +133,17 @@
             <a href="messages.html">Messages</a>
         </div>
     </div>
-    <a href="inprogress.html">
-        <span class="material-icons-sharp">groups</span>
-        User management
-    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">groups</span>
+            User management
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="user-management.html">User Details </a>
+            <a href="#">Activity History</a>
+        </div>
+    </div>
     <p class="side">SERVICES</p>
     <a href="Product&Services.html">
         <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
@@ -158,7 +170,7 @@
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
     </div>
-</div>
+</nav>
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
     <button id="execute-automation" class="search-button" aria-label="Execute search">
@@ -201,7 +213,7 @@
             </thead>
         </table>
     </div>
-</div>
+
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
