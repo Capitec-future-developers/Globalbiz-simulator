@@ -7,7 +7,7 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    left: 800px;
+    left: 290px;
     gap: 30px;
     cursor: pointer;
 }
@@ -47,11 +47,13 @@
 .auth:hover{
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
+    cursor: pointer;
 }
 
 .import:hover{
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
+    cursor: pointer;
 }
 
 .fav{
@@ -61,7 +63,7 @@
     background-color: #FFFFFF;
     border-radius: 5px;
     height: 200px;
-    width: 1950px;
+    width: 90%;
 }
 
 .fav-header{
@@ -90,7 +92,7 @@
     border-radius: 5px;
     height: 130px;
     width: 250px;
-    border-left: 4px solid #1a73e8;
+    border-left: 4px solid #1aa0e8;
 }
 .Name{
     position: absolute;
@@ -106,4 +108,64 @@
     color: #1a73e8;
     right: 25px;
     bottom: 35px;
+    cursor: pointer;
+}
+
+.next-box{
+    position: absolute;
+    top: 320px;
+    left: 10px;
+    border: 1px solid #ddd;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    height: 150%;
+    width: 89%;
+
+}
+.tabz-header{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: #111111;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+    width: 99%;
+    height: 30px;
+}
+
+.actives{
+    color: #00aeff;
+    border-bottom: 2px solid #00aeff;
+}
+
+.tabz-search{
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabz-search input{
+    width: 15%;
+    height: 90%;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 0 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.select{
+    width: 15%;
+    height: 90%;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 0 10px;
+    font-size: 1rem;
+    border-radius: 5px;
 }
