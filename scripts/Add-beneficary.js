@@ -1,4 +1,4 @@
-// Add-beneficary.js
+
 function initializeAddBeneficiary() {
     const addBeneficiaryBtn = document.getElementById('addBeneficiaryBtn');
 
@@ -6,7 +6,7 @@ function initializeAddBeneficiary() {
         addBeneficiaryBtn.addEventListener('click', function() {
             const mainContent = document.getElementById('mainContent');
 
-            // Step 1: Select Beneficiary Type
+
             mainContent.innerHTML = `
  <section class="heading">
  <div class="heading-content">
