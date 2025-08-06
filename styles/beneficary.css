@@ -1,6 +1,7 @@
 .header-content{
     position: absolute;
     display: flex;
+    cursor: pointer;
 }
 
 .those{
@@ -38,7 +39,6 @@
     height: 50px;
     padding: 0 16px;
     font-weight: bold;
-    cursor: pointer;
     top: 2px;
     display: flex;
     align-items: center;
@@ -52,13 +52,13 @@
 .auth:hover{
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
-    cursor: pointer;
+
 }
 
 .import:hover{
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
-    cursor: pointer;
+
 }
 
 .fav{
