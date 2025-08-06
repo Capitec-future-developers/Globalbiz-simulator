@@ -169,3 +169,33 @@
     font-size: 1rem;
     border-radius: 5px;
 }
+
+.beneficiary-table {
+    position: absolute;
+    top: 111px;
+    left: -1px;
+    width: 100.1%;
+    height: 100%;
+    font-size: 15px;
+    color: rgba(67, 65, 65, 0.82);
+    font-weight: lighter;
+    border-collapse: collapse;
+}
+
+.beneficiary-header-row {
+    background-color: #eeeeee;
+    border-bottom: 1px solid #ddd;
+}
+
+.beneficiary-table th,
+.beneficiary-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
