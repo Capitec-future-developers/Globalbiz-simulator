@@ -24,9 +24,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
 }
 
-.ben{
+.ben {
+    position: relative;
     background-color: #007FFF;
     color: #FFF;
     border: 1px solid #007FFF;
@@ -35,14 +39,15 @@
     padding: 0 16px;
     font-weight: bold;
     cursor: pointer;
-    position: relative;
     top: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    gap: 10px;
+    gap: 5px;
+    white-space: nowrap;
 }
+
 
 .auth:hover{
     background-color: rgba(187, 219, 234, 0.8);
