@@ -106,14 +106,15 @@
     cursor: pointer;
 }
 
-.yoh{
+.yohs{
     position: relative;
     display: flex;
     flex-direction: row;
     left: 800px;
+    cursor: pointer;
 }
 
-.import, .auth{
+.imports, .auths{
     color: #007FFF;
     display: flex;
     flex-direction: row;
@@ -121,9 +122,10 @@
     justify-content: center;
     gap: 5px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
-.ben {
+.bens {
     position: relative;
     background-color: #007FFF;
     color: #FFF;
@@ -142,17 +144,24 @@
     white-space: nowrap;
 }
 
-.auth:hover{
+.auths:hover {
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
     cursor: pointer;
 }
 
-.import:hover{
+.imports:hover {
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
     cursor: pointer;
 }
+
+.imports, .auths, .bens {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
 
 .fav{
     position: relative;
