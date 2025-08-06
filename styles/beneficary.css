@@ -1,120 +1,214 @@
-/* Add Beneficiary Styles */
-.what-to-do-content {
-    margin-bottom: 20px;
+/* Beneficiary Modal Styles */
+.beneficiary-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.beneficiary-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border: 1px solid #ccc;
+.beneficiary-modal {
+    background-color: white;
     border-radius: 8px;
-    margin-bottom: 10px;
+    width: 600px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 2px solid #007FFF;
+    position: relative;
+}
+
+.modal-header h4 {
+    margin: 0;
+    color: #333;
+}
+
+.steps-indicator {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.step {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.step.active {
+    background-color: #007FFF;
+    color: white;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-section {
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 14px;
+    color: #007FFF;
+    margin: 0 0 15px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     cursor: pointer;
 }
 
-.beneficiary-option:hover {
-    background-color: #f5f5f5;
+.radio-option input {
+    accent-color: #007FFF;
 }
 
-.option-content {
-    display: flex;
-    align-items: center;
-}
-
-.option-icon {
-    width: 40px;
-    margin-right: 10px;
-}
-
-.option-radio {
-    accent-color: #00aeff;
-}
-
-.options-container {
-    margin-top: 20px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
+.form-label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
 }
 
 .form-input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-size: 14px;
 }
 
-.form-actions {
+.bank-details {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.form-row {
     display: flex;
-    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
     gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-cancel, .btn-back {
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+}
+
+.btn-continue, .btn-confirm {
+    padding: 10px 20px;
+    background-color: #007FFF;
+    border: 1px solid #007FFF;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Confirmation page styles */
+.confirmation-details {
+    margin-bottom: 20px;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.detail-label {
+    font-weight: 500;
+    width: 150px;
+    color: #666;
+}
+
+.detail-value {
+    flex: 1;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 20px;
 }
 
-.btn-continue, .btn-submit {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #00aeff;
-    color: white;
-    width: 100%;
-    cursor: pointer;
+.terms-checkbox input {
+    accent-color: #007FFF;
 }
 
-.btn-cancel {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: white;
-    color: #00aeff;
-    width: 100%;
-    cursor: pointer;
-}
 
-.checkbox-label {
+.header-content {
+    position: relative; /* Changed from absolute */
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+    width: 100%;
+    padding: 10px 0;
 }
 
-.form-checkbox {
-    accent-color: #00aeff;
-    margin-right: 10px;
-}
-
-.header-content{
-    position: absolute;
-    display: flex;
-}
-
-.those{
-    position: absolute;
+.those {
+    position: relative; /* Changed from absolute/relative */
     display: flex;
     flex-direction: row;
-    left: 290px;
     gap: 30px;
     cursor: pointer;
+    margin-left: auto; /* Push to the right */
 }
 
-.yohs{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    left: 800px;
-    cursor: pointer;
-}
+/* Remove the .yohs class as it's not needed with the new structure */
 
-.imports, .auths{
+.imports, .auths {
     color: #007FFF;
     display: flex;
     flex-direction: row;
@@ -122,11 +216,14 @@
     justify-content: center;
     gap: 5px;
     white-space: nowrap;
-    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    z-index: 1000; /* Ensure it's above other elements */
+    position: relative;
 }
 
 .bens {
-    position: relative;
     background-color: #007FFF;
     color: #FFF;
     border: 1px solid #007FFF;
@@ -135,34 +232,35 @@
     padding: 0 16px;
     font-weight: bold;
     cursor: pointer;
-    top: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
     gap: 5px;
     white-space: nowrap;
+    transition: background-color 0.3s ease;
+    z-index: 1000; /* Ensure it's above other elements */
 }
 
 .auths:hover {
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
-    cursor: pointer;
 }
 
 .imports:hover {
     background-color: rgba(187, 219, 234, 0.8);
     color: #1a73e8;
-    cursor: pointer;
 }
 
-.imports, .auths, .bens {
+.bens:hover {
+    background-color: #0066CC;
+    border-color: #0066CC;
+}
+
+/* Ensure no parent elements are intercepting clicks */
+.header-right, .profile-container, .chatbot-toggler {
     position: relative;
-    z-index: 10;
-    pointer-events: auto;
+    z-index: auto;
 }
-
-
 .fav{
     position: relative;
     top: 100px;
