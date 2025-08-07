@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
-/* ============ BASE STYLES ============ */
+
 body {
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@ body {
 /* ============ IPHONE FRAME ============ */
 .iphone {
     position: relative;
-    width: 300px;
+    width: 330px;
     height: 700px;
     background-color: #111;
     border-radius: 44px;
