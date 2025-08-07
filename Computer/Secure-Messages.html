@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/Computer.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
-    <link rel="stylesheet" href="../styles/beneficary.css">
+    <link rel="stylesheet" href="../styles/Secure.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <title>Online banking</title>
+    <title>Secure Messages</title>
 
 </head>
 <body>
@@ -179,41 +179,34 @@
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
+
+<!--main-->
 <main class="main-content" id="mainContent">
     <div class="header-content">
-        <h1>Beneficiaries</h1>
+        <h1>Secure Messages</h1>
         <div class="those">
-        <div class="yohs auths">Authorisations</div>
-        <div class="yohs imports"><span> Import</span> List</div>
-            <div class="yohs bens" id="addBeneficiaryBtn"><span>Add</span> Beneficiary</div>
+            <div class="yohs bens" id="addBeneficiaryBtn"><span>Create</span><span>New</span>Message</div>
         </div>
     </div>
     <div class="content-body">
         <div class="fav">
-            <div class="fav-header">Favorites</div>
-            <div class="edit">Edit</div>
-            <div class="fav-boxes">
-                <div class="fav-box">
-                    <div class="Name">Helen Mohlala</div>
-                    <p style=" position: absolute; right: 75px; bottom: 60px;">Last paid: 20 July 2025</p>
-                    <div class="pay">Pay</div>
-                </div>
+            <div class="tabx">
+                <div class="tab activez">Inbox</div>
+                <div class="tab">Sent</div>
             </div>
-        </div>
-        <div class="next-box">
-            <div class="tabz">
-            <div class="tabz-header" >
-             <div class="tabz1 actives" id="yourBeneficiaries">Your beneficiaries</div>
-                <div class="tabz2" id="publicBeneficiary">Public Beneficiary</div>
-                <div class="tabz3" id="beneficiaryGroups">Beneficiary groups</div>
+            <div class="messages">
+                <table>
+                    <thead class="table-header">
+                    <tr>Date and Time</tr>
+                    <tr>For Account</tr>
+                    <tr>Subject</tr>
+                    </thead>
+                    <tbody>
+                    <!--<img src="../images/messages.svg" alt="message" class="pic">-->
+                    </tbody>
+                </table>
             </div>
-            </div>
-            <div id="tabzContent"></div>
-<div class="tabz-search">
-
-        </div>
-        </div>
-        </div>
+    </div>
 </main>
 <script src="../scripts/Add-beneficary.js"></script>
 <script src="../scripts/chatbot.js"></script>
