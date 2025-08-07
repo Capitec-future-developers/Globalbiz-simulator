@@ -1,5 +1,4 @@
 .header-content {
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,7 +8,7 @@
 
 .bens {
     background-color: #1aa0e8;
-    color: #FFF;
+    color: white;
     border: 1px solid #007FFF;
     border-radius: 4px;
     height: 50px;
@@ -22,26 +21,21 @@
     gap: 5px;
     white-space: nowrap;
     transition: background-color 0.3s ease;
-    z-index: 1000;
 }
 
 .bens:hover {
     background-color: #0066CC;
-    border-color: #0066CC;
 }
 
-.fav{
-    position: relative;
-    top: 30px;
+.fav {
     border: 1px solid #ddd;
-    background-color: #FFFFFF;
+    background-color: white;
     border-radius: 5px;
-    height: 100%;
     width: 100%;
+    padding: 16px;
 }
 
-.tabx{
-    position: relative;
+.tabx {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -51,33 +45,134 @@
     border-bottom: 2px solid #ddd;
 }
 
-.activez{
+.activez {
     border-bottom: 2px solid #1aa0e8;
     color: #1aa0e8;
 }
 
-.messages{
-    position: relative;
-
+.messages {
+    width: 100%;
+    font-size: 15px;
+    color: rgba(67, 65, 65, 0.82);
+    font-weight: lighter;
+    border-collapse: collapse;
+    background-color: white;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
 .table-header {
-    position: relative;
-    top: -10px;
-    background-color: #333333;
-    height: 30px;
-    font-size: 1.3rem;
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-
+    background-color: #f3f3f3;
+    color: #111;
+    border-bottom: 1px solid #eee;
 }
 
-tr{
+.table-header th {
     position: relative;
-    top: -10px;
+    top: 1px;
+    padding: 10px 10px;
+    text-align: left;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ccc;
+    background-color: #dddddd;
+}
+
+.table-body td {
+    padding: 10px 16px;
+    font-size: 1.1rem;
+    background-color: white;
+}
+
+.table-body tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.pic {
+    display: block;
+    margin: 40px auto;
+    max-width: 150px;
+    height: 100px;
+}
+
+.createMessage-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: #1111;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group select,
+.form-group input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel {
     background-color: #FFFFFF;
-    height: 30px;
-    font-size: 1.3rem;
+    color: #1aa0e8;
+}
+
+.btn-cancel:hover {
+    background-color: #f0f9ff;
+}
+
+.btn-send {
+    background-color: #1aa0e8;
+    color: white;
+}
+
+.btn-send:hover {
+    background-color: #007FFF;
 }

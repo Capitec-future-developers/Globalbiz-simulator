@@ -9,7 +9,6 @@
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <title>Secure Messages</title>
-
 </head>
 <body>
 <div class="user-info">
@@ -22,9 +21,8 @@
     <div class="business">Business</div>
 
     <div class="header-right">
-        <!-- Chatbot Toggle Button -->
         <button class="chatbot-toggler">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="position: absolute; left: 360px; top: -20px;"></span>
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="position: absolute; left: -10px; top: -14px;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -47,8 +45,6 @@
             </div>
         </div>
 
-
-
         <div class="profile-container">
             <a href="#contact" id="banker-popup">
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
@@ -57,9 +53,7 @@
                         Omphile Mohlala
                     </div>
                 </a>
-
             </a>
-            <!-- Popup HTML -->
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a class="popup-header" href="Profile-info.html">
@@ -84,7 +78,6 @@
     </div>
 </div>
 
-<!--Sidebar navigation-->
 <nav class="sidebar">
     <div class="menu-toggle" id="sidebarToggle">
         <span class="material-icons-sharp">menu</span>
@@ -95,9 +88,9 @@
     </a>
     <p class="side">BANKING</p>
     <a href="Accounts.html" id="accounts">
-        <span class="material-icons-sharp">
-            <img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
-        </span>
+<span class="material-icons-sharp">
+<img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
+</span>
         Accounts
     </a>
     <div class="dropdown">
@@ -180,12 +173,11 @@
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
-<!--main-->
 <main class="main-content" id="mainContent">
     <div class="header-content">
         <h1>Secure Messages</h1>
         <div class="those">
-            <div class="yohs bens" id="addBeneficiaryBtn"><span>Create</span><span>New</span>Message</div>
+            <div class="yohs bens" id="createMessageBtn"><span>Create</span><span>New</span>Message</div>
         </div>
     </div>
     <div class="content-body">
@@ -195,20 +187,27 @@
                 <div class="tab">Sent</div>
             </div>
             <div class="messages">
-                <table>
+                <table class="messages">
                     <thead class="table-header">
-                    <tr>Date and Time</tr>
-                    <tr>For Account</tr>
-                    <tr>Subject</tr>
+                    <tr class="table-row">
+                        <th>Date and Time</th>
+                        <th>For Account</th>
+                        <th>Subject</th>
+                    </tr>
                     </thead>
-                    <tbody>
-                    <!--<img src="../images/messages.svg" alt="message" class="pic">-->
+                    <tbody class="table-body">
+                    <tr>
+                        <td colspan="3" style="text-align: center;">
+                            <img src="../images/messages.svg" alt="message" class="pic"><br>
+                            No Messages. Please click on "Create New Message" above.
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
-    </div>
+        </div>
 </main>
-<script src="../scripts/Add-beneficary.js"></script>
+<script src="../scripts/Secure.js"></script>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
