@@ -183,8 +183,8 @@ table {
     justify-content: space-between;
     flex-direction: row;
     gap: 10px;
-    width: 60px;
-    right: -10px;
+    width: 150px;
+    right: -300px;
 }
 
 .btn {
