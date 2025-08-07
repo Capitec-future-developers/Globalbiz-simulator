@@ -256,14 +256,16 @@
     border-color: #0066CC;
 }
 
-
+#mainContent{
+    top: -10px;
+}
 .header-right, .profile-container, .chatbot-toggler {
     position: relative;
     z-index: auto;
 }
 .fav{
     position: relative;
-    top: 100px;
+    top: 80px;
     border: 1px solid #ddd;
     background-color: #FFFFFF;
     border-radius: 5px;
