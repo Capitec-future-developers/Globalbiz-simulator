@@ -119,9 +119,14 @@ table {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-h2{
+.modal-header{
     position: relative;
     color: #111;
+    left: -10px;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f9f9f9;
+
 }
 .modal-content h2 {
     margin-top: 0;
@@ -136,6 +141,24 @@ h2{
     flex-direction: column;
     gap: 15px;
     margin-bottom: 20px;
+}
+
+.Drop{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    top: -5px;
+}
+.down{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.low{
+
 }
 
 .form-group select{

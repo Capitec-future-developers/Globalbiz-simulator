@@ -10,14 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         modal.innerHTML = `
             <div class="modal-content">
-                <h2 style="border-bottom: 1px solid #dddddd; color: #111111; font-size: 1.1rem; left: -10px; height: 20px;">Create New Message</h2>
+            <div class="modal-header"><h2 class="hedin" style="position: relative; color: #111111; font-size: 1.1rem; left: -140px; height: 20px;">Create New Message</h2></div>
+                <br>
                 <form>
                     <div class="form-group">
-                        <select required>
+                    <div class="Drop">
+                        <select required class="down low">
                             <option disabled selected>Select Account</option>
                             <option>Kodi Code - 1052 2626 43 - R1000.00</option>
                         </select>
-                        <select required style="position: relative; right: -200px; top: -35px;">
+                        <select required style="position: relative; right: -10px; top: -1px;" class="down low">
                             <option disabled selected>What do you need help with</option>
                             <option>Beneficiary payment</option>
                             <option>Credit Card Enquiries</option>
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <option>TPMM-Account Open</option>
                             <option>TPMM-Account Payout Request</option>
                         </select>
+                        </div>
                         <input type="text" id="Message" name="Message" required placeholder="Type your message...">
                     </div>
                     <div class="form-group button">
