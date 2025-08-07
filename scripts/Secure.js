@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         modal.innerHTML = `
             <div class="modal-content">
-                <h2>Create New Message</h2>
+                <h2 style="border-bottom: 1px solid #dddddd; color: #111111; font-size: 1.1rem; left: -10px; height: 20px;">Create New Message</h2>
                 <form>
                     <div class="form-group">
                         <select required>
                             <option disabled selected>Select Account</option>
                             <option>Kodi Code - 1052 2626 43 - R1000.00</option>
                         </select>
-                        <select required>
+                        <select required style="position: relative; right: -200px; top: -35px;">
                             <option disabled selected>What do you need help with</option>
                             <option>Beneficiary payment</option>
                             <option>Credit Card Enquiries</option>

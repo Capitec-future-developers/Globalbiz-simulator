@@ -119,6 +119,10 @@ table {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
+h2{
+    position: relative;
+    color: #111;
+}
 .modal-content h2 {
     margin-top: 0;
     font-size: 1.6rem;
@@ -134,13 +138,19 @@ table {
     margin-bottom: 20px;
 }
 
-.form-group select,
+.form-group select{
+    display: flex;
+    flex-direction: row;
+    width: 150px;
+    border: 1px solid #ccc;
+}
 .form-group input[type="text"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1rem;
-    width: 50%;
+    width: 100%;
+    height: 150px;
 }
 
 .button {
