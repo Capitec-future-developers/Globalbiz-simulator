@@ -184,7 +184,7 @@
 }
 
 .terms-checkbox input {
-    accent-color: #007FFF;
+    accent-color: #1aa0e8;
 }
 
 
@@ -209,7 +209,7 @@
 
 
 .imports, .auths {
-    color: #007FFF;
+    color: #1aa0e8;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -224,7 +224,7 @@
 }
 
 .bens {
-    background-color: #007FFF;
+    background-color: #1aa0e8;
     color: #FFF;
     border: 1px solid #007FFF;
     border-radius: 4px;
@@ -243,7 +243,7 @@
 
 .auths:hover {
     background-color: rgba(187, 219, 234, 0.8);
-    color: #1a73e8;
+    color: #1aa0e8;
 }
 
 .imports:hover {
@@ -257,20 +257,22 @@
 }
 
 #mainContent{
-    top: -10px;
+    position: relative;
+    top: -50px;
 }
+
 .header-right, .profile-container, .chatbot-toggler {
     position: relative;
     z-index: auto;
 }
 .fav{
     position: relative;
-    top: 80px;
+    top: 30px;
     border: 1px solid #ddd;
     background-color: #FFFFFF;
     border-radius: 5px;
     height: 200px;
-    width: 90%;
+    width: 100%;
 }
 
 .fav-header{
@@ -286,7 +288,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #1a73e8;
+    color: #1aa0e8;
     cursor: pointer;
 }
 
@@ -312,7 +314,7 @@
 
 .pay{
     position: absolute;
-    color: #1a73e8;
+    color: #1aa0e8;
     right: 25px;
     bottom: 35px;
     cursor: pointer;
@@ -320,13 +322,13 @@
 
 .next-box{
     position: absolute;
-    top: 320px;
-    left: 10px;
+    top: 250px;
+    left: 5px;
     border: 1px solid #ddd;
     background-color: #FFFFFF;
     border-radius: 5px;
     height: 200%;
-    width: 89%;
+    width: 100%;
     overflow: hidden;
 }
 .tabz-header{
@@ -344,8 +346,8 @@
 }
 
 .actives{
-    color: #00aeff;
-    border-bottom: 2px solid #00aeff;
+    color: #1aa0e8;
+    border-bottom: 2px solid #1aa0e8;
 }
 
 .tabz-search{
