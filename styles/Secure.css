@@ -155,11 +155,12 @@ table {
     display: flex;
     flex-direction: row;
     gap: 30px;
+    height: 30px;
+    width: 50px;
+    border-radius: 5px;
 }
 
-.low{
 
-}
 
 .form-group select{
     display: flex;
