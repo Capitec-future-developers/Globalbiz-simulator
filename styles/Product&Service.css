@@ -1,11 +1,13 @@
-.container{
-     Position: absolute;
+.container {
+    position: absolute;
     border: 2px solid #ddd;
     width: 80%;
     height: 100%;
     background-color: #FFFFFF;
-    border-radius: 5px;
+     border-radius: 5px;
     top: 190px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .heading{
@@ -118,39 +120,34 @@
     background-color: #e0f7fa;
 }
 
-.Savings-32{
+.Savings-32 {
     position: absolute;
     top: 65px;
-    left: 800px;
-    border: 1px solid #dddddd;
-    border-left: 4px solid #1e1e2f;
+    left: 76%;
+    transform: translateX(-50%);
     width: 45%;
     height: 150px;
     overflow: hidden;
-    border-radius: 5px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #1e1e2f;
+ border-radius: 5px;
+    box-sizing: border-box;
+    max-width: calc(100% - 32px);
 }
 
+
 @media (max-width: 1024px) {
+    .Savings {
+        left: 5%;
+        width: 90%;
+    }
+
     .Savings-32 {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 95%;
+        transform: translateX(-100%);
         width: 90%;
     }
 }
-
-@media (max-width: 600px) {
-    .Savings-32 {
-        top: auto;
-        left: 0;
-        transform: none;
-        position: relative;
-        width: 100%;
-        margin: 1rem 0;
-        height: auto;
-        min-height: 150px;
-    }
-}
-
 
 .btns{
     position: absolute;

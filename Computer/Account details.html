@@ -22,8 +22,8 @@
 
     <div class="header-right">
         <!-- Chatbot Toggle Button -->
-        <button class="chatbot-toggler">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+        <button class="chatbot-toggler" style="position: absolute; top: 14px; right: 370px;">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="background-color: #FFFFFF ;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -101,13 +101,12 @@
         <a href="#" class="dropdown-toggle" id="transacts">
             <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" style="color: #cccccc;"></span>
             Transact
-            <span class="dropdown-arrow">▶</span>
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
-            <a href="#" id="t
-            Transfer">Transfer</a>
-            <a href="#" id="beneficiary-btn">Beneficiary</a>
+            <a href="transfer.html" id="Transfer">Transfer</a>
+            <a href="Add-benficiaries.html" id="beneficiary-btn">Beneficiary</a>
         </div>
     </div>
     <a href="Cards.html">
@@ -120,7 +119,7 @@
         <a href="#" class="dropdown-toggle">
             <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="transact" style="color: #cccccc;"></span>
             Authorisations
-            <span class="dropdown-arrow">▶</span>
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
         </a>
         <div class="dropdown-menu">
             <a href="#">Transactions</a>
@@ -132,12 +131,19 @@
             <a href="messages.html">Messages</a>
         </div>
     </div>
-    <a href="inprogress.html">
-        <span class="material-icons-sharp">groups</span>
-        User management
-    </a>
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <span class="material-icons-sharp">groups</span>
+            User management
+            <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
+        </a>
+        <div class="dropdown-menu">
+            <a href="user-management.html">User Details </a>
+            <a href="#">Activity History</a>
+        </div>
+    </div>
     <p class="side">SERVICES</p>
-    <a href="inprogress.html">
+    <a href="Product&Services.html">
         <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
         Products & Services
     </a>

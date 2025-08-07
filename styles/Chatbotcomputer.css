@@ -11,7 +11,7 @@ body {
     background-color: #f0f2f5;
 }
 
-/* Chatbot Toggle Button */
+
 .chatbot-toggler {
     position: absolute;
     right: 355px;
@@ -21,7 +21,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:  #ffffff;
+    border-radius: 50%;
+    background-color: #FFFFFF;
     color: #fff;
     border: none;
     outline: none;
@@ -46,7 +47,7 @@ body.show-chatbot .chatbot-toggler span:last-child {
     opacity: 1;
 }
 
-/* Chatbot Window */
+
 .chatbot {
     position: fixed;
     right: 40px;
@@ -65,14 +66,14 @@ body.show-chatbot .chatbot-toggler span:last-child {
     transition: all 0.3s ease;
 }
 
-/* Show only when body has class */
+
 body.show-chatbot .chatbot {
     transform: scale(1);
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Chatbot Header */
+/
 .chatbot header {
     background-color: #0070a0;
     padding: 16px 0;
@@ -173,7 +174,7 @@ body.show-chatbot .chatbot {
     visibility: visible;
 }
 
-/* Responsive */
+
 @media(max-width: 490px) {
     .chatbot {
         width: 100%;
