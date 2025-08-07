@@ -1,0 +1,175 @@
+.transfer-section {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.payment-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.payment-header h2 {
+    margin: 10px 0 5px;
+}
+
+.payment-header p {
+    color: #666;
+    margin: 0;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #0066cc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.submit-payment-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.balance-info {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.payment-processing {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.spinner {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    margin: 0 auto 20px;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #0066cc;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    animation-delay: -1.0s;
+}
+
+@keyframes sk-bounce {
+    0%, 100% { transform: scale(0.0) }
+    50% { transform: scale(1.0) }
+}
+
+.payment-confirmation {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.confirmation-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.confirmation-icon.success {
+    color: #4CAF50;
+}
+
+.confirmation-details {
+    text-align: left;
+    margin: 25px 0;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.done-btn {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 12px;
+    flex: 1;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.secondary-btn {
+    background-color: white;
+    color: #0066cc;
+    border: 1px solid #0066cc;
+    padding: 12px;
+    flex: 1;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* or any color you want */
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#page-transition.show {
+    opacity: 1;
+    pointer-events: all;
+}
