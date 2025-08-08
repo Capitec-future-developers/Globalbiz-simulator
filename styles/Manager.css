@@ -192,7 +192,7 @@
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
-    height: 400px;
+    height: 450px;
     width: 100%;
 }
 
@@ -204,8 +204,34 @@
     flex-direction: row;
     gap: 10px;
     background-color: #FFFFFF;
-    height: 300px;
+    height: 330px;
     width: 13%;
     border: 1px solid #dddddd;
     border-radius: 10px;
+}
+
+.made{
+    position: absolute;
+    top: 200px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    align-content: center;
+    align-items: center;
+}
+
+.Zenzis{
+    position: absolute;
+    top: 70px;
+    width: 110px;
+    height: 30px;
+    border-radius: 30%;
+    background-color: rgba(196, 239, 213, 0.47);
+    text-align: center;
+    font-size: 15px;
+    text-wrap: auto;
+    line-height: 30px;
+    font-weight: bold;
 }
