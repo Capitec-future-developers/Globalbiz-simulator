@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Computer.css">
+    <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="stylesheet" href="../styles/Manager.css">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <title>Online banking</title>
+
+</head>
+<body>
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
+<div class="header">
+    <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
+    <div class="header-right">
+        <!-- Chatbot Toggle Button -->
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+            <span class="material-icons-sharp">close</span>
+        </button>
+        banker
+
+        <div class="chatbot">
+            <header>
+                <h2>BIZCHAT</h2>
+                <span class="material-icons-sharp">close</span>
+            </header>
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <p>Welcome to Bizchat, how can I assist.</p>
+                </li>
+                <li class="chat outgoing"></li>
+            </ul>
+            <div class="chat-input">
+                <textarea placeholder="Type your message here..." required></textarea>
+                <span id="send-btn" class="material-icons-sharp">send</span>
+            </div>
+        </div>
+
+
+
+        <div class="profile-container">
+            <a href="#contact" id="banker-popup">
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+                    <div class="om-circle" style="text-decoration: none;">OM</div>
+                    <div class="name">
+                        Omphile Mohlala
+                    </div>
+                </a>
+
+            </a>
+            <!-- Popup HTML -->
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                </a>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">Omphile Mohlala</div>
+                    </div>
+                </div>
+                <div id="page-transition"></div>
+                <a href="KodiCode.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="#" class="manage-business">Manage business profile</a>
+            </div>
+        </div>
+        <a href="./home%20page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+</div>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+
+
+<!-- Main Content Area -->
+<div class="content" id="mainContent">
+    <div class="back">
+        <a href="Computer.html" class="back-btn">
+            <span class="material-icons-sharp" style="position: absolute; left: -30px;">arrow_back</span>
+            <h1 style="color: #111111;">Manage Business Profile</h1>
+        </a>
+    </div>
+ <div class="signin-content">
+<div class="signin-header">
+    <h3>Sign In details</h3>
+</div>
+     <p style="position: absolute; top: 90px; left: 25px;">You can sign in to all linked profiles with this username and password.</p>
+
+ <div class="username">
+     <span>Username</span>
+     <span style="font-weight: bold;">omphilestudent@gmail.com</span>
+ </div>
+    <div class="contacts">
+        <span>Cellphone</span>
+        <span style="font-weight: bold;">+27 60 291 0591</span>
+    </div>
+    <div class="Password">
+        <span>Password</span>
+        <span aria-hidden="true" style="font-weight: bold;">***************</span>
+
+    </div>
+    <span style="position: absolute; top: 150px; left: 1050px; color: #00aeff; cursor: pointer;">Update</span>
+ </div>
+
+    <div class="Singin-details">
+        <div class="circle">KC</div>
+        <div class="top">
+        <span style="font-weight: bold;">Kodi Code</span>
+        <span>
+            <p>Always sign me in with this profile</p>
+        </span>
+        </div>
+        <div class="Zenzi">Default profile</div>
+        <span class="material-icons-sharp" style="position: absolute; color: #00aeff; left: 1080px; top: 35px; cursor: pointer; font-size: 20px;">more_vert</span>
+        <div class="bottom" style="border-bottom: 1px solid #dddddd; width: 100%;"></div>
+        <div class="user-details">
+            <h1>User details</h1>
+            <div class="names">
+            <span>Name</span>
+            <span style="font-weight: bold;">Omphile</span>
+            </div>
+            <div class="usernames">
+                <span>Surname</span>
+                <span style="font-weight: bold;">Mohlala</span>
+            </div>
+            <div class="contact">
+                <span>Cellphone</span>
+                <span style="font-weight: bold;">+27 60 291 0591</span>
+            </div>
+            <div class="email">
+                <span>Email</span>
+                <span style="font-weight: bold;">omphilemohlala@capitecbank.co.za</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="link">
+        <h3>Linked business profiles</h3>
+
+        <div class="profile">
+            <div class="circle">om</div>
+            <div class="made">
+                <span>Omphile</span>
+                <span>Profile nickname</span>
+                <div class="Zenzis">Default</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="../scripts/chatbot.js"></script>
+<script src="../scripts/Combined.js"></script>
+<script src="../scripts/Computer-Automation.js"></script>
+</body>
+</html>
