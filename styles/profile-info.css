@@ -634,8 +634,8 @@ button:not(:active) {
     animation: fadeIn 0.3s ease;
 }
 
-.dropdown.active .dropdown-arrow {
-    transform: rotate(90deg);
+.dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
 }
 
 @keyframes fadeIn {

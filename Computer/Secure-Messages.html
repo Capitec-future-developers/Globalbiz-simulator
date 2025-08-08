@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beneficiaries | Capitec Bank</title>
-    <link rel="stylesheet" href="../styles/Beneficiaries.css">
+    <link rel="stylesheet" href="../styles/Computer.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="stylesheet" href="../styles/Secure.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <title>Secure Messages</title>
 </head>
 <body>
 <div class="user-info">
@@ -20,9 +21,8 @@
     <div class="business">Business</div>
 
     <div class="header-right">
-        <!-- Chatbot Toggle Button -->
         <button class="chatbot-toggler">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="position: absolute; left: -10px; top: -14px;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -45,8 +45,6 @@
             </div>
         </div>
 
-
-
         <div class="profile-container">
             <a href="#contact" id="banker-popup">
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
@@ -55,9 +53,7 @@
                         Omphile Mohlala
                     </div>
                 </a>
-
             </a>
-            <!-- Popup HTML -->
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a class="popup-header" href="Profile-info.html">
@@ -82,18 +78,19 @@
     </div>
 </div>
 
-<!--Sidebar navigation-->
 <nav class="sidebar">
-
+    <div class="menu-toggle" id="sidebarToggle">
+        <span class="material-icons-sharp">menu</span>
+    </div>
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
         Home
     </a>
     <p class="side">BANKING</p>
     <a href="Accounts.html" id="accounts">
-        <span class="material-icons-sharp">
-            <img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
-        </span>
+<span class="material-icons-sharp">
+<img src="../images/accounts.svg" alt="transact" style="color: #cccccc;">
+</span>
         Accounts
     </a>
     <div class="dropdown">
@@ -104,9 +101,8 @@
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
-            <a href="#" id="t
-            Transfer">Transfer</a>
-            <a href="#" id="beneficiary-btn">Beneficiary</a>
+            <a href="transfer.html" id="Transfers">Transfer</a>
+            <a href="Add-benficiaries.html" id="#">Beneficiary</a>
         </div>
     </div>
     <a href="Cards.html">
@@ -177,41 +173,41 @@
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
-<!--- HEADER SECTION --->
-<div class="main-header">
-    <h3>Beneficiaries</h3>
-</div>
-    <p style="padding-top: 10px; padding-bottom: 10px">Authorisation queue</p>
-
-<!--- BENEFICIARY SEARCH AND FILTER SECTION ------>
-<div class="searchInput">
-    <input type="text" placeholder="Search">
-
-        <select id="beneficiaryStatus">
-            <option>Beneficiary status</option>
-            <option>New</option>
-            <option>Updated</option>
-            <option>Deleted</option>
-        </select>
-</div>
-
-        <div class="contentBody">
-            <table class="transaction-table">
-                <thead>
-                    <tr>
-                    <th style="font-weight: normal">Beneficiary name</th>
-                    <th style="font-weight: normal">Beneficiary reference</th>
-                    <th style="font-weight: normal">Account number</th>
-                    <th style="font-weight: normal">Beneficiary status</th>
-                    <th style="font-weight: normal">Created date</th>
-                    <th style="font-weight: normal">Created by</th>
-                    <th style="font-weight: normal">Authorizations due</th>
-                    <th style="font-weight: normal">Actions</th>
-                </tr>
-            </thead>
-        </table>
+<main class="main-content" id="mainContent">
+    <div class="header-content">
+        <h1>Secure Messages</h1>
+        <div class="those">
+            <div class="yohs bens" id="createMessageBtn"><span>Create</span><span>New</span>Message</div>
+        </div>
     </div>
-
+    <div class="content-body">
+        <div class="fav">
+            <div class="tabx">
+                <div class="tab activez">Inbox</div>
+                <div class="tab">Sent</div>
+            </div>
+            <div class="messages">
+                <table class="messages">
+                    <thead class="table-header">
+                    <tr class="table-row">
+                        <th>Date and Time</th>
+                        <th>For Account</th>
+                        <th>Subject</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-body">
+                    <tr>
+                        <td colspan="3" style="text-align: center;">
+                            <img src="../images/messages.svg" alt="message" class="pic"><br>
+                            No Messages. Please click on "Create New Message" above.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</main>
+<script src="../scripts/Secure.js"></script>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Details | Capitec Bank</title>
-    <link rel="stylesheet" href="../styles/account%20details.css">
+    <link rel="stylesheet" href="../styles/Computer.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="stylesheet" href="../styles/beneficary.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-</head>
+    <title>Online banking</title>
 
+</head>
 <body>
 <div class="user-info">
     <span id="display-username"></span>
@@ -22,8 +23,8 @@
 
     <div class="header-right">
         <!-- Chatbot Toggle Button -->
-        <button class="chatbot-toggler" style="position: absolute; top: 14px; right: 370px;">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="background-color: #FFFFFF ;"></span>
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="position: absolute; left: 360px; top: -20px;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -82,10 +83,12 @@
         <a href="./home%20page.html" class="sign">Sign Out</a>
     </div>
 </div>
-</div>
-<!--Sidebar navigation-->
-<div class="sidebar">
 
+<!--Sidebar navigation-->
+<nav class="sidebar">
+    <div class="menu-toggle" id="sidebarToggle">
+        <span class="material-icons-sharp">menu</span>
+    </div>
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
         Home
@@ -105,8 +108,8 @@
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
-            <a href="transfer.html" id="Transfer">Transfer</a>
-            <a href="Add-benficiaries.html" id="beneficiary-btn">Beneficiary</a>
+            <a href="transfer.html" id="Transfers">Transfer</a>
+            <a href="Add-benficiaries.html" id="#">Beneficiary</a>
         </div>
     </div>
     <a href="Cards.html">
@@ -168,156 +171,53 @@
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
     </div>
-
-<!-- Search -->
+</nav>
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
         <span class="material-icons-sharp">search</span> Go
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
-
-<!-- Main Content -->
-<div class="main-content">
-    <div class="back-nav">
-        <a href="Accounts.html">
-            <span class="material-icons-sharp" style="font-size: 30px; color: #007FFF;">arrow_back</span> Account Details
-        </a>
+<main class="main-content" id="mainContent">
+    <div class="header-content">
+        <h1>Beneficiaries</h1>
+        <div class="those">
+        <div class="yohs auths">Authorisations</div>
+        <div class="yohs imports"><span> Import</span> List</div>
+            <div class="yohs bens" id="addBeneficiaryBtn"><span>Add</span> Beneficiary</div>
+        </div>
     </div>
-
-    <div class="account-box">
-        <div class="account-info-row">
-            <div class="info-item">
-                <span class="info-label"><img src="../images/transact-white.svg"></span>
-                <span class="info-value" style="position: relative; left: 50px; top: -25px; font-weight: bold; font-size: 20px;">Omphile</span>
-            </div>
-            <div class="yohyoh">
-                <div class="info-item"><span class="info-label">Account type:</span> <span class="info-value">Transact</span></div>
-                <div class="info-item"><span class="info-label">Account number:</span> <span class="info-value">1052 2626 43</span></div>
-                <div class="info-item"><span class="info-label">Current balance:</span> <span class="info-value negative">- R154.21</span></div>
-                <div class="info-item"><span class="info-label">Available balance:</span> <span class="info-value">R0.00</span></div>
-                <div class="info-item"><span class="info-label">Status:</span> <span class="info-value">Open</span></div>
-            </div>
-        </div>
-
-        <div class="manage-btn-container" style="background-color: #0078d7; position: absolute; border: 1px solid #ffffff; right: 50px;">
-            <button class="manage-btn">Manage Account</button>
-            <div class="details-hover">
-                <ul>
-                    <li><a href="#" id="set-auth-level">Set account authorization</a></li>
-                    <li><a href="#">Edit account nickname</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Popup HTML -->
-        <div class="popup-overlay" id="authPopup">
-            <div class="auth-popup">
-                <div class="popup-header">Set Authorization Level</div>
-
-                <div class="form-page" id="formPage">
-                    <div class="form-group">
-                        <label for="createPayment">Who can create payment:<img src="../images/info-trans.svg"></label>
-                        <select id="createPayment">
-                            <option value="">Choose Approver</option>
-                            <option value="authoriser">Authoriser</option>
-                            <option value="capturer">Capturer</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="approvePayment">Who must approve payment:<img src="../images/info-trans.svg"></label>
-                        <select id="approvePayment">
-                            <option value="">Choose</option>
-                            <option value="none">No one</option>
-                            <option value="one">One person</option>
-                            <option value="two">Two people</option>
-                        </select>
-                    </div>
-
-                    <div class="popup-footer">
-                        <button class="btn btn-cancel" id="cancelBtn">Cancel</button>
-                        <button class="btn btn-continue" id="continueBtn">Continue</button>
-                    </div>
-                </div>
-
-                <div class="confirmation-page" id="confirmationPage">
-                    <div class="confirmation-item">
-                        <div class="confirmation-label">Who can create payment? <img src="../images/info-trans.svg"></div>
-                        <div class="confirmation-value" id="confirmCreatePayment"></div>
-                    </div>
-
-                    <div class="confirmation-item">
-                        <div class="confirmation-label">Who must approve payment? <img src="../images/info-trans.svg"></div>
-                        <div class="confirmation-value" id="confirmApprovePayment"></div>
-                    </div>
-
-                    <div class="popup-footer">
-                        <button class="btn btn-cancel" id="backBtn">Back</button>
-                        <button class="btn btn-save" id="saveBtn">Save</button>
-                    </div>
+    <div class="content-body">
+        <div class="fav">
+            <div class="fav-header">Favorites</div>
+            <div class="edit">Edit</div>
+            <div class="fav-boxes">
+                <div class="fav-box">
+                    <div class="Name">Helen Mohlala</div>
+                    <p style=" position: absolute; right: 75px; bottom: 60px;">Last paid: 20 July 2025</p>
+                    <div class="pay">Pay</div>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="next-box">
+            <div class="tabz">
+            <div class="tabz-header" >
+             <div class="tabz1 actives" id="yourBeneficiaries">Your beneficiaries</div>
+                <div class="tabz2" id="publicBeneficiary">Public Beneficiary</div>
+                <div class="tabz3" id="beneficiaryGroups">Beneficiary groups</div>
+            </div>
+            </div>
+            <div id="tabzContent"></div>
+<div class="tabz-search">
 
-        <div class="tabs">
-        <button id="btn-transactions"><div class="tab active">Transactions</div></button>
-        <button id="btn-payment-history"><div class="tab">Payment history</div></button>
-        <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
-        <button id="btn-account-information"><div class="tab">Account information</div></button>
-    </div>
-
-    <div class="controls">
-        <input type="text" placeholder="Search transactions">
-        <input type="date">
-        <select><option>Filter history by</option></select>
-        <select><option>Transaction type</option></select>
-        <button class="download-btn">Download</button>
-    </div>
-
-    <div class="info-banner">
-        <span class="material-icons-sharp"><img src="../images/info-trans.svg"></span>
-        Choose a date range of up to 6 months before you download
-    </div>
-
-    <div id="tab-content">
-        <table class="transaction-table">
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Transaction Type</th>
-                <th>Reference</th>
-                <th>Amount</th>
-                <th>Fees</th>
-                <th>Balance</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>30 April 2025</td>
-                <td>Debit</td>
-                <td>Month S/Fee</td>
-                <td class="positive">R0.00</td>
-                <td class="negative">- R50.00</td>
-                <td class="negative">- R154.21</td>
-            </tr>
-            <tr>
-                <td>30 April 2025</td>
-                <td>Debit</td>
-                <td>Debit Interest - System Generated</td>
-                <td class="negative">- R1.86</td>
-                <td>R0.00</td>
-                <td class="negative">- R104.21</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-  <script src="../scripts/Apps.js"></script>
+        </div>
+        </div>
+        </div>
+</main>
+<script src="../scripts/Add-beneficary.js"></script>
+<script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
-<script src="../scripts/chatbot.js"></script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+.Save{
+    position: relative;
+    display: flex;
+    left: -15px;
+    flex-direction: row;
+    top: -10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color:  #FFFFFF;
+    height: 70px;
+    width: 120%;
+    gap: 10px;
+    cursor: pointer;
+}
+
+
+.headers{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.yoh{
+    position: relative;
+    display: flex;
+    top: -35px;
+    right: -140px;
+}

@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Details | Capitec Bank</title>
-    <link rel="stylesheet" href="../styles/account%20details.css">
+    <link rel="stylesheet" href="../styles/Computer.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="stylesheet" href="../styles/Product&Service.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <title>Products & Services</title>
 </head>
-
 <body>
 <div class="user-info">
     <span id="display-username"></span>
     <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
 </div>
 <div class="header">
-    <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
+    <a href="Computer.html" class="logo"><img src="../images/Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
         <!-- Chatbot Toggle Button -->
-        <button class="chatbot-toggler" style="position: absolute; top: 14px; right: 370px;">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="background-color: #FFFFFF ;"></span>
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -46,8 +46,6 @@
             </div>
         </div>
 
-
-
         <div class="profile-container">
             <a href="#contact" id="banker-popup">
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
@@ -56,7 +54,6 @@
                         Omphile Mohlala
                     </div>
                 </a>
-
             </a>
             <!-- Popup HTML -->
             <div class="overlay" id="overlay"></div>
@@ -82,10 +79,12 @@
         <a href="./home%20page.html" class="sign">Sign Out</a>
     </div>
 </div>
-</div>
-<!--Sidebar navigation-->
-<div class="sidebar">
 
+<!--Sidebar navigation-->
+<nav class="sidebar">
+    <div class="menu-toggle" id="sidebarToggle">
+        <span class="material-icons-sharp">menu</span>
+    </div>
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
         Home
@@ -168,156 +167,56 @@
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
     </div>
-
-<!-- Search -->
+</nav>
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
         <span class="material-icons-sharp">search</span> Go
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
 
-<!-- Main Content -->
-<div class="main-content">
-    <div class="back-nav">
-        <a href="Accounts.html">
-            <span class="material-icons-sharp" style="font-size: 30px; color: #007FFF;">arrow_back</span> Account Details
-        </a>
-    </div>
-
-    <div class="account-box">
-        <div class="account-info-row">
-            <div class="info-item">
-                <span class="info-label"><img src="../images/transact-white.svg"></span>
-                <span class="info-value" style="position: relative; left: 50px; top: -25px; font-weight: bold; font-size: 20px;">Omphile</span>
+<main class="main-content">
+    <h2>Products and Services</h2>
+    <div class="container">
+<div class="heading"> Everything your business needs </div>
+        <p class="ye">Grow your business with our simplified solutions.</p>
+        <div class="line" style="border-bottom: 1px solid #cccccc; position: absolute; top: 100px; "></div>
+        <div class="Product-container">
+            <img src="../images/save.svg" alt="Save icon" style="position: absolute; width: 40px; height: 40px; top: 10px;">
+            <h2 style="position: absolute; left: 60px; top:20px;">Save</h2>
+            <div class="Savings">
+                <h2 style="color: #222450; position: absolute; left: 20px;">Business Flexible Savings</h2><br><br>
+                <p style="position: absolute; left: 20px;">Earn attractive interest and access your money anytime.<br> Open Now.</p>
+                <img src="../images/Her.png" alt="her" style="position: absolute; width: 200px; height: 200px; top: -10px; right: 10px;">
+                <button class="btn read-more"><a href="https://www.capitecbank.co.za/business/save/business-flexible-savings/">Read More</a></button>
+                <button class="btn Add-account">Add Account</button>
             </div>
-            <div class="yohyoh">
-                <div class="info-item"><span class="info-label">Account type:</span> <span class="info-value">Transact</span></div>
-                <div class="info-item"><span class="info-label">Account number:</span> <span class="info-value">1052 2626 43</span></div>
-                <div class="info-item"><span class="info-label">Current balance:</span> <span class="info-value negative">- R154.21</span></div>
-                <div class="info-item"><span class="info-label">Available balance:</span> <span class="info-value">R0.00</span></div>
-                <div class="info-item"><span class="info-label">Status:</span> <span class="info-value">Open</span></div>
-            </div>
-        </div>
-
-        <div class="manage-btn-container" style="background-color: #0078d7; position: absolute; border: 1px solid #ffffff; right: 50px;">
-            <button class="manage-btn">Manage Account</button>
-            <div class="details-hover">
-                <ul>
-                    <li><a href="#" id="set-auth-level">Set account authorization</a></li>
-                    <li><a href="#">Edit account nickname</a></li>
-                </ul>
+            <div class="Savings-32">
+                <h2 style="Color: #222450; position: absolute; left: 20px;">32 Day Notice Account</h2><br><br>
+                <p style="position: absolute; left: 20px;">Earn even higher interest with our 32-day.<br> notice savings plan.</p>
+                <img src="../images/She.png" alt="her" style="position: absolute; width: 200px; height: 200px; top: -10px; right: 10px;">
+                <button class="btns read-mores">Read More</button>
+                <button class="btns Add-accounts">Add Account</button>
             </div>
         </div>
 
-        <!-- Popup HTML -->
-        <div class="popup-overlay" id="authPopup">
-            <div class="auth-popup">
-                <div class="popup-header">Set Authorization Level</div>
-
-                <div class="form-page" id="formPage">
-                    <div class="form-group">
-                        <label for="createPayment">Who can create payment:<img src="../images/info-trans.svg"></label>
-                        <select id="createPayment">
-                            <option value="">Choose Approver</option>
-                            <option value="authoriser">Authoriser</option>
-                            <option value="capturer">Capturer</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="approvePayment">Who must approve payment:<img src="../images/info-trans.svg"></label>
-                        <select id="approvePayment">
-                            <option value="">Choose</option>
-                            <option value="none">No one</option>
-                            <option value="one">One person</option>
-                            <option value="two">Two people</option>
-                        </select>
-                    </div>
-
-                    <div class="popup-footer">
-                        <button class="btn btn-cancel" id="cancelBtn">Cancel</button>
-                        <button class="btn btn-continue" id="continueBtn">Continue</button>
-                    </div>
-                </div>
-
-                <div class="confirmation-page" id="confirmationPage">
-                    <div class="confirmation-item">
-                        <div class="confirmation-label">Who can create payment? <img src="../images/info-trans.svg"></div>
-                        <div class="confirmation-value" id="confirmCreatePayment"></div>
-                    </div>
-
-                    <div class="confirmation-item">
-                        <div class="confirmation-label">Who must approve payment? <img src="../images/info-trans.svg"></div>
-                        <div class="confirmation-value" id="confirmApprovePayment"></div>
-                    </div>
-
-                    <div class="popup-footer">
-                        <button class="btn btn-cancel" id="backBtn">Back</button>
-                        <button class="btn btn-save" id="saveBtn">Save</button>
-                    </div>
-                </div>
+        <div class="transact">
+            <img src="../images/transact.svg" alt="Save icon" style="position: absolute; width: 40px; height: 40px; top: 10px;">
+            <h2 style="position: absolute; left: 60px; top:20px;">Transact</h2>
+            <div class="transacts">
+                <h2 style="color: #222450; position: absolute; left: 20px;">Special offer</h2><br><br>
+                <p style="position: absolute; left: 20px;">Buy a pro for R699.00 or Print for R1 399.00.<br> once-off, no contact or hidden fees.</p>
+                <img src="../images/Machine.png" alt="her" style="position: absolute; width: 200px; height: 200px; top: -10px; right: 10px;">
+                <button class="btn read-more"><a href="https://www.capitecbank.co.za/business/save/notice-account/">Read More</a></button>
+                <button class="btn Add-account">Contact Me</button>
             </div>
-        </div>
     </div>
+    </div>
+</main>
 
-        <div class="tabs">
-        <button id="btn-transactions"><div class="tab active">Transactions</div></button>
-        <button id="btn-payment-history"><div class="tab">Payment history</div></button>
-        <button id="btn-stamped-statements"><div class="tab">Stamped statements</div></button>
-        <button id="btn-account-information"><div class="tab">Account information</div></button>
-    </div>
-
-    <div class="controls">
-        <input type="text" placeholder="Search transactions">
-        <input type="date">
-        <select><option>Filter history by</option></select>
-        <select><option>Transaction type</option></select>
-        <button class="download-btn">Download</button>
-    </div>
-
-    <div class="info-banner">
-        <span class="material-icons-sharp"><img src="../images/info-trans.svg"></span>
-        Choose a date range of up to 6 months before you download
-    </div>
-
-    <div id="tab-content">
-        <table class="transaction-table">
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Transaction Type</th>
-                <th>Reference</th>
-                <th>Amount</th>
-                <th>Fees</th>
-                <th>Balance</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>30 April 2025</td>
-                <td>Debit</td>
-                <td>Month S/Fee</td>
-                <td class="positive">R0.00</td>
-                <td class="negative">- R50.00</td>
-                <td class="negative">- R154.21</td>
-            </tr>
-            <tr>
-                <td>30 April 2025</td>
-                <td>Debit</td>
-                <td>Debit Interest - System Generated</td>
-                <td class="negative">- R1.86</td>
-                <td>R0.00</td>
-                <td class="negative">- R104.21</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-  <script src="../scripts/Apps.js"></script>
+<script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
-<script src="../scripts/chatbot.js"></script>
 </body>
 </html>
