@@ -136,9 +136,10 @@ background-color: #FFFFFF;
     width: 90%;
     height: 55px;
     font-size: 15px;
-    border: 1px solid #1e88e5;
+    border: 1px solid #1aa0e8;
     border-radius: 7px;
-    color: #1e88e5;
+    color: #1aa0e8;
     align-content: center;
     text-align: center;
+    cursor: pointer;
 }
