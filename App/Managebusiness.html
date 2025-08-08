@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone with Chatbot</title>
+    <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/Manage.css">
+    <link rel="stylesheet" href="../styles/chatbot.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+</head>
+<body>
+<!-- Search Bar -->
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<!-- iPhone Frame -->
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+
+            <!-- Header -->
+            <div class="head">
+                <a href="Phone2.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
+                    <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
+                </a>
+                <div class="header" style="font-size: 0.9rem;">Manage Business Profiles</div>
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+
+                </a>
+            </div>
+
+            <!-- Chatbot Toggler -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+
+            <!-- Chatbot Container -->
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
+
+            <div class="content" id="mainContent">
+
+            <div class="Signin-details">
+                <h4 style="position: absolute; top: 10px; left: 10px;">Sign In details</h4>
+                <div class="Signin-details-content">
+                    <div class="username">
+                    <span>Username</span>
+                    <span style="font-weight: bold;">omphilestudent@gmail.com</span>
+                    </div>
+                    <div class="contacts">
+                        <span>Cellphone</span>
+                        <span style="font-weight: bold;">+27 60 291 0591</span>
+                    </div>
+                    <div class="Password">
+                        <span>Password</span>
+                        <span style="font-weight: bold;" aria-hidden="true">***************</span>
+
+                    </div>
+                    <span style="position: absolute; bottom: 35px; color: #00aeff; left: 230px; cursor: pointer;">Update</span>
+                </div>
+            </div>
+<div class="remote">
+    <div class="pin">
+        <span>Remote Pin</span>
+        <span style="font-weight: bold;" aria-hidden="true">****************</span>
+    </div>
+    <span style="position: absolute; cursor: pointer;  left: 170px; top: 28px; color: #00aeff; font-size: 14px;">Update Remote Pin</span>
+</div>
+<div class="Header">
+    <span class="circle">Kc</span>
+    <p style="position: absolute; left: 80px; font-size: 13px; top: 20px;">Always sign me in with this Profile</p>
+    <span style="position:absolute; font-weight: bold; left: 80px; top: 40px;">Kodi Codes</span>
+    <div class="Zenzi">Default profile</div>
+    <span class="material-icons-sharp" style="position: absolute; color: #00aeff; left: 280px; top: 15px; cursor: pointer;">more_vert</span>
+</div>
+                <div class="user-details">
+                    <div class="user-details-header"> User details</div>
+                    <div class="contact">
+                        <span>Cellphone</span>
+                        <span style="font-weight: bold;">+27 60 291 0591</span>
+                    </div>
+                    <div class="Email">
+                        <span>Email</span>
+                        <span style="font-weight: bold;">omphilemohlala@capitecbank.co.za</span>
+                    </div>
+                </div>
+
+                <div class="link-account">
+                    <div class="link-account-header" style="font-weight: bold; position: absolute; left: 10px; top: 10px"> Link business profiles</div>
+                    <div class="link-account-content">
+                        <div class="link-account-item">
+                            <span class="circles">OM</span>
+                            <span style="position: absolute; top: 10px; left: 50px;">Omphile</span>
+                            <span style="position: absolute; top: 26px; left: 50px; font-weight: bold;" >Profile nickname</span>
+                            <span class="Zenzis" >Default</span>
+                            <span class="material-icons-sharp" style="position: absolute; right: 10px; top: 10px; color: #00aeff; cursor: pointer;">more_vert</span>
+
+                        </div>
+                        <div class="link-business">
+                            <img src="../images/Link-profile.png" alt="link-business" style="position: absolute; left: 30px; top: 15px; width: 25px; height: 25px;">
+                            <span>Link Business Profile</span>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav" id="bottomNav">
+            <a href="Phone2.html" class="nav-item " id="Homee">
+                <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+                <span>Home</span>
+            </a>
+            <a href="Phone%20accounts.html" class="nav-item">
+                <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Accounts</span>
+            </a>
+            <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Transact</span>
+            </a>
+            <a href="Phone-cards.html" class="nav-item" id="cards">
+                <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Cards</span>
+            </a>
+            <a href="Explore.html" class="nav-item ">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+<script src="../scripts/App.js" ></script>
+
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+</body>
+</html>

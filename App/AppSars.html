@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone with Chatbot</title>
+    <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/SARS.css">
+    <link rel="stylesheet" href="../styles/chatbot.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+</head>
+<body>
+<!-- Search Bar -->
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<!-- iPhone Frame -->
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+
+            <!-- Header -->
+            <div class="head">
+                <a href="Phone2.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
+                    <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
+                </a>
+                <div class="header" style="font-size: 0.9rem;">Products & Services</div>
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+
+                </a>
+            </div>
+
+            <!-- Chatbot Toggler -->
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+
+            <!-- Chatbot Container -->
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content" id="mainContent">
+                <div class="headers"><br>
+                    <span>User ID</span>
+                    <span style="font-weight: bold; font-size: 0.8rem;">52376377</span>
+                    <span class="yoh">Profile ID</span>
+                    <span class="yoh" style="font-weight: bold; font-size: 0.8rem; " >SARSEF123456543</span>
+
+                </div>
+
+                <div class="body">
+                    <div class="Save" style="background: #FFFFFF;">
+
+                        <div class="line-right" style="position: relative; left: 10px;">
+                        </div>
+
+                        <p style="white-space: nowrap; font-weight: 500; font-size: 0.7rem; position: relative; top: 35px; left: 1px;">
+                            Payments To Action
+                        </p>
+                        <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: -140px; bottom: -20px; ">chevron_right</span>
+                    </div>
+
+                    <div class="Save" style="background: #FFFFFF; top: -10px;">
+                        <div class="line-right" style="position: relative; left: 5px;">
+                        </div>
+
+                        <p style="white-space: nowrap; font-weight: 500; font-size: 0.7rem; position: relative; top: 35px; left: 1px;">
+                            Payments History
+                        </p>
+                        <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: -150px; bottom: -20px; ">chevron_right</span>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav" id="bottomNav">
+            <a href="Phone2.html" class="nav-item " id="Homee">
+                <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+                <span>Home</span>
+            </a>
+            <a href="Phone%20accounts.html" class="nav-item">
+                <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Accounts</span>
+            </a>
+            <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Transact</span>
+            </a>
+            <a href="Phone-cards.html" class="nav-item" id="cards">
+                <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Cards</span>
+            </a>
+            <a href="Explore.html" class="nav-item ">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+<script src="../scripts/App.js" ></script>
+
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+</body>
+</html>

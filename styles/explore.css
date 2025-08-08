@@ -1,0 +1,20 @@
+.Save{
+    position: relative;
+    display: flex;
+    left: -10px;
+    flex-direction: row;
+    top: 25px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color:  #FFFFFF;
+    height: 70px;
+    width: 105%;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.line-right{
+    position: relative;
+    border-right: 1px solid #cccccc;
+
+}
