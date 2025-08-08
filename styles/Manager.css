@@ -211,7 +211,7 @@
 }
 
 .made{
-    position: absolute;
+    position: relative;
     top: 200px;
     left: 50px;
     display: flex;
