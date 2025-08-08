@@ -196,3 +196,16 @@
     width: 100%;
 }
 
+.profile{
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #FFFFFF;
+    height: 300px;
+    width: 13%;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+}
