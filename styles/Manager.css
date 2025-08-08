@@ -205,7 +205,7 @@
     gap: 10px;
     background-color: #FFFFFF;
     height: 330px;
-    width: 13%;
+    width: 15%;
     border: 1px solid #dddddd;
     border-radius: 10px;
     cursor: pointer;
@@ -255,13 +255,13 @@
 .profile2{
     position: absolute;
     top: 80px;
-    left: 380px;
+    left: 310px;
     display: flex;
     flex-direction: row;
     gap: 10px;
     background-color: #FFFFFF;
     height: 330px;
-    width: 13%;
+    width: 15%;
     border: 1px solid #dddddd;
     border-radius: 10px;
     cursor: pointer;
