@@ -265,4 +265,6 @@
     border: 1px solid #dddddd;
     border-radius: 10px;
     cursor: pointer;
+    color: #00aeff;
+    font-size: 20px;
 }
