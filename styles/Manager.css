@@ -235,3 +235,17 @@
     line-height: 30px;
     font-weight: bold;
 }
+
+.circles{
+    position: absolute;
+    left: 55px;
+    top: 10px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #031035;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    line-height: 130px;
+}
