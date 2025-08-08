@@ -111,7 +111,7 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #074358;
+    background-color: #1e1e2f;
     color: white;
     width: calc(100% + 40px);
     height: 40px;
@@ -128,10 +128,9 @@ body {
 }
 
 .header {
-    position: relative;
-    font-size: 1.5rem;
-    color: white;
-
+    position: absolute;
+    font-size: 15px;
+    left: 135px;
 }
 
 .arrow {
@@ -140,7 +139,6 @@ body {
     left: 1px;
     width: 30px;
     height: 30px;
-    background-color: #074358;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -463,7 +461,7 @@ body {
     color: #1e88e5;
 }
 
-/.payment-section {
+.payment-section {
      background: white;
      border-radius: 8px;
      padding: 20px;
@@ -1096,7 +1094,7 @@ body {
     background-color: #dc3545;
 }
 
-//* Automation target element styling */
+/* Automation target element styling */
 .automation-target {
     position: relative;
     z-index: 10000;
@@ -1540,7 +1538,7 @@ input:checked + .slider:before {
 
 .account-details {
     position: absolute;
-    background-color: #fff; /* Correct hex for white */
+    background-color: #fff;
     bottom: 150px;
     width: 275px;
     display: flex;
@@ -1548,7 +1546,7 @@ input:checked + .slider:before {
     padding: 10px;
     left: 0;
     gap: 20px;
-    border-radius: none;
+
     border-bottom: 1px solid #ccc;
 }
 
@@ -1563,7 +1561,7 @@ input:checked + .slider:before {
 }
 
 .detail-item right{
-    right: -10;
+    right: -10px;
 }
 
 .notification-header{
@@ -1579,19 +1577,154 @@ input:checked + .slider:before {
 
 .accounts-details {
     position: absolute;
-    background-color: #fff; /* Correct hex for white */
-    top: 50px;
+    background-color: #fff;
     width: 275px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     left: 0;
     gap: 20px;
-    border-radius: none;
     border-bottom: 1px solid #ccc;
 }
 
-.currency{Add commentMore actions
-    position: absolute;
-    right: 30px;
+.currency {
+    Add commentMore actions {
+        position: absolute;
+        right: 30px;
+    }
+}
+
+.profile-notification-container {
+    padding: 10px;
+}
+
+.notification-description {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.notification-section {
+    margin-top: 20px;
+}
+
+.notification-section h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-label {
+    color: #333;
+}
+
+.notification-value {
+    color: #666;
+}
+
+.edit-notifications-container {
+    padding: 15px;
+}
+
+.section-description {
+    color: #666;
+    margin: 10px 0 15px;
+}
+
+.account-option, .notification-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-name {
+    font-weight: bold;
+}
+
+.account-number {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.account-balance {
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.section-title {
+    margin: 25px 0 15px;
+    color: #333;
+}
+
+.option-label {
+    font-weight: bold;
+}
+
+.option-value {
+    color: #666;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.toggle-options {
+    display: flex;
+    margin: 15px 0;
+}
+
+.toggle-option {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    background: white;
+    color: #333;
+}
+
+.toggle-option.active {
+    background: #1e88e5;
+    color: white;
+    border-color: #1e88e5;
+}
+
+.toggle-option:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.toggle-option:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.primary-button, .secondary-button {
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.primary-button {
+    background: #1e88e5;
+    color: white;
+    border: none;
+}
+
+.secondary-button {
+    background: white;
+    color: #1e88e5;
+    border: 1px solid #1e88e5;
 }

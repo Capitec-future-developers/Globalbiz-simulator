@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-/* Header Styles */
+
 .main-header{
     padding-left: 250px;
     padding-top: 70px;
@@ -8,7 +8,7 @@
 
 .header {
     background-color: #ffffff;
-    padding: 10px 200x;
+    padding: 10px 200px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -386,7 +386,7 @@ p{
 }
 
 h3{
-    padding-left: none;
+
     border-radius: 0 0 9px 9px;
 }
 

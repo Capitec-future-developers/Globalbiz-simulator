@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computer</title>
+  <title>Transact</title>
   <link rel="stylesheet" href="../styles/transct.css" />
   <link rel="stylesheet" href="../styles/Chatbotcomputer.css" />
   <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
@@ -21,8 +21,8 @@
   <div class="business">Business</div>
 
   <div class="header-right">
-    <button class="chatbot-toggler">
-      <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat" style="left: 15px;"></span>
+      <button class="chatbot-toggler" style="position: absolute; top: 14px; right: 380px;">
+      <span class="material-icons-sharp"><img src="../images/chat.svg" alt="chat" style="position: absolute; top: -14px; right: -20px;"></span>
       <span class="material-icons-sharp">close</span>
     </button>
     <div class="banker" style="position: absolute; right: 325px; ">Banker</div>
@@ -87,12 +87,12 @@
   <div class="dropdown">
     <a href="#" class="dropdown-toggle" id="transacts">
       <span class="material-icons-sharp"><img src="../images/transact-white.svg" alt="transact" /></span>
-      Transact <span class="dropdown-arrow">▶</span>
+      Transact <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
     </a>
     <div class="dropdown-menu">
       <a href="transact.html" id="paymentss">Payment</a>
-      <a href="#" id="transfer">Transfer</a>
-      <a href="#" id="beneficiary-btn">Beneficiary</a>
+      <a href="transfer.html" id="transfer">Transfer</a>
+      <a href="Add-benficiaries.html" id="beneficiary-btn">Beneficiary</a>
     </div>
   </div>
   <a href="Cards.html">
@@ -103,7 +103,7 @@
   <div class="dropdown">
     <a href="#" class="dropdown-toggle">
       <span class="material-icons-sharp"><img src="../images/authorisations.svg" alt="auth" /></span>
-      Authorisations <span class="dropdown-arrow">▶</span>
+      Authorisations <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
     </a>
     <div class="dropdown-menu">
       <a href="#">Transactions</a>
@@ -115,12 +115,25 @@
       <a href="messages.html">Messages</a>
     </div>
   </div>
-  <a href="inprogress.html">
-    <span class="material-icons-sharp">groups</span>
-    User management
-  </a>
+  <div class="dropdown">
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">
+        <span class="material-icons-sharp">groups</span>
+        User management
+        <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
+      </a>
+      <div class="dropdown-menu">
+        <a href="user-management.html">User Details </a>
+        <a href="#">Activity History</a>
+      </div>
+    </div>
+    <div class="dropdown-menu">
+      <a href="user-management.html">User Details </a>
+      <a href="#">Activity History</a>
+    </div>
+  </div>
   <p class="side">SERVICES</p>
-  <a href="inprogress.html">
+  <a href="Product&Services.html">
     <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="products" /></span>
     Products & Services
   </a>
@@ -128,8 +141,8 @@
     <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="efiling" /></span>
     SARS eFILLING
   </a>
-  <a href="inprogress.html">
-    <span class="material-icons-sharp"><img src="messages%20(1).svg" alt="messages" /></span>
+  <a href="Secure-Messages.html">
+    <span class="material-icons-sharp"><img src="../images/messages%20(1).svg" alt="messages" /></span>
     Secure Messages
   </a>
   <a href="Computer-Document.html">
@@ -239,7 +252,6 @@
   <section id="main-content-area" class="main-content"></section>
 </main>
 
-<script src="../scripts/Transfer.js"></script>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Apps.js"></script>
 <script src="../scripts/Combined.js"></script>

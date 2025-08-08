@@ -1,0 +1,332 @@
+.container {
+    position: absolute;
+    border: 2px solid #ddd;
+    width: 80%;
+    height: 100%;
+    background-color: #FFFFFF;
+     border-radius: 5px;
+    top: 190px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.heading{
+    position: absolute;
+    top: 15px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.ye {
+    position: absolute;
+    top: 60px;
+    left: 16px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+.line {
+    position: relative;
+    top: 100px;
+    border-bottom: 3px solid #111111;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 3px;
+}
+
+.Product-container{
+    position: absolute;
+    top: 150px;
+    left: 16px;
+    width: 98%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 250px;
+}
+
+.Savings{
+    position: absolute;
+    top: 65px;
+    left: 30px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #1e1e2f;
+    width: 50%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+    .Savings {
+        left: 5%;
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .Savings {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        min-height: 150px;
+        margin: 1rem 0;
+    }
+}
+
+
+
+.btn{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+}
+
+.read-more{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    color: #007FFF;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.Add-account{
+    position: absolute;
+    bottom: 20px;
+    left: 140px;
+    color: #FFFFFF;
+    background-color: #007FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add-account:hover{
+    background-color: #0066cc;
+}
+
+.read-more:hover{
+    background-color: #e0f7fa;
+}
+
+.Savings-32 {
+    position: absolute;
+    top: 65px;
+    left: 76%;
+    transform: translateX(-50%);
+    width: 45%;
+    height: 150px;
+    overflow: hidden;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #1e1e2f;
+ border-radius: 5px;
+    box-sizing: border-box;
+    max-width: calc(100% - 32px);
+}
+
+
+@media (max-width: 1024px) {
+    .Savings {
+        left: 5%;
+        width: 90%;
+    }
+
+    .Savings-32 {
+        left: 95%;
+        transform: translateX(-100%);
+        width: 90%;
+    }
+}
+
+.btns{
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+}
+
+.read-mores{
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    color: #007FFF;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.Add-accounts{
+    position: absolute;
+    bottom: 20px;
+    left: 130px;
+    color: #FFFFFF;
+    background-color: #007FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add-accounts:hover{
+    background-color: #0066cc;
+}
+
+.read-mores:hover{
+    background-color: #e0f7fa;
+}
+
+.transact{
+    position: absolute;
+    top: 450px;
+    left: 16px;
+    width: 98%;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 250px;
+}
+
+.transacts{
+    position: absolute;
+    top: 65px;
+    left: 30px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid #00aeff;
+    width: 50%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.btn{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+}
+
+.read-more{
+    position: absolute;
+    bottom: 20px;
+    left: 16px;
+    color: #007FFF;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.Add-account{
+    position: absolute;
+    bottom: 20px;
+    left: 140px;
+    color: #FFFFFF;
+    background-color: #007FFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Add-account:hover{
+    background-color: #0066cc;
+}
+
+.read-more:hover{
+    background-color: #e0f7fa;
+}
+
+/* Tablets and smaller desktops */
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+        left: 2.5%;
+    }
+
+    .Product-container,
+    .transact {
+        width: 95%;
+        left: 2.5%;
+    }
+
+    .transacts {
+        width: 90%;
+        left: 5%;
+    }
+
+    .btn, .btns,
+    .read-more, .read-mores,
+    .Add-account, .Add-accounts {
+        position: relative;
+        display: inline-block;
+        margin: 10px 5px;
+        bottom: auto;
+        left: auto;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+    .container {
+        position: relative;
+        top: auto;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .heading,
+    .ye {
+        position: relative;
+        top: auto;
+        left: auto;
+        padding: 0.5rem 0;
+    }
+
+    .line {
+        position: relative;
+        top: auto;
+        margin-top: 1rem;
+    }
+
+    .Product-container,
+    .transact {
+        position: relative;
+        top: auto;
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        left: auto;
+    }
+
+    .transacts {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        height: auto;
+        margin-top: 1rem;
+    }
+
+    .btn, .btns,
+    .read-more, .read-mores,
+    .Add-account, .Add-accounts {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        left: auto;
+        bottom: auto;
+        text-align: center;
+    }
+}

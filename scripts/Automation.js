@@ -1298,3 +1298,4 @@ function showFeedbackMessage(message, type) {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initAutomationSystem);
+
