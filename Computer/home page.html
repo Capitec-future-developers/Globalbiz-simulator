@@ -38,7 +38,7 @@
     </div>
     <script>
         const platformButtons = document.querySelectorAll('[data-platform]');
-        let targetPage = '#'; // this will store the correct page
+        let targetPage = '#';
 
         if (platformButtons.length > 0) {
             platformButtons.forEach(btn => {
@@ -49,7 +49,7 @@
 
                     if (proceedBtn && platformOptions) {
                         if (platform === 'app') {
-                            targetPage = "../app/Phone.html";
+                            targetPage = "../App/Phone.html";
                         } else {
                             targetPage = "./Computer.html";
                         }
