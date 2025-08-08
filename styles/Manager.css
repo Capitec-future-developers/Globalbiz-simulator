@@ -208,6 +208,7 @@
     width: 13%;
     border: 1px solid #dddddd;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .made{
@@ -220,6 +221,7 @@
     font-size: 20px;
     align-content: center;
     align-items: center;
+
 }
 
 .Zenzis{
