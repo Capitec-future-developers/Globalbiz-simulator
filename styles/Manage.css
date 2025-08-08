@@ -59,9 +59,28 @@ overflow: scroll;
     gap: 10px;
 }
 
+.remote {
+    position: absolute;
+    top: 245px;
+    background-color: #FFFFFF;
+    width: 200%;
+    left: 1px;
+    height: 70px;
+}
+
+.pin{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
 .Header{
     position: absolute;
-    top: 260px;
+    top: 328px;
     background-color: #FFFFFF;
     width: 200%;
     left: 1px;
@@ -97,7 +116,7 @@ overflow: scroll;
 
 .user-details{
     position: absolute;
-    top: 413px;
+    top: 483px;
     background-color: #FFFFFF;
     width: 200%;
     left: 1px;
@@ -132,7 +151,7 @@ overflow: scroll;
 
 .link-account{
     position: relative;
-    top: 617px;
+    top: 687px;
     left: -20px;
     background-color: #FFFFFF;
     width: 120%;
