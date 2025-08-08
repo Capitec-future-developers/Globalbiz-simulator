@@ -251,3 +251,18 @@
     color: #fff;
     line-height: 130px;
 }
+
+.profile2{
+    position: absolute;
+    top: 80px;
+    left: 380px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #FFFFFF;
+    height: 330px;
+    width: 13%;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    cursor: pointer;
+}
