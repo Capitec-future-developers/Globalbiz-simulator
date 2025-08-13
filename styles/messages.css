@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-/* Header Styles */
+
 .main-header{
     padding-left: 250px;
     padding-top: 70px;
@@ -44,7 +44,7 @@
     color: #2c3e50;
 }
 
-/* Header Right Section */
+
 .header-right {
     margin-left: auto;
     display: flex;
@@ -243,7 +243,7 @@ popup-header {
     color: white;
 }
 
-/* Back Navigation */
+
 .back-nav {
     display: flex;
     align-items: center;
@@ -269,7 +269,7 @@ popup-header {
     font-weight: inherit;
 }
 
-/* Info Banner */
+
 .info-banner {
     background: #e0f7fa;
     padding: 15px 20px;
@@ -287,7 +287,7 @@ popup-header {
     padding-left: 233px;
 }
 
-/* Main Content */
+
 .message-icon{
     position: absolute;
     align-content: center;

@@ -59,7 +59,7 @@ body {
     border-radius: 3px;
 }
 
-/* ============ PHYSICAL BUTTONS ============ */
+
 .volume-buttons {
     position: absolute;
     left: -10px;
@@ -93,7 +93,7 @@ body {
     border-bottom-right-radius: 3px;
 }
 
-/* ============ HEADER STYLES ============ */
+
 .head {
     position: relative;
     font-size: 1.5rem;
@@ -151,7 +151,7 @@ body {
     font-size: 24px;
 }
 
-/* ============ SIDEBAR STYLES ============ */
+
 .sidebar {
     transform: translateX(-150px);
     width: 150px;
@@ -201,7 +201,7 @@ body {
     text-transform: uppercase;
 }
 
-/* ============ MAIN CONTENT STRUCTURE ============ */
+
 .screen-content {
     flex: 1;
     display: flex;
@@ -213,7 +213,7 @@ body {
 .content-container {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 60px; /* Space for bottom nav */
+    padding-bottom: 60px; 
 }
 .contents{
     position: absolute;
@@ -241,7 +241,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* ============ ACCOUNT SECTION ============ */
+
 .account-header {
     display: flex;
     justify-content: space-between;
@@ -288,7 +288,7 @@ body {
 }
 
 
-/* ============ ACCOUNT BOX ============ */
+
 .box1 {
     width: 100%;
     height: 60px;
@@ -349,7 +349,7 @@ body {
     right: -5px;
 }
 
-/* ============ FAVORITES SECTION ============ */
+
 .favorites {
     background: white;
     padding: 15px 20px;
@@ -700,7 +700,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-/* ============ BOTTOM NAVIGATION ============ */
+
 .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -734,7 +734,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-bottom: 4px;
 }
 
-/* ============ RESPONSIVE ADJUSTMENTS ============ */
+
 @media (max-height: 600px) {
     .favorite-box {
         height: 80px;
@@ -745,7 +745,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
-/* Automation System Styles */
+
 .search-container {
     position: relative;
     display: flex;
@@ -815,7 +815,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: bold;
 }
 
-/* Automation highlighting */
+
 .automation-highlight {
     animation: pulse-highlight 2s ease-in-out infinite;
     position: relative;
@@ -835,7 +835,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
-/* Feedback messages */
+
 .feedback-message {
     position: fixed;
     bottom: 20px;
@@ -861,14 +861,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: #dc3545;
 }
 
-/* Automation target element styling */
+
 .automation-target {
     position: relative;
     z-index: 10000;
     transition: all 0.3s ease;
 }
 
-/* Context help for automation */
+
 .automation-context-help {
     position: fixed;
     bottom: 20px;
@@ -890,7 +890,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 1;
 }
 
-/* Highlight styles for different elements */
+
 .automation-highlight-button {
     animation: button-pulse 1.5s infinite;
 }
@@ -921,7 +921,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
 }
 
-/* Suggestions dropdown */
+
 .suggestions-dropdown {
     position: absolute;
     background: white;
@@ -958,7 +958,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 }
 
-/* Authorization Setup Styles */
+
 #tab-contents {
     display: none;
     padding: 15px;
@@ -1054,7 +1054,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #007bff;
 }
 
-/* Confirmation Styles */
+
 .auth-confirmation {
     background: white;
     padding: 20px;
@@ -1074,7 +1074,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #555;
 }
 
-/* ============ AUTHORIZATION STYLES ============ */
+
 .auth-flow-screen {
     position: absolute;
     top: 0;
@@ -1185,7 +1185,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: auto; /* Push to bottom */
+    margin-top: auto; 
     padding-bottom: 20px;
 }
 
@@ -1252,7 +1252,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 20px 0;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 400px) {
     .auth-flow-screen {
         padding: 15px;
@@ -1267,7 +1267,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
-/*view account details*/
+
 .view-items {
     position: absolute;
     display: flex;

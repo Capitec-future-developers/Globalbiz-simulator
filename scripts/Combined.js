@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
-                e.stopPropagation(); // Prevent event from bubbling up
+                e.stopPropagation(); 
                 const dropdown = this.closest('.dropdown');
                 if (dropdown) {
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = tabContentData[contentKey];
         tabContent.innerHTML = "";
 
-        // If it's a single HTML block like a table or image
+        
         if (items.length === 1 && items[0].startsWith('<')) {
             tabContent.innerHTML = items[0];
         } else {
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
             list.className = "content-list";
             items.forEach(item => {
                 const listItem = document.createElement("li");
-                // Detect if it's HTML (image or other)
+                
                 if (item.startsWith('<')) {
                     listItem.innerHTML = item;
                 } else {
@@ -844,8 +844,8 @@ Pay Now
 
     function navigateBack() {
         if (navigationStack.length > 0) {
-            navigationStack.pop(); // Remove current view
-            const previousView = navigationStack.pop(); // Get previous view
+            navigationStack.pop(); 
+            const previousView = navigationStack.pop(); 
 
             switch(previousView) {
                 case 'payment-section':
@@ -1126,7 +1126,7 @@ Transfer Funds
 
     if (bankerLink && bankerPopup && closePopup) {
         bankerLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent jump to #home
+            event.preventDefault(); 
             bankerPopup.style.display = 'block';
         });
 
@@ -1137,15 +1137,15 @@ Transfer Funds
 
 
     const switchLink = document.querySelector('.switch-profile');
-    if (switchLink) { // Safety check in case element is missing
+    if (switchLink) { 
         switchLink.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default navigation
+            e.preventDefault(); 
             const transition = document.getElementById('page-transition');
-            if (transition) { // Another safety check
+            if (transition) { 
                 transition.classList.add('show');
                 setTimeout(() => {
                     window.location.href = this.href;
-                }, 500); // CSS transition time
+                }, 500); 
             } else {
 
                 window.location.href = this.href;
@@ -1155,7 +1155,7 @@ Transfer Funds
 
 
     const dateElement = document.getElementById("signin-date");
-    if (dateElement) { // Check element exists before updating
+    if (dateElement) { 
         const now = new Date();
         const options = {
             weekday: 'long',

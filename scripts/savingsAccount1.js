@@ -1,40 +1,40 @@
 ; document.addEventListener('DOMContentLoaded', function() {
 
 
-    // =============================================
-    // PROFILE, SIDEBAR, AND GENERAL UI FUNCTIONALITY
-    // =============================================
+    
+    
+    
 
-    // Profile popup functionality
+    
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
 
-    // Enhanced Dropdown functionality for all dropdowns
+    
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
     if (dropdownToggles.length > 0) {
         dropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
-                e.stopPropagation(); // Prevent event from bubbling up
+                e.stopPropagation(); 
 
                 const dropdown = this.closest('.dropdown');
                 if (dropdown) {
-                    // Close all other dropdowns first
+                    
                     document.querySelectorAll('.dropdown').forEach(item => {
                         if (item !== dropdown) {
                             item.classList.remove('active');
                         }
                     });
 
-                    // Toggle current dropdown
+                    
                     dropdown.classList.toggle('active');
                 }
             });
         });
 
-        // Close dropdowns when clicking outside
+        
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
@@ -57,7 +57,7 @@
         });
     }
 
-    // Sidebar toggle functionality
+    
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
@@ -81,7 +81,7 @@
         }
     }
 
-    // Platform selection functionality
+    
     const startBtn = document.getElementById('startBtn');
     if (startBtn) {
         startBtn.addEventListener('click', function() {
@@ -116,11 +116,11 @@
         }
     }
 
-    // =============================================
-    // TAB FUNCTIONALITY
-    // =============================================
+    
+    
+    
 
-    // Tab content data
+    
     const tabContentData = {
         transactions: [
             `<table class="transaction-table">
@@ -177,7 +177,7 @@
         ]
     };
 
-    // Tab functionality
+    
     const tabButtons = {
         transactions: document.getElementById("btn-transactions"),
         paymentHistory: document.getElementById("btn-payment-history"),
@@ -186,7 +186,7 @@
     };
     const tabContent = document.getElementById("tab-content");
 
-    // Function to display content in the tab
+    
     function displayContent(contentKey) {
         if (!tabContent || !tabContentData[contentKey]) return;
 
@@ -209,7 +209,7 @@
         }
     }
 
-    // Function to highlight the active button
+    
     function highlightButton(buttonId) {
         Object.keys(tabButtons).forEach(key => {
             const button = tabButtons[key];
@@ -228,18 +228,18 @@
         }
     }
 
-    // Function to handle button clicks
+    
     function handleTabClick(event) {
         const button = event.target.closest('button');
         if (!button) return;
 
-        // Add click animation
+        
         button.style.transform = 'translateY(2px)';
         setTimeout(() => {
             button.style.transform = '';
         }, 100);
 
-        // Find which button was clicked
+        
         const buttonId = Object.keys(tabButtons).find(key => tabButtons[key] === button);
         if (!buttonId) return;
 
@@ -247,14 +247,14 @@
         displayContent(buttonId);
     }
 
-    // Add event listeners to all tab buttons
+    
     Object.values(tabButtons).forEach(btn => {
         if (btn) {
             btn.addEventListener('click', handleTabClick);
         }
     });
 
-    // Load initial content (Transactions tab)
+    
     if (tabButtons.transactions && tabContent) {
         tabButtons.transactions.classList.add('active');
         const tab = tabButtons.transactions.querySelector('.tab');
@@ -262,30 +262,30 @@
         displayContent('transactions');
     }
 
-    // =============================================
-    // PAYMENT AND CREATE FUNCTIONALITY (UPDATED VERSION)
-    // =============================================
+    
+    
+    
 
-    // DOM Elements
+    
     const paymentButton = document.getElementById('payment');
     const mainContentArea = document.getElementById('main-content-area');
     const defaultContent = document.getElementById('default-content');
     const contentWrapper = document.querySelector('.content-wrapper');
     const createButton = document.getElementById('create');
 
-    // Quick action buttons
+    
     const savedPaymentBtn = document.getElementById('saved-payment-btn');
     const onceoffPaymentBtn = document.getElementById('onceoff-payment-btn');
     const groupPaymentBtn = document.getElementById('group-payment-btn');
     const createBeneficiaryBtn = document.getElementById('create-beneficiary-btn');
 
-    // Determine if we're in the app or online banking context
+    
     const isAppContext = window.location.pathname.includes('Phone.html');
 
-    // Navigation state management
+    
     let navigationStack = [];
 
-    // Event Listeners
+    
     if (paymentButton) {
         paymentButton.addEventListener('click', function(e) {
             e.preventDefault();
@@ -328,7 +328,7 @@
         });
     }
 
-    // Main Functions
+    
     function showPaymentSection() {
         toggleContentVisibility();
 
@@ -424,7 +424,7 @@
         </div>
     `;
 
-        // Add event listeners
+        
         const backButton = document.getElementById('back-to-transact');
         if (backButton) {
             backButton.addEventListener('click', function() {
@@ -511,12 +511,12 @@
             </div>
         `;
 
-        // Add event listeners for back button
+        
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-        // Add event listeners for create options
+        
         document.querySelectorAll('.create-option').forEach(option => {
             option.addEventListener('click', function() {
                 const createType = this.getAttribute('data-type');
@@ -573,12 +573,12 @@
             </div>
         `;
 
-        // Back button
+        
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-        // Beneficiary selection
+        
         document.querySelectorAll('.beneficiary-card').forEach(card => {
             card.addEventListener('click', function() {
                 const beneficiaryName = this.getAttribute('data-beneficiary');
@@ -586,12 +586,12 @@
             });
         });
 
-        // Add new beneficiary
+        
         document.addEventListener('DOMContentLoaded', function() {
             const beneficiaryBtn = document.getElementById('create-beneficiary-btn');
             beneficiaryBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                showAddBeneficiaryForm(); // assuming this function is defined in your JS
+                showAddBeneficiaryForm(); 
             });
         });
 
@@ -681,12 +681,12 @@
             </div>
         `;
 
-        // Back button
+        
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-        // Form submission
+        
         document.getElementById('payment-form').addEventListener('submit', function(e) {
             e.preventDefault();
             processPayment(paymentType, beneficiaryName);
@@ -744,12 +744,12 @@
             </div>
         `;
 
-        // Back button
+        
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
-        // Form submission
+        
         document.getElementById('beneficiary-form').addEventListener('submit', function(e) {
             e.preventDefault();
             saveBeneficiary();
@@ -760,7 +760,7 @@
         const amount = document.getElementById('amount').value;
         const reference = document.getElementById('reference').value;
 
-        // Show processing
+        
         mainContentArea.innerHTML = `
             <div class="payment-processing">
                 <div class="spinner">
@@ -772,7 +772,7 @@
             </div>
         `;
 
-        // Simulate processing delay
+        
         setTimeout(() => {
             showPaymentConfirmation(paymentType, beneficiaryName, amount, reference);
         }, 3000);
@@ -783,7 +783,7 @@
         const accountNumber = document.getElementById('account-number').value;
         const bank = document.getElementById('bank').value;
 
-        // Show processing
+        
         mainContentArea.innerHTML = `
             <div class="payment-processing">
                 <div class="spinner">
@@ -795,7 +795,7 @@
             </div>
         `;
 
-        // Simulate processing delay
+        
         setTimeout(() => {
             showBeneficiaryConfirmation(name);
         }, 2000);
@@ -840,7 +840,7 @@
             </div>
         `;
 
-        // Button handlers
+        
         document.getElementById('done-button').addEventListener('click', function() {
             resetToMainView();
         });
@@ -870,7 +870,7 @@
             </div>
         `;
 
-        // Button handlers
+        
         document.getElementById('done-button').addEventListener('click', function() {
             resetToMainView();
         });
@@ -881,7 +881,7 @@
     }
 
     function handleOptionClick(optionType) {
-        // Placeholder for other option types
+        
         alert(`Showing ${optionType.replace('-', ' ')}`);
     }
 
@@ -908,11 +908,11 @@
         }
     }
 
-    // Navigation functions
+    
     function navigateBack() {
         if (navigationStack.length > 0) {
-            navigationStack.pop(); // Remove current view
-            const previousView = navigationStack.pop(); // Get previous view
+            navigationStack.pop(); 
+            const previousView = navigationStack.pop(); 
 
             switch(previousView) {
                 case 'payment-section':
@@ -942,13 +942,13 @@
     }
 });
 
-// Banker popup functionality
+
 const bankerLink = document.getElementById('banker-link');
 const bankerPopup = document.getElementById('banker-popup');
 const closePopup = document.getElementById('close-popup');
 
 bankerLink.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent jump to #home
+    event.preventDefault(); 
     bankerPopup.style.display = 'block';
 });
 
@@ -956,31 +956,31 @@ closePopup.addEventListener('click', function() {
     bankerPopup.style.display = 'none';
 });
 
-// Page transition animation on profile switch
+
 const switchLink = document.querySelector('.switch-profile');
 
-if (switchLink) { // Safety check in case element is missing
+if (switchLink) { 
     switchLink.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent default navigation
+        e.preventDefault(); 
 
         const transition = document.getElementById('page-transition');
-        if (transition) { // Another safety check
+        if (transition) { 
             transition.classList.add('show');
 
             setTimeout(() => {
                 window.location.href = this.href;
-            }, 500); // CSS transition time
+            }, 500); 
         } else {
-            // fallback if no transition element exists
+            
             window.location.href = this.href;
         }
     });
 }
 
-// Sign-in date display
+
 const dateElement = document.getElementById("signin-date");
 
-if (dateElement) { // Check element exists before updating
+if (dateElement) { 
     const now = new Date();
     const options = {
         weekday: 'long',

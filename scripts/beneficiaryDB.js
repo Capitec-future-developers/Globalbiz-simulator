@@ -1,11 +1,11 @@
-// beneficiaryDB.js
+
 const BeneficiaryDB = (function() {
     let db;
     const DB_NAME = 'BankAppDB';
     const STORE_NAME = 'beneficiaries';
-    const DB_VERSION = 2; // Increment version if schema changes
+    const DB_VERSION = 2; 
 
-// Initialize the database
+
     async function initDB() {
         return new Promise((resolve, reject) => {
             const request = indexedDB.open(DB_NAME, DB_VERSION);
@@ -28,7 +28,7 @@ const BeneficiaryDB = (function() {
                         autoIncrement: false
                     });
 
-// Create indexes
+
                     store.createIndex('by_nickname', 'nickname', { unique: false });
                     store.createIndex('by_bank', 'bank', { unique: false });
                     store.createIndex('by_accountNumber', 'accountNumber', { unique: true });
@@ -37,8 +37,8 @@ const BeneficiaryDB = (function() {
         });
     }
 
-// Add other DB functions (add, get, update, delete, search) here...
-// ... (include all the functions from the previous IndexedDB implementation)
+
+
 
     return {
         initDB,
@@ -51,7 +51,7 @@ const BeneficiaryDB = (function() {
     };
 })();
 
-// Initialize when the script loads
+
 (async function() {
     try {
         await BeneficiaryDB.initDB();

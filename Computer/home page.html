@@ -29,7 +29,7 @@
             <button class="button" id="proceedLink">Proceed to Simulator</button>
         </div>
 
-        <!-- Loading animation blocks -->
+        
         <div id="loading" class="loading-animation">
             <div class="block blue"></div>
             <div class="block lightblue"></div>
@@ -61,19 +61,12 @@
             });
         }
 
-        // Proceed button click: show loading then go to the correct page
         document.getElementById('proceedLink').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent immediate navigation
-
-            // Show loading animation
+            event.preventDefault();
             document.getElementById('loading').style.display = 'flex';
-
-            // Hide the "Proceed to Simulator" button
             document.getElementById('proceedBtn').style.display = 'none';
-
-            // Redirect after loading animation
             setTimeout(function() {
-                window.location.href = targetPage; // Go to Phone.html or Computer.html
+                window.location.href = targetPage;
             }, 2000);
         });
 

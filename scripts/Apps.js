@@ -1,13 +1,13 @@
-// =============================================
-// CONFIGURATION AND INITIALIZATION
-// =============================================
+
+
+
 const API_BASE_URL = 'http://localhost:3000/api';
 let currentUser = null;
 let authToken = null;
 
-// =============================================
-// AUTHENTICATION FUNCTIONS
-// =============================================
+
+
+
 async function apiRequest(endpoint, method = 'GET', data = null) {
     const config = {
         method,
@@ -37,7 +37,7 @@ async function login(email, password) {
         authToken = data.token;
         currentUser = data.user;
 
-        // Store user data in sessionStorage
+        
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         sessionStorage.setItem('authToken', authToken);
 
@@ -54,7 +54,7 @@ async function register(firstName, lastName, email, password) {
         authToken = data.token;
         currentUser = data.user;
 
-        // Store user data in sessionStorage
+        
         sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
         sessionStorage.setItem('authToken', authToken);
 
@@ -111,9 +111,9 @@ async function makePayment(fromAccountId, toAccountNumber, amount, reference, be
     }
 }
 
-// =============================================
-// LOGIN FORM HANDLER
-// =============================================
+
+
+
 async function handleLogin(event) {
     event.preventDefault();
 
@@ -128,11 +128,11 @@ async function handleLogin(event) {
     try {
         const success = await login(email, password);
         if (success) {
-            // Load user profile and accounts
+            
             const userProfile = await getUserProfile();
             sessionStorage.setItem('currentUser', JSON.stringify(userProfile));
 
-            // Redirect to Computer.html after successful login
+            
             window.location.href = 'Computer.html';
         }
     } catch (error) {
@@ -141,11 +141,11 @@ async function handleLogin(event) {
     }
 }
 
-// =============================================
-// INITIALIZATION
-// =============================================
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on the login page and set up the form handler
+    
     if (window.location.pathname.includes('Login.html') ||
         window.location.pathname.endsWith('/') ||
         window.location.pathname === '') {
@@ -155,16 +155,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // If we're on Computer.html, check for existing session
+    
     if (window.location.pathname.includes('Computer.html')) {
         const storedUser = sessionStorage.getItem('currentUser');
         const storedToken = sessionStorage.getItem('authToken');
 
         if (!storedUser || !storedToken) {
-            // Redirect to login if no user is logged in
+            
             window.location.href = 'Login.html';
         } else {
-            // Initialize the application with the logged-in user
+            
             currentUser = JSON.parse(storedUser);
             authToken = storedToken;
             initializeApp();
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeApp() {
     console.log('App initialized for user:', currentUser.firstName, currentUser.lastName);
 
-    // Update UI with user information
+    
     document.querySelectorAll('.profile-Name').forEach(el => {
         if (el) el.textContent = `${currentUser.firstName} ${currentUser.lastName}`;
     });
@@ -183,7 +183,7 @@ function initializeApp() {
     const popupHeader = document.querySelector('.popup-header');
     if (popupHeader) popupHeader.textContent = currentUser.email;
 
-    // Update account information
+    
     if (currentUser.accounts && currentUser.accounts.length > 0) {
         const accountElement = document.querySelector('.account-balance');
         if (accountElement) {
@@ -191,5 +191,5 @@ function initializeApp() {
         }
     }
 
-    // Initialize other components...
+    
 }

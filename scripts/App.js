@@ -1,6 +1,6 @@
-// userContext.js
+
 document.addEventListener('DOMContentLoaded', function() {
-    // User Database with all the functionality from your original script
+    
     const userDatabase = {
         'omphilestudent@gmail.com': {
             name: 'Omphile Mohlala',
@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Current User
+    
     let currentUser = null;
 
-    // Initialize the page with a default user
+    
     function initUser() {
         const urlParams = new URLSearchParams(window.location.search);
         const userEmail = urlParams.get('user') || 'omphilestudent@gmail.com';
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Update UI with current user data
+    
     function updateUI() {
         document.getElementById('current-profile-name').textContent = currentUser.name;
         document.getElementById('current-profile-email').textContent = currentUser.email;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('account-balance').textContent = currentUser.accountBalance;
     }
 
-    // Profile Popup Toggle
+    
     document.getElementById('profile-link').addEventListener('click', function(e) {
         e.preventDefault();
         document.getElementById('profilePopup').classList.add('active');
@@ -64,27 +64,27 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.remove('active');
     });
 
-    // Profile Switching
+    
     document.querySelectorAll('.profile-option').forEach(option => {
         option.addEventListener('click', function() {
             const userEmail = this.getAttribute('data-user');
             if (userDatabase[userEmail]) {
-                // Update URL without reloading
+                
                 const newUrl = window.location.pathname + '?user=' + encodeURIComponent(userEmail);
                 window.history.pushState({}, '', newUrl);
 
-                // Switch user
+                
                 currentUser = userDatabase[userEmail];
                 updateUI();
 
-                // Close popup
+                
                 document.getElementById('profilePopup').classList.remove('active');
                 document.getElementById('overlay').classList.remove('active');
             }
         });
     });
 
-    // Sidebar Dropdown
+    
     const dropdowns = document.querySelectorAll('.dropdown');
 
     dropdowns.forEach(dropdown => {
@@ -94,23 +94,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Initialize user
+    
     initUser();
 
-    // Handle back/forward navigation
+    
     window.addEventListener('popstate', function() {
         initUser();
     });
 
-    // =============================================
-    // USER CONTEXT MANAGEMENT SYSTEM (LocalStorage)
-    // =============================================
+    
+    
+    
 
-    // Initialize user database in localStorage if not exists
+    
     function initializeUserDatabase() {
         if (!localStorage.getItem('userDatabase')) {
             const userDatabase = {
-                // User with just a transactional account
+                
                 'omphilestudent@gmail.com': {
                     id: 'usr_001',
                     name: 'Omphile Mohlala',
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-                // User with multiple accounts
+                
                 'Kodi@codes.com': {
                     id: 'usr_002',
                     name: 'Kodi Codes PTY LTD',
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-                // Business user with different account types
+                
                 'business@example.com': {
                     id: 'usr_003',
                     name: 'ABC Enterprises',
@@ -421,38 +421,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize the database
+    
     initializeUserDatabase();
 
-    // Get user database from localStorage
+    
     function getUserDatabase() {
         return JSON.parse(localStorage.getItem('userDatabase'));
     }
 
-    // Update user in database
+    
     function updateUserInDatabase(user) {
         const userDatabase = getUserDatabase();
         userDatabase[user.email] = user;
         localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
     }
 
-    // Current user context
+    
     let currentUserContext = null;
 
-    // =============================================
-    // AUTHENTICATION SYSTEM (LocalStorage)
-    // =============================================
+    
+    
+    
 
-    // Simulate login function
+    
     function simulateLogin(email) {
         const userDatabase = getUserDatabase();
         const user = userDatabase[email];
 
         if (user) {
-            currentUserContext = JSON.parse(JSON.stringify(user)); // Deep copy
+            currentUserContext = JSON.parse(JSON.stringify(user)); 
             console.log('User logged in:', currentUserContext.name);
 
-            // Update last login time
+            
             currentUserContext.security.lastLogin = new Date().toISOString();
             updateUserInDatabase(currentUserContext);
 
@@ -462,26 +462,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     }
 
-    // Check if we have a simulated login in URL params
+    
     const urlParams = new URLSearchParams(window.location.search);
     const simulatedUser = urlParams.get('user');
 
     if (simulatedUser && getUserDatabase()[simulatedUser]) {
         simulateLogin(simulatedUser);
     } else {
-        // Default to first user for demo purposes
+        
         simulateLogin('omphilestudent@gmail.com');
     }
 
-    // =============================================
-    // CONTEXT-AWARE UI RENDERING
-    // =============================================
+    
+    
+    
 
-    // Update UI based on user context
+    
     function updateUserContextUI() {
         if (!currentUserContext) return;
 
-        // Update profile information
+        
         const profileNameElements = document.querySelectorAll('.profile-name, #profile-name');
         const profileEmailElements = document.querySelectorAll('.profile-email, #profile-email');
         const profileImageElements = document.querySelectorAll('.profile-image, #profile-image');
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.src = `images/${currentUserContext.profileImage}`;
                 el.style.display = 'block';
             } else {
-                // Use initials as fallback
+                
                 const initials = currentUserContext.name.split(' ').map(n => n[0]).join('');
                 el.src = '';
                 el.textContent = initials;
@@ -507,37 +507,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Update account selector
+        
         updateAccountSelector();
 
-        // Update account overview
+        
         updateAccountOverview();
 
-        // Update quick actions based on account features
+        
         updateQuickActions();
 
-        // Update transaction history
+        
         updateTransactionHistory();
 
-        // Update profile popup content
+        
         updateProfilePopup();
     }
 
-    // Update account selector dropdown
+    
     function updateAccountSelector() {
         const accountSelector = document.getElementById('account-selector');
         if (!accountSelector || !currentUserContext) return;
 
-        // Clear existing options
+        
         accountSelector.innerHTML = '';
 
-        // Add each account as an option
+        
         currentUserContext.accounts.forEach(account => {
             const option = document.createElement('option');
             option.value = account.id;
             option.textContent = `${account.name} (••••${account.number.slice(-4)})`;
 
-            // Select default account
+            
             if (account.id === currentUserContext.preferences.defaultAccount) {
                 option.selected = true;
             }
@@ -545,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
             accountSelector.appendChild(option);
         });
 
-        // Add event listener for account changes
+        
         accountSelector.addEventListener('change', function() {
             const selectedAccountId = this.value;
             currentUserContext.preferences.defaultAccount = selectedAccountId;
@@ -556,7 +556,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Update account overview section
+    
     function updateAccountOverview() {
         const accountOverview = document.getElementById('account-overview');
         const accountBalance = document.getElementById('account-balance');
@@ -567,14 +567,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!accountOverview || !currentUserContext) return;
 
-        // Get selected/default account
+        
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-        // Update account details
+        
         if (accountBalance) {
             accountBalance.textContent = formatCurrency(account.balance);
             accountBalance.className = account.balance >= 0 ? 'positive' : 'negative';
@@ -598,22 +598,22 @@ document.addEventListener('DOMContentLoaded', function() {
             accountStatus.className = account.status === 'active' ? 'active' : 'inactive';
         }
 
-        // Update account features (like overdraft, interest rate, etc.)
+        
         updateAccountFeatures(account);
     }
 
-    // Update account-specific features display
+    
     function updateAccountFeatures(account) {
         const featuresContainer = document.getElementById('account-features');
         if (!featuresContainer) return;
 
         featuresContainer.innerHTML = '';
 
-        // Add features based on account type
+        
         const featuresList = document.createElement('ul');
         featuresList.className = 'account-features-list';
 
-        // Common features
+        
         if (account.overdraft) {
             const li = document.createElement('li');
             li.innerHTML = `<span class="material-icons-sharp">credit_card</span> Overdraft: ${formatCurrency(account.overdraft)}`;
@@ -635,46 +635,46 @@ document.addEventListener('DOMContentLoaded', function() {
         featuresContainer.appendChild(featuresList);
     }
 
-    // Update quick action buttons based on account features
+    
     function updateQuickActions() {
         const paymentButton = document.getElementById('payment');
         const createButton = document.getElementById('create');
 
         if (!currentUserContext) return;
 
-        // Get selected/default account
+        
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-        // Enable/disable actions based on account features
+        
         if (paymentButton) {
             paymentButton.disabled = !account.features.includes('payments');
         }
     }
 
-    // Update transaction history based on selected account
+    
     function updateTransactionHistory() {
         const tabContent = document.getElementById('tab-content');
         if (!tabContent || !currentUserContext) return;
 
-        // Get selected/default account
+        
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-        // Display transactions if we're on the transactions tab
+        
         const activeTab = document.querySelector('.tabs button.active');
         if (activeTab && activeTab.id === 'btn-transactions') {
             displayContent([generateTransactionTable(account.transactions || [])]);
         }
     }
 
-    // Generate HTML table for transactions
+    
     function generateTransactionTable(transactions) {
         let html = `
  <table class="transaction-table">
@@ -712,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return html;
     }
 
-    // Update profile popup content
+    
     function updateProfilePopup() {
         const profilePopup = document.getElementById('profile-popup-content');
         if (!profilePopup || !currentUserContext) return;
@@ -759,7 +759,7 @@ document.addEventListener('DOMContentLoaded', function() {
  </div>
  `;
 
-        // Add event listeners for profile actions
+        
         document.getElementById('edit-profile-btn')?.addEventListener('click', () => {
             alert('Edit profile functionality would open here');
         });
@@ -770,13 +770,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('logout-btn')?.addEventListener('click', () => {
             alert('User would be logged out here');
-            // In a real app: window.location.href = '/logout';
+            
         });
     }
 
-    // =============================================
-    // HELPER FUNCTIONS
-    // =============================================
+    
+    
+    
 
     function formatCurrency(amount) {
         return 'R ' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -807,17 +807,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'txn_' + Math.random().toString(36).substr(2, 9);
     }
 
-    // =============================================
-    // INITIALIZE UI WITH USER CONTEXT
-    // =============================================
+    
+    
+    
 
     updateUserContextUI();
 
-    // =============================================
-    // UI COMPONENT FUNCTIONALITY
-    // =============================================
+    
+    
+    
 
-    // Profile popup functionality
+    
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
     const overlay = document.getElementById('overlay');
@@ -840,48 +840,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Sidebar toggle functionality
+    
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const toggleButton = document.getElementById('sidebarToggle');
     const menuIcon = toggleButton?.querySelector('.material-icons-sharp');
 
-    if (sidebar && mainContent && toggleButton && menuIcon) {
-        const chevronIcon = '<span class="material-icons-sharp">chevron_right</span>';
-        const closeIcon = '<span class="material-icons-sharp">close</span>';
-        const menuIconHtml = '<span class="material-icons-sharp">menu</span>';
+    if (sidebar && toggleButton) {
+        const isMobileApp = document.querySelector('.iphone') !== null;
 
-        function toggleSidebar() {
-            const isCollapsed = sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded', isCollapsed);
-
-            if (isCollapsed) {
-                toggleButton.innerHTML = menuIconHtml;
-            } else {
-                toggleButton.innerHTML = chevronIcon;
+        if (isMobileApp) {
+            // Mobile (Phone2 and similar): keep sidebar closed by default; open only on menu click
+            sidebar.classList.remove('active');
+            if (menuIcon) {
+                menuIcon.textContent = 'menu';
             }
 
-            localStorage.setItem('sidebarCollapsed', isCollapsed);
-        }
+            toggleButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                sidebar.classList.toggle('active');
+                const iconEl = toggleButton.querySelector('.material-icons-sharp');
+                if (iconEl) {
+                    iconEl.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
+                }
+            });
+        } else if (mainContent && menuIcon) {
+            // Desktop behavior (collapsed/expanded)
+            const chevronIcon = '<span class="material-icons-sharp">chevron_right</span>';
+            const menuIconHtml = '<span class="material-icons-sharp">menu</span>';
 
-        function initSidebar() {
-            const savedState = localStorage.getItem('sidebarCollapsed');
-            if (savedState === 'true') {
-                sidebar.classList.add('collapsed');
-                mainContent.classList.add('expanded');
-                toggleButton.innerHTML = menuIconHtml;
-            } else {
-                sidebar.classList.remove('collapsed');
-                mainContent.classList.remove('expanded');
-                toggleButton.innerHTML = chevronIcon;
+            function toggleSidebar() {
+                const isCollapsed = sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded', isCollapsed);
+
+                if (isCollapsed) {
+                    toggleButton.innerHTML = menuIconHtml;
+                } else {
+                    toggleButton.innerHTML = chevronIcon;
+                }
+
+                localStorage.setItem('sidebarCollapsed', isCollapsed);
             }
-        }
 
-        toggleButton.addEventListener('click', toggleSidebar);
-        initSidebar();
+            function initSidebar() {
+                const savedState = localStorage.getItem('sidebarCollapsed');
+                if (savedState === 'true') {
+                    sidebar.classList.add('collapsed');
+                    mainContent.classList.add('expanded');
+                    toggleButton.innerHTML = menuIconHtml;
+                } else {
+                    sidebar.classList.remove('collapsed');
+                    mainContent.classList.remove('expanded');
+                    toggleButton.innerHTML = chevronIcon;
+                }
+            }
+
+            toggleButton.addEventListener('click', toggleSidebar);
+            initSidebar();
+        }
     }
 
-    // Tab functionality
+    
     const btnTransactions = document.getElementById("btn-transactions");
     const btnPaymentHistory = document.getElementById("btn-payment-history");
     const btnStampedStatements = document.getElementById("btn-stamped-statements");
@@ -937,7 +956,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!currentUserContext) return;
 
-        // Get selected/default account
+        
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
@@ -1000,14 +1019,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Payment and create functionality
+    
     const paymentButton = document.getElementById('payment');
     const mainContentArea = document.getElementById('main-content-area');
     const defaultContent = document.getElementById('default-content');
     const contentWrapper = document.querySelector('.content-wrapper');
     const createButton = document.getElementById('create');
 
-    // Navigation state management
+    
     let navigationStack = [];
 
     if (paymentButton) {
@@ -1120,7 +1139,7 @@ document.addEventListener('DOMContentLoaded', function() {
  </div>
  `;
 
-        // Add event listeners
+        
         const backButton = document.getElementById('back-to-transact');
         if (backButton) {
             backButton.addEventListener('click', function() {
@@ -1217,7 +1236,7 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleContentVisibility();
         navigationStack.push('beneficiary-selection');
 
-        // Get current user's beneficiaries
+        
         const beneficiaries = currentUserContext?.beneficiaries || [];
 
         mainContentArea.innerHTML = `
@@ -1435,7 +1454,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const amount = parseFloat(document.getElementById('amount')?.value);
         const reference = document.getElementById('reference')?.value;
 
-        // Get the current account
+        
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
@@ -1445,7 +1464,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Validate sufficient funds
+        
         if (account.balance - amount < (account.overdraft ? -account.overdraft : 0)) {
             alert('Insufficient funds for this payment');
             return;
@@ -1462,13 +1481,13 @@ document.addEventListener('DOMContentLoaded', function() {
  </div>
  `;
 
-        // Simulate processing delay
+        
         setTimeout(() => {
-            // Update account balance
+            
             account.balance -= amount;
             account.lastUpdated = new Date().toISOString();
 
-            // Create transaction record
+            
             const newTransaction = {
                 id: generateTransactionId(),
                 date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
@@ -1484,13 +1503,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             account.transactions.unshift(newTransaction);
 
-            // If this was a once-off payment and user chose to save beneficiary
+            
             if (paymentType === 'onceoff' && document.getElementById('beneficiary-name')?.value) {
                 const beneficiaryName = document.getElementById('beneficiary-name').value;
                 const accountNumber = document.getElementById('account-number').value;
                 const bank = document.getElementById('bank').value;
 
-                // Add new beneficiary
+                
                 const newBeneficiary = {
                     id: 'ben_' + Math.random().toString(36).substr(2, 9),
                     name: beneficiaryName,
@@ -1505,10 +1524,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 currentUserContext.beneficiaries.push(newBeneficiary);
             }
 
-            // Update user in database
+            
             updateUserInDatabase(currentUserContext);
 
-            // Show confirmation
+            
             showPaymentConfirmation(paymentType, beneficiaryName, amount, reference);
         }, 2000);
     }
@@ -1531,7 +1550,7 @@ document.addEventListener('DOMContentLoaded', function() {
  `;
 
         setTimeout(() => {
-            // Add new beneficiary
+            
             const newBeneficiary = {
                 id: 'ben_' + Math.random().toString(36).substr(2, 9),
                 name: name,
@@ -1545,7 +1564,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             currentUserContext.beneficiaries.push(newBeneficiary);
 
-            // Update user in database
+            
             updateUserInDatabase(currentUserContext);
 
             showBeneficiaryConfirmation(name);
@@ -1593,7 +1612,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('done-button')?.addEventListener('click', function() {
             resetToMainView();
-            // Refresh account overview to show new balance
+            
             updateAccountOverview();
             updateTransactionHistory();
         });
@@ -1790,7 +1809,7 @@ Object.entries(tabButtons).forEach(([key, btn]) => {
 });
 
 
-// Initialize with transactions tab
+
 highlightButton('transactions');
 displayContent('transactions');
 
@@ -1816,7 +1835,7 @@ if (popupBtn && overlay && popupAccountDetails && closePopup) {
     });
 }
 
-/* ---------- Popup 2: Why the difference? ---------- */
+
 const overlayInfo = document.getElementById("overlay-info");
 const popupInfoDetails = document.getElementById("popupInfoDetails");
 const closePopupInfo = document.getElementById("closePopupInfo");
@@ -1838,19 +1857,19 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
         popupInfoDetails.classList.remove("active");
     });
 }
-//set auth levels
+
 
 
     document.addEventListener('DOMContentLoaded', function() {
-    // Wait for Set Account Authorisations to be clicked
+    
     const setAuthOption = document.querySelectorAll('.popup-accountdetails-option')[1];
 
     setAuthOption.addEventListener('click', function() {
-    // Close the account details popup
+    
     document.getElementById('popupAccountDetails').classList.remove('active');
     document.getElementById('overlay').classList.remove('active');
 
-    // Show the authorization screen
+    
     showAuthSetupStep1Screen();
 });
 
@@ -1891,7 +1910,6 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
  </div>
 
  <div id="approver-details-container" style="display: none;">
- <!-- This will be populated dynamically based on selection -->
  </div>
  </div>
 
@@ -1904,20 +1922,20 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
 </div>
 `;
 
-    // Add event listener for approver select change
+    
     const approverSelect = authFlowScreen.querySelector('#approver-select');
     approverSelect.addEventListener('change', function() {
     updateApproverDetails(this.value);
 });
 
-    // Initialize approver details
+    
     updateApproverDetails(approverSelect.value);
 
-    // Button handlers
+    
     authFlowScreen.querySelector('.js-auth-flow-continue-btn').addEventListener('click', showAuthFlowConfirmationScreen);
     authFlowScreen.querySelector('.js-auth-flow-cancel-btn').addEventListener('click', cancelAuthFlowAction);
     authFlowScreen.querySelector('.js-auth-flow-back-btn').addEventListener('click', function() {
-    // Go back to account details popup
+    
     document.getElementById('popupAccountDetails').classList.add('active');
     document.getElementById('overlay').classList.add('active');
     closeAuthFlowScreen();
@@ -1964,11 +1982,11 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
     function showAuthFlowConfirmationScreen() {
     const authFlowScreen = document.getElementById('authFlowScreen');
 
-    // Get selected values
+    
     const creatorValue = document.getElementById('creator-select').value;
     const approverValue = document.getElementById('approver-select').value;
 
-    // Get approver details if needed
+    
     let approverDetails = '';
     if (approverValue === 'one-person') {
     const firstApprover = document.getElementById('first-approver-select').value;
@@ -1979,7 +1997,7 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
     approverDetails = ` (${formatApproverDisplayValue(firstApprover)} and ${formatApproverDisplayValue(secondApprover)})`;
 }
 
-    // Create confirmation screen
+    
     authFlowScreen.innerHTML = `
 <div class="notch"></div>
 <div class="auth-setup-flow-container">
@@ -2011,7 +2029,7 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
 </div>
 `;
 
-    // Button handlers
+    
     authFlowScreen.querySelector('.js-auth-flow-confirm-btn').addEventListener('click', confirmAuthFlowAction);
     authFlowScreen.querySelector('.js-auth-flow-cancel-btn').addEventListener('click', cancelAuthFlowAction);
     authFlowScreen.querySelectorAll('.js-auth-flow-edit-link')[0].addEventListener('click', function(e) {
@@ -2046,7 +2064,7 @@ if (infoTrigger && overlayInfo && popupInfoDetails && closePopupInfo) {
 }
 
     function confirmAuthFlowAction() {
-    // Save changes and return to main content
+    
     alert('Account authorizations updated successfully!');
     closeAuthFlowScreen();
 }

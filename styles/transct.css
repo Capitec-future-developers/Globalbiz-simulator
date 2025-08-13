@@ -38,10 +38,10 @@ body {
     top: 0px;
     text-decoration: none;
 }
-/* Header Styles */
+
 .header {
     background-color: #ffffff;
-    padding: 10px 30px; /* Increased padding */
+    padding: 10px 30px; 
     height: 70px;
     display: flex;
     align-items: center;
@@ -62,13 +62,13 @@ body {
 .header a.logo img {
     height: 40px;
     width: auto;
-    max-width: 200px; /* Increased max-width */
+    max-width: 200px; 
     object-fit: contain;
 }
 
 .business {
-    margin-left: 25px; /* Increased margin */
-    font-size: 20px; /* Larger font */
+    margin-left: 25px; 
+    font-size: 20px; 
     font-weight: 600;
     color: #2c3e50;
 }
@@ -81,12 +81,12 @@ body {
     margin: 0 20px;
 }
 
-/* Header Right Section */
+
 .header-right {
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 20px; /* Increased gap */
+    gap: 20px; 
 }
 
 .header-right a {
@@ -94,8 +94,8 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    font-size: 16px; /* Larger font */
-    padding: 10px 15px; /* Increased padding */
+    font-size: 16px; 
+    padding: 10px 15px; 
     border-radius: 4px;
     transition: all 0.3s ease;
 }
@@ -114,9 +114,9 @@ body {
     font-weight: 500;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
-    width: 280px; /* Increased width */
+    width: 280px; 
     background: #16232f;
     color: white;
     position: fixed;
@@ -130,12 +130,12 @@ body {
 
 .sidebar a {
     color: #ecf0f1;
-    padding: 16px 25px; /* Increased padding */
+    padding: 16px 25px; 
     text-decoration: none;
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-    font-size: 15px; /* Larger font */
+    font-size: 15px; 
 }
 
 
@@ -144,25 +144,25 @@ body {
 }
 
 .sidebar .material-icons-sharp {
-    margin-right: 15px; /* Increased margin */
-    font-size: 22px; /* Larger icon */
+    margin-right: 15px; 
+    font-size: 22px; 
 }
 
 .side {
     color: #bdc3c7;
-    padding: 18px 25px 8px; /* Increased padding */
-    font-size: 13px; /* Slightly larger */
+    padding: 18px 25px 8px; 
+    font-size: 13px; 
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
 }
 
 .sidebar a.signout {
-    margin-top: 25px; /* Increased margin */
+    margin-top: 25px; 
     border-top: 1px solid #34495e;
-    padding-top: 25px; /* Increased padding */
+    padding-top: 25px; 
     color: #bdc3c7;
-    font-size: 13px; /* Slightly larger */
+    font-size: 13px; 
     line-height: 1.5;
 }
 
@@ -181,7 +181,7 @@ body {
     justify-content: center;
 }
 
-/* Main Content Styles */
+
 .main-content {
     width: 100%;
     max-width: 2800px;
@@ -194,7 +194,7 @@ body {
     font-size: 28px;
 }
 
-/* Quick actions section */
+
 .the-box {
     border: 1px solid #ddd;
     background-color: #ffffff;
@@ -235,26 +235,26 @@ font-weight: bold;
 
 .action-card h3 {
     color: #0070a0;
-    margin-bottom: 12px; /* Increased margin */
-    font-size: 18px; /* Larger font */
+    margin-bottom: 12px; 
+    font-size: 18px; 
 }
 
 .action-card p {
     color: #666;
-    font-size: 15px; /* Larger font */
+    font-size: 15px; 
 }
 
-/* Divider */
+
 .divider {
     border-top: 1px solid #ddd;
-    margin: 50px 0; /* Increased margin */
+    margin: 50px 0; 
 }
 
-/* Payment history section */
+
 .payment-history {
     background-color: white;
     border-radius: 8px;
-    padding: 30px; /* Increased padding */
+    padding: 30px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -262,44 +262,44 @@ font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px; /* Increased margin */
+    margin-bottom: 25px; 
     flex-wrap: wrap;
-    gap: 20px; /* Increased gap */
+    gap: 20px; 
 }
 
 .history-title {
     color: #0075a0;
-    font-size: 20px; /* Larger font */
+    font-size: 20px; 
 }
 
 .history-filters {
     display: flex;
-    gap: 20px; /* Increased gap */
+    gap: 20px; 
     flex-wrap: wrap;
 }
 
 .filter-item {
     display: flex;
     flex-direction: column;
-    min-width: 180px; /* Increased width */
+    min-width: 180px; 
 }
 
 .filter-item label {
-    font-size: 13px; /* Slightly larger */
+    font-size: 13px; 
     color: #666;
-    margin-bottom: 8px; /* Increased margin */
+    margin-bottom: 8px; 
 }
 
 .filter-item select, .filter-item input {
-    padding: 10px 15px; /* Increased padding */
+    padding: 10px 15px; 
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 15px; /* Larger font */
+    font-size: 15px; 
 }
 
-/* Payment table */
+
 .payment-table {
-    width: 1300px; /* Changed from fixed width to 100% */
+    width: 1300px; 
     border-collapse: collapse;
 }
 
@@ -309,15 +309,15 @@ font-weight: bold;
 }
 
 .payment-table th {
-    padding: 15px 20px; /* Increased padding */
+    padding: 15px 20px; 
     text-align: left;
     color: #666;
     font-weight: normal;
-    font-size: 15px; /* Larger font */
+    font-size: 15px; 
 }
 
 .payment-table td {
-    padding: 18px 20px; /* Increased padding */
+    padding: 18px 20px; 
     border-bottom: 1px solid #eee;
     color: #333;
     font-size: 15px;
@@ -330,7 +330,7 @@ font-weight: bold;
     font-size: 17px;
 }
 
-/* Dropdown styles */
+
 .dropdown {
     position: relative;
 }
@@ -342,27 +342,27 @@ font-weight: bold;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    font-size: 15px; /* Larger font */
+    font-size: 15px; 
 }
 
 .dropdown-arrow {
     transition: transform 0.3s ease;
-    margin-left: 10px; /* Increased margin */
+    margin-left: 10px; 
 }
 
 .dropdown-menu {
     display: none;
-    padding-left: 45px; /* Increased padding */
+    padding-left: 45px; 
     background-color: rgba(0,0,0,0.02);
 }
 
 .dropdown-menu a {
     display: block;
-    padding: 10px 0; /* Increased padding */
+    padding: 10px 0; 
     color: inherit;
     text-decoration: none;
     transition: background-color 0.2s;
-    font-size: 14px; /* Slightly larger */
+    font-size: 14px; 
 }
 
 .dropdown-menu a:hover {
@@ -383,7 +383,7 @@ font-weight: bold;
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Popup styling */
+
 .profile-popup {
     display: none;
     position: fixed;
@@ -496,16 +496,16 @@ font-weight: bold;
 
 
 
-/* Responsive adjustments */
+
 @media (max-width: 1600px) {
     .action-card {
-        width: calc(33.33% - 17px); /* 3 cards per row */
+        width: calc(33.33% - 17px); 
     }
 }
 
 @media (max-width: 1200px) {
     .action-card {
-        width: calc(50% - 13px); /* 2 cards per row */
+        width: calc(50% - 13px); 
     }
 
     .main-content {
@@ -664,7 +664,7 @@ font-weight: bold;
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tab styles */
+
 .tabs button {
     transition: transform 0.1s ease;
     border: none;
@@ -731,7 +731,7 @@ font-weight: bold;
     background: #0060cc;
 }
 
-/* Hide the default select arrow */
+
 .manage-btn select {
     appearance: none;
     -webkit-appearance: none;
@@ -747,17 +747,17 @@ font-weight: bold;
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0; /* Make the select invisible but clickable */
+    opacity: 0; 
 }
 
-/* Style for the dropdown options */
+
 .manage-btn select option {
     color: #333;
     background: white;
     padding: 8px 16px;
 }
 
-/* Custom dropdown indicator */
+
 .manage-btn::after {
     content: "▼";
     font-size: 10px;
@@ -831,7 +831,7 @@ font-weight: bold;
 .feedback-error { color: red; }
 .feedback-info { color: blue; }
 
-/* Dropdown styles */
+
 .dropdown {
     position: relative;
 }
@@ -892,7 +892,7 @@ font-weight: bold;
 
 }
 
- /* Add these styles for the transfer section */
+ 
 .transfer-section {
     padding: 20px;
     max-width: 600px;
@@ -1051,9 +1051,7 @@ font-weight: bold;
     cursor: pointer;
 }
 
-/*---------------------------------
-  Layout Containers
-----------------------------------*/
+
 .payment-section,
 .create-section {
     padding: 20px;
@@ -1077,9 +1075,7 @@ font-weight: bold;
     color: #666;
 }
 
-/*---------------------------------
-  Grid Layouts
-----------------------------------*/
+
 .payment-options-grid,
 .create-options-grid {
     display: grid;
@@ -1132,9 +1128,7 @@ font-weight: bold;
     color: #666;
 }
 
-/*---------------------------------
-  Buttons
-----------------------------------*/
+
 .payment-action-btn,
 .add-beneficiary-btn,
 .submit-payment-btn,
@@ -1175,9 +1169,7 @@ font-weight: bold;
     cursor: pointer;
 }
 
-/*---------------------------------
-  Navigation & Back Button
-----------------------------------*/
+
 .back-button {
     background: none;
     border: none;
@@ -1193,9 +1185,7 @@ font-weight: bold;
     color: #666;
 }
 
-/*---------------------------------
-  Beneficiary List
-----------------------------------*/
+
 .beneficiary-list {
     margin: 20px 0;
 }
@@ -1232,9 +1222,7 @@ font-weight: bold;
     margin: 2px 0;
 }
 
-/*---------------------------------
-  Forms
-----------------------------------*/
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -1260,9 +1248,7 @@ font-weight: bold;
     border-radius: 4px;
 }
 
-/*---------------------------------
-  Payment Processing & Spinner
-----------------------------------*/
+
 .payment-processing {
     text-align: center;
     padding: 40px 20px;
@@ -1301,9 +1287,7 @@ font-weight: bold;
     }
 }
 
-/*---------------------------------
-  Payment Confirmation
-----------------------------------*/
+
 .payment-confirmation {
     text-align: center;
     padding: 30px 20px;
@@ -1340,9 +1324,7 @@ font-weight: bold;
     justify-content: center;
 }
 
-/*---------------------------------
-  Info Message
-----------------------------------*/
+
 .info-message {
     background: #f0f7ff;
     padding: 12px;
@@ -1358,9 +1340,7 @@ font-weight: bold;
     font-size: 22px;
 }
 
-/*---------------------------------
-  Content Visibility
-----------------------------------*/
+
 #main-content-area {
     display: none;
 }

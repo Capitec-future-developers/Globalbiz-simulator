@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `
     };
 
-    // Inject the content into the div with ID "mainContent"
+    
     const mainContent = document.getElementById('mainContent');
     if (mainContent) {
         mainContent.innerHTML = manageContentData.manageBusiness;

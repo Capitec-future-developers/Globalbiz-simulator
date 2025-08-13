@@ -12,7 +12,7 @@ body {
   color: #333;
 }
 
-/* Header Styles */
+
 .header {
   background-color: #ffffff;
   padding: 10px 20px;
@@ -54,7 +54,7 @@ body {
   margin: 0 15px;
 }
 
-/* Header Right Section */
+
 .header-right {
   margin-left: auto;
   display: flex;
@@ -307,7 +307,7 @@ a {
 }
 
 
-/* Icon styles */
+
 .box1 .material-icons-sharp,
 .box2 .material-icons-sharp,
 .box3 .material-icons-sharp{
@@ -362,10 +362,10 @@ a {
 
 
 
-/* Responsive adjustments */
+
 @media screen and (max-width: 1200px) {
   .box1, .box2 {
-    width: 100%; /* Make boxes flexible on medium screens */
+    width: 100%; 
   }
 }
 
@@ -379,18 +379,18 @@ a {
 
   .box1, .box2 {
     flex: 0 0 calc(50% - 10px);
-    width: calc(50% - 10px); /* Ensure proper width in flex context */
+    width: calc(50% - 10px); 
   }
 }
 
 @media screen and (max-width: 600px) {
   .box1, .box2 {
     flex: 0 0 100%;
-    width: 100%; /* Full width on small screens */
+    width: 100%; 
   }
 }
 
-/* Favorites Section */
+
 .favorites-container {
   background: white;
   padding: 25px;
@@ -399,8 +399,8 @@ a {
   width: 100%;
   height: 400px;
   max-width: 600px;
-  margin-left: 290px; /* These two lines will push it to the right */
-  margin-right: auto; /* Right spacing */
+  margin-left: 290px; 
+  margin-right: auto; 
   position: relative;
   text-decoration: none;
 }
@@ -461,7 +461,7 @@ a {
   color: #2c3e50;
 }
 
-/* Responsive Styles */
+
 @media screen and (max-width: 992px) {
   .sidebar {
     transform: translateX(-100%);
@@ -527,7 +527,7 @@ a {
   cursor: pointer;
   position: absolute;
   top: 20px;
-  right: -30px; /* adjust based on sidebar width */
+  right: -30px; 
   background: #2c3e50;
   border-radius: 50%;
   padding: 5px;
@@ -544,16 +544,16 @@ a {
 
 @media screen and (max-width: 992px) {
   .sidebar {
-    transform: translateX(-100%); /* Hide off-screen */
+    transform: translateX(-100%); 
     transition: transform 0.3s ease;
   }
 
   .sidebar.open {
-    transform: translateX(0); /* Slide into view */
+    transform: translateX(0); 
   }
 }
 
-/* Animations */
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -581,8 +581,8 @@ a {
   width: 100%;
   position: relative;
   animation: fadeIn 0.5s ease forwards;
-  margin-left: 290px; /* These two lines will push it to the right */
-  margin-right: auto; /* Right spacing */
+  margin-left: 290px; 
+  margin-right: auto; 
   position: relative;
   text-decoration: none;
 }
@@ -596,7 +596,7 @@ a {
   color: #7f8c8d;
 }
 
-/* Modify the content section positioning */
+
 .content {
   margin-top: 0;
   width: 100%;
@@ -688,7 +688,7 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 15px;
 }
-/* Cash Flow Section */
+
 .cash-flow {
   background: white;
   padding: 20px;
@@ -731,7 +731,7 @@ a {
   font-weight: 500;
 }
 
-/* Select row styling */
+
 .select-row {
   display: flex;
   gap: 15px;
@@ -739,7 +739,7 @@ a {
   flex-wrap: wrap;
 }
 
-/* Narrower select controls */
+
 .account-select,
 .period-selector select {
   border: 1px solid #e0e0e0;
@@ -750,8 +750,8 @@ a {
   background-color: white;
   cursor: pointer;
   transition: border-color 0.3s ease;
-  width: 300px; /* Fixed width instead of flex */
-  max-width: 100%; /* Ensure it doesn't overflow on mobile */
+  width: 300px; 
+  max-width: 100%; 
 }
 
 .account-select:focus,
@@ -760,7 +760,7 @@ a {
   border-color: #1e88e5;
 }
 
-/* Responsive adjustments */
+
 @media screen and (max-width: 768px) {
   .select-row {
     flex-direction: column;
@@ -769,11 +769,11 @@ a {
 
   .account-select,
   .period-selector select {
-    width: 100%; /* Full width on mobile */
+    width: 100%; 
   }
 }
 
-/* Popup styling */
+
 .profile-popup {
   display: none;
   position: fixed;
@@ -936,7 +936,7 @@ popup-header {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tab styles */
+
 .tabs button {
   transition: transform 0.1s ease;
   border: none;
@@ -1003,7 +1003,7 @@ popup-header {
   background: #0060cc;
 }
 
-/* Hide the default select arrow */
+
 .manage-btn select {
   appearance: none;
   -webkit-appearance: none;
@@ -1019,17 +1019,17 @@ popup-header {
   position: absolute;
   left: 0;
   top: 0;
-  opacity: 0; /* Make the select invisible but clickable */
+  opacity: 0; 
 }
 
-/* Style for the dropdown options */
+
 .manage-btn select option {
   color: #333;
   background: white;
   padding: 8px 16px;
 }
 
-/* Custom dropdown indicator */
+
 .manage-btn::after {
   content: "▼";
   font-size: 10px;
@@ -1160,9 +1160,9 @@ popup-header {
 
 
 
-/* Popup style 2 */
+
 .popup {
-  display: none; /* hidden by default */
+  display: none; 
   position: fixed;
   top: 650px;
   right: -60px;
@@ -1177,7 +1177,7 @@ popup-header {
   text-align: center;
 }
 
-/* Close button (X) */
+
 .close-btn {
   position: absolute;
   bottom: 8px;
@@ -1186,7 +1186,7 @@ popup-header {
   cursor: pointer;
 }
 
-/* Popup buttons */
+
 .popup-btn {
   display: block;
   width: 80%;

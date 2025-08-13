@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
-/* ============ BASE STYLES ============ */
+
 body {
     display: flex;
     justify-content: center;
@@ -9,13 +9,13 @@ body {
     background-color: #f0f0f0;
     margin: 0;
     font-family: Arial, sans-serif;
-    overflow-y: hidden; /* Hide vertical scrollbar */
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow-y: hidden;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
-/* ============ IPHONE FRAME ============ */
+
 .iphone {
     position: relative;
     width: 300px;
@@ -27,7 +27,7 @@ body {
     overflow: hidden;
 }
 
-/* ============ SCREEN ELEMENTS ============ */
+
 .screen {
     width: 100%;
     height: 100%;
@@ -45,7 +45,7 @@ body {
     flex-direction: column;
     height: 100%;
     position: relative;
-    overflow: hidden; /* This enables scrolling */
+    overflow: hidden;
 }
 
 .notch {
@@ -72,7 +72,7 @@ body {
     border-radius: 3px;
 }
 
-/* ============ PHYSICAL BUTTONS ============ */
+
 .volume-buttons {
     position: absolute;
     left: -10px;
@@ -106,7 +106,7 @@ body {
     border-bottom-right-radius: 3px;
 }
 
-/* ============ HEADER STYLES ============ */
+
 .head {
     position: relative;
     font-size: 1.5rem;
@@ -121,7 +121,7 @@ body {
     box-sizing: border-box;
     z-index: 5;
     margin-top: 25px;
-    display: flex; /* Added flex to arrange items horizontally */
+    display: flex;
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
@@ -151,7 +151,7 @@ body {
     font-size: 24px;
 }
 
-/* New OM Circle Styling */
+
 .om-circle {
     width: 35px;
     height: 35px;
@@ -169,7 +169,7 @@ body {
     text-decoration: none;
 }
 
-/* ============ SIDEBAR STYLES ============ */
+
 .sidebar {
     transform: translateX(-150px);
     width: 150px;
@@ -218,7 +218,7 @@ body {
     text-transform: uppercase;
 }
 
-/* ============ MAIN CONTENT STRUCTURE ============ */
+
 .screen-content {
     flex: 1;
     display: flex;
@@ -230,7 +230,7 @@ body {
 .content-container {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 60px; /* Space for bottom nav */
+    padding-bottom: 60px;
 }
 
 .content {
@@ -238,7 +238,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* ============ ACCOUNT SECTION ============ */
+
 .account-header {
     display: flex;
     justify-content: space-between;
@@ -259,7 +259,7 @@ body {
 
 }
 
-/* ============ ACCOUNT BOX ============ */
+
 .box1 {
     width: 100%;
     height: 60px;
@@ -302,7 +302,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ============ FAVORITES SECTION ============ */
+
 .favorites {
     background: white;
     padding: 15px 20px;
@@ -357,7 +357,7 @@ body {
     color: #333;
 }
 
-/* ============ BOTTOM NAVIGATION ============ */
+
 .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -391,7 +391,7 @@ body {
     margin-bottom: 4px;
 }
 
-/* ============ RESPONSIVE ADJUSTMENTS ============ */
+
 @media (max-height: 600px) {
     .favorite-box {
         height: 80px;
@@ -451,8 +451,8 @@ body {
 
 .account-info-coloumn .material-icons-sharp.right {
     color: #718096;
-    margin-left: auto; /* Pushes chevron to far right */
-    padding-left: 15px; /* Ensures space between label and chevron */
+    margin-left: auto;
+    padding-left: 15px;
 
 }
 
@@ -554,8 +554,7 @@ body {
     color: #718096;
     margin-left: 10px;
 }
-/* Base Styles */
-/* ============ PAYMENT FLOW STYLES ============ */
+
 .payment-section, .beneficiary-selection,
 .payment-form-section, .add-beneficiary-form,
 .payment-processing, .payment-confirmation {
@@ -597,7 +596,7 @@ body {
     margin-right: 5px;
 }
 
-/* Payment Options Grid */
+
 .payment-options-grid {
     display: flex;
     flex-direction: column;
@@ -664,7 +663,7 @@ body {
     font-size: 1.2rem;
 }
 
-/* Form Styles */
+
 .form-group {
     margin-bottom: 18px;
 }
@@ -720,7 +719,7 @@ body {
     background: #007ba3;
 }
 
-/* Beneficiary List */
+
 .beneficiary-list {
     margin: 20px 0;
 }
@@ -764,7 +763,7 @@ body {
     margin: 0;
 }
 
-/* Search Bar */
+
 .mobile-search {
     position: relative;
     margin-bottom: 20px;
@@ -787,7 +786,7 @@ body {
     box-sizing: border-box;
 }
 
-/* Info Message */
+
 .info-message {
     background: #f0f9ff;
     border-radius: 8px;
@@ -809,7 +808,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* Processing Spinner */
+
 .payment-processing {
     text-align: center;
     padding: 40px 20px;
@@ -853,7 +852,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Confirmation Styles */
+
 .payment-confirmation {
     text-align: center;
     padding: 30px 20px;
@@ -963,7 +962,7 @@ body {
     background: #007ba3;
 }
 
-/* Responsive Adjustments */
+
 @media (min-width: 768px) {
     .payment-options-grid {
         grid-template-columns: 1fr 1fr;
@@ -978,7 +977,7 @@ body {
     }
 }
 
-/* Automation System Styles */
+
 .search-container {
     position: relative;
     display: flex;
@@ -1048,7 +1047,7 @@ body {
     font-weight: bold;
 }
 
-/* Automation highlighting */
+
 .automation-highlight {
     animation: pulse-highlight 2s ease-in-out infinite;
     position: relative;
@@ -1068,7 +1067,7 @@ body {
     }
 }
 
-/* Feedback messages */
+
 .feedback-message {
     position: fixed;
     bottom: 20px;
@@ -1094,14 +1093,14 @@ body {
     background-color: #dc3545;
 }
 
-/* Automation target element styling */
+
 .automation-target {
     position: relative;
     z-index: 10000;
     transition: all 0.3s ease;
 }
 
-/* Context help for automation */
+
 .automation-context-help {
     position: fixed;
     bottom: 20px;
@@ -1123,7 +1122,7 @@ body {
     opacity: 1;
 }
 
-/* Highlight styles for different elements */
+
 .automation-highlight-button {
     animation: button-pulse 1.5s infinite;
 }
@@ -1154,7 +1153,7 @@ body {
     100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0); }
 }
 
-/* Suggestions dropdown */
+
 .suggestions-dropdown {
     position: absolute;
     background: white;
@@ -1190,7 +1189,7 @@ body {
     margin: 10px;
 }
 
-/* Popup styling */
+
 .profile-popup {
     display: none;
     position: fixed;
@@ -1322,11 +1321,11 @@ body {
 
 }
 
-/* Toggle Switch Style */
+
 .switch {
     position: relative;
     display: inline-block;
-    width: 50px;
+    width: 100px;
     height: 24px;
 }
 
@@ -1336,7 +1335,7 @@ body {
     height: 0;
 }
 
-/* Slider */
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -1358,7 +1357,7 @@ body {
     border-radius: 50%;
 }
 
-/* When checked */
+
 input:checked + .slider {
     background-color: #4CAF50;
 }
@@ -1395,12 +1394,12 @@ input:checked + .slider:before {
 .tab-content {
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #fff; /* White background */
+    background: #fff; 
     border-radius: 15px;
     color: #222;
 }
 
-/*transactionlimts*/
+
 .transaction-container {
     display: flex;
     flex-direction: column;
@@ -1437,7 +1436,7 @@ input:checked + .slider:before {
     gap: 10px; /
 }
 
-/* Info heading (top-left) */
+
 .info-heading {
     position: absolute;
     top: 10px;
@@ -1447,7 +1446,7 @@ input:checked + .slider:before {
 
 }
 
-/* Edit button (top-right) */
+
 .edit-limit-btn {
     position: absolute;
     top: 27px;
@@ -1467,10 +1466,10 @@ input:checked + .slider:before {
     color: #005f8c;
 }
 
-/* Info Items row - under heading & button */
+
 .account-info-row {
     position: absolute;
-    top: 40px; /* space under heading/buttons */
+    top: 40px; 
     left: 15px;
     right: 15px;
     display: flex;

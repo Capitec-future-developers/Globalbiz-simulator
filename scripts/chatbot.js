@@ -6,9 +6,9 @@ const chatbotToggler = document.querySelector('.chatbot-toggler');
 const closeBtn = document.querySelector('.chatbot header span');
 
 let userMessage;
-const API_KEY = ""; // <-- Add your OpenAI API
+const API_KEY = ""; 
 
-// Create chat list item
+
 const createChatLi = (message, className) => {
     const chatLi = document.createElement('li');
     chatLi.classList.add("chat", className);
@@ -19,10 +19,10 @@ const createChatLi = (message, className) => {
     return chatLi;
 };
 
-// Get response (modified to not use API)
+
 const generateResponse = (incomingChatLi) => {
     const messageElement = incomingChatLi.querySelector("p");
-// Simple response without API call
+
     messageElement.innerHTML = `
     Hi! Let me know how I can help you:
     <ul class="chat-options">
@@ -32,11 +32,11 @@ const generateResponse = (incomingChatLi) => {
     </ul>
 `;
 
-// Scroll to bottom
+
     chatbox.scrollTo(0, chatbox.scrollHeight);
 };
 
-// Send user message
+
 const handleChat = () => {
     userMessage = chatInput.value.trim();
     if (!userMessage) return;
@@ -53,18 +53,18 @@ const handleChat = () => {
     }, 600);
 };
 
-// Send button click
+
 sendChatBtn.addEventListener('click', handleChat);
 
-// Toggle chatbot open/close
+
 chatbotToggler.addEventListener('click', () => {
     body.classList.toggle('show-chatbot');
 });
 
-// Close button in header (only visible on mobile)
+
 closeBtn.addEventListener('click', () => {
     body.classList.remove('show-chatbot');
 });
 
-// Remove the show-chatbot class from body initially
+
 body.classList.remove('show-chatbot');

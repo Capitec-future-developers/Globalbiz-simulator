@@ -13,7 +13,7 @@ body {
     padding-top: 140px;
 }
 
-/* Header Styles */
+
 .header {
     background-color: #ffffff;
     padding: 10px 20px;
@@ -55,7 +55,7 @@ body {
     margin: 0 15px;
 }
 
-/* Header Right Section */
+
 .header-right {
     margin-left: auto;
     display: flex;
@@ -112,7 +112,7 @@ body {
     text-decoration: none;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
     width: 250px;
     background: #16232f;
@@ -168,7 +168,7 @@ body {
     color: white;
 }
 
-/* Main Content Styles */
+
 .content {
     position: absolute;
     margin-left: 250px;
@@ -179,7 +179,7 @@ body {
 
 
 
-/* Search Bar Styles */
+
 
 .searchContent{
     position: absolute;
@@ -255,11 +255,11 @@ body {
 .feedback-error { color: red; }
 .feedback-info { color: blue; }
 
-/* Dropdown styles */
+
 .dropdown {
     position: relative;
 }
-/* Account Section Styles */
+
 .account-box {
     position: absolute;
     background: #ffffff;
@@ -364,7 +364,7 @@ body {
     color: #df0808;
 }
 
-/* Popup styling */
+
 .profile-popup {
     display: none;
     position: fixed;
@@ -472,7 +472,7 @@ body {
     display: block;
 }
 
-/* Dropdown styles */
+
 .dropdown {
     position: relative;
 }
@@ -526,7 +526,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tab styles */
+
 .tabs button {
     transition: transform 0.1s ease;
     border: none;
@@ -625,7 +625,7 @@ body {
     vertical-align: middle;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     body {
         padding-top: 120px;
@@ -686,7 +686,7 @@ body {
     }
 
 
-/ /* Add these styles for the transfer section */
+/ 
 .transfer-section {
     padding: 20px;
     max-width: 600px;
