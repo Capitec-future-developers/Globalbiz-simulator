@@ -31,6 +31,24 @@ const createIncomingHtml = (html) => {
     return chatLi;
 };
 
+// Build a rich "card" style response block
+const buildCard = ({ title, subtitle = '', body = '', list = [], links = [], chips = [] }) => {
+    const listHtml = list.length ? `<ul class="chat-list">${list.map(item => `<li>${item}</li>`).join('')}</ul>` : '';
+    const linksHtml = links.length ? `<div class="chat-links">${links.map(l => `<a class="chat-link" href="${l.href}" target="_blank" rel="noopener">${l.text}</a>`).join('')}</div>` : '';
+    const chipsHtml = chips.length ? `<div class="chat-chips">${chips.map(c => `<button class="chip" data-chip="${c.value}">${c.label}</button>`).join('')}</div>` : '';
+    const subtitleHtml = subtitle ? `<div class="chat-subtitle">${subtitle}</div>` : '';
+    return `
+      <div class="chat-card">
+        <div class="chat-title">${title}</div>
+        ${subtitleHtml}
+        ${body ? `<div class="chat-body">${body}</div>` : ''}
+        ${listHtml}
+        ${linksHtml}
+        ${chipsHtml}
+      </div>
+    `;
+};
+
 // Try to read current account info from the page (project data already rendered by App.js)
 const getCurrentAccountInfo = () => {
     const nameEl = document.getElementById('account-name');
