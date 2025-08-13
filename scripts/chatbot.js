@@ -1,11 +1,86 @@
-const body = document.querySelector('body');
-const chatInput = document.querySelector('.chat-input textarea');
-const sendChatBtn = document.querySelector('.chat-input span');
-const chatbox = document.querySelector('.chatbox');
-const chatbotToggler = document.querySelector('.chatbot-toggler');
-const closeBtn = document.querySelector('.chatbot header span');
+let body = document.querySelector('body');
+let chatInput = document.querySelector('.chat-input textarea');
+let sendChatBtn = document.querySelector('.chat-input span');
+let chatbox = document.querySelector('.chatbox');
+let chatbotToggler = document.querySelector('.chatbot-toggler');
+let closeBtn = document.querySelector('.chatbot header span');
 
 let userMessage;
+
+// Ensure chatbot widget and assets exist on every page
+(function ensureChatbot() {
+    try {
+        // Inject Material Icons if missing
+        const hasIcons = Array.from(document.querySelectorAll('link[rel="stylesheet"], link[rel="preload"]')).some(l => (l.href || '').includes('fonts.googleapis.com/icon?family=Material+Icons+Sharp'));
+        if (!hasIcons) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Sharp';
+            document.head.appendChild(link);
+        }
+
+        // Helper to add stylesheet if not already present
+        const addStylesheetOnce = (href) => {
+            if (!href) return;
+            const exists = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(l => (l.getAttribute('href') || '').endsWith(href) || (l.href || '').includes(href));
+            if (!exists) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                document.head.appendChild(link);
+            }
+        };
+
+        // Determine relative path to styles based on current location
+        const path = (location.pathname || '').toLowerCase();
+        const isComputer = path.includes('/computer/') || path.includes('\\computer\\');
+        const isApp = path.includes('/app/') || path.includes('\\app\\');
+        const stylesBase = (isComputer || isApp) ? '../styles/' : 'styles/';
+        // Use standard web paths for CSS hrefs
+        addStylesheetOnce(isComputer ? `${stylesBase}Chatbotcomputer.css` : `${stylesBase}chatbot.css`);
+
+        // Inject chatbot markup if missing
+        if (!document.querySelector('.chatbot')) {
+            const toggler = document.createElement('button');
+            toggler.className = 'chatbot-toggler';
+            toggler.innerHTML = '<span class="material-icons-sharp">mode_comment<\/span><span class="material-icons-sharp">close<\/span>';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'chatbot';
+            wrapper.innerHTML = [
+                '<header>',
+                '  <h2>BIZCHAT<\/h2>',
+                '  <span class="material-icons-sharp">close<\/span>',
+                '<\/header>',
+                '<ul class="chatbox">',
+                '  <li class="chat incoming">',
+                '    <span class="material-icons-sharp">account_circle<\/span>',
+                '    <p>Welcome to Bizchat, how can I assist.<\/p>',
+                '  <\/li>',
+                '<\/ul>',
+                '<div class="chat-input">',
+                '  <textarea placeholder="Type your message here..." required><\/textarea>',
+                '  <span id="send-btn" class="material-icons-sharp">send<\/span>',
+                '<\/div>'
+            ].join('');
+
+            // Append near end of body to avoid layout clashes
+            document.body.appendChild(toggler);
+            document.body.appendChild(wrapper);
+        }
+
+        // Reselect elements now that we may have injected them
+        body = document.body;
+        chatInput = document.querySelector('.chat-input textarea');
+        sendChatBtn = document.querySelector('.chat-input span');
+        chatbox = document.querySelector('.chatbox');
+        chatbotToggler = document.querySelector('.chatbot-toggler');
+        closeBtn = document.querySelector('.chatbot header span');
+
+    } catch (e) {
+        console.error('Failed to ensure chatbot presence:', e);
+    }
+})();
 
 // Helper to create chat message list items
 const createChatLi = (message, className) => {
@@ -415,41 +490,47 @@ const handleChat = () => {
     }, 300);
 };
 
-// Events
-sendChatBtn.addEventListener('click', handleChat);
-chatInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        handleChat();
-    }
-});
-
-// Delegate click handling for quick-reply chips inside chatbot
-chatbox.addEventListener('click', (e) => {
-    const target = e.target;
-    if (target && target.classList && target.classList.contains('chip')) {
-        const value = target.getAttribute('data-chip') || target.textContent || '';
-        const text = value.trim();
-        if (!text) return;
-        // Show the selected chip as outgoing for context
-        chatbox.appendChild(createChatLi(text, 'outgoing'));
-        chatbox.scrollTo(0, chatbox.scrollHeight);
-        // Attempt to execute an automation if it looks like a command
-        if (/^(open |go to|make|pay|view)/i.test(text)) {
-            tryExecuteAutomation(text.toLowerCase());
-            return;
+// Events - guard against missing elements
+if (sendChatBtn && chatInput && chatbox) {
+    sendChatBtn.addEventListener('click', handleChat);
+    chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleChat();
         }
-        setTimeout(() => generateResponse(text), 150);
-    }
-});
+    });
 
-chatbotToggler.addEventListener('click', () => {
-    body.classList.toggle('show-chatbot');
-});
+    // Delegate click handling for quick-reply chips inside chatbot
+    chatbox.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.classList && target.classList.contains('chip')) {
+            const value = target.getAttribute('data-chip') || target.textContent || '';
+            const text = value.trim();
+            if (!text) return;
+            // Show the selected chip as outgoing for context
+            chatbox.appendChild(createChatLi(text, 'outgoing'));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            // Attempt to execute an automation if it looks like a command
+            if (/^(open |go to|make|pay|view)/i.test(text)) {
+                tryExecuteAutomation(text.toLowerCase());
+                return;
+            }
+            setTimeout(() => generateResponse(text), 150);
+        }
+    });
+}
 
-closeBtn.addEventListener('click', () => {
-    body.classList.remove('show-chatbot');
-});
+if (chatbotToggler) {
+    chatbotToggler.addEventListener('click', () => {
+        if (body && body.classList) body.classList.toggle('show-chatbot');
+    });
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        if (body && body.classList) body.classList.remove('show-chatbot');
+    });
+}
 
 // Ensure hidden by default
-body.classList.remove('show-chatbot');
+if (body && body.classList) body.classList.remove('show-chatbot');
