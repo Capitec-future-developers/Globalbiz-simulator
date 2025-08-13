@@ -112,6 +112,73 @@ const defaultAutomationCommands = {
         ],
         description: 'Debit card',
         category: 'cards'
+    },
+    'open accounts': {
+        steps: [
+            { action: 'navigate', url: 'Phone%20accounts.html' }
+        ],
+        description: 'Open accounts page',
+        category: 'navigation'
+    },
+    'open transact': {
+        steps: [
+            { action: 'click', selector: '#transact' }
+        ],
+        description: 'Open Transact tab',
+        category: 'navigation'
+    },
+    'open cards': {
+        steps: [
+            { action: 'click', selector: '#cards' }
+        ],
+        description: 'Open Cards tab',
+        category: 'navigation'
+    },
+    'open settings': {
+        steps: [
+            { action: 'click', selector: '#sidebarToggle' },
+            { action: 'wait', duration: 500 },
+            { action: 'click', selector: '#settings' }
+        ],
+        description: 'Open Settings',
+        category: 'navigation'
+    },
+    'open documents': {
+        steps: [
+            { action: 'click', selector: '#sidebarToggle' },
+            { action: 'wait', duration: 500 },
+            { action: 'click', selector: '#documents' }
+        ],
+        description: 'Open Documents',
+        category: 'navigation'
+    },
+    'open chatbot': {
+        steps: [
+            { action: 'click', selector: '.chatbot-toggler' }
+        ],
+        description: 'Toggle chatbot window',
+        category: 'assistance'
+    },
+    'view profile': {
+        steps: [
+            { action: 'click', selector: '#profile-link' }
+        ],
+        description: 'Open profile popup',
+        category: 'profile'
+    },
+    'sign out': {
+        steps: [
+            { action: 'navigate', url: 'Phone.html' }
+        ],
+        description: 'Sign out to login screen',
+        category: 'session'
+    },
+    'open explore': {
+        steps: [
+            { action: 'navigate', url: 'Explore.html' }
+        ],
+        description: 'Open Explore page',
+        category: 'navigation'
     }
 };
 

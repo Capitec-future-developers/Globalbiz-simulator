@@ -88,7 +88,7 @@ const tryExecuteAutomation = (command) => {
     }
 };
 
-// Main response generator with minimal intent handling
+
 const generateResponse = (text) => {
     const msg = (text || '').toLowerCase();
 
@@ -116,6 +116,56 @@ const generateResponse = (text) => {
         return;
     }
 
+
+    if (/(once\s*-?\s*off|once off|one-?time|single.*payment|make a payment)/i.test(msg)) {
+        const steps = [
+            'Tap Transact at the bottom.',
+            'Select Payments.',
+            'Choose Once-off payment.',
+            'Enter recipient details, amount, and reference.',
+            'Review and confirm.'
+        ];
+        const html = `
+            <div>
+                <p>Here are the steps to make a once-off payment:</p>
+                <ol>${steps.map(s => `<li>${s}</li>`).join('')}</ol>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                    <button id="btn-start-onceoff" style="padding:6px 10px;background:#007fff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Start automation</button>
+                </div>
+            </div>
+        `;
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        const startBtn = li.querySelector('#btn-start-onceoff');
+        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('once-off payment'));
+        return;
+    }
+
+    // Intent: view or download documents
+    if (/((view|download).*(document|statement|invoice|proof)|documents)/i.test(msg)) {
+        const html = `
+            <div>
+                <p>To view or download your documents:</p>
+                <ol>
+                    <li>Go to Documents in the main menu.</li>
+                    <li>Choose the document type (e.g., Statements, Proof of payment).</li>
+                    <li>Select the account and period if prompted.</li>
+                    <li>Tap View to preview or Download to save/share.</li>
+                </ol>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                    <button id="btn-start-docs" style="padding:6px 10px;background:#007fff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Open documents</button>
+                </div>
+            </div>
+        `;
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        const startBtn = li.querySelector('#btn-start-docs');
+        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('open documents'));
+        return;
+    }
+
     // Intent: check balance or account info
     if (/(balance|how much.*money|account info|account name)/i.test(msg)) {
         const { name, balance } = getCurrentAccountInfo();
@@ -139,6 +189,21 @@ const generateResponse = (text) => {
     `;
     const li = createIncomingHtml(suggestions);
     chatbox.appendChild(li);
+    // Make suggestion items clickable: clicking sends as message and triggers response
+    const options = li.querySelectorAll('.chat-options li');
+    options.forEach((opt) => {
+        opt.style.cursor = 'pointer';
+        opt.title = 'Click to choose';
+        opt.addEventListener('click', () => {
+            const clean = (opt.textContent || '').replace(/^\s*[^A-Za-z0-9]+/,'').trim();
+            if (!clean) return;
+            // Show as outgoing message
+            chatbox.appendChild(createChatLi(clean, 'outgoing'));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            // Generate a response for the clicked option
+            setTimeout(() => generateResponse(clean), 200);
+        });
+    });
     chatbox.scrollTo(0, chatbox.scrollHeight);
 };
 

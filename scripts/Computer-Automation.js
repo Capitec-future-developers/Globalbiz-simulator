@@ -371,13 +371,81 @@ const defaultAutomationCommands = {
     },
     'go to account': {
         steps: [
-            {action: 'click', selector: '#accounts' },
-            { action: 'wait', duration: 1000 },
-            { action: 'click', url: '#view' }
+            { action: 'navigate', url: 'Accounts.html' }
         ],
         description: 'View Accounts',
-        category: 'Accounts',
+        category: 'navigation',
         preventReloop: true
+    },
+    'open payments': {
+        steps: [
+            { action: 'navigate', url: 'transact.html' }
+        ],
+        description: 'Open Payments page',
+        category: 'navigation'
+    },
+    'open transfers': {
+        steps: [
+            { action: 'navigate', url: 'transfer.html' }
+        ],
+        description: 'Open Transfers page',
+        category: 'navigation'
+    },
+    'open beneficiaries': {
+        steps: [
+            { action: 'navigate', url: 'Add-benficiaries.html' }
+        ],
+        description: 'Open Beneficiaries page',
+        category: 'navigation'
+    },
+    'open cards': {
+        steps: [
+            { action: 'navigate', url: 'Cards.html' }
+        ],
+        description: 'Open Cards page',
+        category: 'navigation'
+    },
+    'open documents': {
+        steps: [
+            { action: 'navigate', url: 'Computer-Document.html' }
+        ],
+        description: 'Open Documents page',
+        category: 'navigation'
+    },
+    'open settings': {
+        steps: [
+            { action: 'navigate', url: 'settings.html' }
+        ],
+        description: 'Open Settings page',
+        category: 'navigation'
+    },
+    'open secure messages': {
+        steps: [
+            { action: 'navigate', url: 'Secure-Messages.html' }
+        ],
+        description: 'Open Secure Messages page',
+        category: 'navigation'
+    },
+    'open user management': {
+        steps: [
+            { action: 'navigate', url: 'user-management.html' }
+        ],
+        description: 'Open User Management page',
+        category: 'navigation'
+    },
+    'open products and services': {
+        steps: [
+            { action: 'navigate', url: 'Product&Services.html' }
+        ],
+        description: 'Open Products & Services page',
+        category: 'navigation'
+    },
+    'open home': {
+        steps: [
+            { action: 'navigate', url: 'Computer.html' }
+        ],
+        description: 'Open Home dashboard',
+        category: 'navigation'
     }
 };
 
