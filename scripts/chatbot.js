@@ -156,7 +156,7 @@ const generateResponse = (text) => {
         chatbox.appendChild(li);
         chatbox.scrollTo(0, chatbox.scrollHeight);
         const startBtn = li.querySelector('#btn-start-onceoff');
-        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('once-off payment'));
+        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('make once off payment'));
         return;
     }
 
@@ -187,7 +187,182 @@ const generateResponse = (text) => {
     // Intent: check balance or account info
     if (/(balance|how much.*money|account info|account name)/i.test(msg)) {
         const { name, balance } = getCurrentAccountInfo();
-        const li = createIncomingHtml(`<p>Your current account is <strong>${name}</strong> with a balance of <strong>${balance}</strong>.</p>`);
+        const li = createIncomingHtml(`<div class="chat-card"><div class="chat-title">Account balance</div><div class="chat-body">Your current account is <strong>${name}</strong> with a balance of <strong>${balance}</strong>.</div></div>`);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: fees / charges
+    if (/(fees?|charges|pricing|costs|monthly fee)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Fees and pricing',
+            body: 'Capitec offers simple, transparent fees with low monthly admin costs on Global One. Some transactions may have pay-as-you-transact fees.',
+            links: [
+                { text: 'See official fees', href: 'https://www.capitecbank.co.za/fees/' }
+            ],
+            chips: [
+                { label: 'Open Payments', value: 'open payments' },
+                { label: 'Open Cards', value: 'open cards' }
+            ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Global One / accounts
+    if (/(global\s*one|account(s)?|types of account|open account)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Global One account',
+            body: 'One account for everyday banking and savings with digital tools to manage your money. Open and manage in-app.',
+            links: [
+                { text: 'About Global One', href: 'https://www.capitecbank.co.za/global-one/' }
+            ],
+            chips: [
+                { label: 'Open Accounts', value: 'go to account' },
+                { label: 'Open Products', value: 'open products and services' }
+            ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Immediate payments
+    if (/(immediate|instant|real\s*time|rtc).*pay/i.test(msg)) {
+        const html = buildCard({
+            title: 'Immediate payments',
+            body: 'Send money instantly to other banks using Immediate Payment (RTC). A small fee may apply and limits apply per profile.',
+            links: [
+                { text: 'Immediate payments info', href: 'https://www.capitecbank.co.za/help-centre/immediate-payments/' }
+            ],
+            chips: [
+                { label: 'Make a payment', value: 'open payments' },
+                { label: 'Adjust limits', value: 'open settings' }
+            ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Cash Send
+    if (/(cash\s*send|send cash|cashsend)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Cash Send',
+            body: 'Send cash to any cellphone number for collection at selected ATMs/retailers. Keep the PIN safe and share securely.',
+            links: [
+                { text: 'How Cash Send works', href: 'https://www.capitecbank.co.za/help-centre/cash-send/' }
+            ],
+            chips: [
+                { label: 'Open Payments', value: 'open payments' }
+            ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Limits
+    if (/(limit(s)?|increase limit|card limit|daily limit|transaction limit)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Card & transaction limits',
+            list: [
+                'Adjust card tap/online/ATM limits',
+                'Set daily EFT/payment limits',
+                'Manage per-channel controls in Settings'
+            ],
+            links: [ { text: 'Manage limits help', href: 'https://www.capitecbank.co.za/help-centre/limits/' } ],
+            chips: [ { label: 'Open Settings', value: 'open settings' } ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Security
+    if (/(security|fraud|scam|safe|pin|otp)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Security tips',
+            list: [
+                'Never share your PIN, OTP, or app login details',
+                'Verify payment requests and beneficiaries',
+                'Use the official app and keep your device updated',
+                'Report suspicious activity immediately'
+            ],
+            links: [ { text: 'Security centre', href: 'https://www.capitecbank.co.za/security/' } ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Cards
+    if (/(card|debit card|virtual card)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Cards',
+            list: [
+                'Debit card for everyday purchases',
+                'Create a virtual card for safer online shopping',
+                'Freeze/unfreeze and manage limits in-app'
+            ],
+            links: [ { text: 'Card features', href: 'https://www.capitecbank.co.za/bank-better/cards/' } ],
+            chips: [ { label: 'Open Cards', value: 'open cards' } ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Credit / Loans
+    if (/(credit|loan|personal loan|access facility)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Credit options',
+            body: 'Personalised credit subject to affordability and approval. Check your offer and apply in-app.',
+            links: [ { text: 'Credit options', href: 'https://www.capitecbank.co.za/credit/' } ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Savings
+    if (/(save|savings|fixed deposit|notice account)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Savings options',
+            list: [
+                'Flexible savings pockets in Global One',
+                'Fixed-term and tax-free savings options',
+                'Set goals and track progress'
+            ],
+            links: [ { text: 'Savings products', href: 'https://www.capitecbank.co.za/save/' } ]
+        });
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Intent: Contact us / Branch hours
+    if (/(contact|call|support|client care|branch|hours|lost card)/i.test(msg)) {
+        const html = buildCard({
+            title: 'Contact Capitec',
+            body: 'Get help via the app, online help centre, or speak to Client Care. For a lost or stolen card, block it immediately in-app and contact support.',
+            links: [
+                { text: 'Contact us', href: 'https://www.capitecbank.co.za/contact-us/' },
+                { text: 'Help centre', href: 'https://www.capitecbank.co.za/help-centre/' }
+            ]
+        });
+        const li = createIncomingHtml(html);
         chatbox.appendChild(li);
         chatbox.scrollTo(0, chatbox.scrollHeight);
         return;
@@ -195,33 +370,26 @@ const generateResponse = (text) => {
 
     // Default suggestions
     const suggestions = `
-        <div>
-            <p>Hi! I can help with:</p>
-            <ul class="chat-options">
-                <li>✅ How to pay a saved beneficiary</li>
-                <li>💸 Make a once-off payment</li>
-                <li>📄 View or download documents</li>
-            </ul>
-            <p style="margin-top:6px;font-size:12px;color:#666;">Tip: Use the box at the top to run automations too.</p>
-        </div>
+        ${buildCard({
+            title: 'How can I help?',
+            body: 'Try one of these topics or ask your own question:',
+            list: [
+                'Pay a saved beneficiary',
+                'Make an immediate payment',
+                'View/download documents',
+                'Manage card and limits',
+                'Fees and pricing',
+                'Contact support'
+            ],
+            chips: [
+                { label: 'Open Payments', value: 'open payments' },
+                { label: 'Open Cards', value: 'open cards' },
+                { label: 'Open Settings', value: 'open settings' }
+            ]
+        })}
     `;
     const li = createIncomingHtml(suggestions);
     chatbox.appendChild(li);
-    // Make suggestion items clickable: clicking sends as message and triggers response
-    const options = li.querySelectorAll('.chat-options li');
-    options.forEach((opt) => {
-        opt.style.cursor = 'pointer';
-        opt.title = 'Click to choose';
-        opt.addEventListener('click', () => {
-            const clean = (opt.textContent || '').replace(/^\s*[^A-Za-z0-9]+/,'').trim();
-            if (!clean) return;
-            // Show as outgoing message
-            chatbox.appendChild(createChatLi(clean, 'outgoing'));
-            chatbox.scrollTo(0, chatbox.scrollHeight);
-            // Generate a response for the clicked option
-            setTimeout(() => generateResponse(clean), 200);
-        });
-    });
     chatbox.scrollTo(0, chatbox.scrollHeight);
 };
 
@@ -253,6 +421,25 @@ chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
         handleChat();
+    }
+});
+
+// Delegate click handling for quick-reply chips inside chatbot
+chatbox.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target && target.classList && target.classList.contains('chip')) {
+        const value = target.getAttribute('data-chip') || target.textContent || '';
+        const text = value.trim();
+        if (!text) return;
+        // Show the selected chip as outgoing for context
+        chatbox.appendChild(createChatLi(text, 'outgoing'));
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        // Attempt to execute an automation if it looks like a command
+        if (/^(open |go to|make|pay|view)/i.test(text)) {
+            tryExecuteAutomation(text.toLowerCase());
+            return;
+        }
+        setTimeout(() => generateResponse(text), 150);
     }
 });
 
