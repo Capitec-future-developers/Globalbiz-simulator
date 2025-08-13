@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const headerTitle = document.querySelector('.header');
   const sidebarToggle = document.querySelector('#sidebarToggle');
 
-  // Create or select a dedicated container inside screenContent for Documents page
+  
   let documentsPage = document.getElementById('document-page-container');
   let isNewDocumentPage = false;
 
@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
     isNewDocumentPage = true;
   }
 
-  // Set header title only if Documents container is newly created
+  
   if (isNewDocumentPage) {
     headerTitle.textContent = 'Documents';
   }
 
-  // Load Documents Page HTML inside the container
+  
   documentsPage.innerHTML = `
     <style>
       .generate-box {
@@ -75,15 +75,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
      .document-header {
   position: absolute;
-  top: 65px; /* Adjusted from 40px if header height is ~60px */
+  top: 65px; 
   display: flex;
-  align-items: flex-start; /* Top-aligned text and icon */
+  align-items: flex-start; 
   gap: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   width: 100%;
   background: #fff; 
-  z-index: 1; /* Keeps it on top if needed */
+  z-index: 1; 
 }
       #cancel-btn {
         background-color: white;
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
   `;
 
-  // Interactivity
+  
   let documentCounter = 0;
   const docType = documentsPage.querySelector('#doc-type');
   const accountContainer = documentsPage.querySelector('#account-container');
@@ -149,17 +149,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const docStatus = documentsPage.querySelector('#doc-status');
   const docCount = documentsPage.querySelector('#doc-count');
 
-  // When document type is selected, show account container
+  
   docType.addEventListener('change', () => {
     accountContainer.style.display = 'block';
   });
 
-  // When account is selected, show buttons (Generate & Cancel)
+  
   documentsPage.querySelector('#account-choice').addEventListener('change', () => {
     actionButtons.style.display = 'flex';
   });
 
-  // Generate button logic
+  
   generateBtn.addEventListener('click', () => {
     docStatus.textContent = 'Generating...';
     generateBtn.disabled = true;
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 3000);
   });
 
-  // Cancel button logic
+  
   cancelBtn.addEventListener('click', () => {
     docType.selectedIndex = 0;
     accountContainer.style.display = 'none';
@@ -179,14 +179,14 @@ document.addEventListener('DOMContentLoaded', function () {
     docStatus.textContent = 'Not ready for email';
   });
 
-  // Sidebar toggle (menu) click listener
+  
   sidebarToggle.addEventListener('click', function (event) {
     event.preventDefault();
-    // Your existing sidebar toggle logic here
-    // For example, toggle a class on sidebar or screenContent
+    
+    
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('active');
-    // Optionally toggle menu icon if you want
+    
     const menuIcon = document.getElementById('menuIcon');
     if (sidebar.classList.contains('active')) {
       menuIcon.textContent = 'close';

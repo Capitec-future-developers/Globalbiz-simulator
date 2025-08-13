@@ -1,11 +1,11 @@
-// Navigation Stack and Card Details LogicAdd commentMore actions
+
 const navigationStack = [];
 const cardDetails = document.getElementById('Cards-Content');
 
 function navigateBack() {
     if (navigationStack.length > 1) {
-        navigationStack.pop(); // Remove current view
-        const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous view
+        navigationStack.pop(); 
+        const previousView = navigationStack[navigationStack.length - 1];
 
         if (previousView === 'cards') {
             resetToMainView();
@@ -13,12 +13,12 @@ function navigateBack() {
             showCardsSection();
         }
     } else {
-        resetToMainView(); // If stack is empty or only one, go home
+        resetToMainView(); 
     }
 }
 
 function resetToMainView() {
-    // Redirect to real Cards.html page
+    
     window.location.href = 'Cards.html';
 }
 
@@ -55,7 +55,7 @@ function showCardsSection() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    navigationStack.push('cards'); // Set the initial view in the stack
+    navigationStack.push('cards'); 
 
     const viewCards = document.getElementById('view-cards');
     if (viewCards) {
@@ -74,34 +74,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Dropdown Toggle Logic
+
 function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// Add Card Popup Logic
+
 const addCardBtn = document.querySelector('#Cards-Content .btn');
 const addCardPopup = document.getElementById('addCardPopup');
 const cancelBtn = document.getElementById('cancelAddCard');
 const continueBtn = document.getElementById('continueAddCard');
 
-// Show popup when "Add New Card" button is clicked
+
 addCardBtn.addEventListener('click', () => {
     addCardPopup.style.display = 'flex';
 });
 
-// Hide popup when "Cancel" button is clicked
+
 cancelBtn.addEventListener('click', () => {
     addCardPopup.style.display = 'none';
 });
 
-// Continue button (you can later add logic to handle selection)
+
 continueBtn.addEventListener('click', () => {
     const selectedCard = document.querySelector('input[name="cardType"]:checked');
     if (selectedCard) {
         alert('Selected Card Type: ' + selectedCard.value);
-        addCardPopup.style.display = 'none'; // close after selection
+        addCardPopup.style.display = 'none'; 
     } else {
         alert('Please select a card type.');
     }

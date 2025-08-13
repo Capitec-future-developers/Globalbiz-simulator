@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!disclaimerBox || !nextBtn) return;
 
-// Initial disclaimer content (without checkbox requirement)
+
     const initialDisclaimerContent = `
 <h4>What is Digital ID?</h4>
 <br>
@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Click Next to continue with user creation.</p>
 `;
 
-// Show initial disclaimer
+
     disclaimerBox.innerHTML = initialDisclaimerContent;
 
-// Handle the initial next button click (outside the disclaimer box)
+
     nextBtn.addEventListener('click', function() {
         renderStep1();
     });
 
-// Event delegation for all next buttons inside the disclaimer box
+
     disclaimerBox.addEventListener('click', function(e) {
         if (e.target && e.target.classList.contains('next')) {
             const currentActive = disclaimerBox.querySelector('.step.active');
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-// Cancel button handler
+
     if (cancelBtn) {
         cancelBtn.addEventListener('click', function() {
             disclaimerBox.innerHTML = initialDisclaimerContent;
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-// Validation functions
+
     function validateStep1() {
         const form = disclaimerBox.querySelector('.user-form');
         if (!form.checkValidity()) {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
 
-// Render Step 1 (User Details)
+
     const renderStep1 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-// Step 2: Select Role
+
     const renderStep2 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
 `;
     };
 
-// Step 3: Account Access
+
     const renderStep3 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function () {
 `;
     };
 
-// Step 4: Confirmation
+
     const renderStep4 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -259,11 +259,11 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 `;
 
-// In a real implementation, you would populate the confirmation details
-// from the previously entered form data
+
+
         document.getElementById('submitBtn').addEventListener('click', function() {
             alert('User creation submitted successfully!');
-// Here you would typically submit the form data to your backend
+
         });
     };
 });

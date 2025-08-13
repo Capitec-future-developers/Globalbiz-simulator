@@ -27,7 +27,7 @@
                 Omphile Mohlala
             </a>
 
-            <!-- Popup HTML -->
+            
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a  href="Profile-info.html" class="profile-name">
@@ -56,7 +56,7 @@
     </div>
 </div>
 
-<!-------------------- SIDEBAR NAVIGATION ------------------------->
+
 <div class="sidebar">
     <a href="Computer.html" class="active">
         <span class="material-icons-sharp">home</span>
@@ -126,13 +126,13 @@
         </a>
     </div>
 
-    <!------------- TAB BUTTONS ---------------->
+    
     <div class="tabs">
         <button onclick="openTab('Profile details')"><div class="tab active">Profile details</div></button>
         <button onclick="openTab('Transaction limits')"><div class="tab">Transaction limits</div></button>
     </div>
 
-    <!-------------------- TAB CONTENT: PROFILE INFO --------------------------->
+    
     <div id="Profile details" class="tab-content-active">
     <span class="info-heading"><h3>Personal information</h3></span>
     <div class="account-box">
@@ -194,7 +194,7 @@
 </div>
 </div>
 
-<!-------------- TAB CONTENT: TRANSACTION LIMITS -------------->
+
 <div id="Transaction Limits" class="tab-content">
     <span class="info-heading"><h3>Transaction Limits</h3></span>
     <div class="account-box">
@@ -212,21 +212,14 @@
 </div>
 
 
-<!--- JAVASCRIPT TO SWITCH TABS --->
+
 <script>
     function openTab(tabId) {
-        // Hide all content
         const contents = document.querySelectorAll('.tab-content');
         contents.forEach(content => content.classList.remove('active'));
-
-        // Deactivate all buttons
         const buttons = document.querySelectorAll('.tab');
         buttons.forEach(button => button.classList.remove('active'));
-
-        // Show selected tab content
         document.getElementById(tabId).classList.add('active');
-
-        // Activate selected button
         const clickedButton = Array.from(buttons).find(button => button.textContent === tabId);
         if (clickedButton) clickedButton.classList.add('active')
     }

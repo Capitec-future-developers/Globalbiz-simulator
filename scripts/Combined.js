@@ -9,17 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
         dropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', function(e) {
                 e.preventDefault();
-                e.stopPropagation(); // Prevent event from bubbling up
+                e.stopPropagation(); 
                 const dropdown = this.closest('.dropdown');
                 if (dropdown) {
 
                     document.querySelectorAll('.dropdown').forEach(item => {
                         if (item !== dropdown) {
                             item.classList.remove('active');
+                            item.classList.remove('open');
                         }
                     });
 
-                    dropdown.classList.toggle('active');
+                    const nowActive = dropdown.classList.toggle('active');
+                    dropdown.classList.toggle('open', nowActive);
                 }
             });
         });
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!e.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
                     dropdown.classList.remove('active');
+                    dropdown.classList.remove('open');
                 });
             }
         });
@@ -171,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = tabContentData[contentKey];
         tabContent.innerHTML = "";
 
-        // If it's a single HTML block like a table or image
+        
         if (items.length === 1 && items[0].startsWith('<')) {
             tabContent.innerHTML = items[0];
         } else {
@@ -179,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
             list.className = "content-list";
             items.forEach(item => {
                 const listItem = document.createElement("li");
-                // Detect if it's HTML (image or other)
+                
                 if (item.startsWith('<')) {
                     listItem.innerHTML = item;
                 } else {
@@ -489,58 +492,64 @@ document.addEventListener('DOMContentLoaded', function() {
         navigationStack.push('beneficiary-selection');
         mainContentArea.innerHTML = `
 <div class="beneficiary-selection">
-<div class="payment-header">
-<button class="back-button" id="back-button">
-<span class="material-icons-sharp">arrow_back</span> Back
-</button>
-<h2>Select Beneficiary</h2>
-<p>Choose from your saved beneficiaries</p>
-</div>
-<div class="beneficiary-list">
-<div class="beneficiary-card" data-beneficiary="Omphile Mohlala">
-<div class="beneficiary-avatar">
-<span class="material-icons-sharp">person</span>
-</div>
-<div class="beneficiary-details">
-<h3>Omphile Mohlala</h3>
-<p>Account: ****5678</p>
-<p>Bank: Standard Bank</p>
-</div>
-<span class="material-icons-sharp chevron-right">chevron_right</span>
-</div>
-<div class="beneficiary-card" data-beneficiary="John Doe">
-<div class="beneficiary-avatar">
-<span class="material-icons-sharp">person</span>
-</div>
-<div class="beneficiary-details">
-<h3>John Doe</h3>
-<p>Account: ****1234</p>
-<p>Bank: First National Bank</p>
-</div>
-<span class="material-icons-sharp chevron-right">chevron_right</span>
-</div>
-</div>
-<div class="add-beneficiary-footer">
-<button id="add-new-beneficiary" class="add-beneficiary-btn">
-<span class="material-icons-sharp">add</span> Add New Beneficiary
-</button>
-</div>
+  <div class="payment-header">
+    <button class="back-button" id="back-button">
+      <span class="material-icons-sharp">arrow_back</span> Back
+    </button>
+    <h2>Select Beneficiary</h2>
+    <p>Choose from your saved beneficiaries</p>
+  </div>
+  <div class="beneficiary-list" id="beneficiary-list"></div>
+  <div class="add-beneficiary-footer">
+    <button id="add-new-beneficiary" class="add-beneficiary-btn">
+      <span class="material-icons-sharp">add</span> Add New Beneficiary
+    </button>
+  </div>
 </div>
 `;
-
 
         document.getElementById('back-button').addEventListener('click', function() {
             navigateBack();
         });
 
+        // Load beneficiaries from local small DB
+        fetch('/api/local/beneficiaries')
+            .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+            .then(data => {
+                const list = (data && Array.isArray(data.beneficiaries)) ? data.beneficiaries : [];
+                const container = document.getElementById('beneficiary-list');
+                if (!container) return;
 
-        document.querySelectorAll('.beneficiary-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const beneficiaryName = this.getAttribute('data-beneficiary');
-                showPaymentForm('saved', beneficiaryName);
+                if (list.length === 0) {
+                    container.innerHTML = `<div class="empty-state" style="padding:16px;color:#666;">No beneficiaries yet. Add one below.</div>`;
+                    return;
+                }
+
+                container.innerHTML = '';
+                list.forEach(b => {
+                    const masked = b.accountNumber ? `****${String(b.accountNumber).slice(-4)}` : '****';
+                    const bankName = (b.bank || '').toString();
+                    const card = document.createElement('div');
+                    card.className = 'beneficiary-card';
+                    card.setAttribute('data-beneficiary', b.name);
+                    card.innerHTML = `
+<div class="beneficiary-avatar"><span class="material-icons-sharp">person</span></div>
+<div class="beneficiary-details">
+  <h3>${b.name}${b.nickname ? ` (${b.nickname})` : ''}</h3>
+  <p>Account: ${masked}</p>
+  <p>Bank: ${bankName.charAt(0).toUpperCase() + bankName.slice(1)}</p>
+</div>
+<span class="material-icons-sharp chevron-right">chevron_right</span>`;
+                    card.addEventListener('click', function() {
+                        showPaymentForm('saved', b.name);
+                    });
+                    container.appendChild(card);
+                });
+            })
+            .catch(() => {
+                const container = document.getElementById('beneficiary-list');
+                if (container) container.innerHTML = `<div class="empty-state" style="padding:16px;color:#666;">Failed to load beneficiaries.</div>`;
             });
-        });
-
 
         document.getElementById('add-new-beneficiary').addEventListener('click', function(e) {
             e.preventDefault();
@@ -718,23 +727,44 @@ Save Beneficiary
         const name = document.getElementById('beneficiary-name').value;
         const accountNumber = document.getElementById('account-number').value;
         const bank = document.getElementById('bank').value;
-
+        const nickname = (document.getElementById('nickname') && document.getElementById('nickname').value) || '';
 
         mainContentArea.innerHTML = `
 <div class="payment-processing">
-<div class="spinner">
-<div class="double-bounce1"></div>
-<div class="double-bounce2"></div>
-</div>
-<h2>Saving Beneficiary...</h2>
-<p>Please wait while we save your beneficiary</p>
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+  <h2>Saving Beneficiary...</h2>
+  <p>Please wait while we save your beneficiary</p>
 </div>
 `;
 
-
-        setTimeout(() => {
-            showBeneficiaryConfirmation(name);
-        }, 2000);
+        fetch('/api/local/beneficiaries', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, accountNumber, bank, nickname })
+        })
+        .then(r => r.ok ? r.json() : r.json().then(err => Promise.reject(err)))
+        .then(saved => {
+            showBeneficiaryConfirmation(saved.name || name);
+        })
+        .catch(err => {
+            const msg = (err && err.message) ? err.message : 'Failed to save beneficiary';
+            mainContentArea.innerHTML = `
+<div class="payment-confirmation">
+  <div class="confirmation-icon error">
+    <span class="material-icons-sharp">error</span>
+  </div>
+  <h2>Unable to save</h2>
+  <p>${msg}</p>
+  <div class="confirmation-actions">
+    <button id="retry-btn" class="primary-btn">Try Again</button>
+  </div>
+</div>`;
+            const retry = document.getElementById('retry-btn');
+            if (retry) retry.addEventListener('click', showAddBeneficiaryForm);
+        });
     }
 
     function showPaymentConfirmation(paymentType, beneficiaryName, amount, reference) {
@@ -844,8 +874,8 @@ Pay Now
 
     function navigateBack() {
         if (navigationStack.length > 0) {
-            navigationStack.pop(); // Remove current view
-            const previousView = navigationStack.pop(); // Get previous view
+            navigationStack.pop(); 
+            const previousView = navigationStack.pop(); 
 
             switch(previousView) {
                 case 'payment-section':
@@ -1126,7 +1156,7 @@ Transfer Funds
 
     if (bankerLink && bankerPopup && closePopup) {
         bankerLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent jump to #home
+            event.preventDefault(); 
             bankerPopup.style.display = 'block';
         });
 
@@ -1137,15 +1167,15 @@ Transfer Funds
 
 
     const switchLink = document.querySelector('.switch-profile');
-    if (switchLink) { // Safety check in case element is missing
+    if (switchLink) { 
         switchLink.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default navigation
+            e.preventDefault(); 
             const transition = document.getElementById('page-transition');
-            if (transition) { // Another safety check
+            if (transition) { 
                 transition.classList.add('show');
                 setTimeout(() => {
                     window.location.href = this.href;
-                }, 500); // CSS transition time
+                }, 500); 
             } else {
 
                 window.location.href = this.href;
@@ -1155,7 +1185,7 @@ Transfer Funds
 
 
     const dateElement = document.getElementById("signin-date");
-    if (dateElement) { // Check element exists before updating
+    if (dateElement) { 
         const now = new Date();
         const options = {
             weekday: 'long',

@@ -13,7 +13,7 @@ body {
     min-height: 100vh;
 }
 
-/* Header Styles */
+
 .header {
     background-color: #ffffff;
     padding: 10px 20px;
@@ -55,7 +55,7 @@ body {
     margin: 0 15px;
 }
 
-/* Header Right Section */
+
 .header-right {
     margin-left: auto;
     display: flex;
@@ -110,7 +110,7 @@ body {
     top: -0px;
     text-decoration: none;
 }
-/* Sidebar Styles */
+
 .sidebar {
     width: 240px;
     background: #16232f;
@@ -170,7 +170,7 @@ body {
     color: white;
 }
 
-/* Main Content Styles */
+
 .main-content {
     margin-left: 240px;
     margin-top: 70px;
@@ -178,7 +178,7 @@ body {
     min-height: calc(100vh - 70px);
 }
 
-/* Back Navigation */
+
 .back-nav {
     display: flex;
     align-items: center;
@@ -204,7 +204,7 @@ body {
     font-size: 20px;
 }
 
-/* Account Box */
+
 .account-box {
     background: #0078d7;
     color: white;
@@ -260,7 +260,7 @@ body {
     color: #e74c3c;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .account-info-row {
         flex-direction: column;
@@ -343,13 +343,13 @@ border: 1px solid #ffffff;
     background-color: #f0f0f0;
 }
 
-/* Show dropdown on hover */
+
 .manage-btn-container:hover .details-hover {
     display: block;
 }
 
 
-/* Tabs */
+
 .tabs {
     display: flex;
     border-bottom: 2px solid #ddd;
@@ -376,7 +376,7 @@ border: 1px solid #ffffff;
     background-color: #f5f9ff;
 }
 
-/* Controls */
+
 .controls {
     display: flex;
     gap: 15px;
@@ -411,7 +411,7 @@ border: 1px solid #ffffff;
     background: #0066c0;
 }
 
-/* Info Banner */
+
 .info-banner {
     background: #e0f7fa;
     padding: 15px 20px;
@@ -428,7 +428,7 @@ border: 1px solid #ffffff;
     font-size: 20px;
 }
 
-/* Transaction Table */
+
 .transaction-table {
     width: 100%;
     background: white;
@@ -467,7 +467,7 @@ border: 1px solid #ffffff;
     color: #e74c3c;
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 992px) {
     .sidebar {
         width: 200px;
@@ -512,7 +512,7 @@ border: 1px solid #ffffff;
     }
 }
 
-/* Popup styling */
+
 .profile-popup {
     display: none;
     position: fixed;
@@ -583,7 +583,7 @@ border: 1px solid #ffffff;
     border-top: 1px solid #eee;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .profile-popup {
         top: 70px;
@@ -631,7 +631,7 @@ button {
 }
 
 button.active {
-    /* Style for active button (if needed) */
+    
     background-color: White;
     color: #007bff;
 }
@@ -640,12 +640,12 @@ button:active {
     transform: translateY(2px);
 }
 
-/* Optional: Add a subtle shadow effect when not pressed */
+
 button:not(:active) {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Dropdown styles */
+
 .dropdown {
     position: relative;
 }
@@ -696,7 +696,7 @@ button:not(:active) {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tab styles */
+
 .tabs button {
     transition: transform 0.1s ease;
     border: none;
@@ -765,7 +765,7 @@ button:not(:active) {
     background: #0060cc;
 }
 
-/* Hide the default select arrow */
+
 .manage-btn select {
     appearance: none;
     -webkit-appearance: none;
@@ -781,17 +781,17 @@ button:not(:active) {
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0; /* Make the select invisible but clickable */
+    opacity: 0; 
 }
 
-/* Style for the dropdown options */
+
 .manage-btn select option {
     color: #333;
     background: white;
     padding: 8px 16px;
 }
 
-/* Custom dropdown indicator */
+
 .manage-btn::after {
     content: "▼";
     font-size: 10px;
@@ -800,7 +800,7 @@ button:not(:active) {
     vertical-align: middle;
 }
 
-/* Hover effect container */
+
 .details-hover {
     display: none;
     position: absolute;
@@ -815,12 +815,12 @@ button:not(:active) {
     z-index: 100;
 }
 
-/* Show on hover */
+
 .manage-btn-container:hover .details-hover {
     display: block;
 }
 
-/* Hover content styling */
+
 .details-hover h4 {
     margin: 0 0 8px 0;
     color: #0075ff;
@@ -883,7 +883,7 @@ button:not(:active) {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tab styles */
+
 .tabs button {
     transition: transform 0.1s ease;
     border: none;
@@ -950,7 +950,7 @@ button:not(:active) {
     background: #0060cc;
 }
 
-/* Hide the default select arrow */
+
 .manage-btn select {
     appearance: none;
     -webkit-appearance: none;
@@ -966,17 +966,17 @@ button:not(:active) {
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0; /* Make the select invisible but clickable */
+    opacity: 0; 
 }
 
-/* Style for the dropdown options */
+
 .manage-btn select option {
     color: #333;
     background: white;
     padding: 8px 16px;
 }
 
-/* Custom dropdown indicator */
+
 .manage-btn::after {
     content: "▼";
     font-size: 10px;
@@ -1050,7 +1050,7 @@ button:not(:active) {
 .feedback-error { color: red; }
 .feedback-info { color: blue; }
 
-/* Dropdown styles */
+
 .dropdown {
     position: relative;
 }
@@ -1103,7 +1103,7 @@ button:not(:active) {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
- /* Add these styles for the transfer section */
+ 
 .transfer-section {
     padding: 20px;
     max-width: 600px;

@@ -102,7 +102,7 @@ body.show-chatbot .chatbot {
     overflow-y: auto;
 }
 
-/* Chat Bubbles */
+
 .chatbox .chat {
     display: flex;
 }
@@ -138,7 +138,7 @@ body.show-chatbot .chatbot {
     border-radius: 10px 10px 10px 0;
 }
 
-/* Chat Input */
+
 .chatbot .chat-input {
     position: absolute;
     bottom: 0;

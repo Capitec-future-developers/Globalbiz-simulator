@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
             </section>
 
             <section class="what-to-do">
-                <!-- Withdrawal Limit -->
                 <div class="limits-category">
                     <h5>Withdrawal Limit</h5>
                     <div class="limits-container">
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
 
-                <!-- Online Card Limit -->
                 <div class="limits-category" style="margin-top: 30px;">
                     <h5>Online Card Limit</h5>
                     <div class="limits-container">
@@ -79,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
 
-                <!-- POS Limit -->
                 <div class="limits-category" style="margin-top: 30px;">
                     <h5>POS Limit</h5>
                     <div class="limits-container">

@@ -92,7 +92,7 @@
         }
 
         function navigateBack() {
-            navigationStack.pop(); // remove current view
+            navigationStack.pop(); 
             const previous = navigationStack.pop();
             if (previous === 'transfer-section') {
                 showTransferSection();
@@ -249,7 +249,7 @@
             };
         }
 
-        // Activate Transfer Button (Sidebar)
+        
         const transferBtn = document.getElementById('Transfer');
         if (transferBtn) {
             transferBtn.addEventListener('click', (e) => {
@@ -258,7 +258,7 @@
             });
         }
 
-        // Initialize main view on load
+        
         resetToMainView();
     });
 })();

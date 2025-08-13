@@ -1,12 +1,12 @@
-// AUTOMATION SYSTEM
 
-// Configuration with default values
+
+
 const automationConfig = {
-    stepDelay: 500, // 500ms between steps
-    highlightDuration: 400, // 400ms highlight duration
-    autoPilot: false, // Default auto-pilot state
-    controlsPosition: 'right', // 'right' or 'left'
-    speechEnabled: false, // Text-to-speech disabled by default
+    stepDelay: 500, 
+    highlightDuration: 400, 
+    autoPilot: false, 
+    controlsPosition: 'right', 
+    speechEnabled: false, 
     highlightColors: {
         default: 'rgba(65, 131, 215, 0.7)',
         success: 'rgba(46, 204, 113, 0.7)',
@@ -15,7 +15,7 @@ const automationConfig = {
     }
 };
 
-// Automation state management
+
 let automationState = {
     isPaused: false,
     currentStepIndex: 0,
@@ -25,7 +25,7 @@ let automationState = {
     isAutopilot: getStoredSetting('autopilot', automationConfig.autoPilot),
     waitingForUserClick: false,
     manualNavigation: false,
-    clickHandlers: [], // Track click handlers for cleanup
+    clickHandlers: [], 
     navigationHistory: [],
     navigationIndex: -1,
     currentHighlightedElement: null,
@@ -37,7 +37,7 @@ let automationState = {
     highlightColors: getStoredSetting('highlightColors', automationConfig.highlightColors)
 };
 
-// Helper functions for settings storage
+
 function getStoredSetting(key, defaultValue) {
     const storedValue = localStorage.getItem(`automation_${key}`);
     try {
@@ -52,7 +52,7 @@ function storeSetting(key, value) {
     localStorage.setItem(`automation_${key}`, JSON.stringify(value));
 }
 
-// Create settings button and panel
+
 function createSettingsButton() {
     const settingsBtn = document.createElement('button');
     settingsBtn.id = 'automation-settings-btn';
@@ -91,7 +91,7 @@ function createSettingsPanel() {
     panel.style.width = '300px';
     panel.style.display = 'none';
 
-    // Speed control
+    
     panel.innerHTML += `
  <div class="setting-group">
  <h3 style="margin-top: 0;">Automation Speed</h3>
@@ -102,7 +102,7 @@ function createSettingsPanel() {
  </div>
  `;
 
-    // Controls position
+    
     panel.innerHTML += `
  <div class="setting-group" style="margin-top: 15px;">
  <h3>Controls Position</h3>
@@ -113,7 +113,7 @@ function createSettingsPanel() {
  </div>
  `;
 
-    // Highlight colors
+    
     panel.innerHTML += `
  <div class="setting-group" style="margin-top: 15px;">
  <h3>Highlight Colors</h3>
@@ -138,7 +138,7 @@ function createSettingsPanel() {
  </div>
  `;
 
-    // Speech toggle
+    
     panel.innerHTML += `
  <div class="setting-group" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
  <div>
@@ -152,12 +152,12 @@ function createSettingsPanel() {
  </div>
  `;
 
-    // Save button
+    
     panel.innerHTML += `
  <button id="save-settings" style="margin-top: 20px; padding: 8px 15px; background-color: #007fff; color: white; border: none; border-radius: 3px; cursor: pointer; width: 100%;">Save Settings</button>
  `;
 
-    // Add some basic styling
+    
     panel.innerHTML += `
  <style>
  .switch {
@@ -211,7 +211,7 @@ function createSettingsPanel() {
 
     document.body.appendChild(panel);
 
-    // Add event listeners
+    
     document.getElementById('automation-speed').addEventListener('input', function() {
         document.getElementById('speed-value').textContent = `${this.value}ms`;
     });
@@ -221,7 +221,7 @@ function createSettingsPanel() {
     return panel;
 }
 
-// Helper function to convert rgba to hex for color inputs
+
 function hexToRgb(rgba) {
     const parts = rgba.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
     if (!parts) return '#000000';
@@ -233,7 +233,7 @@ function hexToRgb(rgba) {
     return `#${r}${g}${b}`;
 }
 
-// Helper function to convert hex to rgba
+
 function hexToRgba(hex, alpha = 0.7) {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
@@ -242,7 +242,7 @@ function hexToRgba(hex, alpha = 0.7) {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-// Toggle settings panel visibility
+
 function toggleSettingsPanel() {
     const panel = document.getElementById('automation-settings-panel');
     if (panel) {
@@ -250,14 +250,14 @@ function toggleSettingsPanel() {
     }
 }
 
-// Save settings from the panel
+
 function saveSettings() {
-    // Get values from form
+    
     const speed = parseInt(document.getElementById('automation-speed').value);
     const position = document.getElementById('controls-position').value;
     const speechEnabled = document.getElementById('speech-toggle').checked;
 
-    // Get highlight colors
+    
     const highlightColors = {
         default: hexToRgba(document.getElementById('highlight-default').value),
         success: hexToRgba(document.getElementById('highlight-success').value),
@@ -265,29 +265,29 @@ function saveSettings() {
         error: hexToRgba(document.getElementById('highlight-error').value)
     };
 
-    // Update state
+    
     automationState.stepDelay = speed;
     automationState.controlsPosition = position;
     automationState.speechEnabled = speechEnabled;
     automationState.highlightColors = highlightColors;
 
-    // Store settings
+    
     storeSetting('stepDelay', speed);
     storeSetting('controlsPosition', position);
     storeSetting('speechEnabled', speechEnabled);
     storeSetting('highlightColors', highlightColors);
 
-    // Update controls position
+    
     updateControlsPosition();
 
-    // Close panel
+    
     toggleSettingsPanel();
 
-    // Show feedback
+    
     showFeedbackMessage("Settings saved successfully!", 'success');
 }
 
-// Update controls position based on settings
+
 function updateControlsPosition() {
     const controls = document.getElementById('automation-controls');
     const settingsBtn = document.getElementById('automation-settings-btn');
@@ -303,20 +303,20 @@ function updateControlsPosition() {
     }
 }
 
-// Text-to-speech function
+
 function speak(text) {
     if (!automationState.speechEnabled || !window.speechSynthesis) return;
 
-    // Cancel any ongoing speech
+    
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9; // Slightly slower than normal
+    utterance.rate = 0.9; 
     window.speechSynthesis.speak(utterance);
 }
 
-// Enhanced command mapping with additional metadata
-const automationCommands = {
+
+const defaultAutomationCommands = {
     'pay saved beneficiary': {
         steps: [
             { action: 'click', selector: '#transacts'},
@@ -371,19 +371,119 @@ const automationCommands = {
     },
     'go to account': {
         steps: [
-            {action: 'click', selector: '#accounts' },
-            { action: 'wait', duration: 1000 },
-            { action: 'click', url: '#view' }
+            { action: 'navigate', url: 'Accounts.html' }
         ],
         description: 'View Accounts',
-        category: 'Accounts',
+        category: 'navigation',
         preventReloop: true
+    },
+    'open payments': {
+        steps: [
+            { action: 'navigate', url: 'transact.html' }
+        ],
+        description: 'Open Payments page',
+        category: 'navigation'
+    },
+    'open transfers': {
+        steps: [
+            { action: 'navigate', url: 'transfer.html' }
+        ],
+        description: 'Open Transfers page',
+        category: 'navigation'
+    },
+    'open beneficiaries': {
+        steps: [
+            { action: 'navigate', url: 'Add-benficiaries.html' }
+        ],
+        description: 'Open Beneficiaries page',
+        category: 'navigation'
+    },
+    'open cards': {
+        steps: [
+            { action: 'navigate', url: 'Cards.html' }
+        ],
+        description: 'Open Cards page',
+        category: 'navigation'
+    },
+    'open documents': {
+        steps: [
+            { action: 'navigate', url: 'Computer-Document.html' }
+        ],
+        description: 'Open Documents page',
+        category: 'navigation'
+    },
+    'open settings': {
+        steps: [
+            { action: 'navigate', url: 'settings.html' }
+        ],
+        description: 'Open Settings page',
+        category: 'navigation'
+    },
+    'open secure messages': {
+        steps: [
+            { action: 'navigate', url: 'Secure-Messages.html' }
+        ],
+        description: 'Open Secure Messages page',
+        category: 'navigation'
+    },
+    'open user management': {
+        steps: [
+            { action: 'navigate', url: 'user-management.html' }
+        ],
+        description: 'Open User Management page',
+        category: 'navigation'
+    },
+    'open products and services': {
+        steps: [
+            { action: 'navigate', url: 'Product&Services.html' }
+        ],
+        description: 'Open Products & Services page',
+        category: 'navigation'
+    },
+    'open home': {
+        steps: [
+            { action: 'navigate', url: 'Computer.html' }
+        ],
+        description: 'Open Home dashboard',
+        category: 'navigation'
     }
 };
 
-// Initialize automation system
+let automationCommands = defaultAutomationCommands;
+
+function loadAutomationCommands() {
+    try {
+        const ctx = 'computer';
+        fetch(`/api/automation-tasks?context=${ctx}`)
+            .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+            .then(data => {
+                if (data && Array.isArray(data.tasks)) {
+                    const loaded = {};
+                    data.tasks.forEach(t => {
+                        if (t && t.key && Array.isArray(t.steps)) {
+                            loaded[t.key] = {
+                                steps: t.steps,
+                                description: t.description || t.key,
+                                category: t.category || 'general',
+                                preventReloop: false
+                            };
+                        }
+                    });
+                    if (Object.keys(loaded).length > 0) {
+                        automationCommands = loaded;
+                        showFeedbackMessage('Automation tasks updated from database', 'info');
+                    }
+                }
+            })
+            .catch(() => { /* keep defaults */ });
+    } catch (_) { /* ignore */ }
+}
+
+
 function initAutomationSystem() {
-    // Check if we're recovering from a termination
+    // Load commands from backend (with fallback to defaults)
+    loadAutomationCommands();
+    
     if (sessionStorage.getItem('terminationInProgress') === 'true') {
         sessionStorage.removeItem('terminationInProgress');
         showFeedbackMessage("Automation terminated successfully", 'warning');
@@ -393,32 +493,32 @@ function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
 
-    // Create settings button and panel
+    
     createSettingsButton();
     createSettingsPanel();
 
-    // Create control buttons
+    
     createControlButtons();
 
     if (searchInput && executeBtn) {
-        // Show suggestions when typing
+        
         searchInput.addEventListener('input', function() {
             showCommandSuggestions(this.value);
         });
 
-        // Execute command on button click
+        
         executeBtn.addEventListener('click', function() {
             executeCommand(searchInput.value);
         });
 
-        // Also execute on Enter key
+        
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 executeCommand(this.value);
             }
         });
 
-        // Hide suggestions when clicking outside
+        
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.search-container')) {
                 const dropdown = document.getElementById('suggestions-dropdown');
@@ -427,14 +527,14 @@ function initAutomationSystem() {
         });
     }
 
-    // Track navigation history
+    
     trackNavigationHistory();
 
-    // Check for pending automation on page load
+    
     checkForPendingAutomation();
 }
 
-// Create control buttons container with autopilot toggle
+
 function createControlButtons() {
     const controlsContainer = document.createElement('div');
     controlsContainer.id = 'automation-controls';
@@ -451,7 +551,7 @@ function createControlButtons() {
     controlsContainer.style.transition = 'opacity 0.3s ease';
     controlsContainer.style.opacity = '1';
 
-    // Create buttons
+    
     const rewindBtn = document.createElement('button');
     rewindBtn.id = 'rewind-btn';
     rewindBtn.innerHTML = '⏮';
@@ -493,7 +593,7 @@ function createControlButtons() {
     forwardBtn.style.fontSize = '20px';
     forwardBtn.style.cursor = 'pointer';
 
-    // Autopilot toggle button
+    
     const autopilotBtn = document.createElement('button');
     autopilotBtn.id = 'autopilot-btn';
     autopilotBtn.innerHTML = automationState.isAutopilot ? '💻' : '👨‍💻';
@@ -504,7 +604,7 @@ function createControlButtons() {
     autopilotBtn.style.fontSize = '20px';
     autopilotBtn.style.cursor = 'pointer';
 
-    // Terminate button - always visible when automation is running
+    
     const terminateBtn = document.createElement('button');
     terminateBtn.id = 'terminate-btn';
     terminateBtn.innerHTML = '❌';
@@ -516,7 +616,7 @@ function createControlButtons() {
     terminateBtn.style.cursor = 'pointer';
     terminateBtn.style.display = 'none';
 
-    // Add buttons to container
+    
     controlsContainer.appendChild(rewindBtn);
     controlsContainer.appendChild(pauseBtn);
     controlsContainer.appendChild(playBtn);
@@ -524,10 +624,10 @@ function createControlButtons() {
     controlsContainer.appendChild(autopilotBtn);
     controlsContainer.appendChild(terminateBtn);
 
-    // Add container to body
+    
     document.body.appendChild(controlsContainer);
 
-    // Set up control buttons event listeners
+    
     pauseBtn.addEventListener('click', pauseAutomation);
     playBtn.addEventListener('click', resumeAutomation);
     rewindBtn.addEventListener('click', rewindAutomation);
@@ -535,7 +635,7 @@ function createControlButtons() {
     autopilotBtn.addEventListener('click', toggleAutopilot);
     terminateBtn.addEventListener('click', terminateAutomation);
 
-    // Add CSS to ensure controls stay visible
+    
     const style = document.createElement('style');
     style.textContent = `
  #automation-controls {
@@ -553,29 +653,29 @@ function createControlButtons() {
     document.head.appendChild(style);
 }
 
-// Terminate current automation
+
 function terminateAutomation() {
     if (automationState.currentCommand || automationState.waitingForUserClick) {
-        // Set termination flag
+        
         automationState.isTerminating = true;
 
-        // Clear all timeouts and intervals
+        
         if (automationState.currentTimeout) {
             clearTimeout(automationState.currentTimeout);
             automationState.currentTimeout = null;
         }
 
-        // Clear all click handlers
+        
         clearClickHandlers();
 
-        // Clear highlights
+        
         clearHighlights();
 
-        // Mark termination in session storage to prevent continuation
+        
         sessionStorage.setItem('terminationInProgress', 'true');
         sessionStorage.removeItem('pendingAutomation');
 
-        // Reset automation state
+        
         automationState = {
             ...automationState,
             isPaused: false,
@@ -590,7 +690,7 @@ function terminateAutomation() {
             isTerminating: false
         };
 
-        // Re-enable search
+        
         const searchInput = document.getElementById('automation-search');
         const executeBtn = document.getElementById('execute-automation');
         if (searchInput && executeBtn) {
@@ -599,14 +699,14 @@ function terminateAutomation() {
             searchInput.focus();
         }
 
-        // Update transcript
+        
         updateTranscript("Automation terminated by user");
         showFeedbackMessage("Automation terminated", 'warning');
 
-        // Update control buttons
+        
         updateControlButtons();
 
-        // Remove transcript after delay
+        
         setTimeout(() => {
             const transcriptContainer = document.getElementById('automation-transcript');
             if (transcriptContainer) transcriptContainer.remove();
@@ -616,7 +716,7 @@ function terminateAutomation() {
     }
 }
 
-// Toggle autopilot mode
+
 function toggleAutopilot() {
     automationState.isAutopilot = !automationState.isAutopilot;
     storeSetting('autopilot', automationState.isAutopilot);
@@ -630,26 +730,26 @@ function toggleAutopilot() {
     updateTranscript(`Autopilot ${automationState.isAutopilot ? 'enabled' : 'disabled'}`);
     speak(`Autopilot ${automationState.isAutopilot ? 'enabled' : 'disabled'}`);
 
-    // If we're in manual mode and waiting for user click, highlight the current step
+    
     if (!automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
         highlightCurrentStep();
     }
 
-    // If we're switching to autopilot and automation is in progress, continue automatically
+    
     if (automationState.isAutopilot && automationState.currentSteps.length > 0 && !automationState.isPaused) {
         executeNextStep();
     }
 }
 
-// Track navigation history
+
 function trackNavigationHistory() {
-    // Store current URL when script loads
+    
     if (automationState.navigationHistory.length === 0) {
         automationState.navigationHistory.push(window.location.href);
         automationState.navigationIndex = 0;
     }
 
-    // Override pushState and replaceState to track URL changes
+    
     const originalPushState = history.pushState;
     const originalReplaceState = history.replaceState;
 
@@ -663,17 +763,17 @@ function trackNavigationHistory() {
         handleNavigationChange();
     };
 
-    // Track popstate events (back/forward navigation)
+    
     window.addEventListener('popstate', function() {
         handleNavigationChange();
     });
 
-    // Track link clicks
+    
     document.addEventListener('click', function(e) {
         if (e.target.tagName === 'A' && e.target.href) {
             setTimeout(() => {
                 handleNavigationChange();
-            }, 1000); // Wait for page to potentially load
+            }, 1000); 
         }
     }, true);
 }
@@ -683,7 +783,7 @@ function handleNavigationChange() {
     const lastUrl = automationState.navigationHistory[automationState.navigationHistory.length - 1];
 
     if (currentUrl !== lastUrl) {
-        // If we're not at the end of history, truncate the future history
+        
         if (automationState.navigationIndex < automationState.navigationHistory.length - 1) {
             automationState.navigationHistory = automationState.navigationHistory.slice(0, automationState.navigationIndex + 1);
         }
@@ -693,7 +793,7 @@ function handleNavigationChange() {
     }
 }
 
-// Pause automation
+
 function pauseAutomation() {
     if (automationState.currentTimeout) {
         clearTimeout(automationState.currentTimeout);
@@ -705,7 +805,7 @@ function pauseAutomation() {
     speak('Automation paused');
 }
 
-// Resume automation
+
 function resumeAutomation() {
     if (!automationState.isPaused || automationState.currentSteps.length === 0) return;
 
@@ -721,7 +821,7 @@ function resumeAutomation() {
     }
 }
 
-// Update control buttons visibility
+
 function updateControlButtons() {
     const pauseBtn = document.getElementById('pause-btn');
     const playBtn = document.getElementById('play-btn');
@@ -744,10 +844,10 @@ function updateControlButtons() {
     }
 }
 
-// Rewind automation
+
 function rewindAutomation() {
     if (automationState.navigationIndex > 0 && !automationState.isTerminating) {
-        // Clear any pending timeouts
+        
         if (automationState.currentTimeout) {
             clearTimeout(automationState.currentTimeout);
             automationState.currentTimeout = null;
@@ -756,7 +856,7 @@ function rewindAutomation() {
         automationState.navigationIndex--;
         const targetUrl = automationState.navigationHistory[automationState.navigationIndex];
 
-        // Save current automation state if running
+        
         if (automationState.currentCommand) {
             sessionStorage.setItem('pendingAutomation', JSON.stringify({
                 command: automationState.currentCommand,
@@ -775,10 +875,10 @@ function rewindAutomation() {
     }
 }
 
-// Fast forward automation
+
 function forwardAutomation() {
     if (automationState.navigationIndex < automationState.navigationHistory.length - 1 && !automationState.isTerminating) {
-        // Clear any pending timeouts
+        
         if (automationState.currentTimeout) {
             clearTimeout(automationState.currentTimeout);
             automationState.currentTimeout = null;
@@ -787,7 +887,7 @@ function forwardAutomation() {
         automationState.navigationIndex++;
         const targetUrl = automationState.navigationHistory[automationState.navigationIndex];
 
-        // Save current automation state if running
+        
         if (automationState.currentCommand) {
             sessionStorage.setItem('pendingAutomation', JSON.stringify({
                 command: automationState.currentCommand,
@@ -806,9 +906,9 @@ function forwardAutomation() {
     }
 }
 
-// Check if there's a pending automation to continue
+
 function checkForPendingAutomation() {
-    // Don't continue if termination was requested
+    
     if (sessionStorage.getItem('terminationInProgress') === 'true') {
         sessionStorage.removeItem('terminationInProgress');
         return;
@@ -820,7 +920,7 @@ function checkForPendingAutomation() {
             const { command, stepIndex, isReload, isAutopilot } = JSON.parse(pendingAutomation);
             const commandObj = automationCommands[command];
 
-            // Restore autopilot state if it exists
+            
             if (isAutopilot !== undefined) {
                 automationState.isAutopilot = isAutopilot;
                 const autopilotBtn = document.getElementById('autopilot-btn');
@@ -830,20 +930,20 @@ function checkForPendingAutomation() {
                 }
             }
 
-            // Skip if this is a reload and the command prevents reloop
+            
             if (isReload && commandObj.preventReloop) {
                 sessionStorage.removeItem('pendingAutomation');
                 return;
             }
 
             if (commandObj && commandObj.steps && stepIndex < commandObj.steps.length) {
-                // Continue from the next step
+                
                 setTimeout(() => {
                     automationState.currentCommand = command;
                     automationState.currentSteps = commandObj.steps;
                     automationState.currentStepIndex = stepIndex;
 
-                    // Show terminate button
+                    
                     const terminateBtn = document.getElementById('terminate-btn');
                     if (terminateBtn) terminateBtn.style.display = 'inline';
 
@@ -852,7 +952,7 @@ function checkForPendingAutomation() {
                     } else {
                         highlightCurrentStep();
                     }
-                }, 1000); // Give the page time to load
+                }, 1000); 
             }
         } catch (e) {
             console.error('Error parsing pending automation:', e);
@@ -861,7 +961,7 @@ function checkForPendingAutomation() {
     }
 }
 
-// Show command suggestions in dropdown
+
 function showCommandSuggestions(input) {
     const dropdown = document.getElementById('suggestions-dropdown') || createSuggestionsDropdown();
     dropdown.innerHTML = '';
@@ -881,7 +981,7 @@ function showCommandSuggestions(input) {
             const item = document.createElement('div');
             item.className = 'suggestion-item';
 
-            // Highlight matching part of the text
+            
             const matchIndex = match.toLowerCase().indexOf(input.toLowerCase());
             if (matchIndex >= 0) {
                 const before = match.substring(0, matchIndex);
@@ -922,22 +1022,22 @@ function createSuggestionsDropdown() {
     return dropdown;
 }
 
-// Execute the automation command
+
 function executeCommand(commandText) {
     if (!commandText || automationState.isTerminating) return;
 
-    // Clear any existing automation
+    
     clearAutomationState();
 
-    // Find the best matching command
+    
     const normalizedInput = commandText.toLowerCase().trim();
     let bestMatch = null;
     let bestScore = 0;
 
-    // Enhanced matching algorithm
+    
     Object.keys(automationCommands).forEach(cmd => {
         const cmdLower = cmd.toLowerCase();
-        // Score based on how much of the command matches the input
+        
         const score = calculateMatchScore(normalizedInput, cmdLower);
         if (score > bestScore) {
             bestMatch = cmd;
@@ -952,7 +1052,7 @@ function executeCommand(commandText) {
         automationState.currentSteps = command.steps;
         automationState.currentStepIndex = 0;
 
-        // Show terminate button
+        
         const terminateBtn = document.getElementById('terminate-btn');
         if (terminateBtn) terminateBtn.style.display = 'inline';
 
@@ -969,7 +1069,7 @@ function executeCommand(commandText) {
     }
 }
 
-// Clear all automation state
+
 function clearAutomationState() {
     clearHighlights();
     clearClickHandlers();
@@ -982,7 +1082,7 @@ function clearAutomationState() {
     automationState.waitingForUserClick = false;
 }
 
-// Clear all click handlers
+
 function clearClickHandlers() {
     automationState.clickHandlers.forEach(handler => {
         if (handler.element && handler.callback) {
@@ -992,18 +1092,18 @@ function clearClickHandlers() {
     automationState.clickHandlers = [];
 }
 
-// Calculate match score between input and command
+
 function calculateMatchScore(input, command) {
-    // Exact match gets highest score
+    
     if (input === command) return 100;
 
-    // Contains the full command
+    
     if (input.includes(command)) return 90;
 
-    // Command contains the input
+    
     if (command.includes(input)) return 80;
 
-    // Calculate percentage of matching words
+    
     const inputWords = input.split(/\s+/);
     const commandWords = command.split(/\s+/);
     const matchingWords = inputWords.filter(word =>
@@ -1013,12 +1113,12 @@ function calculateMatchScore(input, command) {
     return (matchingWords.length / inputWords.length) * 100;
 }
 
-// Execute the next step in automation
+
 function executeNextStep() {
     if (automationState.isPaused || automationState.isTerminating) return;
 
     if (automationState.currentStepIndex >= automationState.currentSteps.length) {
-        // Automation complete
+        
         completeAutomation();
         return;
     }
@@ -1027,7 +1127,7 @@ function executeNextStep() {
     updateTranscript(`Executing step ${automationState.currentStepIndex + 1}: ${getStepDescription(step)}`);
     speak(`Step ${automationState.currentStepIndex + 1}: ${getStepDescription(step)}`);
 
-    // Save the current state before executing the step
+    
     if (!automationState.isTerminating) {
         sessionStorage.setItem('pendingAutomation', JSON.stringify({
             command: automationState.currentCommand,
@@ -1045,7 +1145,7 @@ function executeNextStep() {
     }
 }
 
-// Highlight the current step for manual execution
+
 function highlightCurrentStep() {
     if (automationState.currentStepIndex >= automationState.currentSteps.length) return;
 
@@ -1056,39 +1156,39 @@ function highlightCurrentStep() {
     if (step.action === 'click') {
         const element = document.querySelector(step.selector);
         if (element) {
-            // Highlight the element
+            
             highlightElement(element, 'default');
             element.classList.add('automation-target');
             element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-            // Store the current highlighted element
+            
             automationState.currentHighlightedElement = element;
 
-            // Add click handler for manual mode
+            
             const clickHandler = (e) => {
                 if (e.target === element || element.contains(e.target)) {
                     e.preventDefault();
                     e.stopPropagation();
 
-                    // Remove the handler
+                    
                     element.removeEventListener('click', clickHandler);
                     automationState.clickHandlers = automationState.clickHandlers.filter(h => h.callback !== clickHandler);
 
-                    // Change to success color
+                    
                     highlightElement(element, 'success');
 
-                    // Perform the click
+                    
                     element.click();
                     console.log(`User clicked: ${step.selector}`);
                     updateTranscript(`User clicked: ${step.selector}`);
                     speak(`Clicked ${step.selector.replace(/[#.]/g, ' ').trim()}`);
 
-                    // Remove highlight after duration
+                    
                     setTimeout(() => {
                         element.classList.remove('automation-target');
                         clearHighlights();
 
-                        // Move to next step
+                        
                         automationState.currentStepIndex++;
                         if (!automationState.isPaused && !automationState.isTerminating) {
                             if (automationState.currentStepIndex < automationState.currentSteps.length) {
@@ -1112,7 +1212,7 @@ function highlightCurrentStep() {
             speak(`Error: Element not found`);
             showFeedbackMessage(`Element not found: ${step.selector}`, 'error');
 
-            // Move to next step even if element not found
+            
             automationState.currentStepIndex++;
             if (!automationState.isPaused && !automationState.isTerminating) {
                 if (automationState.currentStepIndex < automationState.currentSteps.length) {
@@ -1127,7 +1227,7 @@ function highlightCurrentStep() {
             }
         }
     } else {
-        // For non-click steps in manual mode, just execute them
+        
         executeStep(step, () => {
             automationState.currentStepIndex++;
             if (!automationState.isPaused && !automationState.isTerminating) {
@@ -1152,17 +1252,17 @@ function completeAutomation() {
     speak("Automation completed successfully");
     sessionStorage.removeItem('pendingAutomation');
 
-    // Reset automation state
+    
     clearAutomationState();
     automationState.currentCommand = null;
     automationState.currentSteps = [];
     automationState.currentStepIndex = 0;
 
-    // Hide terminate button
+    
     const terminateBtn = document.getElementById('terminate-btn');
     if (terminateBtn) terminateBtn.style.display = 'none';
 
-    // Re-enable search
+    
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
     if (searchInput && executeBtn) {
@@ -1171,10 +1271,10 @@ function completeAutomation() {
         searchInput.focus();
     }
 
-    // Update control buttons
+    
     updateControlButtons();
 
-    // Remove transcript after delay
+    
     setTimeout(() => {
         const transcriptContainer = document.getElementById('automation-transcript');
         if (transcriptContainer) transcriptContainer.remove();
@@ -1197,7 +1297,7 @@ function createTranscriptContainer() {
     return transcriptContainer;
 }
 
-// Update the transcript
+
 function updateTranscript(message) {
     if (automationState.isTerminating) return;
 
@@ -1210,13 +1310,13 @@ function updateTranscript(message) {
     entry.style.paddingBottom = '5px';
     transcriptContainer.insertBefore(entry, transcriptContainer.firstChild);
 
-    // Keep only the last 5 messages
+    
     while (transcriptContainer.children.length > 5) {
         transcriptContainer.removeChild(transcriptContainer.lastChild);
     }
 }
 
-// Get a human-readable description of a step
+
 function getStepDescription(step) {
     switch(step.action) {
         case 'click':
@@ -1230,7 +1330,7 @@ function getStepDescription(step) {
     }
 }
 
-// Clear all highlights
+
 function clearHighlights() {
     const highlighter = document.getElementById('automation-highlighter');
     if (highlighter) {
@@ -1242,7 +1342,7 @@ function clearHighlights() {
     automationState.currentHighlightedElement = null;
 }
 
-// Execute a single automation step
+
 function executeStep(step, callback) {
     if (automationState.isPaused || automationState.isTerminating) return;
 
@@ -1250,33 +1350,33 @@ function executeStep(step, callback) {
         case 'click':
             const element = document.querySelector(step.selector);
             if (element) {
-                // Store the current highlighted element
+                
                 automationState.currentHighlightedElement = element;
 
-                // Highlight the element
+                
                 highlightElement(element, 'default');
 
-                // Add temporary class to element
+                
                 element.classList.add('automation-target');
 
-                // Scroll element into view if needed
+                
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
                 if (automationState.isAutopilot) {
-                    // Auto-pilot mode - click automatically after delay
+                    
                     setTimeout(() => {
                         if (automationState.isTerminating) return;
 
-                        // Change to success color just before clicking
+                        
                         highlightElement(element, 'success');
 
-                        // Perform the click
+                        
                         element.click();
                         console.log(`Clicked: ${step.selector}`);
                         updateTranscript(`Clicked: ${step.selector}`);
                         speak(`Clicked ${step.selector.replace(/[#.]/g, ' ').trim()}`);
 
-                        // Remove highlight after duration
+                        
                         setTimeout(() => {
                             element.classList.remove('automation-target');
                             clearHighlights();
@@ -1284,7 +1384,7 @@ function executeStep(step, callback) {
                         }, automationState.highlightDuration);
                     }, 500);
                 } else {
-                    // Manual mode - handled by highlightCurrentStep
+                    
                 }
             } else {
                 console.warn(`Element not found: ${step.selector}`);
@@ -1308,10 +1408,10 @@ function executeStep(step, callback) {
 
             updateTranscript(`Navigating to: ${step.url}`);
             speak(`Navigating to ${step.url}`);
-            // Highlight the whole viewport before navigating
+            
             highlightElement(document.documentElement, 'warning');
 
-            // Mark this as a reload in session storage
+            
             if (!automationState.isTerminating) {
                 sessionStorage.setItem('pendingAutomation', JSON.stringify({
                     command: automationState.currentCommand,
@@ -1336,7 +1436,7 @@ function executeStep(step, callback) {
     }
 }
 
-// Position and show highlighter around an element
+
 function highlightElement(element, status = 'default') {
     if (!element || !element.getBoundingClientRect || automationState.isTerminating) return;
 
@@ -1345,14 +1445,14 @@ function highlightElement(element, status = 'default') {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    // Set highlighter position and size
+    
     highlighter.style.width = `${rect.width}px`;
     highlighter.style.height = `${rect.height}px`;
     highlighter.style.top = `${rect.top + scrollTop}px`;
     highlighter.style.left = `${rect.left + scrollLeft}px`;
     highlighter.style.borderRadius = window.getComputedStyle(element).borderRadius;
 
-    // Set color based on status
+    
     highlighter.style.boxShadow = `0 0 0 4px ${automationState.highlightColors[status] || automationState.highlightColors.default}`;
     highlighter.style.opacity = '1';
     highlighter.style.transition = 'all 0.3s ease';
@@ -1360,7 +1460,7 @@ function highlightElement(element, status = 'default') {
     return highlighter;
 }
 
-// Create highlighter element
+
 function createHighlighter() {
     const highlighter = document.createElement('div');
     highlighter.id = 'automation-highlighter';
@@ -1375,7 +1475,7 @@ function createHighlighter() {
     return highlighter;
 }
 
-// Show feedback message
+
 function showFeedbackMessage(message, type) {
     if (automationState.isTerminating) return;
 
@@ -1398,7 +1498,7 @@ function showFeedbackMessage(message, type) {
     feedback.textContent = message;
     feedback.className = `feedback-message feedback-${type}`;
 
-    // Set colors based on type
+    
     const colors = {
         info: 'rgba(52, 152, 219, 0.9)',
         success: 'rgba(46, 204, 113, 0.9)',
@@ -1409,18 +1509,18 @@ function showFeedbackMessage(message, type) {
     feedback.style.backgroundColor = colors[type] || colors.info;
     feedback.style.opacity = '1';
 
-    // Auto-hide after 3 seconds
+    
     setTimeout(() => {
         feedback.style.opacity = '0';
         setTimeout(() => feedback.remove(), 500);
     }, 3000);
 }
 
-// Initialize the automation system when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Create highlighter element on startup
+    
     createHighlighter();
 
-    // Initialize automation system
+    
     initAutomationSystem();
 });

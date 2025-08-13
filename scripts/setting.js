@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Your tab content data (make sure this is included)
+    
     const tabContentData = {
         transactionLimit: [`
           <div class="tab-content tab-content-active">
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
-    // Get buttons once
+    
     const tabButtons = {
         transactionLimit: document.getElementById('Transaction-Limits'),
         transactionNotification: document.getElementById('Transaction-Notifications'),
@@ -105,16 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tab) tab.classList.add('active');
     }
 
-    // Add event listeners for each button
+    
     Object.entries(tabButtons).forEach(([key, button]) => {
-        if (!button) return; // Safety check
+        if (!button) return; 
         button.addEventListener('click', () => {
             displayContent(key);
             highlightButton(button);
         });
     });
 
-    // Initialize page with first tab active
+    
     displayContent('transactionLimit');
     highlightButton(tabButtons.transactionLimit);
 });

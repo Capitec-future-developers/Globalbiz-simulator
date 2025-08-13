@@ -6,65 +6,263 @@ const chatbotToggler = document.querySelector('.chatbot-toggler');
 const closeBtn = document.querySelector('.chatbot header span');
 
 let userMessage;
-const API_KEY = ""; // <-- Add your OpenAI API
 
-// Create chat list item
+// Helper to create chat message list items
 const createChatLi = (message, className) => {
     const chatLi = document.createElement('li');
-    chatLi.classList.add("chat", className);
-    let chatContent = className === "outgoing"
-        ? `<p>${message}</p>`
-        : `<span class="material-icons-sharp">account_circle</span><p class="incoming">${message}</p>`;
-    chatLi.innerHTML = chatContent;
+    chatLi.classList.add('chat', className);
+
+    let contentHtml;
+    if (className === 'outgoing') {
+        contentHtml = `<p>${message}</p>`;
+    } else {
+        contentHtml = `<span class="material-icons-sharp">account_circle</span><p class="incoming">${message}</p>`;
+    }
+
+    chatLi.innerHTML = contentHtml;
     return chatLi;
 };
 
-// Get response (modified to not use API)
-const generateResponse = (incomingChatLi) => {
-    const messageElement = incomingChatLi.querySelector("p");
-// Simple response without API call
-    messageElement.innerHTML = `
-    Hi! Let me know how I can help you:
-    <ul class="chat-options">
-        <li>✅ Assist with beneficiaries</li>
-        <li>💸 Make a payment</li>
-        <li>📄 Download statements</li>
-    </ul>
-`;
+// Insert HTML content as an incoming chat message (allows buttons/lists)
+const createIncomingHtml = (html) => {
+    const chatLi = document.createElement('li');
+    chatLi.classList.add('chat', 'incoming');
+    chatLi.innerHTML = `<span class="material-icons-sharp">account_circle</span><div class="incoming">${html}</div>`;
+    return chatLi;
+};
 
-// Scroll to bottom
+// Build a rich "card" style response block
+const buildCard = ({ title, subtitle = '', body = '', list = [], links = [], chips = [] }) => {
+    const listHtml = list.length ? `<ul class="chat-list">${list.map(item => `<li>${item}</li>`).join('')}</ul>` : '';
+    const linksHtml = links.length ? `<div class="chat-links">${links.map(l => `<a class="chat-link" href="${l.href}" target="_blank" rel="noopener">${l.text}</a>`).join('')}</div>` : '';
+    const chipsHtml = chips.length ? `<div class="chat-chips">${chips.map(c => `<button class="chip" data-chip="${c.value}">${c.label}</button>`).join('')}</div>` : '';
+    const subtitleHtml = subtitle ? `<div class="chat-subtitle">${subtitle}</div>` : '';
+    return `
+      <div class="chat-card">
+        <div class="chat-title">${title}</div>
+        ${subtitleHtml}
+        ${body ? `<div class="chat-body">${body}</div>` : ''}
+        ${listHtml}
+        ${linksHtml}
+        ${chipsHtml}
+      </div>
+    `;
+};
+
+// Try to read current account info from the page (project data already rendered by App.js)
+const getCurrentAccountInfo = () => {
+    const nameEl = document.getElementById('account-name');
+    const balEl = document.getElementById('account-balance');
+    return {
+        name: nameEl ? nameEl.textContent.trim() : 'Account',
+        balance: balEl ? balEl.textContent.trim() : 'N/A'
+    };
+};
+
+// Build HTML for the "how to pay saved beneficiary" response with step list and automation button
+const buildPaySavedBeneficiaryHelp = () => {
+    const steps = [
+        "Tap Transact at the bottom.",
+        "Select Payments.",
+        "Choose Pay Saved beneficiary.",
+        "Pick a beneficiary from the list.",
+        "Enter amount and reference, then confirm."
+    ];
+
+    const stepsHtml = `<ol>${steps.map(s => `<li>${s}</li>`).join('')}</ol>`;
+    const html = `
+        <div>
+            <p>Here are the steps to pay a saved beneficiary:</p>
+            ${stepsHtml}
+            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                <button id="btn-start-pay-saved" style="padding:6px 10px;background:#007fff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Start automation</button>
+                <button id="btn-show-where" style="padding:6px 10px;background:#f0f0f0;color:#333;border:none;border-radius:4px;cursor:pointer;">Highlight steps</button>
+            </div>
+            <p style="font-size:12px;color:#666;margin-top:6px;">Automation will try to click through the UI for you. You can pause or terminate anytime.</p>
+        </div>
+    `;
+    return html;
+};
+
+// Safe wrapper to execute an automation command if available
+const tryExecuteAutomation = (command) => {
+    try {
+        if (typeof executeCommand === 'function') {
+            executeCommand(command);
+        } else {
+            // Fallback: type into the automation search and click Go if present
+            const input = document.getElementById('automation-search');
+            const btn = document.getElementById('execute-automation');
+            if (input && btn) {
+                input.value = command;
+                btn.click();
+            } else {
+                alert('Automation controls not available on this page.');
+            }
+        }
+    } catch (e) {
+        console.error('Failed to start automation:', e);
+        alert('Unable to start automation.');
+    }
+};
+
+
+const generateResponse = (text) => {
+    const msg = (text || '').toLowerCase();
+
+    // Intent: how to pay saved beneficiary
+    if (/(how.*pay.*saved.*beneficiar|pay saved beneficiar|saved beneficiar.*pay)/i.test(msg)) {
+        const html = buildPaySavedBeneficiaryHelp();
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+
+        // Wire the buttons after insertion
+        const startBtn = li.querySelector('#btn-start-pay-saved');
+        const highlightBtn = li.querySelector('#btn-show-where');
+        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('pay saved beneficiary'));
+        if (highlightBtn) highlightBtn.addEventListener('click', () => {
+            // Turn off autopilot and run the command so the user can click along
+            try {
+                if (typeof sessionStorage !== 'undefined') {
+                    const pending = sessionStorage.getItem('pendingAutomation');
+                    if (pending) sessionStorage.removeItem('pendingAutomation');
+                }
+            } catch (_) {}
+            tryExecuteAutomation('pay saved beneficiary');
+        });
+        return;
+    }
+
+
+    if (/(once\s*-?\s*off|once off|one-?time|single.*payment|make a payment)/i.test(msg)) {
+        const steps = [
+            'Tap Transact at the bottom.',
+            'Select Payments.',
+            'Choose Once-off payment.',
+            'Enter recipient details, amount, and reference.',
+            'Review and confirm.'
+        ];
+        const html = `
+            <div>
+                <p>Here are the steps to make a once-off payment:</p>
+                <ol>${steps.map(s => `<li>${s}</li>`).join('')}</ol>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                    <button id="btn-start-onceoff" style="padding:6px 10px;background:#007fff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Start automation</button>
+                </div>
+            </div>
+        `;
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        const startBtn = li.querySelector('#btn-start-onceoff');
+        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('once-off payment'));
+        return;
+    }
+
+    // Intent: view or download documents
+    if (/((view|download).*(document|statement|invoice|proof)|documents)/i.test(msg)) {
+        const html = `
+            <div>
+                <p>To view or download your documents:</p>
+                <ol>
+                    <li>Go to Documents in the main menu.</li>
+                    <li>Choose the document type (e.g., Statements, Proof of payment).</li>
+                    <li>Select the account and period if prompted.</li>
+                    <li>Tap View to preview or Download to save/share.</li>
+                </ol>
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+                    <button id="btn-start-docs" style="padding:6px 10px;background:#007fff;color:#fff;border:none;border-radius:4px;cursor:pointer;">Open documents</button>
+                </div>
+            </div>
+        `;
+        const li = createIncomingHtml(html);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        const startBtn = li.querySelector('#btn-start-docs');
+        if (startBtn) startBtn.addEventListener('click', () => tryExecuteAutomation('open documents'));
+        return;
+    }
+
+    // Intent: check balance or account info
+    if (/(balance|how much.*money|account info|account name)/i.test(msg)) {
+        const { name, balance } = getCurrentAccountInfo();
+        const li = createIncomingHtml(`<p>Your current account is <strong>${name}</strong> with a balance of <strong>${balance}</strong>.</p>`);
+        chatbox.appendChild(li);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        return;
+    }
+
+    // Default suggestions
+    const suggestions = `
+        <div>
+            <p>Hi! I can help with:</p>
+            <ul class="chat-options">
+                <li>✅ How to pay a saved beneficiary</li>
+                <li>💸 Make a once-off payment</li>
+                <li>📄 View or download documents</li>
+            </ul>
+            <p style="margin-top:6px;font-size:12px;color:#666;">Tip: Use the box at the top to run automations too.</p>
+        </div>
+    `;
+    const li = createIncomingHtml(suggestions);
+    chatbox.appendChild(li);
+    // Make suggestion items clickable: clicking sends as message and triggers response
+    const options = li.querySelectorAll('.chat-options li');
+    options.forEach((opt) => {
+        opt.style.cursor = 'pointer';
+        opt.title = 'Click to choose';
+        opt.addEventListener('click', () => {
+            const clean = (opt.textContent || '').replace(/^\s*[^A-Za-z0-9]+/,'').trim();
+            if (!clean) return;
+            // Show as outgoing message
+            chatbox.appendChild(createChatLi(clean, 'outgoing'));
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+            // Generate a response for the clicked option
+            setTimeout(() => generateResponse(clean), 200);
+        });
+    });
     chatbox.scrollTo(0, chatbox.scrollHeight);
 };
 
-// Send user message
+// Handle outgoing user message and respond
 const handleChat = () => {
-    userMessage = chatInput.value.trim();
-    if (!userMessage) return;
+    const text = chatInput.value.trim();
+    if (!text) return;
 
-    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-    chatInput.value = "";
+    chatbox.appendChild(createChatLi(text, 'outgoing'));
+    chatInput.value = '';
     chatbox.scrollTo(0, chatbox.scrollHeight);
 
     setTimeout(() => {
-        const incomingChatLi = createChatLi("Thinking...", "incoming");
-        chatbox.appendChild(incomingChatLi);
+        // lightweight thinking effect
+        const thinking = createChatLi('Thinking...', 'incoming');
+        chatbox.appendChild(thinking);
         chatbox.scrollTo(0, chatbox.scrollHeight);
-        generateResponse(incomingChatLi);
-    }, 600);
+        // replace with actual response
+        setTimeout(() => {
+            thinking.remove();
+            generateResponse(text);
+        }, 400);
+    }, 300);
 };
 
-// Send button click
+// Events
 sendChatBtn.addEventListener('click', handleChat);
+chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleChat();
+    }
+});
 
-// Toggle chatbot open/close
 chatbotToggler.addEventListener('click', () => {
     body.classList.toggle('show-chatbot');
 });
 
-// Close button in header (only visible on mobile)
 closeBtn.addEventListener('click', () => {
     body.classList.remove('show-chatbot');
 });
 
-// Remove the show-chatbot class from body initially
+// Ensure hidden by default
 body.classList.remove('show-chatbot');
