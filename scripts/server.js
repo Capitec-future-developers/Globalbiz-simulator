@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const fs = require('fs');
+const path = require('path');
 const User = require('./models/User');
 const Account = require('./models/Account');
 const Transaction = require('./models/Transaction');
@@ -274,6 +276,25 @@ app.post('/api/payments', authenticate, async (req, res) => {
 });
 
 
+// Automation tasks endpoint (file-backed "DB")
+app.get('/api/automation-tasks', async (req, res) => {
+    try {
+        const tasksPath = path.join(__dirname, 'data', 'automation-tasks.json');
+        const raw = fs.readFileSync(tasksPath, 'utf8');
+        const json = JSON.parse(raw);
+        const { context } = req.query;
+        let tasks = Array.isArray(json.tasks) ? json.tasks : [];
+        if (context) {
+            const ctx = String(context).toLowerCase();
+            tasks = tasks.filter(t => !t.context || t.context.includes(ctx));
+        }
+        res.json({ tasks });
+    } catch (err) {
+        console.error('Error loading automation tasks:', err);
+        res.status(500).json({ message: 'Failed to load automation tasks' });
+    }
+});
+
 app.post('/api/init', async (req, res) => {
     try {
         
@@ -359,3 +380,53 @@ app.post('/api/init', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Local beneficiaries endpoints (file-backed "small DB")
+app.get('/api/local/beneficiaries', async (req, res) => {
+    try {
+        const filePath = path.join(__dirname, 'data', 'beneficiaries.json');
+        if (!fs.existsSync(filePath)) {
+            fs.writeFileSync(filePath, JSON.stringify({ beneficiaries: [] }, null, 2), 'utf8');
+        }
+        const raw = fs.readFileSync(filePath, 'utf8');
+        const json = JSON.parse(raw || '{"beneficiaries": []}');
+        const beneficiaries = Array.isArray(json.beneficiaries) ? json.beneficiaries : [];
+        res.json({ beneficiaries });
+    } catch (err) {
+        console.error('Error reading beneficiaries:', err);
+        res.status(500).json({ message: 'Failed to load beneficiaries' });
+    }
+});
+
+app.post('/api/local/beneficiaries', async (req, res) => {
+    try {
+        const { name, accountNumber, bank, nickname } = req.body || {};
+        if (!name || !accountNumber || !bank) {
+            return res.status(400).json({ message: 'name, accountNumber and bank are required' });
+        }
+
+        const filePath = path.join(__dirname, 'data', 'beneficiaries.json');
+        if (!fs.existsSync(filePath)) {
+            fs.writeFileSync(filePath, JSON.stringify({ beneficiaries: [] }, null, 2), 'utf8');
+        }
+        const raw = fs.readFileSync(filePath, 'utf8');
+        const json = JSON.parse(raw || '{"beneficiaries": []}');
+        const list = Array.isArray(json.beneficiaries) ? json.beneficiaries : [];
+
+        const newBeneficiary = {
+            id: `${Date.now()}-${Math.floor(Math.random() * 1000000)}`,
+            name: String(name),
+            accountNumber: String(accountNumber),
+            bank: String(bank),
+            nickname: nickname ? String(nickname) : '',
+            createdAt: new Date().toISOString()
+        };
+
+        list.push(newBeneficiary);
+        fs.writeFileSync(filePath, JSON.stringify({ beneficiaries: list }, null, 2), 'utf8');
+        res.status(201).json(newBeneficiary);
+    } catch (err) {
+        console.error('Error saving beneficiary:', err);
+        res.status(500).json({ message: 'Failed to save beneficiary' });
+    }
+});

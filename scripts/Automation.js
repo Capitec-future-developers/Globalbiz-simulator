@@ -13,7 +13,7 @@ const automationConfig = {
     }
 };
 
-const automationCommands = {
+const defaultAutomationCommands = {
     'Documents': {
         steps: [
             { action: 'click', selector: '#sidebarToggle' },
@@ -114,6 +114,40 @@ const automationCommands = {
         category: 'cards'
     }
 };
+
+let automationCommands = defaultAutomationCommands;
+
+function loadAutomationCommands() {
+    try {
+        const isComputer = /Computer\\\\|Computer\//i.test(window.location.pathname) || /Computer/i.test(document.title);
+        const ctx = isComputer ? 'computer' : 'app';
+        fetch(`/api/automation-tasks?context=${ctx}`)
+            .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+            .then(data => {
+                if (data && Array.isArray(data.tasks)) {
+                    const loaded = {};
+                    data.tasks.forEach(t => {
+                        if (t && t.key && Array.isArray(t.steps)) {
+                            loaded[t.key] = {
+                                steps: t.steps,
+                                description: t.description || t.key,
+                                category: t.category || 'general'
+                            };
+                        }
+                    });
+                    if (Object.keys(loaded).length > 0) {
+                        automationCommands = loaded;
+                        showFeedbackMessage('Automation tasks updated from database', 'info');
+                    }
+                }
+            })
+            .catch(() => {
+                // Silently keep defaults if fetch fails
+            });
+    } catch (_) {
+        // ignore
+    }
+}
 
 
 
@@ -508,6 +542,8 @@ function initAutomationSystem() {
     const searchInput = document.getElementById('automation-search');
     const executeBtn = document.getElementById('execute-automation');
 
+    // Load commands from backend (with fallback to defaults)
+    loadAutomationCommands();
 
     createSettingsButton();
     createSettingsPanel();

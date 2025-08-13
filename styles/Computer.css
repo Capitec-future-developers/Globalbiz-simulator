@@ -1150,7 +1150,7 @@ popup-header {
 }
 
 .dropdown.active .dropdown-arrow {
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 
 @keyframes fadeIn {

@@ -316,7 +316,7 @@ function speak(text) {
 }
 
 
-const automationCommands = {
+const defaultAutomationCommands = {
     'pay saved beneficiary': {
         steps: [
             { action: 'click', selector: '#transacts'},
@@ -381,8 +381,40 @@ const automationCommands = {
     }
 };
 
+let automationCommands = defaultAutomationCommands;
+
+function loadAutomationCommands() {
+    try {
+        const ctx = 'computer';
+        fetch(`/api/automation-tasks?context=${ctx}`)
+            .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+            .then(data => {
+                if (data && Array.isArray(data.tasks)) {
+                    const loaded = {};
+                    data.tasks.forEach(t => {
+                        if (t && t.key && Array.isArray(t.steps)) {
+                            loaded[t.key] = {
+                                steps: t.steps,
+                                description: t.description || t.key,
+                                category: t.category || 'general',
+                                preventReloop: false
+                            };
+                        }
+                    });
+                    if (Object.keys(loaded).length > 0) {
+                        automationCommands = loaded;
+                        showFeedbackMessage('Automation tasks updated from database', 'info');
+                    }
+                }
+            })
+            .catch(() => { /* keep defaults */ });
+    } catch (_) { /* ignore */ }
+}
+
 
 function initAutomationSystem() {
+    // Load commands from backend (with fallback to defaults)
+    loadAutomationCommands();
     
     if (sessionStorage.getItem('terminationInProgress') === 'true') {
         sessionStorage.removeItem('terminationInProgress');
