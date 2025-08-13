@@ -271,10 +271,10 @@ const generateResponse = (text) => {
     // Intent: fees / charges
     if (/(fees?|charges|pricing|costs|monthly fee)/i.test(msg)) {
         const html = buildCard({
-            title: 'Fees and pricing',
-            body: 'Capitec offers simple, transparent fees with low monthly admin costs on Global One. Some transactions may have pay-as-you-transact fees.',
+            title: 'Fees and pricing (Business)',
+            body: 'Capitec Business offers simple, transparent pricing designed for businesses. View our latest business banking fees online.',
             links: [
-                { text: 'See official fees', href: 'https://www.capitecbank.co.za/fees/' }
+                { text: 'Capitec Business fees', href: 'https://www.capitecbank.co.za/business/' }
             ],
             chips: [
                 { label: 'Open Payments', value: 'open payments' },
@@ -287,13 +287,13 @@ const generateResponse = (text) => {
         return;
     }
 
-    // Intent: Global One / accounts
-    if (/(global\s*one|account(s)?|types of account|open account)/i.test(msg)) {
+    // Intent: Capitec Business / Global Biz accounts
+    if (/(global\s*one|global\s*biz|business account|account(s)?|types of account|open account)/i.test(msg)) {
         const html = buildCard({
-            title: 'Global One account',
-            body: 'One account for everyday banking and savings with digital tools to manage your money. Open and manage in-app.',
+            title: 'Capitec Business (Global Biz)',
+            body: 'Business banking built to simplify your operations: pay suppliers, manage cards and control limits with powerful digital tools.',
             links: [
-                { text: 'About Global One', href: 'https://www.capitecbank.co.za/global-one/' }
+                { text: 'Capitec Business overview', href: 'https://www.capitecbank.co.za/business/' }
             ],
             chips: [
                 { label: 'Open Accounts', value: 'go to account' },
@@ -306,13 +306,13 @@ const generateResponse = (text) => {
         return;
     }
 
-    // Intent: Immediate payments
+    // Intent: Immediate payments (Business)
     if (/(immediate|instant|real\s*time|rtc).*pay/i.test(msg)) {
         const html = buildCard({
-            title: 'Immediate payments',
-            body: 'Send money instantly to other banks using Immediate Payment (RTC). A small fee may apply and limits apply per profile.',
+            title: 'Immediate payments (Business)',
+            body: 'Make immediate payments to suppliers or other banks. Fees and limits apply per business profile. For details, see Capitec Business.',
             links: [
-                { text: 'Immediate payments info', href: 'https://www.capitecbank.co.za/help-centre/immediate-payments/' }
+                { text: 'Capitec Business payments', href: 'https://www.capitecbank.co.za/business/' }
             ],
             chips: [
                 { label: 'Make a payment', value: 'open payments' },
@@ -325,13 +325,13 @@ const generateResponse = (text) => {
         return;
     }
 
-    // Intent: Cash Send
-    if (/(cash\s*send|send cash|cashsend)/i.test(msg)) {
+    // Intent: Business payments
+    if (/(cash\s*send|send cash|cashsend|pay supplier|pay suppliers|supplier payment)/i.test(msg)) {
         const html = buildCard({
-            title: 'Cash Send',
-            body: 'Send cash to any cellphone number for collection at selected ATMs/retailers. Keep the PIN safe and share securely.',
+            title: 'Business payments',
+            body: 'Pay suppliers or transfer between accounts. For cash-related services and other business tools, see Capitec Business.',
             links: [
-                { text: 'How Cash Send works', href: 'https://www.capitecbank.co.za/help-centre/cash-send/' }
+                { text: 'Capitec Business payments', href: 'https://www.capitecbank.co.za/business/' }
             ],
             chips: [
                 { label: 'Open Payments', value: 'open payments' }
@@ -346,13 +346,13 @@ const generateResponse = (text) => {
     // Intent: Limits
     if (/(limit(s)?|increase limit|card limit|daily limit|transaction limit)/i.test(msg)) {
         const html = buildCard({
-            title: 'Card & transaction limits',
+            title: 'Card & transaction limits (Business)',
             list: [
-                'Adjust card tap/online/ATM limits',
+                'Adjust card online/ATM limits',
                 'Set daily EFT/payment limits',
                 'Manage per-channel controls in Settings'
             ],
-            links: [ { text: 'Manage limits help', href: 'https://www.capitecbank.co.za/help-centre/limits/' } ],
+            links: [ { text: 'Capitec Business limits', href: 'https://www.capitecbank.co.za/business/' } ],
             chips: [ { label: 'Open Settings', value: 'open settings' } ]
         });
         const li = createIncomingHtml(html);
@@ -364,14 +364,14 @@ const generateResponse = (text) => {
     // Intent: Security
     if (/(security|fraud|scam|safe|pin|otp)/i.test(msg)) {
         const html = buildCard({
-            title: 'Security tips',
+            title: 'Security tips for business',
             list: [
                 'Never share your PIN, OTP, or app login details',
                 'Verify payment requests and beneficiaries',
                 'Use the official app and keep your device updated',
                 'Report suspicious activity immediately'
             ],
-            links: [ { text: 'Security centre', href: 'https://www.capitecbank.co.za/security/' } ]
+            links: [ { text: 'Capitec Business security', href: 'https://www.capitecbank.co.za/business/' } ]
         });
         const li = createIncomingHtml(html);
         chatbox.appendChild(li);
@@ -382,13 +382,13 @@ const generateResponse = (text) => {
     // Intent: Cards
     if (/(card|debit card|virtual card)/i.test(msg)) {
         const html = buildCard({
-            title: 'Cards',
+            title: 'Business cards',
             list: [
-                'Debit card for everyday purchases',
-                'Create a virtual card for safer online shopping',
+                'Business debit cards for everyday purchases',
+                'Virtual cards for safer online payments',
                 'Freeze/unfreeze and manage limits in-app'
             ],
-            links: [ { text: 'Card features', href: 'https://www.capitecbank.co.za/bank-better/cards/' } ],
+            links: [ { text: 'Capitec Business cards', href: 'https://www.capitecbank.co.za/business/' } ],
             chips: [ { label: 'Open Cards', value: 'open cards' } ]
         });
         const li = createIncomingHtml(html);
@@ -400,9 +400,9 @@ const generateResponse = (text) => {
     // Intent: Credit / Loans
     if (/(credit|loan|personal loan|access facility)/i.test(msg)) {
         const html = buildCard({
-            title: 'Credit options',
-            body: 'Personalised credit subject to affordability and approval. Check your offer and apply in-app.',
-            links: [ { text: 'Credit options', href: 'https://www.capitecbank.co.za/credit/' } ]
+            title: 'Business credit options',
+            body: 'Explore business-focused credit solutions (subject to approval). For more information, visit Capitec Business.',
+            links: [ { text: 'Capitec Business credit', href: 'https://www.capitecbank.co.za/business/' } ]
         });
         const li = createIncomingHtml(html);
         chatbox.appendChild(li);
@@ -413,13 +413,13 @@ const generateResponse = (text) => {
     // Intent: Savings
     if (/(save|savings|fixed deposit|notice account)/i.test(msg)) {
         const html = buildCard({
-            title: 'Savings options',
+            title: 'Business savings & tools',
             list: [
-                'Flexible savings pockets in Global One',
-                'Fixed-term and tax-free savings options',
+                'Flexible options to manage surplus business funds',
+                'Fixed-term options depending on availability',
                 'Set goals and track progress'
             ],
-            links: [ { text: 'Savings products', href: 'https://www.capitecbank.co.za/save/' } ]
+            links: [ { text: 'Capitec Business savings', href: 'https://www.capitecbank.co.za/business/' } ]
         });
         const li = createIncomingHtml(html);
         chatbox.appendChild(li);
@@ -430,11 +430,10 @@ const generateResponse = (text) => {
     // Intent: Contact us / Branch hours
     if (/(contact|call|support|client care|branch|hours|lost card)/i.test(msg)) {
         const html = buildCard({
-            title: 'Contact Capitec',
-            body: 'Get help via the app, online help centre, or speak to Client Care. For a lost or stolen card, block it immediately in-app and contact support.',
+            title: 'Contact Capitec Business',
+            body: 'Get business banking help via the app or online. For urgent issues like a lost or stolen card, block it in-app and contact support.',
             links: [
-                { text: 'Contact us', href: 'https://www.capitecbank.co.za/contact-us/' },
-                { text: 'Help centre', href: 'https://www.capitecbank.co.za/help-centre/' }
+                { text: 'Capitec Business', href: 'https://www.capitecbank.co.za/business/' }
             ]
         });
         const li = createIncomingHtml(html);
