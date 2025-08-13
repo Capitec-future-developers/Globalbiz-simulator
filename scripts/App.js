@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userDatabase = {
         'omphilestudent@gmail.com': {
             name: 'Omphile Mohlala',
-            email: 'omphilestudent@gmail.com.com',
+            email: 'omphilestudent@gmail.com',
             initials: 'OM',
             accountName: '1 Account Current',
             accountBalance: 'R1000',
