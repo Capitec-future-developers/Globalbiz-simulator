@@ -36,10 +36,10 @@ let userMessage;
         const isComputer = path.includes('/computer/') || path.includes('\\computer\\');
         const isApp = path.includes('/app/') || path.includes('\\app\\');
         const stylesBase = (isComputer || isApp) ? '../styles/' : 'styles/';
-        // Use standard web paths for CSS hrefs
+
         addStylesheetOnce(isComputer ? `${stylesBase}Chatbotcomputer.css` : `${stylesBase}chatbot.css`);
 
-        // Inject chatbot markup if missing
+
         if (!document.querySelector('.chatbot')) {
             const toggler = document.createElement('button');
             toggler.className = 'chatbot-toggler';
