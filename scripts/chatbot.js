@@ -7,10 +7,10 @@ let closeBtn = document.querySelector('.chatbot header span');
 
 let userMessage;
 
-// Ensure chatbot widget and assets exist on every page
+
 (function ensureChatbot() {
     try {
-        // Inject Material Icons if missing
+
         const hasIcons = Array.from(document.querySelectorAll('link[rel="stylesheet"], link[rel="preload"]')).some(l => (l.href || '').includes('fonts.googleapis.com/icon?family=Material+Icons+Sharp'));
         if (!hasIcons) {
             const link = document.createElement('link');
@@ -31,7 +31,7 @@ let userMessage;
             }
         };
 
-        // Determine relative path to styles based on current location
+
         const path = (location.pathname || '').toLowerCase();
         const isComputer = path.includes('/computer/') || path.includes('\\computer\\');
         const isApp = path.includes('/app/') || path.includes('\\app\\');
