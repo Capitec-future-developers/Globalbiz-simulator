@@ -2,7 +2,7 @@ document.getElementById('mainContent').innerHTML = `
     <div class="content-header">
         <h1 style="position: absolute; top: 50px; text-wrap: nowrap;">Bulk Payment</h1>
     </div>
-    <div class="disclaimer-box">
+    <div class="disclaimer-box" id="disclaimerBox">
         <div class="payment-header">
             <h2>Payment details</h2>
             <div class="left">
@@ -66,7 +66,7 @@ document.getElementById('mainContent').innerHTML = `
     </div>
 `;
 
-
+// Popup functionality
 const cutOffBtn = document.getElementById('cut-off-popup');
 const popup = document.querySelector('.cut-off-popup');
 const overlay = document.querySelector('.cut-off-popup .overlay');
@@ -91,5 +91,56 @@ if (closeBtn) {
 window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         popup.style.display = 'none';
+    }
+});
+
+// Continue button changes page to file upload
+document.getElementById('nextBtn').addEventListener('click', () => {
+    document.getElementById('disclaimerBox').innerHTML = `
+       
+        <div id="dropArea" class="dropArea">
+            <p>Drag & Drop your CSV or TXT file here</p>
+            <p>or</p>
+            <input type="file" id="fileInput" accept=".csv, .txt" style="display:none;">
+            <button id="browseBtn">Browse Files</button>
+            <p style="font-size: 0.8rem; color: #555;">Only CSV or TXT files are allowed.</p>
+        </div>
+        
+    `;
+
+    // Drag and drop logic
+    const dropArea = document.getElementById('dropArea');
+    const fileInput = document.getElementById('fileInput');
+    const browseBtn = document.getElementById('browseBtn');
+
+    browseBtn.addEventListener('click', () => fileInput.click());
+
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.style.background = '#e3f2fd';
+    });
+
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.style.background = '#f9f9f9';
+    });
+
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.style.background = '#f9f9f9';
+        handleFiles(e.dataTransfer.files);
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        handleFiles(e.target.files);
+    });
+
+    function handleFiles(files) {
+        const file = files[0];
+        if (file && (file.name.endsWith('.csv') || file.name.endsWith('.txt'))) {
+            alert('File selected: ' + file.name);
+            // Process file here
+        } else {
+            alert('Invalid file type. Please upload a CSV or TXT file.');
+        }
     }
 });
