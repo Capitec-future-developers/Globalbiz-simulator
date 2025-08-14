@@ -248,16 +248,24 @@
 }
 
 .dropArea{
-    border: 2px dashed #007bff;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    border: 2px dashed #111111;
     border-radius: 8px;
     padding: 30px;
     text-align: center;
+    justify-content: center;
     background: #f9f9f9;
     cursor: pointer;
-    height: 400px;
+    height: 90%;
+    width: 90%;
 }
 
 #browseBtn{
+    position: absolute;
+    bottom: 60px;
+    left: 320px;
     color: #007bff;
     cursor: pointer;
     border: 1px solid #007bff;

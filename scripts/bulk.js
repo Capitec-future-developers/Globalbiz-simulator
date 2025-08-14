@@ -94,11 +94,12 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
-// Continue button changes page to file upload
+
 document.getElementById('nextBtn').addEventListener('click', () => {
     document.getElementById('disclaimerBox').innerHTML = `
        
         <div id="dropArea" class="dropArea">
+        <img src="../images/upload.svg" style="position: absolute; width: 300px; height: 300px; align-content: center;"
             <p>Drag & Drop your CSV or TXT file here</p>
             <p>or</p>
             <input type="file" id="fileInput" accept=".csv, .txt" style="display:none;">
