@@ -1,8 +1,8 @@
-#maincontent{
+.content{
     position: relative;
-    overflow: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    overflow: visible;
+
+
 }
 
 .content-header {
@@ -19,7 +19,7 @@
 
 .disclaimer-box {
     position: relative;
-    top: 80px;
+    top: 100px;
     background-color: #ffffff;
     border: 1px solid #cccccc;
     border-radius: 6px;
@@ -268,11 +268,21 @@
 #browseBtn{
     position: absolute;
     bottom: 60px;
-    left: 320px;
+    left: 350px;
     color: #007bff;
     cursor: pointer;
     border: 1px solid #007bff;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: #FFFFFF;
+}
+
+.drop{
+    position: relative;
+    top: 400px;
+    left: -50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #FFFFFF;
+    width: 112%;
+    cursor: pointer;
 }
