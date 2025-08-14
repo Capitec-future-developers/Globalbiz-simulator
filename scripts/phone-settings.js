@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
     cursor: pointer; ">keyboard_arrow_right</span>
               </div>
             </div>
-<!-- Bottom Navigation -->
             <div class="bottom-nav">
                 <a href="../App/Phone2.html" class="nav-item active" id="Home">
                     <span class="nav-icon material-icons-outlined">home</span>
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
     cursor: pointer; ">keyboard_arrow_right</span>
                               </div>
             </div>
-         <!-- Bottom Navigation -->
             <div class="bottom-nav" id="bottomNav">
                 <a href="Phone2.html" class="nav-item active" id="Homee">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
@@ -138,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
 
-  <!-- Bottom Navigation -->
             <div class="bottom-nav" id="bottomNav">
                 <a href="Phone2.html" class="nav-item active" id="Homee">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
@@ -205,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function () {
  </div>
  </div>
  
-  <!-- Bottom Navigation -->
             <div class="bottom-nav" id="bottomNav">
                 <a href="Phone2.html" class="nav-item active" id="Homee">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />

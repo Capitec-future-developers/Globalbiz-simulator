@@ -246,7 +246,7 @@
     background-color: #e0f7fa;
 }
 
-/* Tablets and smaller desktops */
+
 @media (max-width: 1024px) {
     .container {
         width: 95%;
@@ -275,7 +275,7 @@
     }
 }
 
-/* Mobile devices */
+
 @media (max-width: 600px) {
     .container {
         position: relative;

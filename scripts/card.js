@@ -1,11 +1,11 @@
-// Navigation Stack and Card Details LogicAdd commentMore actions
+
 const navigationStack = [];
 const cardDetails = document.getElementById('Cards-Content');
 
 function navigateBack() {
     if (navigationStack.length > 1) {
-        navigationStack.pop(); // Remove current view
-        const previousView = navigationStack[navigationStack.length - 1]; // Peek at previous view
+        navigationStack.pop();
+        const previousView = navigationStack[navigationStack.length - 1];
 
         if (previousView === 'cards') {
             resetToMainView();
@@ -13,19 +13,20 @@ function navigateBack() {
             showCardsSection();
         }
     } else {
-        resetToMainView(); // If stack is empty or only one, go home
+        resetToMainView();
     }
 }
 
 function resetToMainView() {
-    // Redirect to real Cards.html page
+
     window.location.href = 'Cards.html';
 }
 
 function showCardsSection() {
     navigationStack.push('Cards-section');
     cardDetails.innerHTML = `
-      <div class="card-details" style="margin-top: 100px;">
+    <div class="content" style="position: relative;">
+      <div class="card-details" style="top: 80px; left: -100px; width: 100%;">
         <div class="header-card">
           <a href="#" onclick="navigateBack()" class="back" style="margin-left: -10px; color: #1e88e5;">
             <span class="material-icons-sharp">arrow_back</span>
@@ -45,17 +46,18 @@ function showCardsSection() {
             <div class="info"><strong>Card expiry date:</strong> 12/28</div>
           </div>
           <div class="actions">
-            <a href="#" class="action-btn"><span class="material-icons-sharp">no_sim</span>Pause or Stop Card</a>
-            <a href="#" class="action-btn"><span class="material-icons-sharp">remove_red_eye</span>Update Card Limits</a>
-            <a href="#" class="action-btn"><span class="material-icons-sharp">credit_card</span>View Card Details</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp"><img src="../images/stop-card-action.svg"></span>Pause or Stop Card</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp"><img src="../images/view-action.svg"> </span>Update Card Limits</a>
+            <a href="#" class="action-btn"><span class="material-icons-sharp"><img src="../images/cards-action.svg"></span>View Card Details</a>
           </div>
         </div>
+      </div>
       </div>
     `;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    navigationStack.push('cards'); // Set the initial view in the stack
+    navigationStack.push('cards');
 
     const viewCards = document.getElementById('view-cards');
     if (viewCards) {
@@ -74,34 +76,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Dropdown Toggle Logic
+
 function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// Add Card Popup Logic
+
 const addCardBtn = document.querySelector('#Cards-Content .btn');
 const addCardPopup = document.getElementById('addCardPopup');
 const cancelBtn = document.getElementById('cancelAddCard');
 const continueBtn = document.getElementById('continueAddCard');
 
-// Show popup when "Add New Card" button is clicked
+
 addCardBtn.addEventListener('click', () => {
     addCardPopup.style.display = 'flex';
 });
 
-// Hide popup when "Cancel" button is clicked
+
 cancelBtn.addEventListener('click', () => {
     addCardPopup.style.display = 'none';
 });
 
-// Continue button (you can later add logic to handle selection)
+
 continueBtn.addEventListener('click', () => {
     const selectedCard = document.querySelector('input[name="cardType"]:checked');
     if (selectedCard) {
         alert('Selected Card Type: ' + selectedCard.value);
-        addCardPopup.style.display = 'none'; // close after selection
+        addCardPopup.style.display = 'none';
     } else {
         alert('Please select a card type.');
     }

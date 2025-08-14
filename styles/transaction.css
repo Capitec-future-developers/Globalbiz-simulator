@@ -1,0 +1,71 @@
+.main-content{
+    position: relative;
+
+}
+
+.head{
+    position: absolute;
+    top: 120px;
+    left: 300px;
+}
+
+.content{
+    position: absolute;
+    top: 190px;
+    left: 300px;
+    background-color: #FFFFFF;
+}
+
+.tabs{
+    position: relative;
+    top: -10px;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    text-wrap :nowrap;
+    background-color: #FFFFFF;
+    height: 55px;
+    width: 80%;
+    border: 1px solid #dddddd;
+    align-items: center;
+    cursor: pointer;
+}
+.t{
+
+    flex-direction: row;
+    display: flex;
+    gap: 80px;
+}
+.act{
+position: relative;
+   color: #00aeff;
+    border-bottom: 2px solid #00aeff;
+    bottom: -10px;
+    height: 30px;
+}
+
+.tab-search{
+    position: absolute;
+    top: 45px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #dddddd;
+    background-color: #FFFFFF;
+    height: 80px;
+    width: 80%;
+}
+
+.tab-table{
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    color: #1111;
+    font-weight: bold;
+}

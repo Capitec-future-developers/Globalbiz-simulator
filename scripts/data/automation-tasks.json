@@ -1,0 +1,142 @@
+{
+  "tasks": [
+    {
+      "key": "pay saved beneficiary",
+      "description": "Initiate payment to a saved beneficiary",
+      "category": "payments",
+      "context": ["app", "computer"],
+      "steps": [
+        { "action": "click", "selector": "#transact" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#payment" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#saved-beneficiary, #saved-payment-btn, #saved-beneficiary-option" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": ".beneficiary-card:first-child" }
+      ]
+    },
+    {
+      "key": "add new beneficiary",
+      "description": "Add a new beneficiary",
+      "category": "beneficiaries",
+      "context": ["app", "computer"],
+      "steps": [
+        { "action": "click", "selector": "#create, #create-beneficiary-btn" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "[data-type=\"beneficiary\"]" }
+      ]
+    },
+    {
+      "key": "view transactions",
+      "description": "View transaction history",
+      "category": "navigation",
+      "context": ["app", "computer"],
+      "steps": [
+        { "action": "click", "selector": "#btn-transactions" }
+      ]
+    },
+    {
+      "key": "make once off payment",
+      "description": "Make a once-off payment",
+      "category": "payments",
+      "context": ["app", "computer"],
+      "steps": [
+        { "action": "click", "selector": "#transact, #transacts" },
+        { "action": "wait", "duration": 600 },
+        { "action": "click", "selector": "#payment, #payments" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#onceoff-beneficiary-option, #onceoff-beneficiary" }
+      ]
+    },
+    {
+      "key": "go to dashboard",
+      "description": "Return to dashboard",
+      "category": "navigation",
+      "context": ["app"],
+      "steps": [
+        { "action": "click", "selector": "#bottomNav" },
+        { "action": "click", "selector": "#Home, #Homee" },
+        { "action": "wait", "duration": 1000 }
+      ]
+    },
+    {
+      "key": "go to transaction limit",
+      "description": "Go to transaction limit",
+      "category": "settings",
+      "context": ["app"],
+      "steps": [
+        { "action": "click", "selector": "#sidebarToggle" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#settings" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#Transaction-Limits" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#editlimits" }
+      ]
+    },
+    {
+      "key": "add new card",
+      "description": "Add new card",
+      "category": "cards",
+      "context": ["app"],
+      "steps": [
+        { "action": "click", "selector": "#cards, #card" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#Add-Card" },
+        { "action": "wait", "duration": 1000 }
+      ]
+    },
+    {
+      "key": "debit card",
+      "description": "Open debit card details",
+      "category": "cards",
+      "context": ["app"],
+      "steps": [
+        { "action": "click", "selector": "#card, #cards" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#debitToggle" },
+        { "action": "wait", "duration": 1000 },
+        { "action": "click", "selector": "#debit-card" }
+      ]
+    },
+    {
+      "key": "go to accounts",
+      "description": "View Accounts (desktop)",
+      "category": "accounts",
+      "context": ["computer"],
+      "steps": [
+        { "action": "click", "selector": "#accounts" },
+        { "action": "wait", "duration": 800 }
+      ]
+    },
+    {
+      "key": "open documents",
+      "description": "Navigate to documents (desktop)",
+      "category": "documents",
+      "context": ["computer"],
+      "steps": [
+        { "action": "click", "selector": "#sidebarToggle" },
+        { "action": "wait", "duration": 500 },
+        { "action": "click", "selector": "#documents, a[href=\"Computer-Document.html\"]" }
+      ]
+    },
+    {
+      "key": "make bulk payment",
+      "description": "Open bulk payment on home (desktop)",
+      "category": "payments",
+      "context": ["computer"],
+      "steps": [
+        { "action": "click", "selector": "#transfer" }
+      ]
+    },
+    {
+      "key": "open cards",
+      "description": "Navigate to cards section",
+      "category": "cards",
+      "context": ["app", "computer"],
+      "steps": [
+        { "action": "click", "selector": "#card, a[href=\"Cards.html\"]" }
+      ]
+    }
+  ]
+}

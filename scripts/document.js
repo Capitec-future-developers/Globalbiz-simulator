@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const headerTitle = document.querySelector('.header');
   const sidebarToggle = document.querySelector('#sidebarToggle');
 
-  // Create or select a dedicated container inside screenContent for Documents page
+  
   let documentsPage = document.getElementById('document-page-container');
   let isNewDocumentPage = false;
 
@@ -25,30 +25,34 @@ document.addEventListener('DOMContentLoaded', function () {
     isNewDocumentPage = true;
   }
 
-  // Set header title only if Documents container is newly created
+  
   if (isNewDocumentPage) {
     headerTitle.textContent = 'Documents';
   }
 
-  // Load Documents Page HTML inside the container
+  
   documentsPage.innerHTML = `
     <style>
       .generate-box {
       position: absolute;
-        padding: 20px;
-        top: 180px;
-        border: 0.5px solid #ccc;
-        background: #FAF9F6;
-        margin-top: 20px;
-        width: 220px;
+        padding: 25px;
+        top: 100px;
+        background: #FFFFFF;
+        margin-top: 5px;
+        width: 100%;
+        border-top: 2px solid #dddddd;
       }
+      
       .generate-box select,
-      .generate-box button {
+      .generate-box button
+       {
+      position: absolute;
         padding: 10px;
         margin-top: 10px;
-        width: 100%;
+        width: 95%;
         border: 1px solid #ccc;
         border-radius: 5px;
+        left: -10px;
       }
       .generate-box button {
         background-color: #007bff;
@@ -58,39 +62,54 @@ document.addEventListener('DOMContentLoaded', function () {
       .generate-box button:disabled {
         background-color: grey;
       }
+{
+position: absolute;
 
+}
       .doc-counter {
        position: absolute;
-        background-color: #023781;
+        background-color: grey;
         color: white;
         right: 30px;
         top: 10px;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         text-align: center;
-        line-height: 30px;
-        font-weight: bold;
+        line-height: 20px;
+        font-weight: lighter;
       }
 
      .document-header {
   position: absolute;
-  top: 65px; /* Adjusted from 40px if header height is ~60px */
+  top: 65px; 
   display: flex;
-  align-items: flex-start; /* Top-aligned text and icon */
+  align-items: flex-start; 
   gap: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #ccc;
   width: 100%;
   background: #fff; 
-  z-index: 1; /* Keeps it on top if needed */
+  z-index: 1; 
+}
+
+#generate-btn{
+position: absolute;
+top: 150px;
+}
+
+ #account-choice{
+position: absolute;
+top: 100px;
 }
       #cancel-btn {
+      position: absolute;
         background-color: white;
         color: blue;
-        border: 1px solid #ccc;
+        border: 1px solid #00aeff;
         font-weight: bold;
         padding: 10px;
+        top: 200px;
         border-radius: 5px;
         cursor: pointer;
       }
@@ -107,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="document-header">
       <span class="material-icons-sharp">description</span>
       <div>
-        <p><strong>Status:</strong></p>
+        <p>Your documents:</p>
         <p id="doc-status" style="margin: 0; color: #666;">Not ready for email</p>
       </div>
       <div style="margin-left: auto;">
@@ -139,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
   `;
 
-  // Interactivity
+  
   let documentCounter = 0;
   const docType = documentsPage.querySelector('#doc-type');
   const accountContainer = documentsPage.querySelector('#account-container');
@@ -149,17 +168,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const docStatus = documentsPage.querySelector('#doc-status');
   const docCount = documentsPage.querySelector('#doc-count');
 
-  // When document type is selected, show account container
+  
   docType.addEventListener('change', () => {
     accountContainer.style.display = 'block';
   });
 
-  // When account is selected, show buttons (Generate & Cancel)
+  
   documentsPage.querySelector('#account-choice').addEventListener('change', () => {
     actionButtons.style.display = 'flex';
   });
 
-  // Generate button logic
+  
   generateBtn.addEventListener('click', () => {
     docStatus.textContent = 'Generating...';
     generateBtn.disabled = true;
@@ -171,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 3000);
   });
 
-  // Cancel button logic
+  
   cancelBtn.addEventListener('click', () => {
     docType.selectedIndex = 0;
     accountContainer.style.display = 'none';
@@ -179,14 +198,14 @@ document.addEventListener('DOMContentLoaded', function () {
     docStatus.textContent = 'Not ready for email';
   });
 
-  // Sidebar toggle (menu) click listener
+  
   sidebarToggle.addEventListener('click', function (event) {
     event.preventDefault();
-    // Your existing sidebar toggle logic here
-    // For example, toggle a class on sidebar or screenContent
+    
+    
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('active');
-    // Optionally toggle menu icon if you want
+    
     const menuIcon = document.getElementById('menuIcon');
     if (sidebar.classList.contains('active')) {
       menuIcon.textContent = 'close';

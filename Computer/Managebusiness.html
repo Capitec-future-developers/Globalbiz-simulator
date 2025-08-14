@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Computer.css">
+    <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
+    <link rel="stylesheet" href="../styles/Manager.css">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <title>Online banking</title>
+
+</head>
+<body>
+<div class="user-info">
+    <span id="display-username"></span>
+    <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
+</div>
+<div class="header">
+    <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
+    <span class="separator"></span>
+    <div class="business">Business</div>
+
+    <div class="header-right">
+        
+        <button class="chatbot-toggler">
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
+            <span class="material-icons-sharp">close</span>
+        </button>
+        banker
+
+        <div class="chatbot">
+            <header>
+                <h2>BIZCHAT</h2>
+                <span class="material-icons-sharp">close</span>
+            </header>
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <p>Welcome to Bizchat, how can I assist.</p>
+                </li>
+                <li class="chat outgoing"></li>
+            </ul>
+            <div class="chat-input">
+                <textarea placeholder="Type your message here..." required></textarea>
+                <span id="send-btn" class="material-icons-sharp">send</span>
+            </div>
+        </div>
+
+
+
+        <div class="profile-container">
+            <a href="#contact" id="banker-popup">
+                <a href="#contact" id="profile-link" style="text-decoration: none;">
+                    <div class="om-circle" style="text-decoration: none;">OM</div>
+                    <div class="name">
+                        Omphile Mohlala
+                    </div>
+                </a>
+
+            </a>
+            
+            <div class="overlay" id="overlay"></div>
+            <div class="profile-popup" id="profilePopup">
+                <a class="popup-header" href="Profile-info.html">
+                    <div class="popup-header">omphilestudent@gmail.com</div>
+                </a>
+                <div class="profile-item">
+                    <span class="material-icons-sharp profile-icon">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-active">ACTIVE PROFILE</div>
+                        <div class="profile-Name">Omphile Mohlala</div>
+                    </div>
+                </div>
+                <div id="page-transition"></div>
+                <a href="KodiCode.html" class="switch-profile">
+                    <span class="material-icons-sharp" style="font-size: 16px; vertical-align: middle;">swap_horiz</span>
+                    Switch to Kodi PTY LTD
+                </a>
+                <a href="Managebusiness.html" class="manage-business">Manage business profile</a>
+            </div>
+        </div>
+        <a href="./home%20page.html" class="sign">Sign Out</a>
+    </div>
+</div>
+</div>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button" aria-label="Execute search">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+
+
+
+<div class="content" id="mainContent">
+</div>
+
+<script src="../scripts/managebusiness.js"
+<script src="../scripts/chatbot.js"></script>
+<script src="../scripts/Combined.js"></script>
+<script src="../scripts/Computer-Automation.js"></script>
+</body>
+</html>

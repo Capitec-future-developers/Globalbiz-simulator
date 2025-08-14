@@ -4,9 +4,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextBtn = document.getElementById('nextBtn');
     const cancelBtn = document.querySelector('.cancel');
 
+
+    const userState = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        identityType: '',
+        identityValue: '',
+        communications: [],
+        role: '',
+        access: []
+    };
+
     if (!disclaimerBox || !nextBtn) return;
 
-// Initial disclaimer content (without checkbox requirement)
+
     const initialDisclaimerContent = `
 <h4>What is Digital ID?</h4>
 <br>
@@ -24,17 +37,30 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Click Next to continue with user creation.</p>
 `;
 
-// Show initial disclaimer
+
     disclaimerBox.innerHTML = initialDisclaimerContent;
 
-// Handle the initial next button click (outside the disclaimer box)
+
     nextBtn.addEventListener('click', function() {
+        const lg = document.querySelector('.letsgo');
+        if (lg) lg.style.display = 'none';
         renderStep1();
     });
 
-// Event delegation for all next buttons inside the disclaimer box
+
     disclaimerBox.addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('next')) {
+        const target = e.target;
+        if (!target) return;
+
+        // Support in-step Cancel buttons
+        if (target.classList && target.classList.contains('cancel')) {
+            disclaimerBox.innerHTML = initialDisclaimerContent;
+            const lg = document.querySelector('.letsgo');
+            if (lg) lg.style.display = 'flex';
+            return;
+        }
+
+        if (target.classList && target.classList.contains('next')) {
             const currentActive = disclaimerBox.querySelector('.step.active');
             const currentStep = currentActive ? parseInt(currentActive.textContent) : 0;
 
@@ -44,11 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (validateStep2()) renderStep3();
             } else if (currentStep === 3) {
                 if (validateStep3()) renderStep4();
+            } else if (currentStep === 4) {
+                renderStep5();
+            } else if (currentStep === 5) {
+                window.location.href = '../Computer/user-management.html';
             }
         }
     });
 
-// Cancel button handler
+
     if (cancelBtn) {
         cancelBtn.addEventListener('click', function() {
             disclaimerBox.innerHTML = initialDisclaimerContent;
@@ -56,13 +86,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-// Validation functions
+
     function validateStep1() {
         const form = disclaimerBox.querySelector('.user-form');
-        if (!form.checkValidity()) {
-            form.reportValidity();
+        if (!form || !form.checkValidity()) {
+            if (form) form.reportValidity();
             return false;
         }
+        // collect values
+        userState.firstName = form.querySelector('#firstName')?.value.trim() || '';
+        userState.lastName = form.querySelector('#lastName')?.value.trim() || '';
+        userState.email = form.querySelector('#email')?.value.trim() || '';
+        userState.phone = form.querySelector('#phone')?.value.trim() || '';
+        userState.identityType = form.querySelector('#identityTypeSelect')?.value || '';
+        userState.identityValue = form.querySelector('#identityValue')?.value?.trim() || '';
+        userState.communications = Array.from(form.querySelectorAll('input[name="communication"]:checked')).map(i => i.value);
         return true;
     }
 
@@ -72,19 +110,21 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Please select a role');
             return false;
         }
+        userState.role = checked.value;
         return true;
     }
 
     function validateStep3() {
-        const checked = disclaimerBox.querySelector('input[name="access"]:checked');
-        if (!checked) {
+        const checkeds = Array.from(disclaimerBox.querySelectorAll('input[name="access"]:checked'));
+        if (!checkeds.length) {
             alert('Please select at least one access level');
             return false;
         }
+        userState.access = checkeds.map(c => c.value);
         return true;
     }
 
-// Render Step 1 (User Details)
+
     const renderStep1 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -102,21 +142,21 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="form-row">
 <div class="form-group">
 <label>First Name</label>
-<input type="text" placeholder="Enter first name" required>
+<input id="firstName" type="text" placeholder="Enter first name" required>
 </div>
 <div class="form-group">
 <label>Last Name</label>
-<input type="text" placeholder="Enter last name" required>
+<input id="lastName" type="text" placeholder="Enter last name" required>
 </div>
 </div>
 <div class="form-row">
 <div class="form-group">
 <label>Email</label>
-<input type="email" placeholder="Enter email" required>
+<input id="email" type="email" placeholder="Enter email" required>
 </div>
 <div class="form-group">
 <label>Cellphone Number</label>
-<input type="tel" placeholder="Enter phone number" required>
+<input id="phone" type="tel" placeholder="Enter phone number" required>
 </div>
 </div>
 <div class="form-group">
@@ -152,12 +192,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (selected === 'rsa') {
                 inputWrapper.innerHTML = `
 <label>RSA ID Number</label>
-<input type="text" maxlength="13" placeholder="Enter 13-digit RSA ID" required>
+<input id="identityValue" type="text" maxlength="13" placeholder="Enter 13-digit RSA ID" required>
 `;
             } else if (selected === 'passport') {
                 inputWrapper.innerHTML = `
 <label>Passport Number</label>
-<input type="text" placeholder="Enter passport number" required>
+<input id="identityValue" type="text" placeholder="Enter passport number" required>
 `;
             } else {
                 inputWrapper.innerHTML = '';
@@ -165,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     };
 
-// Step 2: Select Role
+
     const renderStep2 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -198,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
 `;
     };
 
-// Step 3: Account Access
+
     const renderStep3 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -231,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function () {
 `;
     };
 
-// Step 4: Confirmation
+
     const renderStep4 = () => {
         disclaimerBox.innerHTML = `
 <div class="step-header">
@@ -249,6 +289,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <h3>User Details</h3>
 <p>Name: <span id="confirm-name"></span></p>
 <p>Email: <span id="confirm-email"></span></p>
+<p>Phone: <span id="confirm-phone"></span></p>
+<p>Identity: <span id="confirm-identity"></span></p>
+<p>Preferred Contact: <span id="confirm-comm"></span></p>
 <p>Role: <span id="confirm-role"></span></p>
 <p>Access Levels: <span id="confirm-access"></span></p>
 </div>
@@ -259,11 +302,36 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 `;
 
-// In a real implementation, you would populate the confirmation details
-// from the previously entered form data
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            alert('User creation submitted successfully!');
-// Here you would typically submit the form data to your backend
-        });
+        // populate confirmation from state
+        const name = `${userState.firstName} ${userState.lastName}`.trim();
+        const identity = userState.identityType ? `${userState.identityType.toUpperCase()}: ${userState.identityValue}` : '';
+        document.getElementById('confirm-name').textContent = name || '—';
+        document.getElementById('confirm-email').textContent = userState.email || '—';
+        document.getElementById('confirm-phone').textContent = userState.phone || '—';
+        document.getElementById('confirm-identity').textContent = identity || '—';
+        document.getElementById('confirm-comm').textContent = (userState.communications || []).join(', ') || '—';
+        document.getElementById('confirm-role').textContent = userState.role || '—';
+        document.getElementById('confirm-access').textContent = (userState.access || []).join(', ') || '—';
+
+        // clicking Submit will advance to step 5 via delegated handler
+    };
+
+    const renderStep5 = () => {
+        disclaimerBox.innerHTML = `
+<div class="step-header">
+<div class="step">1</div>
+<div class="step">2</div>
+<div class="step">3</div>
+<div class="step">4</div>
+<div class="step active">5</div>
+</div>
+
+<h2>All done</h2>
+<p>The user has been created successfully.</p>
+<div class="letsgo">
+  <button class="cancel">Close</button>
+  <button type="button" class="next">Go to Users</button>
+</div>
+`;
     };
 });

@@ -87,7 +87,7 @@ function initializeAddBeneficiary() {
             modalOverlay.appendChild(modal);
             document.body.appendChild(modalOverlay);
 
-            // Close modal
+            
             modal.querySelector('.close-modal').addEventListener('click', () => {
                 document.body.removeChild(modalOverlay);
             });
@@ -194,7 +194,7 @@ if (document.readyState === 'loading') {
 } else {
     initializeAddBeneficiary();
 }
-// 1. Tab content data
+
 const tabData = {
     yourBeneficiaries: `
         <div class="tabz-search">
@@ -293,14 +293,14 @@ const tabData = {
     `
 };
 
-// 2. Tab buttons
+
 const tabButtons = {
     yourBeneficiaries: document.getElementById('yourBeneficiaries'),
     publicBeneficiary: document.getElementById('publicBeneficiary'),
     beneficiaryGroups: document.getElementById('beneficiaryGroups'),
 };
 
-// 3. Main content container
+
 const tabzContent = document.getElementById('tabzContent');
 
 function highlightTab(activeId) {
@@ -325,9 +325,9 @@ function handleTabClick(event) {
     displayTabContent(tabKey);
 }
 
-// 4. Attach events
+
 Object.values(tabButtons).forEach(btn => btn?.addEventListener('click', handleTabClick));
 
-// 5. Initial display
+
 highlightTab('yourBeneficiaries');
 displayTabContent('yourBeneficiaries');

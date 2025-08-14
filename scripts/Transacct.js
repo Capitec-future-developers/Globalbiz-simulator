@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ]
                 },
 
-// Business user with different account types
+
                 'business@example.com': {
                     id: 'usr_003',
                     name: 'ABC Enterprises',
@@ -320,39 +320,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// Initialize the database
+
     initializeUserDatabase();
 
-// Get user database from localStorage
+
     function getUserDatabase() {
         return JSON.parse(localStorage.getItem('userDatabase'));
     }
 
-// Update user in database
+
     function updateUserInDatabase(user) {
         const userDatabase = getUserDatabase();
         userDatabase[user.email] = user;
         localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
     }
 
-// Current user context
+
     let currentUserContext = null;
     let navigationStack = [];
 
-// =============================================
-// AUTHENTICATION SYSTEM (LocalStorage)
-// =============================================
 
-// Simulate login function
+
+
+
+
     function simulateLogin(email) {
         const userDatabase = getUserDatabase();
         const user = userDatabase[email];
 
         if (user) {
-            currentUserContext = JSON.parse(JSON.stringify(user)); // Deep copy
+            currentUserContext = JSON.parse(JSON.stringify(user)); 
             console.log('User logged in:', currentUserContext.name);
 
-// Update last login time
+
             currentUserContext.security.lastLogin = new Date().toISOString();
             updateUserInDatabase(currentUserContext);
 
@@ -362,26 +362,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
     }
 
-// Check if we have a simulated login in URL params
+
     const urlParams = new URLSearchParams(window.location.search);
     const simulatedUser = urlParams.get('user');
 
     if (simulatedUser && getUserDatabase()[simulatedUser]) {
         simulateLogin(simulatedUser);
     } else {
-// Default to first user for demo purposes
+
         simulateLogin('user1@example.com');
     }
 
-// =============================================
-// CONTEXT-AWARE UI RENDERING
-// =============================================
 
-// Update UI based on user context
+
+
+
+
     function updateUserContextUI() {
         if (!currentUserContext) return;
 
-// Update profile information
+
         const profileNameElements = document.querySelectorAll('.profile-name, #profile-name');
         const profileEmailElements = document.querySelectorAll('.profile-email, #profile-email');
         const profileImageElements = document.querySelectorAll('.profile-image, #profile-image');
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.src = `images/${currentUserContext.profileImage}`;
                 el.style.display = 'block';
             } else {
-// Use initials as fallback
+
                 const initials = currentUserContext.name.split(' ').map(n => n[0]).join('');
                 el.src = '';
                 el.textContent = initials;
@@ -407,37 +407,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-// Update account selector
+
         updateAccountSelector();
 
-// Update account overview
+
         updateAccountOverview();
 
-// Update quick actions based on account features
+
         updateQuickActions();
 
-// Update transaction history
+
         updateTransactionHistory();
 
-// Update profile popup content
+
         updateProfilePopup();
     }
 
-// Update account selector dropdown
+
     function updateAccountSelector() {
         const accountSelector = document.getElementById('account-selector');
         if (!accountSelector || !currentUserContext) return;
 
-// Clear existing options
+
         accountSelector.innerHTML = '';
 
-// Add each account as an option
+
         currentUserContext.accounts.forEach(account => {
             const option = document.createElement('option');
             option.value = account.id;
             option.textContent = `${account.name} (••••${account.number.slice(-4)})`;
 
-// Select default account
+
             if (account.id === currentUserContext.preferences.defaultAccount) {
                 option.selected = true;
             }
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', function() {
             accountSelector.appendChild(option);
         });
 
-// Add event listener for account changes
+
         accountSelector.addEventListener('change', function() {
             const selectedAccountId = this.value;
             currentUserContext.preferences.defaultAccount = selectedAccountId;
@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-// Update account overview section
+
     function updateAccountOverview() {
         const accountOverview = document.getElementById('account-overview');
         const accountBalance = document.getElementById('account-balance');
@@ -467,14 +467,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!accountOverview || !currentUserContext) return;
 
-// Get selected/default account
+
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-// Update account details
+
         if (accountBalance) {
             accountBalance.textContent = formatCurrency(account.balance);
             accountBalance.className = account.balance >= 0 ? 'positive' : 'negative';
@@ -498,22 +498,22 @@ document.addEventListener('DOMContentLoaded', function() {
             accountStatus.className = account.status === 'active' ? 'active' : 'inactive';
         }
 
-// Update account features (like overdraft, interest rate, etc.)
+
         updateAccountFeatures(account);
     }
 
-// Update account-specific features display
+
     function updateAccountFeatures(account) {
         const featuresContainer = document.getElementById('account-features');
         if (!featuresContainer) return;
 
         featuresContainer.innerHTML = '';
 
-// Add features based on account type
+
         const featuresList = document.createElement('ul');
         featuresList.className = 'account-features-list';
 
-// Common features
+
         if (account.overdraft) {
             const li = document.createElement('li');
             li.innerHTML = `<span class="material-icons-sharp">credit_card</span> Overdraft: ${formatCurrency(account.overdraft)}`;
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', function() {
         featuresContainer.appendChild(featuresList);
     }
 
-// Update quick action buttons based on account features
+
     function updateQuickActions() {
         const paymentButton = document.getElementById('payment');
         const transferButton = document.getElementById('transfer');
@@ -543,14 +543,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!currentUserContext) return;
 
-// Get selected/default account
+
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-// Enable/disable actions based on account features
+
         if (paymentButton) {
             paymentButton.disabled = !account.features.includes('payments');
         }
@@ -562,26 +562,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// Update transaction history based on selected account
+
     function updateTransactionHistory() {
         const tabContent = document.getElementById('tab-content');
         if (!tabContent || !currentUserContext) return;
 
-// Get selected/default account
+
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
 
         if (!account) return;
 
-// Display transactions if we're on the transactions tab
+
         const activeTab = document.querySelector('.tabs button.active');
         if (activeTab && activeTab.id === 'btn-transactions') {
             displayContent([generateTransactionTable(account.transactions || [])]);
         }
     }
 
-// Generate HTML table for transactions
+
     function generateTransactionTable(transactions) {
         let html = `
 <table class="transaction-table">
@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return html;
     }
 
-// Update profile popup content
+
     function updateProfilePopup() {
         const profilePopup = document.getElementById('profile-popup-content');
         if (!profilePopup || !currentUserContext) return;
@@ -662,7 +662,7 @@ ${currentUserContext.profileImage ?
 </button>
 </div>`;
 
-// Add event listeners for profile actions
+
         document.getElementById('edit-profile-btn')?.addEventListener('click', () => {
             alert('Edit profile functionality would open here');
         });
@@ -673,27 +673,27 @@ ${currentUserContext.profileImage ?
 
         document.getElementById('logout-btn')?.addEventListener('click', () => {
             alert('User would be logged out here');
-// In a real app: window.location.href = '/logout';
+
         });
     }
 
-// =============================================
-// PAYMENT AND BENEFICIARY MANAGEMENT
-// =============================================
 
-// UI Elements
+
+
+
+
     const defaultContent = document.getElementById('default-content');
     const mainContentArea = document.getElementById('main-content-area');
     const paymentButton = document.getElementById('payment');
     const transferButton = document.getElementById('transfer');
     const beneficiariesButton = document.getElementById('beneficiaries');
 
-// Event Listeners
+
     paymentButton?.addEventListener('click', showPaymentSection);
     transferButton?.addEventListener('click', () => alert('Transfer functionality coming soon!'));
     beneficiariesButton?.addEventListener('click', showBeneficiariesSection);
 
-// Show payment section (updated to match the image layout)
+
     function showPaymentSection() {
         toggleContentVisibility();
         navigationStack.push('payment-section');
@@ -753,7 +753,7 @@ ${currentUserContext.profileImage ?
         document.getElementById('onceoff-beneficiary-option').addEventListener('click', () => showPaymentForm('onceoff'));
         document.getElementById('group-beneficiary-option').addEventListener('click', () => showGroupPaymentForm());
 
-// Add event listeners for the links
+
         document.getElementById('all-payments-link').addEventListener('click', (e) => {
             e.preventDefault();
             alert('All payments view would open here');
@@ -768,7 +768,7 @@ ${currentUserContext.profileImage ?
         });
     }
 
-// Show beneficiaries section
+
     function showBeneficiariesSection() {
         toggleContentVisibility();
         navigationStack.push('beneficiaries-section');
@@ -813,7 +813,7 @@ ${beneficiaries.length > 0 ?
         document.getElementById('back-button').addEventListener('click', resetToMainView);
         document.getElementById('add-new-beneficiary').addEventListener('click', showAddBeneficiaryForm);
 
-// Add delete event listeners
+
         document.querySelectorAll('.delete-beneficiary-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -822,7 +822,7 @@ ${beneficiaries.length > 0 ?
             });
         });
 
-// Add click event for beneficiary cards
+
         document.querySelectorAll('.beneficiary-card').forEach(card => {
             card.addEventListener('click', function() {
                 const beneficiaryId = this.getAttribute('data-beneficiary-id');
@@ -834,7 +834,7 @@ ${beneficiaries.length > 0 ?
         });
     }
 
-// Show beneficiary selection for payments
+
     function showBeneficiarySelection() {
         toggleContentVisibility();
         navigationStack.push('beneficiary-selection');
@@ -888,7 +888,7 @@ ${beneficiaries.length > 0 ?
         });
     }
 
-// Show add beneficiary form
+
     function showAddBeneficiaryForm() {
         toggleContentVisibility();
         navigationStack.push('add-beneficiary-form');
@@ -935,7 +935,7 @@ ${beneficiaries.length > 0 ?
         document.getElementById('beneficiary-form').addEventListener('submit', saveBeneficiary);
     }
 
-// Show group payment form
+
     function showGroupPaymentForm() {
         toggleContentVisibility();
         navigationStack.push('group-payment-form');
@@ -992,7 +992,7 @@ Continue to Amounts
         });
     }
 
-// Show group payment amounts form
+
     function showGroupPaymentAmounts(selectedBeneficiaryIds) {
         toggleContentVisibility();
         navigationStack.push('group-payment-amounts');
@@ -1043,7 +1043,7 @@ Confirm Payment
         });
     }
 
-// Show payment form
+
     function showPaymentForm(paymentType, beneficiaryName = '') {
         toggleContentVisibility();
         navigationStack.push('payment-form');
@@ -1111,7 +1111,7 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         });
     }
 
-// Delete beneficiary
+
     function deleteBeneficiary(beneficiaryId) {
         if (confirm('Are you sure you want to delete this beneficiary?')) {
             currentUserContext.beneficiaries = currentUserContext.beneficiaries.filter(
@@ -1122,7 +1122,7 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }
     }
 
-// Save beneficiary
+
     function saveBeneficiary(e) {
         e.preventDefault();
 
@@ -1145,7 +1145,7 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         currentUserContext.beneficiaries.push(newBeneficiary);
         updateUserInDatabase(currentUserContext);
 
-// Show confirmation and return to appropriate view
+
         if (navigationStack.includes('beneficiary-selection')) {
             showBeneficiarySelection();
         } else {
@@ -1153,12 +1153,12 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }
     }
 
-// Process payment
+
     function processPayment(paymentType, beneficiaryName) {
         const amount = parseFloat(document.getElementById('amount').value);
         const reference = document.getElementById('reference').value;
 
-// Show processing animation
+
         mainContentArea.innerHTML = `
 <div class="payment-processing">
 <div class="spinner">
@@ -1168,9 +1168,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
 <h2>Processing Payment...</h2>
 </div>`;
 
-// Simulate processing
+
         setTimeout(() => {
-// Show confirmation
+
             mainContentArea.innerHTML = `
 <div class="payment-confirmation">
 <div class="confirmation-icon success">
@@ -1194,9 +1194,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }, 2000);
     }
 
-// Process group payment
+
     function processGroupPayment(beneficiaries, reference) {
-// Show processing animation
+
         mainContentArea.innerHTML = `
 <div class="payment-processing">
 <div class="spinner">
@@ -1206,9 +1206,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
 <h2>Processing Group Payment...</h2>
 </div>`;
 
-// Simulate processing
+
         setTimeout(() => {
-// Show confirmation
+
             mainContentArea.innerHTML = `
 <div class="payment-confirmation">
 <div class="confirmation-icon success">
@@ -1232,9 +1232,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }, 2000);
     }
 
-// =============================================
-// NAVIGATION FUNCTIONS
-// =============================================
+
+
+
 
     function toggleContentVisibility() {
         if (defaultContent && mainContentArea) {
@@ -1274,9 +1274,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }
     }
 
-// =============================================
-// HELPER FUNCTIONS
-// =============================================
+
+
+
 
     function formatCurrency(amount) {
         return 'R ' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -1307,9 +1307,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         return 'txn_' + Math.random().toString(36).substr(2, 9);
     }
 
-// =============================================
-// TAB FUNCTIONALITY
-// =============================================
+
+
+
 
     const btnTransactions = document.getElementById("btn-transactions");
     const btnPaymentHistory = document.getElementById("btn-payment-history");
@@ -1366,7 +1366,7 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
 
         if (!currentUserContext) return;
 
-// Get selected/default account
+
         const account = currentUserContext.accounts.find(
             acc => acc.id === currentUserContext.preferences.defaultAccount
         );
@@ -1429,9 +1429,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         }
     }
 
-// =============================================
-// PROFILE POPUP FUNCTIONALITY
-// =============================================
+
+
+
 
     const profileLink = document.getElementById('profile-link');
     const profilePopup = document.getElementById('profilePopup');
@@ -1455,9 +1455,9 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         });
     }
 
-// =============================================
-// SIDEBAR TOGGLE FUNCTIONALITY
-// =============================================
+
+
+
 
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
@@ -1499,15 +1499,15 @@ ${paymentType === 'onceoff' ? 'Pay & Save Beneficiary' : 'Confirm Payment'}
         initSidebar();
     }
 
-// =============================================
-// INITIALIZE UI WITH USER CONTEXT
-// =============================================
+
+
+
 
     updateUserContextUI();
 
-// =============================================
-// CSS STYLES
-// =============================================
+
+
+
 
     const style = document.createElement('style');
     style.textContent = `
@@ -1638,7 +1638,7 @@ margin-right: 5px;
 font-weight: 500;
 }
 
-/* Additional styles for other components */
+
 .profile-popup {
 position: fixed;
 top: 0;

@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
  </div>
  </div>
  
- <!-- Pause Disclaimer section (initially hidden) -->
  <div id="pauseDisclaimer" style="display: none; background-color: #e6f4ff; padding: 15px; border-radius: 8px; margin-top: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
  <div style="display: flex; align-items: flex-start; gap: 10px;">
  <img src="../images/info-trans.svg" style="width: 20px; height: 20px;">

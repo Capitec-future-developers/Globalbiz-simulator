@@ -73,7 +73,6 @@ body.show-chatbot .chatbot {
     pointer-events: auto;
 }
 
-/
 .chatbot header {
     background-color: #0070a0;
     padding: 16px 0;
@@ -102,7 +101,7 @@ body.show-chatbot .chatbot {
     overflow-y: auto;
 }
 
-/* Chat Bubbles */
+
 .chatbox .chat {
     display: flex;
 }
@@ -138,7 +137,7 @@ body.show-chatbot .chatbot {
     border-radius: 10px 10px 10px 0;
 }
 
-/* Chat Input */
+
 .chatbot .chat-input {
     position: absolute;
     bottom: 0;
@@ -225,4 +224,72 @@ body:not(.show-chatbot) .chatbot {
 .chat-options li:hover {
     background-color: #c0c7ff;
     transition-delay: 0.1s;
+}
+
+/* Rich chatbot UI enhancements */
+.chat-card {
+  background: #ffffff;
+  border: 1px solid #e8e8ee;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  max-width: 100%;
+}
+.chat-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+.chat-subtitle {
+  font-size: 0.85rem;
+  color: #525f7f;
+  margin-bottom: 8px;
+}
+.chat-body {
+  font-size: 0.95rem;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+.chat-list {
+  margin: 8px 0 10px 16px;
+}
+.chat-list li {
+  margin-bottom: 6px;
+}
+.chat-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.chat-link {
+  color: #0b77d0;
+  text-decoration: none;
+  font-weight: 500;
+}
+.chat-link:hover {
+  text-decoration: underline;
+}
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.chip {
+  background: #eef2ff;
+  color: #1e3a8a;
+  border: 1px solid #dbe2ff;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.chip:hover {
+  background: #dde5ff;
+}
+/* Allow incoming rich card to inherit incoming bubble background */
+.chatbox .incoming .chat-card {
+  background: #f8fafc;
 }

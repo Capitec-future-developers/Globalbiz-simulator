@@ -1,0 +1,270 @@
+.content{
+    position: relative;
+    overflow: scroll;
+    width: 80%;
+    height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.back{
+    position: absolute;
+    top: 100px;
+    left: 350px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.signin-content{
+    position: absolute;
+    top: 180px;
+    left: 300px;
+    display: flex;
+    font-size: 20px;
+    gap: 10px;
+    align-items: center;
+    border: 1px solid #dddddd;
+    background-color: #FFFFFF;
+    height: 400px;
+    width: 100%;
+}
+
+.signin-header{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.username{
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.Password{
+    position: absolute;
+    top: 150px;
+    left: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contacts{
+    position: absolute;
+    top: 300px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.Singin-details{
+    position: absolute;
+    top: 600px;
+    left: 300px;
+    display: flex;
+    border: 1px solid #dddddd;
+    background-color: #FFFFFF;
+    height: 400px;
+    width: 100%;
+}
+
+.circle{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #031035;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    line-height: 130px;
+}
+
+.top{
+    position: absolute;
+    top: 50px;
+    left: 180px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    font-size: 1.5rem;
+
+}
+
+.Zenzi{
+    position: absolute;
+    left: 570px;
+    top: 50px;
+    width: 110px;
+    height: 30px;
+    border-radius: 30%;
+    background-color: rgba(196, 239, 213, 0.47);
+    text-align: center;
+    font-size: 15px;
+    text-wrap: auto;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.bottom{
+    position: absolute;
+    border-bottom: 1px solid #dddddd;
+    top: 150px;
+}
+
+.user-details{
+    position: absolute;
+    top: 180px;
+    left: 30px;
+    font-weight: 500;
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.names{
+    position: absolute;
+    top: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.usernames{
+    position: absolute;
+    top: 130px;
+    left: 190px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact{
+    position: absolute;
+    top: 130px;
+    left: 390px;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    gap: 10px;
+}
+
+.email{
+    position: absolute;
+    top: 130px;
+    left: 690px;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    gap: 10px;
+}
+
+.link{
+    position: absolute;
+    top: 1030px;
+    left: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    height: 450px;
+    width: 100%;
+}
+
+.profile{
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #FFFFFF;
+    height: 330px;
+    width: 15%;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.made{
+    position: relative;
+    top: 200px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+    align-content: center;
+    align-items: center;
+
+}
+
+.Zenzis{
+    position: absolute;
+    top: 70px;
+    width: 110px;
+    height: 30px;
+    border-radius: 30%;
+    background-color: rgba(196, 239, 213, 0.47);
+    text-align: center;
+    font-size: 15px;
+    text-wrap: auto;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.circles{
+    position: absolute;
+    left: 55px;
+    top: 10px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #031035;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    line-height: 130px;
+}
+
+.profile2{
+    position: absolute;
+    top: 80px;
+    left: 310px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #FFFFFF;
+    height: 330px;
+    width: 15%;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #00aeff;
+    font-size: 20px;
+}

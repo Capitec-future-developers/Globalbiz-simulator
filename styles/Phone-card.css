@@ -11,10 +11,10 @@ body {
 
 }
 
-/* ============ IPHONE FRAME ============ */
+
 .iphone {
     position: relative;
-    width: 300px;
+    width: 330px;
     height: 700px;
     background-color: #111;
     border-radius: 44px;
@@ -24,17 +24,18 @@ body {
 
 }
 
-/* ============ SCREEN ELEMENTS ============ */
+
 .screen {
     width: 100%;
     height: 100%;
     background-color: #f0f0f0;
     border-radius: 35px;
-    overflow: hidden;
+    overflow: scroll;
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .notch {
@@ -61,7 +62,7 @@ body {
     border-radius: 3px;
 }
 
-/* ============ PHYSICAL BUTTONS ============ */
+
 .volume-buttons {
     position: absolute;
     left: -10px;
@@ -95,7 +96,7 @@ body {
     border-bottom-right-radius: 3px;
 }
 
-/* ============ HEADER STYLES ============ */
+
 .head {
     position: relative;
     font-size: 1.5rem;
@@ -139,7 +140,7 @@ body {
     font-size: 24px;
 }
 
-/*=====MAIN CONTENT STRUCTURE ============ */
+
 .screen-content {
     flex: 1;
     display: flex;
@@ -151,15 +152,17 @@ body {
 .content-container {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 60px; /* Space for bottom nav */
+    padding-bottom: 60px; 
 }
 
 .content {
     padding: 0 20px;
     margin-bottom: 20px;
+
+
 }
 
-/* ============ ACCOUNT SECTION ============ */
+
 .account-header {
     position: absolute;
     display: flex;
@@ -191,7 +194,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* ============ ACCOUNT BOX ============ */
+
 .box1 {
     position: absolute;
     width: 280px;
@@ -239,7 +242,7 @@ body {
 
 
 
-/* ============ BOTTOM NAVIGATION ============ */
+
 .bottom-nav {
     position: absolute;
     display: flex;
@@ -273,7 +276,7 @@ body {
     margin-bottom: 4px;
 }
 
-/* ============ RESPONSIVE ADJUSTMENTS ============ */
+
 @media (max-height: 600px) {
     .favorite-box {
         height: 80px;
@@ -284,7 +287,7 @@ body {
     }
 }
 
-/* Automation System Styles */
+
 .search-container {
     position: relative;
     display: flex;
@@ -354,7 +357,7 @@ body {
     font-weight: bold;
 }
 
-/* Automation highlighting */
+
 .automation-highlight {
     animation: pulse-highlight 2s ease-in-out infinite;
     position: relative;
@@ -374,7 +377,7 @@ body {
     }
 }
 
-/* Feedback messages */
+
 .feedback-message {
     position: fixed;
     bottom: 20px;
@@ -400,14 +403,14 @@ body {
     background-color: #dc3545;
 }
 
-/* Automation target element styling */
+
 .automation-target {
     position: relative;
     z-index: 10000;
     transition: all 0.3s ease;
 }
 
-/* Context help for automation */
+
 .automation-context-help {
     position: fixed;
     bottom: 20px;
@@ -757,7 +760,7 @@ body {
     accent-color: #0066ff;
 }
 
-/* Limits Page Styles */
+
 .limits-form {
     padding: -10px 24px;
     margin-top: 16px;

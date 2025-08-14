@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     const target = document.getElementById('document');
 
-    // Inject styles (same as before)
+    
     const style = document.createElement('style');
     style.textContent = `
  #document {
@@ -109,7 +109,7 @@ border: 1px solid #ffffff;
  background-color: #f0f0f0;
 }
 
-/* Show dropdown on hover */
+
 .manage-btn-container:hover .details-hover {
  display: block;
 }
@@ -231,7 +231,7 @@ border: 1px solid #ffffff;
 `;
     document.head.appendChild(style);
 
-    // Inject HTML (same as before)
+    
     target.innerHTML = `
  <h2>Documents</h2>
  <div class="banner">
@@ -290,7 +290,7 @@ border: 1px solid #ffffff;
  </table>
  `;
 
-    // JS Logic with PDF generation
+    
     const docTypeLinks = document.querySelectorAll('#docTypeSelect a');
     const popup = document.getElementById('popup');
     const overlay = document.getElementById('overlay');
@@ -302,10 +302,10 @@ border: 1px solid #ffffff;
     const docTable = document.getElementById('docTable');
     const docTableBody = document.getElementById('docTableBody');
 
-    // Store the selected doc type
+    
     let selectedDocType = '';
 
-    // Add click event to each document type link
+    
     docTypeLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -335,7 +335,7 @@ border: 1px solid #ffffff;
                 year: 'numeric'
             });
 
-            // Create PDF content
+            
             const pdfContent = `
  <html>
  <head>
@@ -464,7 +464,7 @@ border: 1px solid #ffffff;
  </html>
  `;
 
-            // Create a Blob with the PDF content
+            
             const blob = new Blob([pdfContent], { type: 'application/pdf' });
             const downloadUrl = URL.createObjectURL(blob);
 
