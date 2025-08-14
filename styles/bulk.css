@@ -1,0 +1,248 @@
+.content{
+    position: relative;
+}
+
+.content-header {
+    position: relative;
+    display: flex;
+    top: 30px;
+    left: 400px;
+    gap: 100px;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 600px);
+}
+
+
+.disclaimer-box {
+    position: relative;
+    top: 80px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    padding: 60px 50px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    max-width: 900px;
+    margin: 40px auto;
+    font-size: 17px;
+    min-height: 450px;
+}
+
+
+
+.letsgo{
+    position: fixed;
+    bottom: 10px;
+    right: 0;
+    background-color: #FFFFFF;
+    height: 100px;
+    width: 100%;
+}
+
+.cancel{
+    position: absolute;
+    right: 250px;
+    top: 10px;
+    background-color: #FFFFFF;
+    color: #007FFF;
+    border: 1px solid #007FFF;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.next{
+    position: absolute;
+    right: 150px;
+    top: 10px;
+    background-color: #007FFF;
+    color: #FFFFFF;
+    border: 1px solid #007FFF;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.left{
+    position: absolute;
+    left: 10px;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 110px;
+}
+
+.upper-left{
+    position: absolute;
+    left: 30px;
+    display : flex;
+    flex-direction: column;
+    gap: 30px;
+
+}
+.oo, .uu{
+    border: 1px solid #cccccc;
+    height:  40px;
+    width: 350px;
+    cursor: pointer;
+}
+.lower-left{
+    position: absolute;
+    left: 30px;
+    top: 130px;
+    text-wrap: nowrap;
+
+}
+
+.radio-group{
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    gap: 20px;
+    display: flex;
+    cursor: pointer;
+}
+
+.rights{
+    position: absolute;
+    right: 220px;
+    top: 100px;
+}
+
+.eft{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    text-wrap: nowrap;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    font-size: 14px;
+    height: 75px;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.same-day{
+    position: absolute;
+    right: -180px;
+    top: 20px;
+    text-wrap: nowrap;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    font-size: 14px;
+    height: 75px;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    border: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+.action{
+    background-color: #edf7ff;
+    border: 1px solid #00aeff;
+}
+
+.cut-off{
+    position: absolute;
+    top: 120px;
+    left: -160px;
+    height: 150px;
+    width: 350px;
+    background-color: #e8e7e7;
+    border-radius: 5px;
+
+}
+
+.cut-off-box{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    font-size: 10px;
+    left: 28px;
+    top: 30px;
+}
+
+.date{
+    position: absolute;
+    top: 290px;
+    left: -160px;
+    width: 350px;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    color: #00aeff;
+    border: 1px solid #cccccc;
+}
+.cut-off-popup {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 30%;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.cut-off-popup-header {
+    background-color: #efefef;
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.cut-off-popup-body {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cut-off-popup-eft {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    background-color: #efefef;
+    height: 100px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.okay{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: #007FFF;
+    color: #FFFFFF;
+    border: 1px solid #007FFF;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}

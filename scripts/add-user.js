@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextBtn = document.getElementById('nextBtn');
     const cancelBtn = document.querySelector('.cancel');
 
-    // simple state to carry data across steps
+
     const userState = {
         firstName: '',
         lastName: '',
