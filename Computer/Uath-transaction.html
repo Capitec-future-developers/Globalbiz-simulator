@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | Capitec Bank</title>
     <link rel="stylesheet" href="../styles/Computer.css">
+    <link rel="stylesheet" href="../styles/transaction.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
-    <link rel="stylesheet" href="../styles/beneficary.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <title>Online banking</title>
-
 </head>
 <body>
 <div class="user-info">
@@ -22,9 +21,9 @@
     <div class="business">Business</div>
 
     <div class="header-right">
-        
+
         <button class="chatbot-toggler">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="position: absolute; left: 360px; top: -20px;"></span>
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc; position: absolute; top : -12px; left: 15px;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -59,7 +58,7 @@
                 </a>
 
             </a>
-            
+
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a class="popup-header" href="Profile-info.html">
@@ -83,12 +82,10 @@
         <a href="./home%20page.html" class="sign">Sign Out</a>
     </div>
 </div>
+</div>
 
+<div class="sidebar">
 
-<nav class="sidebar">
-    <div class="menu-toggle" id="sidebarToggle">
-        <span class="material-icons-sharp">menu</span>
-    </div>
     <a href="Computer.html" class="active" id="home">
         <span class="material-icons-sharp"><img src="../images/home.svg" alt="transact" style="color: #cccccc;"></span>
         Home
@@ -108,8 +105,8 @@
         </a>
         <div class="dropdown-menu">
             <a href="transact.html" id="payments">Payment</a>
-            <a href="transfer.html" id="Transfers">Transfer</a>
-            <a href="Add-benficiaries.html" id="#">Beneficiary</a>
+            <a href="transfer.html" id="Transfer">Transfer</a>
+            <a href="Add-benficiaries.html" id="beneficiary-btn">Beneficiary</a>
         </div>
     </div>
     <a href="Cards.html">
@@ -170,8 +167,9 @@
         <span class="material-icons-sharp">lock</span>
         We secure your data in line with our Privacy Notice and Terms & Conditions
     </a>
-    </div>
-</nav>
+</div>
+</div>
+
 <div class="search-container">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
     <button id="execute-automation" class="search-button" aria-label="Execute search">
@@ -179,45 +177,45 @@
     </button>
     <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
 </div>
-<main class="main-content" id="mainContent">
-    <div class="header-content">
-        <h1>Beneficiaries</h1>
-        <div class="those">
-        <div class="yohs auths">Authorisations</div>
-        <div class="yohs imports"><span> Import</span> List</div>
-            <div class="yohs bens" id="addBeneficiaryBtn"><span>Add</span> Beneficiary</div>
+
+<div class="mainContent">
+    <div class="head">
+        <h1>Transactions</h1>
+        <span>Authorisation Queue</span>
+    </div>
+
+    <div class="content">
+        <div class="tabs">
+            <span class="t act">Beneficiary Payment(0)</span>
+            <span class="t ">Bulk Payment(0)</span>
+            <span class="t ">SARS Payment (0)</span>
+            <span class="t ">Transfer (0)</span>
+        </div>
+        <div class="tab-content">
+            <div class="tab-search"></div>
+            <div class="tab-table">
+                <table class="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>From Account</th>
+                            <th>To Beneficiary</th>
+                            <th>Created Date</th>
+                            <th>Created By</th>
+                            <th>Amount</th>
+                            <th>Authorised By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="content-body">
-        <div class="fav">
-            <div class="fav-header">Favorites</div>
-            <div class="edit">Edit</div>
-            <div class="fav-boxes">
-                <div class="fav-box">
-                    <div class="Name">Helen Mohlala</div>
-                    <p style=" position: absolute; right: 75px; bottom: 60px;">Last paid: 20 July 2025</p>
-                    <div class="pay">Pay</div>
-                </div>
-            </div>
-        </div>
-        <div class="next-box">
-            <div class="tabz">
-            <div class="tabz-header" >
-             <div class="tabz1 actives" id="yourBeneficiaries">Your beneficiaries</div>
-                <div class="tabz2" id="publicBeneficiary">Public Beneficiary</div>
-                <div class="tabz3" id="beneficiaryGroups">Beneficiary groups</div>
-            </div>
-            </div>
-            <div id="tabzContent"></div>
-<div class="tabz-search">
+</div>
 
-        </div>
-        </div>
-        </div>
-</main>
-<script src="../scripts/Add-beneficary.js"></script>
-<script src="../scripts/chatbot.js"></script>
+<script src="../scripts/Transfer.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
 </body>
 </html>
+

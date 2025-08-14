@@ -175,6 +175,7 @@ body {
 
 
 .main-content {
+    position: relative;
     margin-left: 250px;
     margin-top: 70px;
     padding: 30px;
@@ -1154,8 +1155,9 @@ body {
 
 
 .card, .virtual-card {
+    position: relative;
     background: #ffffff;
-    border: 2px solid rgba(23, 21, 21, 0.16);
+    border: 2px solid #dddddd;
     height: 100px;
     display: flex;
     align-items: center;
@@ -1178,6 +1180,8 @@ body {
 }
 
 .open {
+    position: absolute;
+    right: 20px;
     color: #1e88e5;
     cursor: pointer;
 }
@@ -1299,13 +1303,15 @@ body {
     background-color: #f0f0f0;
 }
 .card-details {
+
     font-family: sans-serif;
     background: #ffffff;
     padding: 100px;
-    width: 1610px;            
+    width: 80%;
     position: relative;
     margin-left: 350px;
     border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
 .container {
@@ -1371,9 +1377,12 @@ body {
 }
 
 .divider{
-    border-bottom: 1px solid #ddd;
+    position: absolute;
+    border-bottom: 1.5px solid #ddd;
     margin: 5px 0;
     width: 100%;
+    left: 5px;
+    top: 50px;
 }
 
 .header-card{

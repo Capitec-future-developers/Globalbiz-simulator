@@ -35,20 +35,24 @@ document.addEventListener('DOMContentLoaded', function () {
     <style>
       .generate-box {
       position: absolute;
-        padding: 20px;
-        top: 180px;
-        border: 0.5px solid #ccc;
-        background: #FAF9F6;
-        margin-top: 20px;
-        width: 220px;
+        padding: 25px;
+        top: 100px;
+        background: #FFFFFF;
+        margin-top: 5px;
+        width: 100%;
+        border-top: 2px solid #dddddd;
       }
+      
       .generate-box select,
-      .generate-box button {
+      .generate-box button
+       {
+      position: absolute;
         padding: 10px;
         margin-top: 10px;
-        width: 100%;
+        width: 95%;
         border: 1px solid #ccc;
         border-radius: 5px;
+        left: -10px;
       }
       .generate-box button {
         background-color: #007bff;
@@ -58,19 +62,22 @@ document.addEventListener('DOMContentLoaded', function () {
       .generate-box button:disabled {
         background-color: grey;
       }
+{
+position: absolute;
 
+}
       .doc-counter {
        position: absolute;
-        background-color: #023781;
+        background-color: grey;
         color: white;
         right: 30px;
         top: 10px;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         text-align: center;
-        line-height: 30px;
-        font-weight: bold;
+        line-height: 20px;
+        font-weight: lighter;
       }
 
      .document-header {
@@ -85,12 +92,24 @@ document.addEventListener('DOMContentLoaded', function () {
   background: #fff; 
   z-index: 1; 
 }
+
+#generate-btn{
+position: absolute;
+top: 150px;
+}
+
+ #account-choice{
+position: absolute;
+top: 100px;
+}
       #cancel-btn {
+      position: absolute;
         background-color: white;
         color: blue;
-        border: 1px solid #ccc;
+        border: 1px solid #00aeff;
         font-weight: bold;
         padding: 10px;
+        top: 200px;
         border-radius: 5px;
         cursor: pointer;
       }
@@ -107,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="document-header">
       <span class="material-icons-sharp">description</span>
       <div>
-        <p><strong>Status:</strong></p>
+        <p>Your documents:</p>
         <p id="doc-status" style="margin: 0; color: #666;">Not ready for email</p>
       </div>
       <div style="margin-left: auto;">
