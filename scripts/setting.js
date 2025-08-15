@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="transaction-container">
               <span class="info-heading"><h3>Transaction Limits</h3></span>
               <div class="account-box">
-                <div class="account-info-row" style="border-left: 6px solid #3498db;">
+                <div class="account-info-row" style="border-left: 6px solid #3498db; border-radius: 5px">
                   <div class="info-item">
                     <span class="info-value">R0.00</span>
                     <span class="info-label"><strong>Today's total spent</strong></span>
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="info-label"><strong>Maximum daily transaction limit</strong></span>
                   </div>
                   <span class="edit-limit">
-                    <button class="edit-limit-btn">Edit Maximum Limit</button>
+                    <div class="edit-limit-btn">Edit Maximum Limit</div>
                   </span>
                 </div>
               </div>
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="credit-and-debit">Credit and Debit</span>
         <span class="credit-item">R1.00</span>
         <span class="debit-item">R1.00</span>
-        <button class="btn">Edit</button>
+        <div class="btn">Edit</div>
       </div>
     </div>
   </div>
