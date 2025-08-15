@@ -106,7 +106,11 @@ document.getElementById('nextBtn').addEventListener('click', () => {
             <button id="browseBtn">Browse Files</button>
             <p style="font-size: 0.8rem; color: #555;">Only CSV or TXT files are allowed.</p>
         </div>
-        
+        <div class="drop">
+        <img src="../images/info-trans.svg"  >
+        <span style="position: absolute; top: 10px; left: 30px;">How to format a bulk payment file</span>
+        <img src="../images/more-chevron.svg" style="position: absolute; right: 10px; top: 20px;">
+</div>
     `;
 
     // Drag and drop logic
