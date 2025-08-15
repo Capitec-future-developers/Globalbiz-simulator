@@ -1093,7 +1093,7 @@ input:checked + .slider:before {
 }
 
 .edit-popup {
-    position: absolute;
+    position: fixed;
     top: 140px;
     left: 700px;
     background: white;
