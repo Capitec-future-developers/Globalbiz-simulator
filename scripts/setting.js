@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    
+
     const tabContentData = {
         transactionLimit: [`
           <div class="tab-content tab-content-active">
@@ -18,6 +18,19 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                   <span class="edit-limit">
                     <div class="edit-limit-btn">Edit Maximum Limit</div>
+                    <div class="edit-popup" style="display:none;">
+                    <div class="edit-popup-content">Edit Maximum Daily Limit</div>
+                    <div class="edit-popup-body">
+                    <input type="text" placeholder="R0.00">
+                    <p>Leave empty to set zero limits</p>
+                    <input type="text" placeholder="R550"  >
+                    <p>Set new transaction limits</p>
+                    <div class="buttons">
+                    <div class="cancel-btn">Cancel</div>
+                    <div class="update-btn">Update</div>
+</div>
+</div>
+</div>
                   </span>
                 </div>
               </div>
@@ -66,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 `]
-,
+        ,
         profileNotification: [`
           <div class="tab-content">
             <h3>Profile Notifications</h3>
@@ -75,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ]
     };
 
-    
+
     const tabButtons = {
         transactionLimit: document.getElementById('Transaction-Limits'),
         transactionNotification: document.getElementById('Transaction-Notifications'),
@@ -87,6 +100,19 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayContent(contentKey) {
         if (!tabContent || !tabContentData[contentKey]) return;
         tabContent.innerHTML = tabContentData[contentKey][0];
+
+        const editBtn = tabContent.querySelector('.edit-limit-btn');
+        const popup = tabContent.querySelector('.edit-popup');
+        const cancelBtn = tabContent.querySelector('.cancel-btn');
+
+        if (editBtn && popup && cancelBtn) {
+            editBtn.addEventListener('click', () => {
+                popup.style.display = 'block';
+            });
+            cancelBtn.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        }
     }
 
     function highlightButton(activeButton) {
@@ -105,16 +131,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tab) tab.classList.add('active');
     }
 
-    
+
     Object.entries(tabButtons).forEach(([key, button]) => {
-        if (!button) return; 
+        if (!button) return;
         button.addEventListener('click', () => {
             displayContent(key);
             highlightButton(button);
         });
     });
 
-    
+
     displayContent('transactionLimit');
     highlightButton(tabButtons.transactionLimit);
 });
