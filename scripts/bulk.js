@@ -9,6 +9,9 @@ document.getElementById('mainContent').innerHTML = `
             <div class="upper-left">
                 <select class="uu">
                     <option>From account</option>
+                    <option>
+                    <div class="account-number" style="position: absolute;"><img src="../images/transact.svg" alt="transact">105 2626 4558</div>
+</option>
                 </select>
                 <input type="text" placeholder="Your reference" class="oo">
             </div>
