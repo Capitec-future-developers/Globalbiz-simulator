@@ -196,13 +196,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     height: 75%;
-    width: 35%;
+    width: 50%;
     background-color: #fff;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     border: 1px solid #ccc;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
     overflow: hidden;
     z-index: 1000;
 }
@@ -222,6 +223,9 @@
     background-color: #fff;
     padding: 20px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .cut-off-popup-eft {
@@ -231,12 +235,12 @@
     gap: 10px;
     white-space: nowrap;
     background-color: #efefef;
-    height: 150px;
+    height: 21%;
     width: 100%;
-    max-width: 600px;
     border-radius: 5px;
     padding: 10px;
     font-size: 14px;
+    overflow: hidden;
 }
 ul{
     position: absolute;
@@ -244,19 +248,22 @@ ul{
     left: 20px;
     padding: 0;
     margin: 0;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .okay{
     position: absolute;
     right: 10px;
     bottom: 10px;
-    background-color: #007FFF;
+    background-color: #1aa0e8;
     color: #FFFFFF;
     border: 1px solid #007FFF;
     font-size: 14px;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    border-top: 1px solid #ddd;
 }
 
 .dropArea{
