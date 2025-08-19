@@ -242,10 +242,9 @@ function handleFiles(files) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const sameDayBtn = document.getElementById('sameDay');
-    sameDayBtn.addEventListener('click', function() {
-        document.getElementById('sameDay').innerHTML = `
+const sameDayBtn = document.getElementById('sameDay');
+sameDayBtn.addEventListener('click', function() {
+    document.getElementById('mainContent').innerHTML =  `
             <div class="content-header">
             <h1 style="position: absolute; top: 50px; text-wrap: nowrap;">Bulk Payment</h1>
     </div>
@@ -274,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="rights">
                     <h4 style="position: absolute; text-wrap: nowrap; left: -160px; top: -10px; font-weight: lighter;">Payment type</h4>
-                    <div class="eft">
+                    <div class="eft" id="">
                         <img src="../images/send-cash-active.svg" style="position: absolute; left: 40px; width: 50px; height: 30px; top: 10px;">
                             <span style="position: absolute; top: 45px; left: 30px">Normal EFT</span>
                     </div>
@@ -355,5 +354,4 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
     `
-    });
-})
+    })
