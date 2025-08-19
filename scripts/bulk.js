@@ -56,8 +56,15 @@ document.getElementById('mainContent').innerHTML = `
     <div class="cut-off-popup-header">Payment types</div>
     <div class="cut-off-popup-body">
         <div class="cut-off-popup-eft">
-            <img src="../images/info-trans.svg" style="position: absolute; left: 30px; width: 15px; height: 30px; top: 65px;">
-            <span style="position: absolute; left: 50px;"><b>Normal EFT</b></span>
+            <img src="../images/info-trans.svg" style="position: absolute; left: 10px; width: 15px; height: 30px; top: 1px; ">
+            <span style="position: absolute; left: 30px;"><b>Normal EFT</b></span>
+            <h3 style="position: absolute; top: 50px;">Cut-off times</h3>
+            <ul>
+            <li>Mon-Fri: 16:00 (transactions up to R5 million)</li>
+            <li>Saturday: 10:15 (transactions up to R5 million)</li>
+            <li>Sunday, public holidays or after cut-times, payments will be processed the next business day</li>
+            <li>Capitec to Capitec payments will be processed immediately</li>
+</ul>
         </div>
     </div>
     <div class="okay" id="okay">Okay</div>

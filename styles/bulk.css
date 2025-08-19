@@ -195,8 +195,8 @@
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 60%;
-    width: 30%;
+    height: 75%;
+    width: 35%;
     background-color: #fff;
     border-radius: 5px;
     display: flex;
@@ -225,16 +225,25 @@
 }
 
 .cut-off-popup-eft {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
     white-space: nowrap;
     background-color: #efefef;
-    height: 100px;
+    height: 150px;
     width: 100%;
     max-width: 600px;
     border-radius: 5px;
     padding: 10px;
+    font-size: 14px;
+}
+ul{
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    padding: 0;
+    margin: 0;
 }
 
 .okay{
@@ -341,3 +350,4 @@
     background-color: #f0f0f0;
     font-weight: bold;
 }
+
