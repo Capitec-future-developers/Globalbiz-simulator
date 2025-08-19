@@ -275,7 +275,7 @@ body {
     z-index: 9999;
     padding-right: 1rem;
     display: none;
-    cursor: pointer;
+
 }
 
 .menu-toggle .material-icons-sharp {

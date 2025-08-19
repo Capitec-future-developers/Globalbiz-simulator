@@ -205,7 +205,7 @@ body {
     align-items: center;
     box-sizing: border-box;
     border-radius: 1px;
-    top: 110px;
+    top: 130px;
     left: 10px;
     background-color: white;
 }
@@ -508,7 +508,7 @@ body {
     background-color: #ffffff;
     border: 1px solid #ddd;
     padding: 10px;
-    min-width: 260px;
+    min-width: 280px;
     z-index: 1000;
     display: none;
     flex-direction: column;
