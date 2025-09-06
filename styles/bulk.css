@@ -450,7 +450,7 @@ input[type="radio"]:checked + .circle-radio::after {
     border: 1px solid #dddddd;
     width: 90%;
     left: 25px;
-    top: 200px;
+    top: 230px;
 }
 
 .search-beneficiary{
@@ -475,4 +475,104 @@ input[type="radio"]:checked + .circle-radio::after {
     height: 16px;
     fill: grey;
     pointer-events: none;
+}
+
+/* Drag & Drop */
+.dragover {
+    border: 2px dashed #00aeff !important;
+    background-color: #f0f8ff !important;
+}
+
+/* Search input */
+.search-input {
+    padding-left: 35px;
+    width: 100%;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+/* Beneficiary table */
+.beneficiary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 250px;
+}
+
+.beneficiary-table th,
+.beneficiary-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.beneficiary-table thead tr {
+    background: #f2f2f2;
+    text-align: left;
+}
+
+.beneficiary-table tr:hover {
+    background: #f9f9f9;
+}
+
+
+
+/* Content header */
+.content-header h1 {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    white-space: nowrap;
+}
+
+/* Footer actions */
+.footer-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 35px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.footer-actions .cancel {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+.footer-actions .next {
+    padding: 10px 20px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+
+.payment-details-container{
+    position: absolute;
+    top: 150px;
+    left: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    height: 450px;
+    background-color: #FFFFFF;
+    width: 50%;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 10px;
 }

@@ -1,278 +1,283 @@
+import BeneficiaryDB from './beneficiaryDB.js';
+
+/* -----------------------------
+   DOM Setup
+----------------------------- */
 document.getElementById('mainContent').innerHTML = `
 <div class="content-header">
-    <h1 style="position: absolute; top: 50px; text-wrap: nowrap; left: 50px;">Group and Multiple Payment</h1>
+    <h1>Group and Multiple Payment</h1>
 </div>
 <div class="disclaimer-box" id="disclaimerBox">
     <div class="payment-header">
         <span>Beneficiary details</span>
+    </div>
+
+    <!-- Payment type selection -->
+    <label class="group-payment-box acti" id="group-payment-box">
+        <div class="circle-radio"></div>
+        <div class="label-text">
+            <span><b>Group of beneficiaries</b></span>
+            <span>Pay a group of beneficiaries</span>
         </div>
-     <label class="group-payment-box acti">
-  <input type="radio" name="payment" value="group">
-  <div class="circle-radio"></div>
-  <span><b>Group of beneficiaries</b></span>
-  <span>Pay a group of beneficiaries</span>
-</label>
+    </label>
+    <label class="mulitple-payment-box" id="mulitple-payment-box">
+        <div class="circle-radio"></div>
+        <div class="label-text">
+            <span><b>Multiple beneficiaries</b></span>
+            <span>Pay multiple beneficiaries</span>
+        </div>
+    </label>
 
-<div class="mulitple-payment-box">
-<div class="circle-radio"></div>
-<span><b>Multiple beneficiaries</b></span>
-<span>Pay multiple beneficiaries</span>
+    <div class="liner"></div>
+
+    <!-- Search section -->
+    <div class="search-beneficiary" id="search-section">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M21 20l-5.8-5.8a7 7 0 10-1.4 1.4L20 21l1-1zm-11 0a6 6 0 110-12 6 6 0 010 12z"/>
+        </svg>
+        <input type="text" placeholder="Search for a beneficiary" class="search-input" id="search-input">
+    </div>
+
+    <!-- Beneficiary table -->
+    <table class="beneficiary-table hidden" id="beneficiary-table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="select-all-checkbox"></th>
+                <th>Beneficiary Name</th>
+                <th>Account Number</th>
+                <th>Reference</th>
+                <th>Last Payment Date</th>
+                <th>Last Paid Amount</th>
+            </tr>
+        </thead>
+        <tbody id="beneficiary-tbody"></tbody>
+    </table>
 </div>
-        <div class="liner"></div>
-    <div class="search-beneficiary">
-    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M21 20l-5.8-5.8a7 7 0 10-1.4 1.4L20 21l1-1zm-11 0a6 6 0 110-12 6 6 0 010 12z"/>
-  </svg>
-  <input type="text" placeholder="Search for a beneficiary" class="search-input">
-  <span style="position: absolute; top: 90px; text-wrap: nowrap; left: 10px; font-size: 15px;" >0 group saved</span>
-</div>
+
+<!-- Footer actions -->
+<div class="footer-actions">
+    <button class="cancel">Cancel</button>
+    <button class="next" id="nextBtn">Continue</button>
 </div>
 `;
 
-const style = document.createElement('style');
-style.textContent = `
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 100%;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: 10px;
-    border-radius: 5px;
-}
-.dropdown-content table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.dropdown-content th, .dropdown-content td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-.dropdown-content th {
-    background-color: #f2f2f2;
-}
-.dropdown-content.open {
-    display: block;
-}
-.drop {
-    position: relative;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-.drop img:first-child {
-    position: relative;
-    top: 3px;
-    margin-right: 5px;
-}
-.dragover {
-    border: 2px dashed #00aeff !important;
-    background-color: #f0f8ff !important;
-}
-`;
-document.head.appendChild(style);
+/* -----------------------------
+   DOM References
+----------------------------- */
+const groupBox = document.getElementById('group-payment-box');
+const multipleBox = document.getElementById('mulitple-payment-box');
+const beneficiaryTable = document.getElementById('beneficiary-table');
+const tbody = document.getElementById('beneficiary-tbody');
+const searchInput = document.getElementById('search-input');
+const nextBtn = document.getElementById('nextBtn');
+const selectAllCheckbox = document.getElementById('select-all-checkbox');
 
-document.addEventListener('click', function (e) {
-    if (e.target.id === 'cut-off-popup') {
-        document.getElementById('popup').style.display = 'flex';
+/* -----------------------------
+   State
+----------------------------- */
+let selectedBeneficiaries = [];
+
+/* -----------------------------
+   Helper Functions
+----------------------------- */
+
+// Toggle selection boxes like radio buttons
+function selectBox(selected, other) {
+    selected.classList.add('acti');
+    other.classList.remove('acti');
+}
+
+// Populate table with beneficiaries
+async function populateTable(searchTerm = '') {
+    try {
+        const beneficiaries = searchTerm
+            ? await BeneficiaryDB.searchBeneficiaries(searchTerm)
+            : await BeneficiaryDB.getAllBeneficiaries();
+
+        tbody.innerHTML = beneficiaries.map((b, index) => `
+            <tr>
+                <td><input type="checkbox" data-index="${index}" data-id="${b.id}"></td>
+                <td>${b.nickname}</td>
+                <td>${b.accountNumber}</td>
+                <td>${b.reference}</td>
+                <td>${b.lastPaymentDate || '-'}</td>
+                <td>R ${b.lastPaidAmount.toFixed(2)}</td>
+            </tr>
+        `).join('');
+
+        // Attach change events to checkboxes
+        tbody.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', handleCheckboxChange);
+        });
+    } catch (error) {
+        console.error("Error populating beneficiaries:", error);
     }
-    if (e.target.classList.contains('overlay') || e.target.id === 'okay') {
-        document.getElementById('popup').style.display = 'none';
-    }
-    if (e.target.id === 'nextBtn') {
-        showUploadStep();
-    }
-    if (e.target.closest('.drop')) {
-        const dropdown = document.getElementById('dropdownTable');
-        if (dropdown) {
-            dropdown.classList.toggle('open');
+}
+
+// Handle individual checkbox changes
+function handleCheckboxChange(e) {
+    const checkbox = e.target;
+    const beneficiaryId = checkbox.dataset.id;
+
+    if (checkbox.checked) {
+        if (!selectedBeneficiaries.some(b => b.id === beneficiaryId)) {
+            const row = checkbox.closest('tr');
+            selectedBeneficiaries.push({
+                id: beneficiaryId,
+                nickname: row.cells[1].textContent,
+                accountNumber: row.cells[2].textContent,
+                reference: row.cells[3].textContent
+            });
         }
     } else {
-        const dropdowns = document.querySelectorAll('.dropdown-content');
-        dropdowns.forEach(dropdown => {
-            dropdown.classList.remove('open');
-        });
+        selectedBeneficiaries = selectedBeneficiaries.filter(b => b.id !== beneficiaryId);
     }
+
+    updateSelectAllCheckbox();
+}
+
+// Update "select all" checkbox state
+function updateSelectAllCheckbox() {
+    const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
+    const allChecked = checkboxes.length > 0 && Array.from(checkboxes).every(cb => cb.checked);
+    const someChecked = Array.from(checkboxes).some(cb => cb.checked);
+
+    selectAllCheckbox.checked = allChecked;
+    selectAllCheckbox.indeterminate = someChecked && !allChecked;
+}
+
+// Handle "select all" checkbox
+selectAllCheckbox.addEventListener('change', function () {
+    tbody.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = this.checked;
+        checkbox.dispatchEvent(new Event('change'));
+    });
 });
 
-window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-        document.getElementById('popup').style.display = 'none';
-    }
-});
-
-function showUploadStep() {
-    document.getElementById('disclaimerBox').innerHTML = `
-    <div id="dropArea" class="dropArea">
-        <img src="../images/upload.svg" style="width: 100px; height: 100px;">
-        <p>Drag & Drop your CSV or TXT file here</p>
-        <p>or</p>
-        <input type="file" id="fileInput" accept=".csv, .txt" style="display:none;">
-        <button id="browseBtn">Browse Files</button>
-        <p style="font-size: 0.8rem; color: #555;">Only CSV or TXT files are allowed.</p>
-    </div>
-    <div class="drop">
-        <img src="../images/info-trans.svg">
-        <span style="position: relative; left: 5px;">How to format a bulk payment file</span>
-        <img src="../images/more-chevron.svg" style="position: absolute; right: 10px; top: 15px;">
-    </div>
-    <div class="dropdown-content" id="dropdownTable">
-        <table>
-            <thead>
-                <tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>250655</td><td>1600125546</td><td>50</td><td>ABC PTY LTD</td><td>Salaries John</td><td>John Deere</td></tr>
-                <tr><td>632005</td><td>1600125545</td><td>320</td><td>ABC PTY LTD</td><td>Salaries Mary</td><td>Mary Dlamini</td></tr>
-                <tr><td>632005</td><td>1600125544</td><td>2000</td><td>ABC PTY LTD</td><td>Salaries Joe</td><td>Jow Nkwana</td></tr>
-            </tbody>
-        </table>
-    </div>
+// Navigate to payment details page
+function navigateToPaymentDetails() {
+    const paymentDetailsHTML = `
+        <div class="content-header">
+            <h1>Mulitple Payment</h1>
+        </div>
+        <div class="payment-details-container">
+            <div class="selected-beneficiaries">
+                <h2>Payment details</h2>
+                <div class="beneficiaries-list">
+                    ${selectedBeneficiaries.map(b => `
+                        <div class="beneficiary-item">
+                            <div class="beneficiary-info">
+                                <h3>${b.nickname}</h3>
+                                <p>Account: ${b.accountNumber}</p>
+                                <p>Reference: ${b.reference}</p>
+                            </div>
+                            <div class="payment-amount">
+                                <input type="number" placeholder="0.00" class="amount-input" data-id="${b.id}" min="0">
+                                <select class="payment-method" data-id="${b.id}">
+                                    <option value="">Select Method</option>
+                                    <option value="eft">EFT</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="cheque">Cheque</option>
+                                </select>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            <div class="payment-summary">
+                <h2>Payment Summary</h2>
+                <div class="summary-details">
+                    <p>Total Amount: <span id="total-amount">R 0.00</span></p>
+                    <button id="confirm-payment" class="confirm-btn">Confirm Payment</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-actions">
+            <button class="cancel" id="back-btn">Back</button>
+            <button class="next" id="submit-payment">Submit Payment</button>
+        </div>
     `;
 
-    const dropArea = document.getElementById('dropArea');
-    const fileInput = document.getElementById('fileInput');
-    const browseBtn = document.getElementById('browseBtn');
+    document.getElementById('mainContent').innerHTML = paymentDetailsHTML;
 
-    browseBtn.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+    // Back button
+    document.getElementById('back-btn').addEventListener('click', () => location.reload());
 
-    dropArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropArea.classList.add('dragover');
-    });
-    dropArea.addEventListener('dragleave', () => dropArea.classList.remove('dragover'));
-    dropArea.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropArea.classList.remove('dragover');
-        handleFiles(e.dataTransfer.files);
-    });
-}
+    // Amount calculation
+    const amountInputs = document.querySelectorAll('.amount-input');
+    amountInputs.forEach(input => input.addEventListener('input', calculateTotal));
 
-function handleFiles(files) {
-    if (!files.length) return;
-    const file = files[0];
-    if (file.name.endsWith('.csv') || file.name.endsWith('.txt')) {
-        alert('File selected: ' + file.name);
-    } else {
-        alert('Invalid file type. Please upload a CSV or TXT file.');
+    function calculateTotal() {
+        let total = 0;
+        amountInputs.forEach(input => total += parseFloat(input.value) || 0);
+        document.getElementById('total-amount').textContent = `R ${total.toFixed(2)}`;
     }
+
+    // Confirm payment validation
+    document.getElementById('confirm-payment').addEventListener('click', () => {
+        const paymentData = [];
+        document.querySelectorAll('.beneficiary-item').forEach(item => {
+            const id = item.querySelector('.amount-input').dataset.id;
+            const amount = parseFloat(item.querySelector('.amount-input').value);
+            const method = item.querySelector('.payment-method').value;
+
+            if (!amount || amount <= 0) alert("Enter valid amount");
+            if (!method) alert("Select payment method");
+
+            paymentData.push({ id, amount, method });
+        });
+        console.log("Payment Data:", paymentData);
+        alert("Payment ready to submit!");
+    });
 }
 
-const sameDayBtn = document.getElementById('sameDay');
-sameDayBtn.addEventListener('click', function() {
-    document.getElementById('mainContent').innerHTML =  `
-            <div class="content-header">
-            <h1 style="position: absolute; top: 50px; text-wrap: nowrap;">Bulk Payment</h1>
-    </div>
-        <div class="disclaimer-box" id="disclaimerBox">
-            <div class="payment-header">
-                <h2>Payment details</h2>
-                <div class="left">
-                    <div class="upper-left">
-                        <select class="uu">
-                            <option>From account</option>
-                            <option>
-                                <div class="account-number" style="position: absolute;"><img src="../images/transact.svg" alt="transact">105 2626 4558</div>
-                            </option>
-                        </select>
-                        <input type="text" placeholder="Your reference" class="oo">
-                    </div>
-                    <div class="lower-left">
-                        <h4>Show in transaction history as</h4>
-                        <span class="radio-group">
-                    <input type="radio" name="paymentType" id="one">
-                    <label for="one">One payment</label>
-                    <input type="radio" name="paymentType" id="separate">
-                    <label for="separate">Separate Payments</label>
-                </span>
-                    </div>
-                </div>
-                <div class="rights">
-                    <h4 style="position: absolute; text-wrap: nowrap; left: -160px; top: -10px; font-weight: lighter;">Payment type</h4>
-                    <div class="eft" id="">
-                        <img src="../images/send-cash-active.svg" style="position: absolute; left: 40px; width: 50px; height: 30px; top: 10px;">
-                            <span style="position: absolute; top: 45px; left: 30px">Normal EFT</span>
-                    </div>
-                    <div class="same-day action" id="sameDay">
-                        <img src="../images/same-day.svg" style="position: absolute; left: 40px; width: 50px; height: 30px; top: 10px;">
-                            <span style="position: absolute; top: 45px; left: 35px">Same Day</span>
-                    </div>
-                    <div class="cut-off">
-                        <img src="../images/info-trans.svg" style="position: absolute; left: 10px; width: 15px; height: 30px; top: 5px;">
-                            <span style="position: absolute; left: 30px; top: 15px; font-size: 0.6rem;">Transaction fee:</span>
-                            <div class="cut-off-box">
-                                <span><b>EFT</b> - R2.00 per beneficiary</span>
-                                <span><b>Immediate</b> - R6.00 per beneficiary</span>
-                                <span><b>Same day</b> - R40.00 per beneficiary</span>
-                                <span><b>Capitec beneficiaries</b> - R1.00</span>
-                                <span><b>SARS eFiling</b> - R10.00</span>
-                                <span style="color: #00aeff; cursor: pointer;" id="cut-off-popup">Cut-off and available times</span>
-                            </div>
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
-        <div class="cut-off-popup" id="popup" style="display:none;">
-            <div class="overlay"></div>
-            <div class="cut-off-popup-header"><b>Payment types</b></div>
-            <div class="cut-off-popup-body">
-                <div class="cut-off-popup-eft">
-                    <img src="../images/info-trans.svg" style="position: absolute; left: 10px; width: 15px; height: 30px; top: 1px; ">
-                        <span style="position: absolute; left: 30px;"><b>Normal EFT</b> - R2.00 transaction fee will be changed for each beneficairy</span>
-                        <h3 style="position: absolute; top: 50px;">Cut-off times</h3>
-                        <ul>
-                            <li>Mon-Fri: 16:00 (transactions up to R5 million)</li>
-                            <li>Saturday: 10:15 (transactions up to R5 million)</li>
-                            <li>Sunday, public holidays or after cut-times, payments will be processed the next business day</li>
-                            <li>Capitec to Capitec payments will be processed immediately</li>
-                        </ul>
-                </div>
-                <div class="cut-off-popup-eft" >
-                    <img src="../images/info-trans.svg" style="position: absolute; left: 10px; width: 15px; height: 30px; top: 1px; ">
-                        <span style="position: absolute; left: 30px;"><b>Immediate</b> - R6.00 transactions fee will be charged for each beneficiary</span>
-                        <h3 style="position: absolute; top: 50px;">Cut-off times</h3>
-                        <ul>
-                            <li>Mon-Fri: 06:00 - 16:00 (transactions up to R5 million)</li>
-                            <li>Mon-Fri: 16:00 - 20:00(transactions up to R250 000)</li>
-                            <li>Weekends and public holidays: 06:00 - 18:00 (transactions up to R250 000)</li>
-                            <li>Immediate payment cannot be stopped reversed or cancelled</li>
-                            <li>Only payment to RTC participating banks can be processed immediately</li>
-                        </ul>
-                </div>
-                <div class="cut-off-popup-eft">
-                    <img src="../images/info-trans.svg" style="position: absolute; left: 10px; width: 15px; height: 30px; top: 1px; ">
-                        <span style="position: absolute; left: 30px;"><b>Same day </b>- Payments above R5 million be processed the same day. A transaction fee of R40.00 will be charged.</span>
-                        <h3 style="position: absolute; top: 50px;">Cut-off times</h3>
-                        <ul>
-                            <li>Mon-Fri: 15:30 (transactions up to R5 million)</li>
-                            <li>Saturday: Services not available</li>
-                            <li>Sunday, public holidays or after cut-times, payments will be processed the next business day</li>
-                        </ul>
-                </div>
-                <div class="cut-off-popup-eft">
-                    <img src="../images/info-trans.svg" style="position: absolute; left: 10px; width: 15px; height: 30px; top: 1px; ">
-                        <span style="position: absolute; left: 30px;"><b>SARS efiling </b>- A R10.00 transaction fee will be charged.</span>
-                        <h3 style="position: absolute; top: 50px;">Cut-off times</h3>
-                        <ul>
-                            <li>Mon-Fri: 15:30 (transactions up to R5 million)</li>
-                            <li>Saturday: Services not available</li>
-                            <li>Sunday, public holidays or after cut-times, payments will be processed the next business day</li>
-                        </ul>
-                </div>
-            </div>
-            <div class="line" style="position: absolute; border-top: 1px solid #cccccc; bottom: 55px; width: 100%"></div>
-            <div class="okay" id="okay" >Okay</div>
-        </div>
-        <div class="letsgo">
-            <button class="cancel">Cancel</button>
-            <button class="next" id="nextBtn">Continue</button>
-        </div>
+/* -----------------------------
+   Event Listeners
+----------------------------- */
 
-    `
-})
+// Continue button & selection toggles
+document.addEventListener('click', (e) => {
+    if (e.target.id === 'nextBtn') {
+        if (multipleBox.classList.contains('acti')) {
+            if (!selectedBeneficiaries.length) {
+                alert("Select at least one beneficiary to continue.");
+                return;
+            }
+            navigateToPaymentDetails();
+        } else {
+            alert("Group payment logic here.");
+        }
+    }
+
+    if (e.target.closest('#group-payment-box')) {
+        selectBox(groupBox, multipleBox);
+        beneficiaryTable.classList.add('hidden');
+        selectedBeneficiaries = [];
+    }
+
+    if (e.target.closest('#mulitple-payment-box')) {
+        selectBox(multipleBox, groupBox);
+        beneficiaryTable.classList.remove('hidden');
+        populateTable();
+    }
+});
+
+// Search filter
+searchInput.addEventListener('input', () => {
+    if (multipleBox.classList.contains('acti')) {
+        populateTable(searchInput.value);
+    }
+});
+
+// Escape closes popup
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        const popup = document.getElementById('popup');
+        if (popup) popup.style.display = 'none';
+    }
+});
+
+/* -----------------------------
+   Initialization
+----------------------------- */
+document.getElementById('search-section').classList
