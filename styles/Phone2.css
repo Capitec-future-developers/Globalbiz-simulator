@@ -71,7 +71,19 @@ body {
     border-radius: 3px;
 }
 
-
+.welcome-container{
+background-color: #FFFFFF;
+    width: 150%;
+    height: 10%;
+   margin-left: -8%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
 .volume-buttons {
     position: absolute;
     left: -10px;
@@ -236,8 +248,11 @@ body {
 }
 
 .content {
+    position: relative;
+    overflow: scroll;
     padding: 0 20px;
     margin-bottom: 20px;
+    scrollbar-width: none;
 }
 
 
