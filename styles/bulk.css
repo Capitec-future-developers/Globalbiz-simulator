@@ -359,3 +359,120 @@ ul{
     font-weight: bold;
 }
 
+
+/*Group and Multiple*/
+
+.group-payment-box{
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    height: 15%;
+    width: 400px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    overflow: hidden;
+
+}
+
+.group-payment-box {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    cursor: pointer;
+    padding-left: 50px;
+}
+
+.group-payment-box input[type="radio"] {
+    display: none;
+    color: #007FFF;
+}
+
+.circle-radio {
+    height: 18px;
+    width: 18px;
+    border: 2px solid #0b77d0;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+
+input[type="radio"]:checked + .circle-radio::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #00aeff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circle-radio{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    color: #007FFF;
+
+}
+
+.mulitple-payment-box{
+    position: absolute;
+    top: 100px;
+    left: 430px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    white-space: nowrap;
+    height: 15%;
+    width: 400px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 14px;
+    overflow: hidden;
+    align-items: start;
+    cursor: pointer;
+    padding-left: 50px;
+}
+
+.acti{
+    border: 1px solid #0b77d0;
+}
+
+.liner{
+    position: absolute;
+    border: 1px solid #dddddd;
+    width: 90%;
+    left: 25px;
+    top: 200px;
+}
+
+.search-beneficiary{
+    position: absolute;
+    top: 250px;
+    left: 20px;
+
+}
+
+.search-input{
+    width: 400px;
+    height: 50px;
+    padding: 8px 12px 8px 35px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    fill: grey;
+    pointer-events: none;
+}
