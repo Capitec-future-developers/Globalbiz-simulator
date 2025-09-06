@@ -24,6 +24,7 @@ document.getElementById('mainContent').innerHTML = `
     <path d="M21 20l-5.8-5.8a7 7 0 10-1.4 1.4L20 21l1-1zm-11 0a6 6 0 110-12 6 6 0 010 12z"/>
   </svg>
   <input type="text" placeholder="Search for a beneficiary" class="search-input">
+  <span style="position: absolute; top: 90px; text-wrap: nowrap; left: 10px; font-size: 15px;" >0 group saved</span>
 </div>
 </div>
 `;
