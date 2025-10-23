@@ -27,10 +27,10 @@
                     <input required="" type="number" name="text" autocomplete="off" class="input">
                     <label class="user-label">Remote Pin</label>
 
-                <lable class="forgot">Forgot pin</lable>
-                <a href="Phone2.html">
-                    <button class="submit" type="submit" style="margin-left: -10px;">Submit</button>
-                </a>
+                    <lable class="forgot">Forgot pin</lable>
+                    <a href="Phone2.html">
+                        <button class="submit" type="submit" style="margin-left: -10px;">Submit</button>
+                    </a>
                 </div>
             </div>
 
@@ -65,21 +65,21 @@
     </div>
     <script src="../scripts/chatbot.js"></script>
     <script>
-      // Play a quick iOS-like close animation before navigating back to the iOS home
-      (function(){
-        const link = document.getElementById('backToHome');
-        const overlay = document.getElementById('closeOverlay');
-        if(!link || !overlay) return;
-        function goHome(e){
-          e.preventDefault();
-          // subtle fade + scale down
-          overlay.style.opacity = '1';
-          overlay.style.transform = 'scale(0.92)';
-          setTimeout(()=>{ window.location.href = link.getAttribute('href'); }, 400);
-        }
-        link.addEventListener('click', goHome);
-        link.addEventListener('touchend', goHome);
-      })();
+        // Play a quick iOS-like close animation before navigating back to the iOS home
+        (function(){
+            const link = document.getElementById('backToHome');
+            const overlay = document.getElementById('closeOverlay');
+            if(!link || !overlay) return;
+            function goHome(e){
+                e.preventDefault();
+                // subtle fade + scale down
+                overlay.style.opacity = '1';
+                overlay.style.transform = 'scale(0.92)';
+                setTimeout(()=>{ window.location.href = link.getAttribute('href'); }, 400);
+            }
+            link.addEventListener('click', goHome);
+            link.addEventListener('touchend', goHome);
+        })();
     </script>
 
 </div>
