@@ -145,67 +145,21 @@
             box-shadow: 0 6px 12px rgba(0,0,0,.25);
             user-select: none;
             transition: transform 0.2s ease;
+            overflow: hidden;
+        }
+
+        .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
         }
 
         .label {
             font-size: 11px;
             color: rgba(255,255,255,.95);
             text-shadow: 0 1px 2px rgba(0,0,0,.45);
-        }
-
-        /* Icon colors - more realistic iOS app icons */
-        .icon.phone {
-            background: linear-gradient(135deg, #2dd66c, #0a9f3f);
-        }
-
-        .icon.messages {
-            background: linear-gradient(135deg, #61e07e, #32c35f);
-            color: #0e3b1f;
-            font-weight: 800;
-        }
-
-        .icon.safari {
-            background: linear-gradient(135deg, #4cb3ff, #0066ff);
-        }
-
-        .icon.settings {
-            background: linear-gradient(135deg, #838a90, #3f4850);
-        }
-
-        .icon.appstore {
-            background: linear-gradient(135deg, #74b6ff, #1877ff);
-        }
-
-        .icon.calendar {
-            background: #fff;
-            color: #d22;
-            box-shadow: 0 6px 12px rgba(0,0,0,.15);
-        }
-
-        .icon.photos {
-            background: radial-gradient(circle at 30% 20%, #ff9a9e, transparent 40%),
-            radial-gradient(circle at 70% 20%, #fad0c4, transparent 40%),
-            radial-gradient(circle at 50% 80%, #fbc2eb, transparent 40%),
-            #ffdde1;
-            color: #742;
-        }
-
-        .icon.mail {
-            background: linear-gradient(135deg, #67b1ff, #2a74ff);
-        }
-
-        .icon.capitec {
-            background: linear-gradient(135deg, #003e6b, #00a3e0);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .icon.capitec::after {
-            content: "C";
-            position: absolute;
-            font-weight: 900;
-            color: rgba(255,255,255,.25);
-            font-size: 40px;
+            text-align: center;
         }
 
         /* Dock */
@@ -269,8 +223,7 @@
             background: #fff;
             z-index: 9;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -281,10 +234,54 @@
             pointer-events: all;
         }
 
+        .safari-header {
+            height: 44px;
+            background: #f2f2f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-bottom: 1px solid #e5e5ea;
+        }
+
+        .safari-back-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007AFF;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+
+        .safari-address-bar {
+            flex: 1;
+            margin: 0 10px;
+            padding: 8px 12px;
+            background: #e5e5ea;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #000;
+            text-align: center;
+        }
+
+        .safari-content {
+            flex: 1;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .safari-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .safari-loading {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100%;
             gap: 20px;
         }
 
@@ -322,32 +319,120 @@
             <div class="left"><span>9:41</span><span>LTE</span></div>
             <div class="right"><span>78%</span></div>
         </div>
-        <button id="shutdownBtn" title="Shutdown" style="position:absolute;top:36px;right:12px;padding:6px 10px;border-radius:10px;background:#ee5253;color:#fff;border:none;cursor:pointer;font-size:12px;z-index:6;">Shutdown</button>
 
         <div class="app-grid" id="grid">
-            <div class="app"><div class="icon calendar">27</div><div class="label">Calendar</div></div>
-            <div class="app"><div class="icon photos">●</div><div class="label">Photos</div></div>
-            <div class="app"><div class="icon mail">✉</div><div class="label">Mail</div></div>
-            <div class="app"><div class="icon appstore">A</div><div class="label">App Store</div></div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/ios/app-store/f/images/overview/icon_appstore__d6p7j7e2yeq6_large.png" alt="App Store">
+                </div>
+                <div class="label">App Store</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15_pro__f0jwil7q88q2_large.jpg" alt="Photos">
+                </div>
+                <div class="label">Photos</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/mail/f/images/overview/hero__d7y2w3k3h2qa_large.png" alt="Mail">
+                </div>
+                <div class="label">Mail</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_calendar__c0g0k8x8xt26_large.png" alt="Calendar">
+                </div>
+                <div class="label">Calendar</div>
+            </div>
 
-            <div class="app"><div class="icon phone">📞</div><div class="label">Phone</div></div>
-            <div class="app"><div class="icon messages">💬</div><div class="label">Messages</div></div>
-            <div class="app" id="safariApp"><div class="icon safari">🧭</div><div class="label">Safari</div></div>
-            <div class="app" id="capitecApp"><div class="icon capitec">₵</div><div class="label">Capitec</div></div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15__f4h2p0qqp6a2_large.jpg" alt="Phone">
+                </div>
+                <div class="label">Phone</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_messages__c7g0t7t7j7qa_large.png" alt="Messages">
+                </div>
+                <div class="label">Messages</div>
+            </div>
+            <div class="app" id="safariApp">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/safari/f/images/overview/icon_safari__d3v2c7q2vxqe_large.png" alt="Safari">
+                </div>
+                <div class="label">Safari</div>
+            </div>
+            <div class="app" id="capitecApp">
+                <div class="icon">
+                    <img src="../images/Logo.png" alt="Capitec">
+                </div>
+                <div class="label">Capitec</div>
+            </div>
+
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_maps__c7g0t7t7j7qa_large.png" alt="Maps">
+                </div>
+                <div class="label">Maps</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_weather__c7g0t7t7j7qa_large.png" alt="Weather">
+                </div>
+                <div class="label">Weather</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_clock__c7g0t7t7j7qa_large.png" alt="Clock">
+                </div>
+                <div class="label">Clock</div>
+            </div>
+            <div class="app" id="shutdownApp">
+                <div class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Shutdown">
+                </div>
+                <div class="label">Power</div>
+            </div>
         </div>
 
         <div class="dock">
-            <div class="app"><div class="icon phone">📞</div></div>
-            <div class="app"><div class="icon messages">💬</div></div>
-            <div class="app"><div class="icon safari">🧭</div></div>
-            <div class="app"><div class="icon settings">⚙</div></div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15__f4h2p0qqp6a2_large.jpg" alt="Phone">
+                </div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_messages__c7g0t7t7j7qa_large.png" alt="Messages">
+                </div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/safari/f/images/overview/icon_safari__d3v2c7q2vxqe_large.png" alt="Safari">
+                </div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_settings__c7g0t7t7j7qa_large.png" alt="Settings">
+                </div>
+            </div>
         </div>
 
         <div class="open-overlay" id="openOverlay"></div>
         <div class="safari-overlay" id="safariOverlay">
-            <div class="safari-loading">
-                <div class="safari-spinner"></div>
-                <div>Opening Capitec Website...</div>
+            <div class="safari-header">
+                <button class="safari-back-btn" id="safariBackBtn">← Back</button>
+                <div class="safari-address-bar">https://www.capitecbank.co.za</div>
+                <div style="width: 60px;"></div>
+            </div>
+            <div class="safari-content">
+                <div class="safari-loading" id="safariLoading">
+                    <div class="safari-spinner"></div>
+                    <div>Loading Capitec Website...</div>
+                </div>
+                <iframe class="safari-iframe" id="safariIframe" src="about:blank" style="display: none;"></iframe>
             </div>
         </div>
         <div class="home-indicator"></div>
@@ -359,8 +444,12 @@
     (function(){
         const capitecApp = document.getElementById('capitecApp');
         const safariApp = document.getElementById('safariApp');
+        const shutdownApp = document.getElementById('shutdownApp');
         const overlay = document.getElementById('openOverlay');
         const safariOverlay = document.getElementById('safariOverlay');
+        const safariIframe = document.getElementById('safariIframe');
+        const safariLoading = document.getElementById('safariLoading');
+        const safariBackBtn = document.getElementById('safariBackBtn');
 
         if (!capitecApp || !overlay || !safariApp || !safariOverlay) return;
 
@@ -386,11 +475,28 @@
 
             // Show the Safari overlay with loading animation
             safariOverlay.classList.add('active');
+            safariLoading.style.display = 'flex';
+            safariIframe.style.display = 'none';
 
-            // After a short delay, navigate to the Capitec website
-            setTimeout(() => {
-                window.location.href = 'https://www.capitecbank.co.za';
-            }, 1500);
+            // Load the Capitec website in the iframe
+            safariIframe.src = 'https://www.capitecbank.co.za';
+
+            // Show the iframe once it's loaded
+            safariIframe.onload = function() {
+                safariLoading.style.display = 'none';
+                safariIframe.style.display = 'block';
+            };
+        }
+
+        function shutdownPhone(e) {
+            e.preventDefault();
+            window.location.href = '../Computer/home%20page.html';
+        }
+
+        function closeSafari(e) {
+            e.preventDefault();
+            safariOverlay.classList.remove('active');
+            safariIframe.src = 'about:blank';
         }
 
         capitecApp.addEventListener('click', openCapitec);
@@ -398,17 +504,12 @@
 
         safariApp.addEventListener('click', openSafari);
         safariApp.addEventListener('touchend', openSafari);
+
+        shutdownApp.addEventListener('click', shutdownPhone);
+        shutdownApp.addEventListener('touchend', shutdownPhone);
+
+        safariBackBtn.addEventListener('click', closeSafari);
     })();
-</script>
-<script>
-  (function(){
-    const btn = document.getElementById('shutdownBtn');
-    if(btn){
-      btn.addEventListener('click', function(){
-        window.location.href = '../Computer/home%20page.html';
-      });
-    }
-  })();
 </script>
 </body>
 </html>
