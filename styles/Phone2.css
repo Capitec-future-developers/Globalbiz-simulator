@@ -44,7 +44,8 @@ body {
     flex-direction: column;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .notch {
@@ -73,9 +74,9 @@ body {
 
 .welcome-container{
 background-color: #FFFFFF;
-    width: 150%;
+    width: 100%;
     height: 10%;
-   margin-left: -40%;
+   /* margin-left removed to prevent horizontal diversion */
     display: flex;
     flex-direction: row;
     align-items: start;
@@ -1427,7 +1428,4 @@ background-color: #FFFFFF;
     right: 5px;
     align-content: center;
     text-align: center;
-
-
-
 }

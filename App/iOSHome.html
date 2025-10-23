@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 12 Pro — Home</title>
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <style>
+        /* iPhone-like styling */
+        :root {
+            --bezel: #111;
+            --screen: #000;
+            --status-bar: rgba(0,0,0,0.5);
+            --dock-bg: rgba(255,255,255,0.25);
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f2f2f7;
+        }
+
+        .iphone {
+            position: relative;
+            width: 340px;
+            height: 700px;
+            background: var(--bezel);
+            border-radius: 44px;
+            padding: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,.35);
+        }
+
+        .screen {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: var(--screen);
+            border-radius: 35px;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .wallpaper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            z-index: 1;
+        }
+
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: var(--bezel);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 5;
+        }
+
+        .home-indicator {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: rgba(255,255,255,.8);
+            border-radius: 3px;
+            z-index: 4;
+        }
+
+        .status {
+            position: absolute;
+            top: 8px;
+            left: 14px;
+            right: 14px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            opacity: .9;
+            z-index: 4;
+            color: #fff;
+        }
+
+        .status .left {
+            display: flex;
+            gap: 8px;
+        }
+
+        .app-grid {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 70px;
+            padding: 0 18px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 72px;
+            gap: 14px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .app {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .app:active {
+            transform: scale(0.9);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 22px;
+            box-shadow: 0 6px 12px rgba(0,0,0,.25);
+            user-select: none;
+            transition: transform 0.2s ease;
+        }
+
+        .label {
+            font-size: 11px;
+            color: rgba(255,255,255,.95);
+            text-shadow: 0 1px 2px rgba(0,0,0,.45);
+        }
+
+        /* Icon colors - more realistic iOS app icons */
+        .icon.phone {
+            background: linear-gradient(135deg, #2dd66c, #0a9f3f);
+        }
+
+        .icon.messages {
+            background: linear-gradient(135deg, #61e07e, #32c35f);
+            color: #0e3b1f;
+            font-weight: 800;
+        }
+
+        .icon.safari {
+            background: linear-gradient(135deg, #4cb3ff, #0066ff);
+        }
+
+        .icon.settings {
+            background: linear-gradient(135deg, #838a90, #3f4850);
+        }
+
+        .icon.appstore {
+            background: linear-gradient(135deg, #74b6ff, #1877ff);
+        }
+
+        .icon.calendar {
+            background: #fff;
+            color: #d22;
+            box-shadow: 0 6px 12px rgba(0,0,0,.15);
+        }
+
+        .icon.photos {
+            background: radial-gradient(circle at 30% 20%, #ff9a9e, transparent 40%),
+            radial-gradient(circle at 70% 20%, #fad0c4, transparent 40%),
+            radial-gradient(circle at 50% 80%, #fbc2eb, transparent 40%),
+            #ffdde1;
+            color: #742;
+        }
+
+        .icon.mail {
+            background: linear-gradient(135deg, #67b1ff, #2a74ff);
+        }
+
+        .icon.capitec {
+            background: linear-gradient(135deg, #003e6b, #00a3e0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon.capitec::after {
+            content: "C";
+            position: absolute;
+            font-weight: 900;
+            color: rgba(255,255,255,.25);
+            font-size: 40px;
+        }
+
+        /* Dock */
+        .dock {
+            position: absolute;
+            bottom: 24px;
+            left: 18px;
+            right: 18px;
+            height: 60px;
+            padding: 8px 10px;
+            border-radius: 18px;
+            background: var(--dock-bg);
+            backdrop-filter: blur(20px);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            z-index: 3;
+        }
+
+        /* Open animation overlay */
+        .open-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            transform-origin: var(--ox) var(--oy);
+            transform: translate(var(--tx), var(--ty)) scale(0.05);
+            border-radius: 22px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 8;
+        }
+
+        .open-overlay.active {
+            animation: openZoom .45s cubic-bezier(.2,.7,.2,1) forwards;
+        }
+
+        @keyframes openZoom {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0,0) scale(1);
+                border-radius: 0;
+            }
+        }
+
+        /* Safari transition overlay */
+        .safari-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .safari-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .safari-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .safari-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0,0,0,0.1);
+            border-left-color: #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .open-overlay.active {
+                animation-duration: .01ms;
+            }
+
+            .app, .icon {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="iphone">
+    <div class="screen">
+        <div class="wallpaper"></div>
+        <div class="notch"></div>
+        <div class="status">
+            <div class="left"><span>9:41</span><span>LTE</span></div>
+            <div class="right"><span>78%</span></div>
+        </div>
+        <button id="shutdownBtn" title="Shutdown" style="position:absolute;top:36px;right:12px;padding:6px 10px;border-radius:10px;background:#ee5253;color:#fff;border:none;cursor:pointer;font-size:12px;z-index:6;">Shutdown</button>
+
+        <div class="app-grid" id="grid">
+            <div class="app"><div class="icon calendar">27</div><div class="label">Calendar</div></div>
+            <div class="app"><div class="icon photos">●</div><div class="label">Photos</div></div>
+            <div class="app"><div class="icon mail">✉</div><div class="label">Mail</div></div>
+            <div class="app"><div class="icon appstore">A</div><div class="label">App Store</div></div>
+
+            <div class="app"><div class="icon phone">📞</div><div class="label">Phone</div></div>
+            <div class="app"><div class="icon messages">💬</div><div class="label">Messages</div></div>
+            <div class="app" id="safariApp"><div class="icon safari">🧭</div><div class="label">Safari</div></div>
+            <div class="app" id="capitecApp"><div class="icon capitec">₵</div><div class="label">Capitec</div></div>
+        </div>
+
+        <div class="dock">
+            <div class="app"><div class="icon phone">📞</div></div>
+            <div class="app"><div class="icon messages">💬</div></div>
+            <div class="app"><div class="icon safari">🧭</div></div>
+            <div class="app"><div class="icon settings">⚙</div></div>
+        </div>
+
+        <div class="open-overlay" id="openOverlay"></div>
+        <div class="safari-overlay" id="safariOverlay">
+            <div class="safari-loading">
+                <div class="safari-spinner"></div>
+                <div>Opening Capitec Website...</div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+
+<script>
+    // Simple iOS-like open animation when launching the Capitec app
+    (function(){
+        const capitecApp = document.getElementById('capitecApp');
+        const safariApp = document.getElementById('safariApp');
+        const overlay = document.getElementById('openOverlay');
+        const safariOverlay = document.getElementById('safariOverlay');
+
+        if (!capitecApp || !overlay || !safariApp || !safariOverlay) return;
+
+        function openCapitec(e){
+            e.preventDefault();
+            const rect = capitecApp.getBoundingClientRect();
+            const screen = document.querySelector('.screen').getBoundingClientRect();
+            // compute transform from icon center to screen
+            const iconCx = rect.left + rect.width/2;
+            const iconCy = rect.top + rect.height/2;
+            const originX = ((iconCx - screen.left) / screen.width) * 100 + '%';
+            const originY = ((iconCy - screen.top) / screen.height) * 100 + '%';
+            overlay.style.setProperty('--ox', originX);
+            overlay.style.setProperty('--oy', originY);
+            overlay.style.setProperty('--tx', (iconCx - (screen.left + screen.width/2)) + 'px');
+            overlay.style.setProperty('--ty', (iconCy - (screen.top + screen.height/2)) + 'px');
+            overlay.classList.add('active');
+            setTimeout(()=>{ window.location.href = 'Phone.html'; }, 450);
+        }
+
+        function openSafari(e){
+            e.preventDefault();
+
+            // Show the Safari overlay with loading animation
+            safariOverlay.classList.add('active');
+
+            // After a short delay, navigate to the Capitec website
+            setTimeout(() => {
+                window.location.href = 'https://www.capitecbank.co.za';
+            }, 1500);
+        }
+
+        capitecApp.addEventListener('click', openCapitec);
+        capitecApp.addEventListener('touchend', openCapitec);
+
+        safariApp.addEventListener('click', openSafari);
+        safariApp.addEventListener('touchend', openSafari);
+    })();
+</script>
+<script>
+  (function(){
+    const btn = document.getElementById('shutdownBtn');
+    if(btn){
+      btn.addEventListener('click', function(){
+        window.location.href = '../Computer/home%20page.html';
+      });
+    }
+  })();
+</script>
+</body>
+</html>

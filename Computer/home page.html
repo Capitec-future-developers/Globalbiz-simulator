@@ -1,42 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
-    <title>Globalbiz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Globalbiz Simulator</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
 </head>
 <body>
-<a href="https://capitec-future-developers.github.io/The-Hub-Ecosytsem/#simulators" style="position: absolute; left: 10px; top: 10px; background: #00aeff; border: 1px solid #00aeff; height:25px; width: 100px; border-radius: 10px; cursor: pointer; align-items: center; text-align: center; justify-content: center; ">Home</a>
 
-    <img src="../images/globalbiz.jpg" src="header" class="h1" style="width: 100%;">
+<header>
+    <a href="https://capitec-future-developers.github.io/The-Hub-Ecosytsem/#simulators" class="home-btn">Home</a>
+    <div class="header-container">
+        <img src="../images/globalbiz.jpg" alt="Globalbiz Header" class="header-image" />
+        <div class="header-overlay">
+            <h1>GlobalBiz Simulator</h1>
+            <p>Experience the future of business applications</p>
+        </div>
+    </div>
+</header>
 
-    <p>We are going to create an app simulator for our agents to use when assisting clients</p>
+<main>
+    <div class="intro-section">
+        <p class="intro-text">We are going to create an app simulator for our agents to use when assisting clients.</p>
+        <div class="pulse-dot"></div>
+    </div>
 
     <div class="select">Select an option</div>
 
-    <div class="button-group">
-        <button id="startBtn" class="button">Get started</button>
+    <div class="interface-container">
+        <div class="button-group">
+            <button id="startBtn" class="button futuristic-btn">
+                <span class="btn-text">Get started</span>
+                <div class="btn-glow"></div>
+            </button>
 
-        <div id="platformOptions" class="platform-options">
-            <p>Please select your platform:</p>
-            <button class="platform-btn" data-platform="app">Mobile App</button>
-            <button class="platform-btn" data-platform="pc">PC Version</button>
+            <div id="platformOptions" class="platform-options">
+                <p class="platform-prompt">Please select your platform:</p>
+                <button class="platform-btn futuristic-btn" data-platform="app">
+                    <span class="btn-icon">📱</span>
+                    <span class="btn-text">Mobile App</span>
+                </button>
+                <button class="platform-btn futuristic-btn" data-platform="pc">
+                    <span class="btn-icon">💻</span>
+                    <span class="btn-text">PC Version</span>
+                </button>
+            </div>
+
+            <div id="proceedBtn" class="get-started-btn">
+                <button class="button futuristic-btn proceed-btn" id="proceedLink">
+                    <span class="btn-text">Proceed to Simulator</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
         </div>
 
-        <div id="proceedBtn" class="get-started-btn">
-            <button class="button" id="proceedLink">Proceed to Simulator</button>
+        <div class="visualizer">
+            <div class="device-preview">
+                <div class="device-screen" id="deviceScreen">
+                    <div class="screen-content">
+                        <div class="app-icon-grid">
+                            <div class="app-icon"></div>
+                            <div class="app-icon"></div>
+                            <div class="app-icon"></div>
+                            <div class="app-icon"></div>
+                        </div>
+                        <div class="status-bar">
+                            <span class="time">14:25</span>
+                            <span class="battery">78%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-
-        <div id="loading" class="loading-animation">
+    <div id="loading" class="loading-animation">
+        <div class="loading-text">Initializing simulator</div>
+        <div class="loading-dots">
             <div class="block blue"></div>
             <div class="block lightblue"></div>
             <div class="block red"></div>
         </div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
     </div>
+</main>
     <script>
         const platformButtons = document.querySelectorAll('[data-platform]');
         let targetPage = '#';
