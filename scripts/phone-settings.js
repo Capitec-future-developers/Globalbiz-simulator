@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
               <div class="account-details">
                 <span class="detail-item">Kodi codes <div class="below">1052 2626 43</div></span>
-                <span class="detail-item right" style=" right: 10px;
+                <span class="detail-item right" style=" right: 18px;
     cursor: pointer;">R90 000</span>
                 <span class="material-icons-sharp" class="yoh" style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>

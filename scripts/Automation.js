@@ -227,7 +227,7 @@ let automationState = {
     isAutopilot: getStoredSetting('autopilot', automationConfig.autopilot),
     waitingForUserClick: false,
     manualNavigation: false,
-    clickHandlers: [], 
+    clickHandlers: [],
     speechEnabled: getStoredSetting('speechEnabled', automationConfig.speechEnabled),
     stepDelay: getStoredSetting('stepDelay', automationConfig.stepDelay),
     controlsPosition: getStoredSetting('controlsPosition', automationConfig.controlsPosition),
@@ -580,7 +580,7 @@ function createControlButtons() {
     terminateBtn.style.cursor = 'pointer';
     terminateBtn.style.backgroundColor = '#f0f0f0';
     terminateBtn.style.color = '#e74c3c';
-    terminateBtn.style.display = 'none'; 
+    terminateBtn.style.display = 'none';
 
 
     controlsContainer.appendChild(rewindBtn);
@@ -668,7 +668,7 @@ function speak(text) {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9; 
+    utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
 }
 
@@ -1401,4 +1401,3 @@ function showFeedbackMessage(message, type) {
 
 
 document.addEventListener('DOMContentLoaded', initAutomationSystem);
-

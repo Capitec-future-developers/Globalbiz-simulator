@@ -130,7 +130,7 @@ body {
 .header {
     position: absolute;
     font-size: 15px;
-    left: 135px;
+    left: 120px;
 }
 
 .arrow {
@@ -1385,7 +1385,7 @@ input:checked + .slider:before {
 .yoh{
     position: absolute;
     color: #1e88e5;
-    right: 25px;
+    right: 10px;
     align-items: center;
     margin-top: -19px;
     cursor: pointer;
@@ -1503,7 +1503,7 @@ input:checked + .slider:before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 270px;
+    width: 300px;
     padding: 10px;
     background: #fff;
     border-bottom: 1px solid #ccc;
@@ -1527,7 +1527,7 @@ input:checked + .slider:before {
     position: absolute;
     background-color: #f2f2f2;
     bottom: 194px;
-    width: 275px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -1539,12 +1539,12 @@ input:checked + .slider:before {
     position: absolute;
     background-color: #fff;
     bottom: 150px;
-    width: 275px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     left: 0;
-    gap: 20px;
+    gap: 30px;
 
     border-bottom: 1px solid #ccc;
 }
