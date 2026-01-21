@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                          <div class="search-bar">Account Limit</div>
                          <button class="edit-btn">Edit</button>
                          <div class="info-icon">
-                         <img src="/images/info-trans.svg" alt="info-trans.svg" />
+                         <img src="../images/info-trans.svg" alt="info-trans.svg" />
                          <span class="icon-lable"> What is an account limit?</span>
                          </div>
               </div>
