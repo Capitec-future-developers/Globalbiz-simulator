@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/Computer.css">
+    <link rel="stylesheet" href="../styles/bulk.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
-    <link rel="stylesheet" href="../styles/Manager.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <title>Manage business | Capitec Bank</title>
+    <title>Saved Group or Multiple Payment | Capitec Bank</title>
 
 </head>
 <body>
+
+
 <div class="user-info">
     <span id="display-username"></span>
     <span class="material-icons-sharp" id="user-profile-icon">account_circle</span>
 </div>
+
 <div class="header">
-    <a href="#default" class="logo"><img src="../images/Logo.png" alt="logo"></a>
+    <a href="Computer.html" class="logo"><img src="../images/Logo.png" alt="logo"></a>
     <span class="separator"></span>
     <div class="business">Business</div>
 
     <div class="header-right">
-        
+
         <button class="chatbot-toggler">
             <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc;"></span>
             <span class="material-icons-sharp">close</span>
@@ -47,19 +50,14 @@
             </div>
         </div>
 
-
-
         <div class="profile-container">
             <a href="#contact" id="banker-popup">
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
                     <div class="om-circle" style="text-decoration: none;">OM</div>
-                    <div class="name">
-                        Omphile Mohlala
-                    </div>
+                    <div class="name">Omphile Mohlala</div>
                 </a>
-
             </a>
-            
+
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a class="popup-header" href="Profile-info.html">
@@ -83,25 +81,12 @@
         <a href="./home%20page.html" class="sign">Sign Out</a>
     </div>
 </div>
-</div>
 
-<div class="search-container">
-    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
-    <button id="execute-automation" class="search-button" aria-label="Execute search">
-        <span class="material-icons-sharp">search</span> Go
-    </button>
-    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
-</div>
-
-
-
-
-<div class="content" id="mainContent">
-</div>
-
-<script src="../scripts/managebusiness.js"
+<div class="content" id="mainContent" id="sameDay"></div>
+</body>
+<script type="module" src="../scripts/group-payment.js"></script>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
-</body>
+
 </html>

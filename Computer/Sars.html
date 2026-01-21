@@ -23,7 +23,7 @@
     <div class="header-right">
 
         <button class="chatbot-toggler">
-            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc; position: absolute; top : -12px; left: 15px;"></span>
+            <span class="material-icons-sharp"><img src="../images/chat.svg" alt="transact" style="color: #cccccc; position: absolute; top : -12px; left: -5px;"></span>
             <span class="material-icons-sharp">close</span>
         </button>
         banker
@@ -147,7 +147,7 @@
         <span class="material-icons-sharp"><img src="../images/productsandservices.svg" alt="transact" style="color: #cccccc;"></span>
         Products & Services
     </a>
-    <a href="inprogress.html">
+    <a href="Sars.html">
         <span class="material-icons-sharp"><img src="../images/efiling.svg" alt="transact" style="color: #cccccc;"></span>
         SARS eFiling
     </a>
@@ -170,7 +170,7 @@
 </div>
 </div>
 
-<div class="search-container">
+<div class="search-container" style="position: absolute; top: 250px; left: 600px;">
     <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
     <button id="execute-automation" class="search-button" aria-label="Execute search">
         <span class="material-icons-sharp">search</span> Go
@@ -180,31 +180,34 @@
 
 <div class="mainContent">
     <div class="head">
-        <h1>Transactions</h1>
-        <span>Authorisation Queue</span>
+        <h1>SARS eFiling</h1>
+        <div class="rights" style="position: absolute; left: 1250px; top: -10px; display: flex; gap: 10px; flex-direction: column; text-wrap: nowrap; font-size: 19px;">
+        <span>User ID</span>
+        <span><b>39793173</b></span>
+        <span style="position: absolute; left: 100px;">Profile ID</span>
+        <span style="position: absolute; left: 100px; top: 30px;"><b>SARSEF18728367483</b></span>
+        </div>
     </div>
 
     <div class="content">
         <div class="tabs">
-            <span class="t act">Beneficiary Payment(0)</span>
-            <span class="t ">Bulk Payment(0)</span>
-            <span class="t ">SARS Payment (0)</span>
-            <span class="t ">Transfer (0)</span>
+            <span class="t act">Payment to action</span>
+            <span class="t ">Payment History</span>
+
         </div>
         <div class="tab-content">
             <div class="tab-search"></div>
             <div class="tab-table">
                 <table class="transaction-table">
                     <thead>
-                        <tr>
-                            <th>From Account</th>
-                            <th>To Beneficiary</th>
-                            <th>Created Date</th>
-                            <th>Created By</th>
-                            <th>Amount</th>
-                            <th>Authorised By</th>
-                            <th>Actions</th>
-                        </tr>
+                    <tr >
+                        <th><b>Payment Due Date</b></th>
+                        <th style="font-weight: bold">Reference Number</th>
+                        <th style="font-weight: bold">Created Date</th>
+                        <th style="font-weight: bold">Expiry Date</th>
+                        <th style="font-weight: bold">Amount</th>
+                        <th style="font-weight: bold">Actions</th>
+                    </tr>
                     </thead>
                 </table>
             </div>

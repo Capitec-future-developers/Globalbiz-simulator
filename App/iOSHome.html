@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 12 Pro — Home</title>
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <style>
+        /* iPhone-like styling */
+        :root {
+            --bezel: #111;
+            --screen: #000;
+            --status-bar: rgba(0,0,0,0.5);
+            --dock-bg: rgba(255,255,255,0.25);
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Arial, sans-serif;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f2f2f7;
+        }
+
+        .iphone {
+            position: relative;
+            width: 340px;
+            height: 700px;
+            background: var(--bezel);
+            border-radius: 44px;
+            padding: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,.35);
+        }
+
+        .screen {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: var(--screen);
+            border-radius: 35px;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .wallpaper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            z-index: 1;
+        }
+
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: var(--bezel);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 5;
+        }
+
+        .home-indicator {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: rgba(255,255,255,.8);
+            border-radius: 3px;
+            z-index: 4;
+        }
+
+        .status {
+            position: absolute;
+            top: 8px;
+            left: 14px;
+            right: 14px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            opacity: .9;
+            z-index: 4;
+            color: #fff;
+        }
+
+        .status .left {
+            display: flex;
+            gap: 8px;
+        }
+
+        .app-grid {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 70px;
+            padding: 0 18px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 72px;
+            gap: 14px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .app {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .app:active {
+            transform: scale(0.9);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 22px;
+            box-shadow: 0 6px 12px rgba(0,0,0,.25);
+            user-select: none;
+            transition: transform 0.2s ease;
+            overflow: hidden;
+        }
+
+        .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .label {
+            font-size: 11px;
+            color: rgba(255,255,255,.95);
+            text-shadow: 0 1px 2px rgba(0,0,0,.45);
+            text-align: center;
+        }
+
+        /* Dock */
+        .dock {
+            position: absolute;
+            bottom: 24px;
+            left: 18px;
+            right: 18px;
+            height: 60px;
+            padding: 8px 10px;
+            border-radius: 18px;
+            background: var(--dock-bg);
+            backdrop-filter: blur(20px);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            z-index: 3;
+        }
+
+        /* Open animation overlay */
+        .open-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            transform-origin: var(--ox) var(--oy);
+            transform: translate(var(--tx), var(--ty)) scale(0.05);
+            border-radius: 22px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 8;
+        }
+
+        .open-overlay.active {
+            animation: openZoom .45s cubic-bezier(.2,.7,.2,1) forwards;
+        }
+
+        @keyframes openZoom {
+            0% {
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0,0) scale(1);
+                border-radius: 0;
+            }
+        }
+
+        /* Safari transition overlay */
+        .safari-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            z-index: 9;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .safari-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .safari-header {
+            height: 44px;
+            background: #f2f2f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            border-bottom: 1px solid #e5e5ea;
+        }
+
+        .safari-back-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #007AFF;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+
+        .safari-address-bar {
+            flex: 1;
+            margin: 0 10px;
+            padding: 8px 12px;
+            background: #e5e5ea;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #000;
+            text-align: center;
+        }
+
+        .safari-content {
+            flex: 1;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .safari-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .safari-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 20px;
+        }
+
+        .safari-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0,0,0,0.1);
+            border-left-color: #007AFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .open-overlay.active {
+                animation-duration: .01ms;
+            }
+
+            .app, .icon {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="iphone">
+    <div class="screen">
+        <div class="wallpaper"></div>
+        <div class="notch"></div>
+        <div class="status">
+            <div class="left"><span>9:41</span><span>LTE</span></div>
+            <div class="right"><span>78%</span></div>
+        </div>
+
+        <div class="app-grid" id="grid">
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/ios/app-store/f/images/overview/icon_appstore__d6p7j7e2yeq6_large.png" alt="App Store">
+                </div>
+                <div class="label">App Store</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15_pro__f0jwil7q88q2_large.jpg" alt="Photos">
+                </div>
+                <div class="label">Photos</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/mail/f/images/overview/hero__d7y2w3k3h2qa_large.png" alt="Mail">
+                </div>
+                <div class="label">Mail</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_calendar__c0g0k8x8xt26_large.png" alt="Calendar">
+                </div>
+                <div class="label">Calendar</div>
+            </div>
+
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15__f4h2p0qqp6a2_large.jpg" alt="Phone">
+                </div>
+                <div class="label">Phone</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_messages__c7g0t7t7j7qa_large.png" alt="Messages">
+                </div>
+                <div class="label">Messages</div>
+            </div>
+            <div class="app" id="safariApp">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/safari/f/images/overview/icon_safari__d3v2c7q2vxqe_large.png" alt="Safari">
+                </div>
+                <div class="label">Safari</div>
+            </div>
+            <div class="app" id="capitecApp">
+                <div class="icon">
+                    <img src="../images/Logo.png" alt="Capitec">
+                </div>
+                <div class="label">Capitec</div>
+            </div>
+
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_maps__c7g0t7t7j7qa_large.png" alt="Maps">
+                </div>
+                <div class="label">Maps</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_weather__c7g0t7t7j7qa_large.png" alt="Weather">
+                </div>
+                <div class="label">Weather</div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_clock__c7g0t7t7j7qa_large.png" alt="Clock">
+                </div>
+                <div class="label">Clock</div>
+            </div>
+            <div class="app" id="shutdownApp">
+                <div class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Shutdown">
+                </div>
+                <div class="label">Power</div>
+            </div>
+        </div>
+
+        <div class="dock">
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15__f4h2p0qqp6a2_large.jpg" alt="Phone">
+                </div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_messages__c7g0t7t7j7qa_large.png" alt="Messages">
+                </div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/safari/f/images/overview/icon_safari__d3v2c7q2vxqe_large.png" alt="Safari">
+                </div>
+            </div>
+            <div class="app">
+                <div class="icon">
+                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_settings__c7g0t7t7j7qa_large.png" alt="Settings">
+                </div>
+            </div>
+        </div>
+
+        <div class="open-overlay" id="openOverlay"></div>
+        <div class="safari-overlay" id="safariOverlay">
+            <div class="safari-header">
+                <button class="safari-back-btn" id="safariBackBtn">← Back</button>
+                <div class="safari-address-bar">https://www.capitecbank.co.za</div>
+                <div style="width: 60px;"></div>
+            </div>
+            <div class="safari-content">
+                <div class="safari-loading" id="safariLoading">
+                    <div class="safari-spinner"></div>
+                    <div>Loading Capitec Website...</div>
+                </div>
+                <iframe class="safari-iframe" id="safariIframe" src="about:blank" style="display: none;"></iframe>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+
+<script>
+    // Simple iOS-like open animation when launching the Capitec app
+    (function(){
+        const capitecApp = document.getElementById('capitecApp');
+        const safariApp = document.getElementById('safariApp');
+        const shutdownApp = document.getElementById('shutdownApp');
+        const overlay = document.getElementById('openOverlay');
+        const safariOverlay = document.getElementById('safariOverlay');
+        const safariIframe = document.getElementById('safariIframe');
+        const safariLoading = document.getElementById('safariLoading');
+        const safariBackBtn = document.getElementById('safariBackBtn');
+
+        if (!capitecApp || !overlay || !safariApp || !safariOverlay) return;
+
+        function openCapitec(e){
+            e.preventDefault();
+            const rect = capitecApp.getBoundingClientRect();
+            const screen = document.querySelector('.screen').getBoundingClientRect();
+            // compute transform from icon center to screen
+            const iconCx = rect.left + rect.width/2;
+            const iconCy = rect.top + rect.height/2;
+            const originX = ((iconCx - screen.left) / screen.width) * 100 + '%';
+            const originY = ((iconCy - screen.top) / screen.height) * 100 + '%';
+            overlay.style.setProperty('--ox', originX);
+            overlay.style.setProperty('--oy', originY);
+            overlay.style.setProperty('--tx', (iconCx - (screen.left + screen.width/2)) + 'px');
+            overlay.style.setProperty('--ty', (iconCy - (screen.top + screen.height/2)) + 'px');
+            overlay.classList.add('active');
+            setTimeout(()=>{ window.location.href = 'Phone.html'; }, 450);
+        }
+
+        function openSafari(e){
+            e.preventDefault();
+
+            // Show the Safari overlay with loading animation
+            safariOverlay.classList.add('active');
+            safariLoading.style.display = 'flex';
+            safariIframe.style.display = 'none';
+
+            // Load the Capitec website in the iframe
+            safariIframe.src = 'https://www.capitecbank.co.za';
+
+            // Show the iframe once it's loaded
+            safariIframe.onload = function() {
+                safariLoading.style.display = 'none';
+                safariIframe.style.display = 'block';
+            };
+        }
+
+        function shutdownPhone(e) {
+            e.preventDefault();
+            window.location.href = '../Computer/home%20page.html';
+        }
+
+        function closeSafari(e) {
+            e.preventDefault();
+            safariOverlay.classList.remove('active');
+            safariIframe.src = 'about:blank';
+        }
+
+        capitecApp.addEventListener('click', openCapitec);
+        capitecApp.addEventListener('touchend', openCapitec);
+
+        safariApp.addEventListener('click', openSafari);
+        safariApp.addEventListener('touchend', openSafari);
+
+        shutdownApp.addEventListener('click', shutdownPhone);
+        shutdownApp.addEventListener('touchend', shutdownPhone);
+
+        safariBackBtn.addEventListener('click', closeSafari);
+    })();
+</script>
+</body>
+</html>

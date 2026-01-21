@@ -1357,6 +1357,7 @@ button:not(:active) {
     background-color: #0078d7;
     border: 1px solid #0078d7;
     color: white;
+    top: 400px;
 }
 
 .confirmation-page {

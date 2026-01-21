@@ -14,7 +14,7 @@ function stripComments(content, ext) {
   }
   if (ext === '.css' || ext === '.js') {
     
-    content = content.replace(/\/\*[\s\S]*?\*\
+    content = content.replace(/\/\*[\s\S]*?\*/
   }
   if (ext === '.js') {
     

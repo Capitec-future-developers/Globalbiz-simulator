@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/chatbot.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <title>iPhone with White LCD</title>
@@ -18,25 +19,69 @@
     <div class="screen">
         <div class="notch"></div>
         <div class="screen-content">
-            <div class="arrow"><a href="../Computer/home%20page.html"><img src="https://img.icons8.com/?size=100&id=100653&format=png&color=228BE6" alt="backarrow" ></a></div>
+            <div class="arrow"><a id="backToHome" href="./iOSHome.html"><span class="material-icons-sharp" style="position: absolute; color: #00aeff; left: 10px; top:10px;" >arrow_back</span></a></div>
             <div class="head">For my business</div>
-            <div class="header"><h1>Globalbiz</h1></div>
+            <div class="header"><img src="../images/globalbiz.jpg" style="position: absolute; height: 80px; width: 280px; left: 10px; top: 90px;"></div>
             <div class="date">
-                <div class="input-group">
+                <div class="input-group" style="position: absolute; left: 10px; top: 180px;">
                     <input required="" type="number" name="text" autocomplete="off" class="input">
                     <label class="user-label">Remote Pin</label>
-                </div>
-                <lable class="forgot">Forgot pin</lable>
-                <a href="Phone2.html">
-                    <button class="submit" type="submit">Sign In</button>
-                </a>
 
+                    <lable class="forgot">Forgot pin</lable>
+                    <a href="Phone2.html">
+                        <button class="submit" type="submit" style="margin-left: -10px;">Submit</button>
+                    </a>
+                </div>
             </div>
-            <p></p>
+
+
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+
+
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I assist.</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
         </div>
+        <div id="closeOverlay" style="position:absolute;left:0;top:0;right:0;bottom:0;background:#ffffff;opacity:0;pointer-events:none;transform-origin:center center;transform:scale(1);transition:transform .4s cubic-bezier(.2,.7,.2,1), opacity .2s linear; border-radius:0;"></div>
         <div class="home-indicator"></div>
     </div>
     <script src="../scripts/chatbot.js"></script>
+    <script>
+        // Play a quick iOS-like close animation before navigating back to the iOS home
+        (function(){
+            const link = document.getElementById('backToHome');
+            const overlay = document.getElementById('closeOverlay');
+            if(!link || !overlay) return;
+            function goHome(e){
+                e.preventDefault();
+                // subtle fade + scale down
+                overlay.style.opacity = '1';
+                overlay.style.transform = 'scale(0.92)';
+                setTimeout(()=>{ window.location.href = link.getAttribute('href'); }, 400);
+            }
+            link.addEventListener('click', goHome);
+            link.addEventListener('touchend', goHome);
+        })();
+    </script>
+
 </div>
 </body>
 </html>
