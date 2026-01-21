@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class="account-box">
                 <div class="account-info-row" >
                   <div class="info-item">
-                    <span class="info-value">R0.00</span>
+                    <span class="info-value" id="info-value">R0.00</span>
                     <span class="info-label"><strong>Daily profile limit</strong></span>
                   </div>
                 </div>
@@ -229,13 +229,37 @@ document.addEventListener('DOMContentLoaded', function () {
      <div class="edit-header">
      <span>Step 1 of 2</span>
      <span>Update amount</span>
+     <span class="loader-container"><span class="loader" id="loader"></span></span>
 </div>
 <div class="limit-must">
-<span class="current-must" placeholder="Current transaction Limit">R 0</span>
-<label>
-  Enter transaction limit: 
-  <input type="number" id="limitInput" value="0">
-</label>
+  <span class="current-must" id="currentLimit">R 0.00</span>
+  <label>
+    <input class="limitInputs" type="number" id="limitInput" value="0" step="0.01" min="0">
+  </label>
+</div>
+
+<div class="edit-buttons">
+<button class="continue-edit" id="continueEdit">Continue</button>
+<button class="cancel-edit" id="cancelEdit">Cancel</button>
+</div>
+</div>
+     
+         `],
+
+        continueEdit: [`
+     <div class="edit-limit-page">
+     <div class="edit-header">
+     <span>Step 2 of 2</span>
+     <span>Review details</span>
+</div>
+<div class="limit-must">
+  <span class="current-must" id="confirmDisplayLimit" style="font-size: 1.2rem; border: none; background: transparent; padding: 0; height: auto; font-weight: bold; color: black;">R 0.00</span>
+  <p>New Transaction Limit: <span id="displayLimit" style="font-weight: bold;">R 0.00</span></p>
+</div>
+
+<div class="edit-buttons">
+<button class="continue-edit" id="finalConfirm">Continue</button>
+<button class="cancel-edit" id="cancelEdit">Cancel</button>
 </div>
 </div>
      
@@ -285,6 +309,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const contentWrapper = document.createElement('div');
         contentWrapper.innerHTML = tabContentData[contentKey][0];
         newPageContainer.appendChild(contentWrapper);
+
+        // Re-attach input listener for dynamically added elements
+        const input = contentWrapper.querySelector('#limitInput');
+        const span = contentWrapper.querySelector('#currentLimit');
+        if (input && span) {
+            input.addEventListener('input', () => {
+                const value = Number(input.value) || 0;
+                span.textContent = `R ${value.toLocaleString('en-ZA', {
+                    minimumFractionDigits: 2
+                })}`;
+            });
+        }
     }
 
     headerBackArrow.addEventListener('click', function(event) {
@@ -307,17 +343,91 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('limitInput');
+        const span = document.getElementById('currentLimit');
+
+        if (input && span) {
+            input.addEventListener('input', () => {
+                const value = Number(input.value) || 0;
+                span.textContent = `R ${value.toLocaleString('en-ZA', {
+                    minimumFractionDigits: 2
+                })}`;
+            });
+        }
+    });
+
+    document.addEventListener('click', function (e) {
         if (e.target.id === 'editlimits' || e.target.closest('#editlimits')) {
             showNewPage('editLimits', 'Edit Limits');
         }
 
-        if (e.target.closest('.edit-notifications-link') || e.target.closest('.notification-section h4')) {
+        if (e.target.id === 'continueEdit' || e.target.closest('#continueEdit')) {
+            const loader = document.getElementById('loader');
+            const input = document.getElementById('limitInput');
+            const newValue = input ? input.value : '0';
+            const formattedValue = `R ${Number(newValue).toLocaleString('en-ZA', {
+                minimumFractionDigits: 2
+            })}`;
+            
+            if (loader) {
+                loader.style.width = '100%';
+                setTimeout(() => {
+                    showNewPage('continueEdit', 'Edit Limits');
+                    const display = document.getElementById('displayLimit');
+                    const confirmDisplay = document.getElementById('confirmDisplayLimit');
+                    if (display) {
+                        display.textContent = formattedValue;
+                    }
+                    if (confirmDisplay) {
+                        confirmDisplay.textContent = formattedValue;
+                    }
+                }, 400);
+            } else {
+                showNewPage('continueEdit', 'Continue Limits');
+                const display = document.getElementById('displayLimit');
+                const confirmDisplay = document.getElementById('confirmDisplayLimit');
+                if (display) {
+                    display.textContent = formattedValue;
+                }
+                if (confirmDisplay) {
+                    confirmDisplay.textContent = formattedValue;
+                }
+            }
+        }
+
+        if (e.target.id === 'finalConfirm' || e.target.closest('#finalConfirm')) {
+            const display = document.getElementById('displayLimit');
+            const newValue = display ? display.textContent : 'R 0.00';
+            
+            // Update the template data so it persists when switching tabs
+            tabContentData.transactionLimit[0] = tabContentData.transactionLimit[0].replace(
+                /<span class="info-value" id="info-value">.*?<\/span>/,
+                `<span class="info-value" id="info-value">${newValue}</span>`
+            );
+            
+            showNewPage('transactionLimit', 'Transaction Limits');
+            
+            // Also update the DOM immediately if it's rendered
+            const infoValue = document.getElementById('info-value');
+            if (infoValue) {
+                infoValue.textContent = newValue;
+            }
+        }
+
+        if (e.target.id === 'cancelEdit' || e.target.closest('#cancelEdit')) {
+            showNewPage('transactionLimit', 'Transaction Limits');
+        }
+
+        if (
+            e.target.closest('.edit-notifications-link') ||
+            e.target.closest('.notification-section h4')
+        ) {
             showNewPage('editNotificationDetails', 'Edit Notifications');
         }
 
         if (e.target.classList.contains('secondary-button')) {
             showNewPage('profileNotification', 'Profile Notifications');
         }
+    })
     });
-});

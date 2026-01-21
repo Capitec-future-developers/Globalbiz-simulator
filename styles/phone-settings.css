@@ -1759,7 +1759,88 @@ input:checked + .slider:before {
     color: #FFFFFF;
     height: 50px;
     background-color: #1a2a3a;
-    width: 102%;
+    width: 100%;
     gap: 10px;
+}
+
+.edit-limit-page{
+    scrollbar-width: none;
+}
+
+.loader{
+    position: absolute;
     border-bottom: 6px solid #1a73e8;
+    width: 0;
+    top: 50px;
+    left: 0;
+    transition: width 0.4s ease;
+}
+
+.limit-must{
+    position: absolute;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.current-must{
+    border: 1px solid #ccc;
+    width: 270px;
+    height: 40px;
+    background-color: #ededed;
+    padding-left: 15px;
+    padding-top: 10px;
+    color: #b5b5b5;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.limitInputs{
+    border: 1px solid #ccc;
+    width: 270px;
+    height: 40px;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.edit-buttons{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 1px solid #ccc;
+    bottom: 30px;
+}
+
+.continue-edit{
+    border: 1px;
+    background-color: #1a73e8;
+    color: #FFFFFF;
+    width: 270px;
+    height: 40px;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.cancel-edit{
+    border: 1px solid #1a73e8;
+    background-color: #FFFFFF;
+    color: #1a73e8;
+    width: 270px;
+    height: 40px;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
 }
