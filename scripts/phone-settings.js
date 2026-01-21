@@ -4,40 +4,38 @@ document.addEventListener('DOMContentLoaded', function () {
       <div class="tab-content">
          <div class="tab-content tab-content-active">
             <div class="transaction-container">
-              <span class="info-heading" style="right: 10px;"><h3>Transaction Limits</h3></span>
+              <span class="info-heading" style="right: 10px;"><h3>Profile Limits</h3></span>
               <span class="edit-limit">
-                    <button class="edit-limit-btn" id="editlimits">Edit Limit</button>
+                    <button class="edit-limit-btn" id="editlimits">Edit</button>
                   </span>
               <div class="account-box">
                 <div class="account-info-row" >
                   <div class="info-item">
                     <span class="info-value">R0.00</span>
-                    <span class="info-label"><strong>Today's total spent</strong></span>
+                    <span class="info-label"><strong>Daily profile limit</strong></span>
                   </div>
-                  <div class="info-item">
-                    <span class="info-value">R550</span>
-                    <span class="info-label"><strong>Maximum daily transaction limit</strong></span>
-                  </div>
-
                 </div>
               </div>
               <div class="search-section">
                          <div class="search-bar">Account Limit</div>
-                         <button class="edit-btn">Edit Limits</button>
-
+                         <button class="edit-btn">Edit</button>
+                         <div class="info-icon">
+                         <img src="/images/info-trans.svg" alt="info-trans.svg" />
+                         <span class="icon-lable"> What is an account limit?</span>
+                         </div>
               </div>
-              <div class="account-header">
-                <span class="header-item">Account</span>
-                <span class="header-item center">Limit Amount</span>
-
-              </div>
+             
               <div class="account-details">
-                <span class="detail-item">Kodi codes <div class="below">1052 2626 43</div></span>
-                <span class="detail-item right" style=" right: 18px;
-    cursor: pointer;">R90 000</span>
-                <span class="material-icons-sharp" class="yoh" style="color: #007AFF;
+                <span class="detail-item">Current <br><div class="below">Account</div> <span style="font-weight: bold; color: black;">105 2626 43
+ </span></span>
+                
+                <span class="detail-item-right" style=" right: 18px;
+    cursor: pointer;">Account limit <span style="font-weight: bold;">R90 000</span></span>
+                <span class="material-icons-sharp yoh" style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>
+    
               </div>
+              
             </div>
             <div class="bottom-nav">
                 <a href="../App/Phone2.html" class="nav-item active" id="Home">
@@ -224,8 +222,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span>Explore</span>
             </a>
         </div>
-</div>`]
+</div>`],
+
+        editLimits: [`
+     <div class="edit-limit-page">
+     <div class="edit-header">
+     <span>Step 1 of 2</span>
+     <span>Update amount</span>
+</div>
+<div class="limit-must">
+<span class="current-must" placeholder="Current transaction Limit">R 0</span>
+<label>
+  Enter transaction limit: 
+  <input type="number" id="limitInput" value="0">
+</label>
+</div>
+</div>
+     
+         `]
     };
+
+
 
     const tabButtons = {
         transactionLimit: document.getElementById('Transaction-Limits'),
@@ -291,6 +308,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.addEventListener('click', function(e) {
+        if (e.target.id === 'editlimits' || e.target.closest('#editlimits')) {
+            showNewPage('editLimits', 'Edit Limits');
+        }
+
         if (e.target.closest('.edit-notifications-link') || e.target.closest('.notification-section h4')) {
             showNewPage('editNotificationDetails', 'Edit Notifications');
         }

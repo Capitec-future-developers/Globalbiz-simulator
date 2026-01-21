@@ -131,6 +131,7 @@ body {
     position: absolute;
     font-size: 15px;
     left: 120px;
+    background-color: #1a2a3a;
 }
 
 .arrow {
@@ -1386,8 +1387,8 @@ input:checked + .slider:before {
     position: absolute;
     color: #1e88e5;
     right: 10px;
+    top: 45px;
     align-items: center;
-    margin-top: -19px;
     cursor: pointer;
 }
 
@@ -1415,13 +1416,13 @@ input:checked + .slider:before {
 .account-box {
     position: absolute;
     width: 280px;
-    height: 190px;
+    height: 90px;
     left: 10px;
-    border-left: 3px solid #1e88e5;
+    border-left: 5px solid #1e88e5;
     border-top: 1px solid #ccc;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 4px;
     background: #fff;
     padding: 10px;
     box-sizing: border-box;
@@ -1439,7 +1440,7 @@ input:checked + .slider:before {
 
 .info-heading {
     position: absolute;
-    top: 10px;
+    top: 25px;
     left: 15px;
     font-size: 14px;
     font-weight: 600;
@@ -1469,7 +1470,7 @@ input:checked + .slider:before {
 
 .account-info-row {
     position: absolute;
-    top: 40px; 
+    top: 25px;
     left: 15px;
     right: 15px;
     display: flex;
@@ -1485,20 +1486,19 @@ input:checked + .slider:before {
 
 .info-value {
     font-size: 1.2rem;
-    font-weight: 700;
-    color: #0070a0;
+    font-weight: 400;
 }
 
 .info-label {
-    font-size: 0.85rem;
-    color: #555;
-    font-weight: 500;
+    font-size: 0.95rem;
+    color: black;
+    font-weight: 650;
 }
 
 .search-section{
     position: absolute;
     border-top: 1px solid #ccc;
-    bottom: 250px;
+    top: 200px;
     left: 0;
     display: flex;
     justify-content: space-between;
@@ -1506,10 +1506,21 @@ input:checked + .slider:before {
     width: 300px;
     padding: 10px;
     background: #fff;
-    border-bottom: 1px solid #ccc;
     font-weight: bold;
 }
 
+.info-icon{
+    position: absolute;
+    top: 45px;
+}
+
+.icon-lable{
+    position: relative;
+    color: #00aeff;
+    top: -5px;
+    left: 15px;
+
+}
 .edit-btn{
     border: none;
     background: none;
@@ -1538,35 +1549,46 @@ input:checked + .slider:before {
 .account-details {
     position: absolute;
     background-color: #fff;
-    bottom: 150px;
-    width: 300px;
+    top: 290px;
+    width: 275px;
+    height: 200px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    left: 0;
+    left: 12px;
     gap: 30px;
+    border: 1px solid #dbd9d9;
+    border-radius: 4px;
 
-    border-bottom: 1px solid #ccc;
 }
 
 .detail-item {
+    position: absolute;
+    top: 25px;
+    left: 15px;
     display: flex;
     flex-direction: column;
-}
-
-.below {
-    font-size: 0.9rem;
+    font-size: 1.09rem;
+    gap: 7px;
     color: #555;
+
+
 }
 
-.detail-item right{
-    right: -10px;
+.detail-item-right{
+    position: absolute;
+    left: 15px;
+    top: 130px;
+    font-size: 1.09rem;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
 }
 
 .notification-header{
     position: absolute;
     background-color: #f2f2f2;
-    top: 0px;
+    top: 10px;
     width: 280px;
     display: flex;
     justify-content: space-between;
@@ -1726,4 +1748,18 @@ input:checked + .slider:before {
     background: white;
     color: #1e88e5;
     border: 1px solid #1e88e5;
+}
+
+.edit-header{
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+    height: 50px;
+    background-color: #1a2a3a;
+    width: 102%;
+    gap: 10px;
+    border-bottom: 6px solid #1a73e8;
 }
