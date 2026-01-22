@@ -31,34 +31,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 <span class="detail-item-right" style=" right: 18px;
     cursor: pointer;">Account limit <span style="font-weight: bold;">R90 000</span></span>
-                <span class="material-icons-sharp yohs" style="color: #007AFF;
+                <span class="material-icons-sharp yoh" style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>
     
               </div>
               
             </div>
-            <div class="bottom-nav">
-                <a href="../App/Phone2.html" class="nav-item active" id="Home">
-                    <span class="nav-icon material-icons-outlined">home</span>
+            <div class="bottom-nav" id="bottomNav">
+                <a href="Phone2.html" class="nav-item active" id="Homee">
+                    <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
                     <span>Home</span>
                 </a>
-                <a href="../Phone%20accounts.html" class="nav-item">
-                    <span class="nav-icon material-icons-outlined">storage</span>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>Accounts</span>
                 </a>
-                <a href="../Phone%20Transact.html" class="nav-item" id="transact">
-                     <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                    <span>transact</span>
+                <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <span>Transact</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon material-icons-outlined">credit_card</span>
+                <a href="Phone-cards.html" class="nav-item" id="cards">
+                    <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>Cards</span>
                 </a>
-                <a href="#" class="nav-item">
-                    <span class="nav-icon material-icons-outlined">search</span>
-                    <span>Explore</span>
-                </a>
-            </div>
+            <a href="Explore.html" class="nav-item">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
+            </a>
+        </div>
         </div>
     </div>
       </div>`],
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     cursor: pointer; ">keyboard_arrow_right</span>
                               </div>
             </div>
-            <div class="bottom-nav" id="bottomNav">
+             <div class="bottom-nav" id="bottomNav">
                 <a href="Phone2.html" class="nav-item active" id="Homee">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
                     <span>Home</span>
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>Cards</span>
                 </a>
-            <a href="../Computer/inprogress.html" class="nav-item">
+            <a href="Explore.html" class="nav-item">
                 <span class="nav-icon material-icons-outlined">search</span>
                 <span>Explore</span>
             </a>
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
                     <span>Cards</span>
                 </a>
-            <a href="../Computer/inprogress.html" class="nav-item">
+            <a href="Explore.html" class="nav-item">
                 <span class="nav-icon material-icons-outlined">search</span>
                 <span>Explore</span>
             </a>
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
         editLimits: [`
      <div class="edit-limit-page">
      <div class="edit-header">
-     <span>Step 1 of 2</span>
+     <span style="font-size: 8px;">Step 1 of 2</span>
      <span>Update amount</span>
      <span class="loader-container"><span class="loader" id="loader"></span></span>
 </div>
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
   <label>
   <lable class="lable-new">New Transaction Limit</lable>
     <input class="limitInputs" type="number" id="limitInput" value="0" step="0.01" min="0">
-    <p>Set new transaction limit</p>
+    <p style="position: absolute; top: 125px; color: #cccccc; font-size: 10px; left: 15px;">Set new transaction limit</p>
   </label>
 </div>
 

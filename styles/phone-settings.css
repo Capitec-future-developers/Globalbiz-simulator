@@ -111,8 +111,8 @@ body {
     position: relative;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #1e1e2f;
-    color: white;
+    background-color: #1a2a3a;
+    color: #FFFFFF;
     width: calc(100% + 40px);
     height: 40px;
     top: 0;
@@ -130,7 +130,7 @@ body {
 .header {
     position: absolute;
     font-size: 15px;
-    left: 120px;
+    left: 128px;
     background-color: #1a2a3a;
 }
 
@@ -1762,6 +1762,7 @@ input:checked + .slider:before {
     background-color: #1a2a3a;
     width: 100%;
     gap: 10px;
+    padding-left: 15px;
 }
 
 .edit-limit-page{
