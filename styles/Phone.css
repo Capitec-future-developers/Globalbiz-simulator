@@ -31,14 +31,13 @@ body {
 
 .notch {
     position: absolute;
-    top: 0;
+    top: 11px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 25px;
+    width: 100px;
+    height: 30px;
     background-color: #111;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 20px;
     z-index: 10;
 }
 
@@ -93,7 +92,7 @@ body {
 }
 
 .screen-content {
-    padding: 40px 20px;
+    padding: 55px 20px 40px;
     text-align: center;
     color: #333;
 }

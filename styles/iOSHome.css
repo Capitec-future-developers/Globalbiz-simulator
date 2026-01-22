@@ -55,15 +55,17 @@ html, body {
 
 .notch {
     position: absolute;
-    top: 0;
+    top: 11px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 25px;
+    width: 100px;
+    height: 30px;
     background: var(--bezel);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 20px;
     z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .home-indicator {
@@ -80,14 +82,15 @@ html, body {
 
 .status {
     position: absolute;
-    top: 8px;
-    left: 14px;
-    right: 14px;
+    top: 16px;
+    left: 20px;
+    right: 20px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 600;
     opacity: .9;
     z-index: 4;
     color: #fff;

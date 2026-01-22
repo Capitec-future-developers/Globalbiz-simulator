@@ -37,14 +37,13 @@ body {
 
 .notch {
     position: absolute;
-    top: 0;
+    top: 11px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 25px;
+    width: 100px;
+    height: 30px;
     background-color: #111;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 20px;
     z-index: 14;
 }
 
@@ -101,13 +100,14 @@ body {
     background-color: #007FFF;
     color: white;
     width: calc(100% + 40px);
-    height: 50px;
-    top: 0;
+    height: 100px;
+    top: -35px;
     left: -20px;
-    padding: 10px 20px;
+    padding: 50px 25px;
     box-sizing: border-box;
     z-index: 5;
-    margin-top: 25px;
+    margin-top: 35px;
+
 }
 .head2 {
     position: relative;
@@ -122,7 +122,7 @@ body {
     padding: 10px 20px;
     box-sizing: border-box;
     z-index: 5;
-    margin-top: 25px;
+    margin-top: 35px;
 }
 
 .header {
