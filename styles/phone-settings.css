@@ -1864,3 +1864,18 @@ input:checked + .slider:before {
     top: 10px;
     color: #5a5a5a;
 }
+
+.lable-old{
+    position: relative;
+    font-size: 12px;
+    left: 1px;
+}
+
+.lable-newer{
+    position: relative;
+    background-color: #FFFFFF;
+    font-size: 12px;
+    left: 1px;
+    top: 10px;
+    color: #5a5a5a;
+}

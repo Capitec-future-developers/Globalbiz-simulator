@@ -256,8 +256,10 @@ document.addEventListener('DOMContentLoaded', function () {
      <span>Review details</span>
 </div>
 <div class="limit-must">
+<lable class="lable-old">Current transaction limit</lable>
   <span class="current-must" id="confirmDisplayLimit" style="font-size: 1.2rem; border: none; background: transparent; padding: 0; height: auto; font-weight: bold; color: black;">R 0.00</span>
-  <p>New Transaction Limit: <span id="displayLimit" style="font-weight: bold;">R 0.00</span></p>
+  <lable class="lable-newer">New transaction limit</lable>
+  <span id="displayLimit" style="font-weight: bold;">R 0.00</span>
 </div>
 
 <div class="edit-buttons">
