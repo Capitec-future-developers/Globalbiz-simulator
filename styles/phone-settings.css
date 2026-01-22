@@ -1384,15 +1384,15 @@ input:checked + .slider:before {
 }
 
 .yoh{
-    position: absolute;
+   position: relative;
+    top: -18px;
     color: #1e88e5;
-    right: 30px;
-    top: 220px;
+    margin-right: -170px;
     align-items: center;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
 }
 
 .yohs{
