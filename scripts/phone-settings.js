@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const savedState = JSON.parse(localStorage.getItem('phoneSettingsState'));
     const globalState = savedState || {
         dailyProfileLimit: 0,
-        accountLimit: 90000
+        accountLimit: 0
     };
 
     function saveState() {
