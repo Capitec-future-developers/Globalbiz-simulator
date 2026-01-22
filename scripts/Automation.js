@@ -99,7 +99,7 @@ const defaultAutomationCommands = {
       { action: 'wait', duration: 1000 },
       { action: 'click', selector: '#limitInput'},
       { action: 'wait', duration: 1000 },
-      { action: 'click', selector: '#continue-edit'},
+      { action: 'click', selector: '#continueEdit'},
       { action: 'wait', duration: 1000 },
       { action: 'click', selector: '#finalConfirm'}
   ],
