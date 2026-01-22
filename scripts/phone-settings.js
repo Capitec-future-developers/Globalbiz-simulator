@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 <span class="detail-item-right" style=" right: 18px;
     cursor: pointer;">Account limit <span style="font-weight: bold;">R90 000</span></span>
-                <span class="material-icons-sharp yoh" style="color: #007AFF;
+                <span class="material-icons-sharp yohs" style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>
     
               </div>
@@ -232,9 +232,12 @@ document.addEventListener('DOMContentLoaded', function () {
      <span class="loader-container"><span class="loader" id="loader"></span></span>
 </div>
 <div class="limit-must">
+<lable class="lable-current">Current Transaction Limit</lable>
   <span class="current-must" id="currentLimit">R 0.00</span>
   <label>
+  <lable class="lable-new">New Transaction Limit</lable>
     <input class="limitInputs" type="number" id="limitInput" value="0" step="0.01" min="0">
+    <p>Set new transaction limit</p>
   </label>
 </div>
 
@@ -310,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function () {
         contentWrapper.innerHTML = tabContentData[contentKey][0];
         newPageContainer.appendChild(contentWrapper);
 
-        // Re-attach input listener for dynamically added elements
+
         const input = contentWrapper.querySelector('#limitInput');
         const span = contentWrapper.querySelector('#currentLimit');
         if (input && span) {
@@ -400,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const display = document.getElementById('displayLimit');
             const newValue = display ? display.textContent : 'R 0.00';
             
-            // Update the template data so it persists when switching tabs
+
             tabContentData.transactionLimit[0] = tabContentData.transactionLimit[0].replace(
                 /<span class="info-value" id="info-value">.*?<\/span>/,
                 `<span class="info-value" id="info-value">${newValue}</span>`
@@ -408,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             showNewPage('transactionLimit', 'Transaction Limits');
             
-            // Also update the DOM immediately if it's rendered
+
             const infoValue = document.getElementById('info-value');
             if (infoValue) {
                 infoValue.textContent = newValue;

@@ -1386,6 +1386,18 @@ input:checked + .slider:before {
 .yoh{
     position: absolute;
     color: #1e88e5;
+    right: 30px;
+    top: 220px;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.yohs{
+    position: absolute;
+    color: #1e88e5;
     right: 10px;
     top: 45px;
     align-items: center;
@@ -1843,4 +1855,22 @@ input:checked + .slider:before {
     justify-content: center;
     align-content: center;
     cursor: pointer;
+}
+
+.lable-current{
+    position: absolute;
+    background-color: #ededed;
+    font-size: 12px;
+    left: 10px;
+    top: -7px;
+    color: #5a5a5a;
+}
+
+.lable-new{
+    position: relative;
+    background-color: #FFFFFF;
+    font-size: 12px;
+    left: 10px;
+    top: 10px;
+    color: #5a5a5a;
 }
