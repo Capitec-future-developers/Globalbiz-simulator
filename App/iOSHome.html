@@ -39,7 +39,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            background: var(--screen);
+            background: url("../images/iphoneBackground.png");
             border-radius: 35px;
             overflow: hidden;
             color: #fff;
@@ -47,12 +47,16 @@
 
         .wallpaper {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            height: 100vh;
+            background-image: url("../images/iphoneBackground.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
             z-index: 1;
+            pointer-events: none;
         }
 
         .notch {
@@ -134,14 +138,14 @@
         }
 
         .icon {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 18px;
             display: grid;
             place-items: center;
             color: #fff;
             font-weight: 700;
-            font-size: 22px;
+            font-size: 15px;
             box-shadow: 0 6px 12px rgba(0,0,0,.25);
             user-select: none;
             transition: transform 0.2s ease;
@@ -316,82 +320,82 @@
         <div class="wallpaper"></div>
         <div class="notch"></div>
         <div class="status">
-            <div class="left"><span>9:41</span><span>LTE</span></div>
+            <div class="left"><span>9:41</span></div>
             <div class="right"><span>78%</span></div>
         </div>
 
         <div class="app-grid" id="grid">
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/ios/app-store/f/images/overview/icon_appstore__d6p7j7e2yeq6_large.png" alt="App Store">
+                    <img src="../images/appStore.jpg" alt="App Store">
                 </div>
                 <div class="label">App Store</div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15_pro__f0jwil7q88q2_large.jpg" alt="Photos">
+                    <img src="../images/photo.png" alt="Photos">
                 </div>
                 <div class="label">Photos</div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/mail/f/images/overview/hero__d7y2w3k3h2qa_large.png" alt="Mail">
+                    <img src="../images/mail.png" alt="Mail">
                 </div>
                 <div class="label">Mail</div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_calendar__c0g0k8x8xt26_large.png" alt="Calendar">
+                    <img src="../images/calendar.png" alt="Calendar">
                 </div>
                 <div class="label">Calendar</div>
             </div>
 
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15__f4h2p0qqp6a2_large.jpg" alt="Phone">
+                    <img src="../images/phone.png" alt="Phone">
                 </div>
                 <div class="label">Phone</div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_messages__c7g0t7t7j7qa_large.png" alt="Messages">
+                    <img src="../images/messages.png" alt="Messages">
                 </div>
                 <div class="label">Messages</div>
             </div>
             <div class="app" id="safariApp">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/safari/f/images/overview/icon_safari__d3v2c7q2vxqe_large.png" alt="Safari">
+                    <img src="../images/safari.png" alt="Safari">
                 </div>
                 <div class="label">Safari</div>
             </div>
             <div class="app" id="capitecApp">
                 <div class="icon">
-                    <img src="../images/Logo.png" alt="Capitec">
+                    <img src="../images/bankIcon.png" alt="Capitec">
                 </div>
                 <div class="label">Capitec</div>
             </div>
 
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_maps__c7g0t7t7j7qa_large.png" alt="Maps">
+                    <img src="../images/map.png" alt="Maps">
                 </div>
                 <div class="label">Maps</div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_weather__c7g0t7t7j7qa_large.png" alt="Weather">
+                    <img src="../images/weather.png" alt="Weather">
                 </div>
                 <div class="label">Weather</div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_clock__c7g0t7t7j7qa_large.png" alt="Clock">
+                    <img src="../images/clock.png" alt="Clock">
                 </div>
                 <div class="label">Clock</div>
             </div>
             <div class="app" id="shutdownApp">
                 <div class="icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Shutdown">
+                    <img src="../images/shutdown.png" alt="Shutdown">
                 </div>
                 <div class="label">Power</div>
             </div>
@@ -400,22 +404,22 @@
         <div class="dock">
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/iphone/home/bo/images/overview/hero_iphone_15__f4h2p0qqp6a2_large.jpg" alt="Phone">
+                    <img src="../images/phone.png" alt="Phone">
                 </div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_messages__c7g0t7t7j7qa_large.png" alt="Messages">
+                    <img src="../images/messages.png" alt="Messages">
                 </div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/safari/f/images/overview/icon_safari__d3v2c7q2vxqe_large.png" alt="Safari">
+                    <img src="../images/safari.png" alt="Safari">
                 </div>
             </div>
             <div class="app">
                 <div class="icon">
-                    <img src="https://www.apple.com/v/macos/monterey/f/images/overview/hero_icon_settings__c7g0t7t7j7qa_large.png" alt="Settings">
+                    <img src="../images/appleMusic.png" alt="Settings">
                 </div>
             </div>
         </div>
@@ -428,11 +432,7 @@
                 <div style="width: 60px;"></div>
             </div>
             <div class="safari-content">
-                <div class="safari-loading" id="safariLoading">
-                    <div class="safari-spinner"></div>
-                    <div>Loading Capitec Website...</div>
-                </div>
-                <iframe class="safari-iframe" id="safariIframe" src="about:blank" style="display: none;"></iframe>
+                <iframe class="safari-iframe" id="safariIframe" src="about:blank"></iframe>
             </div>
         </div>
         <div class="home-indicator"></div>
@@ -447,8 +447,6 @@
         const shutdownApp = document.getElementById('shutdownApp');
         const overlay = document.getElementById('openOverlay');
         const safariOverlay = document.getElementById('safariOverlay');
-        const safariIframe = document.getElementById('safariIframe');
-        const safariLoading = document.getElementById('safariLoading');
         const safariBackBtn = document.getElementById('safariBackBtn');
 
         if (!capitecApp || !overlay || !safariApp || !safariOverlay) return;
@@ -472,20 +470,17 @@
 
         function openSafari(e){
             e.preventDefault();
-
-            // Show the Safari overlay with loading animation
             safariOverlay.classList.add('active');
-            safariLoading.style.display = 'flex';
-            safariIframe.style.display = 'none';
+            
+            // Open Capitec in a new tab as Safari would do
+            const targetUrl = 'https://www.capitecbank.co.za';
+            window.open(targetUrl, '_blank');
 
-            // Load the Capitec website in the iframe
-            safariIframe.src = 'https://www.capitecbank.co.za';
-
-            // Show the iframe once it's loaded
-            safariIframe.onload = function() {
-                safariLoading.style.display = 'none';
-                safariIframe.style.display = 'block';
-            };
+            // Automatically close the safari overlay after a moment
+            // so the user is back home when they return to the simulator
+            setTimeout(() => {
+                safariOverlay.classList.remove('active');
+            }, 1000);
         }
 
         function shutdownPhone(e) {
@@ -496,7 +491,6 @@
         function closeSafari(e) {
             e.preventDefault();
             safariOverlay.classList.remove('active');
-            safariIframe.src = 'about:blank';
         }
 
         capitecApp.addEventListener('click', openCapitec);
