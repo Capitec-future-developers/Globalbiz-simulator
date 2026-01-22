@@ -1879,3 +1879,164 @@ input:checked + .slider:before {
     top: 10px;
     color: #5a5a5a;
 }
+
+.accountLimit-header{
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.bodyHeader{
+    position: absolute;
+    top: 125px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    height: 40px;
+    color: #535353;
+}
+
+
+.accountSection{
+    position: relative;
+}
+
+.accountContainers{
+    position: absolute;
+    top: 170px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.leftContiner{
+    position: absolute;
+    left: 0;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rightContiner{
+    position: absolute;
+    right: 10px;
+
+}
+
+.transaction-limit-wrapper{
+    position: absolute;
+    top: 100px;
+    left: -10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.current-limit-display{
+    border: 1px solid #ccc;
+    width: 270px;
+    height: 40px;
+    background-color: #ededed;
+    padding-left: 15px;
+    padding-top: 10px;
+    color: #b5b5b5;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.label-current{
+    position: absolute;
+    background-color: #ededed;
+    font-size: 12px;
+    left: 10px;
+    top: -7px;
+    color: #5a5a5a;
+}
+
+.transaction-limit-container{
+    position: absolute;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.new-limit-input{
+    border: 1px solid #ccc;
+    width: 270px;
+    height: 40px;
+    padding-left: 15px;
+    padding-top: -10px;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.label-new{
+    position: relative;
+    background-color: #FFFFFF;
+    font-size: 12px;
+    left: 10px;
+    top: 10px;
+    color: #5a5a5a;
+}
+
+.transaction-edit-buttons{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 1px solid #ccc;
+    bottom: -200px;
+}
+
+.btn-update{
+    border: 1px;
+    background-color: #2eaaea;
+    color: #FFFFFF;
+    width: 270px;
+    height: 50px;
+    padding-left: 15px;
+    padding-top: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.bottomLine{
+    position: relative;
+    border-bottom: 3px solid #ccc;
+    bottom: -100px;
+    width: 293px;
+    left: -25px;
+    transition: bottom 0.3s ease;
+}
+
+.bottomLine.is-open {
+    bottom: -320px;
+}
+
+#dropToTheFall {
+    display: none;
+}
+
+#dropToTheFall.is-open {
+    display: block;
+}
+
+.rightContiner img.cancel-icon {
+    filter: invert(53%) sepia(91%) saturate(2855%) hue-rotate(174deg) brightness(98%) contrast(92%);
+}

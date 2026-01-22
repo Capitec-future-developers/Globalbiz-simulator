@@ -274,7 +274,38 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class=edit-account-limit-page>
           <div class="accountLimit-header">
           <h4>Account limits</h4>
-          
+          <span>Select the individual account limits you would</span>
+          <span>like to modify below</span>
+</div>
+<div class="bodyHeader"><h4>Accounts</h4></div>
+<div class="accountSection">
+<div class="accountContainers" id="activateDrop">
+<div class="leftContiner">
+<span>Current</span>
+<span>Account</span>
+<span><b>105 2626 43</b></span>
+</div>
+<div class="rightContiner">
+<img src="../images/edit.png" alt="edit">
+</div>
+<div class="transaction-limit-wrapper" id="dropToTheFall">
+  <div class="transaction-limit-container">
+    <label class="label-current">Current Transaction Limit</label>
+    <span class="current-limit-display" id="currentTransactionLimit">R 0.00</span>
+<lable>
+    <label class="label-new">
+      New Transaction Limit </label>
+      <input class="new-limit-input" type="number" id="newTransactionLimit" value="0" step="0.01" min="0">
+</lable>
+  </div>
+
+  <div class="transaction-edit-buttons">
+    <button class="btn-update" id="btnUpdateLimit">Update</button>
+  </div>
+  
+</div>
+<div class="bottomLine"></div>
+</div>
 </div>
 </div>
         `]
@@ -337,6 +368,40 @@ document.addEventListener('DOMContentLoaded', function () {
                 })}`;
             });
         }
+
+        attachDropdownLogic(contentWrapper);
+    }
+
+    function attachDropdownLogic(container) {
+        const activateDrop = container.querySelector('#activateDrop');
+        const dropToTheFall = container.querySelector('#dropToTheFall');
+        const bottomLine = container.querySelector('.bottomLine');
+        const editImg = container.querySelector('.rightContiner img');
+
+        if (activateDrop && dropToTheFall) {
+            activateDrop.addEventListener('click', (e) => {
+                // If they clicked the edit icon, don't toggle dropdown
+                if (e.target.closest('#editAccountLimit')) return;
+                
+                const isOpen = dropToTheFall.classList.toggle('is-open');
+                
+                if (bottomLine) {
+                    bottomLine.classList.toggle('is-open', isOpen);
+                }
+                
+                if (editImg) {
+                    if (isOpen) {
+                        // Check if close.svg exists, otherwise use a generic cancel representation
+                        // For now, we assume close.svg exists based on typical naming in this project
+                        editImg.src = '../images/close.svg'; 
+                        editImg.classList.add('cancel-icon');
+                    } else {
+                        editImg.src = '../images/edit.png';
+                        editImg.classList.remove('cancel-icon');
+                    }
+                }
+            });
+        }
     }
 
     headerBackArrow.addEventListener('click', function(event) {
@@ -374,14 +439,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        const dropToTheFall = document.getElementById('dropToTheFall');
+        const activateDrop = document.getElementById('activateDrop');
+        const bottomLine = document.querySelector('.bottomLine');
+        const editImg = document.querySelector('.rightContiner img');
+
+        if (dropToTheFall && activateDrop && !activateDrop.contains(e.target)) {
+            dropToTheFall.classList.remove('is-open');
+            if (bottomLine) {
+                bottomLine.classList.remove('is-open');
+            }
+            if (editImg) {
+                editImg.src = '../images/edit.png';
+                editImg.classList.remove('cancel-icon');
+            }
+        }
+    });
+
     document.addEventListener('click', function (e) {
         if (e.target.id === 'editAccountLimit' || e.target.closest('#editAccountLimit')) {
             showNewPage('editAccountLimit', 'Edit Account Limits');
         }
 
-
-    })
-    document.addEventListener('click', function (e) {
         if (e.target.id === 'editlimits' || e.target.closest('#editlimits')) {
             showNewPage('editLimits', 'Edit Limits');
         }
