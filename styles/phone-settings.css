@@ -2040,3 +2040,30 @@ input:checked + .slider:before {
 .rightContiner img.cancel-icon {
     filter: invert(53%) sepia(91%) saturate(2855%) hue-rotate(174deg) brightness(98%) contrast(92%);
 }
+
+#cancelText {
+    cursor: pointer;
+}
+
+.success-message {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 10000;
+    display: none;
+    animation: fadeInOut 3s forwards;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; bottom: 70px; }
+    15% { opacity: 1; bottom: 80px; }
+    85% { opacity: 1; bottom: 80px; }
+    100% { opacity: 0; bottom: 90px; }
+}

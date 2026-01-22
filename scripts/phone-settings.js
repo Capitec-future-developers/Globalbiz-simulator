@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Load state from localStorage or use defaults
+    const savedState = JSON.parse(localStorage.getItem('phoneSettingsState'));
+    const globalState = savedState || {
+        dailyProfileLimit: 0,
+        accountLimit: 90000
+    };
+
+    function saveState() {
+        localStorage.setItem('phoneSettingsState', JSON.stringify(globalState));
+    }
+
     const tabContentData = {
         transactionLimit: [`
       <div class="tab-content">
@@ -11,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class="account-box">
                 <div class="account-info-row" >
                   <div class="info-item">
-                    <span class="info-value" id="info-value">R0.00</span>
+                    <span class="info-value" id="info-value">R${Number(globalState.dailyProfileLimit).toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</span>
                     <span class="info-label"><strong>Daily profile limit</strong></span>
                   </div>
                 </div>
@@ -30,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
  </span></span>
                 
                 <span class="detail-item-right" style=" right: 18px;
-    cursor: pointer;">Account limit <span style="font-weight: bold;">R90 000</span></span>
+    cursor: pointer;">Account limit <span style="font-weight: bold;" id="accountLimitAmount">R${Number(globalState.accountLimit).toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</span></span>
                 <span class="material-icons-sharp yoh" style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>
     
@@ -279,19 +290,20 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 <div class="bodyHeader"><h4>Accounts</h4></div>
 <div class="accountSection">
-<div class="accountContainers" id="activateDrop">
+<div class="accountContainers" >
 <div class="leftContiner">
 <span>Current</span>
 <span>Account</span>
 <span><b>105 2626 43</b></span>
 </div>
-<div class="rightContiner">
-<img src="../images/edit.png" alt="edit">
-</div>
+<div class="rightContiner" id="activateDrop">
+                    <img src="../images/edit.png" alt="edit" id="editIcon">
+                    <span id="cancelText" style="display: none; color: #2eaaea; font-weight: bold; font-size: 14px;">Cancel</span>
+                </div>
 <div class="transaction-limit-wrapper" id="dropToTheFall">
   <div class="transaction-limit-container">
     <label class="label-current">Current Transaction Limit</label>
-    <span class="current-limit-display" id="currentTransactionLimit">R 0.00</span>
+    <span class="current-limit-display" id="currentTransactionLimit">R${Number(globalState.accountLimit).toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</span>
 <lable>
     <label class="label-new">
       New Transaction Limit </label>
@@ -323,6 +335,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const settingContainer = document.querySelector('.setting-container');
     const headerTitle = document.querySelector('.header');
     const headerBackArrow = document.querySelector('#sidebarToggle');
+
+    const successMessage = document.createElement('div');
+    successMessage.classList.add('success-message');
+    successMessage.textContent = 'Success the account limit has been updated';
+    document.body.appendChild(successMessage);
+
+    function showSuccessMessage() {
+        successMessage.style.display = 'block';
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 3000);
+    }
 
     const newPageContainer = document.createElement('div');
     newPageContainer.classList.add('new-page-container');
@@ -358,6 +382,27 @@ document.addEventListener('DOMContentLoaded', function () {
         // Scroll to top of the new page
         newPageContainer.scrollTop = 0;
 
+        // Populate values from globalState
+        if (contentKey === 'editLimits') {
+            const input = contentWrapper.querySelector('#limitInput');
+            const span = contentWrapper.querySelector('#currentLimit');
+            if (input) input.value = globalState.dailyProfileLimit;
+            if (span) {
+                span.textContent = `R ${Number(globalState.dailyProfileLimit).toLocaleString('en-ZA', {
+                    minimumFractionDigits: 2
+                })}`;
+            }
+        } else if (contentKey === 'editAccountLimit') {
+            const input = contentWrapper.querySelector('#newTransactionLimit');
+            const span = contentWrapper.querySelector('#currentTransactionLimit');
+            if (input) input.value = globalState.accountLimit;
+            if (span) {
+                span.textContent = `R ${Number(globalState.accountLimit).toLocaleString('en-ZA', {
+                    minimumFractionDigits: 2
+                })}`;
+            }
+        }
+
         const input = contentWrapper.querySelector('#limitInput');
         const span = contentWrapper.querySelector('#currentLimit');
         if (input && span) {
@@ -376,30 +421,33 @@ document.addEventListener('DOMContentLoaded', function () {
         const activateDrop = container.querySelector('#activateDrop');
         const dropToTheFall = container.querySelector('#dropToTheFall');
         const bottomLine = container.querySelector('.bottomLine');
-        const editImg = container.querySelector('.rightContiner img');
+        const editImg = container.querySelector('#editIcon');
+        const cancelText = container.querySelector('#cancelText');
 
         if (activateDrop && dropToTheFall) {
             activateDrop.addEventListener('click', (e) => {
-                // If they clicked the edit icon, don't toggle dropdown
+                // If they clicked the edit button (id="editAccountLimit") on the previous page, don't toggle dropdown
+                // This check might be redundant here since we are inside editAccountLimit page, but keeping for safety.
                 if (e.target.closest('#editAccountLimit')) return;
                 
-                const isOpen = dropToTheFall.classList.toggle('is-open');
+                const isCurrentlyOpen = dropToTheFall.classList.contains('is-open');
                 
-                if (bottomLine) {
-                    bottomLine.classList.toggle('is-open', isOpen);
-                }
-                
-                if (editImg) {
-                    if (isOpen) {
-                        // Check if close.svg exists, otherwise use a generic cancel representation
-                        // For now, we assume close.svg exists based on typical naming in this project
-                        editImg.src = '../images/close.svg'; 
-                        editImg.classList.add('cancel-icon');
-                    } else {
-                        editImg.src = '../images/edit.png';
-                        editImg.classList.remove('cancel-icon');
+                // If it's open, only clicking cancelText should close it
+                if (isCurrentlyOpen) {
+                    if (e.target.id === 'cancelText' || e.target.closest('#cancelText')) {
+                        dropToTheFall.classList.remove('is-open');
+                        if (bottomLine) bottomLine.classList.remove('is-open');
+                        if (editImg) editImg.style.display = 'block';
+                        if (cancelText) cancelText.style.display = 'none';
                     }
+                    return; // Don't do anything else if it's already open
                 }
+
+                // If it's closed, clicking activateDrop (which includes editImg) opens it
+                dropToTheFall.classList.add('is-open');
+                if (bottomLine) bottomLine.classList.add('is-open');
+                if (editImg) editImg.style.display = 'none';
+                if (cancelText) cancelText.style.display = 'block';
             });
         }
     }
@@ -439,23 +487,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-        const dropToTheFall = document.getElementById('dropToTheFall');
-        const activateDrop = document.getElementById('activateDrop');
-        const bottomLine = document.querySelector('.bottomLine');
-        const editImg = document.querySelector('.rightContiner img');
-
-        if (dropToTheFall && activateDrop && !activateDrop.contains(e.target)) {
-            dropToTheFall.classList.remove('is-open');
-            if (bottomLine) {
-                bottomLine.classList.remove('is-open');
-            }
-            if (editImg) {
-                editImg.src = '../images/edit.png';
-                editImg.classList.remove('cancel-icon');
-            }
-        }
+        // Dropdown closing logic removed as per requirement: 
+        // "activated drop should only close once cancelText id is clicked"
     });
 
     document.addEventListener('click', function (e) {
@@ -503,12 +537,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (e.target.id === 'finalConfirm' || e.target.closest('#finalConfirm')) {
             const display = document.getElementById('displayLimit');
-            const newValue = display ? display.textContent : 'R 0.00';
+            const newValueStr = display ? display.textContent : 'R 0.00';
             
+            // Update globalState (extract number from R 1 234,56)
+            const numericValue = Number(newValueStr.replace(/[^0-9.]/g, '')) || 0;
+            globalState.dailyProfileLimit = numericValue;
+            saveState();
 
             tabContentData.transactionLimit[0] = tabContentData.transactionLimit[0].replace(
                 /<span class="info-value" id="info-value">.*?<\/span>/,
-                `<span class="info-value" id="info-value">${newValue}</span>`
+                `<span class="info-value" id="info-value">${newValueStr}</span>`
             );
             
             showNewPage('transactionLimit', 'Transaction Limits');
@@ -516,12 +554,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const infoValue = document.getElementById('info-value');
             if (infoValue) {
-                infoValue.textContent = newValue;
+                infoValue.textContent = newValueStr;
             }
         }
 
         if (e.target.id === 'cancelEdit' || e.target.closest('#cancelEdit')) {
             showNewPage('transactionLimit', 'Transaction Limits');
+        }
+
+        if (e.target.id === 'btnUpdateLimit' || e.target.closest('#btnUpdateLimit')) {
+            const input = document.getElementById('newTransactionLimit');
+            const newValue = input ? input.value : '0';
+            const numericValue = Number(newValue) || 0;
+            globalState.accountLimit = numericValue;
+            saveState();
+            
+            const formattedValue = `R${numericValue.toLocaleString('en-ZA', {
+                minimumFractionDigits: 2
+            })}`;
+
+            // Update templates
+            tabContentData.transactionLimit[0] = tabContentData.transactionLimit[0].replace(
+                /<span style="font-weight: bold;" id="accountLimitAmount">.*?<\/span>/,
+                `<span style="font-weight: bold;" id="accountLimitAmount">${formattedValue}</span>`
+            );
+
+            tabContentData.editAccountLimit[0] = tabContentData.editAccountLimit[0].replace(
+                /<span class="current-limit-display" id="currentTransactionLimit">.*?<\/span>/,
+                `<span class="current-limit-display" id="currentTransactionLimit">${formattedValue}</span>`
+            );
+
+            // Update DOM if elements exist
+            const accountLimitSpan = document.getElementById('accountLimitAmount');
+            if (accountLimitSpan) {
+                accountLimitSpan.textContent = formattedValue;
+            }
+
+            const currentTransLimitSpan = document.getElementById('currentTransactionLimit');
+            if (currentTransLimitSpan) {
+                currentTransLimitSpan.textContent = formattedValue;
+            }
+
+            showSuccessMessage();
+            
+            // Redirect to transactionLimit screen after update
+            setTimeout(() => {
+                showNewPage('transactionLimit', 'Transaction Limits');
+            }, 500); // Small delay to allow user to see success message start or just immediate transition
         }
 
         if (
