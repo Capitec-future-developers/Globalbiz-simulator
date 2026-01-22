@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
               <div class="search-section">
                          <div class="search-bar">Account Limit</div>
-                         <button class="edit-btn">Edit</button>
+                         <button class="edit-btn" id="editAccountLimit">Edit</button>
                          <div class="info-icon">
                          <img src="../images/info-trans.svg" alt="info-trans.svg" />
                          <span class="icon-lable"> What is an account limit?</span>
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
               
             </div>
             <div class="bottom-nav" id="bottomNav">
-                <a href="Phone2.html" class="nav-item active" id="Homee">
+                <a href="Phone2.html" class="nav-item active" id="Home">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
                     <span>Home</span>
                 </a>
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
                               </div>
             </div>
              <div class="bottom-nav" id="bottomNav">
-                <a href="Phone2.html" class="nav-item active" id="Homee">
+                <a href="Phone2.html" class="nav-item active" id="Home">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
                     <span>Home</span>
                 </a>
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 
             <div class="bottom-nav" id="bottomNav">
-                <a href="Phone2.html" class="nav-item active" id="Homee">
+                <a href="Phone2.html" class="nav-item active" id="Home">
                     <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
                     <span>Home</span>
                 </a>
@@ -268,7 +268,16 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 </div>
      
-         `]
+         `],
+
+        editAccountLimit: [`
+          <div class=edit-account-limit-page>
+          <div class="accountLimit-header">
+          <h4>Account limits</h4>
+          
+</div>
+</div>
+        `]
     };
 
 
@@ -365,6 +374,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    document.addEventListener('click', function (e) {
+        if (e.target.id === 'editAccountLimit' || e.target.closest('#editAccountLimit')) {
+            showNewPage('editAccountLimit', 'Edit Account Limits');
+        }
+
+
+    })
     document.addEventListener('click', function (e) {
         if (e.target.id === 'editlimits' || e.target.closest('#editlimits')) {
             showNewPage('editLimits', 'Edit Limits');
