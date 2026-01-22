@@ -1,4 +1,3 @@
-
 {
   "name": "globalbiz-simulator",
   "version": "1.0.0",
@@ -6,7 +5,9 @@
   "main": "scripts/App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node scripts/server.js"
+    "start": "node scripts/server.js",
+    "remove-comments": "node remove-comments.js",
+    "watch-comments": "nodemon --watch . --ext js,css,html --ignore node_modules --exec \"node remove-comments.js\""
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }

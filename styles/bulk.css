@@ -360,7 +360,7 @@ ul{
 }
 
 
-/*Group and Multiple*/
+
 
 .group-payment-box{
     position: absolute;
@@ -477,13 +477,13 @@ input[type="radio"]:checked + .circle-radio::after {
     pointer-events: none;
 }
 
-/* Drag & Drop */
+
 .dragover {
     border: 2px dashed #00aeff !important;
     background-color: #f0f8ff !important;
 }
 
-/* Search input */
+
 .search-input {
     padding-left: 35px;
     width: 100%;
@@ -494,7 +494,7 @@ input[type="radio"]:checked + .circle-radio::after {
 
 
 
-/* Beneficiary table */
+
 .beneficiary-table {
     width: 100%;
     border-collapse: collapse;
@@ -518,7 +518,7 @@ input[type="radio"]:checked + .circle-radio::after {
 
 
 
-/* Content header */
+
 .content-header h1 {
     position: absolute;
     top: 50px;
@@ -526,7 +526,7 @@ input[type="radio"]:checked + .circle-radio::after {
     white-space: nowrap;
 }
 
-/* Footer actions */
+
 .footer-actions {
     position: fixed;
     bottom: 0;
@@ -555,7 +555,7 @@ input[type="radio"]:checked + .circle-radio::after {
     border-radius: 5px;
 }
 
-/* Utility classes */
+
 .hidden {
     display: none;
 }

@@ -1,4 +1,4 @@
-/* iPhone-like styling */
+
 :root {
     --bezel: #111;
     --screen: #000;
@@ -41,11 +41,7 @@ html, body {
     inset: 0;
     width: 100%;
     height: 100vh;
-    background-image: url("../images/iphoneBackground.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
+    background: url("../images/iphoneBackground.png") center/cover no-repeat;
     z-index: 1;
     pointer-events: none;
 }
@@ -157,7 +153,7 @@ html, body {
     text-align: center;
 }
 
-/* Dock */
+
 .dock {
     position: absolute;
     bottom: 24px;
@@ -174,7 +170,7 @@ html, body {
     z-index: 3;
 }
 
-/* Open animation overlay */
+
 .open-overlay {
     position: absolute;
     left: 0;
@@ -208,7 +204,7 @@ html, body {
     }
 }
 
-/* Safari transition overlay */
+
 .safari-overlay {
     position: absolute;
     top: 0;
@@ -293,7 +289,7 @@ html, body {
     to { transform: rotate(360deg); }
 }
 
-/* Power Down Overlay */
+
 .power-down-overlay {
     position: absolute;
     top: 0;
@@ -400,7 +396,7 @@ html, body {
     animation: spin 1s linear infinite;
 }
 
-/* Reduce motion preference */
+
 @media (prefers-reduced-motion: reduce) {
     .open-overlay.active {
         animation-duration: .01ms;

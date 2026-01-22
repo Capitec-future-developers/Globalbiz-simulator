@@ -1,4 +1,4 @@
-/* Windows 11 Desktop Styling */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -79,7 +79,7 @@ html, body {
     line-height: 1.2;
 }
 
-/* Taskbar */
+
 .taskbar {
     position: absolute;
     left: 0;
@@ -190,7 +190,7 @@ html, body {
     opacity: 0.8;
 }
 
-/* Start Menu */
+
 .start-menu {
     position: absolute;
     left: 10px;
@@ -397,7 +397,7 @@ html, body {
     background: #b02a30;
 }
 
-/* Edge Browser Window */
+
 .browser-window {
     position: absolute;
     top: 50%;
@@ -538,7 +538,7 @@ html, body {
     animation: spin 1s linear infinite;
 }
 
-/* Windows 11 Shutdown Animation */
+
 .shutdown-overlay {
     position: fixed;
     top: 0;
