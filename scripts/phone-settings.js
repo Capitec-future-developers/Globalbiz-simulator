@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class="accounts-details">
                <span class="details-item">Kodi codes <div class="below">1052 2626 43</div></span>
                 <span class="currency" style="position: absolute; right: 40px;">ZAR</span>
-<span class="material-icons-sharp" class="yoh" style="color: #007AFF;
+<span class="material-icons-sharp yoh"  style="color: #007AFF;
     cursor: pointer; ">keyboard_arrow_right</span>
                               </div>
             </div>
@@ -313,6 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
         contentWrapper.innerHTML = tabContentData[contentKey][0];
         newPageContainer.appendChild(contentWrapper);
 
+        // Scroll to top of the new page
+        newPageContainer.scrollTop = 0;
 
         const input = contentWrapper.querySelector('#limitInput');
         const span = contentWrapper.querySelector('#currentLimit');
@@ -327,15 +329,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     headerBackArrow.addEventListener('click', function(event) {
-        event.preventDefault();
-        newPageContainer.style.display = 'none';
-        settingContainer.style.display = 'block';
-        headerTitle.textContent = 'Settings';
+        if (newPageContainer.style.display === 'flex') {
+            event.preventDefault();
+            newPageContainer.style.display = 'none';
+            settingContainer.style.display = 'block';
+            headerTitle.textContent = 'Settings';
+        }
     });
 
     Object.entries(tabButtons).forEach(([key, button]) => {
         if (!button) return;
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+            console.log('Tab clicked:', key);
             let titleText = '';
             switch(key) {
                 case 'transactionLimit': titleText = 'Transaction Limits'; break;
@@ -346,19 +351,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const input = document.getElementById('limitInput');
-        const span = document.getElementById('currentLimit');
+    const inputLimit = document.getElementById('limitInput');
+    const spanLimit = document.getElementById('currentLimit');
 
-        if (input && span) {
-            input.addEventListener('input', () => {
-                const value = Number(input.value) || 0;
-                span.textContent = `R ${value.toLocaleString('en-ZA', {
-                    minimumFractionDigits: 2
-                })}`;
-            });
-        }
-    });
+    if (inputLimit && spanLimit) {
+        inputLimit.addEventListener('input', () => {
+            const value = Number(inputLimit.value) || 0;
+            spanLimit.textContent = `R ${value.toLocaleString('en-ZA', {
+                minimumFractionDigits: 2
+            })}`;
+        });
+    }
 
     document.addEventListener('click', function (e) {
         if (e.target.id === 'editlimits' || e.target.closest('#editlimits')) {

@@ -1383,19 +1383,8 @@ input:checked + .slider:before {
     align-items: end;
 }
 
-.yoh{
-   position: relative;
-    top: -18px;
-    color: #1e88e5;
-    margin-right: -170px;
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
 
-.yohs{
+.yoh{
     position: absolute;
     color: #1e88e5;
     right: 10px;
