@@ -28,16 +28,12 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80') center/cover no-repeat;
+            background: url('../images/windowsBackground.png') center/cover no-repeat;
             filter: brightness(0.8);
+            transition: background-image 1s ease-in-out;
         }
 
-        .wallpaper-overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(30, 60, 114, 0.4) 0%, rgba(42, 82, 152, 0.3) 100%);
-        }
+
 
         .desktop-icons {
             position: absolute;
@@ -695,7 +691,7 @@
     <div class="desktop-icons">
         <a class="desktop-icon" id="capitecIcon" href="Computer.html">
             <div class="icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Capitec_logo.svg/1200px-Capitec_logo.svg.png" alt="Capitec">
+                <img src="../images/bankIcon.png" alt="Capitec">
             </div>
             <div class="label">Capitec</div>
         </a>
@@ -707,13 +703,13 @@
         </div>
         <div class="desktop-icon">
             <div class="icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg/1200px-Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg.png" alt="Mail">
+                <img src="../images/outlook.png" alt="Mail">
             </div>
-            <div class="label">Mail</div>
+            <div class="label">Outlook</div>
         </div>
         <div class="desktop-icon">
             <div class="icon">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/1024px-Windows_logo_-_2012.svg.png" alt="File Explorer">
+                <img src="../images/files.png">
             </div>
             <div class="label">File Explorer</div>
         </div>
@@ -728,10 +724,10 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Microsoft_Edge_logo_%282019%29.svg/1200px-Microsoft_Edge_logo_%282019%29.svg.png" alt="Edge">
             </div>
             <div class="taskbar-app">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg/1200px-Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg.png" alt="Mail">
+                <img src="../images/outlook.png" alt="Mail">
             </div>
             <div class="taskbar-app">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/1024px-Windows_logo_-_2012.svg.png" alt="File Explorer">
+                <img src="../images/files.png" alt="File Explorer">
             </div>
         </div>
         <div class="taskbar-widgets">
@@ -759,31 +755,31 @@
                 </div>
                 <div class="pinned-app">
                     <div class="icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg/1200px-Microsoft_Office_Outlook_%282018%E2%80%93present%29.svg.png" alt="Mail">
+                        <img src="../images/outlook.png" alt="Mail">
                     </div>
-                    <div class="label">Mail</div>
+                    <div class="label">Outlook</div>
                 </div>
                 <div class="pinned-app">
                     <div class="icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/1024px-Windows_logo_-_2012.svg.png" alt="File Explorer">
+                        <img src="../images/files.png" alt="File Explorer">
                     </div>
                     <div class="label">File Explorer</div>
                 </div>
                 <div class="pinned-app">
                     <div class="icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Microsoft_Store_icon.svg/1200px-Microsoft_Store_icon.svg.png" alt="Microsoft Store">
+                        <img src="../images/microsoftStore.png" alt="Microsoft Store">
                     </div>
                     <div class="label">Microsoft Store</div>
                 </div>
                 <div class="pinned-app">
                     <div class="icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Microsoft_Office_logo_%282019%E2%80%93present%29.svg/1200px-Microsoft_Office_logo_%282019%E2%80%93present%29.svg.png" alt="Office">
+                        <img src="../images/word.png" alt="Office">
                     </div>
                     <div class="label">Office</div>
                 </div>
                 <div class="pinned-app">
                     <div class="icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Windows_Settings_app_icon.png/640px-Windows_Settings_app_icon.png" alt="Settings">
+                        <img src="../images/microsoftSetting.png" alt="Settings">
                     </div>
                     <div class="label">Settings</div>
                 </div>
@@ -792,13 +788,13 @@
                 <div class="recommended-title">Recommended</div>
                 <div class="recommended-item">
                     <div class="icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Capitec_logo.svg/1200px-Capitec_logo.svg.png" alt="Capitec">
+                        <img src="../images/bankIcon.png" alt="Capitec">
                     </div>
                     <div class="label">Capitec Banking</div>
                 </div>
                 <div class="recommended-item">
                     <div class="icon">
-                        <img src="https://static.vecteezy.com/system/resources/previews/022/484/516/original/google-chrome-logo-transparent-background-free-png.png" alt="Chrome">
+                        <img src="../images/chrome.png" alt="Chrome">
                     </div>
                     <div class="label">Google Chrome</div>
                 </div>
@@ -956,6 +952,22 @@
             }
         }, 50);
     });
+
+    // Wallpaper rotation
+    const wallpapers = [
+        '../images/windowsBackground.png',
+        '../images/windowsBackgroundLight.png'
+    ];
+    let currentWallpaperIndex = 0;
+    const wallpaperElement = document.querySelector('.wallpaper');
+
+    function rotateWallpaper() {
+        currentWallpaperIndex = (currentWallpaperIndex + 1) % wallpapers.length;
+        wallpaperElement.style.backgroundImage = `url('${wallpapers[currentWallpaperIndex]}')`;
+    }
+
+    // Change wallpaper every 5 minutes (300,000 milliseconds)
+    setInterval(rotateWallpaper, 30000);
 </script>
 </body>
 </html>
