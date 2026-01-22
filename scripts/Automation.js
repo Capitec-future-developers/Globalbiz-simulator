@@ -87,6 +87,43 @@ const defaultAutomationCommands = {
         description: 'Go to transaction limit',
         category: 'transaction limits'
     },
+    'Create New Profile limits': {
+  steps: [
+      { action: 'click', selector: '#sidebarToggle' },
+      { action: 'wait', duration: 1000 },
+      { action: 'click', selector: '#settings' },
+      { action: 'wait', duration: 1000 },
+      { action: 'click', selector: '#Transaction-Limits' },
+      { action: 'wait', duration: 1000 },
+      { action: 'click', selector: '#editlimits' },
+      { action: 'wait', duration: 1000 },
+      { action: 'click', selector: '#limitInput'},
+      { action: 'wait', duration: 1000 },
+      { action: 'click', selector: '#continue-edit'},
+      { action: 'wait', duration: 1000 },
+      { action: 'click', selector: '#finalConfirm'}
+  ],
+        description: 'Create New Profile limits',
+        category: 'transaction limits'
+    },
+    'Create New Account limits': {
+        steps: [
+            { action: 'click', selector: '#sidebarToggle' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#settings' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#Transaction-Limits' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#editAccountLimit' },
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#activateDrop'},
+            { action: 'wait', duration: 1000 },
+            { action: 'click', selector: '#btnUpdateLimit'}
+        ],
+        description: 'Create New Account limits',
+        category: 'transaction limits'
+    },
+
     'Add new card': {
         steps: [
             { action: 'click', selector: '#cards' },
