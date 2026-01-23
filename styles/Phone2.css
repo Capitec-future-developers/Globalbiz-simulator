@@ -119,19 +119,19 @@ background-color: #FFFFFF;
 
 
 .head {
-    position: relative;
+    position: sticky;
+    top: 0;
     font-size: 1.5rem;
     font-weight: bold;
     background: #16232f;
     color: white;
     width: calc(100% + 40px);
-    height: 100px;
-    top: -35px;
+    height: 110px;
     left: -20px;
-    padding: 55px 20px;
+    padding: 65px 20px 10px;
     box-sizing: border-box;
     z-index: 5;
-    margin-top: 35px;
+    margin-top: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
