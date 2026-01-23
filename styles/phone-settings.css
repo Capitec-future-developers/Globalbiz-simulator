@@ -1600,8 +1600,8 @@ input:checked + .slider:before {
 .notification-header{
     position: absolute;
     background-color: #f2f2f2;
-    top: 10px;
-    width: 280px;
+    top: -1px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -1611,7 +1611,7 @@ input:checked + .slider:before {
 .accounts-details {
     position: absolute;
     background-color: #fff;
-    width: 275px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
