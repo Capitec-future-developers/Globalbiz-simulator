@@ -43,7 +43,6 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: relative;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -249,11 +248,12 @@ background-color: #FFFFFF;
 }
 
 .content {
-    position: relative;
+    position: absolute;
     overflow: scroll;
     padding: 0 20px;
     width: 100%;
     scrollbar-width: none;
+    top: 100px;
 }
 
 

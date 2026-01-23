@@ -1,5 +1,5 @@
 .Save{
-    position: relative;
+    position: page;
     display: flex;
     left: -10px;
     flex-direction: row;
@@ -17,3 +17,14 @@
     position: relative;
     border-right: 1px solid #cccccc;
 }
+
+.headers{
+    position: relative;
+    top: -10px;
+}
+
+.body{
+    position: relative;
+    top: 15px;
+}
+
