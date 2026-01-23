@@ -252,7 +252,6 @@ background-color: #FFFFFF;
     position: relative;
     overflow: scroll;
     padding: 0 20px;
-    margin-bottom: 10px;
     width: 100%;
     scrollbar-width: none;
 }
