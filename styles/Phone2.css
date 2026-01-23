@@ -128,7 +128,7 @@ background-color: #FFFFFF;
     width: calc(100% + 40px);
     height: 110px;
     left: -20px;
-    padding: 65px 20px 10px;
+    padding: 15px 20px 10px;
     box-sizing: border-box;
     z-index: 5;
     margin-top: 0;
@@ -177,7 +177,7 @@ background-color: #FFFFFF;
     font-weight: bold;
     font-size: 14px;
     position: relative;
-    right: 10px;
+    right: 25px;
     top: -3px;
     text-decoration: none;
 }
