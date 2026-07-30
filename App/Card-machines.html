@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Machines</title>
+    <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/Explore-newlook.css">
+    <link rel="stylesheet" href="../styles/chatbot.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+
+            <div class="head">
+                <a href="Explore.html" class="arrow" style="text-decoration: none;">
+                    <span class="material-icons-sharp">arrow_back</span>
+                </a>
+                <div class="header" style="font-size: 0.9rem;">Card Machines</div>
+            </div>
+
+            <button class="chatbot-toggler">
+                <span class="material-icons-sharp">mode_comment</span>
+                <span class="material-icons-sharp">close</span>
+            </button>
+            <div class="chatbot">
+                <header>
+                    <h2>BIZCHAT</h2>
+                    <span class="material-icons-sharp">close</span>
+                </header>
+                <ul class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <p>Welcome to Bizchat, how can I help?</p>
+                    </li>
+                    <li class="chat outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Type your message here..." required></textarea>
+                    <span id="send-btn" class="material-icons-sharp">send</span>
+                </div>
+            </div>
+
+            <div class="content" id="mainContent" style="top: 120px;">
+                <div class="cm-hero">
+                    <span class="cm-badge cm-badge-pro">Pro</span>
+                    <span class="cm-badge cm-badge-print">print</span>
+                    <div class="cm-hero-text">save up to 60% on commission</div>
+                </div>
+
+                <div class="cm-price-card">Buy a Print for <b>R1,399</b> or a Pro for <b>R699</b></div>
+
+                <div class="cm-tabs">
+                    <button class="cm-tab active" type="button" data-tab="about">About</button>
+                    <button class="cm-tab" type="button" data-tab="features">Features</button>
+                    <button class="cm-tab" type="button" data-tab="compare">Compare</button>
+                </div>
+
+                <div class="cm-card cm-tab-panel" id="cm-panel-about">
+                    <h4>No contracts, monthly fees, or hidden costs</h4>
+                    <ul>
+                        <li>Order in minutes and get free delivery in 3 days</li>
+                        <li>Get free next-day payout, even on weekends and public holidays</li>
+                        <li>Pay commission of only 1.85% on local debit card, 1.85% on local credit card and 2.3% on international card transactions (exl. VAT)</li>
+                    </ul>
+                </div>
+
+                <div class="cm-card cm-tab-panel" id="cm-panel-features" style="display: none;">
+                    <h4>Never miss a sale</h4>
+                    <ul>
+                        <li>All-day battery life</li>
+                        <li>Unlimited free, fast 4G and Wi-Fi</li>
+                        <li>Hassle-free sales tracking</li>
+                    </ul>
+                    <div class="cm-payment-logos">
+                        <span>VISA</span>
+                        <span>Mastercard</span>
+                        <span>AMEX</span>
+                        <span>Diners Club</span>
+                        <span>Apple Pay</span>
+                        <span>Google Pay</span>
+                        <span>Samsung Pay</span>
+                    </div>
+                </div>
+
+                <div class="cm-card cm-tab-panel" id="cm-panel-compare" style="display: none;">
+                    <h4>Choose what works for you</h4>
+                    <p>Designed with your business in mind, our card machines offer a sleek HD design with fast payments and sales tracking.</p>
+                    <p>While the Print can print receipts, the Pro is lighter with a bigger screen.</p>
+                </div>
+
+                <button class="cm-contact-btn" type="button" id="cm-contact-btn">Contact me</button>
+            </div>
+
+            <div class="bottom-nav" id="bottomNav">
+                <a href="Phone2.html" class="nav-item" id="Homee">
+                    <img src="../images/home.svg" alt="home" style="filter: brightness(0) invert(50%) contrast(80%)" />
+                    <span>Home</span>
+                </a>
+                <a href="Phone%20accounts.html" class="nav-item">
+                    <img src="../images/accounts.svg" alt="accounts" style="filter: brightness(0) invert(50%) contrast(80%)" />
+                    <span>Accounts</span>
+                </a>
+                <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <span>Transact</span>
+                </a>
+                <a href="Phone-cards.html" class="nav-item" id="cards">
+                    <img src="../images/cards-action.svg" alt="cards" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <span>Cards</span>
+                </a>
+                <a href="Explore.html" class="nav-item active">
+                    <span class="nav-icon material-icons-outlined">search</span>
+                    <span>Explore</span>
+                </a>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tabs = document.querySelectorAll('.cm-tab');
+        var panels = {
+            about: document.getElementById('cm-panel-about'),
+            features: document.getElementById('cm-panel-features'),
+            compare: document.getElementById('cm-panel-compare')
+        };
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                tabs.forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                Object.keys(panels).forEach(function (key) {
+                    panels[key].style.display = key === tab.dataset.tab ? 'block' : 'none';
+                });
+            });
+        });
+        var contactBtn = document.getElementById('cm-contact-btn');
+        contactBtn.addEventListener('click', function () {
+            var original = contactBtn.textContent;
+            contactBtn.textContent = 'Request sent';
+            contactBtn.disabled = true;
+            setTimeout(function () {
+                contactBtn.textContent = original;
+                contactBtn.disabled = false;
+            }, 1800);
+        });
+    });
+</script>
+</body>
+</html>

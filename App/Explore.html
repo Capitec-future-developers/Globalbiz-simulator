@@ -6,6 +6,7 @@
     <title>iPhone with Chatbot</title>
     <link rel="stylesheet" href="../styles/Phone2.css">
     <link rel="stylesheet" href="../styles/explore.css">
+    <link rel="stylesheet" href="../styles/Explore-newlook.css">
     <link rel="stylesheet" href="../styles/chatbot.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
@@ -33,7 +34,7 @@
         <div class="screen-content">
 
             
-            <div class="head">
+            <div class="head classic-only">
                 <a href="Phone2.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
                     <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
                 </a>
@@ -69,7 +70,40 @@
             </div>
 
             
-            <div class="content" id="mainContent" style="top: 120px;">
+            <div class="nl-explore-screen new-look-only">
+                <div class="nl-explore-topbar">
+                    <a href="Phone2.html" class="nl-back"><span class="material-icons-sharp">arrow_back</span></a>
+                    <h2>Products and services</h2>
+                </div>
+                <h3 class="nl-explore-heading">Business solutions</h3>
+                <p class="nl-explore-desc">Grow your business with our simplified solutions.</p>
+                <a href="Credit.html" class="nl-explore-card">
+                    <span class="nl-explore-card-icon nl-explore-icon-credit material-icons-sharp">autorenew</span>
+                    <div class="nl-explore-card-body">
+                        <div class="nl-explore-card-title nl-explore-title-credit">Credit</div>
+                        <div class="nl-explore-card-desc">Credit Card Facility &amp; Loan</div>
+                    </div>
+                    <span class="material-icons-sharp nl-explore-card-chevron">chevron_right</span>
+                </a>
+                <a href="Card-machines.html" class="nl-explore-card">
+                    <span class="nl-explore-card-icon nl-explore-icon-cardmachine material-icons-sharp">point_of_sale</span>
+                    <div class="nl-explore-card-body">
+                        <div class="nl-explore-card-title nl-explore-title-cardmachine">Card Machines</div>
+                        <div class="nl-explore-card-desc">Print &amp; Pro card machines</div>
+                    </div>
+                    <span class="material-icons-sharp nl-explore-card-chevron">chevron_right</span>
+                </a>
+                <a href="Savings-account.html" class="nl-explore-card">
+                    <span class="nl-explore-card-icon nl-explore-icon-save material-icons-sharp">trending_up</span>
+                    <div class="nl-explore-card-body">
+                        <div class="nl-explore-card-title nl-explore-title-save">Save</div>
+                        <div class="nl-explore-card-desc">Business Flexible Savings Account and 32-Day Notice Account</div>
+                    </div>
+                    <span class="material-icons-sharp nl-explore-card-chevron">chevron_right</span>
+                </a>
+            </div>
+
+            <div class="content classic-only" id="mainContent" style="top: 120px;">
                 <div class="headers"><br>
                     <span><b>Business Solutions</b></span>
 
@@ -77,6 +111,7 @@
                 </div>
 
                 <div class="body">
+                    <a href="Savings-account.html" style="text-decoration: none; color: inherit; display: block;">
                     <div class="Save" style="background: #FFFFFF;">
                         <img src="../images/save.svg" alt="saver" style="position: relative; width: 30px; height: 40px; top: 15px; left: 10px; ">
                         <div class="line-right" style="position: relative; left: 10px;">
@@ -87,7 +122,9 @@
                         </p>
                         <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: 40px; bottom: -20px; ">chevron_right</span>
                     </div>
+                    </a>
 
+                    <a href="Credit.html" style="text-decoration: none; color: inherit; display: block;">
                     <div class="Save" style="background: #FFFFFF; top: 35px;">
                         <img src="../images/Credit.png" alt="saver" style="position: relative; width: 35px; height: 40px; top: 15px; left: 10px; ">
                         <div class="line-right" style="position: relative; left: 5px;">
@@ -98,6 +135,8 @@
                         </p>
                         <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: -10px; bottom: -20px; ">chevron_right</span>
                     </div>
+                    </a>
+                    <a href="Card-machines.html" style="text-decoration: none; color: inherit; display: block;">
                     <div class="Save" style="background: #FFFFFF; top: 45px;">
                         <img src="../images/Cardmachine-white.png" alt="saver" style="position: relative; width: 45px; height: 45px; top: 15px; left: 10px; ">
 
@@ -108,6 +147,7 @@
                         </p>
                         <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: 10px; bottom: -20px; ">chevron_right</span>
                     </div>
+                    </a>
                 </div>
 
 
@@ -148,5 +188,12 @@
 
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (localStorage.getItem('previewNewLook') !== 'false') {
+            document.body.classList.add('new-look-active');
+        }
+    });
+</script>
 </body>
 </html>

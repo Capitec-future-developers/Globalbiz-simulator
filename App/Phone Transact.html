@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/Transfer-newlook.css">
+    <link rel="stylesheet" href="../styles/Payments-newlook.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <title>iPhone with White LCD</title>
@@ -27,7 +29,7 @@
     <div class="screen">
         <div class="notch"></div>
         <div class="screen-content">
-            <div class="head">
+            <div class="head classic-only">
                 <div class="arrow" id="sidebarToggle">
                     <a href="Phone2.html">
                         <span class="material-icons-sharp">arrow_back</span>
@@ -39,7 +41,7 @@
             
             <div class="content-container">
                 <div id="default-content">
-                    <div class="transact-box">
+                    <div class="transact-box classic-only">
                         <div class="account-info-coloumn">
                             <div class="info-item" id="payment">
                                 <span class="material-icons-sharp">exit_to_app</span>
@@ -57,6 +59,29 @@
                                 <span class="material-icons-sharp right">chevron_right</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="nl-transact-screen new-look-only">
+                    <div class="nl-transact-topbar">
+                        <a href="Phone2.html" class="nl-back"><span class="material-icons-sharp">arrow_back</span></a>
+                        <h2>Transact</h2>
+                    </div>
+                    <div class="nl-transact-menu">
+                        <button type="button" class="nl-transact-card" id="nl-tile-payment">
+                            <h3>Payments</h3>
+                            <p>Make payments and view history</p>
+                            <span class="material-icons-sharp nl-transact-card-icon">exit_to_app</span>
+                        </button>
+                        <button type="button" class="nl-transact-card" id="nl-tile-transfer">
+                            <h3>Transfers</h3>
+                            <p>Move money between accounts</p>
+                            <span class="material-icons-sharp nl-transact-card-icon">sync_alt</span>
+                        </button>
+                        <button type="button" class="nl-transact-card" id="nl-tile-beneficiaries">
+                            <h3>Beneficiaries</h3>
+                            <p>Add, group and manage beneficiaries</p>
+                            <span class="material-icons-sharp nl-transact-card-icon">group</span>
+                        </button>
+                    </div>
                     </div>
                 </div>
                 <div id="main-content-area" style="display: none;"></div>
@@ -94,5 +119,12 @@
 <script src="../scripts/Transacct.js"></script>
 <script src="../scripts/IndexDB.js"></script>
 <script src="../scripts/chatbot.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (localStorage.getItem('previewNewLook') !== 'false') {
+            document.body.classList.add('new-look-active');
+        }
+    });
+</script>
 </body>
 </html>

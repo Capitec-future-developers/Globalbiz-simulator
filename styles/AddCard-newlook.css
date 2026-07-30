@@ -1,0 +1,37 @@
+/* ============================================================
+   Step-progress indicator for the Add New Card flow
+   (scripts/add-new-card.js). The underlying flow only has two
+   real steps (card type, then limits for virtual cards) - this
+   just gives it the same "Step X of Y" progress-bar treatment
+   used elsewhere in the app, it does not add new steps.
+   ============================================================ */
+
+.ac-progress-wrap {
+    padding: 0 15px 10px;
+}
+
+.ac-progress-label {
+    font-size: 0.85rem;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.ac-progress-label b {
+    color: #16232f;
+}
+
+.ac-progress-bar {
+    display: flex;
+    gap: 6px;
+}
+
+.ac-progress-bar span {
+    flex: 1;
+    height: 5px;
+    border-radius: 3px;
+    background: #c7d3ec;
+}
+
+.ac-progress-bar span.done {
+    background: #1b4dbf;
+}
