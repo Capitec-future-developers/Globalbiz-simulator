@@ -13,30 +13,30 @@
 .promo-card {
     background: white;
     border: 1px solid #cccccc;
-    padding: 25px;
+    padding: 40px;
     flex: 1;
-    max-width: 500px;
+    max-width: 640px;
     height: 400px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     position: relative;
     overflow: hidden;
 }
 
 .promo-text h4 {
     color: #2c3e50;
-    font-size: 1.3rem;
-    margin-bottom: 12px;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
 }
 
 .promo-text p {
     color: #555;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    max-width: 320px;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 26px;
+    max-width: 340px;
 }
 
 .promo-tour-btn {
@@ -44,16 +44,16 @@
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 10px 22px;
-    font-size: 0.9rem;
+    padding: 13px 28px;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
 }
 
 .promo-slideshow {
     flex-shrink: 0;
-    width: 190px;
-    height: 190px;
+    width: 230px;
+    height: 230px;
     position: relative;
 }
 

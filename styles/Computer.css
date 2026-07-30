@@ -87,6 +87,18 @@ body {
   font-weight: 500;
 }
 
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+#profile-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
 .om-circle {
   width: 35px;
   height: 35px;
@@ -98,17 +110,13 @@ body {
   color: white;
   font-weight: bold;
   font-size: 14px;
-  position: relative;
-  right: 10px;
-  top: -9px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .name{
-  position: relative;
-  right: -5px;
-  top: -8px;
   text-decoration: none;
+  color: #2c3e50;
 }
 
 

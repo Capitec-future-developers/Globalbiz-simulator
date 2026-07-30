@@ -3,6 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/Phone-account.css">
+  <link rel="stylesheet" href="../styles/Phone-account-newlook.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
   <title>iPhone with White LCD</title>
@@ -25,7 +26,7 @@
   <div class="screen">
     <div class="notch"></div>
     <div class="screen-content">
-      <div class="head">
+      <div class="head classic-only">
         <a class="arrow" href="Phone2.html" style="text-decoration: none;">
           <span class="material-icons-sharp">arrow_back</span>
         </a>
@@ -33,8 +34,8 @@
       </div>
 
 
-      
-      <div class="content" id="mainContent">
+
+      <div class="content classic-only" id="mainContent">
         <div class="account">
           <div class="account-header">
          </div>
@@ -54,7 +55,45 @@
         </div>
       </div>
 
-      
+      <div class="nl-accounts-content new-look-only">
+        <div class="nl-accounts-topbar">
+          <a href="Phone2.html" class="nl-back"><span class="material-icons-sharp">arrow_back</span></a>
+          <h2>Accounts</h2>
+        </div>
+
+        <div class="nl-accounts-search">
+          <span class="material-icons-sharp">search</span>
+          <input type="text" id="nlAccountSearch" placeholder="Search accounts">
+        </div>
+
+        <div class="nl-filter-pills" id="nlFilterPills">
+          <button class="nl-pill" type="button" data-filter="all">All</button>
+          <button class="nl-pill" type="button" data-filter="current">Current</button>
+          <button class="nl-pill active" type="button" data-filter="savings">Savings</button>
+          <button class="nl-pill" type="button" data-filter="credit">Credit</button>
+        </div>
+
+        <div class="nl-account-list" id="nlAccountList">
+          <a href="Phone-accountDetails.html" class="nl-account-list-card" data-type="savings" data-name="business 32 day notice account">
+            <span class="nl-account-accent"></span>
+            <div class="nl-account-list-info">
+              <div class="nl-account-list-name">Business 32 Day Notice Account</div>
+              <div class="nl-account-list-label">Available balance</div>
+            </div>
+            <div class="nl-account-list-balance">R90.99</div>
+          </a>
+          <a href="Phone-accountDetails.html" class="nl-account-list-card" data-type="savings" data-name="flexible savings account">
+            <span class="nl-account-accent"></span>
+            <div class="nl-account-list-info">
+              <div class="nl-account-list-name">Flexible Savings Account</div>
+              <div class="nl-account-list-label">Available balance</div>
+            </div>
+            <div class="nl-account-list-balance">R0.00</div>
+          </a>
+        </div>
+      </div>
+
+
       <div class="bottom-nav" id="bottomNav">
         <a href="Phone2.html" class="nav-item " id="Homee">
           <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)" />
@@ -84,5 +123,39 @@
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/App.js"></script>
 <script src="../scripts/Automation.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (localStorage.getItem('previewNewLook') !== 'false') {
+            document.body.classList.add('new-look-active');
+        }
+
+        var pills = document.querySelectorAll('.nl-pill');
+        var cards = document.querySelectorAll('.nl-account-list-card');
+        var searchInput = document.getElementById('nlAccountSearch');
+
+        function applyFilters() {
+            var activePill = document.querySelector('.nl-pill.active');
+            var filter = activePill ? activePill.dataset.filter : 'all';
+            var query = (searchInput && searchInput.value || '').toLowerCase().trim();
+            cards.forEach(function (card) {
+                var matchesFilter = filter === 'all' || card.dataset.type === filter;
+                var matchesQuery = !query || card.dataset.name.indexOf(query) !== -1;
+                card.style.display = (matchesFilter && matchesQuery) ? 'flex' : 'none';
+            });
+        }
+
+        pills.forEach(function (pill) {
+            pill.addEventListener('click', function () {
+                pills.forEach(function (p) { p.classList.remove('active'); });
+                pill.classList.add('active');
+                applyFilters();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', applyFilters);
+        }
+    });
+</script>
 </body>
 </html>
