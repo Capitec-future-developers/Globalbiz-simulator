@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/Phone.css">
+  <link rel="stylesheet" href="../styles/chatbot.css">
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <title>iPhone with White LCD</title>
+</head>
+<body>
+<div class="iphone">
+  <div class="volume-buttons">
+    <div class="volume-up"></div>
+    <div class="volume-down"></div>
+  </div>
+  <div class="power-button"></div>
+  <div class="screen">
+    <div class="notch"></div>
+    <div class="screen-content welcome-screen">
+      <div class="arrow"><a id="backToHome" href="./iOSHome.html"><span class="material-icons-sharp" style="position: absolute; color: #00aeff; left: 10px; top:10px;" >arrow_back</span></a></div>
+
+      <div class="biz-toggle">
+        <span class="biz-toggle-track"></span>
+        <span class="head">For my business</span>
+      </div>
+
+      <div class="hello-hero">
+        <img class="hello-art" src="../images/capihelo.png" alt="hello">
+      </div>
+
+      <div class="user-name">Omphile</div>
+
+      <div class="dots-row">
+        <span class="dot"></span>
+        <span class="dot active"></span>
+      </div>
+
+      <div class="preview-row">
+        <span>Preview New Look</span>
+        <label class="switch">
+          <input type="checkbox" id="previewNewLookToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="qa-grid">
+        <div class="qa-card">
+          <span class="material-icons-sharp">group</span>
+          <span>Pay beneficiary</span>
+        </div>
+        <div class="qa-card">
+          <span class="material-icons-sharp">swap_horiz</span>
+          <span>Transfer money</span>
+        </div>
+        <div class="qa-card">
+          <span class="material-icons-sharp">person_add</span>
+          <span>Add beneficiary</span>
+        </div>
+        <div class="qa-card">
+          <span class="material-icons-sharp">account_balance_wallet</span>
+          <span>Transaction limits</span>
+        </div>
+      </div>
+
+      <a href="Phone.html" class="sign-in-link">
+        <button class="sign-in" type="submit">Sign In</button>
+      </a>
+
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
+
+
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
+
+    </div>
+    <div id="closeOverlay" style="position:absolute;left:0;top:0;right:0;bottom:0;background:#ffffff;opacity:0;pointer-events:none;transform-origin:center center;transform:scale(1);transition:transform .4s cubic-bezier(.2,.7,.2,1), opacity .2s linear; border-radius:0;"></div>
+    <div class="home-indicator"></div>
+  </div>
+  <script src="../scripts/chatbot.js"></script>
+  <script>
+    // Play a quick iOS-like close animation before navigating back to the iOS home
+    (function(){
+      const link = document.getElementById('backToHome');
+      const overlay = document.getElementById('closeOverlay');
+      if(!link || !overlay) return;
+      function goHome(e){
+        e.preventDefault();
+        // subtle fade + scale down
+        overlay.style.opacity = '1';
+        overlay.style.transform = 'scale(0.92)';
+        setTimeout(()=>{ window.location.href = link.getAttribute('href'); }, 400);
+      }
+      link.addEventListener('click', goHome);
+      link.addEventListener('touchend', goHome);
+    })();
+  </script>
+  <script>
+    // Persist the "Preview New Look" choice so Phone2.html knows which look to render
+    (function(){
+      const toggle = document.getElementById('previewNewLookToggle');
+      if(!toggle) return;
+      const stored = localStorage.getItem('previewNewLook');
+      if(stored !== null) toggle.checked = stored !== 'false';
+      toggle.addEventListener('change', function(){
+        localStorage.setItem('previewNewLook', toggle.checked);
+      });
+    })();
+  </script>
+
+</div>
+</body>
+</html>

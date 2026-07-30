@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home screen</title>
     <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/Phone2-newlook.css">
     <link rel="stylesheet" href="../styles/chatbot.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
@@ -30,7 +31,7 @@
         <div class="notch"></div>
         <div class="screen-content">
 
-            <div class="head">
+            <div class="head classic-only">
                 <div class="arrow" id="sidebarToggle">
                     <span class="material-icons-sharp" id="menuIcon">menu</span>
                 </div>
@@ -38,6 +39,19 @@
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
                     <div class="om-circle" id="profile-initials" style="text-decoration: none;">OM</div>
                 </a>
+            </div>
+
+            <div class="new-look-header new-look-only">
+                <a href="Profile-newlook.html" class="nl-avatar-link" aria-label="Open profile menu">
+                    <div class="nl-avatar">OM</div>
+                </a>
+                <div class="nl-identity">
+                    <div class="nl-fullname">Omphile Mohlala</div>
+                    <a href="Profile-newlook.html" class="nl-profile-toggle">
+                        Omphile Mohlala <span class="material-icons-sharp">expand_more</span>
+                    </a>
+                </div>
+                <span class="material-icons-sharp nl-call-icon">call</span>
             </div>
 
             <button class="chatbot-toggler">
@@ -150,8 +164,8 @@
             </div>
 
             <div class="content" id="mainContent" style="padding-bottom: 80px;">
-                <div class="welcome-container"><div class="om-circle"  style="margin-top: -10px;">OM</div><b>Welcome, Omphile</b></div><br>
-                <div class="account">
+                <div class="welcome-container classic-only"><div class="om-circle"  style="margin-top: -10px;">OM</div><b>Welcome, Omphile</b></div><br class="classic-only">
+                <div class="account classic-only">
                     <div class="account-header">
                         <h4>Accounts</h4>
                         <a href="./Phone%20accounts.html" class="View">
@@ -172,7 +186,21 @@
                     </a>
                 </div>
 
-                <div class="favorites-container">
+                <div class="account new-look-only">
+                    <div class="account-header">
+                        <h4>Accounts</h4>
+                        <a href="./Phone%20accounts.html" class="View">View all</a>
+                    </div>
+                    <a href="./Phone%20accounts.html" style="cursor: pointer; text-decoration: none;">
+                        <div class="nl-account-card">
+                            <span class="material-icons-sharp nl-account-icon">trending_up</span>
+                            <span class="nl-account-name">2 Savings Accounts</span>
+                            <span class="nl-account-balance">R90.99</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="favorites-container classic-only">
                     <div class="favorites">
                         <div class="favorites-header">
                             <h4 style="margin-left: -20px;">Favourites</h4>
@@ -199,7 +227,34 @@
                     </div>
                 </div>
 
-                <div class="pending-container">
+                <div class="favorites-container new-look-only">
+                    <div class="favorites">
+                        <div class="favorites-header">
+                            <h4>Favourites</h4>
+                            <a href="#" class="View">Edit</a>
+                        </div>
+                        <div class="favorites-grid">
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">group</span>
+                                <span class="favorite-title">Pay beneficiary</span>
+                            </div>
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">credit_card</span>
+                                <span class="favorite-title">Pay once-off beneficiary</span>
+                            </div>
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">group</span>
+                                <span class="favorite-title">Group or Multiple payments</span>
+                            </div>
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">sync_alt</span>
+                                <span class="favorite-title">Transfer money</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pending-container classic-only">
                     <div class="pending">
                         <div class="pending-header">
                             <h4 style="position: relative; left: -5px;">Pending authorisations (0)</h4>
@@ -207,6 +262,15 @@
                                 <img src="../images/beneficiaryList.svg" alt="pending" style="position: absolute; bottom: -50px; right: 65px; width: 200px; height: 200px; ">
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="pending-container new-look-only">
+                    <div class="pending">
+                        <div class="pending-header">
+                            <h4>Pending Authorisations (0)</h4>
+                        </div>
+                        <div class="nl-pending-empty">You have no pending authorisations to approve.</div>
                     </div>
                 </div>
 
@@ -243,5 +307,12 @@
 <script src="../scripts/App.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (localStorage.getItem('previewNewLook') !== 'false') {
+            document.body.classList.add('new-look-active');
+        }
+    });
+</script>
 </body>
 </html>

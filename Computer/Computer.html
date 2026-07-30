@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/Computer.css">
+    <link rel="stylesheet" href="../styles/Computer-promo.css">
     <link rel="stylesheet" href="../styles/Chatbotcomputer.css">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
@@ -47,15 +48,13 @@
         </div>
 
         <div class="profile-container">
-            <a href="#" id="banker-popup">
             <a href="#" id="profile-link" style="text-decoration: none;">
-                    <div class="om-circle" style="text-decoration: none;">OM</div>
-                    <div class="name">
-                    Omphile Mohlala
-                    </div>
-                </a>
+                <div class="om-circle" style="text-decoration: none;">OM</div>
+                <div class="name">
+                Omphile Mohlala
+                </div>
             </a>
-            
+
             <div class="overlay" id="overlay"></div>
             <div class="profile-popup" id="profilePopup">
                 <a class="popup-header" href="Profile-info.html">
@@ -231,6 +230,7 @@
                 </div>
 
 
+<div class="dashboard-row">
 <div class="favorites-container">
     <div class="favorites">
         <div class="favorites-header">
@@ -238,31 +238,48 @@
             <h4 class="edit">Edit</h4>
         </div>
         <div class="favorites-grid" style="display: flex; flex-wrap: wrap; justify-content: space-evenly; position: relative;">
-            
+
             <div class="favorite-box" style="position: relative; top: 10px; right: 140px;" id="saved-payment-btn">
                 <span class="material-icons-sharp"><img src="../images/client-insights.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
                 <span class="favorite-title">Pay Saved beneficary</span>
             </div>
 
-            
+
             <div class="favorite-box" style="position: relative; bottom: 105px; left: 140px;">
                 <span class="material-icons-sharp"><img src="../images/once-off-payment.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
                 <span class="favorite-title">Pay Once Off</span>
             </div>
 
-            
+
             <div class="favorite-box" style="position: relative; top: -80px; right: 140px;" >
                 <span class="material-icons-sharp"><img src="../images/client-insights.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
                 <span class="favorite-title">Multiple</span>
             </div>
 
-            
+
             <div class="favorite-box" id="transfer" style="position: relative; bottom: 195px; left: 140px;">
                 <span class="material-icons-sharp"><img src="../images/notes.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
                 <span class="favorite-title">Make bulk payment</span>
             </div>
         </div>
     </div>
+</div>
+
+<div class="promo-card">
+    <div class="promo-text">
+        <h4>Take a look around</h4>
+        <p>This is your home dashboard. You'll see your accounts and favourites here. Would you like to take a quick tour of our latest features?</p>
+        <button class="promo-tour-btn" type="button" id="startTourBtn">Start Tour</button>
+    </div>
+    <div class="promo-slideshow" id="promoSlideshow">
+        <img class="promo-slide active" src="../images/2people.png" alt="Two colleagues looking at a laptop">
+        <img class="promo-slide" src="../images/1person.png" alt="Business account holder next to the Invest screen">
+        <div class="promo-dots">
+            <button class="dot active" type="button" data-slide="0" aria-label="Show slide 1"></button>
+            <button class="dot" type="button" data-slide="1" aria-label="Show slide 2"></button>
+        </div>
+    </div>
+</div>
 </div>
 
 
@@ -310,5 +327,37 @@
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/Combined.js"></script>
 <script src="../scripts/Computer-Automation.js"></script>
+<script>
+    (function () {
+        var slideshow = document.getElementById('promoSlideshow');
+        if (!slideshow) return;
+        var slides = slideshow.querySelectorAll('.promo-slide');
+        var dots = slideshow.querySelectorAll('.dot');
+        var current = 0;
+        var timer = null;
+
+        function showSlide(index) {
+            current = index;
+            slides.forEach(function (slide, i) { slide.classList.toggle('active', i === index); });
+            dots.forEach(function (dot, i) { dot.classList.toggle('active', i === index); });
+        }
+
+        function startAutoRotate() {
+            if (timer) clearInterval(timer);
+            timer = setInterval(function () {
+                showSlide((current + 1) % slides.length);
+            }, 4000);
+        }
+
+        dots.forEach(function (dot) {
+            dot.addEventListener('click', function () {
+                showSlide(parseInt(dot.dataset.slide, 10));
+                startAutoRotate();
+            });
+        });
+
+        startAutoRotate();
+    })();
+</script>
 </body>
 </html>
