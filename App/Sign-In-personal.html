@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/Phone.css">
+  <link rel="stylesheet" href="../styles/Sign-In-personal.css">
+  <link rel="stylesheet" href="../styles/chatbot.css">
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <title>iPhone with White LCD</title>
+</head>
+<body>
+<div class="iphone">
+  <div class="volume-buttons">
+    <div class="volume-up"></div>
+    <div class="volume-down"></div>
+  </div>
+  <div class="power-button"></div>
+  <div class="screen">
+    <div class="notch"></div>
+    <div class="screen-content welcome-screen">
+
+      <div class="personal-toggle-row">
+        <div class="personal-toggle">
+          <span class="head personal-head">For me</span>
+          <span class="personal-toggle-track"></span>
+        </div>
+        <button class="personal-menu-btn" type="button" aria-label="More options">
+          <span class="material-icons-sharp">more_vert</span>
+        </button>
+      </div>
+
+      <div class="hello-hero">
+        <img class="hello-art" src="../images/capihello.png" alt="hello">
+        <button class="hero-nav-arrow hero-nav-arrow-left" id="heroBackArrow" type="button" aria-label="Switch to business banking">
+          <span class="material-icons-sharp">chevron_left</span>
+        </button>
+      </div>
+
+      <div class="user-name">Omphile</div>
+
+      <div class="dots-row">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+      </div>
+
+      <div class="qa-grid">
+        <div class="qa-card">
+          <span class="material-icons-sharp">hub</span>
+          <span>PayShap</span>
+        </div>
+        <div class="qa-card">
+          <span class="material-icons-sharp">smartphone</span>
+          <span>Buy airtime and data</span>
+        </div>
+        <div class="qa-card">
+          <span class="material-icons-sharp">paid</span>
+          <span>Send cash</span>
+        </div>
+        <div class="qa-card">
+          <span class="material-icons-sharp">swap_horiz</span>
+          <span>Transfer money</span>
+        </div>
+      </div>
+
+      <button class="sign-in" type="button" id="personalSignIn">Sign In</button>
+
+      <div class="personal-shortcuts">
+        <a href="#" class="personal-shortcut">
+          <span class="personal-shortcut-icon material-icons-sharp">card_giftcard</span>
+          <span>CapiTip</span>
+        </a>
+        <a href="#" class="personal-shortcut">
+          <span class="personal-shortcut-icon material-icons-sharp">qr_code_2</span>
+          <span>Scan to pay</span>
+        </a>
+      </div>
+
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
+
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="home-indicator"></div>
+  </div>
+  <script src="../scripts/chatbot.js"></script>
+  <script>
+    // Slide across to the business welcome screen and back
+    (function(){
+      const backArrow = document.getElementById('heroBackArrow');
+      const screenContent = document.querySelector('.screen-content');
+      if(!backArrow || !screenContent) return;
+
+      function clearTransform(){
+        screenContent.style.transform = '';
+        screenContent.style.transition = '';
+        screenContent.style.opacity = '';
+      }
+
+      if(new URLSearchParams(window.location.search).get('from') === 'business'){
+        screenContent.style.transform = 'translateX(-100%)';
+        screenContent.style.opacity = '0';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            screenContent.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            screenContent.style.transform = 'translateX(0)';
+            screenContent.style.opacity = '1';
+            screenContent.addEventListener('transitionend', clearTransform, { once: true });
+            setTimeout(clearTransform, 400);
+          });
+        });
+      }
+
+      backArrow.addEventListener('click', function(){
+        screenContent.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        screenContent.style.transform = 'translateX(-100%)';
+        screenContent.style.opacity = '0';
+        setTimeout(() => { window.location.href = 'Sign-In.html?from=personal'; }, 300);
+      });
+    })();
+  </script>
+  <script>
+    // Personal banking isn't a real product yet - Sign In just says so, it doesn't go anywhere
+    (function(){
+      const signInBtn = document.getElementById('personalSignIn');
+      if(!signInBtn) return;
+      const originalLabel = signInBtn.textContent;
+      let revertTimer;
+      signInBtn.addEventListener('click', function(){
+        clearTimeout(revertTimer);
+        signInBtn.textContent = 'Coming soon';
+        signInBtn.disabled = true;
+        revertTimer = setTimeout(function(){
+          signInBtn.textContent = originalLabel;
+          signInBtn.disabled = false;
+        }, 1800);
+      });
+    })();
+  </script>
+</div>
+</body>
+</html>

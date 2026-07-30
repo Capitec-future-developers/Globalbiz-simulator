@@ -175,3 +175,182 @@ body {
 .nl-signout .material-icons-sharp {
     font-size: 20px;
 }
+
+/* -------- switch-profile bottom sheet -------- */
+.nl-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 30;
+}
+
+.nl-sheet {
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 24px 24px;
+    box-sizing: border-box;
+    z-index: 31;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.nl-sheet-handle {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: #d0d5dd;
+    margin: 6px auto 16px;
+}
+
+.nl-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nl-sheet-header h3 {
+    font-size: 1.1rem;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-sheet-header button {
+    background: none;
+    border: none;
+    color: #5f6b7a;
+    cursor: pointer;
+}
+
+.nl-current-profile-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #eef1f9;
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.nl-current-avatar-wrap {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.nl-current-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #2f6fed;
+    color: white;
+    font-weight: 700;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nl-current-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    color: #1a9c4a;
+    background: white;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.nl-current-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.nl-current-email {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.nl-current-chevron {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: #2f6fed;
+}
+
+.nl-switch-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #16232f;
+    margin-bottom: 16px;
+}
+
+.nl-switch-header-row a {
+    color: #2f6fed;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nl-switch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nl-switch-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+}
+
+.nl-switch-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #2f6fed;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nl-switch-avatar-alt {
+    background: #16232f;
+}
+
+.nl-switch-name {
+    font-weight: 700;
+    color: #16232f;
+    font-size: 1rem;
+}
+
+.nl-switch-sub {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+    margin-bottom: 6px;
+}
+
+.nl-default-pill {
+    display: inline-block;
+    background: #e3f6e8;
+    color: #1a9c4a;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 4px 12px;
+}

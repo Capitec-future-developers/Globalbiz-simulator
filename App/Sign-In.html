@@ -27,6 +27,9 @@
       </div>
 
       <div class="hello-hero">
+        <button class="hero-nav-arrow hero-nav-arrow-right" id="heroNextArrow" type="button" aria-label="Switch to personal banking">
+          <span class="material-icons-sharp">chevron_right</span>
+        </button>
         <img class="hello-art" src="../images/capihelo.png" alt="hello">
       </div>
 
@@ -123,6 +126,41 @@
       if(stored !== null) toggle.checked = stored !== 'false';
       toggle.addEventListener('change', function(){
         localStorage.setItem('previewNewLook', toggle.checked);
+      });
+    })();
+  </script>
+  <script>
+    // Slide across to the personal ("For me") welcome screen and back
+    (function(){
+      const nextArrow = document.getElementById('heroNextArrow');
+      const screenContent = document.querySelector('.screen-content');
+      if(!nextArrow || !screenContent) return;
+
+      function clearTransform(){
+        screenContent.style.transform = '';
+        screenContent.style.transition = '';
+        screenContent.style.opacity = '';
+      }
+
+      if(new URLSearchParams(window.location.search).get('from') === 'personal'){
+        screenContent.style.transform = 'translateX(100%)';
+        screenContent.style.opacity = '0';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            screenContent.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+            screenContent.style.transform = 'translateX(0)';
+            screenContent.style.opacity = '1';
+            screenContent.addEventListener('transitionend', clearTransform, { once: true });
+            setTimeout(clearTransform, 400);
+          });
+        });
+      }
+
+      nextArrow.addEventListener('click', function(){
+        screenContent.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        screenContent.style.transform = 'translateX(100%)';
+        screenContent.style.opacity = '0';
+        setTimeout(() => { window.location.href = 'Sign-In-personal.html?from=business'; }, 300);
       });
     })();
   </script>

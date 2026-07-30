@@ -101,44 +101,46 @@
                 Sign out <span class="material-icons-sharp">logout</span>
             </a>
 
-            <div class="overlay" id="switchOverlay"></div>
-            <div class="profile-popup" id="switchProfilePopup">
-                <div class="popup-header">Profile</div>
-                <div class="bottom-seperator"></div>
-                <div class="current-profile">
-                    <span class="material-icons-sharp">account_circle</span>
-                    <div class="profile-info">
-                        <div class="profile-name">Omphile Mohlala</div>
-                        <div class="profile-email">omphilestudent@gmail.com</div>
+            <div class="nl-overlay" id="switchOverlay" style="display: none;"></div>
+            <div class="nl-sheet nl-switch-sheet" id="switchProfileSheet" style="display: none;">
+                <div class="nl-sheet-handle"></div>
+                <div class="nl-sheet-header">
+                    <h3>Current Profile</h3>
+                    <button type="button" id="closeSwitchSheet"><span class="material-icons-sharp">close</span></button>
+                </div>
+
+                <a href="#" class="nl-current-profile-card">
+                    <div class="nl-current-avatar-wrap">
+                        <div class="nl-current-avatar">OM</div>
+                        <span class="material-icons-sharp nl-current-badge">check_circle</span>
+                    </div>
+                    <div class="nl-current-name">Omphile Mohlala</div>
+                    <div class="nl-current-email">omphilestudent@gmail.com</div>
+                    <span class="material-icons-sharp nl-current-chevron">chevron_right</span>
+                </a>
+
+                <div class="nl-switch-header-row">
+                    <span>Switch to another profile</span>
+                    <a href="Managebusiness.html">Manage</a>
+                </div>
+
+                <div class="nl-switch-list">
+                    <div class="nl-switch-item" data-user="omphilestudent@gmail.com">
+                        <div class="nl-switch-avatar">OM</div>
+                        <div class="nl-switch-info">
+                            <div class="nl-switch-name">Omphile</div>
+                            <div class="nl-switch-sub">Omphile18</div>
+                            <span class="nl-default-pill">Default profile</span>
+                        </div>
+                    </div>
+                    <div class="nl-switch-item" data-user="20787871">
+                        <div class="nl-switch-avatar nl-switch-avatar-alt">20</div>
+                        <div class="nl-switch-info">
+                            <div class="nl-switch-name">20787871</div>
+                            <div class="nl-switch-sub">20787871</div>
+                        </div>
                     </div>
                 </div>
-                <div class="bottom-seperator"></div>
-                <div class="profile-switcher">
-                    <h4>Switch Profile</h4>
-                    <div class="profile-option">
-                        <span class="material-icons-sharp">account_circle</span>
-                        <div class="profile-info">
-                            <div class="profile-name">Omphile Mohlala</div>
-                            <div class="profile-email">omphilestudent@gmail.com</div>
-                        </div>
-                    </div>
-                    <div class="profile-option">
-                        <span class="material-icons-sharp">account_circle</span>
-                        <div class="profile-info">
-                            <div class="profile-name">Kodi Codes PTY LTD</div>
-                            <div class="profile-email">Kodi@codes.com</div>
-                        </div>
-                    </div>
-                    <div class="profile-option">
-                        <span class="material-icons-sharp">account_circle</span>
-                        <div class="profile-info">
-                            <div class="profile-name">ABC Enterprises</div>
-                            <div class="profile-email">business@example.com</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-seperator"></div>
-                <a href="Managebusiness.html" class="manage-business">Manage business profile</a>
             </div>
 
         </div>
@@ -151,18 +153,24 @@
 <script>
     (function () {
         var btn = document.getElementById('switchProfileBtn');
-        var popup = document.getElementById('switchProfilePopup');
+        var sheet = document.getElementById('switchProfileSheet');
         var overlay = document.getElementById('switchOverlay');
-        if (btn && popup && overlay) {
-            btn.addEventListener('click', function () {
-                popup.classList.add('active');
-                overlay.classList.add('active');
-            });
-            overlay.addEventListener('click', function () {
-                popup.classList.remove('active');
-                overlay.classList.remove('active');
-            });
+        var closeBtn = document.getElementById('closeSwitchSheet');
+
+        function openSheet() {
+            sheet.style.display = 'block';
+            overlay.style.display = 'block';
         }
+        function closeSheet() {
+            sheet.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+
+        if (btn && sheet && overlay) {
+            btn.addEventListener('click', openSheet);
+            overlay.addEventListener('click', closeSheet);
+        }
+        if (closeBtn) closeBtn.addEventListener('click', closeSheet);
 
         document.querySelectorAll('.nl-accordion-toggle').forEach(function (toggle) {
             toggle.addEventListener('click', function () {
