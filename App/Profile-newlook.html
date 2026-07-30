@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../styles/Phone2.css">
+    <link rel="stylesheet" href="../styles/Profile-newlook.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" id="automation-search" placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')">
+    <button id="execute-automation" class="search-button">
+        <span class="material-icons-sharp">search</span> Go
+    </button>
+    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
+</div>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content nl-profile-screen">
+
+            <div class="nl-profile-topbar">
+                <a href="Phone2.html" class="nl-back">
+                    <span class="material-icons-sharp">arrow_back</span>
+                </a>
+            </div>
+
+            <div class="nl-profile-hero">
+                <div class="nl-avatar-lg">OM</div>
+                <div class="nl-profile-fullname">Omphile Mohlala</div>
+                <div class="nl-profile-subtitle">Business profile &bull; Omphile Mohlala</div>
+                <button class="nl-switch-profile-btn" id="switchProfileBtn" type="button">
+                    Switch Profile <span class="material-icons-sharp">expand_more</span>
+                </button>
+            </div>
+
+            <div class="nl-menu-card">
+                <a href="#" class="nl-menu-row" id="profileInformationRow">
+                    <span class="material-icons-sharp">person</span>
+                    <span>Profile Information</span>
+                </a>
+                <a href="AppSars.html" class="nl-menu-row" id="sarsEfilingRow">
+                    <img class="nl-row-icon" src="../images/efiling.svg" alt="">
+                    <span>SARS eFiling</span>
+                </a>
+            </div>
+
+            <div class="nl-menu-card">
+                <button class="nl-menu-row nl-accordion-toggle" type="button" data-target="umMenu" id="userManagementToggle">
+                    <img class="nl-row-icon" src="../images/client-insights.svg" alt="">
+                    <span class="nl-menu-label">User Management</span>
+                    <span class="material-icons-sharp nl-chevron">expand_more</span>
+                </button>
+                <div class="nl-accordion-menu" id="umMenu">
+                    <a href="../Computer/inprogress.html">Users</a>
+                    <a href="../Computer/inprogress.html">Account &amp; Limits</a>
+                    <a href="../Computer/inprogress.html">Notification Setup</a>
+                </div>
+
+                <button class="nl-menu-row nl-accordion-toggle" type="button" data-target="authMenu" id="authorisationsToggle">
+                    <img class="nl-row-icon" src="../images/authorisations.svg" alt="">
+                    <span class="nl-menu-label">Authorisations</span>
+                    <span class="material-icons-sharp nl-chevron">expand_more</span>
+                </button>
+                <div class="nl-accordion-menu" id="authMenu">
+                    <a href="../Computer/inprogress.html">Transactions</a>
+                    <a href="../Computer/inprogress.html">Beneficiaries</a>
+                    <a href="../Computer/inprogress.html">Authorisation Levels</a>
+                    <a href="../Computer/inprogress.html">Messages</a>
+                </div>
+
+                <a href="document.html" class="nl-menu-row" id="documentsRow">
+                    <img class="nl-row-icon" src="../images/document.svg" alt="">
+                    <span>Documents</span>
+                </a>
+                <a href="#" class="nl-menu-row" id="secureMessagesRow">
+                    <img class="nl-row-icon" src="../images/chat.svg" alt="">
+                    <span>Secure Messages</span>
+                </a>
+            </div>
+
+            <div class="nl-menu-card">
+                <a href="Phone-settings.html" class="nl-menu-row" id="settingsRow">
+                    <img class="nl-row-icon" src="../images/settings.svg" alt="">
+                    <span>Settings</span>
+                </a>
+            </div>
+
+            <a href="Phone.html" class="nl-signout" id="signOutLink">
+                Sign out <span class="material-icons-sharp">logout</span>
+            </a>
+
+            <div class="overlay" id="switchOverlay"></div>
+            <div class="profile-popup" id="switchProfilePopup">
+                <div class="popup-header">Profile</div>
+                <div class="bottom-seperator"></div>
+                <div class="current-profile">
+                    <span class="material-icons-sharp">account_circle</span>
+                    <div class="profile-info">
+                        <div class="profile-name">Omphile Mohlala</div>
+                        <div class="profile-email">omphilestudent@gmail.com</div>
+                    </div>
+                </div>
+                <div class="bottom-seperator"></div>
+                <div class="profile-switcher">
+                    <h4>Switch Profile</h4>
+                    <div class="profile-option">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">Omphile Mohlala</div>
+                            <div class="profile-email">omphilestudent@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="profile-option">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">Kodi Codes PTY LTD</div>
+                            <div class="profile-email">Kodi@codes.com</div>
+                        </div>
+                    </div>
+                    <div class="profile-option">
+                        <span class="material-icons-sharp">account_circle</span>
+                        <div class="profile-info">
+                            <div class="profile-name">ABC Enterprises</div>
+                            <div class="profile-email">business@example.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-seperator"></div>
+                <a href="Managebusiness.html" class="manage-business">Manage business profile</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="home-indicator"></div>
+</div>
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+<script>
+    (function () {
+        var btn = document.getElementById('switchProfileBtn');
+        var popup = document.getElementById('switchProfilePopup');
+        var overlay = document.getElementById('switchOverlay');
+        if (btn && popup && overlay) {
+            btn.addEventListener('click', function () {
+                popup.classList.add('active');
+                overlay.classList.add('active');
+            });
+            overlay.addEventListener('click', function () {
+                popup.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
+        document.querySelectorAll('.nl-accordion-toggle').forEach(function (toggle) {
+            toggle.addEventListener('click', function () {
+                var menu = document.getElementById(toggle.dataset.target);
+                var isOpen = toggle.classList.toggle('open');
+                if (menu) menu.style.display = isOpen ? 'flex' : 'none';
+            });
+        });
+    })();
+</script>
+</body>
+</html>
