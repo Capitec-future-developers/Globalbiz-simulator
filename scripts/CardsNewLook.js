@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         render(
             '<div class="cd-screen">' +
-            '<div class="cd-topbar"><button id="cd-back-btn" type="button"><span class="material-icons-sharp">arrow_back</span></button><h2>Cards</h2></div>' +
+            '<div class="cd-topbar"><button id="cd-back-btn" type="button"><span class="material-icons-sharp">arrow_back</span></button><h2>Cards</h2><a href="Support.html?from=business" id="cd-call-link" aria-label="Get help"><span class="material-icons-sharp">call</span></a></div>' +
             '<div class="cd-search-row"><input type="text" id="cd-filter-input" placeholder="Filter cards" readonly><button id="cd-filter-btn" type="button"><span class="material-icons-sharp">tune</span></button></div>' +
             '<div class="cd-list-heading-row"><h3>' + (statusFilter === 'all' ? 'All' : statusFilter === 'active' ? 'Active' : 'Stopped') + '</h3><button class="cd-add-new-link" id="cd-add-new-link" type="button">Add new</button></div>' +
             (visibleCards.length

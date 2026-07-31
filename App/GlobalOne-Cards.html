@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Cards.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen">
+                <div class="go-cards-tabbar">
+                    <a href="GlobalOne-Home.html" class="go-cards-back"><span class="material-icons-sharp">arrow_back</span></a>
+                    <button class="go-cards-tab active" id="goCardsTab" type="button">Cards</button>
+                    <button class="go-cards-tab" id="goVirtualTab" type="button">Virtual</button>
+                </div>
+
+                <div class="go-body">
+                    <div class="go-cards-body">
+                        <div class="go-card-visual" id="goCardVisual">
+                            <div class="go-card-active-badge">ACTIVE</div>
+                            <div class="go-card-top-row">
+                                <div class="go-card-type">Personal<b>debit</b></div>
+                                <span class="material-icons-sharp" style="transform: rotate(90deg);">wifi</span>
+                            </div>
+                            <div class="go-card-brand-row">
+                                <span class="go-card-brand-name">CAPITEC</span>
+                            </div>
+                            <div class="go-card-holder-row">
+                                <div>Mr O MOHLALA</div>
+                                <div class="go-card-number" id="goCardNumber">1726248885</div>
+                                <div class="go-card-label" id="goCardLabel">SAVINGS ACCOUNT NUMBER</div>
+                            </div>
+                            <div class="go-card-mastercard"><span></span><span></span></div>
+                        </div>
+
+                        <button class="go-card-detail-link" id="goCardDetailsToggle" type="button">Show Card Details</button>
+
+                        <div class="go-limit-banner">
+                            <span class="go-limit-strip"></span>
+                            <span>Your daily online limit is <b>R5 000</b></span>
+                            <a href="#" id="goManageLimit">Manage</a>
+                        </div>
+
+                        <div class="go-toggle-row">
+                            <div class="go-toggle-info">
+                                <h4>Freeze card</h4>
+                                <p>Lost or misplaced your card? No transactions can be done while it's frozen. You can unfreeze anytime to get full use again &ndash; no need to replace your card.</p>
+                            </div>
+                            <button class="go-yn-toggle" id="goFreezeToggle" type="button"><span class="go-yn-knob"></span>NO</button>
+                        </div>
+
+                        <div class="go-toggle-row">
+                            <div class="go-toggle-info">
+                                <h4>Online purchases</h4>
+                                <p>Use your card to shop online</p>
+                            </div>
+                            <button class="go-yn-toggle on" id="goOnlineToggle" type="button">YES<span class="go-yn-knob"></span></button>
+                        </div>
+
+                        <div class="go-toggle-row">
+                            <div class="go-toggle-info">
+                                <h4>International transactions</h4>
+                                <p>Use your card to make international transactions</p>
+                            </div>
+                            <button class="go-yn-toggle on" id="goIntlToggle" type="button">YES<span class="go-yn-knob"></span></button>
+                        </div>
+
+                        <div class="go-toggle-row">
+                            <div class="go-toggle-info">
+                                <h4>Online betting</h4>
+                                <p>Allow online betting transactions within South Africa</p>
+                            </div>
+                            <button class="go-yn-toggle" id="goBettingToggle" type="button"><span class="go-yn-knob"></span>NO</button>
+                        </div>
+
+                        <div class="go-info-row">
+                            <span>Learn more about card toggles</span>
+                            <span class="material-icons-sharp">info</span>
+                        </div>
+
+                        <button class="go-list-row" id="goTapToPay" type="button">
+                            <img src="../images/contactless-action.svg" class="go-list-row-icon-img" alt="">
+                            <span class="go-list-row-label">Tap to pay</span>
+                            <span class="material-icons-sharp">chevron_right</span>
+                        </button>
+                        <button class="go-list-row" id="goReplaceStop" type="button">
+                            <img src="../images/stop-card-action.svg" class="go-list-row-icon-img" alt="">
+                            <span class="go-list-row-label">Replace or Stop card</span>
+                            <span class="go-list-row-badge">New</span>
+                            <span class="material-icons-sharp">chevron_right</span>
+                        </button>
+                        <button class="go-list-row" id="goPermanentLimits" type="button">
+                            <span class="material-icons-sharp">tune</span>
+                            <span class="go-list-row-label">Update permanent limits</span>
+                            <span class="material-icons-sharp">chevron_right</span>
+                        </button>
+                        <button class="go-list-row" id="goTempLimits" type="button" style="border-bottom:none;">
+                            <span class="material-icons-sharp">schedule</span>
+                            <span class="go-list-row-label">Set temporary limits</span>
+                            <span class="material-icons-sharp">chevron_right</span>
+                        </button>
+
+                        <div class="go-applepay-row">
+                            <span class="go-applepay-badge"> Pay</span>
+                            <span class="go-applepay-text">Available in<b>Apple Wallet</b></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="go-bottom-nav">
+                    <a href="GlobalOne-Home.html" class="go-nav-item">
+                        <img src="../images/home.svg" class="go-nav-icon" alt="">
+                        <span>Home</span>
+                    </a>
+                    <a href="GlobalOne-Cards.html" class="go-nav-item active">
+                        <img src="../images/cards-action.svg" class="go-nav-icon" alt="">
+                        <span>Cards</span>
+                    </a>
+                    <a href="GlobalOne-Transact.html" class="go-nav-item">
+                        <img src="../images/transact.svg" class="go-nav-icon" alt="">
+                        <span>Transact</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goMessagesTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/messages (1).svg" class="go-nav-icon" alt="">
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goExploreTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/search.svg" class="go-nav-icon" alt="">
+                        <span>Explore</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var detailsVisible = false;
+        var detailsToggle = document.getElementById('goCardDetailsToggle');
+        detailsToggle.addEventListener('click', function () {
+            detailsVisible = !detailsVisible;
+            detailsToggle.textContent = detailsVisible ? 'Hide Card Details' : 'Show Card Details';
+            document.getElementById('goCardNumber').textContent = detailsVisible ? '1726 2488 85' : '1726248885';
+            document.getElementById('goCardLabel').textContent = detailsVisible ? 'CVV 402 • VALID THRU 04/31' : 'SAVINGS ACCOUNT NUMBER';
+        });
+
+        function wireYesNoToggle(id, defaultOn) {
+            var btn = document.getElementById(id);
+            var on = defaultOn;
+            btn.addEventListener('click', function () {
+                on = !on;
+                btn.classList.toggle('on', on);
+                if (on) {
+                    btn.innerHTML = 'YES<span class="go-yn-knob"></span>';
+                } else {
+                    btn.innerHTML = '<span class="go-yn-knob"></span>NO';
+                }
+            });
+        }
+        wireYesNoToggle('goFreezeToggle', false);
+        wireYesNoToggle('goOnlineToggle', true);
+        wireYesNoToggle('goIntlToggle', true);
+        wireYesNoToggle('goBettingToggle', false);
+
+        document.getElementById('goVirtualTab').addEventListener('click', function () {
+            document.getElementById('goVirtualTab').classList.add('active');
+            document.getElementById('goCardsTab').classList.remove('active');
+        });
+        document.getElementById('goCardsTab').addEventListener('click', function () {
+            document.getElementById('goCardsTab').classList.add('active');
+            document.getElementById('goVirtualTab').classList.remove('active');
+        });
+
+        ['goManageLimit', 'goTapToPay', 'goReplaceStop', 'goPermanentLimits', 'goTempLimits', 'goMessagesTab', 'goExploreTab'].forEach(function (id) {
+            document.getElementById(id).addEventListener('click', function (e) { e.preventDefault(); });
+        });
+    });
+</script>
+</body>
+</html>

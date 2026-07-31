@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Profile.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen" style="background:white;">
+                <div class="go-profile-popup-header">
+                    <h2>Hello Omphile!</h2>
+                    <a href="GlobalOne-Home.html" aria-label="Close" style="text-decoration:none;"><span class="material-icons-sharp">close</span></a>
+                </div>
+                <div class="go-body">
+                    <div class="go-profile-list">
+                        <a href="GlobalOne-MyInformation.html" class="go-profile-row">
+                            <span class="go-profile-row-icon material-icons-outlined">badge</span>
+                            <div><h4>My information</h4><p>View and update information</p></div>
+                        </a>
+                        <button type="button" class="go-profile-row" id="goAppSettings">
+                            <span class="go-profile-row-icon material-icons-outlined">settings</span>
+                            <div><h4>My app settings</h4><p>Update personal and security settings</p></div>
+                        </button>
+                        <button type="button" class="go-profile-row" id="goPreferences">
+                            <span class="go-profile-row-icon material-icons-outlined">tune</span>
+                            <div><h4>My preferences and consent</h4><p>Choose what we send you</p></div>
+                        </button>
+                        <button type="button" class="go-profile-row" id="goPersonalise">
+                            <span class="go-profile-row-icon material-icons-outlined">dashboard_customize</span>
+                            <div><h4>Personalise my app</h4><p>Display what matters most to you</p></div>
+                        </button>
+                        <button type="button" class="go-profile-row" id="goSecurityCentre">
+                            <span class="go-profile-row-icon material-icons-outlined">shield</span>
+                            <div><h4>My security centre</h4><p>Manage cases and security settings</p></div>
+                        </button>
+                    </div>
+
+                    <button type="button" class="go-signout-btn" id="goSignOut">
+                        <span class="material-icons-outlined">logout</span>
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        ['goAppSettings', 'goPreferences', 'goPersonalise', 'goSecurityCentre'].forEach(function (id) {
+            document.getElementById(id).addEventListener('click', function (e) { e.preventDefault(); });
+        });
+        document.getElementById('goSignOut').addEventListener('click', function () {
+            window.location.href = 'Sign-In-personal.html';
+        });
+    });
+</script>
+</body>
+</html>

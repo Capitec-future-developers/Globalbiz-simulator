@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Home.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen">
+                <div class="go-header">
+                    <a href="GlobalOne-Profile.html" class="go-header-icon" aria-label="Profile"><span class="material-icons-sharp">account_circle</span></a>
+                    <div class="go-header-title">GlobalOne</div>
+                    <a href="Support.html?from=personal" class="go-header-icon" aria-label="Call"><span class="material-icons-sharp">call</span></a>
+                </div>
+
+                <div class="go-body go-home-body">
+                    <div class="go-dash-row">
+                        <h3>My dashboard</h3>
+                        <a href="#" id="goEditDashboard">Edit <span class="material-icons-sharp" style="font-size:18px;">chevron_right</span></a>
+                    </div>
+
+                    <a href="GlobalOne-Transact.html" class="go-dash-card">
+                        <span class="go-dash-icon go-icon-main"><img src="../images/transact-white.svg" class="go-dash-icon-img" alt=""></span>
+                        <div class="go-dash-info">
+                            <div class="go-dash-title go-title-main">Main Account</div>
+                            <div class="go-dash-sub">Available balance</div>
+                        </div>
+                        <div class="go-dash-amount">R14.00</div>
+                    </a>
+
+                    <a href="#" class="go-dash-card" id="goSavingsCard">
+                        <span class="go-dash-icon go-icon-savings"><img src="../images/save-white.svg" class="go-dash-icon-img" alt=""></span>
+                        <div class="go-dash-info">
+                            <div class="go-dash-title go-title-savings">Savings Plans</div>
+                            <div class="go-dash-sub">Total saved</div>
+                        </div>
+                        <div class="go-dash-amount">R565.56</div>
+                    </a>
+
+                    <a href="GlobalOne-Insure.html" class="go-dash-card">
+                        <span class="go-dash-icon go-icon-insure"><span class="material-icons-sharp">shield</span></span>
+                        <div class="go-dash-info">
+                            <div class="go-dash-title go-title-insure">Insure</div>
+                            <div class="go-dash-sub">Cover for you and your family</div>
+                        </div>
+                    </a>
+
+                    <a href="Explore.html" class="go-explore-card">
+                        <span class="go-explore-icon material-icons-sharp">add</span>
+                        <div class="go-explore-body">
+                            <h4>Explore products and benefits</h4>
+                            <p>Find what suits your goals</p>
+                        </div>
+                        <span class="material-icons-sharp" style="color: var(--go-primary);">chevron_right</span>
+                    </a>
+
+                    <h3 class="go-section-heading">Live Better</h3>
+                    <a href="GlobalOne-Rewards.html" class="go-rewards-teaser">
+                        <div class="go-rewards-teaser-art"></div>
+                        <div class="go-rewards-teaser-info">Rewards<span>Available balance</span></div>
+                        <div class="go-rewards-teaser-amount">R0.00</div>
+                    </a>
+
+                    <h3 class="go-section-heading">Partners</h3>
+                    <a href="#" class="go-partner-card" id="goEasyEquities">
+                        <span class="go-partner-icon material-icons-sharp" style="color:#cc0033;">show_chart</span>
+                        <div>
+                            <h4>EasyEquities</h4>
+                            <p>Investing made easy</p>
+                        </div>
+                    </a>
+
+                    <div class="go-dash-row">
+                        <h3 class="go-section-heading" style="margin:0;">Favourites</h3>
+                        <a href="#" id="goEditFavourites">Edit <span class="material-icons-sharp" style="font-size:18px;">chevron_right</span></a>
+                    </div>
+                    <div class="go-fav-grid">
+                        <a href="#" class="go-fav-card"><span class="material-icons-sharp">hub</span>PayShap</a>
+                        <a href="#" class="go-fav-card"><span class="material-icons-sharp">smartphone</span>Buy airtime and data</a>
+                        <a href="#" class="go-fav-card"><span class="material-icons-sharp">payments</span>Send cash</a>
+                        <a href="GlobalOne-Transact.html" class="go-fav-card"><span class="material-icons-sharp">swap_horiz</span>Transfer money</a>
+                        <a href="#" class="go-fav-card"><span class="material-icons-sharp">qr_code_2</span>Scan to pay</a>
+                        <a href="GlobalOne-Transact.html" class="go-fav-card"><span class="material-icons-sharp">group</span>Pay beneficiary</a>
+                    </div>
+                </div>
+
+                <div class="go-bottom-nav">
+                    <a href="GlobalOne-Home.html" class="go-nav-item active">
+                        <img src="../images/home.svg" class="go-nav-icon" alt="">
+                        <span>Home</span>
+                    </a>
+                    <a href="GlobalOne-Cards.html" class="go-nav-item">
+                        <img src="../images/cards-action.svg" class="go-nav-icon" alt="">
+                        <span>Cards</span>
+                    </a>
+                    <a href="GlobalOne-Transact.html" class="go-nav-item">
+                        <img src="../images/transact.svg" class="go-nav-icon" alt="">
+                        <span>Transact</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goMessagesTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/messages (1).svg" class="go-nav-icon" alt="">
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goExploreTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/search.svg" class="go-nav-icon" alt="">
+                        <span>Explore</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#goEditDashboard, #goEditFavourites, #goSavingsCard, #goEasyEquities, #goMessagesTab, #goExploreTab').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+        document.querySelectorAll('.go-fav-card[href="#"]').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+    });
+</script>
+</body>
+</html>

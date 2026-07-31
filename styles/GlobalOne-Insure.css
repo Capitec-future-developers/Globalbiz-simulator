@@ -1,0 +1,195 @@
+/* ============================================================
+   GlobalOne personal banking - Insure page.
+   App/GlobalOne-Insure.html
+   ============================================================ */
+
+.go-insure-header {
+    flex-shrink: 0;
+    background: #5b6b78;
+    color: white;
+}
+
+.go-insure-header-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 45px 16px 16px;
+}
+
+.go-insure-header-row a {
+    color: white;
+    display: flex;
+    text-decoration: none;
+}
+
+.go-insure-header-row h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.go-insure-subheader {
+    text-align: center;
+    padding: 10px 16px 20px;
+    font-size: 1rem;
+}
+
+.go-insure-body {
+    padding: 20px 16px;
+}
+
+.go-insure-summary-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 26px;
+}
+
+.go-insure-icon {
+    position: relative;
+    width: 48px;
+    height: 56px;
+    flex-shrink: 0;
+    margin-right: 14px;
+}
+
+.go-insure-icon .material-icons-sharp:first-child {
+    font-size: 48px;
+    color: #d7dbe2;
+}
+
+.go-insure-icon .go-insure-badge {
+    position: absolute;
+    right: -4px;
+    bottom: -2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.go-insure-icon .go-insure-badge .material-icons-sharp {
+    font-size: 13px;
+}
+
+.go-insure-summary-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.go-insure-summary-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.go-insure-summary-stats b {
+    display: block;
+    color: #16232f;
+    font-size: 1rem;
+    margin-top: 2px;
+}
+
+.go-insure-question {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #16232f;
+    margin: 0 0 4px;
+}
+
+.go-insure-hint {
+    color: #8a94a3;
+    font-size: 0.9rem;
+    margin: 0 0 22px;
+}
+
+.go-insure-section-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #16232f;
+    margin: 0 0 14px;
+}
+
+.go-insure-option-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    padding-right: 50px;
+    margin-bottom: 20px;
+}
+
+.go-insure-option-title {
+    font-weight: 800;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+}
+
+.go-insure-option-desc {
+    font-size: 0.9rem;
+    color: #16232f;
+    margin-bottom: 8px;
+}
+
+.go-insure-learn-more {
+    color: var(--go-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.go-insure-checkbox {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--go-primary);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.go-insure-checkbox.checked {
+    background: var(--go-primary);
+}
+
+.go-insure-checkbox .material-icons-sharp {
+    display: none;
+    color: white;
+    font-size: 18px;
+}
+
+.go-insure-checkbox.checked .material-icons-sharp {
+    display: block;
+}
+
+.go-cover-btn {
+    width: 100%;
+    background: var(--go-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}

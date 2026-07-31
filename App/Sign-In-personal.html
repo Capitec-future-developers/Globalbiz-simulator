@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <button class="sign-in" type="button" id="personalSignIn">Sign In</button>
+      <a href="GlobalOne-Pin.html" class="sign-in" id="personalSignIn" style="text-decoration:none; display:block; text-align:center;">Sign In</a>
 
       <div class="personal-shortcuts">
         <a href="#" class="personal-shortcut">
@@ -136,24 +136,6 @@
         screenContent.style.transform = 'translateX(-100%)';
         screenContent.style.opacity = '0';
         setTimeout(() => { window.location.href = 'Sign-In.html?from=personal'; }, 300);
-      });
-    })();
-  </script>
-  <script>
-    // Personal banking isn't a real product yet - Sign In just says so, it doesn't go anywhere
-    (function(){
-      const signInBtn = document.getElementById('personalSignIn');
-      if(!signInBtn) return;
-      const originalLabel = signInBtn.textContent;
-      let revertTimer;
-      signInBtn.addEventListener('click', function(){
-        clearTimeout(revertTimer);
-        signInBtn.textContent = 'Coming soon';
-        signInBtn.disabled = true;
-        revertTimer = setTimeout(function(){
-          signInBtn.textContent = originalLabel;
-          signInBtn.disabled = false;
-        }, 1800);
       });
     })();
   </script>

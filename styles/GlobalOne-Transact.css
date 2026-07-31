@@ -1,0 +1,284 @@
+/* ============================================================
+   GlobalOne personal banking - Main Account transaction list
+   (All / Money In / Money Out / Track).
+   App/GlobalOne-Transact.html
+   ============================================================ */
+
+.go-acc-header {
+    flex-shrink: 0;
+    background: var(--go-primary);
+    color: white;
+    padding: 45px 16px 0;
+    box-sizing: border-box;
+}
+
+.go-acc-header-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.go-acc-header-row a, .go-acc-header-row button {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    cursor: pointer;
+}
+
+.go-acc-header-icon-img {
+    position: static;
+    left: auto;
+    top: auto;
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+}
+
+.go-acc-header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.go-acc-available-card {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.go-acc-available-card .go-acc-label {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.go-acc-available-card .go-acc-amount {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.go-acc-info-icon {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+}
+
+.go-acc-balance-row {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.go-acc-balance-row .go-acc-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.go-acc-balance-row .go-acc-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.go-acc-tabs {
+    display: flex;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.go-acc-tabs::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.go-acc-tab {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 16px 12px;
+    cursor: pointer;
+    font-family: inherit;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+.go-acc-tab.active {
+    color: white;
+    font-weight: 700;
+    border-bottom-color: white;
+}
+
+.go-txn-body {
+    padding: 18px 16px;
+}
+
+.go-txn-month-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.go-txn-month-row h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-txn-month-row a {
+    color: var(--go-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.go-txn-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e4e8f2;
+}
+
+.go-txn-desc {
+    font-weight: 600;
+    color: #16232f;
+    font-size: 0.98rem;
+}
+
+.go-txn-sub {
+    font-size: 0.82rem;
+    color: #8a94a3;
+    margin-top: 2px;
+}
+
+.go-txn-amount {
+    font-weight: 600;
+    color: #16232f;
+    white-space: nowrap;
+}
+
+.go-txn-amount.go-txn-in {
+    color: #2e7d32;
+}
+
+.go-empty-note {
+    text-align: center;
+    color: #8a94a3;
+    padding: 40px 10px;
+}
+
+/* -------- Track tab -------- */
+.go-track-view-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.go-track-view-row div span {
+    display: block;
+}
+
+.go-track-view-row .go-track-view-label {
+    color: #8a94a3;
+    font-size: 0.85rem;
+}
+
+.go-track-view-row .go-track-view-value {
+    font-weight: 700;
+    color: #16232f;
+    font-size: 1.05rem;
+}
+
+.go-track-view-row button {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    color: var(--go-primary);
+    cursor: pointer;
+}
+
+.go-track-month-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px 0 26px;
+    border-bottom: 1px solid #e4e8f2;
+    margin-bottom: 20px;
+}
+
+.go-track-month-nav button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--go-primary);
+    color: var(--go-primary);
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.go-track-month-nav .go-track-total {
+    text-align: center;
+}
+
+.go-track-month-nav .go-track-total-amount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-track-month-nav .go-track-total-month {
+    font-size: 0.9rem;
+    color: #8a94a3;
+}
+
+.go-track-cat-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e4e8f2;
+    text-decoration: none;
+    color: inherit;
+}
+
+.go-track-cat-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.go-track-cat-name {
+    flex: 1;
+    font-size: 0.98rem;
+    color: #16232f;
+}
+
+.go-track-cat-amount {
+    font-weight: 700;
+    color: #16232f;
+}

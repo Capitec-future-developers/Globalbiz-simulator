@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Pin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen" style="background: white;">
+                <div class="go-pin-toggle-row">
+                    <a href="Sign-In-personal.html" class="go-pin-back"><span class="material-icons-sharp">arrow_back</span></a>
+                    <span class="go-pin-pill">For me</span>
+                </div>
+
+                <div class="go-pin-logo">
+                    <span class="go-logo-dark">Global</span><span class="go-logo-light">One</span>
+                </div>
+
+                <div class="go-pin-body">
+                    <div class="go-pin-field-row">
+                        <label for="goPinInput">Enter app PIN</label>
+                        <a href="#" id="goForgotPin">Forgot PIN</a>
+                    </div>
+                    <input type="password" id="goPinInput" class="go-pin-input" inputmode="numeric" autocomplete="off">
+                    <p class="go-pin-error" id="goPinError">Please enter your app PIN.</p>
+                    <button type="button" class="go-pin-submit" id="goPinSubmit">Submit</button>
+                </div>
+
+                <div class="go-pin-disclaimer">
+                    Capitec Bank is an authorised financial services provider (FSP 46669) and registered credit provider (NCRCP13). Capitec Bank Limited Reg. No: 1980/003695/06
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var input = document.getElementById('goPinInput');
+        var error = document.getElementById('goPinError');
+        document.getElementById('goPinSubmit').addEventListener('click', function () {
+            if (!input.value.trim()) {
+                error.classList.add('visible');
+                return;
+            }
+            error.classList.remove('visible');
+            window.location.href = 'GlobalOne-Home.html';
+        });
+        input.addEventListener('input', function () {
+            if (input.value.trim()) error.classList.remove('visible');
+        });
+        document.getElementById('goForgotPin').addEventListener('click', function (e) {
+            e.preventDefault();
+        });
+    });
+</script>
+</body>
+</html>

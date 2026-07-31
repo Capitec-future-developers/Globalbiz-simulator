@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Rewards.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen">
+                <div class="go-rewards-header">
+                    <a href="GlobalOne-Home.html"><span class="material-icons-sharp">arrow_back</span></a>
+                    <h2>Rewards</h2>
+                </div>
+
+                <div class="go-body">
+                    <div class="go-rewards-body">
+                        <a href="#" class="go-live-better-card" id="goLiveBetterCard">
+                            <span class="go-live-better-icon material-icons-sharp">eco</span>
+                            <div class="go-live-better-info">
+                                <div class="go-lb-title">Live Better Savings</div>
+                                <div class="go-lb-sub">Total available</div>
+                            </div>
+                            <div class="go-live-better-amount">R0.00</div>
+                        </a>
+
+                        <h4 class="go-rewards-section-label">Deals for you</h4>
+                        <div class="go-deal-card">
+                            <div class="go-deal-art">Rewards just<br>got better</div>
+                            <div class="go-deal-footer">
+                                <p>Offers from brands you love</p>
+                                <a href="#" id="goViewRewardsLink">View rewards</a>
+                            </div>
+                        </div>
+
+                        <div class="go-partners-heading-row">
+                            <h4>Most-loved partners</h4>
+                            <a href="#" id="goViewAllPartners">View all <span class="material-icons-sharp" style="font-size:16px;">chevron_right</span></a>
+                        </div>
+                        <div class="go-partner-carousel">
+                            <div class="go-partner-tile">
+                                <div class="go-partner-tile-art" style="background:#2e7d32;"><span class="go-partner-new-badge">NEW</span>Dis-Chem<br>Better Rewards</div>
+                                <div class="go-partner-tile-body">
+                                    <h5>Get 15% off</h5>
+                                    <p>Save every time you shop at Dis-Chem</p>
+                                </div>
+                            </div>
+                            <div class="go-partner-tile">
+                                <div class="go-partner-tile-art" style="background:#0f1f3d;"><span class="go-partner-new-badge">NEW</span>Dragonpass</div>
+                                <div class="go-partner-tile-body">
+                                    <h5>Free lounge access</h5>
+                                    <p>Airport lounge and dining benefits.</p>
+                                </div>
+                            </div>
+                            <div class="go-partner-tile">
+                                <div class="go-partner-tile-art" style="background:#0d47a1;">Cashbuild</div>
+                                <div class="go-partner-tile-body">
+                                    <h5>1% cash back</h5>
+                                    <p>Pay with your card in-store or online.</p>
+                                </div>
+                            </div>
+                            <div class="go-partner-tile">
+                                <div class="go-partner-tile-art" style="background:#0f1f3d;">getsmarter <span style="color:#e91e8c;">with edX</span></div>
+                                <div class="go-partner-tile-body">
+                                    <h5>R4 000 off</h5>
+                                    <p>Register for online courses on our app.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="go-bottom-nav">
+                    <a href="GlobalOne-Home.html" class="go-nav-item">
+                        <img src="../images/home.svg" class="go-nav-icon" alt="">
+                        <span>Home</span>
+                    </a>
+                    <a href="GlobalOne-Cards.html" class="go-nav-item">
+                        <img src="../images/cards-action.svg" class="go-nav-icon" alt="">
+                        <span>Cards</span>
+                    </a>
+                    <a href="GlobalOne-Transact.html" class="go-nav-item">
+                        <img src="../images/transact.svg" class="go-nav-icon" alt="">
+                        <span>Transact</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goMessagesTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/messages (1).svg" class="go-nav-icon" alt="">
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goExploreTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/search.svg" class="go-nav-icon" alt="">
+                        <span>Explore</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        ['goLiveBetterCard', 'goViewRewardsLink', 'goViewAllPartners', 'goMessagesTab', 'goExploreTab'].forEach(function (id) {
+            document.getElementById(id).addEventListener('click', function (e) { e.preventDefault(); });
+        });
+    });
+</script>
+</body>
+</html>

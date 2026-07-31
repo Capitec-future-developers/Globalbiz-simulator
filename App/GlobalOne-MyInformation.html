@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Profile.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen">
+                <div class="go-myinfo-header">
+                    <div class="go-myinfo-header-row">
+                        <a href="GlobalOne-Profile.html"><span class="material-icons-sharp">arrow_back</span></a>
+                        <h2>My Information</h2>
+                    </div>
+                    <div class="go-myinfo-tabs">
+                        <button class="go-myinfo-tab active" id="goProfileTab" type="button">Profile</button>
+                        <button class="go-myinfo-tab" id="goOtherTab" type="button">Other</button>
+                    </div>
+                </div>
+
+                <div class="go-body">
+                    <div class="go-myinfo-body" id="goMyInfoBody"></div>
+                </div>
+
+                <div class="go-bottom-nav">
+                    <a href="GlobalOne-Home.html" class="go-nav-item">
+                        <img src="../images/home.svg" class="go-nav-icon" alt="">
+                        <span>Home</span>
+                    </a>
+                    <a href="GlobalOne-Cards.html" class="go-nav-item">
+                        <img src="../images/cards-action.svg" class="go-nav-icon" alt="">
+                        <span>Cards</span>
+                    </a>
+                    <a href="GlobalOne-Transact.html" class="go-nav-item">
+                        <img src="../images/transact.svg" class="go-nav-icon" alt="">
+                        <span>Transact</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goMessagesTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/messages (1).svg" class="go-nav-icon" alt="">
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goExploreTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/search.svg" class="go-nav-icon" alt="">
+                        <span>Explore</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var body = document.getElementById('goMyInfoBody');
+
+        function renderProfile() {
+            body.innerHTML =
+                '<div class="go-myinfo-card"><div><h4>Contact details</h4><p>Update your verified cellphone number or email</p></div><span class="material-icons-sharp">expand_more</span></div>' +
+                '<div class="go-myinfo-card"><div><h4>Residential address</h4><p>Where you stay</p></div><span class="material-icons-sharp">expand_more</span></div>' +
+                '<div class="go-myinfo-card"><div><h4>Employment details</h4><p>Where you work</p></div><span class="material-icons-sharp">expand_more</span></div>' +
+                '<div class="go-myinfo-card"><div><h4>Income details</h4><p>How much money you earn</p></div><span class="material-icons-sharp">expand_more</span></div>' +
+                '<div class="go-myinfo-card"><div><h4>Personal details</h4><p>Bring your ID or passport to a branch to update these details</p></div><span class="material-icons-sharp">expand_more</span></div>' +
+                '<button class="go-myinfo-edit-btn" id="goEditDetails" type="button">Edit details</button>';
+            document.getElementById('goEditDetails').addEventListener('click', function (e) { e.preventDefault(); });
+        }
+
+        function renderOther() {
+            body.innerHTML =
+                '<a href="#" class="go-myinfo-simple-row" data-inert><span class="material-icons-sharp">receipt_long</span><span>My tax details</span><span class="material-icons-sharp">chevron_right</span></a>' +
+                '<a href="#" class="go-myinfo-simple-row" data-inert><span class="material-icons-sharp">description</span><span>My agreements & disclaimers</span><span class="material-icons-sharp">chevron_right</span></a>' +
+                '<a href="#" class="go-myinfo-simple-row" data-inert><span class="material-icons-sharp">verified_user</span><span>Privacy centre</span><span class="material-icons-sharp">chevron_right</span></a>' +
+                '<a href="#" class="go-myinfo-simple-row" data-inert><span class="material-icons-sharp">mark_email_read</span><span>Secure statement sharing</span><span class="material-icons-sharp">chevron_right</span></a>';
+            body.querySelectorAll('[data-inert]').forEach(function (el) {
+                el.addEventListener('click', function (e) { e.preventDefault(); });
+            });
+        }
+
+        document.getElementById('goProfileTab').addEventListener('click', function () {
+            document.getElementById('goProfileTab').classList.add('active');
+            document.getElementById('goOtherTab').classList.remove('active');
+            renderProfile();
+        });
+        document.getElementById('goOtherTab').addEventListener('click', function () {
+            document.getElementById('goOtherTab').classList.add('active');
+            document.getElementById('goProfileTab').classList.remove('active');
+            renderOther();
+        });
+
+        ['goMessagesTab', 'goExploreTab'].forEach(function (id) {
+            document.getElementById(id).addEventListener('click', function (e) { e.preventDefault(); });
+        });
+
+        renderProfile();
+    });
+</script>
+</body>
+</html>

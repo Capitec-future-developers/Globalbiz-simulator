@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Transact.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+</head>
+<body>
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen">
+                <div class="go-acc-header">
+                    <div class="go-acc-header-row">
+                        <a href="GlobalOne-Home.html"><span class="material-icons-sharp">arrow_back</span></a>
+                        <div class="go-acc-header-title">Main Account</div>
+                        <button type="button" id="goAccSearch"><img src="../images/search.svg" class="go-acc-header-icon-img" alt=""></button>
+                        <button type="button" id="goAccMenu"><span class="material-icons-sharp">more_vert</span></button>
+                    </div>
+                    <div class="go-acc-available-card">
+                        <span class="go-acc-label">Available</span>
+                        <div class="go-acc-amount">R14.00</div>
+                        <span class="material-icons-sharp go-acc-info-icon" style="font-size:20px;" id="goAccInfo">info</span>
+                    </div>
+                    <div class="go-acc-balance-row">
+                        <span class="go-acc-label">Balance</span>
+                        <div class="go-acc-amount">R44.00</div>
+                    </div>
+                    <div class="go-acc-tabs">
+                        <button class="go-acc-tab active" type="button" data-tab="all">All</button>
+                        <button class="go-acc-tab" type="button" data-tab="in">Money In</button>
+                        <button class="go-acc-tab" type="button" data-tab="out">Money Out</button>
+                        <button class="go-acc-tab" type="button" data-tab="track">Track</button>
+                    </div>
+                </div>
+
+                <div class="go-body">
+                    <div id="go-txn-root"></div>
+                </div>
+
+                <div class="go-bottom-nav">
+                    <a href="GlobalOne-Home.html" class="go-nav-item">
+                        <img src="../images/home.svg" class="go-nav-icon" alt="">
+                        <span>Home</span>
+                    </a>
+                    <a href="GlobalOne-Cards.html" class="go-nav-item">
+                        <img src="../images/cards-action.svg" class="go-nav-icon" alt="">
+                        <span>Cards</span>
+                    </a>
+                    <a href="GlobalOne-Transact.html" class="go-nav-item active">
+                        <img src="../images/transact.svg" class="go-nav-icon" alt="">
+                        <span>Transact</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goMessagesTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/messages (1).svg" class="go-nav-icon" alt="">
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="go-nav-item" id="goExploreTab">
+                        <span class="go-nav-badge">New</span>
+                        <img src="../images/search.svg" class="go-nav-icon" alt="">
+                        <span>Explore</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script src="../scripts/GlobalOne-Transact.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        ['goAccSearch', 'goAccMenu', 'goAccInfo', 'goMessagesTab', 'goExploreTab'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.addEventListener('click', function (e) { e.preventDefault(); });
+        });
+    });
+</script>
+</body>
+</html>

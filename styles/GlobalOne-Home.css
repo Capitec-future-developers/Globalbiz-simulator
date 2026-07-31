@@ -1,0 +1,239 @@
+/* ============================================================
+   GlobalOne personal banking - Home dashboard.
+   App/GlobalOne-Home.html
+   ============================================================ */
+
+.go-home-body {
+    padding: 16px;
+}
+
+.go-dash-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.go-dash-row h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0;
+}
+
+.go-dash-row a {
+    color: var(--go-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.go-dash-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.go-dash-icon {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.go-dash-icon.go-icon-main { background: var(--go-primary); }
+.go-dash-icon.go-icon-savings { background: var(--go-primary-dark); }
+.go-dash-icon.go-icon-insure { background: #8a94a3; }
+
+.go-dash-icon-img {
+    position: static;
+    left: auto;
+    top: auto;
+    width: 26px;
+    height: 26px;
+}
+
+.go-dash-info {
+    flex: 1;
+    padding: 12px 14px;
+}
+
+.go-dash-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.go-dash-title.go-title-main { color: var(--go-primary); }
+.go-dash-title.go-title-savings { color: var(--go-primary-dark); }
+.go-dash-title.go-title-insure { color: #8a94a3; }
+
+.go-dash-sub {
+    font-size: 0.82rem;
+    color: #5f6b7a;
+}
+
+.go-dash-amount {
+    padding-right: 14px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #16232f;
+    white-space: nowrap;
+}
+
+.go-explore-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    margin: 4px 0 24px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.go-explore-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--go-primary);
+    color: var(--go-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.go-explore-body {
+    flex: 1;
+}
+
+.go-explore-body h4 {
+    margin: 0 0 2px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-explore-body p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.go-section-heading {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #16232f;
+    margin: 0 0 14px;
+}
+
+.go-rewards-teaser {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    margin-bottom: 24px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.go-rewards-teaser-art {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #7b2ff7, #b06ab3);
+}
+
+.go-rewards-teaser-info {
+    flex: 1;
+    padding: 12px 14px;
+    font-weight: 700;
+    color: #7b2ff7;
+}
+
+.go-rewards-teaser-info span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #5f6b7a;
+}
+
+.go-rewards-teaser-amount {
+    padding-right: 14px;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-partner-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    margin-bottom: 24px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.go-partner-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.go-partner-card h4 {
+    margin: 0 0 2px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #cc0033;
+}
+
+.go-partner-card p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.go-fav-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.go-fav-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #16232f;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.go-fav-card .material-icons-sharp {
+    color: var(--go-primary);
+    font-size: 30px;
+    display: block;
+    margin: 0 auto 10px;
+}
