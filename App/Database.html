@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Database.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <title>Database</title>
+</head>
+<body>
+
+<div class="db-header">
+    <div>
+        <h1>GlobalBiz Data Manager</h1>
+        <div class="db-header-sub">Live view of everything stored in this browser's localStorage ("userDatabase") &mdash; beneficiaries, accounts and transactions.</div>
+    </div>
+    <a href="Phone2.html"><span class="material-icons-sharp">arrow_back</span> Back to app</a>
+</div>
+
+<div class="db-toolbar">
+    <label for="db-user-select">User</label>
+    <select id="db-user-select"></select>
+    <button class="db-btn" id="db-add-account">+ Add account</button>
+    <button class="db-btn" id="db-add-beneficiary">+ Add beneficiary</button>
+    <button class="db-btn db-btn-primary" id="db-export">Export CSV</button>
+</div>
+
+<div class="db-content">
+    <div class="db-panel">
+        <div class="db-panel-header">
+            <h2>Accounts &amp; transactions</h2>
+        </div>
+        <div id="db-accounts-panel"></div>
+        <div class="db-note">Click an account row to expand its transaction list. Changes save to localStorage immediately.</div>
+    </div>
+
+    <div class="db-panel">
+        <div class="db-panel-header">
+            <h2>Beneficiaries</h2>
+        </div>
+        <div id="db-beneficiaries-panel"></div>
+        <div class="db-note">Default beneficiaries (like Karl Kumbier) are protected and cannot be deleted from here.</div>
+    </div>
+</div>
+
+<div class="db-toast" id="db-toast"></div>
+
+<script src="../scripts/Database.js"></script>
+</body>
+</html>

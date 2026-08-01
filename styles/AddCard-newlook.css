@@ -10,6 +10,10 @@
     padding: 0 15px 10px;
 }
 
+body.new-look-active .ac-progress-wrap {
+    padding-top: 45px;
+}
+
 .ac-progress-label {
     font-size: 0.85rem;
     color: #2d3748;
