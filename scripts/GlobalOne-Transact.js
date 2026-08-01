@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!root) return;
 
     var TRANSACTIONS = [
-        { desc: 'Royaldelitakeaway', date: '29 Jul 2026 16:14', category: 'Takeaways', amount: 16.00, type: 'out' },
+        { desc: 'Takeaway Restaurant', date: '29 Jul 2026 16:14', category: 'Takeaways', amount: 16.00, type: 'out' },
         { desc: 'Transfer', date: '29 Jul 2026 16:12', category: 'Transfer', amount: 30.00, type: 'in' },
-        { desc: 'Transfer: Our Future', date: '29 Jul 2026 12:48', category: 'Transfer', amount: 8.80, type: 'out' },
-        { desc: 'Gauteng Provincial Go', date: '29 Jul 2026 11:29', category: 'Doctors & Therapists', amount: 228.00, type: 'out' },
+        { desc: 'Transfer', date: '29 Jul 2026 12:48', category: 'Transfer', amount: 8.80, type: 'out' },
+        { desc: 'Medical Centre', date: '29 Jul 2026 11:29', category: 'Doctors & Therapists', amount: 228.00, type: 'out' },
         { desc: 'Transfer', date: '29 Jul 2026 10:56', category: 'Transfer', amount: 200.00, type: 'in' },
-        { desc: 'Hpy*malik Spice And G', date: '28 Jul 2026 18:16', category: 'Groceries', amount: 23.00, type: 'out' },
-        { desc: 'Food Lover\'s Market', date: '28 Jul 2026 12:50', category: 'Groceries', amount: 41.20, type: 'out' },
+        { desc: 'Grocery Store', date: '28 Jul 2026 18:16', category: 'Groceries', amount: 23.00, type: 'out' },
+        { desc: 'Supermarket', date: '28 Jul 2026 12:50', category: 'Groceries', amount: 41.20, type: 'out' },
         { desc: 'Transfer', date: '28 Jul 2026 12:47', category: 'Transfer', amount: 100.00, type: 'in' },
         { desc: 'Transfer', date: '28 Jul 2026 07:56', category: 'Transfer', amount: 2.00, type: 'in' },
         { desc: 'Transfer', date: '28 Jul 2026 07:56', category: 'Transfer', amount: 15.00, type: 'in' }
