@@ -275,6 +275,34 @@
     font-family: inherit;
 }
 
+.nl-pay-search-hint {
+    font-size: 0.78rem;
+    color: #5f6b7a;
+    margin: -12px 4px 16px;
+}
+
+.nl-ben-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.nl-ben-avatar-own {
+    background: #eaf0ff;
+    color: #0d6efd;
+}
+
+.nl-ben-avatar-public {
+    background: #e2e5ea;
+    color: #5f6b7a;
+}
+
 .nl-pay-letter-heading {
     font-size: 0.95rem;
     font-weight: 700;
@@ -573,4 +601,172 @@
     font-weight: 600;
     color: #16232f;
     cursor: pointer;
+}
+
+/* -------- pay screen / review payment / cut-off times -------- */
+.nl-pay-review-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-bottom: 1px solid #eef1f6;
+}
+
+.nl-pay-card .nl-pay-review-row:last-child {
+    border-bottom: none;
+}
+
+.nl-pay-review-icon {
+    color: #0d6efd;
+    flex-shrink: 0;
+}
+
+.nl-pay-review-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.nl-pay-review-label {
+    font-size: 0.78rem;
+    color: #5f6b7a;
+    margin-bottom: 2px;
+}
+
+.nl-pay-review-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.nl-pay-review-side {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.nl-pay-review-sub {
+    font-size: 0.78rem;
+    color: #5f6b7a;
+}
+
+.nl-pay-review-amount {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.nl-pay-review-warning {
+    color: #c62828;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.nl-pay-fee-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+}
+
+.nl-pay-fee-side {
+    flex: 1;
+    text-align: right;
+}
+
+.nl-pay-fee-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #0d6efd;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.nl-pay-fee-radio::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #0d6efd;
+}
+
+.nl-pay-date-input {
+    width: 100%;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    color: #16232f;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.nl-pay-inline-link {
+    color: #0d6efd;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+}
+
+.nl-pay-summary-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    padding: 14px 20px 18px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+    z-index: 1001;
+}
+
+.nl-pay-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    color: #16232f;
+    margin-bottom: 6px;
+}
+
+.nl-pay-summary-row span:first-child {
+    color: #5f6b7a;
+}
+
+.nl-pay-summary-row span:last-child {
+    font-weight: 700;
+}
+
+.nl-pay-summary-cutoff-row {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.nl-cutoff-fee {
+    font-size: 0.92rem;
+    color: #16232f;
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+
+.nl-cutoff-title {
+    font-weight: 700;
+    color: #16232f;
+    margin-bottom: 8px;
+}
+
+.nl-cutoff-list {
+    margin: 0;
+    padding-left: 18px;
+    color: #16232f;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.nl-cutoff-list li {
+    margin-bottom: 6px;
 }
