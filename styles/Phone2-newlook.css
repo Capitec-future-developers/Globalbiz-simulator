@@ -39,8 +39,8 @@ body.new-look-active .content {
 }
 
 .nl-avatar {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: #16232f;
     color: white;
@@ -90,9 +90,13 @@ body.new-look-active .content {
 }
 
 .nl-call-icon {
+    display: flex;
+    align-items: center;
     color: #0096c7;
     font-size: 26px;
     flex-shrink: 0;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 /* -------- shared section headings -------- */
@@ -139,9 +143,10 @@ body.new-look-active .content {
 
 .nl-account-name {
     flex: 1;
-    font-weight: 700;
+    font-weight: 500;
     color: #2d3748;
-    font-size: 1.05rem;
+    font-size: 1rem;
+    text-wrap: nowrap;
 }
 
 .nl-account-balance {
@@ -213,5 +218,7 @@ body.new-look-active .nav-item.active img {
     border-radius: 12px;
     padding: 6px;
     box-sizing: content-box;
-    filter: brightness(0) saturate(100%) invert(45%) sepia(93%) saturate(1352%) hue-rotate(175deg) brightness(97%) contrast(101%);
+    filter: brightness(0) saturate(100%) invert(45%) sepia(50%)
+    saturate(1200%) hue-rotate(202deg) brightness(115%) contrast(85%);
+    opacity: 0.7;
 }

@@ -184,6 +184,71 @@
     cursor: not-allowed;
 }
 
+.nl-pay-secondary-btn {
+    width: 100%;
+    background: white;
+    color: #0d6efd;
+    border: 1px solid #0d6efd;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    font-family: inherit;
+}
+
+.nl-pay-field input:disabled,
+.nl-pay-field select:disabled {
+    background: #eef1f6;
+    color: #5f6b7a;
+    cursor: not-allowed;
+}
+
+/* -------- header actions: beneficiaries hub "+ Add" / kebab / delete -------- */
+.nl-pay-header-spacer {
+    flex: 1;
+}
+
+.nl-pay-header-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nl-pay-header-icon-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    margin-left: 4px;
+    cursor: pointer;
+    display: flex;
+    color: #16232f;
+}
+
+.nl-pay-header-icon-btn.nl-pay-danger {
+    color: #c62828;
+}
+
+.nl-ben-option-item {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 12px;
+}
+
+.nl-ben-option-icon {
+    color: #0d6efd;
+}
+
 /* -------- searchable public beneficiary list -------- */
 .nl-pay-search-row {
     display: flex;

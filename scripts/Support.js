@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function exitSupport() {
         var origin = new URLSearchParams(window.location.search).get('from');
-        window.location.href = origin === 'personal' ? 'GlobalOne-Home.html' : 'Phone-cards.html';
+        window.location.href = origin === 'personal' ? 'GlobalOne-Home.html' : 'Phone2.html';
     }
 
     function renderTopicList() {

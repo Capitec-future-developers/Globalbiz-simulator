@@ -302,7 +302,7 @@ body.new-look-active .classic-only {
     position: relative;
     border-radius: 16px;
     padding: 22px;
-    height: 160px;
+    min-height: 170px;
     box-sizing: border-box;
     margin-bottom: 20px;
     color: white;
