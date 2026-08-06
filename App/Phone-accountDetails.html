@@ -9,19 +9,10 @@
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
     <title>App Account details</title>
 
+    <link rel="stylesheet" href="../styles/Header.css">
 </head>
 <body>
 
-<div class="search-container">
-    <input
-            type="text"
-            id="automation-search"
-            placeholder="What would you like to do? (e.g., 'Pay saved beneficiary')" />
-    <button id="execute-automation" class="search-button">
-        <span class="material-icons-sharp">search</span> Go
-    </button>
-    <div id="suggestions-dropdown" class="suggestions-dropdown"></div>
-</div>
 <div class="iphone">
     <div class="volume-buttons">
         <div class="volume-up"></div>
@@ -241,6 +232,7 @@ Your <b>Available Balance</b> is how much you may spend. The Balance could diffe
 </div>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/App.js"></script>
+<script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

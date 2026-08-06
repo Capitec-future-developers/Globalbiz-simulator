@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/Phone2.css">
-    <link rel="stylesheet" href="../styles/SavingsWizard-newlook.css">
+    <link rel="stylesheet" href="../styles/Phone.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
-    <title>Savings account</title>
+    <link rel="stylesheet" href="../styles/chatbot.css">
+    <title>ROB</title>
     <link rel="stylesheet" href="../styles/Header.css">
 </head>
 <body>
@@ -20,14 +20,17 @@
     <div class="power-button"></div>
     <div class="screen">
         <div class="notch"></div>
-        <div class="screen-content">
-            <div id="savings-wizard-root"></div>
+        <div class="screen-content" style="background:#fff;">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;">
+                <a href="../App/Sign-In.html" style="position:absolute;top:10px;left:10px;text-decoration:none;">
+                    <span class="material-icons-sharp" style="color:#00aeff;">arrow_back</span>
+                </a>
+            </div>
         </div>
+        <div class="home-indicator"></div>
     </div>
-    <div class="home-indicator"></div>
 </div>
 
-<script src="../scripts/SavingsWizard.js"></script>
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
