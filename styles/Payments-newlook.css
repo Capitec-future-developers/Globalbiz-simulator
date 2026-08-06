@@ -1,12 +1,4 @@
-/* ============================================================
-   "New Look" Payments hub: Saved beneficiary, Once-off payment
-   (bank account / public beneficiary), Multiple beneficiaries
-   (beneficiary groups), Authorisation settings, and the shared
-   payments list screen (All/Recurring/Future-dated payments).
-   Injected into #main-content-area by scripts/Transacct.js.
-   Only used when body.new-look-active is set; classic payment
-   flow (showPaymentSection) is untouched when the toggle is off.
-   ============================================================ */
+
 
 .nl-pay-section {
     padding: 45px 20px 20px;
@@ -114,6 +106,8 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 .nl-pay-choice-title {
