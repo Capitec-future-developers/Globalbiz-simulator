@@ -8,8 +8,10 @@
   <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <title>iPhone with White LCD</title>
+    <link rel="stylesheet" href="../styles/Header.css">
 </head>
 <body>
+
 <div class="iphone">
   <div class="volume-buttons">
     <div class="volume-up"></div>
@@ -21,7 +23,7 @@
     <div class="screen-content welcome-screen">
       <div class="arrow"><a id="backToHome" href="./iOSHome.html"><span class="material-icons-sharp" style="position: absolute; color: #00aeff; left: 10px; top:10px;" >arrow_back</span></a></div>
 
-      <div class="biz-toggle">
+<div class="biz-toggle">
         <span class="biz-toggle-track"></span>
         <span class="head">For my business</span>
       </div>
@@ -99,6 +101,8 @@
     <div id="closeOverlay" style="position:absolute;left:0;top:0;right:0;bottom:0;background:#ffffff;opacity:0;pointer-events:none;transform-origin:center center;transform:scale(1);transition:transform .4s cubic-bezier(.2,.7,.2,1), opacity .2s linear; border-radius:0;"></div>
     <div class="home-indicator"></div>
   </div>
+  <script src="../scripts/Header.js"></script>
+<script src="../scripts/Automation.js"></script>
   <script src="../scripts/chatbot.js"></script>
   <script>
     // Play a quick iOS-like close animation before navigating back to the iOS home
@@ -117,7 +121,7 @@
       link.addEventListener('touchend', goHome);
     })();
   </script>
-  <script>
+<script>
     // Persist the "Preview New Look" choice so Phone2.html knows which look to render
     (function(){
       const toggle = document.getElementById('previewNewLookToggle');
