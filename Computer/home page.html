@@ -4,128 +4,95 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Globalbiz Simulator</title>
-    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/Index.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
 </head>
 <body>
 
-<header>
-    <a href="https://capitec-future-developers.github.io/The-Hub-Ecosytsem/#simulators" class="home-btn">Home</a>
-    <div class="header-container">
-        <img src="../images/globalbiz.jpg" alt="Globalbiz Header" class="header-image" />
-        <div class="header-overlay">
-            <h1>GlobalBiz Simulator</h1>
-            <p>Experience the future of business applications</p>
-        </div>
+<header class="gb-landing-header">
+    <a href="../index.html" class="gb-landing-logo"><img src="../images/Logo.png" alt="Capitec logo"></a>
+    <div class="gb-landing-toggle">
+        <a href="../App/Sign-In.html" class="gb-landing-toggle-opt">App</a>
+        <a href="./Computer.html" class="gb-landing-toggle-opt active">Online Banking</a>
     </div>
+    <button type="button" class="gb-landing-menu-btn" aria-label="Menu">
+        <span class="material-icons-sharp">menu</span>
+    </button>
 </header>
 
 <main>
-    <div class="intro-section">
-        <p class="intro-text">We are going to create an app simulator for our agents to use when assisting clients.</p>
-        <div class="pulse-dot"></div>
-    </div>
-
-    <div class="select">Select an option</div>
-
-    <div class="interface-container">
-        <div class="button-group">
-            <button id="startBtn" class="button futuristic-btn">
-                <span class="btn-text">Get started</span>
-                <div class="btn-glow"></div>
-            </button>
-
-            <div id="platformOptions" class="platform-options">
-                <p class="platform-prompt">Please select your platform:</p>
-                <button class="platform-btn futuristic-btn" data-platform="app">
-                    <span class="btn-icon">📱</span>
-                    <span class="btn-text">Mobile App</span>
-                </button>
-                <button class="platform-btn futuristic-btn" data-platform="pc">
-                    <span class="btn-icon">💻</span>
-                    <span class="btn-text">PC Version</span>
-                </button>
-            </div>
-
-            <div id="proceedBtn" class="get-started-btn">
-                <button class="button futuristic-btn proceed-btn" id="proceedLink">
-                    <span class="btn-text">Proceed to Simulator</span>
-                    <div class="btn-glow"></div>
-                </button>
+    <section class="gb-hero">
+        <div class="gb-hero-copy">
+            <h1>Simulated banking,<br>made real.</h1>
+            <p>GlobalBiz Simulator is a training sandbox for Capitec agents &mdash; a fully working mock of our business app and online banking, plus an experimental ROB workspace, all with no real accounts or data. Practise walkthroughs, test new flows, and get comfortable before you're in front of a client.</p>
+            <div class="gb-hero-actions">
+                <a href="../App/Sign-In.html" class="gb-hero-btn gb-hero-btn-outline">Open the App</a>
+                <a href="./Computer.html" class="gb-hero-btn gb-hero-btn-outline">Open Online Banking</a>
+                <a href="../ROB/ROB.html" class="gb-hero-btn gb-hero-btn-solid">Open ROB</a>
             </div>
         </div>
+        <div class="gb-hero-art">
+            <div class="gb-hero-blob"></div>
+            <img src="../images/hero-image.png" alt="" class="gb-hero-image">
+        </div>
+    </section>
 
-        <div class="visualizer">
-            <div class="device-preview">
-                <div class="device-screen" id="deviceScreen">
-                    <div class="screen-content">
-                        <div class="app-icon-grid">
-                            <div class="app-icon"></div>
-                            <div class="app-icon"></div>
-                            <div class="app-icon"></div>
-                            <div class="app-icon"></div>
-                        </div>
-                        <div class="status-bar">
-                            <span class="time">14:25</span>
-                            <span class="battery">78%</span>
+    <section class="gb-previews">
+        <h2>Three ways to explore</h2>
+        <div class="gb-preview-grid">
+            <a href="../App/Sign-In.html" class="gb-preview-card">
+                <div class="gb-preview-mock">
+                    <div class="gb-mock-phone">
+                        <span class="gb-mock-notch"></span>
+                        <div class="gb-mock-screen">
+                            <span class="gb-mock-bar"></span>
+                            <span class="gb-mock-row"></span>
+                            <span class="gb-mock-row"></span>
+                            <span class="gb-mock-row"></span>
                         </div>
                     </div>
                 </div>
-            </div>
+                <h3>App</h3>
+                <p>The mobile business banking experience &mdash; sign in, pay beneficiaries, manage cards and more.</p>
+            </a>
+            <a href="./Computer.html" class="gb-preview-card">
+                <div class="gb-preview-mock">
+                    <div class="gb-mock-computer">
+                        <span class="gb-mock-titlebar"></span>
+                        <div class="gb-mock-screen">
+                            <span class="gb-mock-sidebar"></span>
+                            <div class="gb-mock-content">
+                                <span class="gb-mock-row accent"></span>
+                                <span class="gb-mock-row"></span>
+                                <span class="gb-mock-row"></span>
+                                <span class="gb-mock-row"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Online Banking</h3>
+                <p>The desktop internet banking experience, styled after our Windows workspace.</p>
+            </a>
+            <a href="../ROB/ROB.html" class="gb-preview-card">
+                <div class="gb-preview-mock">
+                    <div class="gb-mock-rob">
+                        <span class="gb-mock-notch"></span>
+                        <div class="gb-mock-screen">
+                            <span class="material-icons-sharp">science</span>
+                        </div>
+                    </div>
+                </div>
+                <h3>ROB</h3>
+                <p>An experimental workspace for trying out new ideas outside the main app.</p>
+            </a>
         </div>
-    </div>
-
-    <div id="loading" class="loading-animation">
-        <div class="loading-text">Initializing simulator</div>
-        <div class="loading-dots">
-            <div class="block blue"></div>
-            <div class="block lightblue"></div>
-            <div class="block red"></div>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-    </div>
+    </section>
 </main>
-    <script>
-        const platformButtons = document.querySelectorAll('[data-platform]');
-        let targetPage = '#';
 
-        if (platformButtons.length > 0) {
-            platformButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const platform = this.getAttribute('data-platform');
-                    const proceedBtn = document.getElementById('proceedBtn');
-                    const platformOptions = document.getElementById('platformOptions');
-
-                    if (proceedBtn && platformOptions) {
-                        if (platform === 'app') {
-                            targetPage = "../App/Phone.html";
-                        } else {
-                            targetPage = "./Computer.html";
-                        }
-
-                        proceedBtn.style.display = 'block';
-                        platformOptions.style.display = 'none';
-                    }
-                });
-            });
-        }
-
-        document.getElementById('proceedLink').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.getElementById('loading').style.display = 'flex';
-            document.getElementById('proceedBtn').style.display = 'none';
-            setTimeout(function() {
-                window.location.href = targetPage;
-            }, 2000);
-        });
-
-    </script>
-
-    <script src="../scripts/Apps.js"></script>
-    <script src="../scripts/Combined.js"></script>
-
+<script src="../scripts/Apps.js"></script>
+<script src="../scripts/Combined.js"></script>
+<script src="../scripts/chatbot.js"></script>
+<script src="../scripts/Landing.js"></script>
 </body>
 </html>
-
