@@ -7,9 +7,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
     <link rel="stylesheet" href="../styles/chatbot.css">
-    <link rel="stylesheet" href="../styles/Header.css">
-    <link rel="stylesheet" href="../styles/ROB.css">
     <title>ROB</title>
+    <link rel="stylesheet" href="../styles/Header.css">
 </head>
 <body>
 
@@ -21,108 +20,11 @@
     <div class="power-button"></div>
     <div class="screen">
         <div class="notch"></div>
-        <a href="../App/Sign-In.html" class="rob-back-btn">
-            <span class="material-icons-sharp" style="color:#00aeff;">arrow_back</span>
-        </a>
-        <div class="screen-content rob-phone-screen">
-            <div class="rob-app" id="robApp">
-
-                <section class="rob-screen rob-screen-chooser" id="robScreenChooser">
-                    <div class="rob-hero">
-                        <img src="../images/Logo.png" class="rob-hero-logo" alt="Capitec logo">
-                        <img src="../images/capihello.png" class="rob-hero-hello" alt="hello">
-                    </div>
-                    <h2 class="rob-question">What would you like to do?</h2>
-                    <div class="rob-toggle" id="robMainToggle">
-                        <button type="button" class="rob-toggle-opt active" id="robSignInOpt" data-value="signin">Sign in</button>
-                        <button type="button" class="rob-toggle-opt" id="robOpenAccountOpt" data-value="open">Open an account</button>
-                    </div>
-
-                    <div class="rob-for-row" id="robForRow" hidden>
-                        <div class="rob-for-label">for</div>
-                        <div class="rob-toggle" id="robForToggle">
-                            <button type="button" class="rob-toggle-opt" id="robMyselfOpt" data-value="myself">Myself</button>
-                            <button type="button" class="rob-toggle-opt" id="robBusinessOpt" data-value="business">My Business</button>
-                        </div>
-                    </div>
-
-                    <button type="button" class="rob-get-started" id="robGetStarted" hidden>Get Started</button>
-                </section>
-
-                <section class="rob-screen rob-screen-loading" id="robScreenLoading" hidden>
-                    <div class="rob-spinner"></div>
-                    <div class="rob-loading-squares">
-                        <span class="rob-sq rob-sq-blue"></span>
-                        <span class="rob-sq rob-sq-navy"></span>
-                        <span class="rob-sq rob-sq-gray"></span>
-                        <span class="rob-sq rob-sq-red"></span>
-                    </div>
-                </section>
-
-                <section class="rob-screen rob-screen-application" id="robScreenApplication" hidden>
-                    <div class="rob-bar">Business Account Application</div>
-                    <h2 class="rob-title">Open a business account</h2>
-                    <p class="rob-sub">Start a new application or continue an existing one.</p>
-
-                    <div class="rob-card">
-                        <h3 class="rob-card-title">New Application</h3>
-                        <p class="rob-card-desc">You need your SA ID number, email address, SA cellphone number and CIPC number if you have a registered business.</p>
-                        <button type="button" class="rob-btn-solid" id="robStartNewApplication">Start new application</button>
-                    </div>
-
-                    <div class="rob-card">
-                        <h3 class="rob-card-title">Resume Application</h3>
-                        <p class="rob-card-desc">If you started an application, you need the reference code we've emailed you to continue.</p>
-                        <button type="button" class="rob-btn-outline" id="robResumeApplication">Continue to existing application</button>
-                    </div>
-                </section>
-
-                <section class="rob-screen rob-screen-biztype" id="robScreenBizType" hidden>
-                    <div class="rob-bar">Choose a business type</div>
-
-                    <div class="rob-card rob-biztype-card">
-                        <h3 class="rob-card-title">Private company or close corporation</h3>
-                        <div class="rob-biztype-art"><span class="material-icons-sharp">groups</span></div>
-                        <p class="rob-card-label">The business:</p>
-                        <ul class="rob-card-list">
-                            <li>Is registered with the Companies and Intellectual Property Commission (CIPC)</li>
-                            <li>Has one or more directors or members making decisions</li>
-                        </ul>
-                        <p class="rob-card-label">What you need to open the account:</p>
-                        <ul class="rob-card-list">
-                            <li>Valid South African ID</li>
-                            <li>CIPC business registration number</li>
-                            <li>Valid email address</li>
-                            <li>Registered SA cellphone number</li>
-                        </ul>
-                        <button type="button" class="rob-btn-solid" id="robBizTypePrivate">Get Started</button>
-                    </div>
-
-                    <div class="rob-card rob-biztype-card">
-                        <h3 class="rob-card-title">Sole proprietorship</h3>
-                        <div class="rob-biztype-art"><span class="material-icons-sharp">badge</span></div>
-                        <p class="rob-card-label">You are:</p>
-                        <ul class="rob-card-list">
-                            <li>Self-employed, freelancer or have a side hustle</li>
-                            <li>The only person making business decisions</li>
-                        </ul>
-                        <p class="rob-card-label">What you need to open the account:</p>
-                        <ul class="rob-card-list">
-                            <li>Valid South African ID</li>
-                            <li>Valid email address</li>
-                            <li>Registered SA cellphone number</li>
-                        </ul>
-                        <button type="button" class="rob-btn-solid" id="robBizTypeSole">Get Started</button>
-                    </div>
-
-                    <div class="rob-card rob-biztype-card">
-                        <h3 class="rob-card-title">Other</h3>
-                        <div class="rob-biztype-art"><span class="material-icons-sharp">diversity_3</span></div>
-                        <p class="rob-card-desc">The business is one of the following: If your business is a trust, partnership and/or if one of the directors or members is a foreign national with a valid passport.</p>
-                        <button type="button" class="rob-btn-solid" id="robBizTypeOther">Get in touch</button>
-                    </div>
-                </section>
-
+        <div class="screen-content" style="background:#fff;">
+            <div style="display:flex;align-items:center;justify-content:center;height:100%;">
+                <a href="../App/Sign-In.html" style="position:absolute;top:10px;left:10px;text-decoration:none;">
+                    <span class="material-icons-sharp" style="color:#00aeff;">arrow_back</span>
+                </a>
             </div>
         </div>
         <div class="home-indicator"></div>
@@ -132,6 +34,5 @@
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
-<script src="../scripts/ROB.js"></script>
 </body>
 </html>
