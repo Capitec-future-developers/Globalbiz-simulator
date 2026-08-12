@@ -1,0 +1,79 @@
+.doc-email-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.doc-email-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.doc-email-header .material-icons-sharp {
+    cursor: pointer;
+}
+.doc-email-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+.doc-email-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+.doc-add-email {
+    background: none;
+    border: none;
+    color: #007bff;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 0;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.doc-email-send-btn {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.doc-email-cancel-btn {
+    width: 100%;
+    background: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 24px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.doc-email-success {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+.doc-success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #e8f8f0;
+    color: #2ecc71;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+.doc-email-success p {
+    color: #666;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,226 @@
+/* ============================================================
+   GlobalOne personal banking - Rewards page.
+   App/GlobalOne-Rewards.html
+   ============================================================ */
+
+.go-rewards-header {
+    flex-shrink: 0;
+    background: #5b1a99;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 45px 16px 16px;
+}
+
+.go-rewards-header a {
+    color: white;
+    display: flex;
+    text-decoration: none;
+}
+
+.go-rewards-header h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.go-rewards-body {
+    padding: 20px 16px;
+}
+
+.go-live-better-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    margin-bottom: 26px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.go-live-better-icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: #5b1a99;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.go-live-better-info {
+    flex: 1;
+    padding: 14px;
+}
+
+.go-live-better-info .go-lb-title {
+    font-weight: 700;
+    color: #5b1a99;
+    font-size: 1.05rem;
+}
+
+.go-live-better-info .go-lb-sub {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.go-live-better-amount {
+    padding-right: 16px;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-rewards-section-label {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #16232f;
+    margin: 0 0 14px;
+}
+
+.go-deal-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    margin-bottom: 26px;
+}
+
+.go-deal-art {
+    position: relative;
+    height: 130px;
+    background: linear-gradient(135deg, #b3236e, #6a3fc2);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.go-deal-art::after {
+    content: '';
+    position: absolute;
+    right: 24px;
+    top: 20px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #c6ff5e;
+}
+
+.go-deal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+}
+
+.go-deal-footer p {
+    margin: 0;
+    color: #16232f;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.go-deal-footer a {
+    color: var(--go-primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.go-partners-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.go-partners-heading-row h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #16232f;
+}
+
+.go-partners-heading-row a {
+    color: var(--go-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.go-partner-carousel {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.go-partner-carousel::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.go-partner-tile {
+    flex: 0 0 62%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+.go-partner-tile-art {
+    position: relative;
+    height: 90px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+}
+
+.go-partner-new-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #a10e2f;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 8px;
+}
+
+.go-partner-tile-body {
+    padding: 14px;
+}
+
+.go-partner-tile-body h5 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    color: #16232f;
+}
+
+.go-partner-tile-body p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+    line-height: 1.35;
+}

@@ -1,0 +1,386 @@
+/* ============================================================
+   Card Machines + Credit pages, reached from Explore.html's
+   Products & Services list. Brand new pages (no classic
+   equivalent existed), so no new-look-active toggle needed here.
+   Reuses .head/.content/#mainContent/.bottom-nav from Phone2.css.
+   ============================================================ */
+
+/* .head normally renders as the dark classic navy bar (see
+   Phone2.css). These pages are only ever reached from the
+   new-look Explore screen, so .head gets restyled here to match
+   the light new-look aesthetic instead - .nl-subpage-head keeps
+   the exact same layout/positioning, only the colors change. */
+.head.nl-subpage-head {
+    background: #f9f9f9;
+    color: #16232f;
+    box-shadow: none;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+.head.nl-subpage-head .arrow {
+    background: transparent;
+}
+
+.head.nl-subpage-head .arrow .material-icons-sharp {
+    color: #1b4dbf;
+}
+
+.head.nl-subpage-head .header {
+    color: #16232f;
+    font-weight: 600;
+}
+
+.new-look-only {
+    display: none;
+}
+
+body.new-look-active .new-look-only {
+    display: block;
+}
+
+body.new-look-active .classic-only {
+    display: none;
+}
+
+/* -------- Explore.html "Products and services" list -------- */
+.nl-explore-screen {
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+}
+
+.nl-explore-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.nl-explore-topbar .nl-back {
+    display: inline-flex;
+    color: #1b4dbf;
+    text-decoration: none;
+}
+
+.nl-explore-topbar h2 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-explore-heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0 0 10px;
+}
+
+.nl-explore-desc {
+    font-size: 1rem;
+    color: #2d3748;
+    line-height: 1.4;
+    margin: 0 0 20px;
+}
+
+.nl-explore-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 16px;
+    text-decoration: none;
+}
+
+.nl-explore-card-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.nl-explore-icon-credit {
+    background: #fbe1e1;
+    color: #dc3545;
+}
+
+.nl-explore-icon-cardmachine {
+    background: #dbe6fb;
+    color: #0d6efd;
+}
+
+.nl-explore-icon-save {
+    background: #dbe6fb;
+    color: #0d1f66;
+}
+
+.nl-explore-card-body {
+    flex: 1;
+}
+
+.nl-explore-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.nl-explore-title-credit {
+    color: #dc3545;
+}
+
+.nl-explore-title-cardmachine {
+    color: #0d6efd;
+}
+
+.nl-explore-title-save {
+    color: #0d1f66;
+}
+
+.nl-explore-card-desc {
+    font-size: 0.88rem;
+    color: #5f6b7a;
+    line-height: 1.35;
+}
+
+.nl-explore-card-chevron {
+    flex-shrink: 0;
+    color: #0d6efd;
+}
+
+.cm-hero {
+    position: relative;
+    background: linear-gradient(135deg, #0d2f8f, #1b4dbf);
+    border-radius: 14px;
+    padding: 30px 20px;
+    color: white;
+    text-align: left;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.cm-hero-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.3;
+    max-width: 60%;
+}
+
+.cm-badge {
+    position: absolute;
+    background: white;
+    color: #1b4dbf;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.cm-badge-pro {
+    top: 16px;
+    right: 20px;
+}
+
+.cm-badge-print {
+    bottom: 16px;
+    right: 40px;
+}
+
+.cm-price-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    font-size: 1rem;
+    color: #16232f;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.cm-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.cm-tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid #eef1f6;
+    margin-bottom: 16px;
+    padding: 0 4px;
+}
+
+.cm-tab {
+    background: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #5f6b7a;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    font-family: inherit;
+}
+
+.cm-tab.active {
+    color: #1b4dbf;
+    border-bottom-color: #1b4dbf;
+}
+
+.cm-tab-panel h4 {
+    font-size: 1.1rem;
+    color: #16232f;
+    margin: 0 0 12px;
+    text-align: left;
+}
+
+.cm-tab-panel ul {
+    margin: 0 0 16px;
+    padding-left: 18px;
+    color: #2d3748;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.cm-tab-panel p {
+    color: #2d3748;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.cm-payment-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.cm-payment-logos span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #16232f;
+    border: 1px solid #cfd6e4;
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+.cm-contact-btn {
+    width: 100%;
+    background: #1b4dbf;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+/* -------- Credit empty state -------- */
+.credit-empty-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.credit-empty-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.credit-empty-icon .material-icons-sharp:first-child {
+    font-size: 90px;
+    color: #dbe6fb;
+}
+
+.credit-empty-icon .material-icons-sharp:last-child {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    font-size: 40px;
+    color: #dc3545;
+    background: white;
+    border-radius: 50%;
+}
+
+.credit-empty-card p {
+    color: #16232f;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* -------- bottom nav (same treatment as Home/Accounts pages) -------- */
+body.new-look-active .nav-item {
+    color: #2d3748;
+    gap: 4px;
+}
+
+body.new-look-active .nav-item img {
+    filter: none;
+    width: 22px;
+    height: 22px;
+}
+
+body.new-look-active .nav-item.active,
+body.new-look-active .nav-item.active:link,
+body.new-look-active .nav-item.active:visited,
+body.new-look-active .nav-item.active:hover,
+body.new-look-active .nav-item.active:active {
+    color: #0096c7;
+    font-weight: 600;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   <img> — filter affects everything rendered for an element including its
+   own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+body.new-look-active .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+body.new-look-active .nav-item.active img {
+    position: relative;
+    z-index: 1;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    filter: invert(1) !important;
+}
+
+/* Explore's own nav icon is a material-icon font glyph, not an <img> like
+   the other four items - it needs its own stacking context to sit above
+   the pill (position:absolute lifts the pill above static content). */
+body.new-look-active .nav-item.active .nav-icon {
+    position: relative;
+    z-index: 1;
+}

@@ -1,0 +1,223 @@
+/* ============================================================
+   GlobalOne personal banking - Profile popup + My Information.
+   App/GlobalOne-Profile.html, App/GlobalOne-MyInformation.html
+   ============================================================ */
+
+.go-profile-popup-header {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 45px 20px 20px;
+}
+
+.go-profile-popup-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #16232f;
+    margin: 0;
+}
+
+.go-profile-popup-header button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--go-primary);
+    cursor: pointer;
+    display: flex;
+}
+
+.go-profile-list {
+    margin: 0 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.go-profile-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #eef1f6;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-radius: 0;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.go-profile-list a.go-profile-row:last-child, .go-profile-list button.go-profile-row:last-child {
+    border-bottom: none;
+}
+
+.go-profile-row-icon {
+    flex-shrink: 0;
+    font-size: 32px;
+    color: var(--go-primary);
+}
+
+.go-profile-row h4 {
+    margin: 0 0 4px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-profile-row p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5f6b7a;
+    line-height: 1.35;
+}
+
+.go-signout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: calc(100% - 40px);
+    margin: 24px 20px 10px;
+    background: white;
+    border: 1.5px solid #c62828;
+    border-radius: 24px;
+    padding: 14px;
+    color: #c62828;
+    font-size: 1.02rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* -------- My information page -------- */
+.go-myinfo-header {
+    flex-shrink: 0;
+    background: var(--go-primary);
+    color: white;
+}
+
+.go-myinfo-header-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 45px 16px 16px;
+}
+
+.go-myinfo-header-row a {
+    color: white;
+    display: flex;
+    text-decoration: none;
+}
+
+.go-myinfo-header-row h2 {
+    flex: 1;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.go-myinfo-tabs {
+    display: flex;
+}
+
+.go-myinfo-tab {
+    flex: 1;
+    text-align: center;
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0 0 14px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    border-bottom: 3px solid transparent;
+}
+
+.go-myinfo-tab.active {
+    color: white;
+    font-weight: 700;
+    border-bottom-color: white;
+}
+
+.go-myinfo-body {
+    padding: 20px 16px;
+}
+
+.go-myinfo-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.go-myinfo-card h4 {
+    margin: 0 0 4px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.go-myinfo-card p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.go-myinfo-card .material-icons-sharp {
+    color: var(--go-primary);
+    flex-shrink: 0;
+}
+
+.go-myinfo-edit-btn {
+    width: 100%;
+    background: var(--go-primary);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 15px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.go-myinfo-simple-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    color: #16232f;
+    font-size: 1.02rem;
+}
+
+.go-myinfo-simple-row .material-icons-sharp:first-child {
+    color: var(--go-primary);
+}
+
+.go-myinfo-simple-row span:nth-child(2) {
+    flex: 1;
+}
+
+.go-myinfo-simple-row .material-icons-sharp:last-child {
+    color: var(--go-primary);
+}

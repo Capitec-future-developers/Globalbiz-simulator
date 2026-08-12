@@ -1,0 +1,215 @@
+/* ============================================================
+   "New Look" preview for the Accounts list page.
+   Inert by default — everything here only takes effect once
+   body.new-look-active is set (toggled from the "Preview New
+   Look" switch on Sign-In.html via localStorage).
+   ============================================================ */
+
+.new-look-only {
+    display: none;
+}
+
+body.new-look-active .new-look-only {
+    display: flex;
+}
+
+body.new-look-active .classic-only {
+    display: none;
+}
+
+body.new-look-active .screen {
+    background-color: #eef1f9;
+}
+
+.nl-accounts-content {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eef1f9;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nl-accounts-content::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.nl-accounts-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    margin-bottom: 16px;
+}
+
+.nl-accounts-topbar .nl-back {
+    display: inline-flex;
+    color: #16232f;
+    text-decoration: none;
+}
+
+.nl-accounts-topbar h2 {
+    font-size: 1.3rem;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-accounts-search {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid #cfd6e4;
+    border-radius: 24px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+}
+
+.nl-accounts-search .material-icons-sharp {
+    color: #5f6b7a;
+    font-size: 20px;
+}
+
+.nl-accounts-search input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 0.95rem;
+    background: transparent;
+    font-family: inherit;
+}
+
+.nl-filter-pills {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.nl-pill {
+    border: none;
+    background: #dbe6fb;
+    color: #1b4dbf;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nl-pill.active {
+    background: #16232f;
+    color: white;
+}
+
+.nl-account-list {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nl-account-list-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 18px 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+    gap: 14px;
+}
+
+.nl-account-accent {
+    width: 4px;
+    align-self: stretch;
+    border-radius: 4px;
+    background: #16232f;
+    flex-shrink: 0;
+}
+
+.nl-account-list-info {
+    flex: 1;
+}
+
+.nl-account-list-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #16232f;
+    margin-bottom: 4px;
+}
+
+.nl-account-list-label {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.nl-account-list-balance {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+/* -------- bottom nav -------- */
+body.new-look-active .bottom-nav {
+    padding: 10px 0 16px;
+}
+
+body.new-look-active .nav-item {
+    color: #2d3748;
+    gap: 4px;
+}
+
+body.new-look-active .nav-item img {
+    filter: none;
+    width: 22px;
+    height: 22px;
+}
+
+body.new-look-active .nav-item.active,
+body.new-look-active .nav-item.active:link,
+body.new-look-active .nav-item.active:visited,
+body.new-look-active .nav-item.active:hover,
+body.new-look-active .nav-item.active:active {
+    color: #0096c7;
+    font-weight: 600;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   <img> — filter affects everything rendered for an element including its
+   own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+body.new-look-active .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+body.new-look-active .nav-item.active img {
+    position: relative;
+    z-index: 1;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    filter: invert(1) !important;
+}

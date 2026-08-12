@@ -165,20 +165,7 @@ Your <b>Available Balance</b> is how much you may spend. The Balance could diffe
                     <button class="nl-tx-tab" data-tab="payments" type="button">Payments</button>
                 </div>
 
-                <div class="nl-tx-panel" id="nlTxAll">
-                    <div class="nl-tx-month">Jun 2026</div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">Cr Interest</div><div class="nl-tx-date">30 Jun 2026</div></div><div class="nl-tx-amount">R0.47</div></div>
-
-                    <div class="nl-tx-month">May 2026</div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">Cr Interest</div><div class="nl-tx-date">31 May 2026</div></div><div class="nl-tx-amount">R0.35</div></div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">O MOHLALA</div><div class="nl-tx-date">27 May 2026</div></div><div class="nl-tx-amount">R26.00</div></div>
-
-                    <div class="nl-tx-month">Apr 2026</div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">Cr Interest</div><div class="nl-tx-date">30 Apr 2026</div></div><div class="nl-tx-amount">R0.32</div></div>
-
-                    <div class="nl-tx-month">Mar 2026</div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">Cr Interest</div><div class="nl-tx-date">31 Mar 2026</div></div><div class="nl-tx-amount">R0.32</div></div>
-                </div>
+                <div class="nl-tx-panel" id="nlTxAll"></div>
 
                 <div class="nl-tx-panel nl-tx-empty" id="nlTxPayments" style="display: none;">
                     <div class="nl-empty-illustration"><span class="material-icons-sharp">receipt_long</span></div>
@@ -293,6 +280,34 @@ Your <b>Available Balance</b> is how much you may spend. The Balance could diffe
             document.getElementById('nlAvailableAmount').textContent = formatNlBalance(accBalances[accId].available);
             document.getElementById('nlBalanceAmount').textContent = formatNlBalance(accBalances[accId].balance);
         }
+
+        function escapeText(str) {
+            var div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function renderTransactions() {
+            var container = document.getElementById('nlTxAll');
+            var txs = (accBalances[accId] && accBalances[accId].transactions) || [];
+            if (!txs.length) {
+                container.innerHTML = '<p style="color:#5f6b7a; text-align:center; padding:30px 0;">No transactions yet.</p>';
+                return;
+            }
+            var html = '';
+            var lastMonth = null;
+            txs.forEach(function (tx) {
+                var monthYear = tx.date.split(' ').slice(1).join(' ');
+                if (monthYear !== lastMonth) {
+                    html += '<div class="nl-tx-month">' + monthYear + '</div>';
+                    lastMonth = monthYear;
+                }
+                var isNegative = tx.amount < 0;
+                html += '<div class="nl-tx-row"><div><div class="nl-tx-name">' + escapeText(tx.name) + '</div><div class="nl-tx-date">' + tx.date + '</div></div><div class="nl-tx-amount"' + (isNegative ? ' style="color:#c0272d;"' : '') + '>' + (isNegative ? '-' : '') + formatNlBalance(Math.abs(tx.amount)) + '</div></div>';
+            });
+            container.innerHTML = html;
+        }
+        renderTransactions();
 
         var tabs = document.querySelectorAll('.nl-tx-tab');
         var panels = { all: document.getElementById('nlTxAll'), payments: document.getElementById('nlTxPayments') };

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ic/status/info</title>
+    <g id="ic/status/info" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" stroke="#08A6B5" stroke-width="1.5" fill-opacity="0.1" fill="#08A6B5" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="11"></circle>
+        <path d="M12,9.25 C12.3796958,9.25 12.693491,9.53215388 12.7431534,9.89822944 L12.75,10 L12.75,17 C12.75,17.4142136 12.4142136,17.75 12,17.75 C11.6203042,17.75 11.306509,17.4678461 11.2568466,17.1017706 L11.25,17 L11.25,10 C11.25,9.58578644 11.5857864,9.25 12,9.25 Z M12,6 C12.5522847,6 13,6.44771525 13,7 C13,7.55228475 12.5522847,8 12,8 C11.4477153,8 11,7.55228475 11,7 C11,6.44771525 11.4477153,6 12,6 Z" id="Combined-Shape" fill="#08A6B5" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -100,11 +100,7 @@ Your <b>Available Balance</b> is how much you may still spend on this credit fac
                     <button class="nl-tx-tab" data-tab="payments" type="button">Payments</button>
                 </div>
 
-                <div class="nl-tx-panel" id="nlTxAll">
-                    <div class="nl-tx-month">May 2026</div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">Transfer to Credit Card</div><div class="nl-tx-date">6 May 2026</div></div><div class="nl-tx-amount" style="color:#c0272d;">-R2,588.81</div></div>
-                    <div class="nl-tx-row"><div><div class="nl-tx-name">Monthly Card Fee</div><div class="nl-tx-date">1 May 2026</div></div><div class="nl-tx-amount" style="color:#c0272d;">-R50.00</div></div>
-                </div>
+                <div class="nl-tx-panel" id="nlTxAll"></div>
 
                 <div class="nl-tx-panel nl-tx-empty" id="nlTxPayments" style="display: none;">
                     <div class="nl-empty-illustration"><span class="material-icons-sharp">receipt_long</span></div>
@@ -201,6 +197,34 @@ Your <b>Available Balance</b> is how much you may still spend on this credit fac
             document.getElementById('nlAvailableAmount').textContent = formatNlBalance(creditBalances.credit.available);
             document.getElementById('nlBalanceAmount').textContent = formatNlBalance(creditBalances.credit.balance);
         }
+
+        function escapeText(str) {
+            var div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function renderTransactions() {
+            var container = document.getElementById('nlTxAll');
+            var txs = (creditBalances.credit && creditBalances.credit.transactions) || [];
+            if (!txs.length) {
+                container.innerHTML = '<p style="color:#5f6b7a; text-align:center; padding:30px 0;">No transactions yet.</p>';
+                return;
+            }
+            var html = '';
+            var lastMonth = null;
+            txs.forEach(function (tx) {
+                var monthYear = tx.date.split(' ').slice(1).join(' ');
+                if (monthYear !== lastMonth) {
+                    html += '<div class="nl-tx-month">' + monthYear + '</div>';
+                    lastMonth = monthYear;
+                }
+                var isNegative = tx.amount < 0;
+                html += '<div class="nl-tx-row"><div><div class="nl-tx-name">' + escapeText(tx.name) + '</div><div class="nl-tx-date">' + tx.date + '</div></div><div class="nl-tx-amount"' + (isNegative ? ' style="color:#c0272d;"' : '') + '>' + (isNegative ? '-' : '') + formatNlBalance(Math.abs(tx.amount)) + '</div></div>';
+            });
+            container.innerHTML = html;
+        }
+        renderTransactions();
 
         var tabs = document.querySelectorAll('.nl-tx-tab');
         var panels = { all: document.getElementById('nlTxAll'), payments: document.getElementById('nlTxPayments') };

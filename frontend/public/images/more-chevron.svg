@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>fill</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Nav-bar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Nav/Home-Desktop-(on-hover-over-Live-Better)" transform="translate(-1662.000000, -29.000000)" fill="#2f70ef">
+            <g id="Group" transform="translate(39.000000, 8.000000)">
+                <g id="ic" transform="translate(1629.000000, 24.000000) rotate(-270.000000) translate(-1629.000000, -24.000000) translate(1616.000000, 11.000000)">
+                    <path d="M14.9393398,13 L10.4696699,17.4696699 C10.1767767,17.7625631 10.1767767,18.2374369 10.4696699,18.5303301 C10.7625631,18.8232233 11.2374369,18.8232233 11.5303301,18.5303301 L16.5303301,13.5303301 C16.8232233,13.2374369 16.8232233,12.7625631 16.5303301,12.4696699 L11.5303301,7.46966991 C11.2374369,7.1767767 10.7625631,7.1767767 10.4696699,7.46966991 C10.1767767,7.76256313 10.1767767,8.23743687 10.4696699,8.53033009 L14.9393398,13 Z" id="fill"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

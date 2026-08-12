@@ -655,6 +655,7 @@ ${currentUserContext.profileImage ?
 <span class="nl-transfer-amount-currency">R</span>
 <input type="text" inputmode="decimal" id="transfer-amount-input" class="nl-transfer-amount-input" value="0.00">
 </div>
+<div id="transfer-amount-error" style="display:none; color:#c0272d; font-size:0.85rem; margin-top:-8px; margin-bottom:12px;">Insufficient funds</div>
 <div class="nl-transfer-accounts-card">
 <button class="nl-transfer-account-row" id="transfer-from-row" type="button">
 <div><div class="nl-transfer-account-label">From</div><div class="nl-transfer-account-value" id="transfer-from-value">Choose account</div></div>
@@ -681,9 +682,12 @@ ${currentUserContext.profileImage ?
         const pickerTitle = document.getElementById('transfer-picker-title');
         const pickerList = document.getElementById('transfer-picker-list');
         let pickerRole = null;
+        const amountError = document.getElementById('transfer-amount-error');
         function updateNextState() {
             const amount = parseFloat(amountInput.value) || 0;
-            nextBtn.disabled = !(amount > 0 && nlFromAccount && nlToAccount && nlFromAccount.id !== nlToAccount.id);
+            const insufficientFunds = !!(nlFromAccount && amount > nlFromAccount.available);
+            amountError.style.display = insufficientFunds ? 'block' : 'none';
+            nextBtn.disabled = !(amount > 0 && nlFromAccount && nlToAccount && nlFromAccount.id !== nlToAccount.id && !insufficientFunds);
         }
         amountInput.addEventListener('focus', function () {
             if (amountInput.value === '0.00') amountInput.value = '';
@@ -754,8 +758,8 @@ ${currentUserContext.profileImage ?
             `</div>`;
         document.getElementById('review-transfer-back').addEventListener('click', onBack);
         document.getElementById('review-transfer-btn').addEventListener('click', function () {
-            NLAccountStore.adjust(fromAccount.id, -amount);
-            NLAccountStore.adjust(toAccount.id, amount);
+            NLAccountStore.adjust(fromAccount.id, -amount, 'Transfer to ' + toAccount.name);
+            NLAccountStore.adjust(toAccount.id, amount, 'Transfer from ' + fromAccount.name);
             onDone();
         });
     }
@@ -823,7 +827,7 @@ ${currentUserContext.profileImage ?
             if (continueBtn.disabled) return;
             var name = document.getElementById('bank-ben-name').value;
             showPayAmountForm(name, function (amount, account) {
-                NLAccountStore.adjust(account.id, -amount);
+                NLAccountStore.adjust(account.id, -amount, 'Payment to ' + name);
                 mainContentArea.innerHTML = `<div class="payment-confirmation"><div class="confirmation-icon success"><span class="material-icons-sharp">check_circle</span></div><h2>Payment submitted</h2><p>` + formatCurrency(amount) + ' will be paid to ' + name + ' from ' + escapeHtml(account.name) + `.</p><div class="confirmation-actions"><button class="primary-btn" id="bank-pay-done">Done</button></div></div>`;
                 document.getElementById('bank-pay-done').addEventListener('click', resetToMainView);
             }, showPayBankAccountForm);
@@ -834,7 +838,7 @@ ${currentUserContext.profileImage ?
         toggleContentVisibility();
         navigationStack.push('pay-amount-form');
         var account = getNlPayAccounts()[0];
-        mainContentArea.innerHTML = `<div class="nl-pay-section"><div class="nl-pay-header"><button class="back-button" id="amount-form-back" type="button"><span class="material-icons-sharp">arrow_back</span></button><h2>Pay ` + payeeName + `</h2></div><label class="nl-transfer-amount-label">Amount</label><div class="nl-transfer-amount-box"><span class="nl-transfer-amount-currency">R</span><input type="text" inputmode="decimal" id="pay-amount-input" class="nl-transfer-amount-input" value="0.00"></div><div class="nl-pay-card">` +
+        mainContentArea.innerHTML = `<div class="nl-pay-section"><div class="nl-pay-header"><button class="back-button" id="amount-form-back" type="button"><span class="material-icons-sharp">arrow_back</span></button><h2>Pay ` + payeeName + `</h2></div><label class="nl-transfer-amount-label">Amount</label><div class="nl-transfer-amount-box"><span class="nl-transfer-amount-currency">R</span><input type="text" inputmode="decimal" id="pay-amount-input" class="nl-transfer-amount-input" value="0.00"></div><div id="pay-amount-error" style="display:none; color:#c0272d; font-size:0.85rem; margin-top:-8px; margin-bottom:12px;">Insufficient funds</div><div class="nl-pay-card">` +
             `<button class="nl-pay-review-row" id="pay-amount-account-row" type="button" style="width:100%; border:none; background:none; text-align:left; cursor:pointer; white-space:normal;"><span class="material-icons-sharp nl-pay-review-icon">trending_up</span><div class="nl-pay-review-body"><div class="nl-pay-review-label">From</div><div class="nl-pay-review-name" id="pay-amount-account-name" style="overflow-wrap:break-word;">${escapeHtml(account.name)}</div></div><div class="nl-pay-review-side"><div class="nl-pay-review-sub">Available</div><div class="nl-pay-review-amount" id="pay-amount-account-available">${formatCurrency(account.available)}</div></div><span class="material-icons-sharp">chevron_right</span></button>` +
             `</div><div class="nl-pay-field-card"><div class="nl-pay-field"><label>My reference</label><input type="text" id="pay-my-ref" value="` + payeeName + `"></div></div><button class="nl-pay-primary-btn" id="pay-amount-continue" type="button" disabled>Pay</button>` +
             `<div class="nl-account-picker-overlay" id="pay-amount-picker-overlay" style="display:none;"></div>` +
@@ -867,6 +871,7 @@ ${currentUserContext.profileImage ?
                     document.getElementById('pay-amount-account-name').textContent = account.name;
                     document.getElementById('pay-amount-account-available').textContent = formatCurrency(account.available);
                     closePicker();
+                    updateState();
                 });
             });
             pickerOverlay.style.display = 'block';
@@ -874,9 +879,12 @@ ${currentUserContext.profileImage ?
         });
         pickerOverlay.addEventListener('click', closePicker);
         document.getElementById('pay-amount-picker-close').addEventListener('click', closePicker);
+        var payAmountError = document.getElementById('pay-amount-error');
         function updateState() {
             var amount = parseFloat(amountInput.value) || 0;
-            continueBtn.disabled = !(amount > 0);
+            var insufficientFunds = amount > account.available;
+            payAmountError.style.display = insufficientFunds ? 'block' : 'none';
+            continueBtn.disabled = !(amount > 0 && !insufficientFunds);
         }
         amountInput.addEventListener('focus', function () { if (amountInput.value === '0.00') amountInput.value = ''; });
         amountInput.addEventListener('blur', function () {
@@ -920,6 +928,7 @@ ${currentUserContext.profileImage ?
             `<button class="nl-pay-review-row" id="pay-screen-account-row" type="button" style="width:100%; border:none; background:none; text-align:left; cursor:pointer; white-space:normal;"><span class="material-icons-sharp nl-pay-review-icon">trending_up</span><div class="nl-pay-review-body"><div class="nl-pay-review-label">From</div><div class="nl-pay-review-name" id="pay-screen-account-name" style="overflow-wrap:break-word;">${escapeHtml(account.name)}</div></div><div class="nl-pay-review-side"><div class="nl-pay-review-sub">Available</div><div class="nl-pay-review-amount" id="pay-screen-account-available">${formatCurrency(account.available)}</div></div><span class="material-icons-sharp">chevron_right</span></button>` +
             `<div class="nl-pay-review-row"><span class="material-icons-sharp nl-pay-review-icon">person</span><div class="nl-pay-review-body"><div class="nl-pay-review-label">To</div><div class="nl-pay-review-name">${escapeHtml(label)}</div></div><div class="nl-pay-review-side"><div class="nl-pay-review-sub">${escapeHtml(beneficiary.bank)}</div><div class="nl-pay-review-sub">••••${beneficiary.accountNumber.slice(-4)}</div></div></div>` +
             `</div>` +
+            `<div id="pay-screen-amount-error" style="display:none; color:#c0272d; font-size:0.85rem; margin-bottom:12px;">Insufficient funds</div>` +
             `<button class="nl-pay-primary-btn" id="pay-screen-review-btn" type="button" disabled>Review Payment</button>` +
             `<div class="nl-account-picker-overlay" id="pay-account-picker-overlay" style="display:none;"></div>` +
             `<div class="nl-account-picker-sheet" id="pay-account-picker-sheet" style="display:none;">` +
@@ -952,6 +961,7 @@ ${currentUserContext.profileImage ?
                     document.getElementById('pay-screen-account-name').textContent = account.name;
                     document.getElementById('pay-screen-account-available').textContent = formatCurrency(account.available);
                     closePicker();
+                    updateState();
                 });
             });
             pickerOverlay.style.display = 'block';
@@ -959,9 +969,12 @@ ${currentUserContext.profileImage ?
         });
         pickerOverlay.addEventListener('click', closePicker);
         document.getElementById('pay-account-picker-close').addEventListener('click', closePicker);
+        var payScreenAmountError = document.getElementById('pay-screen-amount-error');
         function updateState() {
             var amount = parseFloat(amountInput.value) || 0;
-            reviewBtn.disabled = !(amount > 0);
+            var insufficientFunds = amount > account.available;
+            payScreenAmountError.style.display = insufficientFunds ? 'block' : 'none';
+            reviewBtn.disabled = !(amount > 0 && !insufficientFunds);
         }
         amountInput.addEventListener('focus', function () { if (amountInput.value === '0.00') amountInput.value = ''; });
         amountInput.addEventListener('blur', function () {
@@ -974,7 +987,7 @@ ${currentUserContext.profileImage ?
             if (reviewBtn.disabled) return;
             var amount = parseFloat(amountInput.value) || 0;
             showReviewPaymentScreen(beneficiary, account, amount, function () { showPayScreen(beneficiary, onBack); }, function (paidAmount) {
-                NLAccountStore.adjust(account.id, -paidAmount);
+                NLAccountStore.adjust(account.id, -paidAmount, 'Payment to ' + label);
                 beneficiary.lastPaidAmount = paidAmount;
                 beneficiary.lastPaidDate = new Date().toISOString();
                 updateUserInDatabase(currentUserContext);
@@ -1115,7 +1128,7 @@ ${currentUserContext.profileImage ?
             row.addEventListener('click', function () {
                 var beneficiaryName = row.dataset.name;
                 showPayAmountForm(beneficiaryName, function (amount, account) {
-                    NLAccountStore.adjust(account.id, -amount);
+                    NLAccountStore.adjust(account.id, -amount, 'Payment to ' + beneficiaryName);
                     mainContentArea.innerHTML = `<div class="payment-confirmation"><div class="confirmation-icon success"><span class="material-icons-sharp">check_circle</span></div><h2>Payment submitted</h2><p>` + formatCurrency(amount) + ' will be paid to ' + beneficiaryName + ' from ' + escapeHtml(account.name) + `.</p><div class="confirmation-actions"><button class="primary-btn" id="public-pay-done">Done</button></div></div>`;
                     document.getElementById('public-pay-done').addEventListener('click', resetToMainView);
                 }, function () { showPublicBeneficiaryList(searchTerm, showAll); });

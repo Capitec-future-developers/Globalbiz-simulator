@@ -1,0 +1,107 @@
+/* ============================================================
+   GlobalOne personal banking - "Enter app PIN" screen.
+   App/GlobalOne-Pin.html
+   ============================================================ */
+
+.go-pin-toggle-row {
+    display: flex;
+    align-items: center;
+    padding: 45px 16px 10px;
+    position: relative;
+}
+
+.go-pin-back {
+    color: var(--go-primary);
+    display: flex;
+    text-decoration: none;
+}
+
+.go-pin-pill {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--go-primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 8px 26px;
+    border-radius: 20px;
+}
+
+.go-pin-logo {
+    text-align: center;
+    margin: 40px 0 40px;
+    font-size: 2rem;
+}
+
+.go-pin-logo .go-logo-dark {
+    color: var(--go-primary-dark);
+}
+
+.go-pin-body {
+    padding: 0 20px;
+}
+
+.go-pin-field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.go-pin-field-row label {
+    font-weight: 700;
+    color: #16232f;
+    font-size: 0.95rem;
+}
+
+.go-pin-field-row a {
+    color: var(--go-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.go-pin-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid var(--go-primary);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 8px;
+}
+
+.go-pin-error {
+    color: #b3261e;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 24px;
+    display: none;
+}
+
+.go-pin-error.visible {
+    display: block;
+}
+
+.go-pin-submit {
+    width: 100%;
+    background: var(--go-primary);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.go-pin-disclaimer {
+    margin-top: auto;
+    padding: 20px 20px 30px;
+    font-size: 0.72rem;
+    color: #5f6b7a;
+    line-height: 1.4;
+    text-align: left;
+}

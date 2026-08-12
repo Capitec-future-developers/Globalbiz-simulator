@@ -190,7 +190,14 @@
                         <div class="nl-account-card">
                             <img src="../images/save.svg" alt="save" class="material-icons-sharp nl-account-icon"></img>
                             <span class="nl-account-name">2 Savings Accounts</span>
-                            <span class="nl-account-balance">R90.99</span>
+                            <span class="nl-account-balance" id="nlHomeSavingsBalance">R90.99</span>
+                        </div>
+                    </a>
+                    <a href="./Phone-creditAccountDetails.html" style="cursor: pointer; text-decoration: none;">
+                        <div class="nl-account-card" style="margin-top: 10px;">
+                            <span class="material-icons-sharp nl-account-icon" style="color:#c0272d;">credit_card</span>
+                            <span class="nl-account-name">Credit Account</span>
+                            <span class="nl-account-balance" id="nlHomeCreditBalance">R97,159.36</span>
                         </div>
                     </a>
                 </div>
@@ -303,11 +310,23 @@
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
+<script src="../scripts/nlAccountStore.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (localStorage.getItem('previewNewLook') !== 'false') {
             document.body.classList.add('new-look-active');
         }
+
+        function formatNlBalance(amount) {
+            var sign = amount < 0 ? '-' : '';
+            return sign + 'R' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+        var homeBalances = NLAccountStore.getBalances();
+        var savingsTotal = homeBalances.notice32.available + homeBalances.flexible.available;
+        var savingsEl = document.getElementById('nlHomeSavingsBalance');
+        var creditEl = document.getElementById('nlHomeCreditBalance');
+        if (savingsEl) savingsEl.textContent = formatNlBalance(savingsTotal);
+        if (creditEl) creditEl.textContent = formatNlBalance(homeBalances.credit.available);
     });
 </script>
 </body>
