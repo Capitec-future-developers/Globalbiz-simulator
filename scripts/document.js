@@ -109,6 +109,114 @@ top: 100px;
         flex-direction: column;
         gap: 10px;
       }
+      #email-doc-btn {
+        display: none;
+        position: absolute;
+        top: 250px;
+        width: 95%;
+        left: -10px;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .doc-email-screen {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        background: #fff;
+        z-index: 40;
+        box-sizing: border-box;
+      }
+      .doc-email-screen.active {
+        display: flex;
+      }
+      .doc-email-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .doc-email-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+      .doc-email-header .material-icons-sharp {
+        cursor: pointer;
+      }
+      .doc-email-label {
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 8px;
+      }
+      .doc-email-input {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+      }
+      .doc-add-email {
+        background: none;
+        border: none;
+        color: #007bff;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 8px 0;
+        text-align: left;
+        margin-bottom: 30px;
+      }
+      .doc-email-send-btn {
+        width: 100%;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 24px;
+        padding: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .doc-email-cancel-btn {
+        width: 100%;
+        background: white;
+        color: #007bff;
+        border: 1px solid #007bff;
+        border-radius: 24px;
+        padding: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .doc-email-success {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 80px;
+      }
+      .doc-email-success .doc-success-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: #e8f8f0;
+        color: #2ecc71;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+      .doc-email-success p {
+        color: #666;
+        margin-bottom: 30px;
+      }
     </style>
     <div class="document-header">
       <span class="material-icons-sharp">description</span>
@@ -139,6 +247,25 @@ top: 100px;
         <button id="generate-btn">Generate</button>
         <button id="cancel-btn">Cancel</button>
       </div>
+      <button id="email-doc-btn">Email document</button>
+    </div>
+    <div class="doc-email-screen" id="doc-email-screen">
+      <div class="doc-email-header">
+        <span class="material-icons-sharp" id="doc-email-back">arrow_back</span>
+        <h3>Email Document</h3>
+      </div>
+      <div class="doc-email-label">Send to</div>
+      <input type="email" class="doc-email-input" id="doc-email-input" placeholder="Email address" value="saiyalmahabeer@capitecbank.co.za">
+      <div id="doc-email-extra"></div>
+      <button type="button" class="doc-add-email" id="doc-add-email">+ Add another email address</button>
+      <button type="button" class="doc-email-send-btn" id="doc-email-send">Send</button>
+      <button type="button" class="doc-email-cancel-btn" id="doc-email-cancel">Cancel</button>
+    </div>
+    <div class="doc-email-screen doc-email-success" id="doc-email-success">
+      <div class="doc-success-icon"><span class="material-icons-sharp">check_circle</span></div>
+      <h3>Document emailed</h3>
+      <p id="doc-email-success-text">Your document has been emailed.</p>
+      <button type="button" class="doc-email-send-btn" id="doc-email-success-done">Done</button>
     </div>
   `;
   let documentCounter = 0;
@@ -155,6 +282,17 @@ top: 100px;
   documentsPage.querySelector('#account-choice').addEventListener('change', () => {
     actionButtons.style.display = 'flex';
   });
+  const emailDocBtn = documentsPage.querySelector('#email-doc-btn');
+  const docEmailScreen = documentsPage.querySelector('#doc-email-screen');
+  const docEmailSuccess = documentsPage.querySelector('#doc-email-success');
+  const docEmailBack = documentsPage.querySelector('#doc-email-back');
+  const docEmailInput = documentsPage.querySelector('#doc-email-input');
+  const docEmailExtra = documentsPage.querySelector('#doc-email-extra');
+  const docAddEmail = documentsPage.querySelector('#doc-add-email');
+  const docEmailSend = documentsPage.querySelector('#doc-email-send');
+  const docEmailCancel = documentsPage.querySelector('#doc-email-cancel');
+  const docEmailSuccessDone = documentsPage.querySelector('#doc-email-success-done');
+  const docEmailSuccessText = documentsPage.querySelector('#doc-email-success-text');
   generateBtn.addEventListener('click', () => {
     docStatus.textContent = 'Generating...';
     generateBtn.disabled = true;
@@ -163,13 +301,40 @@ top: 100px;
       docCount.textContent = documentCounter;
       docStatus.textContent = 'Ready for email';
       generateBtn.disabled = false;
+      emailDocBtn.style.display = 'block';
     }, 3000);
   });
   cancelBtn.addEventListener('click', () => {
     docType.selectedIndex = 0;
     accountContainer.style.display = 'none';
     actionButtons.style.display = 'none';
+    emailDocBtn.style.display = 'none';
     docStatus.textContent = 'Not ready for email';
+  });
+  emailDocBtn.addEventListener('click', () => {
+    docEmailScreen.classList.add('active');
+  });
+  docEmailBack.addEventListener('click', () => {
+    docEmailScreen.classList.remove('active');
+  });
+  docEmailCancel.addEventListener('click', () => {
+    docEmailScreen.classList.remove('active');
+  });
+  docAddEmail.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'email';
+    input.className = 'doc-email-input';
+    input.placeholder = 'Email address';
+    docEmailExtra.appendChild(input);
+  });
+  docEmailSend.addEventListener('click', () => {
+    const docLabel = docType.value === 'Stamped Statements' ? 'Stamped Bank Statement' : docType.value;
+    docEmailSuccessText.textContent = 'Your ' + docLabel + ' has been emailed to ' + docEmailInput.value + '.';
+    docEmailScreen.classList.remove('active');
+    docEmailSuccess.classList.add('active');
+  });
+  docEmailSuccessDone.addEventListener('click', () => {
+    docEmailSuccess.classList.remove('active');
   });
   sidebarToggle.addEventListener('click', function (event) {
     event.preventDefault();

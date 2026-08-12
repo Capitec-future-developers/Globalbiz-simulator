@@ -30,7 +30,17 @@
                 </div>
 
                 <div class="go-body">
-                    <div class="go-cards-body">
+                    <div class="go-virtual-body" id="goVirtualBody" style="display:none;">
+                        <div class="go-virtual-empty">
+                            <h3>Add new virtual card</h3>
+                            <p>Up to 5 virtual cards allowed</p>
+                            <a href="GlobalOne-VirtualCard-New.html" class="go-virtual-add-card">
+                                <span class="material-icons-sharp">add</span>
+                                <span>Add new virtual card</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="go-cards-body" id="goCardsBody">
                         <div class="go-card-visual" id="goCardVisual">
                             <div class="go-card-active-badge">ACTIVE</div>
                             <div class="go-card-top-row">
@@ -186,11 +196,19 @@
         document.getElementById('goVirtualTab').addEventListener('click', function () {
             document.getElementById('goVirtualTab').classList.add('active');
             document.getElementById('goCardsTab').classList.remove('active');
+            document.getElementById('goVirtualBody').style.display = '';
+            document.getElementById('goCardsBody').style.display = 'none';
         });
         document.getElementById('goCardsTab').addEventListener('click', function () {
             document.getElementById('goCardsTab').classList.add('active');
             document.getElementById('goVirtualTab').classList.remove('active');
+            document.getElementById('goCardsBody').style.display = '';
+            document.getElementById('goVirtualBody').style.display = 'none';
         });
+
+        if (new URLSearchParams(window.location.search).get('tab') === 'virtual') {
+            document.getElementById('goVirtualTab').click();
+        }
 
         ['goManageLimit', 'goTapToPay', 'goReplaceStop', 'goPermanentLimits', 'goTempLimits', 'goMessagesTab', 'goExploreTab'].forEach(function (id) {
             document.getElementById(id).addEventListener('click', function (e) { e.preventDefault(); });

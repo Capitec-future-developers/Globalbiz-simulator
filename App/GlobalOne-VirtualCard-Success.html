@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-VirtualCard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+    <link rel="stylesheet" href="../styles/Header.css">
+</head>
+<body>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen" style="background: white;">
+                <div class="go-vc-success-body">
+                    <div class="go-vc-success-icon">
+                        <span class="material-icons-sharp">check</span>
+                    </div>
+                    <h2>Successful</h2>
+                    <p>You can now use your virtual card.</p>
+                </div>
+
+                <div class="go-vc-success-footer">
+                    <button type="button" class="go-vc-wallet-btn" id="goAddGPay">Add to G Pay</button>
+                    <button type="button" class="go-vc-wallet-btn" id="goAddSamsung">Add to SAMSUNG Wallet</button>
+                    <a href="GlobalOne-Cards.html?tab=virtual" style="text-decoration:none;">
+                        <button type="button" class="go-vc-done-btn">Done</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script src="../scripts/Header.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        ['goAddGPay', 'goAddSamsung'].forEach(function (id) {
+            document.getElementById(id).addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+    });
+</script>
+</body>
+</html>

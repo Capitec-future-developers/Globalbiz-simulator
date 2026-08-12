@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-VirtualCard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+    <link rel="stylesheet" href="../styles/Header.css">
+</head>
+<body>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen" style="background: white;">
+                <div class="go-vc-header">
+                    <a href="GlobalOne-VirtualCard-New.html" class="go-vc-back"><span class="material-icons-sharp">arrow_back</span></a>
+                    <h2>Update Permanent Limits</h2>
+                </div>
+
+                <div class="go-body">
+                    <div class="go-vc-body">
+                        <p class="go-vc-intro">Set virtual daily limits</p>
+
+                        <div class="go-vc-limit-row">
+                            <div class="go-vc-limit-label">
+                                <span>Cash withdrawals</span>
+                                <span class="go-vc-limit-max">(max R5 000)</span>
+                            </div>
+                            <div class="go-vc-limit-input-wrap">
+                                <span>R</span>
+                                <input type="number" inputmode="decimal" min="0" max="5000" id="goLimitCash" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <div class="go-vc-limit-row">
+                            <div class="go-vc-limit-label">
+                                <span>Card machine purchases</span>
+                                <span class="go-vc-limit-max">(max R5 000)</span>
+                            </div>
+                            <div class="go-vc-limit-input-wrap">
+                                <span>R</span>
+                                <input type="number" inputmode="decimal" min="0" max="5000" id="goLimitCardMachine" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <div class="go-vc-limit-row">
+                            <div class="go-vc-limit-label">
+                                <span>Online/scan to pay/phone</span>
+                                <span class="go-vc-limit-max">(max R5 000)</span>
+                            </div>
+                            <div class="go-vc-limit-input-wrap">
+                                <span>R</span>
+                                <input type="number" inputmode="decimal" min="0" max="5000" id="goLimitOnline" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="go-vc-footer">
+                    <button type="button" class="go-vc-next" id="goLimitsNext">Next</button>
+                </div>
+
+                <div class="go-vc-modal-backdrop" id="goSetLimitsModal">
+                    <div class="go-vc-modal">
+                        <h3>Set Limits</h3>
+                        <p>The following permanent limits have been set to R0.00. You will not be able to do these transactions until you increase the limits.</p>
+                        <ul>
+                            <li>Cash withdrawals</li>
+                            <li>Card machine</li>
+                            <li>Online/scan to pay</li>
+                        </ul>
+                        <div class="go-vc-modal-actions">
+                            <button type="button" id="goSetLimitsCancel">CANCEL</button>
+                            <button type="button" class="go-vc-modal-confirm" id="goSetLimitsConfirm">CONFIRM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script src="../scripts/Header.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var cash = document.getElementById('goLimitCash');
+        var cardMachine = document.getElementById('goLimitCardMachine');
+        var online = document.getElementById('goLimitOnline');
+        var modal = document.getElementById('goSetLimitsModal');
+
+        function allLimitsZero() {
+            return [cash, cardMachine, online].every(function (input) {
+                return !input.value || parseFloat(input.value) === 0;
+            });
+        }
+
+        document.getElementById('goLimitsNext').addEventListener('click', function () {
+            if (allLimitsZero()) {
+                modal.classList.add('visible');
+                return;
+            }
+            window.location.href = 'GlobalOne-VirtualCard-Success.html';
+        });
+
+        document.getElementById('goSetLimitsCancel').addEventListener('click', function () {
+            modal.classList.remove('visible');
+        });
+
+        document.getElementById('goSetLimitsConfirm').addEventListener('click', function () {
+            window.location.href = 'GlobalOne-VirtualCard-Success.html';
+        });
+    });
+</script>
+</body>
+</html>

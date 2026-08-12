@@ -44,6 +44,52 @@
     padding: 24px 20px;
 }
 
+.go-virtual-body {
+    padding: 24px 20px;
+}
+
+.go-virtual-empty h3 {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+    color: #16232f;
+}
+
+.go-virtual-empty > p {
+    margin: 0 0 18px;
+    font-size: 0.9rem;
+    color: #5f6b7a;
+}
+
+.go-virtual-add-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 220px;
+    border: 2px dashed #9fc7e0;
+    border-radius: 16px;
+    background: #f3f9fc;
+    text-decoration: none;
+    color: var(--go-primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.go-virtual-add-card .material-icons-sharp {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #d9ecf3;
+    font-size: 26px;
+}
+
 .go-card-visual {
     position: relative;
     background: linear-gradient(160deg, #2b2b2b, #0a0a0a);

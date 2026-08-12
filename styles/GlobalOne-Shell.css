@@ -102,10 +102,33 @@
 
 .go-nav-item.active {
     color: var(--go-primary);
+    font-weight: 700;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   icon <img> — filter affects everything rendered for an element including
+   its own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+.go-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
 }
 
 .go-nav-item.active .go-nav-icon {
-    filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);
+    position: relative;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    filter: invert(1);
 }
 
 .go-nav-badge {

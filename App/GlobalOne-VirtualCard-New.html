@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/Phone.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Shell.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-Cards.css">
+    <link rel="stylesheet" href="../styles/GlobalOne-VirtualCard.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+    <title>GlobalOne</title>
+    <link rel="stylesheet" href="../styles/Header.css">
+</head>
+<body>
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+            <div class="go-screen" style="background: white;">
+                <div class="go-vc-header">
+                    <a href="GlobalOne-Cards.html?tab=virtual" class="go-vc-back"><span class="material-icons-sharp">arrow_back</span></a>
+                    <h2>New Virtual Card</h2>
+                </div>
+
+                <div class="go-body">
+                    <div class="go-vc-body">
+                        <div class="go-vc-section-label">Card settings</div>
+
+                        <label class="go-vc-field-label" for="goCardNameInput">Name your card</label>
+                        <input type="text" id="goCardNameInput" class="go-vc-input" placeholder="e.g. Netflix" maxlength="20">
+                        <p class="go-vc-error" id="goCardNameError">Invalid special character(s)</p>
+
+                        <div class="go-vc-section-label go-vc-section-label-spaced">Purchase options</div>
+
+                        <div class="go-toggle-row">
+                            <div class="go-toggle-info">
+                                <h4>Online purchases</h4>
+                                <p>Use your card to shop online</p>
+                            </div>
+                            <button class="go-yn-toggle on" id="goVcOnlineToggle" type="button">YES<span class="go-yn-knob"></span></button>
+                        </div>
+
+                        <div class="go-toggle-row" style="border-bottom:none;">
+                            <div class="go-toggle-info">
+                                <h4>International purchases</h4>
+                                <p>Use your card to make international purchases</p>
+                            </div>
+                            <button class="go-yn-toggle on" id="goVcIntlToggle" type="button">YES<span class="go-yn-knob"></span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="go-vc-footer">
+                    <button type="button" class="go-vc-next" id="goVcNext">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+</div>
+<script src="../scripts/Header.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function wireYesNoToggle(id, defaultOn) {
+            var btn = document.getElementById(id);
+            var on = defaultOn;
+            btn.addEventListener('click', function () {
+                on = !on;
+                btn.classList.toggle('on', on);
+                btn.innerHTML = on ? 'YES<span class="go-yn-knob"></span>' : '<span class="go-yn-knob"></span>NO';
+            });
+        }
+        wireYesNoToggle('goVcOnlineToggle', true);
+        wireYesNoToggle('goVcIntlToggle', true);
+
+        var nameInput = document.getElementById('goCardNameInput');
+        var nameError = document.getElementById('goCardNameError');
+        var invalidChars = /[^a-zA-Z0-9 ]/;
+
+        function validateName() {
+            var invalid = invalidChars.test(nameInput.value);
+            nameError.classList.toggle('visible', invalid);
+            return !invalid && nameInput.value.trim().length > 0;
+        }
+        nameInput.addEventListener('input', validateName);
+
+        document.getElementById('goVcNext').addEventListener('click', function () {
+            if (!validateName()) {
+                if (!nameInput.value.trim()) {
+                    nameError.textContent = 'Please name your card';
+                    nameError.classList.add('visible');
+                }
+                return;
+            }
+            try {
+                sessionStorage.setItem('goVirtualCardName', nameInput.value.trim());
+            } catch (e) {}
+            window.location.href = 'GlobalOne-VirtualCard-Limits.html';
+        });
+    });
+</script>
+</body>
+</html>

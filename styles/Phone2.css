@@ -409,9 +409,28 @@ background-color: #FFFFFF;
     text-decoration: none;
     font-size: 12px;
     padding: 5px 10px;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.nav-item.active {
+/* Nav items are <a> tags, and browsers apply their own default link colors
+   for :link/:visited/:active (classic default is red while a link is being
+   pressed) unless explicitly overridden. That default only shows up on
+   text-rendered icons (Explore's material-icon glyph is colored via `color`)
+   not on the <img>-based icons (colored via `filter`), which is why only
+   Explore visibly flashed red on tap. Pin color to our own value in every
+   link state so no browser default can show through. */
+.nav-item:link,
+.nav-item:visited,
+.nav-item:hover,
+.nav-item:active {
+    color: #8e8e93;
+}
+
+.nav-item.active,
+.nav-item.active:link,
+.nav-item.active:visited,
+.nav-item.active:hover,
+.nav-item.active:active {
     color: rgba(77, 163, 255, 0.7);
 }
 

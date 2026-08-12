@@ -264,9 +264,24 @@ body {
     text-decoration: none;
     font-size: 12px;
     padding: 5px 10px;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.nav-item.active {
+/* Pin color in every link state so no browser default (classic default is
+   red while a link is being pressed) can show through - see Phone2.css for
+   the full explanation. */
+.nav-item:link,
+.nav-item:visited,
+.nav-item:hover,
+.nav-item:active {
+    color: #8e8e93;
+}
+
+.nav-item.active,
+.nav-item.active:link,
+.nav-item.active:visited,
+.nav-item.active:hover,
+.nav-item.active:active {
     color: #007aff;
 }
 

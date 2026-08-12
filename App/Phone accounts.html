@@ -67,21 +67,29 @@
         </div>
 
         <div class="nl-account-list" id="nlAccountList">
-          <a href="Phone-accountDetails.html" class="nl-account-list-card" data-type="savings" data-name="business 32 day notice account">
+          <a href="Phone-accountDetails.html?acc=notice32" class="nl-account-list-card" data-type="savings" data-name="business 32 day notice account" data-acc-id="notice32">
             <span class="nl-account-accent"></span>
             <div class="nl-account-list-info">
               <div class="nl-account-list-name">Business 32 Day Notice Account</div>
               <div class="nl-account-list-label">Available balance</div>
             </div>
-            <div class="nl-account-list-balance">R90.99</div>
+            <div class="nl-account-list-balance" id="nlBalance-notice32">R90.99</div>
           </a>
-          <a href="Phone-accountDetails.html" class="nl-account-list-card" data-type="savings" data-name="flexible savings account">
+          <a href="Phone-accountDetails.html?acc=flexible" class="nl-account-list-card" data-type="savings" data-name="flexible savings account" data-acc-id="flexible">
             <span class="nl-account-accent"></span>
             <div class="nl-account-list-info">
               <div class="nl-account-list-name">Flexible Savings Account</div>
               <div class="nl-account-list-label">Available balance</div>
             </div>
-            <div class="nl-account-list-balance">R0.00</div>
+            <div class="nl-account-list-balance" id="nlBalance-flexible">R0.00</div>
+          </a>
+          <a href="Phone-creditAccountDetails.html" class="nl-account-list-card" data-type="credit" data-name="ngikhathele" data-acc-id="credit">
+            <span class="nl-account-accent" style="background:#c0272d;"></span>
+            <div class="nl-account-list-info">
+              <div class="nl-account-list-name">Ngikhathele</div>
+              <div class="nl-account-list-label">Available balance</div>
+            </div>
+            <div class="nl-account-list-balance" id="nlBalance-credit">R97,159.36</div>
           </a>
         </div>
       </div>
@@ -117,11 +125,25 @@
 <script src="../scripts/App.js"></script>
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
+<script src="../scripts/nlAccountStore.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (localStorage.getItem('previewNewLook') !== 'false') {
             document.body.classList.add('new-look-active');
         }
+
+        function formatNlBalance(amount) {
+            var sign = amount < 0 ? '-' : '';
+            return sign + 'R' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+        var balances = NLAccountStore.getBalances();
+        document.querySelectorAll('.nl-account-list-card').forEach(function (card) {
+            var accId = card.dataset.accId;
+            var balanceEl = document.getElementById('nlBalance-' + accId);
+            if (accId && balances[accId] && balanceEl) {
+                balanceEl.textContent = formatNlBalance(balances[accId].available);
+            }
+        });
 
         var pills = document.querySelectorAll('.nl-pill');
         var cards = document.querySelectorAll('.nl-account-list-card');

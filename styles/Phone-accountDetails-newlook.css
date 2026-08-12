@@ -400,6 +400,171 @@ body.new-look-active .screen {
     margin: 6px auto 16px;
 }
 
+/* -------- email statement full screen -------- */
+.nl-statement-screen {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: #fff;
+    z-index: 35;
+}
+
+.nl-statement-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.nl-statement-topbar .nl-back {
+    color: #16232f;
+    text-decoration: none;
+}
+
+.nl-statement-topbar h2 {
+    font-size: 1.15rem;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-statement-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 20px 0 12px;
+}
+
+.nl-statement-radio-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eef1f6;
+    cursor: pointer;
+}
+
+.nl-statement-radio-row span {
+    font-size: 0.95rem;
+    color: #16232f;
+}
+
+.nl-statement-radio-row input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #0096c7;
+}
+
+.nl-statement-date-inputs {
+    display: none;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.nl-statement-date-inputs.active {
+    display: flex;
+}
+
+.nl-statement-date-inputs input {
+    flex: 1;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.nl-statement-email-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    margin-bottom: 10px;
+}
+
+.nl-statement-add-email {
+    background: none;
+    border: none;
+    color: #0096c7;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nl-statement-send-btn {
+    width: 100%;
+    background: #1e6fe0;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.nl-statement-send-btn:disabled {
+    background: #b7c2d6;
+    cursor: not-allowed;
+}
+
+.nl-statement-success {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+    padding: 80px 30px;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 36;
+}
+
+.nl-statement-success .confirmation-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nl-statement-success .confirmation-icon.success {
+    background: #e8f8f0;
+    color: #2ecc71;
+}
+
+.nl-statement-success .confirmation-icon .material-icons-sharp {
+    font-size: 40px;
+}
+
+.nl-statement-success h2 {
+    color: #16232f;
+    margin: 0 0 10px;
+}
+
+.nl-statement-success p {
+    color: #5f6b7a;
+    margin: 0 0 30px;
+}
+
 .nl-sheet-header {
     display: flex;
     align-items: center;
@@ -467,15 +632,38 @@ body.new-look-active .nav-item img {
     height: 22px;
 }
 
-body.new-look-active .nav-item.active {
+body.new-look-active .nav-item.active,
+body.new-look-active .nav-item.active:link,
+body.new-look-active .nav-item.active:visited,
+body.new-look-active .nav-item.active:hover,
+body.new-look-active .nav-item.active:active {
     color: #0096c7;
     font-weight: 600;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   <img> — filter affects everything rendered for an element including its
+   own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+body.new-look-active .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
 }
 
 body.new-look-active .nav-item.active img {
-    background-color: #dceeff;
-    border-radius: 12px;
-    padding: 6px;
-    box-sizing: content-box;
-    filter: brightness(0) saturate(100%) invert(45%) sepia(93%) saturate(1352%) hue-rotate(175deg) brightness(97%) contrast(101%);
+    position: relative;
+    z-index: 1;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    filter: invert(1) !important;
 }
