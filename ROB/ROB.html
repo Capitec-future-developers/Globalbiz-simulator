@@ -123,6 +123,907 @@
                     </div>
                 </section>
 
+                <!-- STEP 4: Tell us about yourself -->
+                <section class="rob-screen" id="robScreenIdType" hidden>
+                    <div class="rob-bar">Tell us about yourself</div>
+                    <p class="rob-sub">Please specify your identification type below</p>
+
+                    <div class="rob-radio-pills" id="robIdTypePills">
+                        <label class="rob-radio-pill">
+                            <input type="radio" name="robIdType" value="said" checked>
+                            <span class="rob-radio-dot"></span>
+                            <span>SA ID</span>
+                        </label>
+                        <label class="rob-radio-pill">
+                            <input type="radio" name="robIdType" value="passport">
+                            <span class="rob-radio-dot"></span>
+                            <span>Passport</span>
+                        </label>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robIdTypeContinue">Continue</button>
+
+                    <p class="rob-disclaimer">Your information is secured and safe. Capitec Bank is an authorised financial services provider (FSP 46669) and registered credit provider (NCRCP13). Capitec Bank Limited Reg. No: 1980/003695/06</p>
+                    <p class="rob-disclaimer-links"><a href="#">Privacy Centre</a> | <a href="#">Terms and Conditions</a> | <a href="#">Security</a></p>
+                </section>
+
+                <!-- STEP 5: Sign up for your business account -->
+                <section class="rob-screen" id="robScreenSignupForm" hidden>
+                    <div class="rob-bar">Sign up for your business account</div>
+
+                    <div class="rob-cookie-banner" id="robCookieBanner">
+                        <span class="material-icons-sharp rob-cookie-icon">info</span>
+                        <button type="button" class="rob-cookie-close" id="robCookieClose" aria-label="Close">&times;</button>
+                        <p class="rob-cookie-text">This website uses cookies to ensure you get the best experience.</p>
+                        <div class="rob-cookie-links">
+                            <a href="#" class="rob-cookie-link" id="robCookieRead">Read Cookie Policy</a>
+                            <a href="#" class="rob-cookie-link" id="robCookieAccept">Accept Cookies</a>
+                        </div>
+                    </div>
+
+                    <p class="rob-sub">Your journey with Capitec Business starts now.</p>
+
+                    <div class="rob-field">
+                        <label class="rob-label" for="robSignupSaId">SA ID number</label>
+                        <input type="text" class="rob-input" id="robSignupSaId">
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robSignupCell">Cellphone number</label>
+                        <input type="text" class="rob-input" id="robSignupCell" placeholder="e.g 0821234567">
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robSignupEmail">Email address</label>
+                        <input type="email" class="rob-input" id="robSignupEmail">
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robSignupEmailConfirm">Confirm email address</label>
+                        <input type="email" class="rob-input" id="robSignupEmailConfirm">
+                    </div>
+
+                    <label class="rob-checkbox-row">
+                        <input type="checkbox" id="robSignupConsent">
+                        <span>I confirm that I have been given the opportunity to read the <a href="#" class="rob-link">privacy notice</a>, including who Capitec shares personal information with.</span>
+                    </label>
+
+                    <button type="button" class="rob-btn-solid" id="robCreateProfile" disabled>Create Profile</button>
+
+                    <a href="#" class="rob-footer-link">Already have a business account? Sign In</a>
+
+                    <p class="rob-disclaimer">Your information is secured and safe. Capitec Bank is an authorised financial services provider (FSP 46669) and registered credit provider (NCRCP13). Capitec Bank Limited Reg. No: 1980/003695/06</p>
+                    <p class="rob-disclaimer-links"><a href="#">Privacy Centre</a> | <a href="#">Terms and Conditions</a> | <a href="#">Security</a></p>
+                </section>
+
+                <!-- STEP 6: Your privacy -->
+                <section class="rob-screen" id="robScreenPrivacy" hidden>
+                    <div class="rob-card rob-privacy-card">
+                        <h3 class="rob-card-title">Your privacy</h3>
+                        <p class="rob-card-desc">We will only use your business information with your consent. By looking at the way you bank, we can suggest ways to improve your financial life.</p>
+                        <div class="rob-note-box">
+                            <span class="material-icons-sharp rob-note-icon">info</span>
+                            <p>Note: By continuing you consent to the following. You can update these settings under your profile on online banking.</p>
+                        </div>
+                        <label class="rob-checkbox-row">
+                            <input type="checkbox" id="robPrivacyOffers" checked>
+                            <span>Get personalised offers for your business</span>
+                        </label>
+                        <label class="rob-checkbox-row">
+                            <input type="checkbox" id="robPrivacyMarketing" checked>
+                            <span>Get our latest marketing offers on improved products and services</span>
+                        </label>
+                        <div class="rob-btn-row">
+                            <button type="button" class="rob-btn-outline" id="robPrivacyBack">Back</button>
+                            <button type="button" class="rob-btn-solid" id="robPrivacyContinue">Continue</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 7: OTP Verification (app) -->
+                <section class="rob-screen" id="robScreenOtp1" hidden>
+                    <div class="rob-bar">OTP Verification</div>
+                    <div class="rob-otp-art"><span class="material-icons-sharp">smartphone</span></div>
+                    <p class="rob-otp-masked">+2773******30</p>
+                    <p class="rob-otp-timer" id="robOtp1Timer">Time left to enter OTP: 02:00</p>
+                    <p class="rob-sub rob-center">A One-Time Password (OTP) has been sent to your cellphone number.</p>
+
+                    <div class="rob-field">
+                        <label class="rob-label" for="robOtp1Input">OTP</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robOtp1Input">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robOtp1Input">visibility</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robOtp1Submit" disabled>Submit</button>
+                    <button type="button" class="rob-btn-outline" id="robOtp1UpdateCell">Update cellphone number</button>
+                    <a href="#" class="rob-footer-link" id="robOtp1Cancel">Cancel</a>
+                </section>
+
+                <!-- STEP 8: OTP processing overlay -->
+                <section class="rob-screen" id="robScreenOtpProcessing" hidden>
+                    <div class="rob-processing-modal">
+                        <span class="material-icons-sharp rob-otp-art-icon">smartphone</span>
+                        <p class="rob-processing-text">One moment while we process your request&hellip;</p>
+                        <div class="rob-loading-squares">
+                            <span class="rob-sq rob-sq-blue"></span>
+                            <span class="rob-sq rob-sq-navy"></span>
+                            <span class="rob-sq rob-sq-gray"></span>
+                            <span class="rob-sq rob-sq-red"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 9: Verify Identity intro -->
+                <section class="rob-screen" id="robScreenSelfieIntro" hidden>
+                    <p class="rob-step-label">Step 1 of 4</p>
+                    <div class="rob-bar">Verify Identity</div>
+                    <h2 class="rob-title">Get ready to verify your identity with a selfie</h2>
+                    <p class="rob-sub">In the next steps, we will verify your identity with the Department of Home Affairs.</p>
+
+                    <div class="rob-selfie-illustration">
+                        <span class="material-icons-sharp rob-selfie-illustration-ring">face</span>
+                        <span class="material-icons-sharp rob-selfie-illustration-phone">smartphone</span>
+                    </div>
+
+                    <p class="rob-card-label">Make sure you:</p>
+                    <ul class="rob-card-list">
+                        <li>Move to a <strong>well-lit area</strong></li>
+                        <li><strong>Avoid direct sunlight</strong></li>
+                        <li><strong>Avoid shadows</strong></li>
+                        <li>Remove any <strong>masks, glasses and hats</strong></li>
+                    </ul>
+
+                    <div class="rob-homeaffairs">
+                        <span class="material-icons-sharp">shield</span>
+                        <span>REPUBLIC OF SOUTH AFRICA</span>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robSelfieIntroNext">Next</button>
+                </section>
+
+                <!-- STEP 10: Camera permission popup -->
+                <section class="rob-screen" id="robScreenCameraPermission" hidden>
+                    <div class="rob-browser-permission">
+                        <span class="material-icons-sharp rob-permission-icon">photo_camera</span>
+                        <p class="rob-permission-text">openbusiness.capitecbank.co.za wants to use your camera</p>
+                        <button type="button" class="rob-btn-solid" id="robCamAllowAlways">Allow while visiting the site</button>
+                        <button type="button" class="rob-btn-solid" id="robCamAllowOnce">Allow this time</button>
+                        <button type="button" class="rob-permission-never" id="robCamNeverAllow">Never allow</button>
+                    </div>
+                </section>
+
+                <!-- STEP 11: Take a selfie -->
+                <section class="rob-screen rob-screen-dark" id="robScreenSelfieCapture" hidden>
+                    <div class="rob-selfie-header"><span class="material-icons-sharp">lock</span> Take a selfie</div>
+                    <div class="rob-selfie-frame">
+                        <div class="rob-selfie-oval">
+                            <span class="rob-selfie-oval-text">Position your face to fill the frame</span>
+                        </div>
+                    </div>
+                    <div class="rob-btn-row">
+                        <a href="#" class="rob-footer-link rob-footer-link-light" id="robSelfieCaptureCancel">Cancel</a>
+                        <button type="button" class="rob-btn-solid rob-btn-narrow" id="robSelfieCaptureBtn">Capture</button>
+                    </div>
+                </section>
+
+                <!-- STEP 12: Business Representatives Details -->
+                <section class="rob-screen" id="robScreenRepDetails" hidden>
+                    <div class="rob-bar">Business Representatives Details</div>
+                    <div class="rob-rep-header">
+                        <span class="rob-avatar-circle">MR</span>
+                        <h2 class="rob-title">Mariska Rossouw</h2>
+                    </div>
+
+                    <p class="rob-card-label">Personal details</p>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robRepTitle">Title</label>
+                        <select class="rob-input" id="robRepTitle">
+                            <option>Mr</option>
+                            <option selected>Ms</option>
+                            <option>Mrs</option>
+                            <option>Dr</option>
+                        </select>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label">Identity number</label>
+                        <div class="rob-readonly-field">961005*****81</div>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label">Email address</label>
+                        <div class="rob-readonly-field">Mariskarossouw5@gmail.com</div>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label">Cellphone number</label>
+                        <div class="rob-readonly-field">0739742230</div>
+                    </div>
+
+                    <p class="rob-card-label">Home address</p>
+                    <a href="#" class="rob-add-link" id="robAddHomeAddress">+ Add my home address</a>
+                    <div class="rob-field" id="robHomeAddressFields" hidden>
+                        <label class="rob-label" for="robHomeAddressInput">Home address</label>
+                        <textarea class="rob-input rob-textarea" id="robHomeAddressInput" rows="2" placeholder="Street, suburb, city, postal code"></textarea>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robRepDetailsNext" disabled>Next</button>
+                </section>
+
+                <!-- STEP 13/14: Business Information - trading address -->
+                <section class="rob-screen" id="robScreenTradingAddress1" hidden>
+                    <p class="rob-step-label">Step 2 of 0</p>
+                    <div class="rob-bar">Business Information</div>
+                    <h2 class="rob-title">Is your trading address the same as one below?</h2>
+
+                    <label class="rob-radio-pill rob-radio-pill-block">
+                        <input type="radio" name="robTradingAddr" id="robTradingAddrSame" value="same">
+                        <span class="rob-radio-dot"></span>
+                        <span>Yes it's the same: 2 Terblanche Street, Kuils River, Cape Town, 7580, Western Cape, South Africa</span>
+                    </label>
+
+                    <a href="#" class="rob-add-link" id="robAddDifferentTradingAddr">+ Add a different trading address</a>
+
+                    <button type="button" class="rob-btn-solid" id="robTradingAddr1Next" disabled>Next</button>
+                </section>
+
+                <!-- STEP 15: Business account agreement - selfie signature -->
+                <section class="rob-screen" id="robScreenAgreementSign1" hidden>
+                    <div class="rob-doc-bar"><span class="material-icons-sharp rob-doc-back" id="robAgreementSign1Back">arrow_back</span> Business account agreement</div>
+
+                    <div class="rob-doc-photo-frame">
+                        <div class="rob-doc-photo-placeholder"><span class="material-icons-sharp">person</span></div>
+                        <p class="rob-doc-caption">A digital image of a signatory's face, captured with the intent of it being used as a signature, is uniquely linked to this record together with the date/time generated at the time that the signatory captured the digital image.</p>
+                    </div>
+
+                    <p class="rob-card-label">Electronically signed by:</p>
+                    <p class="rob-doc-line">First Name: Mariska</p>
+                    <p class="rob-doc-line">Surname: Rossouw</p>
+                    <p class="rob-doc-line" id="robAgreementSign1DateTime">Date and Time</p>
+                    <p class="rob-doc-footnote">*Time recorded as Coordinated Universal Time (UTC). South African standard time is 2 hours ahead of UTC.</p>
+
+                    <button type="button" class="rob-btn-solid" id="robAgreementSign1Btn">Sign Agreement</button>
+                </section>
+
+                <!-- STEP 16: Business Information - detailed form -->
+                <section class="rob-screen" id="robScreenBusinessInfo" hidden>
+                    <p class="rob-step-label">Step 2 of 4</p>
+                    <div class="rob-bar">Business Information</div>
+                    <h2 class="rob-title">Tell us more about your business</h2>
+
+                    <div class="rob-field">
+                        <label class="rob-label">Trading address</label>
+                        <div class="rob-readonly-field">2 Terblanche Street, Kuils River, Cape Town, 7580</div>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robTradingNameInput">Trading name</label>
+                        <input type="text" class="rob-input" id="robTradingNameInput" placeholder="Optional">
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robSectorSelect">Which sector does your business operate in?</label>
+                        <select class="rob-input" id="robSectorSelect">
+                            <option value="">Select a sector</option>
+                            <option>Retail and trade</option>
+                            <option>Food and beverage</option>
+                            <option>Professional services</option>
+                            <option>Transport and logistics</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robSourceFundsSelect">Source of funds</label>
+                        <select class="rob-input" id="robSourceFundsSelect">
+                            <option value="">Select a source</option>
+                            <option>Business income</option>
+                            <option>Savings</option>
+                            <option>Loan</option>
+                            <option>Investment</option>
+                        </select>
+                        <p class="rob-hint">Where you got the money to open the account</p>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robTurnoverInput">Annual sales turnover</label>
+                        <input type="text" class="rob-input" id="robTurnoverInput">
+                        <p class="rob-hint">How much your business makes in a year</p>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robEmployeesInput">Number of employees</label>
+                        <input type="text" class="rob-input" id="robEmployeesInput">
+                        <p class="rob-hint">Including the owner</p>
+                    </div>
+
+                    <p class="rob-card-label">Tax details</p>
+                    <p class="rob-question-sm">Do you pay income tax in South Africa?</p>
+                    <div class="rob-radio-pills" id="robTaxSaPills">
+                        <label class="rob-radio-pill"><input type="radio" name="robTaxSa" value="yes"><span class="rob-radio-dot"></span><span>Yes</span></label>
+                        <label class="rob-radio-pill"><input type="radio" name="robTaxSa" value="no"><span class="rob-radio-dot"></span><span>No</span></label>
+                    </div>
+                    <p class="rob-question-sm">Do you pay tax in another country?</p>
+                    <div class="rob-radio-pills" id="robTaxOtherPills">
+                        <label class="rob-radio-pill"><input type="radio" name="robTaxOther" value="yes"><span class="rob-radio-dot"></span><span>Yes</span></label>
+                        <label class="rob-radio-pill"><input type="radio" name="robTaxOther" value="no"><span class="rob-radio-dot"></span><span>No</span></label>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robBusinessInfoNext" disabled>Next</button>
+                </section>
+
+                <!-- STEP 17: Agreements list -->
+                <section class="rob-screen" id="robScreenAgreementsList" hidden>
+                    <p class="rob-step-label">Step 3 of 4</p>
+                    <div class="rob-bar">Agreements</div>
+                    <p class="rob-sub">Please read and accept the agreement to complete the application process.</p>
+                    <p class="rob-agreements-count">No. of Agreements: 1</p>
+
+                    <div class="rob-accordion" id="robAccordion">
+                        <p class="rob-card-label">Business Account</p>
+                        <div class="rob-accordion-item">
+                            <button type="button" class="rob-accordion-head expanded">General terms <span class="material-icons-sharp rob-accordion-chevron">expand_less</span></button>
+                            <div class="rob-accordion-body">By giving us information about yourself and your business, you confirm that it is true and correct. Please inform us if your business becomes "financially distressed" by means of liquidation, sequestration, debt review or administration.</div>
+                        </div>
+                        <div class="rob-accordion-item">
+                            <button type="button" class="rob-accordion-head expanded">Use of account <span class="material-icons-sharp rob-accordion-chevron">expand_less</span></button>
+                            <div class="rob-accordion-body">You agree and authorise the bank to open your business account. You may not overdraw the account unless you have an approved overdraft facility. You will be charged an extra fee each time a payment causes the account to become overdrawn or exceeds the agreed overdraft limit.</div>
+                        </div>
+                        <div class="rob-accordion-item">
+                            <button type="button" class="rob-accordion-head">Online banking <span class="material-icons-sharp rob-accordion-chevron">expand_more</span></button>
+                            <div class="rob-accordion-body" hidden>You need to reset your temporary password before signing in to online banking for the first time. Do not share username or passwords details with anyone. Make sure there is updated anti-virus software on your devices.</div>
+                        </div>
+                    </div>
+
+                    <label class="rob-checkbox-row">
+                        <input type="checkbox" id="robAgreementsListCheck">
+                        <span>I confirm that I have read, understood and agree to the <a href="#" class="rob-link">Electronic Signature Terms &amp; Conditions</a></span>
+                    </label>
+
+                    <button type="button" class="rob-btn-solid" id="robAgreementsListContinue" disabled>Continue</button>
+                </section>
+
+                <!-- STEP 18: Electronic Signature Agreement modal -->
+                <section class="rob-screen" id="robScreenESigModal" hidden>
+                    <div class="rob-card">
+                        <h3 class="rob-card-title">Electronic Signature Agreement</h3>
+                        <p class="rob-esig-sub">Sign with a selfie</p>
+                        <p class="rob-card-desc">We've taken the paperwork out of business banking. With Capitec, you can sign Agreements and any other documents using a selfie. The image of your face helps us verify your identity and acts as a signature on Agreements. This helps protect your accounts against fraud, while giving you the freedom to bank wherever you are.</p>
+                        <label class="rob-checkbox-row">
+                            <input type="checkbox" id="robESigCheck" checked>
+                            <span>I confirm that I have read, understood and agree to the <a href="#" class="rob-link">Electronic Signature Terms &amp; Conditions</a></span>
+                        </label>
+                        <div class="rob-btn-row">
+                            <button type="button" class="rob-btn-outline" id="robESigCancel">Cancel</button>
+                            <button type="button" class="rob-btn-solid" id="robESigContinue">Continue</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 19/20: Business account agreement document -->
+                <section class="rob-screen" id="robScreenAgreementDoc" hidden>
+                    <div class="rob-doc-bar"><span class="material-icons-sharp rob-doc-back" id="robAgreementDocBack">arrow_back</span> Business account agreement</div>
+
+                    <div class="rob-toast rob-toast-inline" id="robEsigToast">
+                        <span class="material-icons-sharp">info</span>
+                        <span>Use of selfie &ndash; You have agreed to using your Selfie to accept Agreements</span>
+                        <button type="button" class="rob-toast-close" id="robEsigToastClose">&times;</button>
+                    </div>
+
+                    <div class="rob-doc-scroll">
+                        <p class="rob-doc-line"><strong>Registered Business Name:</strong></p>
+                        <p class="rob-doc-line"><strong>Registration number:</strong></p>
+                        <p class="rob-doc-line"><strong>Trading Name:</strong></p>
+                        <p class="rob-doc-line"><strong>If Incorporated &ndash; Association or Club:</strong> Incorporated Name:, Date of Incorporation:</p>
+                        <p class="rob-doc-line"><strong>If Sole Proprietor &ndash; Full Names and Surname:</strong> Mariska Rossouw, ID/Passport Number: 9610050023081, Trading Name: Zoomies</p>
+                        <p class="rob-doc-line"><strong>If Partnership</strong> (Main Partner's details. Full list of partners is set out in the resolution accepted by Capitec for purposes of opening the account.) &ndash; Trading Name:, Full Names and Surname:, ID/Passport Number:</p>
+                        <p class="rob-doc-line"><strong>Contact Details &ndash; Residential:</strong> 2 Terblanche Street, Kuils River, Cape Town, 7580, Western Cape, South Africa</p>
+                        <p class="rob-doc-line"><strong>Business Address:</strong> 2 Terblanche Street, Kuils River, Cape Town, 7580, Western Cape, South Africa</p>
+                        <p class="rob-doc-line"><strong>Cell Phone:</strong> 0739742230</p>
+                        <p class="rob-doc-line"><strong>Business Email Address:</strong> Mariskarossouw5@gmail.com</p>
+                        <p class="rob-doc-line"><strong>Business Number:</strong></p>
+                        <p class="rob-doc-line"><strong>Business Email:</strong></p>
+                        <p class="rob-doc-para">Please read the full terms of the Business Client Account Agreement, including the General Terms and all Product Terms before signing this agreement.</p>
+
+                        <p class="rob-doc-clause-head">8.4 IN THE CASE OF A PARTNERSHIP:</p>
+                        <p class="rob-doc-clause">8.4.1 Each partner will be jointly and severally liable, together with the other partners, for the debts and obligations of the partnership incurred in relation to this account.</p>
+                        <p class="rob-doc-clause">8.4.2 Should any partner be placed under sequestration, or should sequestration proceedings be brought against any partner, the bank may suspend or terminate the operation of this account pending the outcome of those proceedings.</p>
+                        <p class="rob-doc-clause">8.4.3 A resolution signed by the partners, as accepted by Capitec, will govern who may operate this account and in what manner on behalf of the partnership.</p>
+
+                        <p class="rob-doc-clause-head">9. TERMINATION</p>
+                        <p class="rob-doc-clause">9.1 Either party may terminate this agreement by giving the other party 60 days' written notice.</p>
+                        <p class="rob-doc-clause">9.2 The bank reserves the right to terminate this relationship immediately where required to comply with any law or where the account is used fraudulently or unlawfully.</p>
+                        <p class="rob-doc-clause">9.3 Termination of this agreement does not affect the bank's right to engage in business with any other person or entity, including other members of the partnership.</p>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robAgreementDocContinue">Continue</button>
+                </section>
+
+                <!-- STEP 21: Take a selfie - ready to sign -->
+                <section class="rob-screen rob-screen-dark" id="robScreenSelfieSignReady" hidden>
+                    <div class="rob-selfie-header"><span class="material-icons-sharp">lock</span> Take a selfie</div>
+                    <h2 class="rob-title rob-title-light">Get ready to sign the agreement using a Selfie</h2>
+
+                    <p class="rob-card-label rob-card-label-light">Make sure you:</p>
+                    <ul class="rob-card-list rob-card-list-light">
+                        <li>Move to a <strong>well-lit area</strong></li>
+                        <li><strong>Avoid direct sunlight</strong></li>
+                        <li><strong>Avoid shadows</strong></li>
+                        <li>Remove any <strong>masks, glasses and hats</strong></li>
+                    </ul>
+
+                    <button type="button" class="rob-btn-solid" id="robSelfieSignReadyBtn">I am ready</button>
+                    <a href="#" class="rob-footer-link rob-footer-link-light" id="robSelfieSignReadyCancel">Cancel</a>
+                </section>
+
+                <!-- STEP 22/23: Signed agreement -->
+                <section class="rob-screen" id="robScreenAgreementSigned" hidden>
+                    <div class="rob-bar">Business account agreement</div>
+                    <p class="rob-doc-para">&hellip;regarding the conduct of the Account.</p>
+
+                    <div class="rob-doc-photo-frame">
+                        <div class="rob-doc-photo-placeholder"><span class="material-icons-sharp">person</span></div>
+                        <p class="rob-doc-caption">A digital image of a signatory's face, captured with the intent of it being used as a signature, is uniquely linked to this record together with the date/time generated at the time that the signatory captured the digital image.</p>
+                    </div>
+
+                    <p class="rob-card-label">Electronically signed by:</p>
+                    <p class="rob-doc-line">First Name: Mariska</p>
+                    <p class="rob-doc-line">Surname: Rossouw</p>
+                    <p class="rob-doc-line" id="robAgreementSignedDateTime">Date and Time</p>
+                    <p class="rob-doc-footnote">*Time recorded as Coordinated Universal Time (UTC). South African standard time is 2 hours ahead of UTC.</p>
+
+                    <h3 class="rob-card-title">Business Client Account Agreement</h3>
+                    <p class="rob-card-label">Business Details ("Client")</p>
+                    <div class="rob-doc-scroll rob-doc-scroll-short">
+                        <p class="rob-doc-line"><strong>If Registered &ndash; Business Name:</strong> Registration number:, Trading Name:</p>
+                        <p class="rob-doc-line"><strong>If Incorporated &ndash; Association or Club:</strong> Incorporated Name:, Date of Incorporation:</p>
+                        <p class="rob-doc-line"><strong>If Sole Proprietor &ndash; Full Names and Surname:</strong> Mariska Rossouw, ID/Passport Number: 9610050023081, Trading Name: Zoomies</p>
+                        <p class="rob-doc-line"><strong>If Partnership</strong> (Main Partner's details. Full list of partners is set out in the resolution accepted by Capitec for purposes of opening the account.)</p>
+                        <p class="rob-doc-line"><strong>Contact Details &ndash; Residential:</strong> 2 Terblanche Street, Kuils River, Cape Town, 7580, Western Cape, South Africa</p>
+                        <p class="rob-doc-line"><strong>Business Address:</strong> 2 Terblanche Street, Kuils River, Cape Town, 7580, Western Cape, South Africa</p>
+                        <p class="rob-doc-line"><strong>Cell Phone:</strong> 0739742230</p>
+                        <p class="rob-doc-line"><strong>Business Email Address:</strong> Mariskarossouw5@gmail.com</p>
+                        <p class="rob-doc-line"><strong>Business Number:</strong></p>
+                        <p class="rob-doc-line"><strong>Business Email:</strong></p>
+                        <p class="rob-doc-para">Please read the full terms of the Business Client Account Agreement, including the General Terms and all Product Terms before signing this agreement.</p>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robAgreementSignedDone">Done</button>
+                </section>
+
+                <!-- STEP 24: Choose online banking username -->
+                <section class="rob-screen" id="robScreenUsername" hidden>
+                    <p class="rob-step-label">Step 4 of 4</p>
+                    <div class="rob-bar">Online Banking Access</div>
+                    <h2 class="rob-title">Choose your online banking username</h2>
+
+                    <div class="rob-note-box">
+                        <span class="material-icons-sharp rob-note-icon">info</span>
+                        <p>This username will be used to access all your banking profiles.</p>
+                    </div>
+
+                    <p class="rob-sub">Use this email address as your username for online banking and the app, or enter a different one.</p>
+
+                    <div class="rob-field">
+                        <input type="text" class="rob-input" id="robUsernameInput" value="Mariskarossouw5@gmail.com" readonly>
+                    </div>
+
+                    <label class="rob-checkbox-row">
+                        <input type="checkbox" id="robUsernameDifferentCheck">
+                        <span>Enter different email address as username</span>
+                    </label>
+                    <div class="rob-field" id="robUsernameDifferentField" hidden>
+                        <input type="email" class="rob-input" id="robUsernameDifferentInput" placeholder="Enter a different email address">
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robUsernameNext">Next</button>
+                </section>
+
+                <!-- STEP 25: Profile Created -->
+                <section class="rob-screen" id="robScreenProfileCreated" hidden>
+                    <div class="rob-bar"><span class="material-icons-sharp rob-bar-icon">smartphone</span> Profile Created</div>
+                    <div class="rob-success-check"><span class="material-icons-sharp">check_circle</span></div>
+                    <h2 class="rob-title rob-center">Profile Created</h2>
+                    <p class="rob-sub rob-center">Remember to sign in to online banking and the app with your email address. A temporary password will be sent to you by SMS.</p>
+                    <button type="button" class="rob-btn-solid" id="robProfileCreatedContinue">Continue</button>
+                </section>
+
+                <!-- STEP 26: SMS notifications on lock screen -->
+                <section class="rob-screen rob-screen-dark" id="robScreenSmsNotif" hidden>
+                    <div class="rob-lock-screen">
+                        <p class="rob-lock-time">15:21</p>
+                        <p class="rob-lock-date">Fri, 10 Oct</p>
+                        <div class="rob-notif" id="robNotif1">
+                            <span class="material-icons-sharp rob-notif-icon">account_balance</span>
+                            <div class="rob-notif-body">
+                                <p class="rob-notif-from">+27839300452100</p>
+                                <p class="rob-notif-text">Capitec Business: Enter OTP 342792 to continue opening your account. Never share this message with anyone. Info: 0860309250.</p>
+                            </div>
+                        </div>
+                        <div class="rob-notif" id="robNotif2">
+                            <span class="material-icons-sharp rob-notif-icon">account_balance</span>
+                            <div class="rob-notif-body">
+                                <p class="rob-notif-from">Capitec Business</p>
+                                <p class="rob-notif-text">Your new credentials have been created. Please use your username and the following temporary password to login: T1B$47xQ</p>
+                            </div>
+                        </div>
+                        <div class="rob-btn-row">
+                            <button type="button" class="rob-btn-outline rob-btn-outline-light" id="robSmsNotifClear">Clear</button>
+                            <button type="button" class="rob-btn-solid" id="robSmsNotifContinue">Mark as read</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 27: Account is open -->
+                <section class="rob-screen" id="robScreenAccountSuccess" hidden>
+                    <div class="rob-success-check rob-success-check-confetti"><span class="material-icons-sharp">check_circle</span></div>
+                    <h2 class="rob-title rob-center">Your account is open</h2>
+                    <p class="rob-sub rob-center">Capitec Business account number: <strong>1054384754</strong></p>
+
+                    <div class="rob-next-steps">
+                        <div class="rob-next-step">
+                            <p class="rob-next-step-title">1. Sign in to online banking</p>
+                            <p class="rob-next-step-desc">Username: Mariskarossouw5@gmail.com</p>
+                            <p class="rob-next-step-desc">Temporary password: Sent to your registered cellphone number</p>
+                            <button type="button" class="rob-btn-solid" id="robGoToOnlineBanking">Go to Online Banking</button>
+                        </div>
+                        <div class="rob-next-step">
+                            <p class="rob-next-step-title">2. Order your debit card</p>
+                            <p class="rob-next-step-desc">Sign in to online banking</p>
+                            <p class="rob-next-step-desc">Order your debit card</p>
+                        </div>
+                        <div class="rob-next-step">
+                            <p class="rob-next-step-title">3. Make your first deposit</p>
+                            <p class="rob-next-step-desc">Keep your account active by depositing money into your new account</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 28: Online banking sign in (browser) -->
+                <section class="rob-screen" id="robScreenOBLogin" hidden>
+                    <div class="rob-browser-chrome">
+                        <span class="material-icons-sharp">arrow_back</span>
+                        <span class="rob-browser-url">business.capitecbank.co.za</span>
+                        <span class="material-icons-sharp">arrow_forward</span>
+                    </div>
+                    <div class="rob-toast rob-toast-success" id="robPasswordResetToast" hidden>Success. You have reset your password.</div>
+                    <h2 class="rob-title rob-center rob-globalbiz-word">GlobalBiz</h2>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robOBUsername">Username</label>
+                        <input type="text" class="rob-input" id="robOBUsername">
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robOBPassword">Password</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robOBPassword">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robOBPassword">visibility</span>
+                        </div>
+                    </div>
+                    <a href="#" class="rob-footer-link">Forgot Password</a>
+                    <button type="button" class="rob-btn-solid" id="robOBSignIn">Sign In</button>
+                </section>
+
+                <!-- STEP 29: Welcome letter -->
+                <section class="rob-screen" id="robScreenWelcomeLetter" hidden>
+                    <div class="rob-browser-chrome">
+                        <span class="material-icons-sharp">arrow_back</span>
+                        <span class="rob-browser-url">business.capitecbank.co.za</span>
+                        <span class="material-icons-sharp">arrow_forward</span>
+                    </div>
+                    <div class="rob-doc-scroll rob-welcome-letter">
+                        <p class="rob-welcome-heading">GlobalBiz</p>
+                        <p class="rob-doc-line">Dear Mariska Rossouw,</p>
+                        <p class="rob-card-title">Welcome to simpler business banking</p>
+                        <p class="rob-doc-para">Thanks for choosing Capitec business banking, here's some important information to get you started.</p>
+                        <p class="rob-card-label">Make a deposit within the next 7 days</p>
+                        <p class="rob-doc-line">Bank name: Capitec Business</p>
+                        <p class="rob-doc-line">Account type: Current</p>
+                        <p class="rob-doc-line">Account number: 1054384754</p>
+                        <p class="rob-doc-line">Branch code: 470010</p>
+                        <p class="rob-card-label">Manage your cash flow anywhere 24/7</p>
+                        <p class="rob-doc-line">Online banking and app username: Mariskarossouw5@gmail.com</p>
+                        <p class="rob-doc-line">Temporary password: Sent to your registered cellphone number</p>
+                        <p class="rob-doc-para">Have made banking simpler and more convenient for you so online banking is easy to access your accounts, order cards, make payments, and more.</p>
+                        <p class="rob-doc-line">Sincerely,</p>
+                        <p class="rob-doc-line">The Capitec Business Team.</p>
+                    </div>
+                    <div class="rob-welcome-footer-banner">Remember: We will never send you a direct link asking for your personal information or bank details.</div>
+                    <button type="button" class="rob-btn-solid" id="robWelcomeLetterContinue">Continue</button>
+                </section>
+
+                <!-- Shared OTP screen for online banking sub-journey (steps 30/31, 33, 34) -->
+                <section class="rob-screen" id="robScreenOtpBrowser" hidden>
+                    <div class="rob-browser-chrome">
+                        <span class="material-icons-sharp">arrow_back</span>
+                        <span class="rob-browser-url">business.capitecbank.co.za</span>
+                        <span class="material-icons-sharp">arrow_forward</span>
+                    </div>
+                    <div class="rob-bar" id="robOtpBrowserTitle">OTP Verification</div>
+                    <div class="rob-otp-art"><span class="material-icons-sharp">smartphone</span></div>
+                    <p class="rob-sub rob-center" id="robOtpBrowserSub">An OTP has been sent to your registered mobile number.</p>
+
+                    <div class="rob-field">
+                        <label class="rob-label" for="robOtpBrowserInput">Enter OTP</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robOtpBrowserInput">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robOtpBrowserInput">visibility</span>
+                        </div>
+                    </div>
+                    <a href="#" class="rob-footer-link" id="robOtpBrowserResend">Resend OTP</a>
+                    <button type="button" class="rob-btn-solid" id="robOtpBrowserSubmit" disabled>Submit</button>
+
+                    <div class="rob-keypad">
+                        <button type="button" class="rob-keypad-btn">1</button>
+                        <button type="button" class="rob-keypad-btn">2</button>
+                        <button type="button" class="rob-keypad-btn">3</button>
+                        <button type="button" class="rob-keypad-btn">4</button>
+                        <button type="button" class="rob-keypad-btn">5</button>
+                        <button type="button" class="rob-keypad-btn">6</button>
+                        <button type="button" class="rob-keypad-btn">7</button>
+                        <button type="button" class="rob-keypad-btn">8</button>
+                        <button type="button" class="rob-keypad-btn">9</button>
+                        <button type="button" class="rob-keypad-btn rob-keypad-btn-wide">Go</button>
+                        <button type="button" class="rob-keypad-btn">0</button>
+                        <button type="button" class="rob-keypad-btn"><span class="material-icons-sharp">backspace</span></button>
+                    </div>
+                </section>
+
+                <!-- STEP 32: New password -->
+                <section class="rob-screen" id="robScreenNewPassword" hidden>
+                    <div class="rob-browser-chrome">
+                        <span class="material-icons-sharp">arrow_back</span>
+                        <span class="rob-browser-url">business.capitecbank.co.za</span>
+                        <span class="material-icons-sharp">arrow_forward</span>
+                    </div>
+                    <div class="rob-bar">New password</div>
+
+                    <div class="rob-field">
+                        <label class="rob-label" for="robNewPassword1">New password</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robNewPassword1">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robNewPassword1">visibility</span>
+                        </div>
+                        <p class="rob-hint">8+ characters, 1 uppercase, 1 number, 1 special character</p>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robNewPassword2">Confirm password</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robNewPassword2">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robNewPassword2">visibility</span>
+                        </div>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robResetPasswordBtn" disabled>Reset Password</button>
+                    <button type="button" class="rob-btn-outline" id="robResetPasswordCancel">Cancel</button>
+
+                    <div class="rob-keypad">
+                        <button type="button" class="rob-keypad-btn">1</button>
+                        <button type="button" class="rob-keypad-btn">2</button>
+                        <button type="button" class="rob-keypad-btn">3</button>
+                        <button type="button" class="rob-keypad-btn">4</button>
+                        <button type="button" class="rob-keypad-btn">5</button>
+                        <button type="button" class="rob-keypad-btn">6</button>
+                        <button type="button" class="rob-keypad-btn">7</button>
+                        <button type="button" class="rob-keypad-btn">8</button>
+                        <button type="button" class="rob-keypad-btn">9</button>
+                        <button type="button" class="rob-keypad-btn rob-keypad-btn-wide">Go</button>
+                        <button type="button" class="rob-keypad-btn">0</button>
+                        <button type="button" class="rob-keypad-btn"><span class="material-icons-sharp">backspace</span></button>
+                    </div>
+                </section>
+
+                <!-- STEP 35: Create Remote PIN -->
+                <section class="rob-screen" id="robScreenPinCreate" hidden>
+                    <div class="rob-bar"><span class="material-icons-sharp rob-bar-icon">lock</span> Create Remote PIN</div>
+                    <p class="rob-sub">Create a PIN to access all your linked profiles on your business banking app.</p>
+                    <div class="rob-note-box">
+                        <span class="material-icons-sharp rob-note-icon">info</span>
+                        <p>This is not your card PIN or OTP.</p>
+                    </div>
+
+                    <div class="rob-field">
+                        <label class="rob-label" for="robPin1">Remote PIN</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robPin1" maxlength="6">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robPin1">visibility</span>
+                        </div>
+                        <p class="rob-hint">Must be 5 or 6 digits</p>
+                    </div>
+                    <div class="rob-field">
+                        <label class="rob-label" for="robPin2">Confirm remote PIN</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robPin2" maxlength="6">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robPin2">visibility</span>
+                        </div>
+                        <p class="rob-hint">Must be 5 or 6 digits</p>
+                    </div>
+
+                    <p class="rob-card-label">Tips for a secure remote PIN</p>
+                    <ul class="rob-card-list">
+                        <li>Do not use a PIN that is easy to guess</li>
+                        <li>Do not use your date of birth</li>
+                        <li>Do not use numbers that follow each other (e.g. 12345 or repeating single digits (e.g 11111)</li>
+                        <li>Do not use the same PIN as your bank card</li>
+                    </ul>
+
+                    <button type="button" class="rob-btn-solid" id="robPinCreateBtn" disabled>Create PIN</button>
+                </section>
+
+                <!-- STEP 36: PIN success -->
+                <section class="rob-screen" id="robScreenPinSuccess" hidden>
+                    <div class="rob-success-check"><span class="material-icons-sharp">check_circle</span></div>
+                    <p class="rob-success-label">Success</p>
+                    <h2 class="rob-title rob-center">Remote PIN updated</h2>
+                    <p class="rob-sub rob-center">You can now use your new remote PIN to sign in to the App.</p>
+                    <button type="button" class="rob-btn-solid" id="robPinSuccessSignIn">Sign In</button>
+                </section>
+
+                <!-- STEP 37: Sign in with remote PIN -->
+                <section class="rob-screen" id="robScreenRemotePinLogin" hidden>
+                    <div class="rob-pill-topleft">For my business</div>
+                    <h2 class="rob-title rob-center rob-globalbiz-word">GlobalBiz</h2>
+
+                    <div class="rob-field">
+                        <label class="rob-label" for="robRemotePinInput">Remote PIN</label>
+                        <div class="rob-input-eye-wrap">
+                            <input type="password" class="rob-input" id="robRemotePinInput" maxlength="6">
+                            <span class="material-icons-sharp rob-eye-toggle" data-target="robRemotePinInput">visibility</span>
+                        </div>
+                    </div>
+                    <a href="#" class="rob-footer-link">Forgot PIN</a>
+                    <button type="button" class="rob-btn-solid" id="robRemotePinSubmit" disabled>Submit</button>
+
+                    <div class="rob-keypad">
+                        <button type="button" class="rob-keypad-btn">1</button>
+                        <button type="button" class="rob-keypad-btn">2</button>
+                        <button type="button" class="rob-keypad-btn">3</button>
+                        <button type="button" class="rob-keypad-btn">4</button>
+                        <button type="button" class="rob-keypad-btn">5</button>
+                        <button type="button" class="rob-keypad-btn">6</button>
+                        <button type="button" class="rob-keypad-btn">7</button>
+                        <button type="button" class="rob-keypad-btn">8</button>
+                        <button type="button" class="rob-keypad-btn">9</button>
+                        <button type="button" class="rob-keypad-btn rob-keypad-btn-wide">Go</button>
+                        <button type="button" class="rob-keypad-btn">0</button>
+                        <button type="button" class="rob-keypad-btn"><span class="material-icons-sharp">backspace</span></button>
+                    </div>
+                </section>
+
+                <!-- STEP 38: Disclaimer and Legal Notices -->
+                <section class="rob-screen" id="robScreenDisclaimer" hidden>
+                    <div class="rob-bar">Disclaimer and Legal Notices</div>
+                    <p class="rob-doc-para">You must read the disclaimer and legal notices before continuing because it contains important terms and conditions that you need to understand and accept.</p>
+
+                    <button type="button" class="rob-expand-row" id="robViewDisclaimerDetails">
+                        <span>View disclaimer details</span>
+                        <span class="material-icons-sharp">chevron_right</span>
+                    </button>
+
+                    <button type="button" class="rob-btn-solid" id="robDisclaimerAccept">Accept</button>
+                    <button type="button" class="rob-btn-outline" id="robDisclaimerCancel">Cancel</button>
+                </section>
+
+                <!-- STEP 39: Disclaimer details -->
+                <section class="rob-screen" id="robScreenDisclaimerDetails" hidden>
+                    <div class="rob-doc-bar"><span class="material-icons-sharp rob-doc-back" id="robDisclaimerDetailsBack">arrow_back</span> Disclaimer Details</div>
+
+                    <div class="rob-doc-scroll">
+                        <p class="rob-doc-para">The Client's attention is drawn to the following clauses <strong>[highlighted in bold]</strong>: which limit the risks and liability of Capitec to the Client and other parties (clauses 3.3, 5.1, 5.8, 6.12, 6.13, 8.1, 8.2, and 9); where the Client assumes certain risks and liabilities (clauses 3.2, 3.3, 3.7, 4.2, 4.5, 5.2, 5.9, 6.8, 6.9, 8.3 and 11); and where the Client acknowledges certain facts relating to the account (clauses 5.6, 6.3, 6.6, 6.10 and 6.11).</p>
+
+                        <p class="rob-doc-clause-head">1. INTERPRETATION</p>
+                        <p class="rob-doc-clause">1.1 In these terms:</p>
+                        <p class="rob-doc-clause"><strong>Agreement</strong> means these online banking terms, which together with the General Terms and other Product Terms make up the whole agreement between you and Ca[pitec]...</p>
+                        <p class="rob-doc-clause"><strong>Online Banking</strong> means electronic banking done by accessing a self-service web-based portal through o[ur] website;</p>
+                        <p class="rob-doc-clause"><strong>Services</strong> means banking facilities, services and prod[ucts] offered by us; and</p>
+                        <p class="rob-doc-clause"><strong>Users</strong> means Super-users and Sub-users collectively [as defined]&hellip; Terms used (but not otherwise defined) in this Agree[ment] have, unless indicated otherwise, the meanings give[n] them in the General Terms; and</p>
+                        <p class="rob-doc-clause">1.2 The General Terms shall be deemed to be incorpo[rated]&hellip;</p>
+                    </div>
+
+                    <button type="button" class="rob-btn-solid" id="robDisclaimerDetailsAccept">Accept</button>
+                </section>
+
+                <!-- STEP 40: Manage your banking -->
+                <section class="rob-screen" id="robScreenManageBanking" hidden>
+                    <div class="rob-bar">Manage your banking</div>
+                    <div class="rob-manage-illustration"><span class="material-icons-sharp">groups</span></div>
+                    <h2 class="rob-title rob-center">Take control of your business banking</h2>
+                    <p class="rob-sub rob-center">Set your spending and transfer limits to match your business needs. You can update them anytime in Settings.</p>
+
+                    <div class="rob-card">
+                        <h3 class="rob-card-title">Account limits</h3>
+                        <a href="#" class="rob-add-link" id="robSetupLimitsNow">Set up now</a>
+                    </div>
+
+                    <a href="#" class="rob-footer-link" id="robStartTransacting">Start transacting</a>
+                </section>
+
+                <!-- STEP 41: Settings - manage limits -->
+                <section class="rob-screen" id="robScreenSettingsLimits" hidden>
+                    <div class="rob-doc-bar"><span class="material-icons-sharp rob-doc-back" id="robSettingsLimitsBack">arrow_back</span> Settings</div>
+
+                    <p class="rob-card-label">Profile limit <a href="#" class="rob-link">Edit</a></p>
+                    <p class="rob-hint">What is a profile limit?</p>
+                    <div class="rob-limit-card">
+                        <span>Daily profile limit</span>
+                        <strong>R 1 000.00</strong>
+                    </div>
+
+                    <p class="rob-card-label">Account limits <a href="#" class="rob-link" id="robEditAccountLimit">Edit</a></p>
+                    <p class="rob-hint">What is an account limit?</p>
+                    <div class="rob-limit-card rob-limit-card-account">
+                        <div class="rob-limit-card-top">
+                            <span>Zoomies &middot; 1054 3847 54</span>
+                            <span class="material-icons-sharp">chevron_right</span>
+                        </div>
+                        <div class="rob-limit-card-bottom">
+                            <span>Account limit</span>
+                            <strong id="robAccountLimitValue">R0.00</strong>
+                        </div>
+                    </div>
+                    <div class="rob-field" id="robAccountLimitEditField" hidden>
+                        <label class="rob-label" for="robAccountLimitInput">New account limit</label>
+                        <input type="text" class="rob-input" id="robAccountLimitInput" placeholder="R0.00">
+                        <button type="button" class="rob-btn-solid" id="robAccountLimitSave">Save</button>
+                    </div>
+
+                    <div class="rob-toast rob-toast-success" id="robLimitToast" hidden>Success. The account limit has been updated.</div>
+
+                    <button type="button" class="rob-btn-outline" id="robSettingsLimitsDone">Done</button>
+                </section>
+
+                <!-- STEP 42: GlobalBiz dashboard -->
+                <section class="rob-screen" id="robScreenDashboard" hidden>
+                    <div class="rob-dash-topbar">
+                        <span class="material-icons-sharp">menu</span>
+                        <span class="rob-globalbiz-word rob-dash-word">GlobalBiz</span>
+                        <span class="rob-dash-topbar-right">
+                            <span class="material-icons-sharp">chat_bubble</span>
+                            <span class="rob-avatar-circle rob-avatar-circle-sm">MR</span>
+                        </span>
+                    </div>
+
+                    <h2 class="rob-title">Welcome, Mariska</h2>
+
+                    <div class="rob-card rob-whatnext-card" id="robWhatNextCard">
+                        <button type="button" class="rob-toast-close rob-whatnext-close" id="robWhatNextClose">&times;</button>
+                        <p class="rob-card-desc">Set your spending and transfer limits to match your business needs. You can update them anytime in Settings.</p>
+                        <div class="rob-expand-row" id="robSetupAccountLimitsRow">
+                            <span class="material-icons-sharp">tune</span>
+                            <span>Setup your account limits &ndash; This is not your card limits</span>
+                            <span class="material-icons-sharp">chevron_right</span>
+                        </div>
+                    </div>
+
+                    <p class="rob-card-label">Accounts</p>
+                    <div class="rob-account-row">
+                        <span>1 Current Account</span>
+                        <span class="rob-account-balance">R0.00</span>
+                        <span class="material-icons-sharp">chevron_right</span>
+                    </div>
+
+                    <div class="rob-favorites-header">
+                        <p class="rob-card-label">Favourites</p>
+                        <a href="#" class="rob-link">Edit</a>
+                    </div>
+                    <div class="rob-favorites-grid">
+                        <div class="rob-favorite-box">
+                            <span class="material-icons-sharp">person</span>
+                            <span class="rob-favorite-title">Pay saved beneficiary</span>
+                        </div>
+                        <div class="rob-favorite-box">
+                            <span class="material-icons-sharp">send</span>
+                            <span class="rob-favorite-title">Pay once-off beneficiary</span>
+                        </div>
+                        <div class="rob-favorite-box">
+                            <span class="material-icons-sharp">groups</span>
+                            <span class="rob-favorite-title">Group or Multiple payments</span>
+                        </div>
+                        <div class="rob-favorite-box">
+                            <span class="material-icons-sharp">sync_alt</span>
+                            <span class="rob-favorite-title">Transfer money</span>
+                        </div>
+                    </div>
+
+                    <div class="rob-bottom-nav">
+                        <span class="rob-nav-item active"><span class="material-icons-sharp">home</span>Home</span>
+                        <span class="rob-nav-item"><span class="material-icons-sharp">account_balance_wallet</span>Accounts</span>
+                        <span class="rob-nav-item"><span class="material-icons-sharp">sync_alt</span>Transact</span>
+                        <span class="rob-nav-item"><span class="material-icons-sharp">credit_card</span>Cards</span>
+                        <span class="rob-nav-item"><span class="material-icons-sharp">explore</span>Explore</span>
+                    </div>
+                </section>
+
             </div>
         </div>
         <div class="home-indicator"></div>

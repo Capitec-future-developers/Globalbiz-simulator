@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getBalances, formatNlBalance } from '../hooks/useAccountStore';
+import ChatbotWidget from '../components/ChatbotWidget';
 
 export default function Home() {
     const [balances, setBalances] = useState(null);
@@ -13,6 +14,7 @@ export default function Home() {
 
     return (
         <>
+            <ChatbotWidget />
             <div className="new-look-header new-look-only" style={{ display: 'flex' }}>
                 <Link to="/profile" className="nl-avatar-link" aria-label="Open profile menu">
                     <div className="nl-avatar">ZD</div>

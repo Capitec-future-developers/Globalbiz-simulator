@@ -69,47 +69,48 @@ export default function Documents() {
 
     return (
         <div style={{ padding: '45px 20px 20px' }}>
-            <div className="document-header" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, paddingBottom: 10, borderBottom: '1px solid #ccc' }}>
-                <Link to="/" style={{ color: 'inherit' }}><span className="material-icons-sharp">arrow_back</span></Link>
+            <div className="doc-topbar">
+                <Link to="/" className="back-button"><span className="material-icons-sharp">arrow_back</span></Link>
+                <h2>Documents</h2>
+            </div>
+
+            <div className="document-header">
                 <span className="material-icons-sharp">description</span>
                 <div>
                     <p style={{ margin: 0 }}>Your documents:</p>
-                    <p style={{ margin: 0, color: '#666' }}>{status}</p>
+                    <p id="doc-status" style={{ margin: 0, color: '#666' }}>{status}</p>
                 </div>
                 <div style={{ marginLeft: 'auto' }}>
-                    <div className="doc-counter" style={{ background: '#888', color: 'white', borderRadius: '50%', width: 20, height: 20, textAlign: 'center', lineHeight: '20px' }}>{docCount}</div>
+                    <div className="doc-counter" id="doc-count">{docCount}</div>
                 </div>
             </div>
 
-            <div style={{ marginTop: 20 }}>
+            <div className="generate-box">
                 <h3>Generate New Document</h3>
-                <select value={docType} onChange={(e) => setDocType(e.target.value)} style={{ width: '100%', padding: 10, marginBottom: 10 }}>
+                <select id="doc-type" value={docType} onChange={(e) => setDocType(e.target.value)}>
                     <option value="" disabled>Choose document type</option>
                     {DOC_TYPES.map((t) => <option key={t}>{t}</option>)}
                 </select>
                 {docType && (
-                    <select value={account} onChange={(e) => setAccount(e.target.value)} style={{ width: '100%', padding: 10, marginBottom: 10 }}>
-                        <option value="" disabled>Choose account</option>
-                        {ACCOUNTS.map((a) => <option key={a}>{a}</option>)}
-                    </select>
+                    <div id="account-container">
+                        <select id="account-choice" value={account} onChange={(e) => setAccount(e.target.value)}>
+                            <option value="" disabled>Choose account</option>
+                            {ACCOUNTS.map((a) => <option key={a}>{a}</option>)}
+                        </select>
+                    </div>
                 )}
                 {account && (
-                    <>
-                        <button
-                            type="button"
-                            disabled={generating}
-                            onClick={handleGenerate}
-                            style={{ width: '100%', padding: 10, marginBottom: 10, background: '#007bff', color: 'white', border: 'none', borderRadius: 5 }}
-                        >
+                    <div id="action-buttons">
+                        <button type="button" id="generate-btn" disabled={generating} onClick={handleGenerate}>
                             Generate
                         </button>
-                        <button type="button" onClick={handleCancel} style={{ width: '100%', padding: 10, marginBottom: 10, border: '1px solid #00aeff', background: 'white', color: '#007bff', borderRadius: 5 }}>
+                        <button type="button" id="cancel-btn" onClick={handleCancel}>
                             Cancel
                         </button>
-                    </>
+                    </div>
                 )}
                 {status === 'Ready for email' && (
-                    <button type="button" onClick={() => setScreen('email')} style={{ width: '100%', padding: 10, background: '#007bff', color: 'white', border: 'none', borderRadius: 5 }}>
+                    <button type="button" id="email-doc-btn" onClick={() => setScreen('email')}>
                         Email document
                     </button>
                 )}

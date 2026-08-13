@@ -7,7 +7,8 @@ import TransactHub from './pages/TransactHub';
 import TransferFlow from './pages/TransferFlow';
 import PaymentsHub from './pages/PaymentsHub';
 import OnceOffPayment from './pages/OnceOffPayment';
-import SavedBeneficiaries from './pages/SavedBeneficiaries';
+import SavedBeneficiaryList from './pages/SavedBeneficiaryList';
+import BeneficiariesHub from './pages/BeneficiariesHub';
 import Documents from './pages/Documents';
 import Cards from './pages/Cards';
 import Explore from './pages/Explore';
@@ -24,8 +25,8 @@ export default function App() {
                 <Route path="/transact/transfer" element={<TransferFlow />} />
                 <Route path="/transact/payments" element={<PaymentsHub />} />
                 <Route path="/transact/payments/once-off" element={<OnceOffPayment />} />
-                <Route path="/transact/payments/saved" element={<SavedBeneficiaries />} />
-                <Route path="/transact/beneficiaries" element={<SavedBeneficiaries />} />
+                <Route path="/transact/payments/saved" element={<SavedBeneficiaryList />} />
+                <Route path="/transact/beneficiaries" element={<BeneficiariesHub />} />
                 <Route path="/cards" element={<Cards />} />
                 <Route path="/explore" element={<Explore />} />
                 <Route path="/explore/credit" element={<Stub title="Credit" />} />
