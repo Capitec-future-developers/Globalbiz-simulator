@@ -300,6 +300,9 @@
 .nl-wizard-table-row.header {
     font-weight: 700;
     color: #16232f;
+    position: static;
+    top: 0;
+    right: 0;
 }
 
 .nl-wizard-table-row span:not(:first-child) {

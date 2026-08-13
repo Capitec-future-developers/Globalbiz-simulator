@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
+@scope (.computer-shell) {
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -1214,4 +1216,5 @@ popup-header {
 
 .right{
   color: #1e88e5;
+}
 }

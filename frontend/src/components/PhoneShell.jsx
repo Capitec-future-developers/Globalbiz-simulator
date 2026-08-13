@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const NAV_ITEMS = [
     { to: '/', label: 'Home', icon: 'home' },
@@ -7,7 +7,15 @@ const NAV_ITEMS = [
     { to: '/cards', label: 'Cards', icon: 'cards-action' }
 ];
 
+
+
+const NO_NAV_ROUTES = ['/explore/savings', '/profile', '/Sign-In', '/IOSHome'];
+
 export default function PhoneShell({ children }) {
+    const location = useLocation();
+    const showNav = !NO_NAV_ROUTES.includes(location.pathname);
+
+
     return (
         <div className="iphone">
             <div className="volume-buttons">
@@ -20,23 +28,25 @@ export default function PhoneShell({ children }) {
                 <div className="screen-content">
                     {children}
                 </div>
-                <div className="bottom-nav" id="bottomNav">
-                    {NAV_ITEMS.map((item) => (
-                        <NavLink
-                            key={item.to}
-                            to={item.to}
-                            end={item.to === '/'}
-                            className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}
-                        >
-                            <img src={`/images/${item.icon}.svg`} alt={item.label} />
-                            <span>{item.label}</span>
+                {showNav && (
+                    <div className="bottom-nav" id="bottomNav">
+                        {NAV_ITEMS.map((item) => (
+                            <NavLink
+                                key={item.to}
+                                to={item.to}
+                                end={item.to === '/'}
+                                className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}
+                            >
+                                <img src={`/images/${item.icon}.svg`} alt={item.label} />
+                                <span>{item.label}</span>
+                            </NavLink>
+                        ))}
+                        <NavLink to="/explore" className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}>
+                            <span className="nav-icon material-icons-outlined">search</span>
+                            <span>Explore</span>
                         </NavLink>
-                    ))}
-                    <NavLink to="/explore" className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}>
-                        <span className="nav-icon material-icons-outlined">search</span>
-                        <span>Explore</span>
-                    </NavLink>
-                </div>
+                    </div>
+                )}
             </div>
             <div className="home-indicator"></div>
         </div>

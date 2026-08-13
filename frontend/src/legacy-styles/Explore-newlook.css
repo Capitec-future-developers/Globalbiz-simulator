@@ -29,6 +29,8 @@
 .head.nl-subpage-head .header {
     color: #16232f;
     font-weight: 600;
+    top: 0;
+    right: 0;
 }
 
 .new-look-only {

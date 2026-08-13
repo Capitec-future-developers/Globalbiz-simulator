@@ -14,7 +14,11 @@ import './legacy-styles/Cards-newlook.css'
 import './legacy-styles/AddCard-newlook.css'
 import './legacy-styles/Explore-newlook.css'
 import './legacy-styles/chatbot.css'
+import './legacy-styles/Support-newlook.css'
+import './legacy-styles/Profile-newlook.css'
+import './legacy-styles/SavingsWizard-newlook.css'
 import './index.css'
+import './legacy-styles/Phone.css'
 import App from './App.jsx'
 
 document.body.classList.add('new-look-active');
