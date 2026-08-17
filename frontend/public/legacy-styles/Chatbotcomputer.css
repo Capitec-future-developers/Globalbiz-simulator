@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
 
-@scope (.computer-shell) {
-
 * {
     margin: 0;
     padding: 0;
@@ -294,6 +292,4 @@ body:not(.show-chatbot) .chatbot {
 
 .chatbox .incoming .chat-card {
   background: #f8fafc;
-}
-
 }

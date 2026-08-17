@@ -1,0 +1,356 @@
+/* ============================================================
+   Profile menu page for the Phone2 "new look" preview.
+   Reuses the phone-shell classes (.iphone/.screen/.notch/...)
+   and the profile-switcher popup classes from Phone2.css;
+   everything below is specific to this page's own content.
+   ============================================================ */
+
+body {
+    background-color: #eef1f9;
+}
+
+.nl-profile-screen {
+    background-color: #eef1f9;
+    padding: 0 20px 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nl-profile-screen::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.nl-profile-topbar {
+    flex-shrink: 0;
+    padding: 15px 0 5px;
+}
+
+.nl-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #16232f;
+    text-decoration: none;
+}
+
+.nl-profile-hero {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 10px 0 25px;
+}
+
+.nl-avatar-lg {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #16232f;
+    color: white;
+    font-weight: 700;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.nl-profile-fullname {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.nl-profile-subtitle {
+    font-size: 0.95rem;
+    color: #5f6b7a;
+}
+
+.nl-switch-profile-btn {
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #2f6fed;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nl-menu-card {
+    flex-shrink: 0;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.nl-menu-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 18px;
+    color: #2d3748;
+    text-decoration: none;
+    font-size: 1.05rem;
+    border-bottom: 1px solid #f0f2f6;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nl-menu-row .material-icons-sharp:first-child {
+    color: #2f6fed;
+    font-size: 22px;
+}
+
+.nl-row-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    /* recolor the source svg (various native fills) to the app's accent blue */
+    filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);
+}
+
+.nl-menu-label {
+    flex: 1;
+}
+
+.nl-chevron {
+    color: #2d3748;
+    transition: transform 0.2s ease;
+}
+
+.nl-accordion-toggle.open .nl-chevron {
+    transform: rotate(180deg);
+}
+
+.nl-accordion-menu {
+    display: none;
+    flex-direction: column;
+    padding: 0 18px 12px 56px;
+    gap: 10px;
+    background: #fafbfd;
+}
+
+.nl-accordion-menu a {
+    color: #2f6fed;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.nl-signout {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #2f6fed;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 20px 0 10px;
+}
+
+.nl-signout .material-icons-sharp {
+    font-size: 20px;
+}
+
+/* -------- switch-profile bottom sheet -------- */
+.nl-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 30;
+}
+
+.nl-sheet {
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 24px 24px;
+    box-sizing: border-box;
+    z-index: 31;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.nl-sheet-handle {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: #d0d5dd;
+    margin: 6px auto 16px;
+}
+
+.nl-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nl-sheet-header h3 {
+    font-size: 1.1rem;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-sheet-header button {
+    background: none;
+    border: none;
+    color: #5f6b7a;
+    cursor: pointer;
+}
+
+.nl-current-profile-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #eef1f9;
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.nl-current-avatar-wrap {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.nl-current-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #2f6fed;
+    color: white;
+    font-weight: 700;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nl-current-badge {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    color: #1a9c4a;
+    background: white;
+    border-radius: 50%;
+    font-size: 20px;
+}
+
+.nl-current-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.nl-current-email {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.nl-current-chevron {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: #2f6fed;
+}
+
+.nl-switch-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #16232f;
+    margin-bottom: 16px;
+}
+
+.nl-switch-header-row a {
+    color: #2f6fed;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nl-switch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nl-switch-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+}
+
+.nl-switch-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #2f6fed;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nl-switch-avatar-alt {
+    background: #16232f;
+}
+
+.nl-switch-name {
+    font-weight: 700;
+    color: #16232f;
+    font-size: 1rem;
+}
+
+.nl-switch-sub {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+    margin-bottom: 6px;
+}
+
+.nl-default-pill {
+    display: inline-block;
+    background: #e3f6e8;
+    color: #1a9c4a;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 4px 12px;
+}

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-@scope (.computer-shell) {
-
 
 .main-header{
     padding-left: 250px;
@@ -552,6 +550,4 @@ table {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
 }

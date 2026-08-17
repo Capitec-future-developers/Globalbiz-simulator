@@ -1,6 +1,4 @@
 
-@scope (.computer-shell) {
-
 .beneficiary-modal-overlay {
     position: fixed;
     top: 0;
@@ -408,6 +406,4 @@
 .table-wrapper {
     overflow-x: auto;
     width: 100%;
-}
-
 }

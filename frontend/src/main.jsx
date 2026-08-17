@@ -18,10 +18,12 @@ import './legacy-styles/Support-newlook.css'
 import './legacy-styles/Profile-newlook.css'
 import './legacy-styles/SavingsWizard-newlook.css'
 import './index.css'
-import './legacy-styles/Phone.css'
-import App from './App.jsx'
 
-document.body.classList.add('new-look-active');
+
+import App from './App.jsx'
+import { syncPreviewNewLook } from './utils/previewNewLook.js'
+
+syncPreviewNewLook();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

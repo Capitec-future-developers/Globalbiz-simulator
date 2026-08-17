@@ -134,6 +134,7 @@ body.new-look-active .content {
     border-radius: 14px;
     padding: 18px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    text-wrap: nowrap;
 }
 
 .nl-account-icon {
@@ -152,6 +153,8 @@ body.new-look-active .content {
 .nl-account-balance {
     color: #2d3748;
     font-size: 1.05rem;
+    text-wrap: nowrap;
+    overflow: hidden;
 }
 
 /* -------- favourites grid -------- */

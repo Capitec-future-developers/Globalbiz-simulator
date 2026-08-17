@@ -1,0 +1,307 @@
+/* ============================================================
+   GlobalOne personal banking - Virtual card enrollment flow.
+   App/GlobalOne-VirtualCard-New.html
+   App/GlobalOne-VirtualCard-Limits.html
+   App/GlobalOne-VirtualCard-Success.html
+   ============================================================ */
+
+.go-vc-header {
+    flex-shrink: 0;
+    background: white;
+    border-bottom: 1px solid #e4e8f2;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 45px 16px 16px;
+    box-sizing: border-box;
+}
+
+.go-vc-back {
+    color: #16232f;
+    display: flex;
+    text-decoration: none;
+}
+
+.go-vc-header h2 {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #16232f;
+    padding-right: 24px;
+}
+
+.go-vc-body {
+    padding: 20px 20px 0;
+}
+
+.go-vc-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #8a94a3;
+    margin-bottom: 10px;
+}
+
+.go-vc-section-label-spaced {
+    margin-top: 28px;
+}
+
+.go-vc-field-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+    margin-bottom: 6px;
+}
+
+.go-vc-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cdd5e2;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.98rem;
+    color: #16232f;
+    font-family: inherit;
+}
+
+.go-vc-input:focus {
+    outline: none;
+    border-color: var(--go-primary);
+}
+
+.go-vc-error {
+    margin: 6px 2px 0;
+    font-size: 0.78rem;
+    color: #c62828;
+    display: none;
+}
+
+.go-vc-error.visible {
+    display: block;
+}
+
+.go-vc-footer {
+    flex-shrink: 0;
+    padding: 14px 20px 20px;
+    background: white;
+    box-sizing: border-box;
+}
+
+.go-vc-next {
+    width: 100%;
+    border: none;
+    border-radius: 24px;
+    background: var(--go-primary);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 14px 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.go-vc-next:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* ---- Limits screen ---- */
+
+.go-vc-intro {
+    margin: 0 0 18px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #16232f;
+}
+
+.go-vc-limit-row {
+    margin-bottom: 18px;
+}
+
+.go-vc-limit-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9rem;
+    color: #16232f;
+    margin-bottom: 6px;
+}
+
+.go-vc-limit-label span.go-vc-limit-max {
+    font-size: 0.78rem;
+    color: #8a94a3;
+    font-weight: 400;
+}
+
+.go-vc-limit-input-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cdd5e2;
+    border-radius: 10px;
+    padding: 0 14px;
+}
+
+.go-vc-limit-input-wrap span {
+    color: #5f6b7a;
+    font-size: 0.98rem;
+}
+
+.go-vc-limit-input-wrap input {
+    flex: 1;
+    border: none;
+    padding: 12px 8px;
+    font-size: 0.98rem;
+    color: #16232f;
+    font-family: inherit;
+}
+
+.go-vc-limit-input-wrap input:focus {
+    outline: none;
+}
+
+/* ---- Set Limits confirmation modal ---- */
+
+.go-vc-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 16, 26, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.go-vc-modal-backdrop.visible {
+    display: flex;
+}
+
+.go-vc-modal {
+    background: white;
+    border-radius: 14px;
+    padding: 22px 20px;
+    width: 100%;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.go-vc-modal h3 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    color: #16232f;
+}
+
+.go-vc-modal p {
+    margin: 0 0 12px;
+    font-size: 0.88rem;
+    color: #3a4452;
+    line-height: 1.45;
+}
+
+.go-vc-modal ul {
+    margin: 0 0 18px;
+    padding-left: 20px;
+    font-size: 0.88rem;
+    color: #3a4452;
+    line-height: 1.6;
+}
+
+.go-vc-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 22px;
+}
+
+.go-vc-modal-actions button {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 4px 2px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    color: #5f6b7a;
+}
+
+.go-vc-modal-actions button.go-vc-modal-confirm {
+    color: var(--go-primary);
+}
+
+/* ---- Success screen ---- */
+
+.go-vc-success-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.go-vc-success-icon {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.go-vc-success-icon .material-icons-sharp {
+    font-size: 48px;
+    color: white;
+}
+
+.go-vc-success-body h2 {
+    margin: 0 0 10px;
+    font-size: 1.3rem;
+    color: #16232f;
+}
+
+.go-vc-success-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #5f6b7a;
+}
+
+.go-vc-success-footer {
+    flex-shrink: 0;
+    padding: 14px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+.go-vc-wallet-btn {
+    width: 100%;
+    border: 1px solid #cdd5e2;
+    border-radius: 24px;
+    background: #f3f5f9;
+    color: #16232f;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 12px 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.go-vc-done-btn {
+    width: 100%;
+    border: none;
+    border-radius: 24px;
+    background: var(--go-primary);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 14px 0;
+    cursor: pointer;
+    font-family: inherit;
+}

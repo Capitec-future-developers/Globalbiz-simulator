@@ -1,0 +1,671 @@
+/* ============================================================
+   "New Look" preview for the Account Details / statement page.
+   Inert by default — everything here only takes effect once
+   body.new-look-active is set (toggled from the "Preview New
+   Look" switch on Sign-In.html via localStorage).
+   ============================================================ */
+
+.new-look-only {
+    display: none;
+}
+
+body.new-look-active .new-look-only {
+    display: flex;
+}
+
+body.new-look-active .classic-only {
+    display: none;
+}
+
+body.new-look-active .screen {
+    background-color: #eef1f9;
+}
+
+.nl-account-details {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eef1f9;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nl-account-details::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* -------- topbar -------- */
+.nl-details-topbar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.nl-details-topbar .nl-back {
+    color: #16232f;
+    text-decoration: none;
+    margin-top: 3px;
+}
+
+.nl-details-title {
+    flex: 1;
+}
+
+.nl-details-title h2 {
+    font-size: 1.15rem;
+    color: #16232f;
+    margin: 0 0 4px;
+}
+
+.nl-account-number {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.nl-more-btn {
+    background: none;
+    border: none;
+    color: #16232f;
+    cursor: pointer;
+    padding: 0;
+}
+
+.nl-more-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 32px;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+    min-width: 200px;
+    overflow: hidden;
+}
+
+.nl-more-menu.open {
+    display: flex;
+}
+
+.nl-more-menu button,
+.nl-more-menu a {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    color: #2d3748;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nl-more-menu button:hover,
+.nl-more-menu a:hover {
+    background: #f5f7fb;
+}
+
+/* -------- balance card -------- */
+.nl-balance-card {
+    flex-shrink: 0;
+    position: relative;
+    background: linear-gradient(135deg, #0d2f6b, #123a82);
+    border-radius: 16px;
+    padding: 20px;
+    color: white;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.nl-balance-decor {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nl-balance-decor::before,
+.nl-balance-decor::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nl-balance-decor::before {
+    width: 90px;
+    height: 90px;
+    top: 60px;
+    right: 40px;
+}
+
+.nl-balance-decor::after {
+    width: 60px;
+    height: 60px;
+    top: 100px;
+    right: 110px;
+}
+
+.nl-balance-content {
+    position: relative;
+    z-index: 1;
+}
+
+.nl-balance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nl-balance-label {
+    font-size: 0.9rem;
+    color: #cfd9f2;
+}
+
+.nl-info-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.nl-info-btn .material-icons-sharp {
+    font-size: 16px;
+}
+
+.nl-balance-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+/* -------- search + share -------- */
+.nl-search-share-row {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.nl-transaction-search {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid #cfd6e4;
+    border-radius: 24px;
+    padding: 10px 16px;
+}
+
+.nl-transaction-search .material-icons-sharp {
+    color: #5f6b7a;
+    font-size: 20px;
+}
+
+.nl-transaction-search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.nl-share-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #cfd6e4;
+    background: white;
+    color: #0096c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* -------- date pill -------- */
+.nl-date-pill {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: white;
+    border: 1px solid #0096c7;
+    color: #0096c7;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 8px 14px;
+    margin-bottom: 16px;
+}
+
+.nl-date-pill .material-icons-sharp {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* -------- tabs -------- */
+.nl-tx-tabs {
+    flex-shrink: 0;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.nl-tx-tab {
+    border: 1px solid #cfd6e4;
+    background: white;
+    color: #2d3748;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nl-tx-tab.active {
+    background: #dbe6fb;
+    border-color: #dbe6fb;
+    color: #1b4dbf;
+}
+
+/* -------- transaction list -------- */
+.nl-tx-panel {
+    flex-shrink: 0;
+}
+
+.nl-tx-month {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 14px 0 8px;
+}
+
+.nl-tx-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.nl-tx-name {
+    font-weight: 700;
+    color: #16232f;
+    font-size: 0.95rem;
+}
+
+.nl-tx-date {
+    font-size: 0.8rem;
+    color: #5f6b7a;
+    margin-top: 2px;
+}
+
+.nl-tx-amount {
+    color: #1a7d3c;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* -------- empty state -------- */
+.nl-tx-empty {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: white;
+    border-radius: 14px;
+    padding: 50px 20px;
+}
+
+.nl-empty-illustration {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #eef1f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.nl-empty-illustration .material-icons-sharp {
+    font-size: 40px;
+    color: #b7c2d6;
+}
+
+.nl-tx-empty p {
+    color: #5f6b7a;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* -------- edit nickname bottom sheet -------- */
+.nl-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 30;
+}
+
+.nl-sheet {
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 12px 24px 24px;
+    box-sizing: border-box;
+    z-index: 31;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nl-sheet-handle {
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: #d0d5dd;
+    margin: 6px auto 16px;
+}
+
+/* -------- email statement full screen -------- */
+.nl-statement-screen {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: #fff;
+    z-index: 35;
+}
+
+.nl-statement-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.nl-statement-topbar .nl-back {
+    color: #16232f;
+    text-decoration: none;
+}
+
+.nl-statement-topbar h2 {
+    font-size: 1.15rem;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-statement-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 20px 0 12px;
+}
+
+.nl-statement-radio-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eef1f6;
+    cursor: pointer;
+}
+
+.nl-statement-radio-row span {
+    font-size: 0.95rem;
+    color: #16232f;
+}
+
+.nl-statement-radio-row input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #0096c7;
+}
+
+.nl-statement-date-inputs {
+    display: none;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.nl-statement-date-inputs.active {
+    display: flex;
+}
+
+.nl-statement-date-inputs input {
+    flex: 1;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.nl-statement-email-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    margin-bottom: 10px;
+}
+
+.nl-statement-add-email {
+    background: none;
+    border: none;
+    color: #0096c7;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nl-statement-send-btn {
+    width: 100%;
+    background: #1e6fe0;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.nl-statement-send-btn:disabled {
+    background: #b7c2d6;
+    cursor: not-allowed;
+}
+
+.nl-statement-success {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+    padding: 80px 30px;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 36;
+}
+
+.nl-statement-success .confirmation-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nl-statement-success .confirmation-icon.success {
+    background: #e8f8f0;
+    color: #2ecc71;
+}
+
+.nl-statement-success .confirmation-icon .material-icons-sharp {
+    font-size: 40px;
+}
+
+.nl-statement-success h2 {
+    color: #16232f;
+    margin: 0 0 10px;
+}
+
+.nl-statement-success p {
+    color: #5f6b7a;
+    margin: 0 0 30px;
+}
+
+.nl-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nl-sheet-header h3 {
+    font-size: 1.1rem;
+    color: #16232f;
+    margin: 0;
+}
+
+.nl-sheet-header button {
+    background: none;
+    border: none;
+    color: #5f6b7a;
+    cursor: pointer;
+}
+
+.nl-sheet-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.nl-sheet-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    margin-bottom: 22px;
+}
+
+.nl-sheet-save {
+    width: 100%;
+    background: #1e6fe0;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* -------- bottom nav -------- */
+body.new-look-active .bottom-nav {
+    padding: 10px 0 16px;
+}
+
+body.new-look-active .nav-item {
+    color: #2d3748;
+    gap: 4px;
+}
+
+body.new-look-active .nav-item img {
+    filter: none;
+    width: 22px;
+    height: 22px;
+}
+
+body.new-look-active .nav-item.active,
+body.new-look-active .nav-item.active:link,
+body.new-look-active .nav-item.active:visited,
+body.new-look-active .nav-item.active:hover,
+body.new-look-active .nav-item.active:active {
+    color: #0096c7;
+    font-weight: 600;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   <img> — filter affects everything rendered for an element including its
+   own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+body.new-look-active .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+body.new-look-active .nav-item.active img {
+    position: relative;
+    z-index: 1;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    filter: invert(1) !important;
+}

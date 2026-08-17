@@ -1,5 +1,3 @@
-
-@scope (.computer-shell) {
 .transfer-section {
     padding: 20px;
     max-width: 600px;
@@ -174,6 +172,4 @@
 #page-transition.show {
     opacity: 1;
     pointer-events: all;
-}
-
 }

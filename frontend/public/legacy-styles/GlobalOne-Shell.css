@@ -1,0 +1,154 @@
+/* ============================================================
+   Shared chrome for the GlobalOne personal-banking pages
+   (App/GlobalOne-*.html): light header bar, bottom nav, base
+   screen container. This is a distinct product from the
+   GlobalBiz business app, so nothing here is gated behind the
+   previewNewLook/new-look-active toggle - it's always on.
+   ============================================================ */
+
+:root {
+    --go-primary: #0096c7;
+    --go-primary-dark: #0f3057;
+    --go-bg: #eef1f9;
+}
+
+.go-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--go-bg);
+    overflow: hidden;
+}
+
+.go-header {
+    flex-shrink: 0;
+    background: var(--go-primary);
+    color: white;
+    padding: 45px 16px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-sizing: border-box;
+}
+
+.go-header button, .go-header a.go-header-icon {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.go-header-title {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.go-body {
+    flex: 1;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: 20px;
+}
+
+.go-body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+.go-bottom-nav {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+    border-top: 1px solid #e4e8f2;
+    padding: 10px 4px 6px;
+}
+
+.go-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-decoration: none;
+    color: #5f6b7a;
+    font-size: 0.68rem;
+    position: relative;
+    flex: 1;
+}
+
+.go-nav-item .material-icons-sharp {
+    font-size: 22px;
+}
+
+.go-nav-icon {
+    position: static;
+    left: auto;
+    top: auto;
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(50%) contrast(80%);
+}
+
+.go-nav-item.active {
+    color: var(--go-primary);
+    font-weight: 700;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   icon <img> — filter affects everything rendered for an element including
+   its own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+.go-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+.go-nav-item.active .go-nav-icon {
+    position: relative;
+    z-index: 1;
+    width: 22px;
+    height: 22px;
+    filter: invert(1);
+}
+
+.go-nav-badge {
+    position: absolute;
+    top: -4px;
+    right: 14px;
+    background: #a10e2f;
+    color: white;
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 8px;
+}
+
+.go-logo {
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.2px;
+}
+
+.go-logo .go-logo-light {
+    color: var(--go-primary);
+}

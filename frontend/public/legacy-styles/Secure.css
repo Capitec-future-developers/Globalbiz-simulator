@@ -1,5 +1,3 @@
-
-@scope (.computer-shell) {
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -217,6 +215,4 @@ table {
 
 .btn-send:hover {
     background-color: #007FFF;
-}
-
 }

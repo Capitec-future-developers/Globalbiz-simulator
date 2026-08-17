@@ -1,0 +1,906 @@
+/* ============================================================
+   Cards list, card settings, card limits, stop card and
+   Add-to-Apple-Wallet flow. New-look only. Rendered by
+   scripts/CardsNewLook.js into #cards-newlook-root on
+   App/Phone-cards.html.
+   ============================================================ */
+
+.new-look-only {
+    display: none;
+}
+
+body.new-look-active .new-look-only {
+    display: block;
+}
+
+body.new-look-active .classic-only {
+    display: none;
+}
+
+#cards-newlook-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+}
+
+.cd-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #eef1f9;
+    overflow-y: auto;
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+}
+
+.cd-topbar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.cd-topbar button, .cd-topbar a {
+    background: none;
+    border: none;
+    color: #1b4dbf;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    text-decoration: none;
+}
+
+.cd-topbar h2 {
+    flex: 1;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0;
+}
+
+.cd-search-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border-radius: 24px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cd-search-row input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: #16232f;
+    background: none;
+    font-family: inherit;
+}
+
+.cd-search-row button {
+    background: none;
+    border: none;
+    color: #1b4dbf;
+    cursor: pointer;
+    display: flex;
+}
+
+.cd-list-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.cd-list-heading-row h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0;
+}
+
+.cd-add-new-link {
+    background: none;
+    border: none;
+    color: #1b4dbf;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.cd-card-list {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.cd-card-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eef1f6;
+    padding: 16px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+}
+
+.cd-card-list .cd-card-row:last-child {
+    border-bottom: none;
+}
+
+.cd-card-chip {
+    width: 54px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 4px 6px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #445599, #1f2b52);
+}
+
+.cd-card-chip.cd-chip-virtual {
+    background: linear-gradient(135deg, #5670c9, #33448f);
+}
+
+.cd-card-chip span {
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.cd-card-row-info {
+    flex: 1;
+}
+
+.cd-card-row-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16232f;
+}
+
+.cd-card-row-sub {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+}
+
+.cd-card-row-type {
+    font-size: 0.9rem;
+    color: #16232f;
+    flex-shrink: 0;
+}
+
+.cd-empty-note {
+    text-align: center;
+    color: #5f6b7a;
+    padding: 40px 10px;
+}
+
+/* -------- filter sheet + apple pay sheet (bottom sheet pattern) -------- */
+.cd-sheet-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 40;
+}
+
+.cd-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 22px 20px 26px;
+    box-sizing: border-box;
+    z-index: 41;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cd-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.cd-sheet-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0;
+}
+
+.cd-sheet-header button {
+    background: none;
+    border: none;
+    color: #16232f;
+    cursor: pointer;
+    display: flex;
+}
+
+.cd-sheet-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.cd-sheet-row h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0;
+}
+
+.cd-clear-link {
+    background: none;
+    border: none;
+    color: #1b4dbf;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.cd-status-pills {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 26px;
+}
+
+.cd-status-pill {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid #cfd6e4;
+    border-radius: 20px;
+    padding: 10px 8px;
+    background: white;
+    color: #16232f;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.cd-status-pill.selected {
+    border-color: #1b4dbf;
+    background: #eaf0ff;
+    color: #1b4dbf;
+}
+
+.cd-sheet-primary-btn {
+    width: 100%;
+    background: #1b4dbf;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* -------- card settings -------- */
+.cd-card-visual {
+    position: relative;
+    border-radius: 16px;
+    padding: 22px;
+    min-height: 170px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    color: white;
+    background: linear-gradient(135deg, #5670c9 0%, #1f2b52 100%);
+    box-shadow: 0 6px 16px rgba(31, 43, 82, 0.3);
+    overflow: hidden;
+}
+
+.cd-card-visual-badge {
+    position: absolute;
+    right: 18px;
+    top: 14px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.12);
+    line-height: 1;
+    text-align: right;
+}
+
+.cd-card-visual-badge span {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.18);
+}
+
+.cd-card-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.cd-card-brand .material-icons-sharp {
+    font-size: 22px;
+}
+
+.cd-card-subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 30px;
+}
+
+.cd-card-holder-block {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.cd-card-visa {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.cd-card-detail-security {
+    display: inline-block;
+    background: white;
+    color: #16232f;
+    font-weight: 800;
+    font-size: 1.3rem;
+    border-radius: 6px;
+    padding: 6px 14px;
+    margin-bottom: 12px;
+}
+
+.cd-card-detail-label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    margin: -8px 0 16px;
+    letter-spacing: 0.5px;
+}
+
+.cd-card-detail-number {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+.cd-card-detail-expiry {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.cd-status-badge {
+    display: inline-block;
+    margin: 0 auto 16px;
+    background: #e3f6e8;
+    color: #1a9c4a;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 14px;
+}
+
+.cd-status-badge.stopped {
+    background: #fdeaea;
+    color: #c62828;
+}
+
+.cd-center {
+    text-align: center;
+}
+
+.cd-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: #1b4dbf;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin: 0 auto 14px;
+    font-family: inherit;
+}
+
+.cd-link-btn .material-icons-sharp {
+    font-size: 20px;
+}
+
+.cd-settings-list {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.cd-settings-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eef1f6;
+    padding: 16px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #16232f;
+}
+
+.cd-settings-list .cd-settings-row:last-child {
+    border-bottom: none;
+}
+
+.cd-settings-row .material-icons-sharp:first-child {
+    color: #16232f;
+}
+
+.cd-settings-row .cd-row-label {
+    flex: 1;
+}
+
+.cd-toggle-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.cd-toggle-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16232f;
+    margin-bottom: 6px;
+}
+
+.cd-toggle-desc {
+    font-size: 0.85rem;
+    color: #5f6b7a;
+    line-height: 1.4;
+}
+
+.cd-toggle-switch {
+    flex-shrink: 0;
+    width: 46px;
+    height: 26px;
+    border-radius: 13px;
+    background: #d6dbe6;
+    position: relative;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.cd-toggle-switch .cd-toggle-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8b95a5;
+    font-size: 13px;
+    transition: left 0.15s ease;
+}
+
+.cd-toggle-switch.on {
+    background: #1b4dbf;
+}
+
+.cd-toggle-switch.on .cd-toggle-knob {
+    left: 23px;
+    color: #1b4dbf;
+}
+
+.cd-wallet-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+}
+
+.cd-wallet-badge {
+    width: 44px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid #16232f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #16232f;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.cd-wallet-label {
+    flex: 1;
+    font-weight: 600;
+    color: #16232f;
+}
+
+/* -------- card limits -------- */
+.cd-note-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #d9ecf3;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.cd-note-icon {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #1b8fa3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.cd-note-banner p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #16232f;
+    line-height: 1.4;
+}
+
+.cd-limits-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    margin-bottom: 90px;
+}
+
+.cd-limits-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0 0 18px;
+}
+
+.cd-limit-field {
+    margin-bottom: 20px;
+}
+
+.cd-limit-field label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #16232f;
+    margin-bottom: 8px;
+}
+
+.cd-limit-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #cfd6e4;
+    border-radius: 24px;
+    padding: 12px 16px;
+}
+
+.cd-limit-input-wrap span {
+    font-weight: 700;
+    color: #16232f;
+}
+
+.cd-limit-input-wrap input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #16232f;
+    font-family: inherit;
+}
+
+.cd-limit-hint {
+    font-size: 0.8rem;
+    color: #5f6b7a;
+    margin: 6px 0 0;
+}
+
+.cd-sticky-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    padding-top: 6px;
+}
+
+.cd-primary-btn {
+    width: 100%;
+    background: #1b4dbf;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 15px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cd-secondary-btn {
+    width: 100%;
+    background: white;
+    color: #c62828;
+    border: 1px solid #c62828;
+    border-radius: 24px;
+    padding: 15px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+/* -------- stop card -------- */
+.cd-warning-text {
+    font-size: 1rem;
+    color: #16232f;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.cd-card-summary-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 24px;
+}
+
+.cd-card-summary-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #eaf0ff;
+    color: #1b4dbf;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cd-card-summary-info .cd-card-row-number {
+    display: block;
+}
+
+/* -------- add to apple pay modal -------- */
+.cd-modal {
+    position: absolute;
+    inset: 0;
+    background: white;
+    z-index: 50;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.cd-modal-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #cfd6e4;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #16232f;
+    cursor: pointer;
+    margin-bottom: 24px;
+}
+
+.cd-modal-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #16232f;
+    margin: 0 0 8px;
+}
+
+.cd-modal-subtitle {
+    font-size: 1rem;
+    color: #5f6b7a;
+    line-height: 1.4;
+    margin: 0 0 24px;
+}
+
+.cd-modal-field-group {
+    background: #f2f4f8;
+    border-radius: 14px;
+    padding: 4px 16px;
+    margin-bottom: 30px;
+}
+
+.cd-modal-field-group input {
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    padding: 14px 0;
+    font-size: 1rem;
+    color: #16232f;
+    font-family: inherit;
+}
+
+.cd-modal-field-group input:first-child {
+    border-bottom: 1px solid #dde2ec;
+}
+
+.cd-modal-disclosure {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.cd-modal-disclosure .material-icons-sharp {
+    color: #1b4dbf;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.cd-modal-disclosure p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #5f6b7a;
+    line-height: 1.5;
+}
+
+.cd-modal-disclosure a {
+    color: #1b4dbf;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* -------- toast -------- */
+.cd-toast {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 100px;
+    background: #16232f;
+    color: white;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 60;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.cd-toast-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    transform: rotate(45deg);
+}
+
+.cd-toast.error .cd-toast-icon {
+    background: #e53935;
+}
+
+.cd-toast.success .cd-toast-icon {
+    background: #1a9c4a;
+}
+
+.cd-toast-icon .material-icons-sharp {
+    transform: rotate(-45deg);
+    font-size: 15px;
+}
+
+/* -------- bottom nav (same treatment as Home/Accounts pages) -------- */
+body.new-look-active .nav-item {
+    color: #2d3748;
+    gap: 4px;
+}
+
+body.new-look-active .nav-item img {
+    filter: none;
+    width: 22px;
+    height: 22px;
+}
+
+body.new-look-active .nav-item.active,
+body.new-look-active .nav-item.active:link,
+body.new-look-active .nav-item.active:visited,
+body.new-look-active .nav-item.active:hover,
+body.new-look-active .nav-item.active:active {
+    color: #0096c7;
+    font-weight: 600;
+    position: relative;
+}
+
+/* Pill lives on its own layer via ::before, not as a background-color on the
+   <img> — filter affects everything rendered for an element including its
+   own background, so keeping the pill and the icon's recolor filter on
+   separate elements avoids the filter inverting the pill color too. */
+body.new-look-active .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+body.new-look-active .nav-item.active img {
+    position: relative;
+    z-index: 1;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    filter: invert(1) !important;
+}

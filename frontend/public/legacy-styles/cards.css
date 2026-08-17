@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-@scope (.computer-shell) {
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
 * {
     box-sizing: border-box;
@@ -1534,5 +1533,3 @@ body {
 
 }
 
-
-}

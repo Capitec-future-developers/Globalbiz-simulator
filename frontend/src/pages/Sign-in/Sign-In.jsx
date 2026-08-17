@@ -1,7 +1,8 @@
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-
-
+import { getPreviewNewLook, setPreviewNewLook as persistPreviewNewLook } from '../../utils/previewNewLook.js';
+import ChatbotWidget from '../../components/ChatbotWidget.jsx';
+import './SignIn.css'
 
 const helloArt = '/images/capihelo.png';
 
@@ -13,17 +14,15 @@ export default function BusinessWelcomeScreen() {
     const overlayRef = useRef(null);
 
     const [previewNewLook, setPreviewNewLook] = useState(true);
-    const [chatbotOpen, setChatbotOpen] = useState(false);
 
     useEffect(() => {
-        const stored = localStorage.getItem('previewNewLook');
-        if (stored !== null) setPreviewNewLook(stored !== 'false');
+        setPreviewNewLook(getPreviewNewLook());
     }, []);
 
     const handlePreviewToggle = (e) => {
         const checked = e.target.checked;
-        setPreviewNewLook(checked);
-        localStorage.setItem('previewNewLook', checked);
+        setPreviewNewLook(checked);       // updates local component state
+        persistPreviewNewLook(checked);   // persists to localStorage + syncs body.new-look-active
     };
 
     // Slide the screen in from the right when arriving back from the personal screen
@@ -80,7 +79,9 @@ export default function BusinessWelcomeScreen() {
     };
 
     return (
-        <div className="welcome-screen" ref={screenContentRef}>
+        <div className="sign-in-page welcome-screen" ref={screenContentRef}>
+            <ChatbotWidget />
+
             <div className="arrow">
                 <Link to="/IOSHome" onClick={handleBackToHome}>
                     <span className="material-icons-sharp" style={{ position: 'absolute', color: '#00aeff', left: 10, top: 10, cursor: 'pointer' }} >
@@ -91,7 +92,7 @@ export default function BusinessWelcomeScreen() {
 
             <div className="biz-toggle">
                 <span className="biz-toggle-track"></span>
-                <span className="head">For my business</span>
+                <span className="head4">For my business</span>
             </div>
 
             <div className="hello-hero">
@@ -147,35 +148,6 @@ export default function BusinessWelcomeScreen() {
             <Link to="/" className="sign-in-link">
                 <button className="sign-in" type="submit">Sign In</button>
             </Link>
-
-            <button
-                type="button"
-                className="chatbot-toggler"
-                onClick={() => setChatbotOpen((open) => !open)}
-            >
-                <span className="material-icons-sharp">mode_comment</span>
-                <span className="material-icons-sharp">close</span>
-            </button>
-
-            <div className={'chatbot' + (chatbotOpen ? ' show-chatbot' : '')}>
-                <header>
-                    <h2>BIZCHAT</h2>
-                    <span className="material-icons-sharp" style={{ cursor: 'pointer' }} onClick={() => setChatbotOpen(false)}>
-                        close
-                    </span>
-                </header>
-                <ul className="chatbox">
-                    <li className="chat incoming">
-                        <span className="material-icons-sharp">account_circle</span>
-                        <p>Welcome to Bizchat, how can I assist.</p>
-                    </li>
-                    <li className="chat outgoing"></li>
-                </ul>
-                <div className="chat-input">
-                    <textarea placeholder="Type your message here..." required></textarea>
-                    <span className="material-icons-sharp">send</span>
-                </div>
-            </div>
 
             <div
                 ref={overlayRef}

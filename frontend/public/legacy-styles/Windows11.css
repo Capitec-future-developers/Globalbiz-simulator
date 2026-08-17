@@ -1,6 +1,4 @@
 
-@scope (.computer-shell) {
-
 html, body {
     height: 100%;
     margin: 0;
@@ -672,5 +670,4 @@ html, body {
     background: #0078d4;
     border-radius: 2px;
     transition: width 0.3s ease;
-}
 }

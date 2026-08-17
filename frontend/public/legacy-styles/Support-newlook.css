@@ -1,0 +1,308 @@
+/* ============================================================
+   Support/contact list + in-app calling flow.
+   Brand new page reached from a help icon on Phone-cards.html.
+   Rendered by scripts/Support.js into #support-root.
+   ============================================================ */
+
+#support-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 89px;
+}
+
+.sp-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #eef1f9;
+    overflow-y: auto;
+    padding: 45px 20px 20px;
+    box-sizing: border-box;
+}
+
+.sp-topbar {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.sp-topbar button {
+    background: none;
+    border: none;
+    color: #16232f;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+}
+
+.sp-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #16232f;
+    margin: 0 0 20px;
+}
+
+.sp-list-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 18px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+}
+
+.sp-list-item .material-icons-sharp:first-child {
+    color: #1b4dbf;
+    font-size: 26px;
+}
+
+.sp-list-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #16232f;
+    margin-bottom: 4px;
+}
+
+.sp-list-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1a9c4a;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.sp-list-status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1a9c4a;
+}
+
+.sp-call-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.sp-call-illustration {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 30px;
+}
+
+/* -------- welcome screen hero illustration -------- */
+.sp-call-hero {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sp-call-hero-bg {
+    position: absolute;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: #dce6fb;
+}
+
+.sp-call-hero-phone {
+    position: relative;
+    width: 110px;
+    height: 190px;
+    background: white;
+    border: 6px solid #16232f;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.sp-call-hero-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 5px;
+    border-radius: 3px;
+    background: #16232f;
+}
+
+.sp-call-hero-dots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.sp-call-hero-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #dbe1ee;
+}
+
+.sp-call-hero-home {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #dbe1ee;
+}
+
+.sp-call-hero-badge {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.sp-call-hero-badge .material-icons-sharp {
+    font-size: 30px;
+}
+
+.sp-call-hero-badge-arrow {
+    top: 15px;
+    right: 10px;
+    background: #43a047;
+}
+
+.sp-call-hero-badge-phone {
+    bottom: 25px;
+    left: 5px;
+    background: #1b4dbf;
+}
+
+.sp-call-illustration .material-icons-sharp:first-child {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    font-size: 90px;
+    color: #cfd9f2;
+}
+
+.sp-call-illustration .material-icons-sharp:last-child {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 46px;
+    color: #1a9c4a;
+    background: #e3f6e8;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.sp-call-illustration.sp-permission .material-icons-sharp:last-child {
+    color: white;
+    background: #1a9c4a;
+}
+
+.sp-call-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #16232f;
+    margin-bottom: 14px;
+}
+
+.sp-call-desc {
+    font-size: 0.95rem;
+    color: #2d3748;
+    line-height: 1.5;
+    max-width: 320px;
+    margin-bottom: 30px;
+}
+
+.sp-call-desc b {
+    color: #16232f;
+}
+
+.sp-btn-primary {
+    width: 100%;
+    max-width: 320px;
+    background: #1b4dbf;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.sp-spinner {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.sp-spinner .double-bounce1,
+.sp-spinner .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #1b4dbf;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: sp-bounce 2.0s infinite ease-in-out;
+}
+
+.sp-spinner .double-bounce2 {
+    animation-delay: -1.0s;
+}
+
+@keyframes sp-bounce {
+    0%, 100% { transform: scale(0.0); }
+    50% { transform: scale(1.0); }
+}
+
+.sp-btn-secondary {
+    width: 100%;
+    max-width: 320px;
+    background: white;
+    color: #1b4dbf;
+    border: 1px solid #1b4dbf;
+    border-radius: 24px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+}

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-@scope (.computer-shell) {
-
 
 * {
     box-sizing: border-box;
@@ -1350,6 +1348,4 @@ font-weight: bold;
 .content-active #default-content,
 .content-active #main-content-area {
     display: block;
-}
-
 }

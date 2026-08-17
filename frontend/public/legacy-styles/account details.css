@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-@scope (.computer-shell) {
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -1380,5 +1378,4 @@ button:not(:active) {
     padding: 8px;
     background-color: #f9f9f9;
     border-radius: 4px;
-}
 }

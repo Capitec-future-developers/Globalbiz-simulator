@@ -1,0 +1,90 @@
+/* ============================================================
+   Personal ("For me") welcome screen — the sibling slide to
+   Sign-In.html's "For my business" screen. Reuses the phone
+   shell + welcome-screen/hello-hero/qa-grid/sign-in classes
+   from Phone.css; everything below is specific to this page.
+   ============================================================ */
+
+.personal-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+}
+
+.personal-toggle {
+    display: inline-flex;
+    align-items: center;
+}
+
+.personal-head {
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #0096c7;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    padding: 8px 19px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.personal-toggle-track {
+    width: 46px;
+    height: 26px;
+    background-color: #e2e2e2;
+    border-radius: 20px;
+    margin-left: -24px;
+    flex-shrink: 0;
+}
+
+.personal-menu-btn {
+    position: absolute;
+    right: 0;
+    background: none;
+    border: none;
+    color: #0096c7;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.personal-shortcuts {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    padding-top: 6px;
+}
+
+.personal-shortcut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.75rem;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.personal-shortcut-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #0096c7;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    padding-top: 10px;
+}
+
+#personalSignIn:disabled {
+    background-color: #8fb9cc;
+    cursor: not-allowed;
+}

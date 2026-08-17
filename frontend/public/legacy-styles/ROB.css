@@ -1,0 +1,1442 @@
+.rob-phone-screen {
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: #ffffff;
+    padding: 50px 0 20px;
+}
+
+.rob-app {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0f1f3d;
+    padding: 6px 16px 20px;
+    box-sizing: border-box;
+}
+
+#robApp [hidden] {
+    display: none !important;
+}
+
+/* Phone.css has blanket `img{position:relative;left:-130px;top:-20px}` and
+   `button{position:relative;top:20px;bottom:50px}` rules meant for one old
+   screen; neutralize them here so ROB's own images/buttons aren't dragged
+   out of place. */
+#robApp img,
+#robApp button {
+    position: static;
+}
+
+/* ---------- Chooser screen ---------- */
+
+.rob-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.rob-hero-logo {
+    height: 16px;
+    width: auto;
+    object-fit: contain;
+}
+
+.rob-hero-hello {
+    width: 100%;
+    max-width: 170px;
+    max-height: 60px;
+    object-fit: contain;
+}
+
+.rob-question {
+    font-size: 15px;
+    margin: 0 0 12px;
+    color: #333e50;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.rob-toggle {
+    display: flex;
+    width: 100%;
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid #dfe3ea;
+    background: #ffffff;
+}
+
+.rob-toggle-opt {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #14213d;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 9px 6px;
+    cursor: pointer;
+}
+
+.rob-toggle-opt.active {
+    background: #14213d;
+    color: #ffffff;
+}
+
+.rob-for-row {
+    margin-top: 16px;
+}
+
+.rob-for-label {
+    text-align: center;
+    color: #5b6b85;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.rob-get-started {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+    padding: 11px;
+    border: none;
+    border-radius: 999px;
+    background: #2f6fed;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ---------- Loading screen ---------- */
+
+.rob-screen-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    gap: 16px;
+}
+
+.rob-spinner {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 3px solid #e2e5ea;
+    border-top-color: #9aa4b5;
+    animation: rob-spin 0.9s linear infinite;
+}
+
+.rob-loading-squares {
+    display: flex;
+    gap: 8px;
+}
+
+.rob-sq {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+.rob-sq-blue {
+    background: #2196f3;
+}
+
+.rob-sq-navy {
+    background: #14213d;
+}
+
+.rob-sq-gray {
+    background: #8a94a6;
+}
+
+.rob-sq-red {
+    background: #e02020;
+}
+
+@keyframes rob-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- Application / business-type screens ---------- */
+
+.rob-bar {
+    background: #14213d;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    padding:40px 14px;
+    margin: -56px -16px 16px;
+    height: 80px;
+}
+
+.rob-title {
+    font-size: 16px;
+    margin: 0 0 8px;
+    color: #14213d;
+}
+
+.rob-sub {
+    font-size: 11px;
+    color: #45526b;
+    margin: 0 0 16px;
+    line-height: 1.4;
+}
+
+.rob-card {
+    border: 1px solid #e2e5ea;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.rob-card-title {
+    font-size: 13px;
+    margin: 0 0 8px;
+    color: #14213d;
+    text-align: left;
+}
+
+.rob-biztype-card .rob-card-title {
+    text-align: center;
+}
+
+.rob-card-desc {
+    font-size: 11px;
+    color: #45526b;
+    line-height: 1.4;
+    margin: 0 0 12px;
+    text-align: left;
+}
+
+.rob-biztype-card .rob-card-desc {
+    text-align: center;
+}
+
+.rob-biztype-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 56px;
+    margin-bottom: 10px;
+    color: #b9c1cf;
+}
+
+.rob-biztype-art .material-icons-sharp {
+    font-size: 30px;
+}
+
+.rob-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #14213d;
+    margin: 10px 0 4px;
+    text-align: left;
+}
+
+.rob-card-list {
+    margin: 0 0 4px;
+    padding-left: 16px;
+    font-size: 11px;
+    color: #45526b;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.rob-btn-solid {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 999px;
+    background: #2f6fed;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.rob-btn-outline {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #2f6fed;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #2f6fed;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* ---------- Back button ---------- */
+
+.rob-back-btn {
+    position: absolute;
+    top: 46px;
+    left: 10px;
+    text-decoration: none;
+    z-index: 20;
+}
+
+/* ============================================================
+   Steps 4-42: shared form primitives
+   ============================================================ */
+
+.rob-center {
+    text-align: center !important;
+}
+
+.rob-step-label {
+    font-size: 11px;
+    color: #8a94a6;
+    margin: 0 0 4px;
+    font-weight: 600;
+}
+
+/* .rob-bar normally uses a large negative top margin to sit flush against
+   the top of the screen. When a step label precedes it, that negative
+   margin would pull the bar up over the label instead, so cancel it here. */
+.rob-step-label + .rob-bar {
+    margin: 0 -16px 16px;
+}
+
+.rob-field {
+    margin-bottom: 12px;
+}
+
+.rob-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #14213d;
+    margin-bottom: 4px;
+}
+
+.rob-input,
+select.rob-input,
+textarea.rob-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px 10px;
+    border: 1px solid #dfe3ea;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #14213d;
+    background: #ffffff;
+    font-family: inherit;
+}
+
+.rob-textarea {
+    resize: vertical;
+}
+
+.rob-readonly-field {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #5b6b85;
+    background: #f2f4f8;
+}
+
+.rob-hint {
+    font-size: 10px;
+    color: #8a94a6;
+    margin: 4px 0 0;
+    line-height: 1.3;
+}
+
+.rob-question-sm {
+    font-size: 11px;
+    font-weight: 700;
+    color: #14213d;
+    margin: 10px 0 6px;
+}
+
+.rob-input-eye-wrap {
+    position: relative;
+}
+
+.rob-input-eye-wrap .rob-input {
+    padding-right: 32px;
+}
+
+.rob-eye-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 17px;
+    color: #8a94a6;
+    cursor: pointer;
+}
+
+.rob-checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 11px;
+    color: #45526b;
+    line-height: 1.4;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.rob-checkbox-row input[type="checkbox"] {
+    margin: 1px 0 0;
+    flex-shrink: 0;
+    accent-color: #2f6fed;
+}
+
+.rob-radio-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0 16px;
+}
+
+.rob-radio-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #dfe3ea;
+    border-radius: 999px;
+    padding: 9px 12px;
+    font-size: 12px;
+    color: #14213d;
+    cursor: pointer;
+}
+
+.rob-radio-pill-block {
+    border-radius: 12px;
+    align-items: flex-start;
+}
+
+.rob-radio-pill input[type="radio"] {
+    display: none;
+}
+
+.rob-radio-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #b9c1cf;
+    flex-shrink: 0;
+    position: relative;
+    margin-top: 1px;
+}
+
+.rob-radio-pill input[type="radio"]:checked + .rob-radio-dot {
+    border-color: #2f6fed;
+}
+
+.rob-radio-pill input[type="radio"]:checked + .rob-radio-dot::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: #2f6fed;
+}
+
+.rob-link {
+    color: #2f6fed;
+    text-decoration: underline;
+}
+
+.rob-footer-link {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: #2f6fed;
+    text-decoration: none;
+    margin-top: 12px;
+}
+
+.rob-footer-link-light {
+    color: #ffffff;
+}
+
+.rob-add-link {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2f6fed;
+    text-decoration: none;
+    margin: 6px 0 16px;
+}
+
+.rob-btn-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.rob-btn-row .rob-btn-solid,
+.rob-btn-row .rob-btn-outline {
+    margin-top: 0;
+}
+
+.rob-btn-narrow {
+    flex: 1;
+}
+
+.rob-btn-solid:disabled {
+    background: #cfd5e0;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.rob-btn-outline-light {
+    border-color: #ffffff;
+    color: #ffffff;
+    background: transparent;
+}
+
+.rob-disclaimer {
+    font-size: 9px;
+    color: #8a94a6;
+    line-height: 1.4;
+    margin: 18px 0 4px;
+}
+
+.rob-disclaimer-links {
+    font-size: 9px;
+    margin: 0 0 8px;
+}
+
+.rob-disclaimer-links a {
+    color: #2f6fed;
+    text-decoration: none;
+}
+
+.rob-note-box {
+    display: flex;
+    gap: 8px;
+    background: #eef3fd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0 14px;
+}
+
+.rob-note-box p {
+    margin: 0;
+    font-size: 11px;
+    color: #33405c;
+    line-height: 1.4;
+}
+
+.rob-note-icon {
+    color: #2f6fed;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* ---------- Cookie banner (step 5) ---------- */
+
+.rob-cookie-banner {
+    position: relative;
+    background: #fff7e0;
+    border: 1px solid #f0dca0;
+    border-radius: 10px;
+    padding: 10px 24px 10px 30px;
+    margin-bottom: 14px;
+}
+
+.rob-cookie-icon {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    font-size: 15px;
+    color: #a9822f;
+}
+
+.rob-cookie-text {
+    margin: 0 0 6px;
+    font-size: 10px;
+    color: #5c4a1c;
+    line-height: 1.3;
+}
+
+.rob-cookie-close {
+    position: absolute;
+    right: 6px;
+    top: 4px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: #a9822f;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.rob-cookie-links {
+    display: flex;
+    gap: 10px;
+}
+
+.rob-cookie-link {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2f6fed;
+    text-decoration: none;
+}
+
+/* ---------- Privacy card (step 6) ---------- */
+
+.rob-privacy-card {
+    text-align: left;
+    margin-top: 8px;
+}
+
+.rob-privacy-card .rob-card-title {
+    text-align: left;
+    font-size: 15px;
+}
+
+/* ---------- OTP screens (steps 7, 8, 30/31, 33, 34) ---------- */
+
+.rob-otp-art {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0 10px;
+}
+
+.rob-otp-art .material-icons-sharp {
+    font-size: 34px;
+    color: #2f6fed;
+}
+
+.rob-otp-masked {
+    text-align: center;
+    font-weight: 700;
+    color: #14213d;
+    font-size: 13px;
+    margin: 0 0 4px;
+}
+
+.rob-otp-timer {
+    text-align: center;
+    font-size: 11px;
+    color: #e02020;
+    margin: 0 0 10px;
+}
+
+.rob-processing-modal {
+    background: #ffffff;
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(20, 33, 61, 0.15);
+    padding: 24px 18px;
+    text-align: center;
+    margin: 60px auto;
+    max-width: 220px;
+}
+
+.rob-otp-art-icon {
+    font-size: 30px;
+    color: #2f6fed;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.rob-processing-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: #14213d;
+    margin: 0 0 14px;
+}
+
+/* ---------- Selfie intro (step 9) ---------- */
+
+.rob-selfie-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 70px;
+    color: #b9c1cf;
+    margin-bottom: 6px;
+}
+
+.rob-selfie-illustration-ring {
+    font-size: 40px;
+    color: #2f6fed;
+}
+
+.rob-selfie-illustration-phone {
+    font-size: 30px;
+}
+
+.rob-homeaffairs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #45526b;
+    margin: 12px 0 16px;
+}
+
+.rob-homeaffairs .material-icons-sharp {
+    font-size: 16px;
+    color: #14213d;
+}
+
+/* ---------- Camera / browser permission popup (step 10) ---------- */
+
+.rob-browser-permission {
+    background: #ffffff;
+    border: 1px solid #e2e5ea;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(20, 33, 61, 0.18);
+    padding: 20px 16px;
+    text-align: center;
+    margin: 80px auto;
+    max-width: 230px;
+}
+
+.rob-permission-icon {
+    font-size: 26px;
+    color: #45526b;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.rob-permission-text {
+    font-size: 12px;
+    color: #14213d;
+    margin: 0 0 14px;
+    line-height: 1.4;
+}
+
+.rob-browser-permission .rob-btn-solid {
+    background: #e8f0fe;
+    color: #1a56db;
+    font-weight: 600;
+}
+
+.rob-permission-never {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #8a94a6;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* ---------- Dark/full-bleed screens (selfie capture, selfie sign ready) ---------- */
+
+.rob-screen-dark {
+    background: #14213d;
+    margin: -6px -16px -20px;
+    padding: 20px 16px 24px;
+    min-height: 500px;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+.rob-selfie-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.rob-selfie-header .material-icons-sharp {
+    font-size: 15px;
+}
+
+.rob-selfie-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
+}
+
+.rob-selfie-oval {
+    width: 160px;
+    height: 220px;
+    border-radius: 50%;
+    border: 4px solid #2ee6c5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.rob-selfie-oval-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.rob-title-light {
+    color: #ffffff;
+}
+
+.rob-card-label-light {
+    color: #ffffff;
+}
+
+.rob-card-list-light {
+    color: #d7dcea;
+}
+
+.rob-screen-dark .rob-btn-row {
+    align-items: center;
+}
+
+/* ---------- Representative details (step 12) ---------- */
+
+.rob-rep-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.rob-avatar-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #14213d;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rob-avatar-circle-sm {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+}
+
+/* ---------- Document / agreement screens ---------- */
+
+.rob-doc-bar {
+    background: #14213d;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 40px 14px 14px 40px;
+    margin: -56px -16px 16px;
+    height: 66px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.rob-doc-back {
+    position: absolute;
+    left: 14px;
+    top: 42px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.rob-doc-photo-frame {
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 4px 0 14px;
+    text-align: center;
+}
+
+.rob-doc-photo-placeholder {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 8px;
+    border-radius: 8px;
+    background: #f2f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b9c1cf;
+}
+
+.rob-doc-caption {
+    font-size: 9px;
+    color: #8a94a6;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.rob-doc-line {
+    font-size: 11px;
+    color: #33405c;
+    line-height: 1.5;
+    margin: 0 0 4px;
+}
+
+.rob-doc-footnote {
+    font-size: 9px;
+    color: #8a94a6;
+    margin: 4px 0 14px;
+    line-height: 1.3;
+}
+
+.rob-doc-scroll {
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 14px;
+    background: #fafbfc;
+}
+
+.rob-doc-scroll-short {
+    max-height: 180px;
+}
+
+.rob-doc-para {
+    font-size: 10.5px;
+    color: #45526b;
+    line-height: 1.5;
+    margin: 0 0 10px;
+}
+
+.rob-doc-clause-head {
+    font-size: 11px;
+    font-weight: 700;
+    color: #14213d;
+    margin: 12px 0 6px;
+}
+
+.rob-doc-clause {
+    font-size: 10.5px;
+    color: #45526b;
+    line-height: 1.5;
+    margin: 0 0 8px;
+}
+
+/* ---------- Toasts ---------- */
+
+.rob-toast {
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 10.5px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.rob-toast-inline {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    background: #eef3fd;
+    color: #1a3d7a;
+    position: relative;
+}
+
+.rob-toast-inline .material-icons-sharp {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.rob-toast-close {
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: #1a3d7a;
+    cursor: pointer;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    line-height: 1;
+}
+
+.rob-toast-success {
+    background: #e4f6ea;
+    color: #157a3d;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ---------- Agreements list accordion (step 17) ---------- */
+
+.rob-agreements-count {
+    font-size: 11px;
+    font-weight: 700;
+    color: #14213d;
+    margin: 0 0 12px;
+}
+
+.rob-accordion {
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+}
+
+.rob-accordion-item {
+    border-top: 1px solid #eef0f4;
+    padding: 6px 0;
+}
+
+.rob-accordion-item:first-of-type {
+    border-top: none;
+}
+
+.rob-accordion-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 6px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: #14213d;
+    cursor: pointer;
+    text-align: left;
+}
+
+.rob-accordion-chevron {
+    font-size: 16px;
+    color: #8a94a6;
+}
+
+.rob-accordion-body {
+    font-size: 10.5px;
+    color: #45526b;
+    line-height: 1.5;
+    padding: 2px 0 8px;
+}
+
+/* ---------- E-signature modal (step 18) ---------- */
+
+.rob-esig-sub {
+    font-weight: 700;
+    font-size: 12px;
+    color: #14213d;
+    margin: -4px 0 8px;
+}
+
+/* ---------- Success / confirmation screens ---------- */
+
+.rob-success-check {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 12px;
+}
+
+.rob-success-check .material-icons-sharp {
+    font-size: 54px;
+    color: #1fb15c;
+}
+
+.rob-success-check-confetti {
+    position: relative;
+}
+
+.rob-success-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #1fb15c;
+    margin: -6px 0 6px;
+}
+
+.rob-bar-icon {
+    font-size: 15px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+.rob-next-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.rob-next-step {
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.rob-next-step-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #14213d;
+    margin: 0 0 6px;
+}
+
+.rob-next-step-desc {
+    font-size: 10.5px;
+    color: #45526b;
+    margin: 0 0 4px;
+    line-height: 1.4;
+}
+
+/* ---------- Lock screen / SMS notification (step 26) ---------- */
+
+.rob-lock-screen {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.rob-lock-time {
+    font-size: 32px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.rob-lock-date {
+    font-size: 12px;
+    color: #cfd5e0;
+    margin: 0 0 20px;
+}
+
+.rob-notif {
+    display: flex;
+    gap: 8px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.rob-notif-icon {
+    color: #ffffff;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.rob-notif-from {
+    font-size: 10px;
+    font-weight: 700;
+    margin: 0 0 2px;
+    color: #ffffff;
+}
+
+.rob-notif-text {
+    font-size: 10.5px;
+    color: #e4e7ee;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* ---------- Browser chrome (steps 28-34, 38-39) ---------- */
+
+.rob-browser-chrome {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f2f4f8;
+    border-radius: 999px;
+    padding: 6px 10px;
+    margin: -2px 0 16px;
+    font-size: 10px;
+    color: #5b6b85;
+}
+
+.rob-browser-chrome .material-icons-sharp {
+    font-size: 14px;
+    color: #8a94a6;
+}
+
+.rob-browser-url {
+    flex: 1;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rob-globalbiz-word {
+    color: #14213d;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.rob-welcome-letter {
+    max-height: 320px;
+}
+
+.rob-welcome-heading {
+    font-size: 15px;
+    font-weight: 800;
+    color: #14213d;
+    margin: 0 0 10px;
+}
+
+.rob-welcome-footer-banner {
+    background: #fff7e0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 10px;
+    color: #5c4a1c;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+/* ---------- Decorative numeric keypad ---------- */
+
+.rob-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 16px;
+}
+
+.rob-keypad-btn {
+    padding: 10px 0;
+    border: 1px solid #e2e5ea;
+    border-radius: 8px;
+    background: #fafbfc;
+    color: #14213d;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.rob-keypad-btn-wide {
+    background: #2f6fed;
+    color: #ffffff;
+    border-color: #2f6fed;
+    font-size: 11px;
+}
+
+/* ---------- Remote PIN login (step 37) ---------- */
+
+.rob-pill-topleft {
+    display: inline-block;
+    border: 1px solid #dfe3ea;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #14213d;
+    margin-bottom: 14px;
+}
+
+/* ---------- Disclaimer expand row / manage banking ---------- */
+
+.rob-expand-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 12px;
+    margin: 4px 0 16px;
+    font-size: 12px;
+    color: #14213d;
+    cursor: pointer;
+    text-align: left;
+}
+
+.rob-expand-row span:first-child {
+    color: #2f6fed;
+}
+
+.rob-expand-row span:nth-child(2) {
+    flex: 1;
+}
+
+.rob-manage-illustration {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    align-items: center;
+    color: #b9c1cf;
+    margin-bottom: 6px;
+}
+
+.rob-manage-illustration .material-icons-sharp {
+    font-size: 36px;
+}
+
+/* ---------- Settings / limits (step 41) ---------- */
+
+.rob-limit-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 6px 0 16px;
+    font-size: 12px;
+    color: #14213d;
+}
+
+.rob-limit-card-account {
+    display: block;
+}
+
+.rob-limit-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.rob-limit-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #eef0f4;
+    padding-top: 8px;
+}
+
+/* ---------- Dashboard (step 42) ---------- */
+
+.rob-dash-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 16px;
+}
+
+.rob-dash-word {
+    font-size: 14px;
+}
+
+.rob-dash-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rob-whatnext-card {
+    position: relative;
+    text-align: left;
+}
+
+.rob-whatnext-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 16px;
+    color: #8a94a6;
+}
+
+.rob-account-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #e2e5ea;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 12px;
+    color: #14213d;
+    margin-bottom: 16px;
+}
+
+.rob-account-balance {
+    flex: 1;
+    text-align: right;
+    color: #45526b;
+}
+
+.rob-favorites-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.rob-favorites-header .rob-card-label {
+    margin: 0;
+}
+
+.rob-favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 70px;
+}
+
+.rob-favorite-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 70px;
+    border: 1px solid #eef0f4;
+    border-radius: 10px;
+    background: #fafbfc;
+    text-align: center;
+}
+
+.rob-favorite-box .material-icons-sharp {
+    font-size: 18px;
+    color: #2f6fed;
+}
+
+.rob-favorite-title {
+    font-size: 10px;
+    color: #33405c;
+    padding: 0 6px;
+    line-height: 1.3;
+}
+
+.rob-bottom-nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    background: #ffffff;
+    border-top: 1px solid #e2e5ea;
+    padding: 8px 0 14px;
+}
+
+.rob-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 9px;
+    color: #8a94a6;
+}
+
+.rob-nav-item .material-icons-sharp {
+    font-size: 18px;
+}
+
+.rob-nav-item.active {
+    color: #2f6fed;
+}
+
+#robScreenDashboard {
+    position: relative;
+    padding-bottom: 10px;
+}

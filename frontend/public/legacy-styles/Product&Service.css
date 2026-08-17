@@ -1,5 +1,3 @@
-
-@scope (.computer-shell) {
 .container {
     position: absolute;
     border: 2px solid #ddd;
@@ -331,6 +329,4 @@
         bottom: auto;
         text-align: center;
     }
-}
-
 }

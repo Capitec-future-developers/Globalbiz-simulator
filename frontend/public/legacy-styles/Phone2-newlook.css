@@ -1,0 +1,248 @@
+/* ============================================================
+   Phone2 "New Look" preview.
+   Everything in this file is inert until body.new-look-active
+   is present — toggled at runtime from the "Preview New Look"
+   switch on Sign-In.html via localStorage (see the inline
+   script at the bottom of Phone2.html). This file never touches
+   Phone2.css; the classic layout is untouched when the flag is off.
+   ============================================================ */
+
+.new-look-only {
+    display: none;
+}
+
+body.new-look-active .new-look-only {
+    display: flex;
+}
+
+body.new-look-active .account.new-look-only,
+body.new-look-active .favorites-container.new-look-only,
+body.new-look-active .pending-container.new-look-only {
+    display: block;
+}
+
+body.new-look-active .classic-only {
+    display: none;
+}
+
+body.new-look-active .screen,
+body.new-look-active .content {
+    background-color: #eef1f9;
+}
+
+/* -------- header -------- */
+.new-look-header {
+    align-items: center;
+    gap: 14px;
+    padding: 45px 20px 10px;
+    background-color: #eef1f9;
+}
+
+.nl-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #16232f;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nl-avatar-link {
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.nl-identity {
+    flex: 1;
+    min-width: 0;
+}
+
+.nl-fullname {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #16232f;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nl-profile-toggle {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #5f6b7a;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.nl-profile-toggle .material-icons-sharp {
+    font-size: 18px;
+}
+
+.nl-call-icon {
+    display: flex;
+    align-items: center;
+    color: #0096c7;
+    font-size: 26px;
+    flex-shrink: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* -------- shared section headings -------- */
+body.new-look-active .account-header h4,
+body.new-look-active .favorites-header h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-left: 0;
+}
+
+body.new-look-active .account-header,
+body.new-look-active .favorites-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body.new-look-active .View {
+    font-size: 1rem;
+    font-weight: 600;
+    position: static;
+}
+
+body.new-look-active .content {
+    padding: 0 20px;
+}
+
+/* -------- accounts card -------- */
+.nl-account-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.nl-account-icon {
+    color: #16232f;
+    font-size: 26px;
+}
+
+.nl-account-name {
+    flex: 1;
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 1rem;
+    text-wrap: nowrap;
+}
+
+.nl-account-balance {
+    color: #2d3748;
+    font-size: 1.05rem;
+}
+
+/* -------- favourites grid -------- */
+body.new-look-active .favorites-container.new-look-only .favorites-grid {
+    margin-left: 0;
+    gap: 14px;
+}
+
+body.new-look-active .favorites-container.new-look-only .favorite-box {
+    width: 100%;
+    height: auto;
+    min-height: 110px;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px 10px;
+}
+
+body.new-look-active .favorites-container.new-look-only .favorite-box .material-icons-sharp {
+    font-size: 28px;
+    color: #0096c7;
+    margin-bottom: 10px;
+}
+
+body.new-look-active .favorites-container.new-look-only .favorite-title {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #2d3748;
+}
+
+/* -------- pending -------- */
+.nl-pending-empty {
+    background: white;
+    border-radius: 14px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #5f6b7a;
+    font-size: 0.95rem;
+}
+
+/* -------- bottom nav -------- */
+body.new-look-active .bottom-nav {
+    padding: 10px 0 16px;
+}
+
+body.new-look-active .nav-item {
+    color: #2d3748;
+    gap: 4px;
+}
+
+body.new-look-active .nav-item img {
+    filter: none;
+    width: 22px;
+    height: 22px;
+}
+
+body.new-look-active .nav-item.active,
+body.new-look-active .nav-item.active:link,
+body.new-look-active .nav-item.active:visited,
+body.new-look-active .nav-item.active:hover,
+body.new-look-active .nav-item.active:active {
+    color: #0096c7;
+    font-weight: 600;
+    position: relative;
+}
+
+/* The pale pill lives on its own layer behind the icon, via ::before on the
+   link itself — NOT as a background-color on the <img>. CSS filter affects
+   everything rendered for an element, including its own background, so a
+   filter placed on the <img> to recolor the icon would also invert the pill
+   color right along with it (this is why the badge briefly rendered as a
+   muddy dark blob instead of pale blue). Keeping them on separate elements
+   means the icon's filter can never touch the pill's color. */
+body.new-look-active .nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 30px;
+    background-color: #dceeff;
+    border-radius: 15px;
+    z-index: 0;
+}
+
+body.new-look-active .nav-item.active img {
+    position: relative;
+    z-index: 1;
+    background: none;
+    border-radius: 0;
+    padding: 0;
+    filter: invert(1) !important;
+}

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-@scope (.computer-shell) {
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -1172,6 +1170,4 @@ input:checked + .slider:before {
 
 .cancel-btn:hover {
     background-color: #888 !important;
-}
-
 }

@@ -1,6 +1,4 @@
 
-@scope (.computer-shell) {
-
 :root {
     --primary-blue: #0096c7;
     --dark-blue: #022130;
@@ -460,5 +458,4 @@ main {
     .device-screen {
         height: 400px;
     }
-}
 }

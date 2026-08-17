@@ -1,5 +1,3 @@
-
-@scope (.computer-shell) {
 .main-content{
     position: relative;
 
@@ -70,5 +68,4 @@ position: relative;
     width: 80%;
     color: #1111;
     font-weight: bold;
-}
 }

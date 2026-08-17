@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
-@scope (.computer-shell) {
-
 
 .main-header{
     padding-left: 250px;
@@ -473,5 +471,4 @@ p{
     right: -5px;
     top: -8px;
     text-decoration: none;
-}
 }
