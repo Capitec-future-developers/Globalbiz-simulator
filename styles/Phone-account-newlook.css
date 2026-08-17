@@ -118,7 +118,7 @@ body.new-look-active .screen {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 34px;
 }
 
 .nl-account-list-card {

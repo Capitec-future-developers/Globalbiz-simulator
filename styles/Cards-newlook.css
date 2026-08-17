@@ -148,12 +148,10 @@ body.new-look-active .classic-only {
     justify-content: flex-end;
     padding: 4px 6px;
     flex-shrink: 0;
-    background: linear-gradient(135deg, #445599, #1f2b52);
+
 }
 
-.cd-card-chip.cd-chip-virtual {
-    background: linear-gradient(135deg, #5670c9, #33448f);
-}
+
 
 .cd-card-chip span {
     color: white;

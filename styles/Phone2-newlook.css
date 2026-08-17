@@ -134,6 +134,7 @@ body.new-look-active .content {
     border-radius: 14px;
     padding: 18px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
 }
 
 .nl-account-icon {

@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
             (visibleCards.length
                 ? '<div class="cd-card-list">' + visibleCards.map(function (c, i) {
                     return '<button class="cd-card-row" type="button" data-card-index="' + CARDS.indexOf(c) + '">' +
-                        '<div class="cd-card-chip' + (c.type === 'Virtual' ? ' cd-chip-virtual' : '') + '"><span>VISA</span></div>' +
+                        '<img src="../images/Card-newlook.png" class="cd-card-chip' + (c.type === 'Virtual' ? ' cd-chip-virtual' : '') + '">' +
                         '<div class="cd-card-row-info"><div class="cd-card-row-number">' + c.numberMasked + '</div><div class="cd-card-row-sub">' + c.bank + '</div><div class="cd-card-row-sub">' + c.holder + '</div></div>' +
                         '<div class="cd-card-row-type">' + c.type + '</div>' +
                         '</button>';

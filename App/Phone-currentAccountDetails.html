@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../styles/Phone-account.css" />
+        <link rel="stylesheet" href="../styles/Phone-accountDetails-newlook.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
+        <title>App Account details</title>
+
+    <link rel="stylesheet" href="../styles/Header.css">
+    <style>
+        .nl-balance-card.credit {
+            background: linear-gradient(135deg, #077ecd, #00bcfa);
+        }
+        .nl-balance-card.credit .nl-balance-decor {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .nl-balance-card.credit .nl-balance-decor::before,
+        .nl-balance-card.credit .nl-balance-decor::after {
+            background: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="new-look-active">
+
+<div class="iphone">
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+    <div class="power-button"></div>
+    <div class="screen">
+        <div class="notch"></div>
+        <div class="screen-content">
+
+            <div id="overlay-info" class="overlay-info"></div>
+            <div class="popup-info-details" id="popupInfoDetails">
+                <div class="popup-info-details-content">
+                    <div class="popup-info-details-header">
+                        <span>Why the difference?</span>
+                    </div>
+                    <div class="popup-info-details-options">
+<span>
+Your <b>Available Balance</b> is how much you may still spend on this credit facility. The Balance is the amount you currently owe.
+</span>
+                        <span class="popup-info-details-option close-btn" id="closePopupInfo"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nl-account-details new-look-only" style="display:flex;">
+                <div class="nl-details-topbar">
+                    <a href="Phone%20accounts.html" class="nl-back"><span class="material-icons-sharp">arrow_back</span></a>
+                    <div class="nl-details-title">
+                        <h2>Current</h2>
+                        <span class="nl-account-number">4140 45•• •••• 3588</span>
+                    </div>
+                    <button class="nl-more-btn" id="nlMoreBtn" type="button">
+                        <span class="material-icons-sharp">more_vert</span>
+                    </button>
+                    <div class="nl-more-menu" id="nlMoreMenu">
+                        <button type="button" id="nlEditNicknameOption">Edit account nickname</button>
+                        <a href="View-details.html">View account details</a>
+                    </div>
+                </div>
+
+                <div class="nl-balance-card credit">
+                    <div class="nl-balance-decor"></div>
+                    <div class="nl-balance-content">
+                        <div class="nl-balance-row">
+                            <span class="nl-balance-label">Available</span>
+                            <button class="nl-info-btn" id="nlInfoBtn" type="button"><span class="material-icons-sharp">info</span></button>
+                        </div>
+                        <div class="nl-balance-amount" id="nlAvailableAmount">R97,159.36</div>
+                        <div class="nl-balance-row" style="margin-top: 14px;">
+                            <span class="nl-balance-label">Balance</span>
+                        </div>
+                        <div class="nl-balance-amount" id="nlBalanceAmount">-R87,159.36</div>
+                    </div>
+                </div>
+
+                <div class="nl-search-share-row">
+                    <div class="nl-transaction-search">
+                        <span class="material-icons-sharp">search</span>
+                        <input type="text" id="nlTxSearch" placeholder="Search transactions">
+                        <span class="material-icons-sharp">tune</span>
+                    </div>
+                    <button class="nl-share-btn" type="button" id="nlShareBtn" aria-label="Share statement"><span class="material-icons-sharp">share</span></button>
+                </div>
+
+                <div class="nl-date-pill" id="nlDatePill">
+                    <span>6 Feb 2026 - 12 Aug 2026</span>
+                    <span class="material-icons-sharp" id="nlDatePillClose">close</span>
+                </div>
+
+                <div class="nl-tx-tabs">
+                    <button class="nl-tx-tab active" data-tab="all" type="button">All transactions</button>
+                    <button class="nl-tx-tab" data-tab="payments" type="button">Payments</button>
+                </div>
+
+                <div class="nl-tx-panel" id="nlTxAll"></div>
+
+                <div class="nl-tx-panel nl-tx-empty" id="nlTxPayments" style="display: none;">
+                    <div class="nl-empty-illustration"><span class="material-icons-sharp">receipt_long</span></div>
+                    <p>No payments in this period.</p>
+                </div>
+            </div>
+
+            <div class="nl-statement-screen new-look-only" id="nlStatementScreen" style="display: none;">
+                <div class="nl-statement-topbar">
+                    <a href="#" class="nl-back" id="nlStatementBack"><span class="material-icons-sharp">arrow_back</span></a>
+                    <h2>Email Statement</h2>
+                </div>
+
+                <div class="nl-statement-label">Select your date range</div>
+                <label class="nl-statement-radio-row"><span>Last 1 month</span><input type="radio" name="nlStatementRange" value="1m" checked></label>
+                <label class="nl-statement-radio-row"><span>Last 3 months</span><input type="radio" name="nlStatementRange" value="3m"></label>
+                <label class="nl-statement-radio-row"><span>Custom date range</span><input type="radio" name="nlStatementRange" value="custom"></label>
+                <div class="nl-statement-date-inputs" id="nlStatementDateInputs">
+                    <input type="date" id="nlStatementFrom">
+                    <input type="date" id="nlStatementTo">
+                </div>
+
+                <div class="nl-statement-label">Enter an email address</div>
+                <input type="email" class="nl-statement-email-input" id="nlStatementEmail" value="saiyalmahabeer@capitecbank.co.za">
+                <div id="nlStatementExtraEmails"></div>
+                <button type="button" class="nl-statement-add-email" id="nlStatementAddEmail"><span class="material-icons-sharp">add_circle_outline</span>Add another email address</button>
+
+                <button type="button" class="nl-statement-send-btn" id="nlStatementSendBtn">Send statement</button>
+            </div>
+
+            <div class="nl-statement-success new-look-only" id="nlStatementSuccess" style="display: none;">
+                <div class="confirmation-icon success"><span class="material-icons-sharp">check_circle</span></div>
+                <h2>Statement sent</h2>
+                <p id="nlStatementSuccessText">Your statement has been emailed.</p>
+                <button type="button" class="nl-statement-send-btn" id="nlStatementDoneBtn" style="max-width:240px;">Done</button>
+            </div>
+
+            <div class="nl-overlay new-look-only" id="nlOverlay" style="display: none;"></div>
+            <div class="nl-sheet new-look-only" id="nlNicknameSheet" style="display: none;">
+                <div class="nl-sheet-handle"></div>
+                <div class="nl-sheet-header">
+                    <h3>Edit account nickname</h3>
+                    <button type="button" id="nlCloseSheet"><span class="material-icons-sharp">close</span></button>
+                </div>
+                <label class="nl-sheet-label" for="nlNicknameInput">Account nickname</label>
+                <input type="text" class="nl-sheet-input" id="nlNicknameInput" value="Ngikhathele">
+                <button class="nl-sheet-save" type="button" id="nlSaveNickname">Save</button>
+            </div>
+
+            <div id="authFlowBackdrop" class="auth-flow-backdrop"></div>
+            <div id="authFlowScreen" class="auth-flow-screen"></div>
+
+        </div>
+
+
+        <div class="bottom-nav" id="bottomNav">
+            <a href="Phone2.html" class="nav-item " id="Home">
+                <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)" />
+                <span>Home</span>
+            </a>
+            <a href="Phone%20accounts.html" class="nav-item active">
+                <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"/>
+                <span>Accounts</span>
+            </a>
+            <a href="Phone%20Transact.html" class="nav-item" id="transact">
+                <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Transact</span>
+            </a>
+            <a href="Phone-cards.html" class="nav-item" id="cards">
+                <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                <span>Cards</span>
+            </a>
+            <a href="Explore.html" class="nav-item">
+                <span class="nav-icon material-icons-outlined">search</span>
+                <span>Explore</span>
+            </a>
+        </div>
+    </div>
+    <div class="home-indicator"></div>
+</div>
+<script src="../scripts/chatbot.js"></script>
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Header.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/nlAccountStore.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function formatNlBalance(amount) {
+            var sign = amount < 0 ? '-' : '';
+            return sign + 'R' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+        var creditBalances = NLAccountStore.getBalances();
+        if (creditBalances.credit) {
+            document.getElementById('nlAvailableAmount').textContent = formatNlBalance(creditBalances.credit.available);
+            document.getElementById('nlBalanceAmount').textContent = formatNlBalance(creditBalances.credit.balance);
+        }
+
+        function escapeText(str) {
+            var div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function renderTransactions() {
+            var container = document.getElementById('nlTxAll');
+            var txs = (creditBalances.credit && creditBalances.credit.transactions) || [];
+            if (!txs.length) {
+                container.innerHTML = '<p style="color:#5f6b7a; text-align:center; padding:30px 0;">No transactions yet.</p>';
+                return;
+            }
+            var html = '';
+            var lastMonth = null;
+            txs.forEach(function (tx) {
+                var monthYear = tx.date.split(' ').slice(1).join(' ');
+                if (monthYear !== lastMonth) {
+                    html += '<div class="nl-tx-month">' + monthYear + '</div>';
+                    lastMonth = monthYear;
+                }
+                var isNegative = tx.amount < 0;
+                html += '<div class="nl-tx-row"><div><div class="nl-tx-name">' + escapeText(tx.name) + '</div><div class="nl-tx-date">' + tx.date + '</div></div><div class="nl-tx-amount"' + (isNegative ? ' style="color:#c0272d;"' : '') + '>' + (isNegative ? '-' : '') + formatNlBalance(Math.abs(tx.amount)) + '</div></div>';
+            });
+            container.innerHTML = html;
+        }
+        renderTransactions();
+
+        var tabs = document.querySelectorAll('.nl-tx-tab');
+        var panels = { all: document.getElementById('nlTxAll'), payments: document.getElementById('nlTxPayments') };
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                tabs.forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                Object.keys(panels).forEach(function (key) {
+                    panels[key].style.display = key === tab.dataset.tab ? 'block' : 'none';
+                });
+            });
+        });
+
+        var datePill = document.getElementById('nlDatePill');
+        var datePillClose = document.getElementById('nlDatePillClose');
+        if (datePillClose) {
+            datePillClose.addEventListener('click', function () {
+                datePill.style.display = 'none';
+            });
+        }
+
+        var moreBtn = document.getElementById('nlMoreBtn');
+        var moreMenu = document.getElementById('nlMoreMenu');
+        if (moreBtn && moreMenu) {
+            moreBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                moreMenu.classList.toggle('open');
+            });
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.nl-details-topbar')) moreMenu.classList.remove('open');
+            });
+        }
+
+        var overlay = document.getElementById('nlOverlay');
+        var sheet = document.getElementById('nlNicknameSheet');
+        var nicknameInput = document.getElementById('nlNicknameInput');
+        var editNicknameOption = document.getElementById('nlEditNicknameOption');
+        var titleEl = document.querySelector('.nl-details-title h2');
+
+        function openSheet() {
+            moreMenu.classList.remove('open');
+            overlay.style.display = 'block';
+            sheet.style.display = 'block';
+        }
+        function closeSheet() {
+            overlay.style.display = 'none';
+            sheet.style.display = 'none';
+        }
+        if (editNicknameOption) editNicknameOption.addEventListener('click', openSheet);
+        if (overlay) overlay.addEventListener('click', closeSheet);
+        var closeSheetBtn = document.getElementById('nlCloseSheet');
+        if (closeSheetBtn) closeSheetBtn.addEventListener('click', closeSheet);
+        var saveNicknameBtn = document.getElementById('nlSaveNickname');
+        if (saveNicknameBtn) {
+            saveNicknameBtn.addEventListener('click', function () {
+                if (titleEl && nicknameInput.value.trim()) titleEl.textContent = nicknameInput.value.trim();
+                closeSheet();
+            });
+        }
+
+        var infoBtn = document.getElementById('nlInfoBtn');
+        if (infoBtn) {
+            infoBtn.addEventListener('click', function () {
+                var overlayInfo = document.getElementById('overlay-info');
+                var popupInfo = document.getElementById('popupInfoDetails');
+                if (overlayInfo && popupInfo) {
+                    overlayInfo.classList.add('active');
+                    popupInfo.classList.add('active');
+                }
+            });
+        }
+
+        var shareBtn = document.getElementById('nlShareBtn');
+        var statementScreen = document.getElementById('nlStatementScreen');
+        var statementSuccess = document.getElementById('nlStatementSuccess');
+        var statementBack = document.getElementById('nlStatementBack');
+        var statementDateInputs = document.getElementById('nlStatementDateInputs');
+        var statementRangeRadios = document.querySelectorAll('input[name="nlStatementRange"]');
+        var statementEmail = document.getElementById('nlStatementEmail');
+        var statementExtraEmails = document.getElementById('nlStatementExtraEmails');
+        var statementAddEmail = document.getElementById('nlStatementAddEmail');
+        var statementSendBtn = document.getElementById('nlStatementSendBtn');
+        var statementDoneBtn = document.getElementById('nlStatementDoneBtn');
+
+        if (shareBtn) {
+            shareBtn.addEventListener('click', function () {
+                statementScreen.style.display = 'flex';
+            });
+        }
+        if (statementBack) {
+            statementBack.addEventListener('click', function (e) {
+                e.preventDefault();
+                statementScreen.style.display = 'none';
+            });
+        }
+        statementRangeRadios.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                statementDateInputs.classList.toggle('active', radio.value === 'custom' && radio.checked);
+            });
+        });
+        if (statementAddEmail) {
+            statementAddEmail.addEventListener('click', function () {
+                var input = document.createElement('input');
+                input.type = 'email';
+                input.className = 'nl-statement-email-input';
+                input.placeholder = 'Email address';
+                statementExtraEmails.appendChild(input);
+            });
+        }
+        if (statementSendBtn) {
+            statementSendBtn.addEventListener('click', function () {
+                statementScreen.style.display = 'none';
+                document.getElementById('nlStatementSuccessText').textContent = 'A statement has been emailed to ' + statementEmail.value + '.';
+                statementSuccess.style.display = 'flex';
+            });
+        }
+        if (statementDoneBtn) {
+            statementDoneBtn.addEventListener('click', function () {
+                statementSuccess.style.display = 'none';
+            });
+        }
+    });
+</script>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
