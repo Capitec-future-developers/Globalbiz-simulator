@@ -28,10 +28,22 @@ jobs:
           set -e
           FAILED=0
           while IFS= read -r -d '' file; do
-            if ! node --check "$file" 2>/tmp/js_error.txt; then
-              echo "::error file=$file::JavaScript syntax error"
-              cat /tmp/js_error.txt
-              FAILED=1
+            # ES module files (using import/export) need to be parsed as
+            # modules, not CommonJS - plain `node --check file.js` doesn't
+            # understand import/export and reports a false-positive syntax
+            # error on every valid ESM file. Detect and route accordingly.
+            if grep -qE '^\s*(import|export)\b' "$file"; then
+              if ! node --input-type=module --check < "$file" 2>/tmp/js_error.txt; then
+                echo "::error file=$file::JavaScript syntax error (ES module)"
+                cat /tmp/js_error.txt
+                FAILED=1
+              fi
+            else
+              if ! node --check "$file" 2>/tmp/js_error.txt; then
+                echo "::error file=$file::JavaScript syntax error"
+                cat /tmp/js_error.txt
+                FAILED=1
+              fi
             fi
           done < <(find . -name "*.js" -not -path "./node_modules/*" -print0)
           if [ "$FAILED" -eq 1 ]; then
