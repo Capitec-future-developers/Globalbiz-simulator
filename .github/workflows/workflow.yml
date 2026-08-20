@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [int, uat, prod]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # If you have a build step (npm, etc.) do it here.
+      # For a plain static site, skip straight to packaging.
+      # - name: Install & build
+      #   run: |
+      #     npm ci
+      #     npm run build
+
+      - name: Stage output into environment subfolder
+        run: |
+          ENV_NAME="${{ github.ref_name }}"
+          mkdir -p _site/"$ENV_NAME"
+          # Replace 'dist' with your build output folder, or '.' for a plain static site
+          cp -r . _site/"$ENV_NAME"/ 2>/dev/null || true
+          rm -rf _site/"$ENV_NAME"/.git _site/"$ENV_NAME"/_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref_name }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
