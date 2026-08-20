@@ -19,9 +19,7 @@ function IOSHome() {
     const startXRef = useRef(0);
     const maxSlideRef = useRef(0);
 
-    // ----------------------------------------
-    // Wallpaper
-    // ----------------------------------------
+
 
     useEffect(() => {
         wallpapers.forEach((url) => {
