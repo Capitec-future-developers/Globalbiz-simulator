@@ -43,6 +43,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: github.ref_name == 'main'  # Only deploy from main
     environment:
       name: ${{ github.ref_name }}
       url: ${{ steps.deployment.outputs.page_url }}
