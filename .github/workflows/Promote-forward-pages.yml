@@ -744,4 +744,5 @@ jobs:
                   run: |
                     echo "Auto-rollback complete for ${{ needs.determine-environment.outputs.environment }} (${{ github.base_ref }})"
                     echo "The bad merge commit has been reverted and the previous good state redeployed"
+
                     echo "The original PR author should be notified to fix and re-open a new PR"

@@ -1,0 +1,98 @@
+name: Manual Rollback
+
+# Roll an environment branch back by N commits and redeploy the reverted
+# state to GitHub Pages. Use this when something bad has already reached
+# int/uat/main and you need to undo it right now, rather than waiting on
+# a forward-fix PR.
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Which environment to roll back"
+        required: true
+        type: choice
+        options:
+          - int
+          - uat
+          - prod
+      commits_back:
+        description: "How many commits to roll back"
+        required: true
+        type: string
+        default: "1"
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: ${{ github.event.inputs.environment }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Map environment to branch
+        id: map
+        run: |
+          case "${{ github.event.inputs.environment }}" in
+            int) echo "branch=int" >> $GITHUB_OUTPUT ;;
+            uat) echo "branch=uat" >> $GITHUB_OUTPUT ;;
+            prod) echo "branch=main" >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Checkout target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.map.outputs.branch }}
+          fetch-depth: 0
+          token: ${{ secrets.PROMOTION_BOT_TOKEN }}
+
+      - name: Show what will be rolled back
+        run: |
+          echo "Current HEAD:"
+          git log -1 --oneline
+          echo ""
+          echo "Will roll back ${{ github.event.inputs.commits_back }} commit(s) to:"
+          git log -1 --oneline HEAD~${{ github.event.inputs.commits_back }}
+
+      - name: Revert to previous commit
+        env:
+          GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
+        run: |
+          git config user.email "rollback-bot@users.noreply.github.com"
+          git config user.name "RollbackBot"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
+          TARGET_COMMIT=$(git rev-parse HEAD~${{ github.event.inputs.commits_back }})
+          echo "Rolling ${{ steps.map.outputs.branch }} back to $TARGET_COMMIT"
+
+          # git revert (not reset --hard) so the rollback itself is a normal,
+          # auditable commit rather than rewriting history other people may
+          # have already fetched. Reverting a range applies the reverts in
+          # newest-to-oldest order automatically.
+          git revert --no-edit "$TARGET_COMMIT"..HEAD
+
+          git push origin ${{ steps.map.outputs.branch }}
+
+      # Rebuild and redeploy the now-reverted branch, same as the normal deploy job
+      - name: Stage output into environment subfolder
+        run: |
+          ENV_NAME="${{ github.event.inputs.environment }}"
+          mkdir -p _site/"$ENV_NAME"
+          cp -r . _site/"$ENV_NAME"/ 2>/dev/null || true
+          rm -rf _site/"$ENV_NAME"/.git _site/"$ENV_NAME"/_site
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy reverted state to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Summary
+        run: |
+          echo "Rolled back ${{ github.event.inputs.environment }} (${{ steps.map.outputs.branch }}) by ${{ github.event.inputs.commits_back }} commit(s) and redeployed"
