@@ -1,0 +1,105 @@
+name: CI Validation
+
+# Runs on EVERY pull request into int/uat/main, no matter what the branch is
+# named. This is the gate that should actually block bad code - the
+# Promote-Forward workflow only runs for specifically-named branches, so it's
+# not a substitute for a real "does this code work" check.
+
+on:
+  pull_request:
+    branches:
+      - int
+      - uat
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+
+      - name: Check for syntax errors in JS files
+        run: |
+          set -e
+          FAILED=0
+          while IFS= read -r -d '' file; do
+            if ! node --check "$file" 2>/tmp/js_error.txt; then
+              echo "::error file=$file::JavaScript syntax error"
+              cat /tmp/js_error.txt
+              FAILED=1
+            fi
+          done < <(find . -name "*.js" -not -path "./node_modules/*" -print0)
+          if [ "$FAILED" -eq 1 ]; then
+            echo "One or more JS files have syntax errors"
+            exit 1
+          fi
+          echo "All JS files parse cleanly"
+
+      - name: Check HTML files are well-formed
+        run: |
+          set -e
+          sudo apt-get update -qq && sudo apt-get install -y -qq tidy
+          FAILED=0
+          while IFS= read -r -d '' file; do
+            # tidy exits 1 on warnings, 2 on errors - only fail the build on real errors
+            OUTPUT=$(tidy -q -e "$file" 2>&1) || true
+            if echo "$OUTPUT" | grep -qi "^Error:"; then
+              echo "::error file=$file::HTML errors found"
+              echo "$OUTPUT" | grep -i "^Error:"
+              FAILED=1
+            fi
+          done < <(find . -name "*.html" -not -path "./node_modules/*" -print0)
+          if [ "$FAILED" -eq 1 ]; then
+            echo "One or more HTML files have structural errors"
+            exit 1
+          fi
+          echo "All HTML files are well-formed"
+
+      - name: Check JSON files are valid
+        run: |
+          set -e
+          FAILED=0
+          while IFS= read -r -d '' file; do
+            if ! node -e "JSON.parse(require('fs').readFileSync('$file', 'utf8'))" 2>/tmp/json_error.txt; then
+              echo "::error file=$file::Invalid JSON"
+              cat /tmp/json_error.txt
+              FAILED=1
+            fi
+          done < <(find . -name "*.json" -not -path "./node_modules/*" -print0)
+          if [ "$FAILED" -eq 1 ]; then
+            echo "One or more JSON files are invalid"
+            exit 1
+          fi
+          echo "All JSON files are valid"
+
+      - name: Check for broken internal links
+        run: |
+          set -e
+          FAILED=0
+          while IFS= read -r -d '' htmlfile; do
+            DIR=$(dirname "$htmlfile")
+            # Extract local href/src targets (skip external links, anchors, mailto)
+            grep -oE '(href|src)="[^"]+"' "$htmlfile" | sed -E 's/^(href|src)="//;s/"$//' | while read -r target; do
+              case "$target" in
+                http://*|https://*|mailto:*|"#"*|"")
+                  continue
+                  ;;
+              esac
+              # Strip any query string or fragment before checking file existence
+              CLEAN_TARGET="${target%%\?*}"
+              CLEAN_TARGET="${CLEAN_TARGET%%#*}"
+              if [ -n "$CLEAN_TARGET" ] && [ ! -f "$DIR/$CLEAN_TARGET" ] && [ ! -f "$CLEAN_TARGET" ]; then
+                echo "::warning file=$htmlfile::Possible broken link to $target"
+              fi
+            done
+          done < <(find . -name "*.html" -not -path "./node_modules/*" -print0)
+          echo "Link check complete (broken links shown as warnings above, if any)"
+
+      - name: Summary
+        if: always()
+        run: echo "CI validation finished for this PR"

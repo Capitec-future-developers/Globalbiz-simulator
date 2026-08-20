@@ -221,6 +221,82 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Smoke test deployed site
+        run: |
+          URL="${{ steps.deployment.outputs.page_url }}"
+          echo "Checking $URL"
+          # Pages needs a few seconds to propagate after a successful deploy
+          sleep 15
+          STATUS=$(curl -s -o /tmp/body.html -w "%{http_code}" --retry 5 --retry-delay 5 --retry-all-errors "$URL" || echo "000")
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "Site returned HTTP $STATUS instead of 200"
+            exit 1
+          fi
+          if ! grep -qi "<html" /tmp/body.html; then
+            echo "Response did not contain a valid HTML document"
+            exit 1
+          fi
+          echo "Smoke test passed"
+
+  # If the deploy (including its smoke test) failed, automatically revert the
+  # merge commit on the target branch so the previous known-good version stays
+  # live, then open an issue so someone investigates before pushing again.
+  # Requires the same PROMOTION_BOT_TOKEN secret used by the promotion jobs.
+  rollback:
+    needs: [determine-environment, deploy]
+    if: ${{ failure() && needs.deploy.result == 'failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.PROMOTION_BOT_TOKEN }}
+
+      - name: Revert the bad merge commit
+        env:
+          GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
+        run: |
+          git config user.email "rollback-bot@users.noreply.github.com"
+          git config user.name "RollbackBot"
+          BRANCH="${{ github.base_ref }}"
+          BAD_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
+          echo "Reverting $BAD_COMMIT on $BRANCH"
+          if git revert --no-edit -m 1 "$BAD_COMMIT"; then
+            git push origin "HEAD:$BRANCH"
+            echo "reverted=true" >> "$GITHUB_ENV"
+          else
+            echo "Automatic revert hit a conflict - manual intervention required"
+            git revert --abort
+            echo "reverted=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Open an issue describing what happened
+        env:
+          GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
+        run: |
+          ENV_NAME="${{ needs.determine-environment.outputs.environment }}"
+          BRANCH="${{ github.base_ref }}"
+          if [ "$reverted" == "true" ]; then
+            STATUS_LINE="A revert commit was pushed to \`${BRANCH}\`, which will redeploy the previous known-good version."
+          else
+            STATUS_LINE="**Automatic revert failed due to a conflict.** Manual rollback is required immediately - the bad version may still be live on ${ENV_NAME}."
+          fi
+          gh issue create \
+            --title "Deployment to ${ENV_NAME} failed and was rolled back" \
+            --body "The deployment to **${ENV_NAME}** failed its build/smoke test.
+
+          - **Failed run**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          - **Branch**: ${BRANCH}
+          - **Bad commit**: ${{ github.event.pull_request.merge_commit_sha }}
+          - **Source PR**: #${{ github.event.pull_request.number }}
+
+          ${STATUS_LINE}
+
+          Please investigate before merging further changes to ${BRANCH}."
+
   # Auto-create promotion PR to the next environment on successful deployment.
   #
   # IMPORTANT: this needs a Personal Access Token, not the default GITHUB_TOKEN.
@@ -613,3 +689,59 @@ jobs:
           if [ "${{ needs.create-backport-pr.result }}" == "success" ]; then
             echo "Backport PR created"
           fi
+          
+          # --- Paste this job into promote-forward-pages.yml, alongside the other jobs ---
+          #
+          # Fires automatically when the `deploy` job fails (e.g. deploy-pages errors,
+          # a bad artifact, etc.) and the failing commit just landed on the branch via
+          # merge. Reverts that merge commit and pushes the revert, so the branch goes
+          # back to its last known-good state without anyone needing to intervene.
+          #
+          # Requires the same PROMOTION_BOT_TOKEN secret as the promotion/backport jobs.
+
+            auto-rollback:
+              needs: [determine-environment, deploy]
+              if: ${{ failure() && needs.deploy.result == 'failure' }}
+              runs-on: ubuntu-latest
+              steps:
+                - name: Checkout target branch
+                  uses: actions/checkout@v4
+                  with:
+                    ref: ${{ github.base_ref }}
+                    fetch-depth: 0
+                    token: ${{ secrets.PROMOTION_BOT_TOKEN }}
+
+                - name: Revert the failed merge commit
+                  env:
+                    GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
+                  run: |
+                    git config user.email "rollback-bot@users.noreply.github.com"
+                    git config user.name "RollbackBot"
+                    git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+
+                    MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
+                    echo "Deploy failed after merging $MERGE_COMMIT into ${{ github.base_ref }} - reverting it"
+
+                    git revert --no-edit -m 1 "$MERGE_COMMIT"
+                    git push origin ${{ github.base_ref }}
+
+                - name: Rebuild and redeploy the reverted branch
+                  run: |
+                    ENV_NAME="${{ needs.determine-environment.outputs.environment }}"
+                    mkdir -p _site/"$ENV_NAME"
+                    cp -r . _site/"$ENV_NAME"/ 2>/dev/null || true
+                    rm -rf _site/"$ENV_NAME"/.git _site/"$ENV_NAME"/_site
+
+                - name: Upload artifact
+                  uses: actions/upload-pages-artifact@v3
+                  with:
+                    path: _site
+
+                - name: Deploy reverted state
+                  uses: actions/deploy-pages@v4
+
+                - name: Report rollback
+                  run: |
+                    echo "Auto-rollback complete for ${{ needs.determine-environment.outputs.environment }} (${{ github.base_ref }})"
+                    echo "The bad merge commit has been reverted and the previous good state redeployed"
+                    echo "The original PR author should be notified to fix and re-open a new PR"
