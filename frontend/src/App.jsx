@@ -22,7 +22,7 @@ import Profile from './pages/Profile';
 import Support from './pages/Support';
 
 import OnlineBankingApp from './pages/computer/OnlineBankingApp';
-import BusinessWelcomeScreen from './pages/Sign-In.jsx';
+import BusinessWelcomeScreen from './pages/Sign-in/Sign-In.jsx';
 import IOSHome from './pages/iOSHome';
 
 

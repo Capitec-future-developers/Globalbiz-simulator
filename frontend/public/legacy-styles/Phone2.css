@@ -399,7 +399,6 @@ background-color: #FFFFFF;
     width: 100%;
     z-index: 1000;
     font-size: 20px;
-    filter: brightness(0);
 }
 
 .nav-item {

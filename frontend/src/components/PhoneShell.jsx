@@ -37,7 +37,7 @@ export default function PhoneShell({ children }) {
                                 end={item.to === '/'}
                                 className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}
                             >
-                                <img src={`/images/${item.icon}.svg`} alt={item.label}  style={{filter: 'brightness(0) invert(50%) contrast(80%)'}} />
+                                <img src={`/images/${item.icon}.svg`} alt={item.label} />
                                 <span>{item.label}</span>
                             </NavLink>
                         ))}
