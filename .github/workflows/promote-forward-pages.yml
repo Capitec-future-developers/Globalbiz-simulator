@@ -11,13 +11,24 @@ run-name: Deploy from ${{ github.ref }} to ${{ github.base_ref }} - ${{ github.a
 #   hotfix/release-* -> int/uat/main -> backport to previous environment
 #
 # This workflow:
-#   1. Validates the source/target branch
+#   1. Validates the source/target branch (only for feature/release PRs)
 #   2. Deploys merged changes to GitHub Pages
 #   3. Runs a smoke test
 #   4. Automatically rolls back a failed deployment
 #   5. Creates promotion PRs
 #   6. Creates backport PRs for hotfixes
 #   7. Reports completion
+#
+# IMPORTANT: determine-environment runs for EVERY pull_request into
+# int/uat/main - it has no branch-naming restriction. Earlier versions of
+# this workflow gated the whole job on github.head_ref matching
+# feature/release*, promote/*, hotfix/release*, backport/*, or revert-*.
+# The problem: any PR from a branch that didn't match (a typo, a different
+# convention, a one-off fix) caused this job's `if:` to evaluate false, which
+# skipped it - and because every other job `needs: determine-environment`,
+# they all cascaded to "skipped" too, silently, with no error and no deploy.
+# Branch naming now ONLY affects whether an auto-promotion/backport PR gets
+# created further down - it no longer gates deployment itself.
 
 on:
   pull_request:
@@ -39,13 +50,6 @@ jobs:
   # ============================================================
 
   determine-environment:
-    if: >
-      startsWith(github.head_ref, 'feature/release') ||
-      startsWith(github.head_ref, 'promote/') ||
-      startsWith(github.head_ref, 'hotfix/release') ||
-      startsWith(github.head_ref, 'backport/') ||
-      startsWith(github.head_ref, 'revert-')
-
     runs-on: ubuntu-latest
 
     outputs:
@@ -68,6 +72,7 @@ jobs:
 
       # --------------------------------------------------------
       # Validate feature release source branch
+      # (still only runs for feature/release branches - unrelated to the fix)
       # --------------------------------------------------------
 
       - name: Validate source and target branch
@@ -122,6 +127,9 @@ jobs:
 
           elif [[ "$HEAD_REF" == revert-* ]]; then
             echo "Revert flow detected"
+
+          else
+            echo "No recognized naming convention on this branch - will still deploy, but auto-promotion/backport PR creation will be skipped"
           fi
 
           echo "is_hotfix=$IS_HOTFIX" >> "$GITHUB_OUTPUT"
@@ -156,7 +164,8 @@ jobs:
 
               if [[ "$IS_HOTFIX" == "false" &&
                     "$IS_BACKPORT" == "false" &&
-                    "$SKIP_PROMOTION" == "false" ]]; then
+                    "$SKIP_PROMOTION" == "false" &&
+                    "$HEAD_REF" == feature/release* ]]; then
 
                 echo "should_create_promotion=true" >> "$GITHUB_OUTPUT"
 
@@ -310,29 +319,16 @@ jobs:
 
     steps:
 
-      # --------------------------------------------------------
-      # Checkout merged target branch
-      # --------------------------------------------------------
-
       - name: Checkout merged branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.base_ref }}
 
-      # --------------------------------------------------------
-      # Build
-      #
-      # Your simulator is currently a static HTML/JS application.
-      # Therefore no npm build is required here.
-      #
       # If you later introduce a build process, uncomment:
-      #
       # - name: Install dependencies
       #   run: npm ci
-      #
       # - name: Build application
       #   run: npm run build
-      # --------------------------------------------------------
 
       - name: Prepare static site
         run: |
@@ -343,35 +339,21 @@ jobs:
 
           mkdir -p "_site/$ENV_NAME"
 
-          # Copy repository contents into environment folder.
           cp -r . "_site/$ENV_NAME/" 2>/dev/null || true
 
-          # Remove GitHub metadata and generated deployment directory.
           rm -rf "_site/$ENV_NAME/.git"
           rm -rf "_site/$ENV_NAME/_site"
 
           echo "Static site prepared for environment: $ENV_NAME"
-
-      # --------------------------------------------------------
-      # Upload Pages artifact
-      # --------------------------------------------------------
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
-      # --------------------------------------------------------
-      # Deploy to GitHub Pages
-      # --------------------------------------------------------
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      # --------------------------------------------------------
-      # Smoke test
-      # --------------------------------------------------------
 
       - name: Smoke test deployed site
         run: |
@@ -409,16 +391,6 @@ jobs:
   # ROLLBACK
   # ============================================================
 
-  # If deployment or the smoke test fails:
-  #
-  # 1. Checkout the target branch
-  # 2. Revert the bad merge commit
-  # 3. Push the revert
-  # 4. Create a GitHub issue
-  #
-  # This replaces the malformed auto-rollback block that was
-  # previously nested inside notify-completion.
-
   rollback:
     needs:
       - determine-environment
@@ -436,20 +408,12 @@ jobs:
 
     steps:
 
-      # --------------------------------------------------------
-      # Checkout target branch
-      # --------------------------------------------------------
-
       - name: Checkout target branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.base_ref }}
           fetch-depth: 0
           token: ${{ secrets.PROMOTION_BOT_TOKEN }}
-
-      # --------------------------------------------------------
-      # Revert failed merge
-      # --------------------------------------------------------
 
       - name: Revert the bad merge commit
         env:
@@ -489,10 +453,6 @@ jobs:
             exit 1
 
           fi
-
-      # --------------------------------------------------------
-      # Create rollback issue
-      # --------------------------------------------------------
 
       - name: Open rollback issue
         if: always()
@@ -572,18 +532,10 @@ jobs:
           TARGET_BRANCH="${{ needs.determine-environment.outputs.next_branch }}"
 
           case "$SOURCE_ENV" in
-            int)
-              SOURCE_BRANCH="int"
-              ;;
-            uat)
-              SOURCE_BRANCH="uat"
-              ;;
-            prod)
-              SOURCE_BRANCH="main"
-              ;;
-            *)
-              SOURCE_BRANCH="$SOURCE_ENV"
-              ;;
+            int) SOURCE_BRANCH="int" ;;
+            uat) SOURCE_BRANCH="uat" ;;
+            prod) SOURCE_BRANCH="main" ;;
+            *) SOURCE_BRANCH="$SOURCE_ENV" ;;
           esac
 
           PREVIOUS_PR_NUMBER="${{ github.event.pull_request.number }}"
@@ -596,37 +548,25 @@ jobs:
           PREVIOUS_PR_BODY=$(cat /tmp/pr_body.txt)
 
           if echo "$PREVIOUS_PR_BODY" | grep -q "## Automated Promotion"; then
-
-            ORIGINAL_CONTENT=$(echo "$PREVIOUS_PR_BODY" |
-              sed -n '/### Original PR Details/,/^---$/p' |
-              sed '1d;$d')
-
-            ORIGINAL_AUTHOR=$(echo "$PREVIOUS_PR_BODY" |
-              grep -oP '(?<=\*\*Actor\*\*: @)\S+' |
-              head -1)
-
+            ORIGINAL_CONTENT=$(echo "$PREVIOUS_PR_BODY" | sed -n '/### Original PR Details/,/^---$/p' | sed '1d;$d')
+            ORIGINAL_AUTHOR=$(echo "$PREVIOUS_PR_BODY" | grep -oP '(?<=\*\*Actor\*\*: @)\S+' | head -1)
           else
-
             ORIGINAL_CONTENT="$PREVIOUS_PR_BODY"
             ORIGINAL_AUTHOR="${{ github.event.pull_request.user.login }}"
-
           fi
 
           git config user.email "promotion-bot@users.noreply.github.com"
           git config user.name "PromotionBot"
 
-          git remote set-url origin \
-            "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
           MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
-
           echo "Merge commit to promote: $MERGE_COMMIT"
 
           git fetch origin "$SOURCE_BRANCH"
           git fetch origin "$TARGET_BRANCH"
 
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-
           PROMOTION_BRANCH="promote/${SOURCE_ENV}-to-${TARGET_ENV}/${TIMESTAMP}"
 
           git checkout -b "$PROMOTION_BRANCH" "origin/$TARGET_BRANCH"
@@ -636,130 +576,74 @@ jobs:
           MODIFY_DELETE_WARNING=""
 
           if git cherry-pick -m 1 "$MERGE_COMMIT"; then
-
             echo "Cherry-pick successful"
-
           else
-
             if git status | grep -q "nothing to commit"; then
-
               echo "Changes already exist in target branch"
-
               git cherry-pick --skip
-
               if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-
                 echo "No changes to promote"
                 exit 0
-
               fi
-
             else
-
               echo "Cherry-pick had conflicts"
 
               MODIFY_DELETE_FILES=""
-
               while IFS= read -r conflicted_file; do
-
                 if ! git show "origin/$TARGET_BRANCH":"$conflicted_file" > /dev/null 2>&1; then
-
                   echo "Resolving modify/delete conflict: $conflicted_file"
-
                   git rm "$conflicted_file"
-
                   MODIFY_DELETE_FILES="${MODIFY_DELETE_FILES}- \`$conflicted_file\`\n"
-
                 fi
-
               done < <(git diff --name-only --diff-filter=U)
 
               if [ -n "$MODIFY_DELETE_FILES" ]; then
-
                 MODIFY_DELETE_WARNING="$(printf '\n> [!WARNING]\n> Modify/delete conflicts were automatically resolved.\n>\n> %s' "$(echo -e "$MODIFY_DELETE_FILES")")"
-
               fi
 
               PARTIAL_APPLY_WARNING=""
               PARTIAL_APPLY_FILES=""
-
               while IFS= read -r conflicted_file; do
-
                 echo "Resolving both-modified conflict: $conflicted_file"
-
-                PR_FILE_DIFF=$(git diff \
-                  "${MERGE_COMMIT}^1" \
-                  "${MERGE_COMMIT}" \
-                  -- "$conflicted_file")
-
+                PR_FILE_DIFF=$(git diff "${MERGE_COMMIT}^1" "${MERGE_COMMIT}" -- "$conflicted_file")
                 git checkout --ours -- "$conflicted_file"
-
-                if [ -n "$PR_FILE_DIFF" ] &&
-                   echo "$PR_FILE_DIFF" |
-                   git apply --3way --whitespace=nowarn 2>/dev/null; then
-
+                if [ -n "$PR_FILE_DIFF" ] && echo "$PR_FILE_DIFF" | git apply --3way --whitespace=nowarn 2>/dev/null; then
                   echo "PR changes applied: $conflicted_file"
-
                 else
-
                   echo "Could not apply PR changes: $conflicted_file"
-
                   PARTIAL_APPLY_FILES="${PARTIAL_APPLY_FILES}- \`$conflicted_file\`\n"
-
                 fi
-
                 git add "$conflicted_file"
-
-              done < <(
-                git status --porcelain |
-                grep '^UU' |
-                awk '{print $2}'
-              )
+              done < <(git status --porcelain | grep '^UU' | awk '{print $2}')
 
               if [ -n "$PARTIAL_APPLY_FILES" ]; then
-
                 PARTIAL_APPLY_WARNING="$(printf '\n> [!WARNING]\n> Partial conflict resolution occurred.\n>\n> %s' "$(echo -e "$PARTIAL_APPLY_FILES")")"
-
               fi
 
               if ! git cherry-pick --continue --no-edit; then
-
                 echo "Failed to complete cherry-pick"
-
                 git cherry-pick --abort
-
                 exit 1
-
               fi
 
               echo "Conflicts resolved"
-
             fi
-
           fi
 
           if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-
             echo "No changes to promote"
             exit 0
-
           fi
 
           git push origin "$PROMOTION_BRANCH"
 
           BASE_TITLE="$PREVIOUS_PR_TITLE"
-
           REGEX_WITH_AUTHOR='^Promote to [A-Z]+: (.+) \(by @[^)]+\)$'
           REGEX_WITHOUT_AUTHOR='^Promote to [A-Z]+: (.+)$'
-
           if [[ "$BASE_TITLE" =~ $REGEX_WITH_AUTHOR ]]; then
-
             BASE_TITLE="${BASH_REMATCH[1]}"
-
           elif [[ "$BASE_TITLE" =~ $REGEX_WITHOUT_AUTHOR ]]; then
-
             BASE_TITLE="${BASH_REMATCH[1]}"
-
           fi
 
           PR_TITLE="Promote to ${TARGET_ENV^^}: ${BASE_TITLE} (by @${ORIGINAL_AUTHOR})"
@@ -795,31 +679,14 @@ jobs:
 
           **Note:** This PR contains only the changes that were deployed to ${SOURCE_ENV}. Review and merge when ready to deploy to ${TARGET_ENV}."
 
-          EXISTING_PR=$(gh pr list \
-            --base "$TARGET_BRANCH" \
-            --head "$PROMOTION_BRANCH" \
-            --json number \
-            --jq '.[0].number' \
-            2>/dev/null || echo "")
+          EXISTING_PR=$(gh pr list --base "$TARGET_BRANCH" --head "$PROMOTION_BRANCH" --json number --jq '.[0].number' 2>/dev/null || echo "")
 
           if [ -z "$EXISTING_PR" ]; then
-
             echo "Creating promotion PR"
-
-            gh pr create \
-              --base "$TARGET_BRANCH" \
-              --head "$PROMOTION_BRANCH" \
-              --title "$PR_TITLE" \
-              --body "$PR_BODY"
-
+            gh pr create --base "$TARGET_BRANCH" --head "$PROMOTION_BRANCH" --title "$PR_TITLE" --body "$PR_BODY"
           else
-
             echo "Promotion PR already exists: #$EXISTING_PR"
-
-            gh pr edit "$EXISTING_PR" \
-              --title "$PR_TITLE" \
-              --body "$PR_BODY"
-
+            gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body "$PR_BODY"
           fi
 
   # ============================================================
@@ -861,18 +728,10 @@ jobs:
           TARGET_BRANCH="${{ needs.determine-environment.outputs.backport_next_branch }}"
 
           case "$SOURCE_ENV" in
-            int)
-              SOURCE_BRANCH="int"
-              ;;
-            uat)
-              SOURCE_BRANCH="uat"
-              ;;
-            prod)
-              SOURCE_BRANCH="main"
-              ;;
-            *)
-              SOURCE_BRANCH="$SOURCE_ENV"
-              ;;
+            int) SOURCE_BRANCH="int" ;;
+            uat) SOURCE_BRANCH="uat" ;;
+            prod) SOURCE_BRANCH="main" ;;
+            *) SOURCE_BRANCH="$SOURCE_ENV" ;;
           esac
 
           PREVIOUS_PR_NUMBER="${{ github.event.pull_request.number }}"
@@ -885,42 +744,27 @@ jobs:
           PREVIOUS_PR_BODY=$(cat /tmp/pr_body.txt)
 
           if echo "$PREVIOUS_PR_BODY" | grep -q "## Automated Backport"; then
-
-            ORIGINAL_CONTENT=$(echo "$PREVIOUS_PR_BODY" |
-              sed -n '/### Original Hotfix PR Details/,/^---$/p' |
-              sed '1d;$d')
-
-            ORIGINAL_AUTHOR=$(echo "$PREVIOUS_PR_BODY" |
-              grep -oP '(?<=\*\*Original Author\*\*: @)\S+' |
-              head -1)
-
-            ORIGINAL_HOTFIX_PR=$(echo "$PREVIOUS_PR_BODY" |
-              grep -oP '(?<=\*\*Original Hotfix PR\*\*: #)\d+' |
-              head -1)
-
+            ORIGINAL_CONTENT=$(echo "$PREVIOUS_PR_BODY" | sed -n '/### Original Hotfix PR Details/,/^---$/p' | sed '1d;$d')
+            ORIGINAL_AUTHOR=$(echo "$PREVIOUS_PR_BODY" | grep -oP '(?<=\*\*Original Author\*\*: @)\S+' | head -1)
+            ORIGINAL_HOTFIX_PR=$(echo "$PREVIOUS_PR_BODY" | grep -oP '(?<=\*\*Original Hotfix PR\*\*: #)\d+' | head -1)
           else
-
             ORIGINAL_CONTENT="$PREVIOUS_PR_BODY"
             ORIGINAL_AUTHOR="${{ github.event.pull_request.user.login }}"
             ORIGINAL_HOTFIX_PR="$PREVIOUS_PR_NUMBER"
-
           fi
 
           git config user.email "backport-bot@users.noreply.github.com"
           git config user.name "BackportBot"
 
-          git remote set-url origin \
-            "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
 
           MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
-
           echo "Merge commit to backport: $MERGE_COMMIT"
 
           git fetch origin "$SOURCE_BRANCH"
           git fetch origin "$TARGET_BRANCH"
 
           TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-
           BACKPORT_BRANCH="backport/${SOURCE_ENV}-to-${TARGET_ENV}/${TIMESTAMP}"
 
           git checkout -b "$BACKPORT_BRANCH" "origin/$TARGET_BRANCH"
@@ -928,113 +772,65 @@ jobs:
           MODIFY_DELETE_WARNING=""
 
           if git cherry-pick -m 1 "$MERGE_COMMIT"; then
-
             echo "Cherry-pick successful"
-
           else
-
             if git status | grep -q "nothing to commit"; then
-
               git cherry-pick --skip
-
               if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
                 echo "No changes to backport"
                 exit 0
               fi
-
             else
-
               MODIFY_DELETE_FILES=""
-
               while IFS= read -r conflicted_file; do
-
                 if ! git show "origin/$TARGET_BRANCH":"$conflicted_file" > /dev/null 2>&1; then
-
                   git rm "$conflicted_file"
-
                   MODIFY_DELETE_FILES="${MODIFY_DELETE_FILES}- \`$conflicted_file\`\n"
-
                 fi
-
               done < <(git diff --name-only --diff-filter=U)
 
               if [ -n "$MODIFY_DELETE_FILES" ]; then
-
                 MODIFY_DELETE_WARNING="$(printf '\n> [!WARNING]\n> Modify/delete conflicts were automatically resolved.\n>\n> %s' "$(echo -e "$MODIFY_DELETE_FILES")")"
-
               fi
 
               PARTIAL_APPLY_WARNING=""
               PARTIAL_APPLY_FILES=""
-
               while IFS= read -r conflicted_file; do
-
-                PR_FILE_DIFF=$(git diff \
-                  "${MERGE_COMMIT}^1" \
-                  "${MERGE_COMMIT}" \
-                  -- "$conflicted_file")
-
+                PR_FILE_DIFF=$(git diff "${MERGE_COMMIT}^1" "${MERGE_COMMIT}" -- "$conflicted_file")
                 git checkout --ours -- "$conflicted_file"
-
-                if [ -n "$PR_FILE_DIFF" ] &&
-                   echo "$PR_FILE_DIFF" |
-                   git apply --3way --whitespace=nowarn 2>/dev/null; then
-
+                if [ -n "$PR_FILE_DIFF" ] && echo "$PR_FILE_DIFF" | git apply --3way --whitespace=nowarn 2>/dev/null; then
                   echo "PR changes applied: $conflicted_file"
-
                 else
-
                   PARTIAL_APPLY_FILES="${PARTIAL_APPLY_FILES}- \`$conflicted_file\`\n"
-
                 fi
-
                 git add "$conflicted_file"
-
-              done < <(
-                git status --porcelain |
-                grep '^UU' |
-                awk '{print $2}'
-              )
+              done < <(git status --porcelain | grep '^UU' | awk '{print $2}')
 
               if [ -n "$PARTIAL_APPLY_FILES" ]; then
-
                 PARTIAL_APPLY_WARNING="$(printf '\n> [!WARNING]\n> Partial conflict resolution occurred.\n>\n> %s' "$(echo -e "$PARTIAL_APPLY_FILES")")"
-
               fi
 
               if ! git cherry-pick --continue --no-edit; then
-
                 git cherry-pick --abort
                 exit 1
-
               fi
-
             fi
-
           fi
 
           if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-
             echo "No changes to backport"
             exit 0
-
           fi
 
           git push origin "$BACKPORT_BRANCH"
 
           BASE_TITLE="$PREVIOUS_PR_TITLE"
-
           REGEX_BACKPORT_WITH_AUTHOR='^Backport to [A-Z]+: (.+) \(hotfix by @[^)]+\)$'
           REGEX_BACKPORT_WITHOUT_AUTHOR='^Backport to [A-Z]+: (.+)$'
-
           if [[ "$BASE_TITLE" =~ $REGEX_BACKPORT_WITH_AUTHOR ]]; then
-
             BASE_TITLE="${BASH_REMATCH[1]}"
-
           elif [[ "$BASE_TITLE" =~ $REGEX_BACKPORT_WITHOUT_AUTHOR ]]; then
-
             BASE_TITLE="${BASH_REMATCH[1]}"
-
           fi
 
           PR_TITLE="Backport to ${TARGET_ENV^^}: ${BASE_TITLE} (hotfix by @${ORIGINAL_AUTHOR})"
@@ -1071,40 +867,19 @@ jobs:
 
           **Note:** This PR contains the hotfix changes deployed to ${SOURCE_ENV}. Review and merge when ready to deploy to ${TARGET_ENV}."
 
-          EXISTING_PR=$(gh pr list \
-            --base "$TARGET_BRANCH" \
-            --head "$BACKPORT_BRANCH" \
-            --json number \
-            --jq '.[0].number' \
-            2>/dev/null || echo "")
+          EXISTING_PR=$(gh pr list --base "$TARGET_BRANCH" --head "$BACKPORT_BRANCH" --json number --jq '.[0].number' 2>/dev/null || echo "")
 
           if [ -z "$EXISTING_PR" ]; then
-
             echo "Creating backport PR"
-
-            gh pr create \
-              --base "$TARGET_BRANCH" \
-              --head "$BACKPORT_BRANCH" \
-              --title "$PR_TITLE" \
-              --body "$PR_BODY"
-
+            gh pr create --base "$TARGET_BRANCH" --head "$BACKPORT_BRANCH" --title "$PR_TITLE" --body "$PR_BODY"
           else
-
             echo "Backport PR already exists: #$EXISTING_PR"
-
-            gh pr edit "$EXISTING_PR" \
-              --title "$PR_TITLE" \
-              --body "$PR_BODY"
-
+            gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body "$PR_BODY"
           fi
 
   # ============================================================
   # NOTIFY COMPLETION
   # ============================================================
-
-  # This MUST remain a normal job under jobs:.
-  #
-  # There must NOT be another job definition inside the run: block.
 
   notify-completion:
     needs:
@@ -1124,26 +899,14 @@ jobs:
 
       - name: Log completion
         run: |
-
           echo "========================================"
           echo "DEPLOYMENT COMPLETE"
           echo "========================================"
-
-          echo "Environment:"
-          echo "${{ needs.determine-environment.outputs.environment }}"
-
-          echo "Deployment result:"
-          echo "${{ needs.deploy.result }}"
-
-          echo "Next environment:"
-          echo "${{ needs.determine-environment.outputs.next_environment }}"
-
-          echo "Promotion PR result:"
-          echo "${{ needs.create-promotion-pr.result }}"
-
-          echo "Backport PR result:"
-          echo "${{ needs.create-backport-pr.result }}"
-
+          echo "Environment: ${{ needs.determine-environment.outputs.environment }}"
+          echo "Deployment result: ${{ needs.deploy.result }}"
+          echo "Next environment: ${{ needs.determine-environment.outputs.next_environment }}"
+          echo "Promotion PR result: ${{ needs.create-promotion-pr.result }}"
+          echo "Backport PR result: ${{ needs.create-backport-pr.result }}"
           echo "========================================"
 
           if [ "${{ needs.create-promotion-pr.result }}" == "success" ]; then
