@@ -1,34 +1,26 @@
 name: Promote-Forward Deployment
 
-run-name: Deploy from ${{ github.ref }} to ${{ github.base_ref }} - ${{ github.actor }}
+run-name: Deploy ${{ github.base_ref }} from ${{ github.head_ref }} - ${{ github.actor }}
 
-# Promote-forward deployment strategy for a static site served on GitHub Pages.
+# ============================================================
+# GLOBALBIZ SIMULATOR
 #
-# Flow:
-#   feature/release-* -> int -> uat -> main
+# Promotion flow:
+#
+#   feature/release-* -> int
+#   int -> uat
+#   uat -> main
 #
 # Hotfix flow:
-#   hotfix/release-* -> int/uat/main -> backport to previous environment
 #
-# This workflow:
-#   1. Validates the source/target branch (only for feature/release PRs)
-#   2. Deploys merged changes to GitHub Pages
-#   3. Runs a smoke test
-#   4. Automatically rolls back a failed deployment
-#   5. Creates promotion PRs
-#   6. Creates backport PRs for hotfixes
-#   7. Reports completion
+#   hotfix/release-* -> int
+#   int -> uat
+#   uat -> main
+#   main -> uat -> int
 #
-# IMPORTANT: determine-environment runs for EVERY pull_request into
-# int/uat/main - it has no branch-naming restriction. Earlier versions of
-# this workflow gated the whole job on github.head_ref matching
-# feature/release*, promote/*, hotfix/release*, backport/*, or revert-*.
-# The problem: any PR from a branch that didn't match (a typo, a different
-# convention, a one-off fix) caused this job's `if:` to evaluate false, which
-# skipped it - and because every other job `needs: determine-environment`,
-# they all cascaded to "skipped" too, silently, with no error and no deploy.
-# Branch naming now ONLY affects whether an auto-promotion/backport PR gets
-# created further down - it no longer gates deployment itself.
+# The project is a STATIC HTML/CSS/JavaScript application.
+# No npm build is required.
+# ============================================================
 
 on:
   pull_request:
@@ -38,179 +30,223 @@ on:
       - main
     types:
       - opened
-      - closed
       - synchronize
       - edited
       - reopened
+      - closed
+
+permissions:
+  contents: read
+  pull-requests: read
+
+# ============================================================
+# DETERMINE ENVIRONMENT
+# ============================================================
 
 jobs:
 
-  # ============================================================
-  # DETERMINE ENVIRONMENT
-  # ============================================================
-
   determine-environment:
+
+    if: >
+      startsWith(github.head_ref, 'feature/release') ||
+      startsWith(github.head_ref, 'promote/') ||
+      startsWith(github.head_ref, 'hotfix/release') ||
+      startsWith(github.head_ref, 'backport/') ||
+      startsWith(github.head_ref, 'revert-')
+
     runs-on: ubuntu-latest
 
     outputs:
-      environment: ${{ steps.get-env.outputs.environment }}
-      next_environment: ${{ steps.get-env.outputs.next_environment }}
-      next_branch: ${{ steps.get-env.outputs.next_branch }}
-      is_final_env: ${{ steps.get-env.outputs.is_final_env }}
-      should_validate: ${{ steps.get-env.outputs.should_validate }}
-      should_deploy: ${{ steps.get-env.outputs.should_deploy }}
-      requires_approval: ${{ steps.get-env.outputs.requires_approval }}
-      should_create_promotion: ${{ steps.get-env.outputs.should_create_promotion }}
-      should_create_backport: ${{ steps.get-env.outputs.should_create_backport }}
-      backport_next_env: ${{ steps.get-env.outputs.backport_next_env }}
-      backport_next_branch: ${{ steps.get-env.outputs.backport_next_branch }}
-      is_hotfix: ${{ steps.get-env.outputs.is_hotfix }}
-      is_backport: ${{ steps.get-env.outputs.is_backport }}
-      skip_promotion: ${{ steps.get-env.outputs.skip_promotion }}
+      environment: ${{ steps.environment.outputs.environment }}
+      next_environment: ${{ steps.environment.outputs.next_environment }}
+      next_branch: ${{ steps.environment.outputs.next_branch }}
+
+      should_validate: ${{ steps.environment.outputs.should_validate }}
+      should_deploy: ${{ steps.environment.outputs.should_deploy }}
+
+      should_create_promotion: ${{ steps.environment.outputs.should_create_promotion }}
+      should_create_backport: ${{ steps.environment.outputs.should_create_backport }}
+
+      backport_next_env: ${{ steps.environment.outputs.backport_next_env }}
+      backport_next_branch: ${{ steps.environment.outputs.backport_next_branch }}
+
+      is_hotfix: ${{ steps.environment.outputs.is_hotfix }}
+      is_backport: ${{ steps.environment.outputs.is_backport }}
 
     steps:
 
-      # --------------------------------------------------------
-      # Validate feature release source branch
-      # (still only runs for feature/release branches - unrelated to the fix)
-      # --------------------------------------------------------
+      # ========================================================
+      # VALIDATE BRANCH FLOW
+      # ========================================================
 
-      - name: Validate source and target branch
-        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'feature/release')
+      - name: Validate branch flow
+        if: >
+          github.event_name == 'pull_request' &&
+          github.event.action != 'closed' &&
+          startsWith(github.head_ref, 'feature/release')
         run: |
+
           HEAD_REF="${{ github.head_ref }}"
           BASE_REF="${{ github.base_ref }}"
 
-          echo "Source branch: $HEAD_REF"
-          echo "Target branch: $BASE_REF"
+          echo "========================================"
+          echo "BRANCH VALIDATION"
+          echo "========================================"
+          echo "Source: $HEAD_REF"
+          echo "Target: $BASE_REF"
+          echo "========================================"
 
-          if [[ "$HEAD_REF" == feature/release* && "$BASE_REF" != "int" ]]; then
-            echo "ERROR: feature/release branches must target 'int', not '$BASE_REF'."
+          if [[ "$BASE_REF" != "int" ]]; then
+
             echo ""
-            echo "Expected deployment flow:"
-            echo "  feature/release-* -> int -> uat -> main"
+            echo "ERROR:"
+            echo "feature/release-* branches must target int."
             echo ""
+            echo "Expected:"
+            echo "feature/release-* -> int -> uat -> main"
+            echo ""
+
             exit 1
+
           fi
 
-          echo "Source and target branch validation passed"
+          echo "Branch validation passed."
 
-      # --------------------------------------------------------
-      # Determine target environment
-      # --------------------------------------------------------
+      # ========================================================
+      # DETERMINE ENVIRONMENT
+      # ========================================================
 
-      - name: Determine environment from target branch
-        id: get-env
+      - name: Determine environment
+        id: environment
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
 
         run: |
+
           TARGET_BRANCH="${{ github.base_ref }}"
           HEAD_REF="${{ github.head_ref }}"
+          ACTION="${{ github.event.action }}"
+          MERGED="${{ github.event.pull_request.merged }}"
 
           IS_HOTFIX="false"
           IS_BACKPORT="false"
 
+          # ----------------------------------------------------
+          # Detect flow type
+          # ----------------------------------------------------
+
           if [[ "$HEAD_REF" == hotfix/release* ]]; then
+
             IS_HOTFIX="true"
-            echo "Hotfix flow detected"
+            echo "Hotfix flow detected."
 
           elif [[ "$HEAD_REF" == backport/* ]]; then
+
             IS_BACKPORT="true"
-            echo "Backport flow detected"
+            echo "Backport flow detected."
 
           elif [[ "$HEAD_REF" == feature/release* ]]; then
-            echo "Feature release flow detected"
+
+            echo "Feature release flow detected."
 
           elif [[ "$HEAD_REF" == promote/* ]]; then
-            echo "Promotion flow detected"
+
+            echo "Promotion flow detected."
 
           elif [[ "$HEAD_REF" == revert-* ]]; then
-            echo "Revert flow detected"
 
-          else
-            echo "No recognized naming convention on this branch - will still deploy, but auto-promotion/backport PR creation will be skipped"
+            echo "Revert flow detected."
+
           fi
 
           echo "is_hotfix=$IS_HOTFIX" >> "$GITHUB_OUTPUT"
           echo "is_backport=$IS_BACKPORT" >> "$GITHUB_OUTPUT"
 
           # ----------------------------------------------------
-          # Detect promotion opt-out
+          # Default values
           # ----------------------------------------------------
 
-          SKIP_PROMOTION="false"
+          SHOULD_VALIDATE="false"
+          SHOULD_DEPLOY="false"
+          SHOULD_CREATE_PROMOTION="false"
+          SHOULD_CREATE_BACKPORT="false"
 
-          if echo "$PR_BODY" | grep -qiE '^\s*-\s*\[x\]\s*Skip auto-promotion'; then
-            SKIP_PROMOTION="true"
-            echo "Auto-promotion skipped by PR opt-out checkbox"
+          NEXT_ENVIRONMENT=""
+          NEXT_BRANCH=""
+          BACKPORT_NEXT_ENV=""
+          BACKPORT_NEXT_BRANCH=""
+
+          # ----------------------------------------------------
+          # Pull request validation
+          # ----------------------------------------------------
+
+          if [[ "$ACTION" != "closed" ]]; then
+            SHOULD_VALIDATE="true"
           fi
 
-          echo "skip_promotion=$SKIP_PROMOTION" >> "$GITHUB_OUTPUT"
+          # ----------------------------------------------------
+          # Deployment only happens after merge
+          # ----------------------------------------------------
+
+          if [[ "$ACTION" == "closed" && "$MERGED" == "true" ]]; then
+            SHOULD_DEPLOY="true"
+          fi
 
           # ----------------------------------------------------
-          # Map environment
+          # Environment mapping
           # ----------------------------------------------------
 
           case "$TARGET_BRANCH" in
 
             int)
 
-              echo "environment=int" >> "$GITHUB_OUTPUT"
-              echo "next_environment=uat" >> "$GITHUB_OUTPUT"
-              echo "next_branch=uat" >> "$GITHUB_OUTPUT"
-              echo "is_final_env=false" >> "$GITHUB_OUTPUT"
-              echo "requires_approval=false" >> "$GITHUB_OUTPUT"
+              ENVIRONMENT="int"
+
+              NEXT_ENVIRONMENT="uat"
+              NEXT_BRANCH="uat"
+
+              # Feature release into INT automatically
+              # creates INT -> UAT promotion.
 
               if [[ "$IS_HOTFIX" == "false" &&
-                    "$IS_BACKPORT" == "false" &&
-                    "$SKIP_PROMOTION" == "false" &&
-                    "$HEAD_REF" == feature/release* ]]; then
+                    "$IS_BACKPORT" == "false" ]]; then
 
-                echo "should_create_promotion=true" >> "$GITHUB_OUTPUT"
-
-              else
-
-                echo "should_create_promotion=false" >> "$GITHUB_OUTPUT"
+                SHOULD_CREATE_PROMOTION="true"
 
               fi
 
-              echo "should_create_backport=false" >> "$GITHUB_OUTPUT"
-              echo "backport_next_env=" >> "$GITHUB_OUTPUT"
-              echo "backport_next_branch=" >> "$GITHUB_OUTPUT"
+              # A hotfix entering INT does not automatically
+              # create another promotion until the normal
+              # hotfix flow reaches the next environment.
 
               ;;
 
             uat)
 
-              echo "environment=uat" >> "$GITHUB_OUTPUT"
-              echo "next_environment=prod" >> "$GITHUB_OUTPUT"
-              echo "next_branch=main" >> "$GITHUB_OUTPUT"
-              echo "is_final_env=false" >> "$GITHUB_OUTPUT"
-              echo "requires_approval=true" >> "$GITHUB_OUTPUT"
+              ENVIRONMENT="uat"
 
-              if [[ "$SKIP_PROMOTION" == "false" &&
-                    "$HEAD_REF" == promote/* ]]; then
+              NEXT_ENVIRONMENT="prod"
+              NEXT_BRANCH="main"
 
-                echo "should_create_promotion=true" >> "$GITHUB_OUTPUT"
+              # Only automatically promote normal promotion
+              # branches from UAT to MAIN.
 
-              else
+              if [[ "$HEAD_REF" == promote/* &&
+                    "$IS_HOTFIX" == "false" &&
+                    "$IS_BACKPORT" == "false" ]]; then
 
-                echo "should_create_promotion=false" >> "$GITHUB_OUTPUT"
+                SHOULD_CREATE_PROMOTION="true"
 
               fi
 
+              # Backport from UAT -> INT
+
               if [[ "$IS_BACKPORT" == "true" ]]; then
 
-                echo "should_create_backport=true" >> "$GITHUB_OUTPUT"
-                echo "backport_next_env=int" >> "$GITHUB_OUTPUT"
-                echo "backport_next_branch=int" >> "$GITHUB_OUTPUT"
+                SHOULD_CREATE_BACKPORT="true"
 
-              else
-
-                echo "should_create_backport=false" >> "$GITHUB_OUTPUT"
-                echo "backport_next_env=" >> "$GITHUB_OUTPUT"
-                echo "backport_next_branch=" >> "$GITHUB_OUTPUT"
+                BACKPORT_NEXT_ENV="int"
+                BACKPORT_NEXT_BRANCH="int"
 
               fi
 
@@ -218,24 +254,20 @@ jobs:
 
             main)
 
-              echo "environment=prod" >> "$GITHUB_OUTPUT"
-              echo "next_environment=" >> "$GITHUB_OUTPUT"
-              echo "next_branch=" >> "$GITHUB_OUTPUT"
-              echo "is_final_env=true" >> "$GITHUB_OUTPUT"
-              echo "requires_approval=true" >> "$GITHUB_OUTPUT"
-              echo "should_create_promotion=false" >> "$GITHUB_OUTPUT"
+              ENVIRONMENT="prod"
+
+              NEXT_ENVIRONMENT=""
+              NEXT_BRANCH=""
+
+              # Hotfix reaching production gets backported
+              # to UAT.
 
               if [[ "$IS_HOTFIX" == "true" ]]; then
 
-                echo "should_create_backport=true" >> "$GITHUB_OUTPUT"
-                echo "backport_next_env=uat" >> "$GITHUB_OUTPUT"
-                echo "backport_next_branch=uat" >> "$GITHUB_OUTPUT"
+                SHOULD_CREATE_BACKPORT="true"
 
-              else
-
-                echo "should_create_backport=false" >> "$GITHUB_OUTPUT"
-                echo "backport_next_env=" >> "$GITHUB_OUTPUT"
-                echo "backport_next_branch=" >> "$GITHUB_OUTPUT"
+                BACKPORT_NEXT_ENV="uat"
+                BACKPORT_NEXT_BRANCH="uat"
 
               fi
 
@@ -243,7 +275,9 @@ jobs:
 
             *)
 
-              echo "Unknown target branch: $TARGET_BRANCH"
+              echo "ERROR: Unknown target branch:"
+              echo "$TARGET_BRANCH"
+
               exit 1
 
               ;;
@@ -251,55 +285,107 @@ jobs:
           esac
 
           # ----------------------------------------------------
-          # Determine whether deployment should happen
+          # Write outputs
           # ----------------------------------------------------
 
-          if [ "${{ github.event.pull_request.merged }}" == "true" ]; then
+          echo "environment=$ENVIRONMENT" >> "$GITHUB_OUTPUT"
 
-            echo "should_validate=true" >> "$GITHUB_OUTPUT"
-            echo "should_deploy=true" >> "$GITHUB_OUTPUT"
+          echo "next_environment=$NEXT_ENVIRONMENT" >> "$GITHUB_OUTPUT"
+          echo "next_branch=$NEXT_BRANCH" >> "$GITHUB_OUTPUT"
 
-          else
+          echo "should_validate=$SHOULD_VALIDATE" >> "$GITHUB_OUTPUT"
+          echo "should_deploy=$SHOULD_DEPLOY" >> "$GITHUB_OUTPUT"
 
-            echo "should_validate=true" >> "$GITHUB_OUTPUT"
-            echo "should_deploy=false" >> "$GITHUB_OUTPUT"
+          echo "should_create_promotion=$SHOULD_CREATE_PROMOTION" >> "$GITHUB_OUTPUT"
+          echo "should_create_backport=$SHOULD_CREATE_BACKPORT" >> "$GITHUB_OUTPUT"
 
-          fi
+          echo "backport_next_env=$BACKPORT_NEXT_ENV" >> "$GITHUB_OUTPUT"
+          echo "backport_next_branch=$BACKPORT_NEXT_BRANCH" >> "$GITHUB_OUTPUT"
 
-          echo "Target environment: $TARGET_BRANCH"
-          echo "PR merged: ${{ github.event.pull_request.merged }}"
+          # ----------------------------------------------------
+          # Summary
+          # ----------------------------------------------------
+
+          echo ""
+          echo "========================================"
+          echo "DEPLOYMENT DECISION"
+          echo "========================================"
+          echo "Source branch:       $HEAD_REF"
+          echo "Target branch:       $TARGET_BRANCH"
+          echo "Environment:         $ENVIRONMENT"
+          echo "Merged:              $MERGED"
+          echo "Validate:            $SHOULD_VALIDATE"
+          echo "Deploy:              $SHOULD_DEPLOY"
+          echo "Next environment:   $NEXT_ENVIRONMENT"
+          echo "Next branch:        $NEXT_BRANCH"
+          echo "Promotion PR:        $SHOULD_CREATE_PROMOTION"
+          echo "Backport PR:         $SHOULD_CREATE_BACKPORT"
+          echo "========================================"
 
   # ============================================================
-  # VALIDATE ONLY
+  # VALIDATE OPEN PR
   # ============================================================
 
   validate-only:
+
     needs:
       - determine-environment
 
     if: >
-      needs.determine-environment.outputs.should_validate == 'true' &&
-      needs.determine-environment.outputs.should_deploy == 'false'
+      needs.determine-environment.outputs.should_validate == 'true'
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout PR branch
+      - name: Checkout PR
         uses: actions/checkout@v4
 
-      - name: Report target environment
+      - name: Validate Globalbiz Simulator
         run: |
-          echo "Target environment: ${{ needs.determine-environment.outputs.environment }}"
-          echo "Source branch: ${{ github.head_ref }}"
-          echo "Target branch: ${{ github.base_ref }}"
-          echo "Will deploy automatically once merged"
+
+          echo "========================================"
+          echo "GLOBALBIZ SIMULATOR VALIDATION"
+          echo "========================================"
+
+          echo "Environment: ${{ needs.determine-environment.outputs.environment }}"
+          echo "Source:      ${{ github.head_ref }}"
+          echo "Target:      ${{ github.base_ref }}"
+
+          echo ""
+          echo "Checking required project files..."
+
+          test -f index.html || {
+            echo "ERROR: index.html not found."
+            exit 1
+          }
+
+          echo "index.html found."
+
+          echo ""
+          echo "Checking HTML structure..."
+
+          grep -qi "<html" index.html || {
+            echo "ERROR: index.html does not contain <html>."
+            exit 1
+          }
+
+          grep -qi "<body" index.html || {
+            echo "ERROR: index.html does not contain <body>."
+            exit 1
+          }
+
+          echo "HTML validation passed."
+
+          echo ""
+          echo "Globalbiz Simulator validation passed."
 
   # ============================================================
-  # DEPLOY
+  # DEPLOY TO GITHUB PAGES
   # ============================================================
 
   deploy:
+
     needs:
       - determine-environment
 
@@ -314,57 +400,98 @@ jobs:
       id-token: write
 
     environment:
-      name: ${{ needs.determine-environment.outputs.environment }}
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+
+      # ========================================================
+      # CHECKOUT MERGED TARGET BRANCH
+      # ========================================================
 
       - name: Checkout merged branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.base_ref }}
 
-      # If you later introduce a build process, uncomment:
-      # - name: Install dependencies
-      #   run: npm ci
-      # - name: Build application
-      #   run: npm run build
+      # ========================================================
+      # PREPARE STATIC SITE
+      # ========================================================
 
-      - name: Prepare static site
+      - name: Prepare Globalbiz Simulator
         run: |
-          echo "Preparing static site for GitHub Pages"
+
+          echo "========================================"
+          echo "PREPARING GLOBALBIZ SIMULATOR"
+          echo "========================================"
+
           mkdir -p _site
 
-          ENV_NAME="${{ needs.determine-environment.outputs.environment }}"
+          # Copy the actual static website to the Pages root.
+          #
+          # IMPORTANT:
+          # We do NOT put the application inside
+          # /int, /uat or /prod.
+          #
+          # This keeps the deployed URL:
+          #
+          # https://capitec-future-developers.github.io/Globalbiz-simulator/
 
-          mkdir -p "_site/$ENV_NAME"
+          cp -r . _site/
 
-          cp -r . "_site/$ENV_NAME/" 2>/dev/null || true
+          # Remove GitHub metadata.
+          rm -rf _site/.git
+          rm -rf _site/.github
 
-          rm -rf "_site/$ENV_NAME/.git"
-          rm -rf "_site/$ENV_NAME/_site"
+          # Remove deployment directory if it somehow exists.
+          rm -rf _site/_site
 
-          echo "Static site prepared for environment: $ENV_NAME"
+          echo ""
+          echo "Environment deployed:"
+          echo "${{ needs.determine-environment.outputs.environment }}"
 
-      - name: Upload artifact
+          echo ""
+          echo "Files being deployed:"
+
+          find _site -maxdepth 2 -type f | sort | head -100
+
+      # ========================================================
+      # UPLOAD PAGES ARTIFACT
+      # ========================================================
+
+      - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+
+      # ========================================================
+      # DEPLOY
+      # ========================================================
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
+      # ========================================================
+      # SMOKE TEST
+      # ========================================================
+
       - name: Smoke test deployed site
         run: |
+
           URL="${{ steps.deployment.outputs.page_url }}"
 
-          echo "Checking deployed site:"
+          echo "========================================"
+          echo "GITHUB PAGES SMOKE TEST"
+          echo "========================================"
+
+          echo "URL:"
           echo "$URL"
 
           sleep 15
 
           STATUS=$(curl \
+            -L \
             -s \
             -o /tmp/body.html \
             -w "%{http_code}" \
@@ -373,32 +500,46 @@ jobs:
             --retry-all-errors \
             "$URL" || echo "000")
 
+          echo ""
           echo "HTTP status: $STATUS"
 
           if [ "$STATUS" != "200" ]; then
-            echo "Site returned HTTP $STATUS instead of 200"
+
+            echo ""
+            echo "ERROR: GitHub Pages returned HTTP $STATUS"
+
             exit 1
+
           fi
 
           if ! grep -qi "<html" /tmp/body.html; then
-            echo "Response did not contain a valid HTML document"
+
+            echo ""
+            echo "ERROR: Response does not contain HTML."
+
             exit 1
+
           fi
 
-          echo "Smoke test passed"
+          echo ""
+          echo "========================================"
+          echo "SMOKE TEST PASSED"
+          echo "========================================"
 
   # ============================================================
-  # ROLLBACK
+  # AUTOMATIC ROLLBACK
   # ============================================================
 
   rollback:
+
     needs:
       - determine-environment
       - deploy
 
     if: >
       failure() &&
-      needs.deploy.result == 'failure'
+      needs.deploy.result == 'failure' &&
+      github.event.pull_request.merged == true
 
     runs-on: ubuntu-latest
 
@@ -415,11 +556,12 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.PROMOTION_BOT_TOKEN }}
 
-      - name: Revert the bad merge commit
+      - name: Revert failed deployment
         env:
           GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
 
         run: |
+
           git config user.email "rollback-bot@users.noreply.github.com"
           git config user.name "RollbackBot"
 
@@ -429,75 +571,67 @@ jobs:
           echo "========================================"
           echo "AUTOMATIC ROLLBACK"
           echo "========================================"
-          echo "Environment: ${{ needs.determine-environment.outputs.environment }}"
-          echo "Branch: $BRANCH"
-          echo "Bad commit: $BAD_COMMIT"
+
+          echo "Environment:"
+          echo "${{ needs.determine-environment.outputs.environment }}"
+
+          echo "Branch:"
+          echo "$BRANCH"
+
+          echo "Bad commit:"
+          echo "$BAD_COMMIT"
+
           echo "========================================"
 
           if git revert --no-edit -m 1 "$BAD_COMMIT"; then
 
             git push origin "HEAD:$BRANCH"
 
-            echo "reverted=true" >> "$GITHUB_ENV"
-
-            echo "Rollback completed successfully."
+            echo "Rollback successful."
 
           else
 
-            echo "Automatic revert encountered a conflict."
+            echo "Automatic rollback failed."
 
             git revert --abort || true
-
-            echo "reverted=false" >> "$GITHUB_ENV"
 
             exit 1
 
           fi
 
-      - name: Open rollback issue
+      - name: Create rollback issue
         if: always()
         env:
           GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
 
         run: |
-          ENV_NAME="${{ needs.determine-environment.outputs.environment }}"
-          BRANCH="${{ github.base_ref }}"
-
-          if [ "${reverted:-false}" == "true" ]; then
-
-            STATUS_LINE="A revert commit was pushed to \`${BRANCH}\`. The previous known-good version will be redeployed."
-
-          else
-
-            STATUS_LINE="**Automatic revert failed due to a conflict. Manual rollback is required.**"
-
-          fi
 
           gh issue create \
-            --title "Deployment to ${ENV_NAME} failed and was rolled back" \
-            --body "The deployment to **${ENV_NAME}** failed.
+            --title "Globalbiz Simulator deployment failed - automatic rollback" \
+            --body "## Deployment Failure
 
-          ## Deployment Details
+          The Globalbiz Simulator deployment failed.
 
-          - **Environment:** ${ENV_NAME}
-          - **Branch:** ${BRANCH}
-          - **Failed Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          - **Bad Commit:** ${{ github.event.pull_request.merge_commit_sha }}
-          - **Source PR:** #${{ github.event.pull_request.number }}
+          ### Details
 
-          ## Rollback Status
+          - Environment: ${{ needs.determine-environment.outputs.environment }}
+          - Branch: ${{ github.base_ref }}
+          - Source PR: #${{ github.event.pull_request.number }}
+          - Failed commit: ${{ github.event.pull_request.merge_commit_sha }}
+          - Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          ${STATUS_LINE}
+          ### Action
 
-          ## Next Steps
+          The workflow attempted to automatically revert the failed merge.
 
-          Please investigate the failed deployment before merging further changes into **${BRANCH}**."
+          Please investigate the deployment before merging additional changes."
 
   # ============================================================
   # CREATE PROMOTION PR
   # ============================================================
 
   create-promotion-pr:
+
     needs:
       - determine-environment
       - deploy
@@ -514,7 +648,7 @@ jobs:
 
     steps:
 
-      - name: Checkout source code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -523,7 +657,6 @@ jobs:
       - name: Create promotion PR
         env:
           GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
 
         run: |
 
@@ -531,162 +664,89 @@ jobs:
           TARGET_ENV="${{ needs.determine-environment.outputs.next_environment }}"
           TARGET_BRANCH="${{ needs.determine-environment.outputs.next_branch }}"
 
-          case "$SOURCE_ENV" in
-            int) SOURCE_BRANCH="int" ;;
-            uat) SOURCE_BRANCH="uat" ;;
-            prod) SOURCE_BRANCH="main" ;;
-            *) SOURCE_BRANCH="$SOURCE_ENV" ;;
-          esac
+          SOURCE_BRANCH="$SOURCE_ENV"
 
-          PREVIOUS_PR_NUMBER="${{ github.event.pull_request.number }}"
-          PREVIOUS_PR_TITLE="$PR_TITLE"
-
-          cat << 'EOFPRBODY' > /tmp/pr_body.txt
-          ${{ github.event.pull_request.body }}
-          EOFPRBODY
-
-          PREVIOUS_PR_BODY=$(cat /tmp/pr_body.txt)
-
-          if echo "$PREVIOUS_PR_BODY" | grep -q "## Automated Promotion"; then
-            ORIGINAL_CONTENT=$(echo "$PREVIOUS_PR_BODY" | sed -n '/### Original PR Details/,/^---$/p' | sed '1d;$d')
-            ORIGINAL_AUTHOR=$(echo "$PREVIOUS_PR_BODY" | grep -oP '(?<=\*\*Actor\*\*: @)\S+' | head -1)
-          else
-            ORIGINAL_CONTENT="$PREVIOUS_PR_BODY"
-            ORIGINAL_AUTHOR="${{ github.event.pull_request.user.login }}"
+          if [[ "$SOURCE_ENV" == "prod" ]]; then
+            SOURCE_BRANCH="main"
           fi
+
+          MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
+          PREVIOUS_PR_NUMBER="${{ github.event.pull_request.number }}"
+          PREVIOUS_PR_TITLE="${{ github.event.pull_request.title }}"
+
+          echo "========================================"
+          echo "CREATING PROMOTION PR"
+          echo "========================================"
+
+          echo "Source environment: $SOURCE_ENV"
+          echo "Target environment: $TARGET_ENV"
+          echo "Source branch:      $SOURCE_BRANCH"
+          echo "Target branch:      $TARGET_BRANCH"
+          echo "Merge commit:       $MERGE_COMMIT"
 
           git config user.email "promotion-bot@users.noreply.github.com"
           git config user.name "PromotionBot"
 
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-
-          MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
-          echo "Merge commit to promote: $MERGE_COMMIT"
-
           git fetch origin "$SOURCE_BRANCH"
           git fetch origin "$TARGET_BRANCH"
 
-          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          TIMESTAMP=$(date -u +%Y%m%d-%H%M%S)
+
           PROMOTION_BRANCH="promote/${SOURCE_ENV}-to-${TARGET_ENV}/${TIMESTAMP}"
 
           git checkout -b "$PROMOTION_BRANCH" "origin/$TARGET_BRANCH"
 
-          echo "Cherry-picking changes from $SOURCE_BRANCH"
+          echo ""
+          echo "Cherry-picking deployed commit..."
 
-          MODIFY_DELETE_WARNING=""
-
-          if git cherry-pick -m 1 "$MERGE_COMMIT"; then
-            echo "Cherry-pick successful"
-          else
-            if git status | grep -q "nothing to commit"; then
-              echo "Changes already exist in target branch"
-              git cherry-pick --skip
-              if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-                echo "No changes to promote"
-                exit 0
-              fi
-            else
-              echo "Cherry-pick had conflicts"
-
-              MODIFY_DELETE_FILES=""
-              while IFS= read -r conflicted_file; do
-                if ! git show "origin/$TARGET_BRANCH":"$conflicted_file" > /dev/null 2>&1; then
-                  echo "Resolving modify/delete conflict: $conflicted_file"
-                  git rm "$conflicted_file"
-                  MODIFY_DELETE_FILES="${MODIFY_DELETE_FILES}- \`$conflicted_file\`\n"
-                fi
-              done < <(git diff --name-only --diff-filter=U)
-
-              if [ -n "$MODIFY_DELETE_FILES" ]; then
-                MODIFY_DELETE_WARNING="$(printf '\n> [!WARNING]\n> Modify/delete conflicts were automatically resolved.\n>\n> %s' "$(echo -e "$MODIFY_DELETE_FILES")")"
-              fi
-
-              PARTIAL_APPLY_WARNING=""
-              PARTIAL_APPLY_FILES=""
-              while IFS= read -r conflicted_file; do
-                echo "Resolving both-modified conflict: $conflicted_file"
-                PR_FILE_DIFF=$(git diff "${MERGE_COMMIT}^1" "${MERGE_COMMIT}" -- "$conflicted_file")
-                git checkout --ours -- "$conflicted_file"
-                if [ -n "$PR_FILE_DIFF" ] && echo "$PR_FILE_DIFF" | git apply --3way --whitespace=nowarn 2>/dev/null; then
-                  echo "PR changes applied: $conflicted_file"
-                else
-                  echo "Could not apply PR changes: $conflicted_file"
-                  PARTIAL_APPLY_FILES="${PARTIAL_APPLY_FILES}- \`$conflicted_file\`\n"
-                fi
-                git add "$conflicted_file"
-              done < <(git status --porcelain | grep '^UU' | awk '{print $2}')
-
-              if [ -n "$PARTIAL_APPLY_FILES" ]; then
-                PARTIAL_APPLY_WARNING="$(printf '\n> [!WARNING]\n> Partial conflict resolution occurred.\n>\n> %s' "$(echo -e "$PARTIAL_APPLY_FILES")")"
-              fi
-
-              if ! git cherry-pick --continue --no-edit; then
-                echo "Failed to complete cherry-pick"
-                git cherry-pick --abort
-                exit 1
-              fi
-
-              echo "Conflicts resolved"
-            fi
-          fi
-
-          if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-            echo "No changes to promote"
-            exit 0
-          fi
+          git cherry-pick -m 1 "$MERGE_COMMIT"
 
           git push origin "$PROMOTION_BRANCH"
 
-          BASE_TITLE="$PREVIOUS_PR_TITLE"
-          REGEX_WITH_AUTHOR='^Promote to [A-Z]+: (.+) \(by @[^)]+\)$'
-          REGEX_WITHOUT_AUTHOR='^Promote to [A-Z]+: (.+)$'
-          if [[ "$BASE_TITLE" =~ $REGEX_WITH_AUTHOR ]]; then
-            BASE_TITLE="${BASH_REMATCH[1]}"
-          elif [[ "$BASE_TITLE" =~ $REGEX_WITHOUT_AUTHOR ]]; then
-            BASE_TITLE="${BASH_REMATCH[1]}"
-          fi
-
-          PR_TITLE="Promote to ${TARGET_ENV^^}: ${BASE_TITLE} (by @${ORIGINAL_AUTHOR})"
+          PR_TITLE="Promote to ${TARGET_ENV^^}: ${PREVIOUS_PR_TITLE}"
 
           PR_BODY="## Automated Promotion
 
-          ${MODIFY_DELETE_WARNING}${PARTIAL_APPLY_WARNING}
+          This PR was automatically created after successful deployment of the Globalbiz Simulator to **${SOURCE_ENV}**.
 
-          This PR was automatically created after successful deployment to **${SOURCE_ENV}**.
+          ### Promotion
 
-          ### Previous Environment PR
+          - Source environment: ${SOURCE_ENV}
+          - Source branch: ${SOURCE_BRANCH}
+          - Target environment: ${TARGET_ENV}
+          - Target branch: ${TARGET_BRANCH}
+          - Source PR: #${PREVIOUS_PR_NUMBER}
+          - Commit: ${MERGE_COMMIT}
+          - Deployment run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          - **Source PR:** #${PREVIOUS_PR_NUMBER}
-          - **Title:** ${PREVIOUS_PR_TITLE}
-          - **Deployed to ${SOURCE_ENV}:** Success
-          - **Deployment Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ### Application
 
-          ### Deployment Information
+          **Globalbiz Simulator**
 
-          - **Source Environment:** ${SOURCE_ENV}
-          - **Target Environment:** ${TARGET_ENV}
-          - **Promotion Branch:** ${PROMOTION_BRANCH}
-          - **Target Branch:** ${TARGET_BRANCH}
-          - **Commit:** ${MERGE_COMMIT}
-          - **Actor:** @${ORIGINAL_AUTHOR}
-          - **Timestamp:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')
+          This promotion moves the exact deployed changes from **${SOURCE_ENV}** to **${TARGET_ENV}**.
 
-          ### Original PR Details
+          Review and merge this PR when the target environment is ready."
 
-          ${ORIGINAL_CONTENT}
-
-          ---
-
-          **Note:** This PR contains only the changes that were deployed to ${SOURCE_ENV}. Review and merge when ready to deploy to ${TARGET_ENV}."
-
-          EXISTING_PR=$(gh pr list --base "$TARGET_BRANCH" --head "$PROMOTION_BRANCH" --json number --jq '.[0].number' 2>/dev/null || echo "")
+          EXISTING_PR=$(gh pr list \
+            --base "$TARGET_BRANCH" \
+            --head "$PROMOTION_BRANCH" \
+            --json number \
+            --jq '.[0].number' 2>/dev/null || echo "")
 
           if [ -z "$EXISTING_PR" ]; then
-            echo "Creating promotion PR"
-            gh pr create --base "$TARGET_BRANCH" --head "$PROMOTION_BRANCH" --title "$PR_TITLE" --body "$PR_BODY"
+
+            echo "Creating promotion PR..."
+
+            gh pr create \
+              --base "$TARGET_BRANCH" \
+              --head "$PROMOTION_BRANCH" \
+              --title "$PR_TITLE" \
+              --body "$PR_BODY"
+
           else
+
             echo "Promotion PR already exists: #$EXISTING_PR"
-            gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body "$PR_BODY"
+
           fi
 
   # ============================================================
@@ -694,6 +754,7 @@ jobs:
   # ============================================================
 
   create-backport-pr:
+
     needs:
       - determine-environment
       - deploy
@@ -710,7 +771,7 @@ jobs:
 
     steps:
 
-      - name: Checkout source code
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -719,7 +780,6 @@ jobs:
       - name: Create backport PR
         env:
           GH_TOKEN: ${{ secrets.PROMOTION_BOT_TOKEN }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
 
         run: |
 
@@ -727,161 +787,65 @@ jobs:
           TARGET_ENV="${{ needs.determine-environment.outputs.backport_next_env }}"
           TARGET_BRANCH="${{ needs.determine-environment.outputs.backport_next_branch }}"
 
-          case "$SOURCE_ENV" in
-            int) SOURCE_BRANCH="int" ;;
-            uat) SOURCE_BRANCH="uat" ;;
-            prod) SOURCE_BRANCH="main" ;;
-            *) SOURCE_BRANCH="$SOURCE_ENV" ;;
-          esac
+          SOURCE_BRANCH="$SOURCE_ENV"
 
-          PREVIOUS_PR_NUMBER="${{ github.event.pull_request.number }}"
-          PREVIOUS_PR_TITLE="$PR_TITLE"
-
-          cat << 'EOFPRBODY' > /tmp/pr_body.txt
-          ${{ github.event.pull_request.body }}
-          EOFPRBODY
-
-          PREVIOUS_PR_BODY=$(cat /tmp/pr_body.txt)
-
-          if echo "$PREVIOUS_PR_BODY" | grep -q "## Automated Backport"; then
-            ORIGINAL_CONTENT=$(echo "$PREVIOUS_PR_BODY" | sed -n '/### Original Hotfix PR Details/,/^---$/p' | sed '1d;$d')
-            ORIGINAL_AUTHOR=$(echo "$PREVIOUS_PR_BODY" | grep -oP '(?<=\*\*Original Author\*\*: @)\S+' | head -1)
-            ORIGINAL_HOTFIX_PR=$(echo "$PREVIOUS_PR_BODY" | grep -oP '(?<=\*\*Original Hotfix PR\*\*: #)\d+' | head -1)
-          else
-            ORIGINAL_CONTENT="$PREVIOUS_PR_BODY"
-            ORIGINAL_AUTHOR="${{ github.event.pull_request.user.login }}"
-            ORIGINAL_HOTFIX_PR="$PREVIOUS_PR_NUMBER"
+          if [[ "$SOURCE_ENV" == "prod" ]]; then
+            SOURCE_BRANCH="main"
           fi
+
+          MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
+          PREVIOUS_PR_NUMBER="${{ github.event.pull_request.number }}"
+          PREVIOUS_PR_TITLE="${{ github.event.pull_request.title }}"
 
           git config user.email "backport-bot@users.noreply.github.com"
           git config user.name "BackportBot"
 
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-
-          MERGE_COMMIT="${{ github.event.pull_request.merge_commit_sha }}"
-          echo "Merge commit to backport: $MERGE_COMMIT"
-
           git fetch origin "$SOURCE_BRANCH"
           git fetch origin "$TARGET_BRANCH"
 
-          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          TIMESTAMP=$(date -u +%Y%m%d-%H%M%S)
+
           BACKPORT_BRANCH="backport/${SOURCE_ENV}-to-${TARGET_ENV}/${TIMESTAMP}"
 
           git checkout -b "$BACKPORT_BRANCH" "origin/$TARGET_BRANCH"
 
-          MODIFY_DELETE_WARNING=""
+          echo "Backporting commit:"
+          echo "$MERGE_COMMIT"
 
-          if git cherry-pick -m 1 "$MERGE_COMMIT"; then
-            echo "Cherry-pick successful"
-          else
-            if git status | grep -q "nothing to commit"; then
-              git cherry-pick --skip
-              if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-                echo "No changes to backport"
-                exit 0
-              fi
-            else
-              MODIFY_DELETE_FILES=""
-              while IFS= read -r conflicted_file; do
-                if ! git show "origin/$TARGET_BRANCH":"$conflicted_file" > /dev/null 2>&1; then
-                  git rm "$conflicted_file"
-                  MODIFY_DELETE_FILES="${MODIFY_DELETE_FILES}- \`$conflicted_file\`\n"
-                fi
-              done < <(git diff --name-only --diff-filter=U)
-
-              if [ -n "$MODIFY_DELETE_FILES" ]; then
-                MODIFY_DELETE_WARNING="$(printf '\n> [!WARNING]\n> Modify/delete conflicts were automatically resolved.\n>\n> %s' "$(echo -e "$MODIFY_DELETE_FILES")")"
-              fi
-
-              PARTIAL_APPLY_WARNING=""
-              PARTIAL_APPLY_FILES=""
-              while IFS= read -r conflicted_file; do
-                PR_FILE_DIFF=$(git diff "${MERGE_COMMIT}^1" "${MERGE_COMMIT}" -- "$conflicted_file")
-                git checkout --ours -- "$conflicted_file"
-                if [ -n "$PR_FILE_DIFF" ] && echo "$PR_FILE_DIFF" | git apply --3way --whitespace=nowarn 2>/dev/null; then
-                  echo "PR changes applied: $conflicted_file"
-                else
-                  PARTIAL_APPLY_FILES="${PARTIAL_APPLY_FILES}- \`$conflicted_file\`\n"
-                fi
-                git add "$conflicted_file"
-              done < <(git status --porcelain | grep '^UU' | awk '{print $2}')
-
-              if [ -n "$PARTIAL_APPLY_FILES" ]; then
-                PARTIAL_APPLY_WARNING="$(printf '\n> [!WARNING]\n> Partial conflict resolution occurred.\n>\n> %s' "$(echo -e "$PARTIAL_APPLY_FILES")")"
-              fi
-
-              if ! git cherry-pick --continue --no-edit; then
-                git cherry-pick --abort
-                exit 1
-              fi
-            fi
-          fi
-
-          if git diff --quiet "origin/$TARGET_BRANCH" HEAD; then
-            echo "No changes to backport"
-            exit 0
-          fi
+          git cherry-pick -m 1 "$MERGE_COMMIT"
 
           git push origin "$BACKPORT_BRANCH"
 
-          BASE_TITLE="$PREVIOUS_PR_TITLE"
-          REGEX_BACKPORT_WITH_AUTHOR='^Backport to [A-Z]+: (.+) \(hotfix by @[^)]+\)$'
-          REGEX_BACKPORT_WITHOUT_AUTHOR='^Backport to [A-Z]+: (.+)$'
-          if [[ "$BASE_TITLE" =~ $REGEX_BACKPORT_WITH_AUTHOR ]]; then
-            BASE_TITLE="${BASH_REMATCH[1]}"
-          elif [[ "$BASE_TITLE" =~ $REGEX_BACKPORT_WITHOUT_AUTHOR ]]; then
-            BASE_TITLE="${BASH_REMATCH[1]}"
-          fi
-
-          PR_TITLE="Backport to ${TARGET_ENV^^}: ${BASE_TITLE} (hotfix by @${ORIGINAL_AUTHOR})"
+          PR_TITLE="Backport to ${TARGET_ENV^^}: ${PREVIOUS_PR_TITLE}"
 
           PR_BODY="## Automated Backport
 
-          ${MODIFY_DELETE_WARNING}${PARTIAL_APPLY_WARNING}
+          This PR was automatically created for the Globalbiz Simulator hotfix flow.
 
-          This PR was automatically created after successful hotfix deployment to **${SOURCE_ENV}**.
+          ### Backport
 
-          ### Previous Deployment PR
+          - Source environment: ${SOURCE_ENV}
+          - Target environment: ${TARGET_ENV}
+          - Source branch: ${SOURCE_BRANCH}
+          - Target branch: ${TARGET_BRANCH}
+          - Source PR: #${PREVIOUS_PR_NUMBER}
+          - Commit: ${MERGE_COMMIT}
+          - Deployment run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-          - **Source PR:** #${PREVIOUS_PR_NUMBER}
-          - **Title:** ${PREVIOUS_PR_TITLE}
-          - **Deployed to ${SOURCE_ENV}:** Success
-          - **Deployment Run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          Review and merge when the target environment is ready."
 
-          ### Backport Information
-
-          - **Source Environment:** ${SOURCE_ENV}
-          - **Target Environment:** ${TARGET_ENV}
-          - **Backport Branch:** ${BACKPORT_BRANCH}
-          - **Target Branch:** ${TARGET_BRANCH}
-          - **Commit:** ${MERGE_COMMIT}
-          - **Original Author:** @${ORIGINAL_AUTHOR}
-          - **Original Hotfix PR:** #${ORIGINAL_HOTFIX_PR}
-          - **Timestamp:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')
-
-          ### Original Hotfix PR Details
-
-          ${ORIGINAL_CONTENT}
-
-          ---
-
-          **Note:** This PR contains the hotfix changes deployed to ${SOURCE_ENV}. Review and merge when ready to deploy to ${TARGET_ENV}."
-
-          EXISTING_PR=$(gh pr list --base "$TARGET_BRANCH" --head "$BACKPORT_BRANCH" --json number --jq '.[0].number' 2>/dev/null || echo "")
-
-          if [ -z "$EXISTING_PR" ]; then
-            echo "Creating backport PR"
-            gh pr create --base "$TARGET_BRANCH" --head "$BACKPORT_BRANCH" --title "$PR_TITLE" --body "$PR_BODY"
-          else
-            echo "Backport PR already exists: #$EXISTING_PR"
-            gh pr edit "$EXISTING_PR" --title "$PR_TITLE" --body "$PR_BODY"
-          fi
+          gh pr create \
+            --base "$TARGET_BRANCH" \
+            --head "$BACKPORT_BRANCH" \
+            --title "$PR_TITLE" \
+            --body "$PR_BODY"
 
   # ============================================================
-  # NOTIFY COMPLETION
+  # NOTIFY
   # ============================================================
 
   notify-completion:
+
     needs:
       - determine-environment
       - deploy
@@ -897,31 +861,45 @@ jobs:
 
     steps:
 
-      - name: Log completion
+      - name: Deployment summary
         run: |
+
+          echo ""
           echo "========================================"
-          echo "DEPLOYMENT COMPLETE"
-          echo "========================================"
-          echo "Environment: ${{ needs.determine-environment.outputs.environment }}"
-          echo "Deployment result: ${{ needs.deploy.result }}"
-          echo "Next environment: ${{ needs.determine-environment.outputs.next_environment }}"
-          echo "Promotion PR result: ${{ needs.create-promotion-pr.result }}"
-          echo "Backport PR result: ${{ needs.create-backport-pr.result }}"
+          echo "GLOBALBIZ SIMULATOR DEPLOYMENT"
           echo "========================================"
 
-          if [ "${{ needs.create-promotion-pr.result }}" == "success" ]; then
-            echo "Promotion PR created successfully"
-          fi
+          echo "Environment:"
+          echo "${{ needs.determine-environment.outputs.environment }}"
 
-          if [ "${{ needs.create-backport-pr.result }}" == "success" ]; then
-            echo "Backport PR created successfully"
-          fi
+          echo ""
+          echo "Source:"
+          echo "${{ github.head_ref }}"
 
-          if [ "${{ needs.deploy.result }}" == "success" ]; then
-            echo "Deployment successful"
+          echo ""
+          echo "Target:"
+          echo "${{ github.base_ref }}"
+
+          echo ""
+          echo "Deployment:"
+          echo "${{ needs.deploy.result }}"
+
+          echo ""
+          echo "Promotion PR:"
+          echo "${{ needs.create-promotion-pr.result }}"
+
+          echo ""
+          echo "Backport PR:"
+          echo "${{ needs.create-backport-pr.result }}"
+
+          echo "========================================"
+
+          if [[ "${{ needs.deploy.result }}" == "success" ]]; then
+
+            echo "Deployment successful."
+
           else
-            echo "Deployment failed"
-          fi
 
-          echo "========================================"
-          
+            echo "Deployment failed."
+
+          fi
