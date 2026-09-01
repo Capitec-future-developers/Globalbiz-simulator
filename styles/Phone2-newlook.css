@@ -42,10 +42,10 @@ body.new-look-active .content {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #16232f;
+    background-color: #0f212c;
     color: white;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 200;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,8 +63,8 @@ body.new-look-active .content {
 }
 
 .nl-fullname {
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.10rem;
+    font-weight: 500;
     color: #16232f;
     white-space: nowrap;
     overflow: hidden;
