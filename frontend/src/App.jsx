@@ -38,6 +38,10 @@ import GlobalOneMyInformation from './pages/globalone/GlobalOneMyInformation';
 import GlobalOneVirtualCardNew from './pages/globalone/GlobalOneVirtualCardNew';
 import GlobalOneVirtualCardLimits from './pages/globalone/GlobalOneVirtualCardLimits';
 import GlobalOneVirtualCardSuccess from './pages/globalone/GlobalOneVirtualCardSuccess';
+import ROB from './pages/ROB';
+import Home2 from './pages/Home2';
+import AppSars from './pages/AppSars';
+import ManageBusiness from './pages/ManageBusiness';
 
 
 function AppLayout() {
@@ -134,6 +138,9 @@ export default function App() {
 
                 <Route path="/settings" element={<PhoneSettings />} />
                 <Route path="/cards/detail" element={<ViewCardDetail />} />
+                <Route path="/home2" element={<Home2 />} />
+                <Route path="/sars" element={<AppSars />} />
+                <Route path="/manage-business" element={<ManageBusiness />} />
 
             </Route>
 
@@ -156,6 +163,8 @@ export default function App() {
                     path="/Sign-In"
                     element={<BusinessWelcomeScreen />}
                 />
+
+                <Route path="/rob" element={<ROB />} />
 
                 <Route
                     path="/Sign-In-personal"

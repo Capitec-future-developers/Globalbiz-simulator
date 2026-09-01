@@ -42,7 +42,7 @@ export default function PhoneShell({ children }) {
                             </NavLink>
                         ))}
                         <NavLink to="/explore" className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}>
-                            <span className="nav-icon material-icons-outlined">search</span>
+                            <img src="/images/explore.png" className="nav-icon" style={{ width: '80%' }} alt="Explore" />
                             <span>Explore</span>
                         </NavLink>
                     </div>
