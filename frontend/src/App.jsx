@@ -1,8 +1,9 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 
 import AppHeader from './components/AppHeader';
 import PhoneShell from './components/PhoneShell';
 import PhoneShells from './components/PhoneShells';
+
 import Home from './pages/Home';
 import Accounts from './pages/Accounts';
 import AccountDetails from './pages/AccountDetails';
@@ -20,35 +21,22 @@ import CardMachines from './pages/CardMachines';
 import SavingsAccount from './pages/SavingsAccount';
 import Profile from './pages/Profile';
 import Support from './pages/Support';
-import PhoneSettings from './pages/PhoneSettings';
-import ViewCardDetail from './pages/ViewCardDetail';
-import Database from './pages/Database';
-import OnlineBankingApp from './pages/computer/OnlineBankingApp';
-import BusinessWelcomeScreen from './pages/Sign-in/Sign-In.jsx';
-import SignInPersonal from './pages/Sign-in/SignInPersonal.jsx';
-import IOSHome from './pages/iOSHome';
-import GlobalOnePin from './pages/globalone/GlobalOnePin';
-import GlobalOneHome from './pages/globalone/GlobalOneHome';
-import GlobalOneTransact from './pages/globalone/GlobalOneTransact';
-import GlobalOneCards from './pages/globalone/GlobalOneCards';
-import GlobalOneProfile from './pages/globalone/GlobalOneProfile';
-import GlobalOneRewards from './pages/globalone/GlobalOneRewards';
-import GlobalOneInsure from './pages/globalone/GlobalOneInsure';
-import GlobalOneMyInformation from './pages/globalone/GlobalOneMyInformation';
-import GlobalOneVirtualCardNew from './pages/globalone/GlobalOneVirtualCardNew';
-import GlobalOneVirtualCardLimits from './pages/globalone/GlobalOneVirtualCardLimits';
-import GlobalOneVirtualCardSuccess from './pages/globalone/GlobalOneVirtualCardSuccess';
-import ROB from './pages/ROB';
-import Home2 from './pages/Home2';
-import AppSars from './pages/AppSars';
-import ManageBusiness from './pages/ManageBusiness';
 
+import OnlineBankingApp from './pages/computer/OnlineBankingApp';
+import BusinessWelcomeScreen from './pages/Sign-In.jsx';
+import IOSHome from './pages/iOSHome';
+
+import Landing from './pages/Landing.jsx';
+
+import { AutomationProvider } from './Automation/AutomationContext';
+import AutomationOverlay from './Automation/AutomationOverlay';
+import { appRouteCommands } from './Automation/appRouteCommands';
+import ROBapp from './pages/ROB/ROBapp';
 
 function AppLayout() {
     return (
         <>
             <AppHeader />
-
             <PhoneShell>
                 <Outlet />
             </PhoneShell>
@@ -56,12 +44,10 @@ function AppLayout() {
     );
 }
 
-
 function SigninLayout() {
     return (
         <>
             <AppHeader />
-
             <PhoneShells>
                 <Outlet />
             </PhoneShells>
@@ -69,131 +55,53 @@ function SigninLayout() {
     );
 }
 
-
 export default function App() {
+    // useNavigate() only works inside the Router — since App() itself is
+    // rendered inside <BrowserRouter> (in main.jsx/index.jsx), this is fine
+    // even though the widget is a sibling of <Routes> rather than a child
+    // route.
+    const navigate = useNavigate();
+
     return (
-        <Routes>
+        <AutomationProvider commands={appRouteCommands} onNavigate={navigate}>
+            <Routes>
 
-            {/* Main application */}
-            <Route element={<AppLayout />}>
+                <Route path="/" element={<Landing />} />
+                <Route path="/Landing" element={<Landing />} />
 
-                <Route path="/" element={<Home />} />
+                <Route element={<AppLayout />}>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/accounts" element={<Accounts />} />
+                    <Route path="/accounts/:accId" element={<AccountDetails />} />
+                    <Route path="/transact" element={<TransactHub />} />
+                    <Route path="/transact/transfer" element={<TransferFlow />} />
+                    <Route path="/transact/payments" element={<PaymentsHub />} />
+                    <Route path="/transact/payments/once-off" element={<OnceOffPayment />} />
+                    <Route path="/transact/payments/saved" element={<SavedBeneficiaryList />} />
+                    <Route path="/transact/beneficiaries" element={<BeneficiariesHub />} />
+                    <Route path="/cards" element={<Cards />} />
+                    <Route path="/explore" element={<Explore />} />
+                    <Route path="/explore/credit" element={<Credit />} />
+                    <Route path="/explore/card-machines" element={<CardMachines />} />
+                    <Route path="/explore/savings" element={<SavingsAccount />} />
+                    <Route path="/documents" element={<Documents />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/support" element={<Support />} />
+                    <Route path="/ROBapp" element={<ROBapp />} />
+                </Route>
 
-                <Route path="/accounts" element={<Accounts />} />
-                <Route
-                    path="/accounts/:accId"
-                    element={<AccountDetails />}
-                />
+                <Route path="/online-banking/*" element={<OnlineBankingApp />} />
 
-                <Route path="/transact" element={<TransactHub />} />
-                <Route
-                    path="/transact/transfer"
-                    element={<TransferFlow />}
-                />
-
-                <Route
-                    path="/transact/payments"
-                    element={<PaymentsHub />}
-                />
-
-                <Route
-                    path="/transact/payments/once-off"
-                    element={<OnceOffPayment />}
-                />
-
-                <Route
-                    path="/transact/payments/saved"
-                    element={<SavedBeneficiaryList />}
-                />
-
-                <Route
-                    path="/transact/beneficiaries"
-                    element={<BeneficiariesHub />}
-                />
-
-                <Route path="/cards" element={<Cards />} />
-
-                <Route path="/explore" element={<Explore />} />
-
-                <Route
-                    path="/explore/credit"
-                    element={<Credit />}
-                />
-
-                <Route
-                    path="/explore/card-machines"
-                    element={<CardMachines />}
-                />
-
-                <Route
-                    path="/explore/savings"
-                    element={<SavingsAccount />}
-                />
-
-                <Route path="/documents" element={<Documents />} />
-
-                <Route path="/profile" element={<Profile />} />
-
-                <Route path="/support" element={<Support />} />
-
-                <Route path="/settings" element={<PhoneSettings />} />
-                <Route path="/cards/detail" element={<ViewCardDetail />} />
-                <Route path="/home2" element={<Home2 />} />
-                <Route path="/sars" element={<AppSars />} />
-                <Route path="/manage-business" element={<ManageBusiness />} />
-
-            </Route>
+                <Route element={<SigninLayout />}>
+                    <Route path="/Sign-In" element={<BusinessWelcomeScreen />} />
+                    <Route path="/iOSHome" element={<IOSHome />} />
+                </Route>
 
 
-            {/* Database admin tool — full-page, no phone shell */}
-            <Route path="/database" element={<Database />} />
 
+            </Routes>
 
-            {/* Online banking */}
-            <Route
-                path="/online-banking/*"
-                element={<OnlineBankingApp />}
-            />
-
-
-            {/* Sign-in and iOS home */}
-            <Route element={<SigninLayout />}>
-
-                <Route
-                    path="/Sign-In"
-                    element={<BusinessWelcomeScreen />}
-                />
-
-                <Route path="/rob" element={<ROB />} />
-
-                <Route
-                    path="/Sign-In-personal"
-                    element={<SignInPersonal />}
-                />
-
-                <Route
-                    path="/iOSHome"
-                    element={<IOSHome />}
-                />
-
-            </Route>
-
-
-            {/* GlobalOne personal banking */}
-            <Route element={<SigninLayout />}>
-                <Route path="/global-one" element={<GlobalOnePin />} />
-                <Route path="/global-one/home" element={<GlobalOneHome />} />
-                <Route path="/global-one/transact" element={<GlobalOneTransact />} />
-                <Route path="/global-one/cards" element={<GlobalOneCards />} />
-                <Route path="/global-one/profile" element={<GlobalOneProfile />} />
-                <Route path="/global-one/rewards" element={<GlobalOneRewards />} />
-                <Route path="/global-one/insure" element={<GlobalOneInsure />} />
-                <Route path="/global-one/my-information" element={<GlobalOneMyInformation />} />
-                <Route path="/global-one/virtual-card-new" element={<GlobalOneVirtualCardNew />} />
-                <Route path="/global-one/virtual-card-limits" element={<GlobalOneVirtualCardLimits />} />
-                <Route path="/global-one/virtual-card-success" element={<GlobalOneVirtualCardSuccess />} />
-            </Route>
-
-        </Routes>
+            <AutomationOverlay />
+        </AutomationProvider>
     );
 }

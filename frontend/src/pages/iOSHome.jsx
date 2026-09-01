@@ -145,7 +145,8 @@ function IOSHome() {
 
         setTimeout(() => {
             setTimeout(() => {
-                window.location.href = "/online-banking";
+                window.location.href =
+                    "/landing";
             }, 1500);
         }, 2000);
     };
@@ -333,17 +334,17 @@ function IOSHome() {
 
                 .ios-home-content .icon {
                      width: 50px;
-                    height: 70px;
-                    border-radius: 18px;
-                    display: grid;
-                    place-items: center;
-                    color: #fff;
-                    font-weight: 700;
-                    font-size: 15px;
-                    box-shadow: 0 6px 12px rgba(0,0,0,.25);
-                    user-select: none;
-                    transition: transform 0.2s ease;
-                    overflow: hidden;
+    height: 70px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.25);
+    user-select: none;
+    transition: transform 0.2s ease;
+    overflow: hidden;
                 }
 
                 .ios-home-content .icon img {

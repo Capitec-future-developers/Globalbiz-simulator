@@ -4,7 +4,7 @@ export default function TransactHub() {
     return (
         <div className="nl-transact-screen new-look-only" style={{ display: 'block' }}>
             <div className="nl-transact-topbar">
-                <Link to="/" className="nl-back"><span className="material-icons-sharp">arrow_back</span></Link>
+                <Link to="/" className="nl-back"><span className="material-icons-sharp" style={{textDecoration: 'none'}}>arrow_back</span></Link>
                 <h2>Transact</h2>
             </div>
             <div className="nl-transact-menu">

@@ -10,9 +10,9 @@ export default function PaymentsHub() {
     }
 
     return (
-        <div className="nl-pay-section" style={{ padding: '45px 20px 20px' }}>
+        <div className="nl-pay-section" style={{ padding: '45px 20px 20px', textDecoration: 'none', scrollBehavior: 'smooth'}}>
             <div className="nl-pay-header">
-                <Link to="/transact" className="back-button"><span className="material-icons-sharp">arrow_back</span></Link>
+                <Link to="/transact" className="back-button"><span className="material-icons-sharp" style={{textDecoration: 'none'}}>arrow_back</span></Link>
                 <h2>Payments</h2>
             </div>
             <div className="nl-pay-card">

@@ -1,0 +1,228 @@
+.automation-highlighter {
+    position: absolute;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.automation-target {
+    position: relative;
+}
+
+/* Search box itself now lives in AppHeader (gb-app-header-search etc.) -
+   only the shared suggestions-dropdown styling stays here. The dropdown is
+   positioned absolute relative to its nearest positioned ancestor, so make
+   sure .search-container has position set (add !important only if your
+   existing gb-app-header-search rule doesn't already set one). */
+.search-container {
+    position: relative;
+}
+
+.suggestions-dropdown {
+    max-height: 260px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Rendered via a portal straight to document.body and positioned inline
+   (position/top/left/width) from the input's own getBoundingClientRect, so
+   it can't be clipped by a fixed/sticky header's overflow or stacking
+   context. Give it a z-index higher than the header's own. */
+.suggestions-dropdown-portal {
+    z-index: 100000;
+}
+
+.suggestion-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+    background: #f5f5f5;
+}
+
+.suggestion-title strong {
+    color: #007fff;
+}
+
+.suggestion-description {
+    font-size: 12px;
+    color: #666;
+}
+
+.automation-controls {
+    position: fixed;
+    top: 15px;
+    z-index: 10000;
+    display: flex;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.automation-controls button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background: #f0f0f0;
+}
+
+.automation-controls button:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+.automation-terminate {
+    color: #e74c3c;
+}
+
+.automation-settings-btn {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    z-index: 10000;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.automation-settings-panel {
+    position: fixed;
+    top: 25px;
+    left: 290px;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.setting-group {
+    margin-top: 15px;
+}
+
+.setting-group:first-child {
+    margin-top: 0;
+}
+
+.setting-group h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+}
+
+.setting-group p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.automation-color-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.automation-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.automation-switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+}
+
+.automation-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.automation-slider {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    transition: 0.4s;
+    border-radius: 26px;
+    cursor: pointer;
+}
+
+.automation-slider::before {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.automation-switch input:checked + .automation-slider {
+    background: #007fff;
+}
+
+.automation-switch input:checked + .automation-slider::before {
+    transform: translateX(20px);
+}
+
+.automation-transcript {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 300px;
+    z-index: 10000;
+}
+
+.automation-transcript-entry {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    font-size: 13px;
+}
+
+.automation-feedback {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    z-index: 10000;
+}
+
+.automation-feedback-info { background: rgba(52, 152, 219, 0.9); }
+.automation-feedback-success { background: rgba(46, 204, 113, 0.9); }
+.automation-feedback-warning { background: rgba(241, 196, 15, 0.9); }
+.automation-feedback-error { background: rgba(231, 76, 60, 0.9); }
+
+.automation-current-command-badge {
+    position: fixed;
+    top: 100px;
+    left: 15px;
+    z-index: 9998;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+}

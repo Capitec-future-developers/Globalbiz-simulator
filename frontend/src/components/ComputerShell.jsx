@@ -112,7 +112,7 @@ export default function ComputerShell({ children }) {
                             <Link to="/online-banking/manage-business" className="manage-business">Manage business profile</Link>
                         </div>
                     </div>
-                    <Link to="/online-banking/online-banking-signout" className="sign">Sign Out</Link>
+                    <Link to="/Landing" className="sign">Sign Out</Link>
                 </div>
             </div>
 

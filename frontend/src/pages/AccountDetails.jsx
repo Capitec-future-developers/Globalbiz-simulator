@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { getBalances, formatNlBalance } from '../hooks/useAccountStore';
 import { ACCOUNT_INFO } from '../data/accounts';
 import EmailStatementScreen from '../components/EmailStatementScreen';
+import Stub from './Stub';
 
 const CREDIT_MASKED_NUMBER = '4140 45•• •••• 3588';
 
@@ -85,37 +86,7 @@ export default function AccountDetails() {
     }
 
     if (screen === 'viewDetails') {
-        const FIELDS = [
-            { label: 'Account Nickname', value: nickname },
-            { label: 'Account Number', value: isCredit ? CREDIT_MASKED_NUMBER : info.number },
-            { label: 'Account Type', value: isCredit ? 'Credit' : 'Transact' },
-            { label: 'Status', value: 'Open' },
-            { label: 'Credit Interest', value: isCredit ? '2.5%' : '0%' },
-            { label: 'Debit Interest Rate', value: '0%' },
-        ];
-        return (
-            <div className="nl-account-details new-look-only" style={{ display: 'flex' }}>
-                <div className="nl-details-topbar">
-                    <button className="nl-back" type="button" onClick={() => setScreen('details')}>
-                        <span className="material-icons-sharp">arrow_back</span>
-                    </button>
-                    <div className="nl-details-title" style={{ flex: 1, textAlign: 'center' }}>
-                        <h2 style={{ fontSize: '1rem', margin: 0 }}>Account Details</h2>
-                    </div>
-                    <button type="button" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-                        <span className="material-icons-sharp">share</span>
-                    </button>
-                </div>
-                <div style={{ padding: '16px 20px', flex: 1 }}>
-                    {FIELDS.map(f => (
-                        <div key={f.label} className="account-item" style={{ padding: '12px 0', borderBottom: '1px solid #e4e8f2' }}>
-                            <div style={{ fontSize: '0.78rem', color: '#5f6b7a', marginBottom: 4 }}>{f.label}</div>
-                            <div style={{ fontWeight: 600 }}>{f.value}</div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
+        return <Stub title="Account details" />;
     }
 
     function openSheet() {

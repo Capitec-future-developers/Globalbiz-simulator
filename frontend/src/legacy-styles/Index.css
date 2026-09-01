@@ -1,15 +1,37 @@
-* {
+
+
+.gb-landing-page {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    top: 90px;
+}
+
+.gb-landing-page,
+.gb-landing-page * {
     box-sizing: border-box;
 }
 
-body {
+.gb-landing-page,
+.gb-landing-page * {
+    box-sizing: border-box;
+}
+
+.gb-landing-page {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background: #ffffff;
     color: #1f3a5f;
 }
 
-a {
+.gb-landing-page a {
     text-decoration: none;
 }
 
@@ -98,6 +120,7 @@ a {
 
 .gb-menu-panel {
     position: fixed;
+    top: 60px;
     left: 0;
     width: 100%;
     background: #ffffff;
@@ -230,6 +253,7 @@ a {
 
 .gb-hero {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 48px;
@@ -294,7 +318,8 @@ a {
 
 .gb-hero-art {
     position: relative;
-    flex: 0 0 380px;
+    flex: 1 1 320px;
+    max-width: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -512,7 +537,7 @@ a {
 /* ---------- Loading sequence ---------- */
 
 .gb-loading-overlay {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -572,6 +597,7 @@ a {
     width: 0%;
     background: linear-gradient(90deg, #17c3e6, #0070d2);
     border-radius: 4px;
+    animation: gb-progress 1.4s ease forwards;
 }
 
 @keyframes gb-bounce {

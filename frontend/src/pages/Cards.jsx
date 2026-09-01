@@ -353,7 +353,7 @@ export default function Cards() {
                 <div className="cd-card-list">
                     {visibleCards.map((c) => (
                         <button key={c.id} className="cd-card-row" type="button" onClick={() => openCard(c)}>
-                            <div className={'cd-card-chip' + (c.type === 'Virtual' ? ' cd-chip-virtual' : '')}><span>VISA</span></div>
+                            <img src='/images/Card-newlook.png' className={'cd-card-chip' + (c.type === 'Virtual' ? ' cd-chip-virtual' : '')}/>
                             <div className="cd-card-row-info">
                                 <div className="cd-card-row-number">{c.numberMasked}</div>
                                 <div className="cd-card-row-sub">{c.bank}</div>

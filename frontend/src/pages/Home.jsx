@@ -52,8 +52,8 @@ export default function Home() {
                     </Link>
                 </div>
 
-                <div className="favorites-container new-look-only" style={{ display: 'block' }}>
-                    <div className="favorites">
+                <div className="favorites-container new-look-only" style={{ display: 'block' , backgroundColor: '#eef1f9'}}>
+                    <div className="favorites" style={{ display: 'block' , backgroundColor: '#eef1f9'}}>
                         <div className="favorites-header">
                             <h4>Favourites</h4>
                             <a href="#" className="View">Edit</a>
@@ -78,7 +78,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-
+<br></br>
                 <div className="pending-container new-look-only" style={{ display: 'block' }}>
                     <div className="pending">
                         <div className="pending-header">

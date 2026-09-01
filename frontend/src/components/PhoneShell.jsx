@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 
 const NAV_ITEMS = [
-    { to: '/', label: 'Home', icon: 'home' },
+    { to: '/Home', label: 'Home', icon: 'home' },
     { to: '/accounts', label: 'Accounts', icon: 'accounts' },
     { to: '/transact', label: 'Transact', icon: 'transact' },
     { to: '/cards', label: 'Cards', icon: 'cards-action' }
@@ -9,7 +9,7 @@ const NAV_ITEMS = [
 
 
 
-const NO_NAV_ROUTES = ['/explore/savings', '/profile', '/Sign-In', '/IOSHome'];
+const NO_NAV_ROUTES = ['/explore/savings', '/profile', '/Sign-In', '/IOSHome', '/ROBapp'];
 
 export default function PhoneShell({ children }) {
     const location = useLocation();
@@ -37,12 +37,12 @@ export default function PhoneShell({ children }) {
                                 end={item.to === '/'}
                                 className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}
                             >
-                                <img src={`/images/${item.icon}.svg`} alt={item.label} />
+                                <img src={`/images/${item.icon}.svg`} alt={item.label}  style={{filter: 'brightness(0) invert(50%) contrast(80%)'}} />
                                 <span>{item.label}</span>
                             </NavLink>
                         ))}
                         <NavLink to="/explore" className={({ isActive }) => 'nav-item' + (isActive ? ' active' : '')}>
-                            <img src="/images/explore.png" className="nav-icon" style={{ width: '80%' }} alt="Explore" />
+                            <span className="nav-icon material-icons-outlined">search</span>
                             <span>Explore</span>
                         </NavLink>
                     </div>
