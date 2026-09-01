@@ -20,9 +20,24 @@ import CardMachines from './pages/CardMachines';
 import SavingsAccount from './pages/SavingsAccount';
 import Profile from './pages/Profile';
 import Support from './pages/Support';
+import PhoneSettings from './pages/PhoneSettings';
+import ViewCardDetail from './pages/ViewCardDetail';
+import Database from './pages/Database';
 import OnlineBankingApp from './pages/computer/OnlineBankingApp';
 import BusinessWelcomeScreen from './pages/Sign-in/Sign-In.jsx';
+import SignInPersonal from './pages/Sign-in/SignInPersonal.jsx';
 import IOSHome from './pages/iOSHome';
+import GlobalOnePin from './pages/globalone/GlobalOnePin';
+import GlobalOneHome from './pages/globalone/GlobalOneHome';
+import GlobalOneTransact from './pages/globalone/GlobalOneTransact';
+import GlobalOneCards from './pages/globalone/GlobalOneCards';
+import GlobalOneProfile from './pages/globalone/GlobalOneProfile';
+import GlobalOneRewards from './pages/globalone/GlobalOneRewards';
+import GlobalOneInsure from './pages/globalone/GlobalOneInsure';
+import GlobalOneMyInformation from './pages/globalone/GlobalOneMyInformation';
+import GlobalOneVirtualCardNew from './pages/globalone/GlobalOneVirtualCardNew';
+import GlobalOneVirtualCardLimits from './pages/globalone/GlobalOneVirtualCardLimits';
+import GlobalOneVirtualCardSuccess from './pages/globalone/GlobalOneVirtualCardSuccess';
 
 
 function AppLayout() {
@@ -117,7 +132,14 @@ export default function App() {
 
                 <Route path="/support" element={<Support />} />
 
+                <Route path="/settings" element={<PhoneSettings />} />
+                <Route path="/cards/detail" element={<ViewCardDetail />} />
+
             </Route>
+
+
+            {/* Database admin tool — full-page, no phone shell */}
+            <Route path="/database" element={<Database />} />
 
 
             {/* Online banking */}
@@ -136,10 +158,31 @@ export default function App() {
                 />
 
                 <Route
+                    path="/Sign-In-personal"
+                    element={<SignInPersonal />}
+                />
+
+                <Route
                     path="/iOSHome"
                     element={<IOSHome />}
                 />
 
+            </Route>
+
+
+            {/* GlobalOne personal banking */}
+            <Route element={<SigninLayout />}>
+                <Route path="/global-one" element={<GlobalOnePin />} />
+                <Route path="/global-one/home" element={<GlobalOneHome />} />
+                <Route path="/global-one/transact" element={<GlobalOneTransact />} />
+                <Route path="/global-one/cards" element={<GlobalOneCards />} />
+                <Route path="/global-one/profile" element={<GlobalOneProfile />} />
+                <Route path="/global-one/rewards" element={<GlobalOneRewards />} />
+                <Route path="/global-one/insure" element={<GlobalOneInsure />} />
+                <Route path="/global-one/my-information" element={<GlobalOneMyInformation />} />
+                <Route path="/global-one/virtual-card-new" element={<GlobalOneVirtualCardNew />} />
+                <Route path="/global-one/virtual-card-limits" element={<GlobalOneVirtualCardLimits />} />
+                <Route path="/global-one/virtual-card-success" element={<GlobalOneVirtualCardSuccess />} />
             </Route>
 
         </Routes>

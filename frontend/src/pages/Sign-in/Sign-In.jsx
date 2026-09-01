@@ -74,8 +74,7 @@ export default function BusinessWelcomeScreen() {
             el.style.transform = 'translateX(100%)';
             el.style.opacity = '0';
         }
-        // TODO: point this at your personal sign-in route once it exists
-        setTimeout(() => navigate('/Sign-In?from=business'), 300);
+        setTimeout(() => navigate('/Sign-In-personal'), 300);
     };
 
     return (

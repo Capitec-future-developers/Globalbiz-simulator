@@ -86,7 +86,7 @@ export default function Profile() {
             </div>
 
             <div className="nl-menu-card">
-                <Link to="/support" className="nl-menu-row">
+                <Link to="/settings" className="nl-menu-row">
                     <img className="nl-row-icon" src="/images/settings.svg" alt="" />
                     <span>Settings</span>
                 </Link>
