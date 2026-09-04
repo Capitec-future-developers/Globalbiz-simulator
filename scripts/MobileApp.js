@@ -223,7 +223,7 @@
         { id: 'notice', name: 'Notice Deposit', number: '4100 2538 34', display: '4100253834' }
     ];
 
-    var CARDHOLDERS = ['Miss MM Halvorson', 'Maryjane Halvorson', 'MM Halvorson'];
+    var CARDHOLDERS = ['Omphile Mohlala', 'Mr O Mohlala', 'O Mohlala'];
 
     function initAddVirtualCard() {
         var root = document.getElementById('maWizardRoot');
@@ -232,12 +232,13 @@
         var TOTAL_STEPS = 5;
         var state = {
             step: 1,
+            cardType: null,
             linkedAccount: LINKED_ACCOUNTS[0].id,
-            businessName: 'Jodi banks',
+            businessName: 'Omphile Mohlala',
             cardholder: CARDHOLDERS[0],
-            perTx: '2000',
-            daily: '200',
-            monthly: '200'
+            perTx: '1000',
+            daily: '5000',
+            monthly: '10000'
         };
 
         var progressFill = document.getElementById('maProgressFill');
@@ -269,12 +270,18 @@
             if (state.step === 1) {
                 stepBody.innerHTML =
                     '<div class="ma-card">' +
-                    '<div class="ma-card-row"><h3>Card type</h3></div>' +
-                    '<div class="ma-radio-row ma-radio-row-selected">' +
-                    '<span class="ma-radio-row-label">Virtual Debit Card</span>' +
-                    '<span class="ma-radio-dot"><span class="ma-radio-dot-fill"></span></span>' +
-                    '</div></div>';
-                continueBtn.disabled = false;
+                    '<div class="ma-card-row"><h3>Choose card type</h3></div>' +
+                    cardTypeRow('physical', 'Physical Card', 'Use your physical card for everyday payments.') +
+                    cardTypeRow('virtual', 'Virtual Card', 'Create a virtual card for online payments.') +
+                    '</div>';
+                stepBody.querySelectorAll('[data-card-type]').forEach(function (row) {
+                    row.addEventListener('click', function () {
+                        state.cardType = row.getAttribute('data-card-type');
+                        renderStep();
+                    });
+                });
+                continueBtn.disabled = !state.cardType;
+                continueBtn.classList.toggle('ma-btn-disabled', !state.cardType);
             } else if (state.step === 2) {
                 stepBody.innerHTML =
                     '<div class="ma-card"><div class="ma-card-row"><h3>Linked account</h3></div>' +
@@ -296,7 +303,7 @@
                 stepBody.innerHTML =
                     '<div class="ma-info-banner">' +
                     '<span class="ma-info-banner-icon">i</span>' +
-                    '<span>These details will be shown on your virtual card</span>' +
+                    '<span>These details will be shown on your ' + (state.cardType === 'physical' ? 'physical' : 'virtual') + ' card</span>' +
                     '</div>' +
                     '<div class="ma-card">' +
                     '<div class="ma-card-row"><h3>Card details</h3></div>' +
@@ -349,7 +356,7 @@
                 stepBody.innerHTML =
                     '<div class="ma-card">' +
                     '<div class="ma-card-row"><h3>Card details</h3><button class="ma-link" data-goto-step="3">Edit</button></div>' +
-                    '<div class="ma-detail-stack"><span class="ma-detail-label">Card Type</span><span class="ma-detail-value">Virtual Debit Card</span></div>' +
+                    '<div class="ma-detail-stack"><span class="ma-detail-label">Card Type</span><span class="ma-detail-value">' + cardTypeLabel() + '</span></div>' +
                     '<div class="ma-detail-stack"><span class="ma-detail-label">Linked account</span><span class="ma-detail-value">' + acc.display + '</span></div>' +
                     '<div class="ma-detail-stack"><span class="ma-detail-label">Business name</span><span class="ma-detail-value">' + state.businessName + '</span></div>' +
                     '<div class="ma-detail-stack"><span class="ma-detail-label">Cardholder name</span><span class="ma-detail-value">' + state.cardholder + '</span></div>' +
@@ -363,6 +370,19 @@
 
             backBtn.style.visibility = state.step === 1 ? 'hidden' : 'visible';
             continueBtn.textContent = state.step === TOTAL_STEPS ? 'Continue' : 'Continue';
+        }
+
+        function cardTypeRow(id, title, desc) {
+            var selected = state.cardType === id;
+            return '<div class="ma-radio-row' + (selected ? ' ma-radio-row-selected' : '') + '" data-card-type="' + id + '">' +
+                '<div><span class="ma-radio-row-label">' + title + '</span>' +
+                '<div style="font-size:0.78rem; color:#666; margin-top:3px;">' + desc + '</div></div>' +
+                '<span class="ma-radio-dot"><span class="ma-radio-dot-fill"></span></span>' +
+                '</div>';
+        }
+
+        function cardTypeLabel() {
+            return state.cardType === 'physical' ? 'Physical Debit Card' : 'Virtual Debit Card';
         }
 
         function limitField(key, label, value, hint) {
@@ -424,12 +444,13 @@
         });
 
         function showSuccess() {
+            var isPhysical = state.cardType === 'physical';
             root.innerHTML =
                 '<div class="ma-success-wrap">' +
                 '<div class="ma-success-icon"><div class="ma-success-icon-inner">' +
                 '<svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
                 '</div></div>' +
-                '<div class="ma-success-title">Virtual Debit Card created</div>' +
+                '<div class="ma-success-title">' + (isPhysical ? 'Physical Debit Card ordered' : 'Virtual Debit Card created') + '</div>' +
                 '</div>' +
                 '<div class="ma-actions"><a class="ma-btn-primary" href="Cards.html">Done</a></div>';
         }

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             numberFull: '4016 0001 0212 0155',
             securityCode: '279',
             validThru: '04/31',
-            bank: 'Kodi banks',
+            bank: 'Kodi Banks',
             holder: 'MR O MOHLALA',
             status: 'active',
             detailsVisible: false,

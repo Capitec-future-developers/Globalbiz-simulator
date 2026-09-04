@@ -1,84 +1,486 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../styles/phone-settings.css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
-  <link rel="icon" type="image/x-icon" href="../images/profile.jpg" />
-  <title>iPhone with White LCD</title>
-    <link rel="stylesheet" href="../styles/Header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documents</title>
+  <link rel="stylesheet" href="../styles/Phone2.css">
+  <link rel="stylesheet" href="../styles/chatbot.css">
+  <link rel="stylesheet" href="../styles/Header.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+  <style>
+    .nl-docs-content {
+      position: absolute;
+      top: 100px;
+      bottom: 89px;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 18px 20px;
+      background: #eef1f9;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nl-docs-content::-webkit-scrollbar { display: none; }
+
+    .nl-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .nl-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #16232f;
+      margin: 0 0 14px;
+    }
+    .nl-field-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #5f6b7a;
+      margin: 12px 0 8px;
+    }
+    .nl-radio-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 4px;
+      border-bottom: 1px solid #f0f2f6;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #16232f;
+    }
+    .nl-radio-row:last-child { border-bottom: none; }
+    .nl-radio-row-label { font-weight: 500; }
+    .nl-radio-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #c9cfda;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nl-radio-row.selected .nl-radio-dot { border-color: #1a56db; }
+    .nl-radio-row.selected .nl-radio-dot::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #1a56db;
+    }
+    .nl-actions { margin-top: 18px; }
+    .nl-btn-primary {
+      width: 100%;
+      background: #1a56db;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nl-btn-primary:disabled {
+      background: #9fb0c0;
+      cursor: not-allowed;
+    }
+    .nl-btn-outline {
+      width: 100%;
+      background: #fff;
+      color: #1a56db;
+      border: 1.5px solid #1a56db;
+      border-radius: 30px;
+      padding: 13px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 10px;
+    }
+    .nl-switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nl-switch-text { flex: 1; }
+    .nl-switch-title { font-size: 0.95rem; font-weight: 600; color: #16232f; }
+    .nl-switch-sub { font-size: 0.8rem; color: #5f6b7a; margin-top: 2px; }
+    .nl-switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      border-radius: 14px;
+      background: #cdd3dc;
+      border: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .nl-switch.on { background: #1a56db; }
+    .nl-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.2s;
+    }
+    .nl-switch.on::after { transform: translateX(20px); }
+    .nl-text-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e2e6ee;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+    .nl-success {
+      display: none;
+      text-align: center;
+      padding: 30px 10px;
+    }
+    .nl-success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #e8f8f0;
+      color: #1d8a4f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .nl-success-title { font-size: 1.1rem; font-weight: 700; color: #16232f; }
+    .nl-success-sub { font-size: 0.85rem; color: #5f6b7a; margin-top: 6px; }
+
+    .nl-email-sheet {
+      position: absolute;
+      inset: 0;
+      background: #eef1f9;
+      z-index: 30;
+      display: none;
+      flex-direction: column;
+      padding: 18px 20px;
+    }
+    .nl-email-sheet.visible { display: flex; }
+    .nl-email-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .nl-email-head h3 { margin: 0; font-size: 1.1rem; color: #16232f; }
+    .nl-icon-btn {
+      background: none;
+      border: none;
+      color: #16232f;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nl-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: nl-spin 0.8s linear infinite;
+      vertical-align: -3px;
+      margin-right: 8px;
+    }
+    @keyframes nl-spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
-
 <body>
-  
-<div class="iphone">
-    
-    <div class="volume-buttons">
-      <div class="volume-up"></div>
-      <div class="volume-down"></div>
-    </div>
-    <div class="power-button"></div>
 
-    
-    <div class="screen">
-      <div class="notch"></div>
-      <div class="screen-content">
-        
-        <div class="head">
-          <div class="arrow" id="sidebarToggle">
-            <a href="Phone2.html">
-              <span class="material-icons-sharp">arrow_back</span>
-            </a>
+<div class="iphone">
+  <div class="volume-buttons">
+    <div class="volume-up"></div>
+    <div class="volume-down"></div>
+  </div>
+  <div class="power-button"></div>
+
+  <div class="screen">
+    <div class="notch"></div>
+    <div class="screen-content">
+
+      <div class="head">
+        <a href="Phone2.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
+          <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
+        </a>
+        <div class="header" style="font-size: 0.95rem;">Documents</div>
+        <a href="Profile-newlook.html" id="profile-link" style="text-decoration: none;">
+          <div class="om-circle" id="profile-initials">OM</div>
+        </a>
+      </div>
+
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
+
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
+
+      <div class="nl-docs-content" id="nlDocsContent">
+
+        <div class="nl-card" id="generateCard">
+          <h3 class="nl-card-title">Generate documents</h3>
+
+          <label class="nl-field-label">Document type</label>
+          <div class="nl-radio-row selected nl-doc-type" data-doc-type="Account Confirmation Letter">
+            <span class="nl-radio-row-label">Account Confirmation Letter</span>
+            <span class="nl-radio-dot"><span></span></span>
           </div>
-          <div class="header" style="font-size: 15px; right: 10px;">Documents</div>
-          <a href="#profile" id="profile-link"></a>
+          <div class="nl-radio-row nl-doc-type" data-doc-type="Settle Quote">
+            <span class="nl-radio-row-label">Settle Quote</span>
+            <span class="nl-radio-dot"><span></span></span>
+          </div>
+          <div class="nl-radio-row nl-doc-type" data-doc-type="Stamped Statements">
+            <span class="nl-radio-row-label">Stamped Statements</span>
+            <span class="nl-radio-dot"><span></span></span>
+          </div>
+          <div class="nl-radio-row nl-doc-type" data-doc-type="IT3b Statements">
+            <span class="nl-radio-row-label">IT3b Statements</span>
+            <span class="nl-radio-dot"><span></span></span>
+          </div>
+
+          <label class="nl-field-label">Account</label>
+          <div class="nl-radio-row selected nl-account-choice" data-account-name="Current" data-account-number="1053 2681 65">
+            <span class="nl-radio-row-label">Current &middot; 1053 2681 65</span>
+            <span class="nl-radio-dot"><span></span></span>
+          </div>
+          <div class="nl-radio-row nl-account-choice" data-account-name="Notice Deposit" data-account-number="4100 2538 34">
+            <span class="nl-radio-row-label">Notice Deposit &middot; 4100 2538 34</span>
+            <span class="nl-radio-dot"><span></span></span>
+          </div>
+
+          <div class="nl-actions">
+            <button class="nl-btn-primary" id="generateBtn" type="button">Generate</button>
+          </div>
         </div>
 
-        
-        
-<div class="content" id="mainContent" style="display: none;"></div>
-
-
-<div id="document" class="new-page-container" style="display: flex;"></div>
-
-
-
-          <div class="bottom-nav" id="bottomNav">
-              <a href="Phone2.html" class="nav-item " id="Homee">
-                  <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
-                  <span>Home</span>
-              </a>
-              <a href="Phone%20accounts.html" class="nav-item">
-                  <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                  <span>Accounts</span>
-              </a>
-              <a href="Phone%20Transact.html" class="nav-item" id="transact">
-                  <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                  <span>Transact</span>
-              </a>
-              <a href="Phone-cards.html" class="nav-item " id="card">
-                  <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                  <span>Cards</span>
-              </a>
-              <a href="Explore.html" class="nav-item">
-                  <span class="nav-icon material-icons-outlined">search</span>
-                  <span>Explore</span>
-              </a>
+        <div class="nl-card" id="successCard" style="display: none;">
+          <div class="nl-success" style="display: block;">
+            <div class="nl-success-icon"><span class="material-icons-sharp">check</span></div>
+            <div class="nl-success-title" id="successTitle">Document generated</div>
+            <div class="nl-success-sub" id="successSub">Your document is ready to be sent.</div>
           </div>
-      </div> 
-    </div> 
+          <div class="nl-actions">
+            <button class="nl-btn-primary" id="emailDocBtn" type="button">Email document</button>
+            <button class="nl-btn-outline" id="doneBtn" type="button">Done</button>
+          </div>
+        </div>
 
-    <div class="home-indicator"></div>
-  </div> 
+        <div class="nl-card" id="scheduleCard">
+          <h3 class="nl-card-title">Schedule Statements</h3>
+          <div class="nl-switch-row">
+            <div class="nl-switch-text">
+              <div class="nl-switch-title">Email me my statements</div>
+              <div class="nl-switch-sub">Automatically send your bank statements every month.</div>
+            </div>
+            <button class="nl-switch" id="scheduleSwitch" type="button" aria-label="Toggle scheduled statements"></button>
+          </div>
+          <div id="scheduleForm" style="display: none;">
+            <label class="nl-field-label">Frequency</label>
+            <div class="nl-radio-row selected nl-freq" data-freq="Monthly">
+              <span class="nl-radio-row-label">Monthly</span>
+              <span class="nl-radio-dot"><span></span></span>
+            </div>
+            <div class="nl-radio-row nl-freq" data-freq="Quarterly">
+              <span class="nl-radio-row-label">Quarterly</span>
+              <span class="nl-radio-dot"><span></span></span>
+            </div>
+            <label class="nl-field-label" for="scheduleEmail">Email address</label>
+            <input class="nl-text-input" id="scheduleEmail" type="email" value="omphilestudent@gmail.com">
+            <div class="nl-actions">
+              <button class="nl-btn-primary" id="scheduleSave" type="button">Save</button>
+            </div>
+          </div>
+        </div>
 
-  
-  <script src="../scripts/Header.js"></script>
+      </div>
+
+      <div class="nl-email-sheet" id="emailSheet">
+        <div class="nl-email-head">
+          <button class="nl-icon-btn" id="emailBack" type="button" aria-label="Back">
+            <span class="material-icons-sharp">arrow_back</span>
+          </button>
+          <h3>Email document</h3>
+        </div>
+        <label class="nl-field-label" for="emailInput">Send to</label>
+        <input class="nl-text-input" id="emailInput" type="email" value="omphilestudent@gmail.com">
+        <div class="nl-actions">
+          <button class="nl-btn-primary" id="emailSendBtn" type="button">Send</button>
+          <button class="nl-btn-outline" id="emailCancelBtn" type="button">Cancel</button>
+        </div>
+      </div>
+
+      <div class="bottom-nav" id="bottomNav">
+        <a href="Phone2.html" class="nav-item" id="Homee">
+          <img src="../images/home.svg" alt="home" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Home</span>
+        </a>
+        <a href="Phone%20accounts.html" class="nav-item">
+          <img src="../images/accounts.svg" alt="accounts" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Accounts</span>
+        </a>
+        <a href="Phone%20Transact.html" class="nav-item" id="transact">
+          <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Transact</span>
+        </a>
+        <a href="Phone-cards.html" class="nav-item" id="cards">
+          <img src="../images/cards-action.svg" alt="cards" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Cards</span>
+        </a>
+        <a href="Explore.html" class="nav-item">
+          <img src="../images/explore.png" class="nav-icon" style="width: 80%;" alt="explore" />
+          <span>Explore</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="home-indicator"></div>
+</div>
+
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
-  <script src="../scripts/App.js"></script>
-  <script src="../scripts/phone-settings.js"></script>
-  <script src="../scripts/chatbot.js"></script>
-  <script src="../scripts/document.js"></script>
+<script src="../scripts/chatbot.js"></script>
+<script>
+(function () {
+  'use strict';
 
+  var docType = 'Account Confirmation Letter';
+  var accountName = 'Current';
+  var accountNumber = '1053 2681 65';
+
+  function selectRow(rows, selected) {
+    rows.forEach(function (r) { r.classList.remove('selected'); });
+    selected.classList.add('selected');
+  }
+
+  document.querySelectorAll('.nl-doc-type').forEach(function (row) {
+    row.addEventListener('click', function () {
+      selectRow(document.querySelectorAll('.nl-doc-type'), row);
+      docType = row.getAttribute('data-doc-type');
+    });
+  });
+
+  document.querySelectorAll('.nl-account-choice').forEach(function (row) {
+    row.addEventListener('click', function () {
+      selectRow(document.querySelectorAll('.nl-account-choice'), row);
+      accountName = row.getAttribute('data-account-name');
+      accountNumber = row.getAttribute('data-account-number');
+    });
+  });
+
+  document.querySelectorAll('.nl-freq').forEach(function (row) {
+    row.addEventListener('click', function () {
+      selectRow(document.querySelectorAll('.nl-freq'), row);
+    });
+  });
+
+  var generateBtn = document.getElementById('generateBtn');
+  var generateCard = document.getElementById('generateCard');
+  var successCard = document.getElementById('successCard');
+  var successTitle = document.getElementById('successTitle');
+  var successSub = document.getElementById('successSub');
+  var emailDocBtn = document.getElementById('emailDocBtn');
+  var doneBtn = document.getElementById('doneBtn');
+  var emailSheet = document.getElementById('emailSheet');
+  var emailBack = document.getElementById('emailBack');
+  var emailSendBtn = document.getElementById('emailSendBtn');
+  var emailCancelBtn = document.getElementById('emailCancelBtn');
+  var emailInput = document.getElementById('emailInput');
+
+  generateBtn.addEventListener('click', function () {
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = '<span class="nl-spinner"></span>Generating...';
+    setTimeout(function () {
+      generateCard.style.display = 'none';
+      successCard.style.display = 'block';
+      successTitle.textContent = docType + ' generated';
+      successSub.textContent = accountName + ' &middot; ' + accountNumber;
+      generateBtn.disabled = false;
+      generateBtn.textContent = 'Generate';
+    }, 1500);
+  });
+
+  function openEmailSheet() { emailSheet.classList.add('visible'); }
+  function closeEmailSheet() { emailSheet.classList.remove('visible'); }
+
+  emailDocBtn.addEventListener('click', openEmailSheet);
+  emailBack.addEventListener('click', closeEmailSheet);
+  emailCancelBtn.addEventListener('click', closeEmailSheet);
+  emailSendBtn.addEventListener('click', function () {
+    emailSendBtn.disabled = true;
+    emailSendBtn.innerHTML = '<span class="nl-spinner"></span>Sending...';
+    setTimeout(function () {
+      emailSendBtn.disabled = false;
+      emailSendBtn.textContent = 'Send';
+      closeEmailSheet();
+      generateCard.style.display = 'block';
+      successCard.style.display = 'none';
+    }, 1200);
+  });
+
+  doneBtn.addEventListener('click', function () {
+    generateCard.style.display = 'block';
+    successCard.style.display = 'none';
+  });
+
+  var scheduleSwitch = document.getElementById('scheduleSwitch');
+  var scheduleForm = document.getElementById('scheduleForm');
+  var scheduleSave = document.getElementById('scheduleSave');
+  var scheduleEmail = document.getElementById('scheduleEmail');
+
+  scheduleSwitch.addEventListener('click', function () {
+    var on = scheduleSwitch.classList.toggle('on');
+    scheduleForm.style.display = on ? 'block' : 'none';
+  });
+
+  scheduleSave.addEventListener('click', function () {
+    var originalText = scheduleSave.textContent;
+    scheduleSave.innerHTML = '<span class="nl-spinner"></span>Saving...';
+    setTimeout(function () {
+      scheduleSave.textContent = 'Saved';
+      setTimeout(function () { scheduleSave.textContent = originalText; }, 1500);
+    }, 1000);
+  });
+})();
+</script>
 </body>
 </html>

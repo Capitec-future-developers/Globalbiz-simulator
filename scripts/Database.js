@@ -94,8 +94,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function populateUsers() {
         const db = getDb();
-        const users = Object.keys(db);
+        const users = Object.keys(db).filter(function (email) {
+            const user = db[email];
+
+            if (
+                user &&
+                user.email &&
+                user.email !== email &&
+                db[user.email]
+            ) {
+                return false;
+            }
+
+            return true;
+        });
         const selected = userSelect.value;
+        const activeEmail = localStorage.getItem('activeUserEmail');
 
         userSelect.innerHTML = users.map(function (email) {
             const user = db[email];
@@ -109,6 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (users.includes(selected)) {
             userSelect.value = selected;
+        } else if (users.includes(activeEmail)) {
+            userSelect.value = activeEmail;
         }
     }
 
@@ -432,6 +448,10 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <option value="Credit" ${tx.type === 'Credit' ? 'selected' : ''}>
                                     Credit
                                 </option>
+
+                                <option value="Payment" ${tx.type === 'Payment' ? 'selected' : ''}>
+                                    Payment
+                                </option>
                             </select>
                         </td>
 
@@ -566,6 +586,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
                                     <option value="credit" ${acc.type === 'credit' ? 'selected' : ''}>
                                         Credit
+                                    </option>
+
+                                    <option value="loan" ${acc.type === 'loan' ? 'selected' : ''}>
+                                        Loan
+                                    </option>
+
+                                    <option value="business" ${acc.type === 'business' ? 'selected' : ''}>
+                                        Business
+                                    </option>
+
+                                    <option value="investment" ${acc.type === 'investment' ? 'selected' : ''}>
+                                        Investment
                                     </option>
                                 </select>
                             </label>
@@ -862,7 +894,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const amount = Number(tx.amount || 0);
             const fees = Number(tx.fees || 0);
 
-            if (tx.type === 'Credit') {
+            if (amount < 0 || fees < 0) {
+                balance += amount + fees;
+            } else if (tx.type === 'Credit') {
                 balance += amount;
             } else {
                 balance -= amount + fees;

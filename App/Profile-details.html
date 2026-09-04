@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile details</title>
+  <link rel="stylesheet" href="../styles/Phone2.css">
+  <link rel="stylesheet" href="../styles/chatbot.css">
+  <link rel="stylesheet" href="../styles/Header.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+  <style>
+    .nl-profile-content {
+      position: absolute;
+      top: 100px;
+      bottom: 89px;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 18px 20px;
+      background: #eef1f9;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nl-profile-content::-webkit-scrollbar { display: none; }
+
+    .nl-profile-hero {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #16232f;
+      color: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
+      margin-bottom: 16px;
+    }
+    .nl-avatar-lg {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #1a56db;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nl-profile-name { font-size: 1.15rem; font-weight: 700; }
+    .nl-profile-sub { font-size: 0.85rem; color: #9fb0c0; margin-top: 4px; }
+
+    .nl-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .nl-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #16232f;
+      margin: 0;
+      padding: 18px 18px 12px;
+    }
+    .nl-detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      border-top: 1px solid #f0f2f6;
+      gap: 12px;
+    }
+    .nl-detail-row:first-of-type { border-top: none; }
+    .nl-detail-label { font-size: 0.85rem; color: #5f6b7a; flex-shrink: 0; }
+    .nl-detail-value { font-size: 0.95rem; font-weight: 600; color: #16232f; text-align: right; word-break: break-word; }
+
+    .nl-accordion-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      border-top: 1px solid #f0f2f6;
+      padding: 16px 18px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #16232f;
+      font-family: inherit;
+      text-align: left;
+    }
+    .nl-accordion-toggle .nl-chevron {
+      color: #8a94a6;
+      transition: transform 0.2s;
+      font-size: 20px;
+    }
+    .nl-accordion-toggle.open .nl-chevron { transform: rotate(180deg); }
+    .nl-accordion-menu {
+      display: none;
+      flex-direction: column;
+      padding: 0 18px 14px;
+      background: #fafbfd;
+    }
+    .nl-accordion-menu a {
+      display: block;
+      padding: 12px 0;
+      color: #1a56db;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-top: 1px solid #f0f2f6;
+    }
+    .nl-accordion-menu a:first-child { border-top: none; }
+  </style>
+</head>
+<body>
+
+<div class="iphone">
+  <div class="volume-buttons">
+    <div class="volume-up"></div>
+    <div class="volume-down"></div>
+  </div>
+  <div class="power-button"></div>
+
+  <div class="screen">
+    <div class="notch"></div>
+    <div class="screen-content">
+
+      <div class="head">
+        <a href="Profile-newlook.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
+          <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
+        </a>
+        <div class="header" style="font-size: 0.95rem;">Profile details</div>
+        <a href="Profile-newlook.html" id="profile-link" style="text-decoration: none;">
+          <div class="om-circle" id="profile-initials">OM</div>
+        </a>
+      </div>
+
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
+
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
+
+      <div class="nl-profile-content">
+
+        <div class="nl-profile-hero">
+          <div class="nl-avatar-lg">OM</div>
+          <div>
+            <div class="nl-profile-name">Omphile Mohlala</div>
+            <div class="nl-profile-sub">Business profile &bull; Omphile Mohlala</div>
+          </div>
+        </div>
+
+        <div class="nl-card">
+          <h3 class="nl-card-title">Personal information</h3>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">Full name</span>
+            <span class="nl-detail-value">Omphile Mohlala</span>
+          </div>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">ID number</span>
+            <span class="nl-detail-value">020606 5238 088</span>
+          </div>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">Email address</span>
+            <span class="nl-detail-value">omphilestudent@gmail.com</span>
+          </div>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">Cellphone number</span>
+            <span class="nl-detail-value">071 234 5678</span>
+          </div>
+        </div>
+
+        <div class="nl-card">
+          <h3 class="nl-card-title">Business information</h3>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">Business name</span>
+            <span class="nl-detail-value">Omphile Mohlala</span>
+          </div>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">Business type</span>
+            <span class="nl-detail-value">Sole Proprietor</span>
+          </div>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">Registration number</span>
+            <span class="nl-detail-value">2023/884521/07</span>
+          </div>
+          <div class="nl-detail-row">
+            <span class="nl-detail-label">VAT number</span>
+            <span class="nl-detail-value">4020 1578 96</span>
+          </div>
+        </div>
+
+        <div class="nl-card">
+          <h3 class="nl-card-title">Privacy centre</h3>
+          <button class="nl-accordion-toggle" type="button" data-target="privacyMenu" id="privacyToggle">
+            <span>Manage your privacy settings</span>
+            <span class="nl-chevron material-icons-sharp">expand_more</span>
+          </button>
+          <div class="nl-accordion-menu" id="privacyMenu">
+            <a href="#">Privacy policy</a>
+            <a href="#">Protection of personal information</a>
+            <a href="#">Manage cookies</a>
+            <a href="#">Marketing preferences</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bottom-nav" id="bottomNav">
+        <a href="Phone2.html" class="nav-item" id="Homee">
+          <img src="../images/home.svg" alt="home" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Home</span>
+        </a>
+        <a href="Phone%20accounts.html" class="nav-item">
+          <img src="../images/accounts.svg" alt="accounts" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Accounts</span>
+        </a>
+        <a href="Phone%20Transact.html" class="nav-item" id="transact">
+          <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Transact</span>
+        </a>
+        <a href="Phone-cards.html" class="nav-item" id="cards">
+          <img src="../images/cards-action.svg" alt="cards" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Cards</span>
+        </a>
+        <a href="Explore.html" class="nav-item">
+          <img src="../images/explore.png" class="nav-icon" style="width: 80%;" alt="explore" />
+          <span>Explore</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="home-indicator"></div>
+</div>
+
+<script src="../scripts/App.js"></script>
+<script src="../scripts/Header.js"></script>
+<script src="../scripts/Automation.js"></script>
+<script src="../scripts/chatbot.js"></script>
+<script>
+(function () {
+  'use strict';
+  var toggle = document.getElementById('privacyToggle');
+  var menu = document.getElementById('privacyMenu');
+  if (!toggle || !menu) return;
+  toggle.addEventListener('click', function () {
+    var open = toggle.classList.toggle('open');
+    menu.style.display = open ? 'flex' : 'none';
+  });
+})();
+</script>
+</body>
+</html>

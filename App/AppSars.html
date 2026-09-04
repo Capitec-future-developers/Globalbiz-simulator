@@ -1,138 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone with Chatbot</title>
-    <link rel="stylesheet" href="../styles/Phone2.css">
-    <link rel="stylesheet" href="../styles/SARS.css">
-    <link rel="stylesheet" href="../styles/chatbot.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
-    <link rel="stylesheet" href="../styles/Header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SARS eFiling</title>
+  <link rel="stylesheet" href="../styles/Phone2.css">
+  <link rel="stylesheet" href="../styles/chatbot.css">
+  <link rel="stylesheet" href="../styles/Header.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+  <style>
+    .nl-sars-content {
+      position: absolute;
+      top: 100px;
+      bottom: 89px;
+      left: 0;
+      right: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 18px 20px;
+      background: #eef1f9;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nl-sars-content::-webkit-scrollbar { display: none; }
+
+    .nl-sars-hero {
+      background: #16232f;
+      color: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .nl-sars-label {
+      font-size: 0.78rem;
+      color: #9fb0c0;
+      margin-top: 12px;
+    }
+    .nl-sars-label:first-child { margin-top: 0; }
+    .nl-sars-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-top: 3px;
+      word-break: break-all;
+    }
+    .nl-sars-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #e8f8f0;
+      color: #1d8a4f;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-top: 8px;
+    }
+    .nl-sars-status .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2ecc71;
+    }
+
+    .nl-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .nl-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #16232f;
+      margin: 0;
+      padding: 18px 18px 12px;
+    }
+    .nl-link-row,
+    .nl-link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-top: 1px solid #f0f2f6;
+      color: #16232f;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      background: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      width: 100%;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nl-link-row .nl-chevron,
+    .nl-link-btn .nl-chevron { color: #8a94a6; font-size: 20px; }
+    .nl-link-btn:disabled { color: #9fb0c0; cursor: not-allowed; }
+    .nl-link-btn:disabled .nl-chevron { color: #9fb0c0; }
+
+    .nl-info-banner {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: #e8f4fd;
+      color: #1a56db;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.85rem;
+    }
+    .nl-info-banner.show { display: flex; }
+    .nl-info-banner-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #1a56db;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
 <body>
 
 <div class="iphone">
-    <div class="volume-buttons">
-        <div class="volume-up"></div>
-        <div class="volume-down"></div>
-    </div>
-    <div class="power-button"></div>
+  <div class="volume-buttons">
+    <div class="volume-up"></div>
+    <div class="volume-down"></div>
+  </div>
+  <div class="power-button"></div>
 
-    <div class="screen">
-        <div class="notch"></div>
-        <div class="screen-content">
+  <div class="screen">
+    <div class="notch"></div>
+    <div class="screen-content">
 
-            
-            <div class="head">
-                <a href="Phone2.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
-                    <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
-                </a>
-                <div class="header" style="font-size: 0.9rem;">Products & Services</div>
-                <a href="#contact" id="profile-link" style="text-decoration: none;">
+      <div class="head">
+        <a href="Profile-newlook.html" class="arrow" id="sidebarToggle" style="text-decoration: none;">
+          <span class="material-icons-sharp" id="menuIcon">arrow_back</span>
+        </a>
+        <div class="header" style="font-size: 0.95rem;">SARS eFiling</div>
+        <a href="Profile-newlook.html" id="profile-link" style="text-decoration: none;">
+          <div class="om-circle" id="profile-initials">OM</div>
+        </a>
+      </div>
 
-                </a>
-            </div>
+      <button class="chatbot-toggler">
+        <span class="material-icons-sharp">mode_comment</span>
+        <span class="material-icons-sharp">close</span>
+      </button>
 
-            
-            <button class="chatbot-toggler">
-                <span class="material-icons-sharp">mode_comment</span>
-                <span class="material-icons-sharp">close</span>
-            </button>
+      <div class="chatbot">
+        <header>
+          <h2>BIZCHAT</h2>
+          <span class="material-icons-sharp">close</span>
+        </header>
+        <ul class="chatbox">
+          <li class="chat incoming">
+            <span class="material-icons-sharp">account_circle</span>
+            <p>Welcome to Bizchat, how can I assist.</p>
+          </li>
+          <li class="chat outgoing"></li>
+        </ul>
+        <div class="chat-input">
+          <textarea placeholder="Type your message here..." required></textarea>
+          <span id="send-btn" class="material-icons-sharp">send</span>
+        </div>
+      </div>
 
-            
-            <div class="chatbot">
-                <header>
-                    <h2>BIZCHAT</h2>
-                    <span class="material-icons-sharp">close</span>
-                </header>
-                <ul class="chatbox">
-                    <li class="chat incoming">
-                        <span class="material-icons-sharp">account_circle</span>
-                        <p>Welcome to Bizchat, how can I assist.</p>
-                    </li>
-                    <li class="chat outgoing"></li>
-                </ul>
-                <div class="chat-input">
-                    <textarea placeholder="Type your message here..." required></textarea>
-                    <span id="send-btn" class="material-icons-sharp">send</span>
-                </div>
-            </div>
+      <div class="nl-sars-content">
 
-            
-            <div class="content" id="mainContent">
-                <div class="headers"><br>
-                    <span>User ID</span>
-                    <span style="font-weight: bold; font-size: 0.8rem;">52376377</span>
-                    <span class="yoh">Profile ID</span>
-                    <span class="yoh" style="font-weight: bold; font-size: 0.8rem; " >SARSEF123456543</span>
-
-                </div>
-
-                <div class="body">
-                    <div class="Save" style="background: #FFFFFF;">
-
-                        <div class="line-right" style="position: relative; left: 10px;">
-                        </div>
-
-                        <p style="white-space: nowrap; font-weight: 500; font-size: 0.7rem; position: relative; top: 35px; left: 1px;">
-                            Payments To Action
-                        </p>
-                        <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: -140px; bottom: -20px; ">chevron_right</span>
-                    </div>
-
-                    <div class="Save" style="background: #FFFFFF; top: -10px;">
-                        <div class="line-right" style="position: relative; left: 5px;">
-                        </div>
-
-                        <p style="white-space: nowrap; font-weight: 500; font-size: 0.7rem; position: relative; top: 35px; left: 1px;">
-                            Payments History
-                        </p>
-                        <span class="material-icons-sharp" style="position: relative; color: #00aeff; right: -150px; bottom: -20px; ">chevron_right</span>
-                    </div>
-                </div>
-
-
-            </div>
-
+        <div class="nl-sars-hero">
+          <div class="nl-sars-label">User ID</div>
+          <div class="nl-sars-value" id="sarsUserId">33961518</div>
+          <div class="nl-sars-label">Profile ID</div>
+          <div class="nl-sars-value" id="sarsProfileId">SARSEF93351787</div>
+          <div class="nl-sars-label">Status</div>
+          <div class="nl-sars-status"><span class="dot"></span>Active</div>
         </div>
 
-
-        
-        <div class="bottom-nav" id="bottomNav">
-            <a href="Phone2.html" class="nav-item " id="Homee">
-                <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
-                <span>Home</span>
-            </a>
-            <a href="Phone%20accounts.html" class="nav-item">
-                <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                <span>Accounts</span>
-            </a>
-            <a href="Phone%20Transact.html" class="nav-item" id="transact">
-                <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                <span>Transact</span>
-            </a>
-            <a href="Phone-cards.html" class="nav-item" id="cards">
-                <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
-                <span>Cards</span>
-            </a>
-            <a href="Explore.html" class="nav-item ">
-                <span class="nav-icon material-icons-outlined">search</span>
-                <span>Explore</span>
-            </a>
+        <div class="nl-card">
+          <h3 class="nl-card-title">Profile</h3>
+          <button class="nl-link-btn" id="sarsRegenerateBtn" type="button">
+            <span>Regenerate Profile ID</span>
+            <span class="nl-chevron material-icons-sharp">refresh</span>
+          </button>
+          <a class="nl-link-row" href="#">
+            <span>Payments To Action</span>
+            <span class="nl-chevron material-icons-sharp">chevron_right</span>
+          </a>
+          <a class="nl-link-row" href="#">
+            <span>Payments History</span>
+            <span class="nl-chevron material-icons-sharp">chevron_right</span>
+          </a>
         </div>
 
+        <div class="nl-info-banner" id="sarsRegenNote">
+          <span class="nl-info-banner-icon">i</span>
+          <span>A new Profile ID has been generated. You will receive it by email.</span>
+        </div>
+
+      </div>
+
+      <div class="bottom-nav" id="bottomNav">
+        <a href="Phone2.html" class="nav-item" id="Homee">
+          <img src="../images/home.svg" alt="home" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Home</span>
+        </a>
+        <a href="Phone%20accounts.html" class="nav-item">
+          <img src="../images/accounts.svg" alt="accounts" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Accounts</span>
+        </a>
+        <a href="Phone%20Transact.html" class="nav-item" id="transact">
+          <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Transact</span>
+        </a>
+        <a href="Phone-cards.html" class="nav-item" id="cards">
+          <img src="../images/cards-action.svg" alt="cards" style="filter: brightness(0) invert(50%) contrast(80%);" />
+          <span>Cards</span>
+        </a>
+        <a href="Explore.html" class="nav-item">
+          <img src="../images/explore.png" class="nav-icon" style="width: 80%;" alt="explore" />
+          <span>Explore</span>
+        </a>
+      </div>
+
     </div>
+  </div>
+  <div class="home-indicator"></div>
 </div>
 
-</div>
-
-
-<script src="../scripts/App.js" ></script>
-
+<script src="../scripts/App.js"></script>
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var regenBtn = document.getElementById('sarsRegenerateBtn');
+  var note = document.getElementById('sarsRegenNote');
+  var profileId = document.getElementById('sarsProfileId');
+  if (!regenBtn) return;
+
+  regenBtn.addEventListener('click', function () {
+    var base = 'SARSEF';
+    var num = '';
+    for (var i = 0; i < 8; i++) num += Math.floor(Math.random() * 10);
+    profileId.textContent = base + num;
+    regenBtn.disabled = true;
+    note.classList.add('show');
+    setTimeout(function () {
+      regenBtn.disabled = false;
+      note.classList.remove('show');
+    }, 4000);
+  });
+})();
+</script>
 </body>
 </html>

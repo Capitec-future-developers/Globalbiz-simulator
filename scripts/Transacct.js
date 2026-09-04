@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'omphilestudent@gmail.com': {
                     id: 'usr_001',
                     name: 'Omphile Mohlala',
-                    email: 'user1@example.com',
+                    email: 'omphilestudent@gmail.com',
                     phone: '+27821234567',
                     profileImage: 'profile1.jpg',
                     accounts: [
@@ -364,6 +364,118 @@ document.addEventListener('DOMContentLoaded', function() {
                     beneficiaries: []
                 }
             };
+            localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
+        }
+
+        repairDuplicateUserEntries();
+    }
+
+    function getLastLoginTime(user) {
+        const value = user && user.security && user.security.lastLogin;
+
+        if (!value) {
+            return 0;
+        }
+
+        const time = new Date(value).getTime();
+
+        return Number.isNaN(time) ? 0 : time;
+    }
+
+    function mergeDuplicateUser(target, source) {
+        ['accounts', 'beneficiaries'].forEach(function (listName) {
+            const list = [];
+            const seen = {};
+
+            (source[listName] || [])
+                .concat(target[listName] || [])
+                .forEach(function (item) {
+                    if (!item || !item.id || seen[item.id]) {
+                        return;
+                    }
+
+                    seen[item.id] = true;
+                    list.push(item);
+                });
+
+            if (list.length) {
+                target[listName] = list;
+            }
+        });
+
+        if (
+            getLastLoginTime(source) > getLastLoginTime(target) &&
+            source.security
+        ) {
+            target.security = source.security;
+        }
+
+        return target;
+    }
+
+    function repairDuplicateUserEntries() {
+        const userDatabase = getUserDatabase();
+        const canonicalKey = 'omphilestudent@gmail.com';
+        let changed = false;
+
+        Object.keys(userDatabase).forEach(function (key) {
+            const user = userDatabase[key];
+
+            if (!user) {
+                return;
+            }
+
+            if (user.email && user.email !== key) {
+                user.email = key;
+                changed = true;
+            }
+        });
+
+        Object.keys(userDatabase).forEach(function (key) {
+            const user = userDatabase[key];
+
+            if (!user || !user.id) {
+                return;
+            }
+
+            Object.keys(userDatabase).forEach(function (otherKey) {
+                const other = userDatabase[otherKey];
+
+                if (
+                    !other ||
+                    otherKey === key ||
+                    other.id !== user.id
+                ) {
+                    return;
+                }
+
+                let keepKey = key;
+                let dropKey = otherKey;
+
+                if (
+                    otherKey === canonicalKey ||
+                    (
+                        key !== canonicalKey &&
+                        getLastLoginTime(other) > getLastLoginTime(user)
+                    )
+                ) {
+                    keepKey = otherKey;
+                    dropKey = key;
+                }
+
+                const merged = mergeDuplicateUser(
+                    userDatabase[keepKey],
+                    userDatabase[dropKey]
+                );
+
+                merged.email = keepKey;
+                userDatabase[keepKey] = merged;
+                delete userDatabase[dropKey];
+                changed = true;
+            });
+        });
+
+        if (changed) {
             localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
         }
     }
