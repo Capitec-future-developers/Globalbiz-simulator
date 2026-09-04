@@ -286,3 +286,375 @@ table.db-table input:focus, table.db-table select:focus {
     color: #8a94a3;
     padding: 0 18px 14px;
 }
+.db-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 16px 24px;
+    background: #fff;
+    border-bottom: 1px solid #e1e5eb;
+}
+
+.db-user-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.db-user-control label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #384252;
+}
+
+.db-toolbar select,
+.db-search {
+    min-height: 38px;
+    border: 1px solid #d5dbe4;
+    border-radius: 7px;
+    background: #fff;
+    padding: 0 11px;
+    font-size: 13px;
+    outline: none;
+}
+
+.db-search {
+    min-width: 260px;
+    flex: 1;
+}
+
+.db-search:focus,
+.db-toolbar select:focus {
+    border-color: #0066ff;
+}
+
+.db-btn {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid #d5dbe4;
+    border-radius: 7px;
+    padding: 0 12px;
+    background: #fff;
+    color: #384252;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.db-btn:hover {
+    background: #f5f7fa;
+}
+
+.db-btn-primary {
+    background: #0066ff;
+    color: #fff;
+    border-color: #0066ff;
+}
+
+.db-btn-primary:hover {
+    background: #0055d6;
+}
+
+.db-btn-danger {
+    color: #c0272d;
+    border-color: #e7b9bc;
+}
+
+.db-btn-danger:hover {
+    background: #fdeceb;
+}
+
+.db-btn-small {
+    min-height: 30px;
+    padding: 0 9px;
+    font-size: 11px;
+}
+
+.db-btn .material-icons-sharp {
+    font-size: 17px;
+}
+
+.db-import-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.db-stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    padding: 18px 24px;
+    background: #f5f7fa;
+}
+
+.db-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 78px;
+    padding: 14px;
+    background: #fff;
+    border: 1px solid #e1e5eb;
+    border-radius: 10px;
+}
+
+.db-stat > .material-icons-sharp {
+    font-size: 27px;
+    color: #0066ff;
+}
+
+.db-stat div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.db-stat strong {
+    color: #16232f;
+    font-size: 16px;
+}
+
+.db-stat span {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.db-account-fields {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.db-account-fields label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #6b7280;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.db-account-fields input,
+.db-account-fields select {
+    width: 100%;
+    min-height: 36px;
+    border: 1px solid #dfe3ea;
+    border-radius: 7px;
+    padding: 0 9px;
+    background: #fff;
+    color: #16232f;
+    font-size: 12px;
+}
+
+.db-account-fields input:focus,
+.db-account-fields select:focus {
+    outline: none;
+    border-color: #0066ff;
+}
+
+.db-section-title {
+    margin: 14px 0 8px;
+    color: #384252;
+    font-size: 13px;
+}
+
+.db-account-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.db-muted,
+.db-protected {
+    color: #8a94a3;
+    font-size: 11px;
+}
+
+.db-badge {
+    display: inline-flex;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: #e8f0ff;
+    color: #0066ff;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+    .db-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .db-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .db-account-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .db-search {
+        min-width: 100%;
+        order: -1;
+    }
+}
+
+@media (max-width: 500px) {
+    .db-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .db-toolbar {
+        padding: 12px;
+    }
+}
+
+.db-live-account {
+    border: 1px solid #e1e5eb;
+    border-radius: 10px;
+    background: #fff;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.db-live-account-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.db-live-account-header > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.db-live-account-header strong {
+    color: #16232f;
+    font-size: 14px;
+}
+
+.db-live-account-header span {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.db-live-balance {
+    white-space: nowrap;
+    font-size: 18px !important;
+}
+
+.db-live-account-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.db-live-account-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #6b7280;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.db-live-account-grid input {
+    width: 100%;
+    min-height: 36px;
+    box-sizing: border-box;
+    border: 1px solid #dfe3ea;
+    border-radius: 7px;
+    padding: 0 9px;
+    background: #fff;
+    color: #16232f;
+    font-size: 12px;
+}
+
+.db-live-account-grid input:focus {
+    outline: none;
+    border-color: #0066ff;
+}
+
+.db-live-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.db-live-transactions {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #edf0f4;
+}
+
+.db-live-transactions > strong {
+    display: block;
+    margin-bottom: 8px;
+    color: #384252;
+    font-size: 12px;
+}
+
+.db-live-transaction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f3f6;
+}
+
+.db-live-transaction > span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: #384252;
+    font-size: 12px;
+}
+
+.db-live-transaction small {
+    color: #8a94a3;
+    font-size: 10px;
+}
+
+.db-live-transaction strong {
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.positive {
+    color: #16803c;
+}
+
+.negative {
+    color: #c0272d;
+}
+
+@media (max-width: 900px) {
+    .db-live-account-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .db-live-account-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .db-live-account-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

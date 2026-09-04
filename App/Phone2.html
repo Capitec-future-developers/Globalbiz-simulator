@@ -7,46 +7,81 @@
     <link rel="stylesheet" href="../styles/Phone2.css">
     <link rel="stylesheet" href="../styles/Phone2-newlook.css">
     <link rel="stylesheet" href="../styles/chatbot.css">
+    <link rel="stylesheet" href="../styles/Header.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
-    <link rel="stylesheet" href="../styles/Header.css">
 </head>
 <body>
 
 <div class="iphone">
+
     <div class="volume-buttons">
         <div class="volume-up"></div>
         <div class="volume-down"></div>
     </div>
+
     <div class="power-button"></div>
 
     <div class="screen">
+
         <div class="notch"></div>
+
         <div class="screen-content">
 
             <div class="head classic-only">
                 <div class="arrow" id="sidebarToggle">
                     <span class="material-icons-sharp" id="menuIcon">menu</span>
                 </div>
-                <div class="header" style="left: -10px;">GlobalBiz</div>
+
+                <div class="header" style="left: -10px;">
+                    GlobalBiz
+                </div>
+
                 <a href="#contact" id="profile-link" style="text-decoration: none;">
-                    <div class="om-circle" id="profile-initials" style="text-decoration: none;">OM</div>
+                    <div class="om-circle" id="profile-initials">
+                        OM
+                    </div>
                 </a>
             </div>
 
             <div class="new-look-header new-look-only">
-                <a href="Profile-newlook.html" class="nl-avatar-link" aria-label="Open profile menu">
+                <a
+                        href="Profile-newlook.html"
+                        class="nl-avatar-link"
+                        aria-label="Open profile menu"
+                >
                     <div class="nl-avatar">OM</div>
                 </a>
-                <div class="nl-identity">
-                    <div class="nl-fullname">Omphile Mohlala</div>
 
-                    <a href="Profile-newlook.html" class="nl-profile-toggle">
-                        Omphile Mohlala...<span class="material-icons-sharp" style="color: black;">arrow_drop_down</span>
+                <div class="nl-identity">
+                    <div class="nl-fullname">
+                        Omphile Mohlala
+                    </div>
+
+                    <a
+                            href="Profile-newlook.html"
+                            class="nl-profile-toggle"
+                    >
+                        Omphile Mohlala...
+                        <span
+                                class="material-icons-sharp"
+                                style="color: black;"
+                        >
+                            arrow_drop_down
+                        </span>
                     </a>
                 </div>
-                <a href="Support.html?from=business" class="nl-call-icon" aria-label="Call support">
-                    <img src="../images/call.png" style="height: 40px;" alt="Call support">
+
+                <a
+                        href="Support.html?from=business"
+                        class="nl-call-icon"
+                        aria-label="Call support"
+                >
+                    <img
+                            src="../images/call.png"
+                            style="height: 40px;"
+                            alt="Call support"
+                    >
                 </a>
             </div>
 
@@ -60,30 +95,63 @@
                     <h2>BIZCHAT</h2>
                     <span class="material-icons-sharp">close</span>
                 </header>
+
                 <ul class="chatbox">
                     <li class="chat incoming">
                         <span class="material-icons-sharp">account_circle</span>
                         <p>Welcome to Bizchat, how can I assist.</p>
                     </li>
+
                     <li class="chat outgoing"></li>
                 </ul>
+
                 <div class="chat-input">
-                    <textarea placeholder="Type your message here..." required></textarea>
-                    <span id="send-btn" class="material-icons-sharp">send</span>
+                    <textarea
+                            placeholder="Type your message here..."
+                            required
+                    ></textarea>
+
+                    <span
+                            id="send-btn"
+                            class="material-icons-sharp"
+                    >
+                        send
+                    </span>
                 </div>
             </div>
 
             <div class="overlay" id="overlay"></div>
 
-            <div class="profile-popup" id="profilePopup" style=" width: 330px; left: 150px;">
-                <div class="popup-header">Profile</div>
+            <div
+                    class="profile-popup"
+                    id="profilePopup"
+                    style="width: 330px; left: 150px;"
+            >
+                <div class="popup-header">
+                    Profile
+                </div>
+
                 <div class="bottom-seperator"></div>
 
                 <div class="current-profile">
-                    <span class="material-icons-sharp">account_circle</span>
+                    <span class="material-icons-sharp">
+                        account_circle
+                    </span>
+
                     <div class="profile-info">
-                        <div class="profile-name" id="current-profile-name">Omphile Mohlala</div>
-                        <div class="profile-email" id="current-profile-email">omphilestudent@gmail.com</div>
+                        <div
+                                class="profile-name"
+                                id="current-profile-name"
+                        >
+                            Omphile Mohlala
+                        </div>
+
+                        <div
+                                class="profile-email"
+                                id="current-profile-email"
+                        >
+                            omphilestudent@gmail.com
+                        </div>
                     </div>
                 </div>
 
@@ -91,229 +159,602 @@
 
                 <div class="profile-switcher">
                     <h4>Switch Profile</h4>
-                    <div class="profile-option" data-user="omphilestudent@mail.com">
-                        <span class="material-icons-sharp">account_circle</span>
+
+                    <div
+                            class="profile-option"
+                            data-user="omphilestudent@mail.com"
+                    >
+                        <span class="material-icons-sharp">
+                            account_circle
+                        </span>
+
                         <div class="profile-info">
-                            <div class="profile-name">Omphile Mohlala</div>
-                            <div class="profile-email">omphilesudent@gmail.com</div>
+                            <div class="profile-name">
+                                Omphile Mohlala
+                            </div>
+
+                            <div class="profile-email">
+                                omphilesudent@gmail.com
+                            </div>
                         </div>
                     </div>
-                    <div class="profile-option" data-user="Kodi@codes.com">
-                        <span class="material-icons-sharp">account_circle</span>
+
+                    <div
+                            class="profile-option"
+                            data-user="Kodi@codes.com"
+                    >
+                        <span class="material-icons-sharp">
+                            account_circle
+                        </span>
+
                         <div class="profile-info">
-                            <div class="profile-name">Kodi Codes PTY LTD</div>
-                            <div class="profile-email">Kodi@codes.com</div>
+                            <div class="profile-name">
+                                Kodi Codes PTY LTD
+                            </div>
+
+                            <div class="profile-email">
+                                Kodi@codes.com
+                            </div>
                         </div>
                     </div>
-                    <div class="profile-option" data-user="business@example.com">
-                        <span class="material-icons-sharp">account_circle</span>
+
+                    <div
+                            class="profile-option"
+                            data-user="business@example.com"
+                    >
+                        <span class="material-icons-sharp">
+                            account_circle
+                        </span>
+
                         <div class="profile-info">
-                            <div class="profile-name">ABC Enterprises</div>
-                            <div class="profile-email">business@example.com</div>
+                            <div class="profile-name">
+                                ABC Enterprises
+                            </div>
+
+                            <div class="profile-email">
+                                business@example.com
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="bottom-seperator"></div>
 
-                <a href="Managebusiness.html" class="manage-business">Manage business profile</a>
+                <a
+                        href="Managebusiness.html"
+                        class="manage-business"
+                >
+                    Manage business profile
+                </a>
             </div>
 
             <div class="sidebar" id="sidebar">
+
                 <a href="Phone2.html" class="active">
-                    <span class="material-icons-sharp"><img src="../images/home.svg"> </span> Home
+                    <span class="material-icons-sharp">
+                        <img src="../images/home.svg">
+                    </span>
+                    Home
                 </a>
+
                 <p class="side">MANAGEMENT</p>
+
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle">
-                        <span class="material-icons-sharp"><img src="../images/authorisations.svg"> </span>
-                        Authorisations
-                        <span class="dropdown-arrow"><img src="../images/chevron-down-white.svg"></span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="../Computer/inprogress.html">Transactions</a>
-                        <a href="../Computer/inprogress.html">Beneficiaries</a>
-                        <a href="../Computer/inprogress.html">User Management</a>
-                        <a href="../Computer/inprogress.html">Account & Limits</a>
-                        <a href="../Computer/inprogress.html">Authorisation Levels</a>
-                        <a href="../Computer/inprogress.html">Notification Setup</a>
-                        <a href="../Computer/inprogress.html">Messages</a>
-                    </div>
-                </div>
-                <p class="side">SERVICES</p>
-                <a href="Explore.html">
-                    <span class="material-icons-sharp"><img src="../images/productsandservices.svg"></span> Products & Services
-                </a>
-                <a href="AppSars.html">
-                    <span class="material-icons-sharp"><img src="../images/efiling.svg"> </span> SARS eFILLING
-                </a>
-                <a href="document.html" id="documents">
-                    <span class="material-icons-sharp"><img src="../images/document.svg"> </span>
-                    Documents
-                </a>
-                <a href="Phone-settings.html" id="settings">
-                    <span class="material-icons-sharp"><img src="../images/settings.svg"> </span> Settings
-                </a>
-                <a href="Phone.html" style="position: relative; bottom: -60px; border-top: 1px solid #FFFFFF; left: 1px; width: 100%; text-decoration: none;">
-                    <span class="material-icons-sharp">lock</span> Sign Out
-                </a>
-            </div>
+                        <span class="material-icons-sharp">
+                            <img src="../images/authorisations.svg">
+                        </span>
 
-            <div class="content" id="mainContent" style="padding-bottom: 100px;">
-                <div class="welcome-container classic-only"><div class="om-circle"  style="margin-top: -10px;">OM</div><b>Welcome, Omphile</b></div><br class="classic-only">
-                <div class="account classic-only">
-                    <div class="account-header">
-                        <h4>Accounts</h4>
-                        <a href="./Phone%20accounts.html" class="View">
-                            View All <span class="material-icons-sharp" style="top: 88px; position: absolute;">chevron_right</span>
+                        Authorisations
+
+                        <span class="dropdown-arrow">
+                            <img src="../images/chevron-down-white.svg">
+                        </span>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <a href="../Computer/inprogress.html">
+                            Transactions
+                        </a>
+
+                        <a href="../Computer/inprogress.html">
+                            Beneficiaries
+                        </a>
+
+                        <a href="../Computer/inprogress.html">
+                            User Management
+                        </a>
+
+                        <a href="../Computer/inprogress.html">
+                            Account & Limits
+                        </a>
+
+                        <a href="../Computer/inprogress.html">
+                            Authorisation Levels
+                        </a>
+
+                        <a href="../Computer/inprogress.html">
+                            Notification Setup
+                        </a>
+
+                        <a href="../Computer/inprogress.html">
+                            Messages
                         </a>
                     </div>
-                    <a href="./Phone%20accounts.html" style="cursor: pointer; text-decoration: none;">
-                        <div class="box" style="text-decoration: none;">
-                            <div class="box1" style="cursor: pointer;">
-                                <img src="../images/transact.svg" alt="transact">
+                </div>
+
+                <p class="side">SERVICES</p>
+
+                <a href="Explore.html">
+                    <span class="material-icons-sharp">
+                        <img src="../images/productsandservices.svg">
+                    </span>
+                    Products & Services
+                </a>
+
+                <a href="AppSars.html">
+                    <span class="material-icons-sharp">
+                        <img src="../images/efiling.svg">
+                    </span>
+                    SARS eFILLING
+                </a>
+
+                <a href="document.html" id="documents">
+                    <span class="material-icons-sharp">
+                        <img src="../images/document.svg">
+                    </span>
+                    Documents
+                </a>
+
+                <a href="Phone-settings.html" id="settings">
+                    <span class="material-icons-sharp">
+                        <img src="../images/settings.svg">
+                    </span>
+                    Settings
+                </a>
+
+                <a
+                        href="Phone.html"
+                        style="position: relative; bottom: -60px; border-top: 1px solid #FFFFFF; left: 1px; width: 100%; text-decoration: none;"
+                >
+                    <span class="material-icons-sharp">
+                        lock
+                    </span>
+                    Sign Out
+                </a>
+
+            </div>
+
+            <div
+                    class="content"
+                    id="mainContent"
+                    style="padding-bottom: 100px;"
+            >
+
+                <div class="welcome-container classic-only">
+                    <div
+                            class="om-circle"
+                            style="margin-top: -10px;"
+                    >
+                        OM
+                    </div>
+
+                    <b>Welcome, Omphile</b>
+                </div>
+
+                <br class="classic-only">
+
+                <div class="account classic-only">
+
+                    <div class="account-header">
+                        <h4>Accounts</h4>
+
+                        <a
+                                href="./Phone%20accounts.html"
+                                class="View"
+                        >
+                            View All
+
+                            <span
+                                    class="material-icons-sharp"
+                                    style="top: 88px; position: absolute;"
+                            >
+                                chevron_right
+                            </span>
+                        </a>
+                    </div>
+
+                    <a
+                            href="./Phone%20accounts.html"
+                            style="cursor: pointer; text-decoration: none;"
+                    >
+                        <div
+                                class="box"
+                                style="text-decoration: none;"
+                        >
+                            <div
+                                    class="box1"
+                                    style="cursor: pointer;"
+                            >
+                                <img
+                                        src="../images/transact.svg"
+                                        alt="transact"
+                                >
+
                                 <span class="separator"></span>
+
                                 <div class="account-details">
-                                    <span class="account-name" id="account-name">1 Account Current</span>
-                                    <span class="account-balance" id="account-balance">R1000</span>
+                                    <span
+                                            class="account-name"
+                                            id="account-name"
+                                    >
+                                        1 Account Current
+                                    </span>
+
+                                    <span
+                                            class="account-balance"
+                                            id="account-balance"
+                                    >
+                                        R1000
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </a>
+
                 </div>
 
                 <div class="account new-look-only">
 
                     <div class="account-header">
-                        <p style="font-weight: 400;">Accounts</p>
-                        <a href="./Phone%20accounts.html" class="View" style="color: #1a56db; font-weight: 450;">View all</a>
+                        <p style="font-weight: 400;">
+                            Accounts
+                        </p>
+
+                        <a
+                                href="./Phone%20accounts.html"
+                                class="View"
+                                style="color: #1a56db; font-weight: 450;"
+                        >
+                            View all
+                        </a>
                     </div>
-                    <a href="./Phone-currentAccountDetails.html" style="cursor: pointer; text-decoration: none;">
-                        <div class="nl-account-card" style="margin-top: 10px;">
-                            <img src="../images/transact.svg" alt="account" class="nl-account-icon">
-                            <span class="nl-account-name">1 Current Account</span>
-                            <span class="nl-account-balance" id="nlHomeCreditBalance">R97,159.36</span>
+
+                    <a
+                            href="./Phone-currentAccountDetails.html"
+                            style="cursor: pointer; text-decoration: none;"
+                    >
+                        <div
+                                class="nl-account-card"
+                                style="margin-top: 10px;"
+                        >
+                            <img
+                                    src="../images/transact.svg"
+                                    alt="account"
+                                    class="nl-account-icon"
+                            >
+
+                            <span class="nl-account-name">
+                                1 Current Account
+                            </span>
+
+                            <span
+                                    class="nl-account-balance"
+                                    id="nlHomeTransactionalBalance"
+                            >
+                                R90.99
+                            </span>
                         </div>
                     </a>
+
                     <br>
-                    <a href="./Phone%20accounts.html" style="cursor: pointer; text-decoration: none;">
+
+                    <a
+                            href="./Phone%20accounts.html"
+                            style="cursor: pointer; text-decoration: none;"
+                    >
                         <div class="nl-account-card">
-                            <img src="../images/save.svg" alt="save" class="material-icons-sharp nl-account-icon">
-                            <span class="nl-account-name">2 Savings Accounts</span>
-                            <span class="nl-account-balance" id="nlHomeSavingsBalance">R90.99</span>
+
+                            <img
+                                    src="../images/save.svg"
+                                    alt="save"
+                                    class="material-icons-sharp nl-account-icon"
+                            >
+
+                            <span class="nl-account-name">
+                                2 Savings Accounts
+                            </span>
+
+                            <span
+                                    class="nl-account-balance"
+                                    id="nlHomeSavingsBalance"
+                            >
+                                R90.99
+                            </span>
+
                         </div>
                     </a>
-                    <a href="./Phone-creditAccountDetails.html" style="cursor: pointer; text-decoration: none;">
-                        <div class="nl-account-card" style="margin-top: 10px;">
-                            <img src="../images/Credit.png" alt="credit" class="nl-account-icon" style="width: 30px; height: 30px;">
-                            <span class="nl-account-name">Credit Account</span>
-                            <span class="nl-account-balance" id="nlHomeCreditBalance">R97,159.36</span>
+
+                    <a
+                            href="./Phone-creditAccountDetails.html"
+                            style="cursor: pointer; text-decoration: none;"
+                    >
+                        <div
+                                class="nl-account-card"
+                                style="margin-top: 10px;"
+                        >
+
+                            <img
+                                    src="../images/Credit.png"
+                                    alt="credit"
+                                    class="nl-account-icon"
+                                    style="width: 30px; height: 30px;"
+                            >
+
+                            <span class="nl-account-name">
+                                Credit Account
+                            </span>
+
+                            <span
+                                    class="nl-account-balance"
+                                    id="nlHomeCreditBalance"
+                            >
+                                R97,159.36
+                            </span>
+
                         </div>
                     </a>
+
                 </div>
 
                 <div class="favorites-container classic-only">
+
                     <div class="favorites">
+
                         <div class="favorites-header">
-                            <h4 style="margin-left: -20px;">Favourites</h4>
+                            <h4 style="margin-left: -20px;">
+                                Favourites
+                            </h4>
+                        </div>
+
+                        <div class="favorites-grid">
+
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">
+                                    <img
+                                            src="../images/client-insights.svg"
+                                            style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"
+                                    >
+                                </span>
+
+                                <span
+                                        class="favorite-title"
+                                        id="saved-beneficiary-option"
+                                >
+                                    Pay Saved beneficiary
+                                </span>
+                            </div>
+
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">
+                                    <img
+                                            src="../images/once-off-payment.svg"
+                                            style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"
+                                    >
+                                </span>
+
+                                <span class="favorite-title">
+                                    Pay Once Off beneficiary
+                                </span>
+                            </div>
+
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">
+                                    <img
+                                            src="../images/client-insights.svg"
+                                            style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"
+                                    >
+                                </span>
+
+                                <span class="favorite-title">
+                                    Group or Multiple payments
+                                </span>
+                            </div>
+
+                            <div class="favorite-box">
+                                <span class="material-icons-sharp">
+                                    sync_alt
+                                </span>
+
+                                <span class="favorite-title">
+                                    Transfer Money
+                                </span>
+                            </div>
 
                         </div>
-                        <div class="favorites-grid">
-                            <div class="favorite-box">
-                                <span class="material-icons-sharp"><img src="../images/client-insights.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                                <span class="favorite-title" id="saved-beneficiary-option">Pay Saved beneficiary</span>
-                            </div>
-                            <div class="favorite-box">
-                                <span class="material-icons-sharp"><img src="../images/once-off-payment.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                                <span class="favorite-title">Pay Once Off beneficiary</span>
-                            </div>
-                            <div class="favorite-box">
-                                <span class="material-icons-sharp"><img src="../images/client-insights.svg" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" /></span>
-                                <span class="favorite-title">Group or Multiple payments</span>
-                            </div>
-                            <div class="favorite-box">
-                                <span class="material-icons-sharp">sync_alt</span>
-                                <span class="favorite-title">Transfer Money</span>
-                            </div>
-                        </div>
                     </div>
+
                 </div>
 
                 <div class="favorites-container new-look-only">
+
                     <div class="favorites">
+
                         <div class="favorites-header">
                             <h4>Favourites</h4>
-                            <a href="#" class="View">Edit</a>
+
+                            <a href="#" class="View">
+                                Edit
+                            </a>
                         </div>
+
                         <div class="favorites-grid">
+
                             <div class="favorite-box">
-                                <span class="material-icons-sharp">group</span>
-                                <span class="favorite-title">Pay beneficiary</span>
+                                <span class="material-icons-sharp">
+                                    group
+                                </span>
+
+                                <span class="favorite-title">
+                                    Pay beneficiary
+                                </span>
                             </div>
+
                             <div class="favorite-box">
-                                <span class="material-icons-sharp">credit_card</span>
-                                <span class="favorite-title">Pay once-off beneficiary</span>
+                                <span class="material-icons-sharp">
+                                    credit_card
+                                </span>
+
+                                <span class="favorite-title">
+                                    Pay once-off beneficiary
+                                </span>
                             </div>
+
                             <div class="favorite-box">
-                                <span class="material-icons-sharp">group</span>
-                                <span class="favorite-title">Group or Multiple payments</span>
+                                <span class="material-icons-sharp">
+                                    group
+                                </span>
+
+                                <span class="favorite-title">
+                                    Group or Multiple payments
+                                </span>
                             </div>
+
                             <div class="favorite-box">
-                                <span class="material-icons-sharp">sync_alt</span>
-                                <span class="favorite-title">Transfer money</span>
+                                <span class="material-icons-sharp">
+                                    sync_alt
+                                </span>
+
+                                <span class="favorite-title">
+                                    Transfer money
+                                </span>
                             </div>
+
                         </div>
                     </div>
+
                 </div>
 
                 <div class="pending-container classic-only">
+
                     <div class="pending">
+
                         <div class="pending-header">
-                            <h4 style="position: relative; left: -5px;">Pending authorisations (0)</h4>
+                            <h4 style="position: relative; left: -5px;">
+                                Pending authorisations (0)
+                            </h4>
+
                             <div class="pending-box">
-                                <img src="../images/beneficiaryList.svg" alt="pending" style="position: absolute; bottom: -50px; right: 65px; width: 200px; height: 200px; ">
+                                <img
+                                        src="../images/beneficiaryList.svg"
+                                        alt="pending"
+                                        style="position: absolute; bottom: -50px; right: 65px; width: 200px; height: 200px;"
+                                >
                             </div>
                         </div>
+
                     </div>
+
                 </div>
 
                 <div class="pending-container new-look-only">
+
                     <div class="pending">
+
                         <div class="pending-header">
-                            <h4>Pending Authorisations (0)</h4>
+                            <h4>
+                                Pending Authorisations (0)
+                            </h4>
                         </div>
-                        <div class="nl-pending-empty">You have no pending authorisations to approve.</div>
+
+                        <div class="nl-pending-empty">
+                            You have no pending authorisations to approve.
+                        </div>
+
                     </div>
+
                 </div>
 
             </div>
 
             <div class="bottom-nav" id="bottomNav">
-                <a href="Phone2.html" class="nav-item active" id="Homee">
-                    <img src="../images/home.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);" />
+
+                <a
+                        href="Phone2.html"
+                        class="nav-item active"
+                        id="Homee"
+                >
+                    <img
+                            src="../images/home.svg"
+                            alt="home"
+                            style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"
+                    >
+
                     <span>Home</span>
                 </a>
-                <a href="Phone%20accounts.html" class="nav-item">
-                    <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+
+                <a
+                        href="Phone%20accounts.html"
+                        class="nav-item"
+                >
+                    <img
+                            src="../images/accounts.svg"
+                            alt="accounts"
+                            style="filter: brightness(0) invert(50%) contrast(80%)"
+                    >
+
                     <span>Accounts</span>
                 </a>
-                <a href="Phone%20Transact.html" class="nav-item" id="transact">
-                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+
+                <a
+                        href="Phone%20Transact.html"
+                        class="nav-item"
+                        id="transact"
+                >
+                    <img
+                            src="../images/transact.svg"
+                            alt="transact"
+                            style="filter: brightness(0) invert(50%) contrast(80%)"
+                    >
+
                     <span>Transact</span>
                 </a>
-                <a href="Phone-cards.html" class="nav-item" id="cards">
-                    <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+
+                <a
+                        href="Phone-cards.html"
+                        class="nav-item"
+                        id="cards"
+                >
+                    <img
+                            src="../images/cards-action.svg"
+                            alt="cards"
+                            style="filter: brightness(0) invert(50%) contrast(80%)"
+                    >
+
                     <span>Cards</span>
                 </a>
-                <a href="Explore.html" class="nav-item">
-                    <img src="../images/explore.png" class="nav-icon" style="width: 80%;">
+
+                <a
+                        href="Explore.html"
+                        class="nav-item"
+                >
+                    <img
+                            src="../images/explore.png"
+                            class="nav-icon"
+                            style="width: 80%;"
+                            alt="explore"
+                    >
+
                     <span>Explore</span>
                 </a>
+
             </div>
 
         </div>
     </div>
+
     <div class="home-indicator"></div>
+
 </div>
 
 <script src="../scripts/App.js"></script>
@@ -321,23 +762,91 @@
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/nlAccountStore.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+
         if (localStorage.getItem('previewNewLook') !== 'false') {
             document.body.classList.add('new-look-active');
         }
 
         function formatNlBalance(amount) {
-            var sign = amount < 0 ? '-' : '';
-            return sign + 'R' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            var value = Number(amount || 0);
+            var sign = value < 0 ? '-' : '';
+
+            return sign +
+                'R' +
+                Math.abs(value)
+                    .toFixed(2)
+                    .replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
-        var homeBalances = NLAccountStore.getBalances();
-        var savingsTotal = homeBalances.notice32.available + homeBalances.flexible.available;
-        var savingsEl = document.getElementById('nlHomeSavingsBalance');
-        var creditEl = document.getElementById('nlHomeCreditBalance');
-        if (savingsEl) savingsEl.textContent = formatNlBalance(savingsTotal);
-        if (creditEl) creditEl.textContent = formatNlBalance(homeBalances.credit.available);
+
+        function updateHomeBalances() {
+
+            if (!window.NLAccountStore) {
+                return;
+            }
+
+            var balances = NLAccountStore.getBalances();
+
+            var transactional = balances.transactional || {};
+            var notice32 = balances.notice32 || {};
+            var flexible = balances.flexible || {};
+            var credit = balances.credit || {};
+
+            var savingsTotal =
+                Number(notice32.available || 0) +
+                Number(flexible.available || 0);
+
+            var transactionalEl =
+                document.getElementById(
+                    'nlHomeTransactionalBalance'
+                );
+
+            var savingsEl =
+                document.getElementById(
+                    'nlHomeSavingsBalance'
+                );
+
+            var creditEl =
+                document.getElementById(
+                    'nlHomeCreditBalance'
+                );
+
+            if (transactionalEl) {
+                transactionalEl.textContent =
+                    formatNlBalance(transactional.available);
+            }
+
+            if (savingsEl) {
+                savingsEl.textContent =
+                    formatNlBalance(savingsTotal);
+            }
+
+            if (creditEl) {
+                creditEl.textContent =
+                    formatNlBalance(credit.available);
+            }
+        }
+
+        updateHomeBalances();
+
+        window.addEventListener(
+            'nlBalancesUpdated',
+            updateHomeBalances
+        );
+
+        window.addEventListener(
+            'storage',
+            function (event) {
+                if (event.key === 'nlAccountBalances') {
+                    updateHomeBalances();
+                }
+            }
+        );
+
     });
 </script>
+
 </body>
 </html>

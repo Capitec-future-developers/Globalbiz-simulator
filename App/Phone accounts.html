@@ -1,186 +1,548 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/Phone-account.css">
   <link rel="stylesheet" href="../styles/Phone-account-newlook.css">
+  <link rel="stylesheet" href="../styles/Header.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
-  <title>iPhone with White LCD</title>
-    <link rel="stylesheet" href="../styles/Header.css">
+  <title>Accounts</title>
 </head>
+
 <body>
+
 <div class="iphone">
+
   <div class="volume-buttons">
     <div class="volume-up"></div>
     <div class="volume-down"></div>
   </div>
+
   <div class="power-button"></div>
+
   <div class="screen">
+
     <div class="notch"></div>
+
     <div class="screen-content">
+
       <div class="head classic-only">
-        <a class="arrow" href="Phone2.html" style="text-decoration: none;">
-          <span class="material-icons-sharp">arrow_back</span>
+        <a
+                class="arrow"
+                href="Phone2.html"
+                style="text-decoration: none;"
+        >
+                    <span class="material-icons-sharp">
+                        arrow_back
+                    </span>
         </a>
-        <div class="header" style="left: 90px; font-size: 1rem; bottom: 10px;">Current Account</div>
+
+        <div
+                class="header"
+                style="left: 90px; font-size: 1rem; bottom: 10px;"
+        >
+          Current Account
+        </div>
       </div>
 
-
-
       <div class="content classic-only" id="mainContent">
+
         <div class="account">
-          <div class="account-header">
-         </div>
+
+          <div class="account-header"></div>
+
           <div class="box">
+
             <div class="box1">
-              <img src="../images/transact.svg">
+
+              <img
+                      src="../images/transact.svg"
+                      alt="Current account"
+              >
+
               <span class="separator"></span>
+
               <div class="account-details">
-                <span class="account-name">1 Account Current</span>
-                <span class="account-balance">R1000</span>
-                <a href="Phone-accountDetails.html" class="View">
-                  <span class="material-icons-sharp">chevron_right</span>
+
+                                <span class="account-name">
+                                    1 Account Current
+                                </span>
+
+                <span
+                        class="account-balance"
+                        id="classicCurrentBalance"
+                >
+                                    R1000
+                                </span>
+
+                <a
+                        href="Phone-accountDetails.html"
+                        class="View"
+                >
+                                    <span class="material-icons-sharp">
+                                        chevron_right
+                                    </span>
                 </a>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
 
       <div class="nl-accounts-content new-look-only">
+
         <div class="nl-accounts-topbar">
-          <a href="Phone2.html" class="nl-back"><span class="material-icons-sharp">arrow_back</span></a>
+
+          <a
+                  href="Phone2.html"
+                  class="nl-back"
+          >
+                        <span class="material-icons-sharp">
+                            arrow_back
+                        </span>
+          </a>
+
           <h2>Accounts</h2>
+
         </div>
 
         <div class="nl-accounts-search">
-          <span class="material-icons-sharp">search</span>
-          <input type="text" id="nlAccountSearch" placeholder="Search accounts">
+
+                    <span class="material-icons-sharp">
+                        search
+                    </span>
+
+          <input
+                  type="text"
+                  id="nlAccountSearch"
+                  placeholder="Search accounts"
+          >
+
         </div>
 
-        <div class="nl-filter-pills" id="nlFilterPills">
-          <button class="nl-pill" type="button" data-filter="all">All</button>
-          <button class="nl-pill" type="button" data-filter="current">Current</button>
-          <button class="nl-pill active" type="button" data-filter="savings">Savings</button>
-          <button class="nl-pill" type="button" data-filter="credit">Credit</button>
+        <div
+                class="nl-filter-pills"
+                id="nlFilterPills"
+        >
+
+          <button
+                  class="nl-pill"
+                  type="button"
+                  data-filter="all"
+          >
+            All
+          </button>
+
+          <button
+                  class="nl-pill"
+                  type="button"
+                  data-filter="current"
+          >
+            Current
+          </button>
+
+          <button
+                  class="nl-pill active"
+                  type="button"
+                  data-filter="savings"
+          >
+            Savings
+          </button>
+
+          <button
+                  class="nl-pill"
+                  type="button"
+                  data-filter="credit"
+          >
+            Credit
+          </button>
+
         </div>
 
-        <div class="nl-account-list" id="nlAccountList">
-          <a href="Phone-currentAccountDetails.html" class="nl-account-list-card" data-type="credit" data-name="ngikhathele" data-acc-id="credit">
-            <span class="nl-account-accent" style="background:#06a2e4;"></span>
+        <div
+                class="nl-account-list"
+                id="nlAccountList"
+        >
+
+          <a
+                  href="Phone-currentAccountDetails.html"
+                  class="nl-account-list-card"
+                  data-type="current"
+                  data-name="current account"
+                  data-acc-id="transactional"
+          >
+                        <span
+                                class="nl-account-accent"
+                                style="background:#06a2e4;"
+                        ></span>
+
             <div class="nl-account-list-info">
-              <div class="nl-account-list-name">Current account</div>
-              <div class="nl-account-list-label">Available balance</div>
+
+              <div class="nl-account-list-name">
+                Current Account
+              </div>
+
+              <div class="nl-account-list-label">
+                Available balance
+              </div>
+
             </div>
-            <div class="nl-account-list-balance" id="nlBalance-credit">R97,159.36</div>
+
+            <div
+                    class="nl-account-list-balance"
+                    id="nlBalance-transactional"
+            >
+              R90.99
+            </div>
+
           </a>
-        </div>
-          <a href="Phone-accountDetails.html?acc=notice32" class="nl-account-list-card" data-type="savings" data-name="business 32 day notice account" data-acc-id="notice32">
+
+          <a
+                  href="Phone-accountDetails.html?acc=notice32"
+                  class="nl-account-list-card"
+                  data-type="savings"
+                  data-name="business 32 day notice account"
+                  data-acc-id="notice32"
+          >
             <span class="nl-account-accent"></span>
+
             <div class="nl-account-list-info">
-              <div class="nl-account-list-name">Business 32 Day Notice Account</div>
-              <div class="nl-account-list-label">Available balance</div>
+
+              <div class="nl-account-list-name">
+                Business 32 Day Notice Account
+              </div>
+
+              <div class="nl-account-list-label">
+                Available balance
+              </div>
+
             </div>
-            <div class="nl-account-list-balance" id="nlBalance-notice32">R90.99</div>
+
+            <div
+                    class="nl-account-list-balance"
+                    id="nlBalance-notice32"
+            >
+              R90.99
+            </div>
+
           </a>
-          <a href="Phone-accountDetails.html?acc=flexible" class="nl-account-list-card" data-type="savings" data-name="flexible savings account" data-acc-id="flexible">
+
+          <a
+                  href="Phone-accountDetails.html?acc=flexible"
+                  class="nl-account-list-card"
+                  data-type="savings"
+                  data-name="flexible savings account"
+                  data-acc-id="flexible"
+          >
             <span class="nl-account-accent"></span>
+
             <div class="nl-account-list-info">
-              <div class="nl-account-list-name">Flexible Savings Account</div>
-              <div class="nl-account-list-label">Available balance</div>
+
+              <div class="nl-account-list-name">
+                Flexible Savings Account
+              </div>
+
+              <div class="nl-account-list-label">
+                Available balance
+              </div>
+
             </div>
-            <div class="nl-account-list-balance" id="nlBalance-flexible">R0.00</div>
+
+            <div
+                    class="nl-account-list-balance"
+                    id="nlBalance-flexible"
+            >
+              R0.00
+            </div>
+
           </a>
-          <a href="Phone-creditAccountDetails.html" class="nl-account-list-card" data-type="credit" data-name="ngikhathele" data-acc-id="credit">
-            <span class="nl-account-accent" style="background:#c0272d;"></span>
+
+          <a
+                  href="Phone-creditAccountDetails.html"
+                  class="nl-account-list-card"
+                  data-type="credit"
+                  data-name="ngikhathele credit account"
+                  data-acc-id="credit"
+          >
+                        <span
+                                class="nl-account-accent"
+                                style="background:#c0272d;"
+                        ></span>
+
             <div class="nl-account-list-info">
-              <div class="nl-account-list-name">Ngikhathele</div>
-              <div class="nl-account-list-label">Available balance</div>
+
+              <div class="nl-account-list-name">
+                Ngikhathele
+              </div>
+
+              <div class="nl-account-list-label">
+                Available balance
+              </div>
+
             </div>
-            <div class="nl-account-list-balance" id="nlBalance-credit">R97,159.36</div>
+
+            <div
+                    class="nl-account-list-balance"
+                    id="nlBalance-credit"
+            >
+              R97,159.36
+            </div>
+
           </a>
+
         </div>
+
       </div>
 
+      <div
+              class="bottom-nav"
+              id="bottomNav"
+      >
 
-      <div class="bottom-nav" id="bottomNav">
-        <a href="Phone2.html" class="nav-item " id="Homee">
-          <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)" />
+        <a
+                href="Phone2.html"
+                class="nav-item"
+                id="Homee"
+        >
+          <img
+                  src="../images/home.svg"
+                  alt="home"
+                  style="filter: brightness(0) invert(50%) contrast(80%)"
+          >
+
           <span>Home</span>
         </a>
-        <a href="Phone%20accounts.html" class="nav-item active">
-          <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"/>
+
+        <a
+                href="Phone%20accounts.html"
+                class="nav-item active"
+        >
+          <img
+                  src="../images/accounts.svg"
+                  alt="accounts"
+                  style="filter: brightness(0) saturate(100%) invert(32%) sepia(89%) saturate(2087%) hue-rotate(202deg) brightness(95%) contrast(90%);"
+          >
+
           <span>Accounts</span>
         </a>
-        <a href="Phone%20Transact.html" class="nav-item" id="transact">
-          <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+
+        <a
+                href="Phone%20Transact.html"
+                class="nav-item"
+                id="transact"
+        >
+          <img
+                  src="../images/transact.svg"
+                  alt="transact"
+                  style="filter: brightness(0) invert(50%) contrast(80%)"
+          >
+
           <span>Transact</span>
         </a>
-        <a href="Phone-cards.html" class="nav-item" id="cards">
-          <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+
+        <a
+                href="Phone-cards.html"
+                class="nav-item"
+                id="cards"
+        >
+          <img
+                  src="../images/cards-action.svg"
+                  alt="cards"
+                  style="filter: brightness(0) invert(50%) contrast(80%)"
+          >
+
           <span>Cards</span>
         </a>
-        <a href="Explore.html" class="nav-item">
-          <img src="../images/explore.png" class="nav-icon" style="width: 80%;">
+
+        <a
+                href="Explore.html"
+                class="nav-item"
+        >
+          <img
+                  src="../images/explore.png"
+                  class="nav-icon"
+                  style="width: 80%;"
+                  alt="explore"
+          >
+
           <span>Explore</span>
         </a>
+
       </div>
+
     </div>
+
   </div>
+
   <div class="home-indicator"></div>
+
 </div>
+
 <script src="../scripts/chatbot.js"></script>
 <script src="../scripts/App.js"></script>
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/nlAccountStore.js"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if (localStorage.getItem('previewNewLook') !== 'false') {
-            document.body.classList.add('new-look-active');
+  document.addEventListener('DOMContentLoaded', function () {
+
+    if (localStorage.getItem('previewNewLook') !== 'false') {
+      document.body.classList.add('new-look-active');
+    }
+
+    function formatNlBalance(amount) {
+      var value = Number(amount || 0);
+      var sign = value < 0 ? '-' : '';
+
+      return sign +
+              'R' +
+              Math.abs(value)
+                      .toFixed(2)
+                      .replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+
+    function updateBalances() {
+
+      if (!window.NLAccountStore) {
+        return;
+      }
+
+      var balances = NLAccountStore.getBalances();
+
+      var accountMap = {
+        transactional: 'nlBalance-transactional',
+        notice32: 'nlBalance-notice32',
+        flexible: 'nlBalance-flexible',
+        credit: 'nlBalance-credit'
+      };
+
+      Object.keys(accountMap).forEach(function (accountId) {
+
+        var account = balances[accountId];
+
+        var balanceEl = document.getElementById(
+                accountMap[accountId]
+        );
+
+        if (!account || !balanceEl) {
+          return;
         }
 
-        function formatNlBalance(amount) {
-            var sign = amount < 0 ? '-' : '';
-            return sign + 'R' + Math.abs(amount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-        }
-        var balances = NLAccountStore.getBalances();
-        document.querySelectorAll('.nl-account-list-card').forEach(function (card) {
-            var accId = card.dataset.accId;
-            var balanceEl = document.getElementById('nlBalance-' + accId);
-            if (accId && balances[accId] && balanceEl) {
-                balanceEl.textContent = formatNlBalance(balances[accId].available);
-            }
+        balanceEl.textContent =
+                formatNlBalance(account.available);
+      });
+
+      var classicBalance =
+              document.getElementById('classicCurrentBalance');
+
+      if (
+              classicBalance &&
+              balances.transactional
+      ) {
+        classicBalance.textContent =
+                formatNlBalance(
+                        balances.transactional.available
+                );
+      }
+    }
+
+    var pills =
+            document.querySelectorAll('.nl-pill');
+
+    var cards =
+            document.querySelectorAll('.nl-account-list-card');
+
+    var searchInput =
+            document.getElementById('nlAccountSearch');
+
+    function applyFilters() {
+
+      var activePill =
+              document.querySelector('.nl-pill.active');
+
+      var filter =
+              activePill
+                      ? activePill.dataset.filter
+                      : 'all';
+
+      var query =
+              searchInput
+                      ? searchInput.value.toLowerCase().trim()
+                      : '';
+
+      cards.forEach(function (card) {
+
+        var matchesFilter =
+                filter === 'all' ||
+                card.dataset.type === filter;
+
+        var matchesQuery =
+                !query ||
+                card.dataset.name
+                        .toLowerCase()
+                        .includes(query);
+
+        card.style.display =
+                matchesFilter && matchesQuery
+                        ? 'flex'
+                        : 'none';
+      });
+    }
+
+    pills.forEach(function (pill) {
+
+      pill.addEventListener('click', function () {
+
+        pills.forEach(function (item) {
+          item.classList.remove('active');
         });
 
-        var pills = document.querySelectorAll('.nl-pill');
-        var cards = document.querySelectorAll('.nl-account-list-card');
-        var searchInput = document.getElementById('nlAccountSearch');
+        pill.classList.add('active');
 
-        function applyFilters() {
-            var activePill = document.querySelector('.nl-pill.active');
-            var filter = activePill ? activePill.dataset.filter : 'all';
-            var query = (searchInput && searchInput.value || '').toLowerCase().trim();
-            cards.forEach(function (card) {
-                var matchesFilter = filter === 'all' || card.dataset.type === filter;
-                var matchesQuery = !query || card.dataset.name.indexOf(query) !== -1;
-                card.style.display = (matchesFilter && matchesQuery) ? 'flex' : 'none';
-            });
-        }
+        applyFilters();
+      });
 
-        pills.forEach(function (pill) {
-            pill.addEventListener('click', function () {
-                pills.forEach(function (p) { p.classList.remove('active'); });
-                pill.classList.add('active');
-                applyFilters();
-            });
-        });
-
-        if (searchInput) {
-            searchInput.addEventListener('input', applyFilters);
-        }
     });
+
+    if (searchInput) {
+      searchInput.addEventListener(
+              'input',
+              applyFilters
+      );
+    }
+
+    updateBalances();
+
+    window.addEventListener(
+            'nlBalancesUpdated',
+            updateBalances
+    );
+
+    window.addEventListener(
+            'storage',
+            function (event) {
+
+              if (
+                      event.key === 'nlAccountBalances'
+              ) {
+                updateBalances();
+              }
+
+            }
+    );
+
+    applyFilters();
+
+  });
 </script>
+
 </body>
 </html>
