@@ -3,165 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+
     <link rel="stylesheet" href="../styles/Phone-card.css">
     <link rel="stylesheet" href="../styles/AddCard-newlook.css">
     <link rel="stylesheet" href="../styles/Cards-newlook.css">
+    <link rel="stylesheet" href="../styles/Header.css">
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
-    <title>App</title>
-    <link rel="stylesheet" href="../styles/Header.css">
 </head>
-<body>
 
+<body>
 <div class="iphone">
     <div class="volume-buttons">
         <div class="volume-up"></div>
         <div class="volume-down"></div>
     </div>
+
     <div class="power-button"></div>
+
     <div class="screen">
         <div class="notch"></div>
+
         <div class="screen-content">
+
             <div class="head classic-only">
-                <a href="Phone2.html" class="arrow" id="sidebarToggle" style=" background-color: #1e1e2f;">
-                    <span class="material-icons-sharp" >arrow_back</span>
+                <a href="Phone2.html" class="arrow" id="sidebarToggle" aria-label="Back">
+                    <span class="material-icons-sharp">arrow_back</span>
                 </a>
-                <div class="header" style="right: -115px; font-size: 20px;">Cards</div>
+
+                <div class="header">Cards</div>
             </div>
 
-
             <div class="content" id="mainContent">
+
                 <div id="cards-newlook-root" class="new-look-only"></div>
+
                 <div class="account classic-only">
-                    <div class="account-header" style="position: absolute; top: 100px;">
-                        <h4 style="font-weight: 300; position: absolute; left: 10px;">Add new card</h4>
-                        <div class="add-new" id="Add-Card">
-                            <span class="material-icons-sharp" style="position: absolute; top: 10px; background-color: white; right: 10px;">add_circle</span>
-                        </div>
+                    <div class="account-header">
+                        <h4>Active</h4>
+
+                        <button class="add-new" id="Add-Card" type="button" aria-label="Add new card">
+                            <span class="material-icons-sharp">add_circle</span>
+                        </button>
                     </div>
 
-                    <div class="box" style="position: absolute; top: 9px; left: 4px;">
-                        
+                    <div class="box">
+
                         <div class="box1">
-                            <span class="material-icons-sharp"><img src="../images/transact.svg" alt="transact"></span>
+                            <span class="material-icons-sharp">
+                                <img src="../images/transact.svg" alt="Debit card">
+                            </span>
+
                             <span class="separator"></span>
+
                             <div class="account-details">
                                 <span class="account-name">Debit</span>
-                                <a  class="View" id="debitToggle" style="cursor: pointer;">
-                                    <span class="material-icons-sharp"><img src="../images/more-chevron.svg"></span>
-                                </a>
-                                
+
+                                <button class="View" id="debitToggle" type="button" aria-label="View debit card">
+                                    <span class="material-icons-sharp">
+                                        <img src="../images/more-chevron.svg" alt="More">
+                                    </span>
+                                </button>
+
                                 <div class="dropdown-content" id="debit-dropdown">
                                     <div class="card-top">
-                                        <img src="../images/card.png" alt="Debit Card" class="card-img" id="debit-card">
+                                        <img src="../images/card.png" alt="Debit Card" class="card-img">
+
                                         <div class="card-info">
                                             <p>Kodi Banks</p>
                                             <p>4016**** ****3734</p>
                                         </div>
                                     </div>
+
                                     <div class="separator"></div>
+
                                     <div class="status-row">
                                         <div class="status">Active</div>
-                                        <a href="view card detail.html">
-                                        <span class="material-icons-sharp">chevron_right</span>
+
+                                        <a href="view card detail.html" aria-label="View card details">
+                                            <span class="material-icons-sharp">chevron_right</span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        
-                        <div class="box1" style="top: 210px;">
-                            <span class="material-icons-sharp"><img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/></span>
+                        <div class="box1">
+                            <span class="material-icons-sharp">
+                                <img
+                                        src="../images/transact.svg"
+                                        alt="Virtual card"
+                                        style="filter: brightness(0) invert(50%) contrast(80%)"
+                                >
+                            </span>
+
                             <span class="separator"></span>
+
                             <div class="account-details">
                                 <span class="account-name">Virtual</span>
-                                <a href="#" class="View" id="virtualToggle">
-                                    <span class="material-icons-sharp"><img src="../images/more-chevron.svg"></span>
-                                </a>
-                                
-                                <div class="dropdown-content" id="virtual-dropdown" style="color: grey;">
+
+                                <button class="View" id="virtualToggle" type="button" aria-label="View virtual card">
+                                    <span class="material-icons-sharp">
+                                        <img src="../images/more-chevron.svg" alt="More">
+                                    </span>
+                                </button>
+
+                                <div class="dropdown-content" id="virtual-dropdown">
                                     <div class="card-top">
                                         <img src="../images/virtuale.png" alt="Virtual Card" class="card-img">
+
                                         <div class="card-info">
                                             <p>Kodi Virtual</p>
                                             <p>4016**** ****1234</p>
                                         </div>
                                     </div>
+
                                     <div class="separator"></div>
+
                                     <div class="status-row">
                                         <div class="status">Active</div>
-                                        <span class="material-icons-sharp">chevron_right</span>
+
+                                        <a href="#" aria-label="View virtual card details">
+                                            <span class="material-icons-sharp">chevron_right</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
 
-
-            
             <div class="bottom-nav" id="bottomNav">
-                <a href="Phone2.html" class="nav-item " id="Homee">
-                    <img src="../images/home.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%);" />
+
+                <a href="Phone2.html" class="nav-item" id="Homee">
+                    <img
+                            src="../images/home.svg"
+                            alt="Home"
+                            style="filter: brightness(0) invert(50%) contrast(80%)"
+                    >
                     <span>Home</span>
                 </a>
+
                 <a href="Phone%20accounts.html" class="nav-item">
-                    <img src="../images/accounts.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <img
+                            src="../images/accounts.svg"
+                            alt="Accounts"
+                            style="filter: brightness(0) invert(50%) contrast(80%)"
+                    >
                     <span>Accounts</span>
                 </a>
+
                 <a href="Phone%20Transact.html" class="nav-item" id="transact">
-                    <img src="../images/transact.svg" alt="transact" style="filter: brightness(0) invert(50%) contrast(80%)"/>
+                    <img
+                            src="../images/transact.svg"
+                            alt="Transact"
+                            style="filter: brightness(0) invert(50%) contrast(80%)"
+                    >
                     <span>Transact</span>
                 </a>
+
                 <a href="Phone-cards.html" class="nav-item active" id="card">
-                    <img src="../images/cards-action.svg" alt="transact" style="filter: brightness(0)"/>
+                    <img
+                            src="../images/cards-action.svg"
+                            alt="Cards"
+                            style="filter: brightness(0)"
+                    >
                     <span>Cards</span>
                 </a>
+
                 <a href="Explore.html" class="nav-item">
                     <span class="nav-icon material-icons-outlined">search</span>
                     <span>Explore</span>
                 </a>
+
             </div>
+
         </div>
     </div>
+
     <div class="home-indicator"></div>
 </div>
-<script >
-    const debitBtn = document.getElementById('debitToggle');
-    const debitDropdown = document.getElementById('debit-dropdown');
 
-    const virtualBtn = document.getElementById('virtualToggle');
-    const virtualDropdown = document.getElementById('virtual-dropdown');
-
-    debitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        debitDropdown.classList.toggle('show');
-        virtualDropdown.classList.remove('show');
-    });
-
-    virtualBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        virtualDropdown.classList.toggle('show');
-        debitDropdown.classList.remove('show');
-    });
-</script>
 <script src="../scripts/add-new-card.js"></script>
 <script src="../scripts/CardsNewLook.js"></script>
 <script src="../scripts/App.js"></script>
 <script src="../scripts/Header.js"></script>
 <script src="../scripts/Automation.js"></script>
 <script src="../scripts/chatbot.js"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if (localStorage.getItem('previewNewLook') !== 'false') {
-            document.body.classList.add('new-look-active');
+    document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("previewNewLook") !== "false") {
+            document.body.classList.add("new-look-active");
+        }
+
+        const debitBtn = document.getElementById("debitToggle");
+        const debitDropdown = document.getElementById("debit-dropdown");
+        const virtualBtn = document.getElementById("virtualToggle");
+        const virtualDropdown = document.getElementById("virtual-dropdown");
+
+        if (debitBtn && debitDropdown) {
+            debitBtn.addEventListener("click", function () {
+                debitDropdown.classList.toggle("show");
+
+                if (virtualDropdown) {
+                    virtualDropdown.classList.remove("show");
+                }
+            });
+        }
+
+        if (virtualBtn && virtualDropdown) {
+            virtualBtn.addEventListener("click", function () {
+                virtualDropdown.classList.toggle("show");
+
+                if (debitDropdown) {
+                    debitDropdown.classList.remove("show");
+                }
+            });
         }
     });
 </script>
+
 </body>
-
 </html>
-

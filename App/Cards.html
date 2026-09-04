@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cards</title>
+
+    <!-- Existing styles -->
+    <link rel="stylesheet" href="../styles/Phone-card.css">
+    <link rel="stylesheet" href="../styles/AddCard-newlook.css">
+    <link rel="stylesheet" href="../styles/Cards-newlook.css">
+    <link rel="stylesheet" href="../styles/Header.css">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="../images/profile.jpg">
+
+
+</head>
+
+<body>
+
+<div class="iphone">
+
+    <!-- iPhone buttons -->
+    <div class="volume-buttons">
+        <div class="volume-up"></div>
+        <div class="volume-down"></div>
+    </div>
+
+    <div class="power-button"></div>
+
+    <div class="screen">
+
+        <div class="notch"></div>
+
+        <div class="screen-content">
+
+            <!-- =========================
+                 HEADER
+            ========================== -->
+            <div class="head classic-only">
+
+                <a href="Phone2.html"
+                   class="arrow"
+                   id="sidebarToggle"
+                   aria-label="Back">
+
+                <span class="material-icons-sharp">
+                    arrow_back
+                </span>
+
+                </a>
+
+                <div class="header">
+                    Cards
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 MAIN CONTENT
+            ========================== -->
+            <div class="content" id="mainContent">
+
+                <!-- New Look Cards -->
+                <div id="cards-newlook-root"
+                     class="new-look-only">
+                </div>
+
+
+                <!-- Classic Cards -->
+                <div class="account classic-only">
+
+                    <!-- Active Cards Header -->
+                    <div class="account-header">
+
+                        <h4>
+                            Active
+                        </h4>
+
+                        <div class="add-new"
+                             id="Add-Card">
+
+                        <span class="material-icons-sharp">
+                            add_circle
+                        </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         DEBIT CARD
+                    ========================== -->
+                    <div class="box">
+
+                        <div class="box1">
+
+                        <span class="material-icons-sharp">
+                            <img src="../images/transact.svg"
+                                 alt="Debit card">
+                        </span>
+
+                            <span class="separator"></span>
+
+                            <div class="account-details">
+
+                            <span class="account-name">
+                                Debit
+                            </span>
+
+                                <a href="#"
+                                   class="View"
+                                   id="debitToggle"
+                                   aria-label="View debit card">
+
+                                <span class="material-icons-sharp">
+                                    <img src="../images/more-chevron.svg"
+                                         alt="More">
+                                </span>
+
+                                </a>
+
+
+                                <!-- Debit dropdown -->
+                                <div class="dropdown-content"
+                                     id="debit-dropdown">
+
+                                    <div class="card-top">
+
+                                        <img src="../images/card.png"
+                                             alt="Debit Card"
+                                             class="card-img">
+
+                                        <div class="card-info">
+
+                                            <p>
+                                                Kodi Banks
+                                            </p>
+
+                                            <p>
+                                                4016**** ****3734
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="separator"></div>
+
+                                    <div class="status-row">
+
+                                        <div class="status">
+                                            Active
+                                        </div>
+
+                                        <a href="view card detail.html"
+                                           aria-label="View card details">
+
+                                        <span class="material-icons-sharp">
+                                            chevron_right
+                                        </span>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                             VIRTUAL CARD
+                        ========================== -->
+                        <div class="box1">
+
+                        <span class="material-icons-sharp">
+
+                            <img src="../images/transact.svg"
+                                 alt="Virtual card"
+                                 style="filter: brightness(0) invert(50%) contrast(80%)">
+
+                        </span>
+
+                            <span class="separator"></span>
+
+                            <div class="account-details">
+
+                            <span class="account-name">
+                                Virtual
+                            </span>
+
+                                <a href="#"
+                                   class="View"
+                                   id="virtualToggle"
+                                   aria-label="View virtual card">
+
+                                <span class="material-icons-sharp">
+                                    <img src="../images/more-chevron.svg"
+                                         alt="More">
+                                </span>
+
+                                </a>
+
+
+                                <!-- Virtual dropdown -->
+                                <div class="dropdown-content"
+                                     id="virtual-dropdown">
+
+                                    <div class="card-top">
+
+                                        <img src="../images/virtuale.png"
+                                             alt="Virtual Card"
+                                             class="card-img">
+
+                                        <div class="card-info">
+
+                                            <p>
+                                                Kodi Virtual
+                                            </p>
+
+                                            <p>
+                                                4016**** ****1234
+                                            </p>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="separator"></div>
+
+                                    <div class="status-row">
+
+                                        <div class="status">
+                                            Active
+                                        </div>
+
+                                        <a href="#"
+                                           aria-label="View virtual card details">
+
+                                        <span class="material-icons-sharp">
+                                            chevron_right
+                                        </span>
+
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 BOTTOM NAVIGATION
+            ========================== -->
+            <div class="bottom-nav" id="bottomNav">
+
+                <!-- HOME -->
+                <a href="Phone2.html"
+                   class="nav-item"
+                   id="Homee">
+
+                    <img src="../images/home.svg"
+                         alt="Home"
+                         style="filter: brightness(0) invert(50%) contrast(80%);">
+
+                    <span>
+                    Home
+                </span>
+
+                </a>
+
+
+                <!-- ACCOUNTS -->
+                <a href="Phone%20accounts.html"
+                   class="nav-item">
+
+                    <img src="../images/accounts.svg"
+                         alt="Accounts"
+                         style="filter: brightness(0) invert(50%) contrast(80%);">
+
+                    <span>
+                    Accounts
+                </span>
+
+                </a>
+
+
+                <!-- TRANSACT -->
+                <a href="Phone%20Transact.html"
+                   class="nav-item"
+                   id="transact">
+
+                    <img src="../images/transact.svg"
+                         alt="Transact"
+                         style="filter: brightness(0) invert(50%) contrast(80%);">
+
+                    <span>
+                    Transact
+                </span>
+
+                </a>
+
+
+                <!-- CARDS -->
+                <a href="Phone-cards.html"
+                   class="nav-item active"
+                   id="card">
+
+                    <img src="../images/cards-action.svg"
+                         alt="Cards"
+                         style="filter: brightness(0);">
+
+                    <span>
+                    Cards
+                </span>
+
+                </a>
+
+
+                <!-- EXPLORE -->
+                <a href="Explore.html"
+                   class="nav-item">
+
+                <span class="nav-icon material-icons-outlined">
+                    search
+                </span>
+
+                    <span>
+                    Explore
+                </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- iPhone home indicator -->
+    <div class="home-indicator"></div>
+    ```
+
+</div>
+
+<!-- =========================
+     CARD DROPDOWN SCRIPT
+========================== -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const debitBtn =
+            document.getElementById("debitToggle");
+
+        const debitDropdown =
+            document.getElementById("debit-dropdown");
+
+        const virtualBtn =
+            document.getElementById("virtualToggle");
+
+        const virtualDropdown =
+            document.getElementById("virtual-dropdown");
+
+
+        /* Debit card */
+        if (debitBtn && debitDropdown) {
+
+            debitBtn.addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+                debitDropdown.classList.toggle("show");
+
+                if (virtualDropdown) {
+                    virtualDropdown.classList.remove("show");
+                }
+
+            });
+
+        }
+
+
+        /* Virtual card */
+        if (virtualBtn && virtualDropdown) {
+
+            virtualBtn.addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+                virtualDropdown.classList.toggle("show");
+
+                if (debitDropdown) {
+                    debitDropdown.classList.remove("show");
+                }
+
+            });
+
+        }
+
+    });
+
+</script>
+
+<!-- =========================
+     SCRIPTS
+========================== -->
+
+<script src="../scripts/add-new-card.js"></script>
+
+<script src="../scripts/CardsNewLook.js"></script>
+
+<script src="../scripts/App.js"></script>
+
+<script src="../scripts/Header.js"></script>
+
+<script src="../scripts/Automation.js"></script>
+
+<script src="../scripts/chatbot.js"></script>
+
+<!-- New-look switch -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        if (localStorage.getItem("previewNewLook") !== "false") {
+
+            document.body.classList.add("new-look-active");
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
